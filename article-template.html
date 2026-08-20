@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{TITLE}} | Le Blog Forlife Com'</title>
+  <meta name="description" content="{{EXCERPT}}">
+  <meta name="author" content="Forlife Com'">
+  
+  <link rel="icon" type="image/svg+xml" href="../assets/logo/logo-horizontal.svg">
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/blog.css">
+  <style>
+    .article-header { padding: 4rem 0 2rem; text-align: center; }
+    .article-meta { color: var(--color-gray-500); margin-bottom: 1rem; }
+    .article-title { font-size: 2.5rem; color: var(--color-dark); margin-bottom: 2rem; }
+    .article-image { max-width: 100%; height: auto; border-radius: 8px; margin-bottom: 3rem; }
+    .article-content { max-width: 800px; margin: 0 auto; line-height: 1.8; color: var(--color-gray-800); }
+    .article-content h2 { margin-top: 2rem; margin-bottom: 1rem; color: var(--color-primary-dark); }
+    .article-content p { margin-bottom: 1.5rem; }
+    .article-cta { background: var(--color-primary-light); padding: 2rem; border-radius: 8px; text-align: center; margin-top: 3rem; }
+    .article-cta h3 { color: var(--color-dark); margin-bottom: 1rem; }
+  </style>
+</head>
+<body>
+
+<header>
+  <nav class="nav" role="navigation" aria-label="Navigation principale">
+    <div class="container nav-container">
+      <a href="../index.html" class="nav-logo" aria-label="Forlife Com' — Accueil">
+        <img src="../assets/logo/logo-horizontal.svg" alt="Forlife Com' logo" width="160" height="44">
+      </a>
+      <ul class="nav-menu" role="list">
+        <li><a href="../index.html" class="nav-link">Accueil</a></li>
+        <li><a href="../a-propos.html" class="nav-link">À propos</a></li>
+        <li><a href="../services.html" class="nav-link">Services</a></li>
+        <li><a href="../realisations.html" class="nav-link">Réalisations</a></li>
+        <li><a href="index.html" class="nav-link active">Blog</a></li>
+        <li><a href="../contact.html" class="nav-link">Contact</a></li>
+      </ul>
+      <div class="nav-actions">
+        <a href="https://wa.me/2250585801856" class="btn btn--primary btn--sm" target="_blank" rel="noopener">Devis gratuit</a>
+      </div>
+    </div>
+  </nav>
+</header>
+
+<main id="main-content">
+  <article class="container">
+    <header class="article-header">
+      <div class="article-meta">
+        <time datetime="{{DATE_ISO}}">{{DATE_FR}}</time>
+        <span>·</span>
+        <span style="color: var(--color-primary); font-weight: 600;">{{CATEGORY}}</span>
+      </div>
+      <h1 class="article-title">{{TITLE}}</h1>
+      <img src="{{IMAGE_URL}}" alt="{{TITLE}}" class="article-image">
+    </header>
+    
+    <div class="article-content">
+      {{CONTENT}}
+      
+      <div class="article-cta">
+        <h3>Prêt à booster votre communication ?</h3>
+        <p>Ne laissez pas votre image au hasard. Confiez-la à des professionnels qui comprennent le marché ivoirien.</p>
+        <a href="https://wa.me/2250585801856" class="btn btn--primary" target="_blank" rel="noopener">Discuter de mon projet sur WhatsApp</a>
+      </div>
+    </div>
+  </article>
+</main>
+
+<footer class="footer" role="contentinfo">
+  <div class="container">
+    <div class="footer-bottom" style="text-align: center; padding: 2rem 0; border-top: 1px solid var(--color-gray-200); margin-top: 4rem;">
+      <p>© 2026 Forlife Com'. Tous droits réservés.</p>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

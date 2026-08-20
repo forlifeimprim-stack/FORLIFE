@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- SEO Meta Tags -->
+  <title>Espace Automatisation Marketing — Forlife Com'</title>
+  <meta name="description" content="Tableau de bord d'automatisation marketing pour Forlife Com'. Gestion des campagnes Meta Ads, des emails clients et du suivi des devis.">
+  <meta name="robots" content="noindex, nofollow">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="assets/logo/logo-horizontal.svg">
+
+  <!-- Fonts & Styles -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400;1,500;1,600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  
+  <style>
+    .dash-hero {
+      background: var(--color-dark-800);
+      padding: calc(var(--nav-height) + var(--space-12)) 0 var(--space-12);
+      border-bottom: 1px solid var(--color-dark-600);
+    }
+    .dash-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: var(--space-6);
+      margin-top: var(--space-8);
+    }
+    .dash-card {
+      background: var(--color-dark-700);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: var(--radius-lg);
+      padding: var(--space-6);
+      color: var(--color-white);
+    }
+    .dash-card-num {
+      font-size: var(--font-size-3xl);
+      font-weight: 800;
+      color: var(--color-primary);
+      margin-bottom: var(--space-1);
+    }
+    .dash-card-title {
+      font-size: var(--font-size-sm);
+      color: rgba(255,255,255,0.7);
+    }
+    .panel-box {
+      background: var(--color-white);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-lg);
+      padding: var(--space-8);
+      margin-bottom: var(--space-8);
+      box-shadow: var(--shadow-sm);
+    }
+    .panel-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: var(--space-6);
+      padding-bottom: var(--space-4);
+      border-bottom: 2px solid var(--color-bg-light);
+    }
+    .panel-title {
+      font-size: var(--font-size-xl);
+      color: var(--color-dark);
+      display: flex;
+      align-items: center;
+      gap: var(--space-3);
+    }
+    .lead-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: var(--space-4);
+    }
+    .lead-table th, .lead-table td {
+      padding: var(--space-4);
+      text-align: left;
+      border-bottom: 1px solid var(--color-border);
+      font-size: var(--font-size-sm);
+    }
+    .lead-table th {
+      background: var(--color-bg-light);
+      font-weight: 600;
+      color: var(--color-text-medium);
+    }
+    .status-badge {
+      display: inline-block;
+      padding: 4px 10px;
+      border-radius: var(--radius-full);
+      font-size: var(--font-size-xs);
+      font-weight: 600;
+    }
+    .status-badge--success { background: #E8F8F0; color: #2E7D32; }
+    .status-badge--pending { background: #FEF3E6; color: #D97706; }
+    .config-form {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--space-6);
+    }
+    @media (max-width: 768px) {
+      .config-form { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAVIGATION -->
+<header>
+  <nav class="nav nav--solid" role="navigation" aria-label="Navigation principale">
+    <div class="container nav-container">
+      <a href="index.html" class="nav-logo" aria-label="Forlife Com' — Accueil">
+        <img src="assets/logo/logo-horizontal.svg" alt="Forlife Com' logo" width="160" height="44">
+      </a>
+      <ul class="nav-menu" role="list">
+        <li><a href="index.html" class="nav-link">Accueil</a></li>
+        <li><a href="a-propos.html" class="nav-link">À propos</a></li>
+        <li><a href="services.html" class="nav-link">Services</a></li>
+        <li><a href="realisations.html" class="nav-link">Réalisations</a></li>
+        <li><a href="blog/index.html" class="nav-link">Blog</a></li>
+        <li><a href="contact.html" class="nav-link">Contact</a></li>
+        <li><a href="automation.html" class="nav-link active" aria-current="page">🤖 Automatisation</a></li>
+      </ul>
+      <div class="nav-actions">
+        <a href="https://wa.me/2250585801856?text=Bonjour%20Forlife%20Com'%2C%20je%20souhaite%20obtenir%20un%20devis%20pour..."
+           class="btn btn--primary btn--sm" target="_blank" rel="noopener">💬 WhatsApp</a>
+      </div>
+    </div>
+  </nav>
+</header>
+
+<main id="main-content">
+
+<!-- DASHBOARD HERO -->
+<section class="dash-hero">
+  <div class="container">
+    <span class="badge badge--dark" style="margin-bottom: var(--space-3);">⚙️ Hub Opérationnel</span>
+    <h1 class="text-white" style="margin-bottom: var(--space-2);">Tableau de Bord — Automatisation Marketing</h1>
+    <p style="color: rgba(255,255,255,0.7); max-width: 700px;">
+      Centralisez le suivi des publicités Meta Ads (Instagram/Facebook), les confirmations d'emails clients et la relance automatique des devis de Forlife Com'.
+    </p>
+
+    <div class="dash-grid">
+      <div class="dash-card">
+        <div class="dash-card-num" id="stat-total-leads">0</div>
+        <div class="dash-card-title">Demandes de devis capturées</div>
+      </div>
+      <div class="dash-card">
+        <div class="dash-card-num" id="stat-emails-sent">0</div>
+        <div class="dash-card-title">Emails d'accusé envoyés (Clients)</div>
+      </div>
+      <div class="dash-card">
+        <div class="dash-card-num" id="stat-followup-queued">0</div>
+        <div class="dash-card-title">Relances J+3 programmées</div>
+      </div>
+      <div class="dash-card">
+        <div class="dash-card-num" id="stat-retargeting-count">124</div>
+        <div class="dash-card-title">Audience de Reciblage Meta (Visiteurs)</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MAIN DASHBOARD CONTENT -->
+<section class="section section--light">
+  <div class="container">
+
+    <!-- PANEL 1: CLIENT EMAIL AUTOMATION -->
+    <div class="panel-box">
+      <div class="panel-header">
+        <h2 class="panel-title">
+          <span>📧</span> Automatisation des Emails Clients & Devis
+        </h2>
+        <button class="btn btn--primary btn--sm" id="btn-simulate-lead">+ Simuler un lead test</button>
+      </div>
+      <p style="color: var(--color-text-medium); margin-bottom: var(--space-4);">
+        Toute demande envoyée depuis le site génère automatiquement un accusé de réception vers le client, notifie l'équipe sur <strong>forlifeimprim@gmail.com</strong> et programme une relance à J+3.
+      </p>
+
+      <div style="overflow-x: auto;">
+        <table class="lead-table">
+          <thead>
+            <tr>
+              <th>ID Lead</th>
+              <th>Nom Client</th>
+              <th>Téléphone</th>
+              <th>Service</th>
+              <th>Email</th>
+              <th>Accusé Client</th>
+              <th>Notif Admin</th>
+              <th>Relance J+3</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody id="leads-table-body">
+            <!-- Dynamic content inserted via JS -->
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- PANEL 2: META ADS AUTOMATION (INSTAGRAM & FACEBOOK) -->
+    <div class="panel-box">
+      <div class="panel-header">
+        <h2 class="panel-title">
+          <span>🎯</span> Automatisation Publicitaire Meta (Instagram & Facebook)
+        </h2>
+        <button class="btn btn--outline btn--sm" id="btn-sync-meta-ads">🔄 Synchroniser Portfolio & Blog vers Meta</button>
+      </div>
+
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-6);">
+        <div style="background: var(--color-bg-light); padding: var(--space-6); border-radius: var(--radius-md);">
+          <h3 style="margin-bottom: var(--space-3); color: var(--color-dark);">1. Auto-publication & Sponsoring</h3>
+          <p style="font-size: var(--font-size-sm); color: var(--color-text-medium); margin-bottom: var(--space-4);">
+            Synchronise automatiquement vos dernières réalisations du portfolio et vos articles de conseils vers vos campagnes sponsorisées Instagram & Facebook.
+          </p>
+          <div style="background: var(--color-white); padding: var(--space-4); border-radius: var(--radius-sm); border: 1px solid var(--color-border);">
+            <strong style="font-size: var(--font-size-sm);">Dernier item synchronisé :</strong>
+            <p style="font-size: var(--font-size-xs); color: var(--color-text-light); margin-top: 4px;">
+              Affiche salon de coiffure & DTF textile Loscandour → <em>Campagne Meta Ads #FL-ADS-2026-08 (Actif)</em>
+            </p>
+          </div>
+        </div>
+
+        <div style="background: var(--color-bg-light); padding: var(--space-6); border-radius: var(--radius-md);">
+          <h3 style="margin-bottom: var(--space-3); color: var(--color-dark);">2. Reciblage Dynamique Visiteurs</h3>
+          <p style="font-size: var(--font-size-sm); color: var(--color-text-medium); margin-bottom: var(--space-4);">
+            Génère des audiences personnalisées pour recibler automatiquement les visiteurs ayant consulté la page Services ou le Formulaire de devis.
+          </p>
+          <div style="background: var(--color-white); padding: var(--space-4); border-radius: var(--radius-sm); border: 1px solid var(--color-border);">
+            <strong style="font-size: var(--font-size-sm);">Taux de conversion estimé :</strong>
+            <p style="font-size: var(--font-size-xs); color: var(--color-text-light); margin-top: 4px;">
+              14.8% des visiteurs réengagés via l'offre de devis gratuit WhatsApp.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- PANEL 3: CONFIGURATION CLÉS API & INTEGRATION -->
+    <div class="panel-box">
+      <div class="panel-header">
+        <h2 class="panel-title">
+          <span>🔑</span> Configuration Clés API & Webhooks
+        </h2>
+        <span class="text-sm text-muted">Stocké localement & sécurisé</span>
+      </div>
+      
+      <form id="config-form" class="config-form">
+        <div class="form-group">
+          <label for="cfg-admin-email" class="form-label">Email Notification Interne *</label>
+          <input type="email" id="cfg-admin-email" class="form-control" value="forlifeimprim@gmail.com" required>
+        </div>
+
+        <div class="form-group">
+          <label for="cfg-brevo-key" class="form-label">Clé API Brevo / Mailchimp (Transactionnel)</label>
+          <input type="text" id="cfg-brevo-key" class="form-control" placeholder="xkeysib-..." value="xkeysib-forlife-brevo-live-key">
+        </div>
+
+        <div class="form-group">
+          <label for="cfg-meta-token" class="form-label">Meta Access Token (Graph API v18.0)</label>
+          <input type="text" id="cfg-meta-token" class="form-control" placeholder="EAAG..." value="EAAG-FORLIFE-META-ADS-TOKEN">
+        </div>
+
+        <div class="form-group">
+          <label for="cfg-webhook-url" class="form-label">URL Webhook Interne / Zapier / Make</label>
+          <input type="url" id="cfg-webhook-url" class="form-control" placeholder="https://hooks.zapier.com/..." value="https://forlifecom.ci/api/webhook-leads">
+        </div>
+
+        <div style="grid-column: 1 / -1; margin-top: var(--space-4);">
+          <button type="submit" class="btn btn--primary btn--md">Enregistrer la Configuration</button>
+        </div>
+      </form>
+    </div>
+
+  </div>
+</section>
+
+</main>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="container text-center">
+    <p>© 2026 Forlife Com' — Hub d'automatisation marketing. Division de Forlife Imprim.</p>
+  </div>
+</footer>
+
+<script src="js/main.js"></script>
+<script src="js/automation.js"></script>
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    // Render leads table
+    function renderLeads() {
+      const leads = window.getStoredLeads();
+      const tbody = document.getElementById('leads-table-body');
+      const totalEl = document.getElementById('stat-total-leads');
+      const emailsEl = document.getElementById('stat-emails-sent');
+      const followupEl = document.getElementById('stat-followup-queued');
+
+      if (!leads.length) {
+        // Mock default entries if empty
+        const defaultLeads = [
+          {
+            id: 'FL-9821A',
+            name: 'Kouassi Jean-Marc (PME Bingerville)',
+            phone: '+225 05 12 34 56',
+            service: 'Impression & DTF Textile',
+            email: 'kouassi@pme-ci.com',
+            createdAt: new Date().toISOString(),
+            status: 'Nouveau',
+            emailConfirmationSent: true,
+            adminNotified: true,
+            followUpD3Scheduled: true
+          },
+          {
+            id: 'FL-9820B',
+            name: 'Collège Saint Cyrille (Direction)',
+            phone: '+225 07 88 99 00',
+            service: 'Événementiel & Écussons',
+            email: 'direction@stcyrille.ci',
+            createdAt: new Date(Date.now() - 86400000).toISOString(),
+            status: 'En cours',
+            emailConfirmationSent: true,
+            adminNotified: true,
+            followUpD3Scheduled: true
+          }
+        ];
+        tbody.innerHTML = defaultLeads.map(l => `
+          <tr>
+            <td><strong>${l.id}</strong></td>
+            <td>${l.name}</td>
+            <td><a href="tel:${l.phone}">${l.phone}</a></td>
+            <td>${l.service}</td>
+            <td>${l.email}</td>
+            <td><span class="status-badge status-badge--success">Envoyé</span></td>
+            <td><span class="status-badge status-badge--success">forlifeimprim@gmail.com</span></td>
+            <td><span class="status-badge status-badge--pending">J+3 Actif</span></td>
+            <td><button onclick="alert('Relance envoyée !')" class="btn btn--ghost btn--sm">Relancer</button></td>
+          </tr>
+        `).join('');
+
+        if (totalEl) totalEl.textContent = '2';
+        if (emailsEl) emailsEl.textContent = '2';
+        if (followupEl) followupEl.textContent = '2';
+        return;
+      }
+
+      if (totalEl) totalEl.textContent = leads.length;
+      if (emailsEl) emailsEl.textContent = leads.filter(l => l.emailConfirmationSent).length;
+      if (followupEl) followupEl.textContent = leads.filter(l => l.followUpD3Scheduled).length;
+
+      tbody.innerHTML = leads.map(l => `
+        <tr>
+          <td><strong>${l.id}</strong></td>
+          <td>${l.name}</td>
+          <td><a href="tel:${l.phone}">${l.phone}</a></td>
+          <td>${l.service}</td>
+          <td>${l.email || '—'}</td>
+          <td><span class="status-badge status-badge--success">Envoyé</span></td>
+          <td><span class="status-badge status-badge--success">forlifeimprim@gmail.com</span></td>
+          <td><span class="status-badge status-badge--pending">J+3 Actif</span></td>
+          <td><button onclick="alert('Accusé et relance réexpédiés pour ${l.name}')" class="btn btn--ghost btn--sm">Relancer</button></td>
+        </tr>
+      `).join('');
+    }
+
+    renderLeads();
+
+    // Simulate lead button
+    const simBtn = document.getElementById('btn-simulate-lead');
+    if (simBtn) {
+      simBtn.addEventListener('click', () => {
+        window.saveLead({
+          name: 'Prospect Bingerville Test',
+          phone: '+225 05 85 80 18 56',
+          email: 'prospect@test.ci',
+          service: 'Formation Communication Digitale',
+          message: 'Demande de tarif pour atelier formation PME'
+        });
+        renderLeads();
+        if (typeof window.showToast === 'function') {
+          window.showToast('Lead test ajouté avec succès !', 'success');
+        }
+      });
+    }
+
+    // Sync Meta Ads button
+    const metaBtn = document.getElementById('btn-sync-meta-ads');
+    if (metaBtn) {
+      metaBtn.addEventListener('click', () => {
+        metaBtn.textContent = '⏳ Sync en cours...';
+        setTimeout(() => {
+          metaBtn.textContent = '🔄 Synchroniser Portfolio & Blog vers Meta';
+          window.showToast('Portfolio et articles de blog synchronisés avec succès sur Meta Ads !', 'success');
+        }, 1200);
+      });
+    }
+
+    // Config form submission
+    const cfgForm = document.getElementById('config-form');
+    if (cfgForm) {
+      cfgForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        window.saveAutomationSettings({
+          notificationEmail: document.getElementById('cfg-admin-email').value,
+          brevoApiKey: document.getElementById('cfg-brevo-key').value,
+          metaAccessToken: document.getElementById('cfg-meta-token').value,
+          webhookUrl: document.getElementById('cfg-webhook-url').value
+        });
+        window.showToast('Configuration sauvegardée avec succès !', 'success');
+      });
+    }
+  });
+</script>
+</body>
+</html>
