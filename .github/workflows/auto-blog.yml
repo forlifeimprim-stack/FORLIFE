@@ -35,10 +35,9 @@ jobs:
           commit_message: "📝 Auto-blog: Nouvel article généré"
           branch: main
           
-      - name: Deploy to Firebase Hosting
-        uses: FirebaseExtended/action-hosting-deploy@v0
+          - name: Deploy to Firebase Hosting
+        uses: w9jds/firebase-action@master
         with:
-          repoToken: '${{ secrets.GITHUB_TOKEN }}'
-          firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_FORLIFECOM }}'
-          projectId: forlifecom-6eef9
-          channelId: live
+          args: deploy --only hosting
+        env:
+          FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
