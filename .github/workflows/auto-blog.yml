@@ -6,7 +6,8 @@ on:
     - cron: '0 8 * * 1'
   workflow_dispatch:
     # Allows manual trigger
-
+permissions:
+  contents: write
 jobs:
   generate-and-deploy:
     runs-on: ubuntu-latest
