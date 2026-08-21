@@ -2,8 +2,10 @@ name: Auto Blog Generator & Deploy
 
 on:
   schedule:
+    # Runs every Monday at 08:00 UTC
     - cron: '0 8 * * 1'
   workflow_dispatch:
+    # Allows manual trigger
 
 jobs:
   generate-and-deploy:
@@ -32,3 +34,11 @@ jobs:
         with:
           commit_message: "📝 Auto-blog: Nouvel article généré"
           branch: main
+          
+      - name: Deploy to Firebase Hosting
+        uses: FirebaseExtended/action-hosting-deploy@v0
+        with:
+          repoToken: '${{ secrets.GITHUB_TOKEN }}'
+          firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_FORLIFECOM }}'
+          projectId: forlifecom-6eef9
+          channelId: live

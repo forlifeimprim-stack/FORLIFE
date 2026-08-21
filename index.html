@@ -3,169 +3,990 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Le Blog Forlife Com' — Conseils et astuces communication</title>
-  <meta name="description" content="Découvrez nos conseils, astuces et actualités pour booster la communication de votre entreprise à Bingerville et Abidjan.">
-  <meta name="keywords" content="blog communication, conseils PME, réseaux sociaux, impression DTF, Bingerville">
+
+  <!-- SEO Meta Tags -->
+  <title>Forlife Com' — Agence de Communication & Publicité à Bingerville | L'ami des PME</title>
+  <meta name="description" content="Forlife Com' est l'agence de communication de référence à Bingerville et Abidjan Est. Impression, création graphique, photo & vidéo, réseaux sociaux, Meta Ads. L'ami des PME, TPE, Écoles et Communautés.">
+  <meta name="keywords" content="agence communication Bingerville, publicité PME Abidjan, impression DTF Côte d'Ivoire, création graphique Bingerville, réseaux sociaux PME, photo vidéo corporate Abidjan">
   <meta name="author" content="Forlife Com'">
-  
-  <link rel="icon" type="image/svg+xml" href="../assets/logo/logo-horizontal.svg">
-  
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://forlifecom.ci/">
+
+  <!-- Open Graph / Social -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://forlifecom.ci/">
+  <meta property="og:title" content="Forlife Com' — L'ami des PME, TPE, Écoles et Communautés">
+  <meta property="og:description" content="Agence de communication intégrée à Bingerville, Côte d'Ivoire. Impression, design, photo/vidéo, réseaux sociaux, publicité digitale.">
+  <meta property="og:image" content="assets/logo/logo-horizontal.svg">
+  <meta property="og:locale" content="fr_CI">
+  <meta name="twitter:card" content="summary_large_image">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="assets/logo/logo-horizontal.svg">
+  <link rel="apple-touch-icon" href="assets/logo/logo-horizontal.png">
+
+  <!-- Fonts & Styles -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-  
-  <link rel="stylesheet" href="../css/style.css">
-  <link rel="stylesheet" href="../css/blog.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400;1,500;1,600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/home.css">
+
+  <!-- Schema.org LocalBusiness -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "ProfessionalService",
+    "name": "Forlife Com'",
+    "alternateName": "Forlife Communication",
+    "description": "Agence de communication intégrée spécialisée en impression, création graphique, photo & vidéo, gestion des réseaux sociaux et publicité digitale, à Bingerville, Côte d'Ivoire.",
+    "url": "https://forlifecom.ci",
+    "logo": "https://forlifecom.ci/assets/logo/logo-horizontal.svg",
+    "image": "https://forlifecom.ci/assets/images/og-home.jpg",
+    "telephone": ["+22505858018 56", "+22507495670 82"],
+    "email": "forlifeimprim@gmail.com",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "À la montée de la colline du Collège Saint Cyrille de Bingerville",
+      "addressLocality": "Bingerville",
+      "addressRegion": "Abidjan",
+      "addressCountry": "CI"
+    },
+    "geo": {
+      "@type": "GeoCoordinates",
+      "latitude": 5.358,
+      "longitude": -3.876
+    },
+    "openingHoursSpecification": [
+      {
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday"],
+        "opens": "08:00",
+        "closes": "18:00"
+      },
+      {
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": "Saturday",
+        "opens": "08:00",
+        "closes": "14:00"
+      }
+    ],
+    "sameAs": [
+      "https://www.instagram.com/forlife_imprim",
+      "https://www.facebook.com/share/1DEbv4dxNr/"
+    ],
+    "priceRange": "$$",
+    "areaServed": ["Bingerville", "Abidjan"]
+  }
+  </script>
 </head>
 <body>
 
+<!-- ============================================================
+     NAVIGATION
+     ============================================================ -->
 <header>
-  <nav class="nav" role="navigation" aria-label="Navigation principale">
+  <nav class="nav nav--transparent" role="navigation" aria-label="Navigation principale">
     <div class="container nav-container">
-      <a href="../index.html" class="nav-logo" aria-label="Forlife Com' — Accueil">
-        <img src="../assets/logo/logo-horizontal.svg" alt="Forlife Com' logo" width="160" height="44">
+      <!-- Logo -->
+      <a href="index.html" class="nav-logo" aria-label="Forlife Com' — Accueil">
+        <img src="assets/logo/logo-horizontal.svg" alt="Forlife Com' logo" width="160" height="44">
       </a>
+
+      <!-- Desktop Menu -->
       <ul class="nav-menu" role="list">
-        <li><a href="../index.html" class="nav-link">Accueil</a></li>
-        <li><a href="../a-propos.html" class="nav-link">À propos</a></li>
-        <li><a href="../services.html" class="nav-link">Services</a></li>
-        <li><a href="../realisations.html" class="nav-link">Réalisations</a></li>
-        <li><a href="index.html" class="nav-link active">Blog</a></li>
-        <li><a href="../contact.html" class="nav-link">Contact</a></li>
+        <li><a href="index.html" class="nav-link active">Accueil</a></li>
+        <li><a href="a-propos.html" class="nav-link">À propos</a></li>
+        <li><a href="services.html" class="nav-link">Services</a></li>
+        <li><a href="realisations.html" class="nav-link">Réalisations</a></li>
+        <li><a href="blog/index.html" class="nav-link">Blog</a></li>
+        <li><a href="contact.html" class="nav-link">Contact</a></li>
       </ul>
+
+      <!-- CTA + Hamburger -->
       <div class="nav-actions">
         <a href="https://wa.me/2250585801856?text=Bonjour%20Forlife%20Com'%2C%20je%20souhaite%20obtenir%20un%20devis%20pour..."
-           class="btn btn--primary btn--sm" target="_blank" rel="noopener">Devis gratuit</a>
+           class="btn btn--primary btn--sm" target="_blank" rel="noopener" aria-label="Demander un devis via WhatsApp">
+          <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>
+          </svg>
+          Devis gratuit
+        </a>
         <button class="hamburger" aria-expanded="false" aria-controls="mobile-menu" aria-label="Menu mobile">
           <span></span><span></span><span></span>
         </button>
       </div>
     </div>
+
+    <!-- Mobile Menu -->
     <div class="mobile-menu" id="mobile-menu" role="dialog" aria-label="Menu mobile">
-      <a href="../index.html" class="nav-link">Accueil</a>
-      <a href="../a-propos.html" class="nav-link">À propos</a>
-      <a href="../services.html" class="nav-link">Services</a>
-      <a href="../realisations.html" class="nav-link">Réalisations</a>
-      <a href="index.html" class="nav-link active">Blog</a>
-      <a href="../contact.html" class="nav-link">Contact</a>
-      <a href="https://wa.me/2250585801856?text=Bonjour..." class="btn btn--primary" target="_blank" rel="noopener">💬 Demander un devis</a>
+      <a href="index.html" class="nav-link active">Accueil</a>
+      <a href="a-propos.html" class="nav-link">À propos</a>
+      <a href="services.html" class="nav-link">Services</a>
+      <a href="realisations.html" class="nav-link">Réalisations</a>
+      <a href="blog/index.html" class="nav-link">Blog</a>
+      <a href="contact.html" class="nav-link">Contact</a>
+      <a href="https://wa.me/2250585801856?text=Bonjour%20Forlife%20Com'%2C%20je%20souhaite%20obtenir%20un%20devis%20pour..."
+         class="btn btn--primary" target="_blank" rel="noopener">
+        💬 Demander un devis
+      </a>
     </div>
   </nav>
 </header>
 
 <main id="main-content">
-  <section class="blog-hero">
-    <div class="container">
-      <h1 class="blog-hero-title">Le Blog Forlife Com'</h1>
-      <p class="blog-hero-desc">Conseils, astuces et actualités pour propulser votre communication.</p>
-    </div>
-  </section>
 
-  <section class="blog-archive">
-    <div class="container">
-      <div class="blog-grid">
-        <!-- AUTOMATION_INJECTION_MARKER -->
-        <article class="blog-card" aria-label="Article de blog">
-          <a href="visibilite-pme-bingerville.html" class="blog-card-link">
-            <div class="blog-card-img-wrap">
-              <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 600 400'%3E%3Crect fill='%231a1a1a'/%3E%3C/svg%3E" alt="Visibilité PME" class="blog-card-img">
-              <span class="blog-card-category">Communication locale</span>
-            </div>
-            <div class="blog-card-body">
-              <div class="blog-card-meta">
-                <time datetime="2026-07-01">1 juillet 2026</time>
-                <span>·</span>
-                <span>5 min de lecture</span>
-              </div>
-              <h3 class="blog-card-title">Comment améliorer la visibilité de votre PME à Bingerville</h3>
-              <p class="blog-card-excerpt">Découvrez les stratégies de communication locale qui font réellement la différence pour les petites entreprises d'Abidjan Est...</p>
-            </div>
-          </a>
-        </article>
+<!-- ============================================================
+     HERO SECTION
+     ============================================================ -->
+<section class="hero" aria-labelledby="hero-title">
+  <!-- Background -->
+  <div class="hero-bg" aria-hidden="true">
+    <div class="hero-bg-pattern"></div>
+    <div class="hero-bg-gradient"></div>
+  </div>
 
-        <article class="blog-card" aria-label="Article de blog">
-          <a href="dtf-vs-serigraphie.html" class="blog-card-link">
-            <div class="blog-card-img-wrap">
-              <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 600 400'%3E%3Crect fill='%231a1a1a'/%3E%3C/svg%3E" alt="DTF vs Sérigraphie" class="blog-card-img">
-              <span class="blog-card-category">Impression</span>
-            </div>
-            <div class="blog-card-body">
-              <div class="blog-card-meta">
-                <time datetime="2026-07-10">10 juillet 2026</time>
-                <span>·</span>
-                <span>4 min de lecture</span>
-              </div>
-              <h3 class="blog-card-title">DTF vs sérigraphie : quelle impression textile choisir ?</h3>
-              <p class="blog-card-excerpt">Tee-shirts pour votre école, association ou événement d'entreprise ? On vous explique tout pour choisir la meilleure technique...</p>
-            </div>
-          </a>
-        </article>
+  <!-- Floating shapes -->
+  <div class="hero-shapes" aria-hidden="true">
+    <div class="hero-shape hero-shape--1"></div>
+    <div class="hero-shape hero-shape--2"></div>
+    <div class="hero-shape hero-shape--3"></div>
+  </div>
 
-        <article class="blog-card" aria-label="Article de blog">
-          <a href="5-erreurs-instagram-tpe.html" class="blog-card-link">
-            <div class="blog-card-img-wrap">
-              <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 600 400'%3E%3Crect fill='%231a1a1a'/%3E%3C/svg%3E" alt="Instagram TPE" class="blog-card-img">
-              <span class="blog-card-category">Réseaux sociaux</span>
-            </div>
-            <div class="blog-card-body">
-              <div class="blog-card-meta">
-                <time datetime="2026-07-18">18 juillet 2026</time>
-                <span>·</span>
-                <span>6 min de lecture</span>
-              </div>
-              <h3 class="blog-card-title">5 erreurs à éviter sur Instagram quand vous êtes une TPE</h3>
-              <p class="blog-card-excerpt">Beaucoup de petites entreprises à Abidjan font les mêmes erreurs sur Instagram. Voici comment les éviter et gagner de vrais clients...</p>
-            </div>
-          </a>
-        </article>
+  <div class="container hero-container">
+    <div class="hero-content">
+      <!-- Badge -->
+      <div class="hero-badge reveal">
+        <span class="hero-badge-dot" aria-hidden="true"></span>
+        Agence de communication — Bingerville, Côte d'Ivoire
+      </div>
+
+      <!-- Title -->
+      <h1 class="hero-title reveal reveal-delay-1" id="hero-title">
+        Votre communication,<br>
+        <span class="text-gradient">notre passion</span>
+      </h1>
+
+      <!-- Tagline typewriter -->
+      <p class="hero-slogan reveal reveal-delay-2" aria-label="L'ami des PME, TPE, Écoles et Communautés">
+        <span class="hero-slogan-prefix">L'ami des </span>
+        <span class="hero-slogan-dynamic"
+              data-typewriter='["PME & TPE","Écoles","Communautés","Commerçants","Associations"]'>PME & TPE</span>
+      </p>
+
+      <!-- Description -->
+      <p class="hero-desc reveal reveal-delay-3">
+        De la création graphique à la vidéo institutionnelle, de l'impression DTF aux campagnes Meta Ads —
+        Forlife Com' accompagne chaque entrepreneur, école et communauté à Bingerville et Abidjan Est
+        pour construire une image qui inspire confiance.
+      </p>
+
+      <!-- CTAs -->
+      <div class="hero-actions reveal reveal-delay-4">
+        <a href="https://wa.me/2250585801856?text=Bonjour%20Forlife%20Com'%2C%20je%20souhaite%20obtenir%20un%20devis%20pour..."
+           class="btn btn--primary btn--lg" target="_blank" rel="noopener" id="hero-cta-devis">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>
+          </svg>
+          Demander un devis
+        </a>
+        <a href="realisations.html" class="btn btn--outline-white btn--lg" id="hero-cta-portfolio">
+          Voir nos réalisations
+          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+          </svg>
+        </a>
+      </div>
+
+      <!-- Trust indicators -->
+      <div class="hero-trust reveal reveal-delay-5" aria-label="Valeurs clés de Forlife Com'">
+        <div class="hero-trust-item">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+          </svg>
+          Réponse sous 24h
+        </div>
+        <div class="hero-trust-item">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+          </svg>
+          Devis 100% gratuit
+        </div>
+        <div class="hero-trust-item">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+          </svg>
+          Équipement professionnel
+        </div>
       </div>
     </div>
-  </section>
+
+    <!-- Hero Visual -->
+    <div class="hero-visual reveal reveal-delay-2">
+      <div class="hero-portfolio-mosaic" aria-label="Exemples de réalisations Forlife Com'">
+        <div class="mosaic-item mosaic-main">
+          <img data-src="assets/images/portfolio/faire-parts/faire-parts-001.jpg"
+               src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 300'%3E%3Crect fill='%231a1a1a'/%3E%3C/svg%3E"
+               alt="Faire-parts mariage style boarding pass — Forlife Com'" class="mosaic-img" loading="lazy" width="400" height="300">
+          <div class="mosaic-label">Faire-parts & Invitations</div>
+        </div>
+        <div class="mosaic-col">
+          <div class="mosaic-item">
+            <img data-src="assets/images/portfolio/impression/impression-001.jpg"
+                 src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 150'%3E%3Crect fill='%231a1a1a'/%3E%3C/svg%3E"
+                 alt="Affiche bâche imprimée — Forlife Com'" class="mosaic-img" loading="lazy" width="200" height="150">
+            <div class="mosaic-label">Impression & Affiches</div>
+          </div>
+          <div class="mosaic-item">
+            <img data-src="assets/images/portfolio/dtf-textile/dtf-001.jpg"
+                 src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 150'%3E%3Crect fill='%231a1a1a'/%3E%3C/svg%3E"
+                 alt="DTF textile écusson personnalisé — Forlife Com'" class="mosaic-img" loading="lazy" width="200" height="150">
+            <div class="mosaic-label">DTF & Textile</div>
+          </div>
+          <div class="mosaic-item">
+            <img data-src="assets/images/portfolio/design/design-001.jpg"
+                 src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 150'%3E%3Crect fill='%231a1a1a'/%3E%3C/svg%3E"
+                 alt="Création graphique identité visuelle — Forlife Com'" class="mosaic-img" loading="lazy" width="200" height="150">
+            <div class="mosaic-label">Design Graphique</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Scroll indicator -->
+  <div class="hero-scroll" aria-hidden="true">
+    <div class="hero-scroll-line"></div>
+    <span>Défiler</span>
+  </div>
+</section>
+
+
+<!-- ============================================================
+     STATS / CHIFFRES CLÉS
+     ============================================================ -->
+<section class="stats section--sm section--dark" aria-label="Chiffres clés Forlife Com'">
+  <div class="container">
+    <div class="stats-grid">
+      <div class="stat-item reveal">
+        <span class="stat-number" data-target="200" data-suffix="+" aria-label="200 clients satisfaits">0+</span>
+        <p class="stat-label">Clients satisfaits</p>
+      </div>
+      <div class="stat-item reveal reveal-delay-1">
+        <span class="stat-number" data-target="5" data-suffix="+" aria-label="5 ans d'expérience">0+</span>
+        <p class="stat-label">Années d'expérience</p>
+      </div>
+      <div class="stat-item reveal reveal-delay-2">
+        <span class="stat-number" data-target="7" aria-label="7 services">0</span>
+        <p class="stat-label">Domaines d'expertise</p>
+      </div>
+      <div class="stat-item reveal reveal-delay-3">
+        <span class="stat-number" data-target="100" data-suffix="%" aria-label="100% satisfaction">0%</span>
+        <p class="stat-label">Satisfaction client</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ============================================================
+     QUI SOMMES-NOUS (Présentation rapide)
+     ============================================================ -->
+<section class="about-preview section section--cream" aria-labelledby="about-title">
+  <div class="container">
+    <div class="about-preview-grid">
+      <div class="about-preview-content">
+        <div class="section-header section-header--left">
+          <span class="section-tag">Notre identité</span>
+          <h2 class="section-title reveal" id="about-title">
+            Plus qu'une agence,<br>
+            <span>un partenaire de confiance</span>
+          </h2>
+        </div>
+        <p class="reveal reveal-delay-1">
+          Née de la passion pour la communication visuelle et l'accompagnement des petites
+          entreprises, <strong>Forlife Com'</strong> est la division communication de Forlife Imprim.
+          Depuis notre atelier de Bingerville, nous servons PME, TPE, écoles et communautés
+          religieuses à Bingerville et dans tout Abidjan Est.
+        </p>
+        <p class="reveal reveal-delay-2">
+          Notre conviction : chaque entreprise, quelle que soit sa taille, mérite une image
+          professionnelle qui lui ressemble. Nous mettons notre expertise, notre créativité et
+          notre équipement de pointe au service de vos projets, avec un accompagnement humain
+          et des tarifs adaptés à vos réalités.
+        </p>
+        <div class="about-values reveal reveal-delay-3">
+          <div class="about-value">
+            <div class="about-value-icon" aria-hidden="true">🤝</div>
+            <div>
+              <strong>Proximité</strong>
+              <p>Un interlocuteur unique, disponible et réactif pour chaque projet</p>
+            </div>
+          </div>
+          <div class="about-value">
+            <div class="about-value-icon" aria-hidden="true">⭐</div>
+            <div>
+              <strong>Qualité</strong>
+              <p>Équipement pro, matériaux premium, finitions irréprochables</p>
+            </div>
+          </div>
+          <div class="about-value">
+            <div class="about-value-icon" aria-hidden="true">💡</div>
+            <div>
+              <strong>Créativité</strong>
+              <p>Des solutions originales qui font la différence sur le marché</p>
+            </div>
+          </div>
+        </div>
+        <a href="a-propos.html" class="btn btn--ghost reveal reveal-delay-4">
+          En savoir plus sur nous
+          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+          </svg>
+        </a>
+      </div>
+      <div class="about-preview-visual reveal">
+        <div class="about-preview-img-wrap">
+          <img data-src="assets/images/portfolio/identite-visuelle/forlife-branding-1.jpg"
+               src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 500 600'%3E%3Crect fill='%231a1a1a'/%3E%3C/svg%3E"
+               alt="Identité visuelle Forlife Com — mockup black and gold" width="500" height="600" loading="lazy">
+          <div class="about-preview-badge">
+            <span class="about-badge-number">Bingerville</span>
+            <span class="about-badge-text">Côte d'Ivoire</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ============================================================
+     SERVICES APERÇU
+     ============================================================ -->
+<section class="services-preview section" aria-labelledby="services-title">
+  <div class="container">
+    <div class="section-header reveal">
+      <span class="section-tag">Ce que nous faisons</span>
+      <h2 class="section-title" id="services-title">
+        7 expertises pour propulser<br>
+        <span>votre communication</span>
+      </h2>
+      <p class="section-subtitle">
+        De la conception à la diffusion, nous couvrons tous les besoins
+        en communication de votre structure, avec les outils et l'expertise qu'il faut.
+      </p>
+    </div>
+
+    <div class="services-grid">
+
+      <!-- Service 1 -->
+      <article class="service-card reveal" aria-label="Service Impression et Communication Visuelle">
+        <a href="services.html#impression" class="service-card-link" aria-hidden="true" tabindex="-1"></a>
+        <div class="service-card-inner">
+          <div class="service-icon" aria-hidden="true">
+            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z"/>
+            </svg>
+          </div>
+          <h3 class="service-card-title">Impression & Communication Visuelle</h3>
+          <p class="service-card-desc">Affiches, bâches, roll-up, kakemono, cartes de visite, flyers, kakemono, vinyle — tout support imprimé pour votre visibilité.</p>
+          <ul class="service-tags" aria-label="Exemples de prestations">
+            <li>Bâches & Affiches</li>
+            <li>Kakemono</li>
+            <li>Cartes de visite</li>
+          </ul>
+        </div>
+      </article>
+
+      <!-- Service 2 -->
+      <article class="service-card reveal reveal-delay-1" aria-label="Service Création Graphique et Design">
+        <a href="services.html#design" class="service-card-link" aria-hidden="true" tabindex="-1"></a>
+        <div class="service-card-inner">
+          <div class="service-icon" aria-hidden="true">
+            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/>
+            </svg>
+          </div>
+          <h3 class="service-card-title">Création Graphique & Design</h3>
+          <p class="service-card-desc">Identité visuelle, logos, chartes graphiques, affiches, livres, dépliants — votre image de marque pensée pour durer.</p>
+          <ul class="service-tags">
+            <li>Identité visuelle</li>
+            <li>Logo & Charte</li>
+            <li>Livres & Dépliants</li>
+          </ul>
+        </div>
+      </article>
+
+      <!-- Service 3 -->
+      <article class="service-card reveal reveal-delay-2" aria-label="Service Production Photo et Vidéo">
+        <a href="services.html#photo-video" class="service-card-link" aria-hidden="true" tabindex="-1"></a>
+        <div class="service-card-inner">
+          <div class="service-icon service-icon--featured" aria-hidden="true">
+            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M15 10l4.553-2.069A1 1 0 0121 8.867v6.266a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"/>
+            </svg>
+          </div>
+          <div class="service-card-badge">⭐ Premium</div>
+          <h3 class="service-card-title">Production Photo & Vidéo</h3>
+          <p class="service-card-desc">Studio photo/vidéo équipé Sony A7 III, FX30, Drone DJI Mini 4 Pro. Shooting corporate, mariage, anniversaire, photobooth 360°.</p>
+          <ul class="service-tags">
+            <li>Vidéo institutionnelle</li>
+            <li>Shooting produit</li>
+            <li>Photobooth 360°</li>
+          </ul>
+        </div>
+      </article>
+
+      <!-- Service 4 -->
+      <article class="service-card reveal" aria-label="Service Gestion des Réseaux Sociaux">
+        <a href="services.html#reseaux-sociaux" class="service-card-link" aria-hidden="true" tabindex="-1"></a>
+        <div class="service-card-inner">
+          <div class="service-icon" aria-hidden="true">
+            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z"/>
+            </svg>
+          </div>
+          <h3 class="service-card-title">Gestion des Réseaux Sociaux</h3>
+          <p class="service-card-desc">Stratégie éditoriale, création de contenus, publication régulière et animation de vos pages Facebook et Instagram.</p>
+          <ul class="service-tags">
+            <li>Facebook & Instagram</li>
+            <li>Contenus visuels</li>
+            <li>Calendrier éditorial</li>
+          </ul>
+        </div>
+      </article>
+
+      <!-- Service 5 -->
+      <article class="service-card reveal reveal-delay-1" aria-label="Service Publicité Digitale Meta Ads">
+        <a href="services.html#publicite-digitale" class="service-card-link" aria-hidden="true" tabindex="-1"></a>
+        <div class="service-card-inner">
+          <div class="service-icon" aria-hidden="true">
+            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/>
+            </svg>
+          </div>
+          <h3 class="service-card-title">Publicité Digitale (Meta Ads)</h3>
+          <p class="service-card-desc">Campagnes sponsorisées Facebook & Instagram ciblées pour votre zone géographique et votre audience idéale. ROI mesurable.</p>
+          <ul class="service-tags">
+            <li>Facebook Ads</li>
+            <li>Instagram Ads</li>
+            <li>Reciblage</li>
+          </ul>
+        </div>
+      </article>
+
+      <!-- Service 6 -->
+      <article class="service-card reveal reveal-delay-2" aria-label="Service Événementiel et Communication Communautaire">
+        <a href="services.html#evenementiel" class="service-card-link" aria-hidden="true" tabindex="-1"></a>
+        <div class="service-card-inner">
+          <div class="service-icon" aria-hidden="true">
+            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z"/>
+            </svg>
+          </div>
+          <h3 class="service-card-title">Événementiel & Communautés</h3>
+          <p class="service-card-desc">Communication pour fêtes scolaires, événements religieux, anniversaires d'entreprise — tee-shirts, faire-parts, scénographie.</p>
+          <ul class="service-tags">
+            <li>Écoles & Paroisses</li>
+            <li>Tee-shirts event</li>
+            <li>Faire-parts</li>
+          </ul>
+        </div>
+      </article>
+
+      <!-- Service 7 -->
+      <article class="service-card service-card--formation reveal" aria-label="Service Formation Communication Digitale">
+        <a href="services.html#formation" class="service-card-link" aria-hidden="true" tabindex="-1"></a>
+        <div class="service-card-inner">
+          <div class="service-icon service-icon--gold" aria-hidden="true">
+            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/>
+            </svg>
+          </div>
+          <div class="service-card-badge service-card-badge--new">✨ Nouveau</div>
+          <h3 class="service-card-title">Formation Communication Digitale</h3>
+          <p class="service-card-desc">Ateliers pratiques pour PME, TPE, écoles et communautés : réseaux sociaux, outils de communication, publicité en ligne — apprenez à communiquer efficacement.</p>
+          <ul class="service-tags">
+            <li>Ateliers pratiques</li>
+            <li>Réseaux sociaux</li>
+            <li>Outils digitaux</li>
+          </ul>
+        </div>
+      </article>
+
+    </div>
+
+    <div class="section-cta reveal">
+      <a href="services.html" class="btn btn--outline btn--lg" id="services-see-all">
+        Découvrir tous nos services
+        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+        </svg>
+      </a>
+    </div>
+  </div>
+</section>
+
+
+<!-- ============================================================
+     PORTFOLIO APERÇU
+     ============================================================ -->
+<section class="portfolio-preview section section--dark" aria-labelledby="portfolio-title">
+  <div class="container">
+    <div class="section-header reveal">
+      <span class="section-tag" style="color: var(--color-primary-light);">Nos réalisations</span>
+      <h2 class="section-title section-title--white" id="portfolio-title">
+        Quelques créations qui<br>
+        <span>parlent pour nous</span>
+      </h2>
+      <p class="section-subtitle" style="color: rgba(255,255,255,0.65);">
+        Chaque projet est une histoire unique. Voici un aperçu de ce que nous créons
+        chaque jour pour nos clients de Bingerville et d'Abidjan.
+      </p>
+    </div>
+
+    <div class="portfolio-preview-grid">
+      <div class="portfolio-preview-item portfolio-preview-item--large reveal">
+        <img data-src="assets/images/portfolio/faire-parts/faire-parts-001.jpg"
+             src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 600 400'%3E%3Crect fill='%231a1a1a'/%3E%3C/svg%3E"
+             alt="Faire-parts mariage boarding pass — Forlife Com'" loading="lazy" width="600" height="400">
+        <div class="portfolio-overlay">
+          <span class="portfolio-category">Faire-parts</span>
+          <h3 class="portfolio-title">Cartons d'invitation mariage — Style Boarding Pass</h3>
+        </div>
+      </div>
+      <div class="portfolio-preview-item reveal reveal-delay-1">
+        <img data-src="assets/images/portfolio/impression/impression-001.jpg"
+             src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 300 300'%3E%3Crect fill='%231a1a1a'/%3E%3C/svg%3E"
+             alt="Affiche coiffure imprimée — Forlife Com'" loading="lazy" width="300" height="300">
+        <div class="portfolio-overlay">
+          <span class="portfolio-category">Impression</span>
+          <h3 class="portfolio-title">Affiche salon de coiffure</h3>
+        </div>
+      </div>
+      <div class="portfolio-preview-item reveal reveal-delay-2">
+        <img data-src="assets/images/portfolio/signaletique/signaletique-001.jpg"
+             src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 300 300'%3E%3Crect fill='%231a1a1a'/%3E%3C/svg%3E"
+             alt="Enseigne lumineuse signalétique — Forlife Com'" loading="lazy" width="300" height="300">
+        <div class="portfolio-overlay">
+          <span class="portfolio-category">Signalétique</span>
+          <h3 class="portfolio-title">Enseigne lumineuse</h3>
+        </div>
+      </div>
+      <div class="portfolio-preview-item reveal">
+        <img data-src="assets/images/portfolio/dtf-textile/dtf-001.jpg"
+             src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 300 300'%3E%3Crect fill='%231a1a1a'/%3E%3C/svg%3E"
+             alt="Écussons DTF brodés école — Forlife Com'" loading="lazy" width="300" height="300">
+        <div class="portfolio-overlay">
+          <span class="portfolio-category">DTF & Textile</span>
+          <h3 class="portfolio-title">Écussons scolaires brodés</h3>
+        </div>
+      </div>
+      <div class="portfolio-preview-item reveal reveal-delay-1">
+        <img data-src="assets/images/portfolio/goodies/goodies-001.jpg"
+             src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 300 300'%3E%3Crect fill='%231a1a1a'/%3E%3C/svg%3E"
+             alt="Goodies stylos personnalisés — Forlife Com'" loading="lazy" width="300" height="300">
+        <div class="portfolio-overlay">
+          <span class="portfolio-category">Goodies</span>
+          <h3 class="portfolio-title">Stylos personnalisés</h3>
+        </div>
+      </div>
+      <div class="portfolio-preview-item reveal reveal-delay-2">
+        <img data-src="assets/images/portfolio/evenementiel/evenementiel-001.jpg"
+             src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 300 300'%3E%3Crect fill='%231a1a1a'/%3E%3C/svg%3E"
+             alt="Événement communautaire photo — Forlife Com'" loading="lazy" width="300" height="300">
+        <div class="portfolio-overlay">
+          <span class="portfolio-category">Événementiel</span>
+          <h3 class="portfolio-title">Photo événement communautaire</h3>
+        </div>
+      </div>
+    </div>
+
+    <div class="section-cta reveal">
+      <a href="realisations.html" class="btn btn--white btn--lg" id="portfolio-see-all">
+        Voir toutes nos réalisations
+        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+        </svg>
+      </a>
+    </div>
+  </div>
+</section>
+
+
+<!-- ============================================================
+     ÉQUIPEMENT PRO (Réassurance)
+     ============================================================ -->
+<section class="equipment section section--cream" aria-labelledby="equipment-title">
+  <div class="container">
+    <div class="section-header reveal">
+      <span class="section-tag">Notre atelier</span>
+      <h2 class="section-title" id="equipment-title">
+        Un équipement professionnel<br>
+        <span>au service de votre projet</span>
+      </h2>
+      <p class="section-subtitle">
+        Chez Forlife Com', nous investissons dans les meilleurs outils
+        pour garantir un résultat à la hauteur de vos attentes.
+      </p>
+    </div>
+
+    <div class="equipment-grid">
+      <div class="equipment-item reveal">
+        <div class="equipment-icon" aria-hidden="true">📷</div>
+        <div class="equipment-info">
+          <h3>Sony A7 III</h3>
+          <p>Appareil photo hybride plein format — portraits, produits, reportages d'entreprise en qualité professionnelle</p>
+        </div>
+      </div>
+      <div class="equipment-item reveal reveal-delay-1">
+        <div class="equipment-icon" aria-hidden="true">🎥</div>
+        <div class="equipment-info">
+          <h3>Sony FX30</h3>
+          <p>Caméra cinéma compacte — vidéos institutionnelles et clips de marque avec une qualité cinématographique</p>
+        </div>
+      </div>
+      <div class="equipment-item reveal reveal-delay-2">
+        <div class="equipment-icon" aria-hidden="true">🚁</div>
+        <div class="equipment-info">
+          <h3>Drone DJI Mini 4 Pro</h3>
+          <p>Prises de vue aériennes pour vos événements, immobilier et reportages — une perspective unique et spectaculaire</p>
+        </div>
+      </div>
+      <div class="equipment-item reveal reveal-delay-3">
+        <div class="equipment-icon" aria-hidden="true">🖨️</div>
+        <div class="equipment-info">
+          <h3>Imprimante DTF A2 Industrielle</h3>
+          <p>Impression directe sur textile haute résolution — tee-shirts, polos, textiles événementiels en grande quantité</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ============================================================
+     POURQUOI NOUS CHOISIR
+     ============================================================ -->
+<section class="why-us section" aria-labelledby="why-us-title">
+  <div class="container">
+    <div class="why-us-grid">
+      <div class="why-us-content">
+        <div class="section-header section-header--left">
+          <span class="section-tag">Pourquoi Forlife Com' ?</span>
+          <h2 class="section-title reveal" id="why-us-title">
+            Ce qui nous rend<br>
+            <span>différents</span>
+          </h2>
+        </div>
+        <div class="why-us-list">
+          <div class="why-item reveal">
+            <div class="why-item-num" aria-hidden="true">01</div>
+            <div class="why-item-content">
+              <h3>Tout sous un même toit</h3>
+              <p>Impression, design, photo, vidéo, réseaux sociaux — votre agence unique pour tous vos besoins en communication.</p>
+            </div>
+          </div>
+          <div class="why-item reveal reveal-delay-1">
+            <div class="why-item-num" aria-hidden="true">02</div>
+            <div class="why-item-content">
+              <h3>Tarifs adaptés aux PME et TPE</h3>
+              <p>Nous comprenons les contraintes budgétaires des petites structures. Nos offres sont conçues pour être accessibles sans compromis sur la qualité.</p>
+            </div>
+          </div>
+          <div class="why-item reveal reveal-delay-2">
+            <div class="why-item-num" aria-hidden="true">03</div>
+            <div class="why-item-content">
+              <h3>Enracinés localement</h3>
+              <p>Basés à Bingerville, nous connaissons le marché local d'Abidjan Est et les codes culturels qui font résonner votre message auprès de votre audience.</p>
+            </div>
+          </div>
+          <div class="why-item reveal reveal-delay-3">
+            <div class="why-item-num" aria-hidden="true">04</div>
+            <div class="why-item-content">
+              <h3>Accompagnement personnalisé</h3>
+              <p>Pas de template générique. Chaque projet est conçu sur mesure, avec une écoute attentive de vos objectifs et de votre identité.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="why-us-visual reveal">
+        <div class="why-us-img-grid">
+          <img data-src="assets/images/portfolio/design/design-012.jpg"
+               src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 280 200'%3E%3Crect fill='%23f0ebe4'/%3E%3C/svg%3E"
+               alt="Conception graphique flyers" loading="lazy" width="280" height="200">
+          <img data-src="assets/images/portfolio/goodies/goodies-010.jpg"
+               src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 280 200'%3E%3Crect fill='%23f0ebe4'/%3E%3C/svg%3E"
+               alt="Étiquettes vêtement personnalisées" loading="lazy" width="280" height="200">
+          <img data-src="assets/images/portfolio/impression/impression-005.jpg"
+               src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 280 200'%3E%3Crect fill='%23f0ebe4'/%3E%3C/svg%3E"
+               alt="Affiches imprimées professionnelles" loading="lazy" width="280" height="200">
+          <img data-src="assets/images/portfolio/evenementiel/evenementiel-004.jpg"
+               src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 280 200'%3E%3Crect fill='%23f0ebe4'/%3E%3C/svg%3E"
+               alt="Photo événementiel" loading="lazy" width="280" height="200">
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ============================================================
+     BLOG APERÇU
+     ============================================================ -->
+<section class="blog-preview section section--light" aria-labelledby="blog-title">
+  <div class="container">
+    <div class="section-header reveal">
+      <span class="section-tag">Conseils & Astuces</span>
+      <h2 class="section-title" id="blog-title">
+        Le blog Forlife Com'
+      </h2>
+      <p class="section-subtitle">
+        Des conseils pratiques pour mieux communiquer, grandir sur les réseaux
+        et booster votre visibilité locale à Abidjan.
+      </p>
+    </div>
+
+    <div class="blog-grid">
+      <article class="blog-card reveal" aria-label="Article de blog">
+        <a href="blog/visibilite-pme-bingerville.html" class="blog-card-link">
+          <div class="blog-card-img-wrap">
+            <div class="blog-card-img blog-card-img--1" aria-hidden="true"></div>
+            <span class="blog-card-category">Communication locale</span>
+          </div>
+          <div class="blog-card-body">
+            <div class="blog-card-meta">
+              <time datetime="2026-07-01">1 juillet 2026</time>
+              <span>·</span>
+              <span>5 min de lecture</span>
+            </div>
+            <h3 class="blog-card-title">Comment améliorer la visibilité de votre PME à Bingerville</h3>
+            <p class="blog-card-excerpt">Découvrez les stratégies de communication locale qui font réellement la différence pour les petites entreprises d'Abidjan Est...</p>
+          </div>
+        </a>
+      </article>
+
+      <article class="blog-card reveal reveal-delay-1" aria-label="Article de blog">
+        <a href="blog/dtf-vs-serigraphie.html" class="blog-card-link">
+          <div class="blog-card-img-wrap">
+            <div class="blog-card-img blog-card-img--2" aria-hidden="true"></div>
+            <span class="blog-card-category">Impression</span>
+          </div>
+          <div class="blog-card-body">
+            <div class="blog-card-meta">
+              <time datetime="2026-07-10">10 juillet 2026</time>
+              <span>·</span>
+              <span>4 min de lecture</span>
+            </div>
+            <h3 class="blog-card-title">DTF vs sérigraphie : quelle impression textile choisir ?</h3>
+            <p class="blog-card-excerpt">Tee-shirts pour votre école, association ou événement d'entreprise ? On vous explique tout pour choisir la meilleure technique...</p>
+          </div>
+        </a>
+      </article>
+
+      <article class="blog-card reveal reveal-delay-2" aria-label="Article de blog">
+        <a href="blog/5-erreurs-instagram-tpe.html" class="blog-card-link">
+          <div class="blog-card-img-wrap">
+            <div class="blog-card-img blog-card-img--3" aria-hidden="true"></div>
+            <span class="blog-card-category">Réseaux sociaux</span>
+          </div>
+          <div class="blog-card-body">
+            <div class="blog-card-meta">
+              <time datetime="2026-07-18">18 juillet 2026</time>
+              <span>·</span>
+              <span>6 min de lecture</span>
+            </div>
+            <h3 class="blog-card-title">5 erreurs à éviter sur Instagram quand vous êtes une TPE</h3>
+            <p class="blog-card-excerpt">Beaucoup de petites entreprises à Abidjan font les mêmes erreurs sur Instagram. Voici comment les éviter et gagner de vrais clients...</p>
+          </div>
+        </a>
+      </article>
+    </div>
+
+    <div class="section-cta reveal">
+      <a href="blog/index.html" class="btn btn--outline btn--lg" id="blog-see-all">
+        Lire tous les articles
+        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+        </svg>
+      </a>
+    </div>
+  </div>
+</section>
+
+
+<!-- ============================================================
+     CTA FINAL
+     ============================================================ -->
+<section class="cta-final section" aria-labelledby="cta-title">
+  <div class="container">
+    <div class="cta-final-card reveal">
+      <div class="cta-final-bg" aria-hidden="true"></div>
+      <div class="cta-final-content">
+        <span class="badge badge--dark" style="margin-bottom: var(--space-4);">📞 Parlons de votre projet</span>
+        <h2 class="section-title section-title--white" id="cta-title">
+          Prêt à donner vie à votre projet<br>
+          de communication ?
+        </h2>
+        <p style="color: rgba(255,255,255,0.75); font-size: var(--font-size-md); margin-top: var(--space-4);">
+          Obtenez un devis gratuit et personnalisé sous 24h.<br>
+          Notre équipe vous répond directement sur WhatsApp.
+        </p>
+        <div class="cta-final-actions">
+          <a href="https://wa.me/2250585801856?text=Bonjour%20Forlife%20Com'%2C%20je%20souhaite%20obtenir%20un%20devis%20pour..."
+             class="btn btn--white btn--lg" target="_blank" rel="noopener" id="cta-final-whatsapp">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>
+            </svg>
+            Demander un devis gratuit
+          </a>
+          <a href="contact.html" class="btn btn--outline-white btn--lg" id="cta-final-contact">
+            Remplir le formulaire
+          </a>
+        </div>
+        <div class="cta-final-contact-info">
+          <a href="tel:+2250585801856">📞 05 85 80 18 56</a>
+          <span aria-hidden="true">·</span>
+          <a href="mailto:forlifeimprim@gmail.com">✉ forlifeimprim@gmail.com</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
 </main>
 
+
+<!-- ============================================================
+     FOOTER
+     ============================================================ -->
 <footer class="footer" role="contentinfo">
   <div class="container">
     <div class="footer-grid">
+      <!-- Col 1 — Brand -->
       <div class="footer-brand">
-        <img src="../assets/logo/logo-horizontal.svg" alt="Forlife Com' logo" class="footer-logo" width="160" height="44">
+        <img src="assets/logo/logo-horizontal.svg" alt="Forlife Com' logo" class="footer-logo" width="160" height="44">
         <p class="footer-desc">
-          Forlife Com' — division communication de Forlife Imprim — est l'agence de référence des PME, TPE, écoles et communautés à Bingerville et Abidjan Est, Côte d'Ivoire.
+          Forlife Com' — division communication de Forlife Imprim —
+          est l'agence de référence des PME, TPE, écoles et communautés
+          à Bingerville et Abidjan Est, Côte d'Ivoire.
         </p>
+        <p class="footer-desc" style="font-style: italic; color: var(--color-primary-light);">
+          "Imprimer l'avenir, valoriser les marques."
+        </p>
+        <div class="social-links" style="margin-top: var(--space-5);">
+          <a href="https://www.instagram.com/forlife_imprim" class="social-link" target="_blank" rel="noopener" aria-label="Forlife Com' sur Instagram">
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/>
+            </svg>
+          </a>
+          <a href="https://www.facebook.com/share/1DEbv4dxNr/" class="social-link" target="_blank" rel="noopener" aria-label="Forlife Com' sur Facebook">
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+            </svg>
+          </a>
+          <a href="https://wa.me/2250585801856" class="social-link" target="_blank" rel="noopener" aria-label="Forlife Com' sur WhatsApp">
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>
+            </svg>
+          </a>
+        </div>
       </div>
+
+      <!-- Col 2 — Navigation -->
       <div>
         <h4 class="footer-title">Navigation</h4>
         <ul class="footer-links" role="list">
-          <li><a href="../index.html" class="footer-link">Accueil</a></li>
-          <li><a href="../a-propos.html" class="footer-link">À propos</a></li>
-          <li><a href="../services.html" class="footer-link">Services</a></li>
-          <li><a href="index.html" class="footer-link">Blog</a></li>
-          <li><a href="../contact.html" class="footer-link">Contact</a></li>
+          <li><a href="index.html" class="footer-link">Accueil</a></li>
+          <li><a href="a-propos.html" class="footer-link">À propos</a></li>
+          <li><a href="services.html" class="footer-link">Services</a></li>
+          <li><a href="realisations.html" class="footer-link">Réalisations</a></li>
+          <li><a href="blog/index.html" class="footer-link">Blog</a></li>
+          <li><a href="contact.html" class="footer-link">Contact</a></li>
         </ul>
       </div>
+
+      <!-- Col 3 — Services -->
+      <div>
+        <h4 class="footer-title">Services</h4>
+        <ul class="footer-links" role="list">
+          <li><a href="services.html#impression" class="footer-link">Impression & Affiches</a></li>
+          <li><a href="services.html#design" class="footer-link">Création Graphique</a></li>
+          <li><a href="services.html#photo-video" class="footer-link">Photo & Vidéo</a></li>
+          <li><a href="services.html#reseaux-sociaux" class="footer-link">Réseaux Sociaux</a></li>
+          <li><a href="services.html#publicite-digitale" class="footer-link">Meta Ads</a></li>
+          <li><a href="services.html#evenementiel" class="footer-link">Événementiel</a></li>
+          <li><a href="services.html#formation" class="footer-link">Formation</a></li>
+        </ul>
+      </div>
+
+      <!-- Col 4 — Contact -->
       <div>
         <h4 class="footer-title">Nous contacter</h4>
         <address style="font-style: normal;">
           <div class="footer-contact-item">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
+            </svg>
             <span>Bingerville, à la montée de la colline du Collège Saint Cyrille, Côte d'Ivoire</span>
           </div>
           <div class="footer-contact-item">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/>
+            </svg>
             <span>
               <a href="tel:+2250585801856">+225 05 85 80 18 56</a><br>
               <a href="tel:+2250749567082">+225 07 49 56 70 82</a>
             </span>
           </div>
+          <div class="footer-contact-item">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+            </svg>
+            <a href="mailto:forlifeimprim@gmail.com">forlifeimprim@gmail.com</a>
+          </div>
+          <div class="footer-contact-item">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
+            </svg>
+            <span>Lun–Ven : 8h–18h · Sam : 8h–14h</span>
+          </div>
         </address>
       </div>
     </div>
+
+    <!-- Footer Bottom -->
     <div class="footer-bottom">
-      <p>© 2026 Forlife Com'. Tous droits réservés.</p>
+      <p>© 2026 Forlife Com' — Division de <a href="#" rel="noopener">Forlife Imprim</a>. Tous droits réservés.</p>
+      <p>Conçu avec ❤️ à Bingerville, Côte d'Ivoire 🇨🇮</p>
     </div>
   </div>
 </footer>
 
-<a href="https://wa.me/2250585801856" class="whatsapp-float" target="_blank" rel="noopener">Devis gratuit</a>
-<button class="back-to-top" aria-label="Retour en haut de page">^</button>
+<!-- WhatsApp Floating Button -->
+<div class="whatsapp-float-ring" aria-hidden="true"></div>
+<a href="https://wa.me/2250585801856?text=Bonjour%20Forlife%20Com'%2C%20je%20souhaite%20obtenir%20un%20devis%20pour..."
+   class="whatsapp-float"
+   target="_blank"
+   rel="noopener"
+   id="whatsapp-float-btn"
+   aria-label="Contacter Forlife Com' sur WhatsApp — Devis gratuit">
+  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>
+  </svg>
+  <span>Devis gratuit</span>
+</a>
 
-<script src="../js/main.js"></script>
+<!-- Back to Top -->
+<button class="back-to-top" aria-label="Retour en haut de page">
+  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 15l7-7 7 7"/>
+  </svg>
+</button>
+
+<script src="js/main.js"></script>
+<script src="js/automation.js"></script>
 </body>
 </html>

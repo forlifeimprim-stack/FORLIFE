@@ -1,8 +1,16 @@
 {
-  "name": "@google/generative-ai-server",
-  "description": "GoogleAI JS server-environment-only features",
-  "main": "../dist/server/index.js",
-  "browser": "../dist/server/index.mjs",
-  "module": "../dist/server/index.mjs",
-  "typings": "../dist/server/server.d.ts"
+  "name": "forlife-com",
+  "version": "1.0.0",
+  "description": "Bienvenue dans le dépôt du site internet officiel et du hub d'automatisation marketing de **Forlife Com'**, l'agence de communication et de publicité (division de **Forlife Imprim**), basée à Bingerville, Côte d'Ivoire.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "dependencies": {
+    "@google/generative-ai": "^0.24.1"
+  }
 }
