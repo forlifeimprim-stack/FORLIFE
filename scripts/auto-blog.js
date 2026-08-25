@@ -12,7 +12,7 @@ const genAI = new GoogleGenerativeAI(apiKey);
 
 async function generateContent(topic) {
   console.log(`Generating content for: ${topic.topic}...`);
-  const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
+  const model = genAI.getGenerativeModel({ model: "gemini-3.7-flash" });
   
   const prompt = `Tu es un expert en communication marketing en Côte d'Ivoire. Rédige un article de blog court (environ 400 mots) pour l'agence "Forlife Com'", basée à Bingerville.
   Le ton doit être chaleureux, teinté d'humour, et professionnel.
