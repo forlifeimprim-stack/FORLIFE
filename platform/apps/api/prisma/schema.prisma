@@ -1,0 +1,626 @@
+// Forlife Com — AI Growth & Creative OS
+// Modèle de données — Phase 0 (Fondation) + Phase 1 (MVP Growth).
+// Règles : multi-tenant (organizationId / workspaceId sur toute donnée métier),
+// index systématiques par tenant, versionnement des éléments de marque/stratégie,
+// ledgers append-only (crédits, usage IA, audit), pas de cascade sur les données transactionnelles.
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// ───────────────────────────── Identity ─────────────────────────────
+
+enum Role {
+  OWNER
+  ADMIN
+  MANAGER
+  EDITOR
+  CREATOR
+  ANALYST
+  VIEWER
+  AGENCY
+}
+
+model User {
+  id           String       @id @default(cuid())
+  email        String       @unique
+  passwordHash String
+  name         String
+  locale       String       @default("fr-CI")
+  createdAt    DateTime     @default(now())
+  updatedAt    DateTime     @updatedAt
+  memberships  Membership[]
+  sessions     Session[]
+}
+
+model Session {
+  id               String    @id @default(cuid())
+  userId           String
+  user             User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  refreshTokenHash String    @unique
+  expiresAt        DateTime
+  revokedAt        DateTime?
+  replacedById     String?
+  userAgent        String?
+  ip               String?
+  createdAt        DateTime  @default(now())
+
+  @@index([userId])
+}
+
+model Organization {
+  id          String        @id @default(cuid())
+  name        String
+  slug        String        @unique
+  country     String        @default("CI")
+  currency    String        @default("XOF")
+  timezone    String        @default("Africa/Abidjan")
+  createdAt   DateTime      @default(now())
+  updatedAt   DateTime      @updatedAt
+  memberships Membership[]
+  workspaces  Workspace[]
+  wallet      CreditWallet?
+  subscription Subscription?
+}
+
+model Membership {
+  id             String                @id @default(cuid())
+  organizationId String
+  organization   Organization          @relation(fields: [organizationId], references: [id], onDelete: Cascade)
+  userId         String
+  user           User                  @relation(fields: [userId], references: [id], onDelete: Cascade)
+  role           Role
+  /// false = accès limité aux workspaces listés dans `workspaces` (agences, prestataires)
+  allWorkspaces  Boolean               @default(true)
+  workspaces     MembershipWorkspace[]
+  createdAt      DateTime              @default(now())
+
+  @@unique([organizationId, userId])
+  @@index([userId])
+}
+
+model MembershipWorkspace {
+  membershipId String
+  membership   Membership @relation(fields: [membershipId], references: [id], onDelete: Cascade)
+  workspaceId  String
+  workspace    Workspace  @relation(fields: [workspaceId], references: [id], onDelete: Cascade)
+
+  @@id([membershipId, workspaceId])
+  @@index([workspaceId])
+}
+
+// ───────────────────────────── Core / Brand ─────────────────────────────
+
+enum WorkspaceStatus {
+  ACTIVE
+  ARCHIVED
+}
+
+model Workspace {
+  id               String                @id @default(cuid())
+  organizationId   String
+  organization     Organization          @relation(fields: [organizationId], references: [id], onDelete: Restrict)
+  name             String
+  slug             String
+  status           WorkspaceStatus       @default(ACTIVE)
+  timezone         String                @default("Africa/Abidjan")
+  defaultLocale    String                @default("fr-CI")
+  createdAt        DateTime              @default(now())
+  updatedAt        DateTime              @updatedAt
+  members          MembershipWorkspace[]
+  brand            Brand?
+  businessProfiles BusinessProfile[]
+  audiences        Audience[]
+  competitors      Competitor[]
+  objectives       Objective[]
+  strategyPlans    StrategyPlan[]
+  recommendations  Recommendation[]
+  pillars          ContentPillar[]
+  contents         ContentItem[]
+  campaigns        Campaign[]
+  assets           BrandAsset[]
+  products         Product[]
+  approvals        Approval[]
+
+  @@unique([organizationId, slug])
+  @@index([organizationId])
+}
+
+model Brand {
+  id           String           @id @default(cuid())
+  workspaceId  String           @unique
+  workspace    Workspace        @relation(fields: [workspaceId], references: [id], onDelete: Restrict)
+  name         String
+  mission      String?
+  positioning  String?
+  values       Json             @default("[]")
+  /// Éléments verrouillés que l'IA ne doit jamais modifier : nom produit, prix, mentions légales…
+  lockedFacts  Json             @default("[]")
+  createdAt    DateTime         @default(now())
+  updatedAt    DateTime         @updatedAt
+  guidelines   BrandGuideline[]
+  assets       BrandAsset[]
+}
+
+enum VersionStatus {
+  DRAFT
+  APPROVED
+  SUPERSEDED
+}
+
+/// Brand DNA versionné : voix, vocabulaire, règles visuelles. Une seule version APPROVED à la fois.
+model BrandGuideline {
+  id            String        @id @default(cuid())
+  brandId       String
+  brand         Brand         @relation(fields: [brandId], references: [id], onDelete: Restrict)
+  version       Int
+  status        VersionStatus @default(DRAFT)
+  tone          String?
+  voiceByChannel Json         @default("{}")
+  vocabulary    Json          @default("[]")
+  forbiddenWords Json         @default("[]")
+  promises      Json          @default("[]")
+  proofs        Json          @default("[]")
+  objections    Json          @default("[]")
+  colors        Json          @default("[]")
+  fonts         Json          @default("[]")
+  visualRules   Json          @default("[]")
+  source        String        @default("manual") // manual | ai
+  aiRunId       String?
+  createdById   String?
+  approvedById  String?
+  approvedAt    DateTime?
+  createdAt     DateTime      @default(now())
+
+  @@unique([brandId, version])
+  @@index([brandId, status])
+}
+
+model BrandAsset {
+  id          String    @id @default(cuid())
+  workspaceId String
+  workspace   Workspace @relation(fields: [workspaceId], references: [id], onDelete: Restrict)
+  brandId     String?
+  brand       Brand?    @relation(fields: [brandId], references: [id], onDelete: SetNull)
+  type        String // logo | photo | catalog | document | other
+  fileName    String
+  mime        String
+  sizeBytes   Int
+  checksum    String
+  storageKey  String    @unique
+  metadata    Json      @default("{}")
+  createdById String?
+  createdAt   DateTime  @default(now())
+  deletedAt   DateTime?
+
+  @@index([workspaceId, type])
+}
+
+model Product {
+  id          String    @id @default(cuid())
+  workspaceId String
+  workspace   Workspace @relation(fields: [workspaceId], references: [id], onDelete: Restrict)
+  name        String
+  description String?
+  /// Montant en unités mineures de la devise (XOF n'a pas de décimales).
+  priceAmount Int?
+  currency    String    @default("XOF")
+  /// Prix/nom verrouillés : l'IA doit les reprendre à l'identique.
+  locked      Boolean   @default(true)
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+
+  @@index([workspaceId])
+}
+
+// ───────────────────────────── Strategy (Business Brain) ─────────────────────────────
+
+model BusinessProfile {
+  id            String    @id @default(cuid())
+  workspaceId   String
+  workspace     Workspace @relation(fields: [workspaceId], references: [id], onDelete: Restrict)
+  version       Int
+  sector        String
+  country       String    @default("CI")
+  city          String?
+  offerSummary  String?
+  targetSummary String?
+  channels      Json      @default("[]")
+  resources     String?
+  differentiators String?
+  createdById   String?
+  createdAt     DateTime  @default(now())
+
+  @@unique([workspaceId, version])
+  @@index([workspaceId])
+}
+
+model Audience {
+  id          String    @id @default(cuid())
+  workspaceId String
+  workspace   Workspace @relation(fields: [workspaceId], references: [id], onDelete: Restrict)
+  name        String
+  persona     String?
+  pains       Json      @default("[]")
+  goals       Json      @default("[]")
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+
+  @@index([workspaceId])
+}
+
+model Competitor {
+  id          String    @id @default(cuid())
+  workspaceId String
+  workspace   Workspace @relation(fields: [workspaceId], references: [id], onDelete: Restrict)
+  name        String
+  url         String?
+  notes       String?
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+
+  @@index([workspaceId])
+}
+
+enum ObjectiveType {
+  AWARENESS
+  ENGAGEMENT
+  LEADS
+  SALES
+  LAUNCH
+  SOCIAL_PROOF
+  RETENTION
+}
+
+model Objective {
+  id          String        @id @default(cuid())
+  workspaceId String
+  workspace   Workspace     @relation(fields: [workspaceId], references: [id], onDelete: Restrict)
+  type        ObjectiveType
+  title       String
+  metric      String
+  target      Float
+  periodStart DateTime
+  periodEnd   DateTime
+  status      String        @default("ACTIVE") // ACTIVE | ACHIEVED | ABANDONED
+  createdAt   DateTime      @default(now())
+  updatedAt   DateTime      @updatedAt
+  contents    ContentItem[]
+
+  @@index([workspaceId, status])
+}
+
+model StrategyPlan {
+  id                     String        @id @default(cuid())
+  workspaceId            String
+  workspace              Workspace     @relation(fields: [workspaceId], references: [id], onDelete: Restrict)
+  title                  String
+  period                 String // MONTHLY | QUARTERLY
+  status                 VersionStatus @default(DRAFT)
+  summary                String
+  content                Json
+  /// Contexte ayant servi à la génération (exigence §6 : traçabilité objectif/contexte)
+  businessProfileVersion Int?
+  objectiveIds           Json          @default("[]")
+  aiRunId                String?
+  createdById            String?
+  approvedById           String?
+  approvedAt             DateTime?
+  createdAt              DateTime      @default(now())
+
+  @@index([workspaceId, createdAt])
+}
+
+model Recommendation {
+  id          String    @id @default(cuid())
+  workspaceId String
+  workspace   Workspace @relation(fields: [workspaceId], references: [id], onDelete: Restrict)
+  source      String // strategy | analytics | critic
+  title       String
+  rationale   String
+  impact      Int // 1..5
+  effort      Int // 1..5
+  status      String    @default("OPEN") // OPEN | ACCEPTED | DONE | DISMISSED
+  /// Les recommandations IA sont des estimations, jamais des données réelles (§28).
+  isEstimate  Boolean   @default(true)
+  evidence    Json      @default("{}")
+  aiRunId     String?
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+
+  @@index([workspaceId, status])
+}
+
+// ───────────────────────────── Content ─────────────────────────────
+
+enum ContentStatus {
+  DRAFT
+  GENERATING
+  REVIEW
+  APPROVED
+  SCHEDULED
+  PUBLISHED
+  FAILED
+  ARCHIVED
+}
+
+enum ContentType {
+  POST
+  CAROUSEL
+  STORY
+  VIDEO_SCRIPT
+  EMAIL
+  WHATSAPP_MESSAGE
+}
+
+enum Channel {
+  FACEBOOK
+  INSTAGRAM
+  TIKTOK
+  LINKEDIN
+  YOUTUBE
+  X
+  WHATSAPP
+  EMAIL
+}
+
+model ContentPillar {
+  id          String        @id @default(cuid())
+  workspaceId String
+  workspace   Workspace     @relation(fields: [workspaceId], references: [id], onDelete: Restrict)
+  name        String
+  description String?
+  createdAt   DateTime      @default(now())
+  contents    ContentItem[]
+
+  @@unique([workspaceId, name])
+}
+
+model Campaign {
+  id          String        @id @default(cuid())
+  workspaceId String
+  workspace   Workspace     @relation(fields: [workspaceId], references: [id], onDelete: Restrict)
+  name        String
+  objective   ObjectiveType
+  brief       String?
+  /// Budget en unités mineures (XOF).
+  budgetAmount Int?
+  currency    String        @default("XOF")
+  startAt     DateTime?
+  endAt       DateTime?
+  status      String        @default("DRAFT") // DRAFT | ACTIVE | PAUSED | COMPLETED
+  createdAt   DateTime      @default(now())
+  updatedAt   DateTime      @updatedAt
+  contents    ContentItem[]
+
+  @@index([workspaceId, status])
+}
+
+model ContentItem {
+  id          String           @id @default(cuid())
+  workspaceId String
+  workspace   Workspace        @relation(fields: [workspaceId], references: [id], onDelete: Restrict)
+  campaignId  String?
+  campaign    Campaign?        @relation(fields: [campaignId], references: [id], onDelete: SetNull)
+  pillarId    String?
+  pillar      ContentPillar?   @relation(fields: [pillarId], references: [id], onDelete: SetNull)
+  objectiveId String?
+  objective   Objective?       @relation(fields: [objectiveId], references: [id], onDelete: SetNull)
+  type        ContentType      @default(POST)
+  title       String
+  angle       String?
+  hook        String?
+  body        String           @default("")
+  cta         String?
+  status      ContentStatus    @default(DRAFT)
+  scheduledAt DateTime?
+  /// Verrou optimiste : incrémenté à chaque modification.
+  revision    Int              @default(1)
+  aiRunId     String?
+  createdById String?
+  createdAt   DateTime         @default(now())
+  updatedAt   DateTime         @updatedAt
+  variants    ContentVariant[]
+
+  @@index([workspaceId, status])
+  @@index([workspaceId, scheduledAt])
+}
+
+model ContentVariant {
+  id        String      @id @default(cuid())
+  contentId String
+  content   ContentItem @relation(fields: [contentId], references: [id], onDelete: Cascade)
+  channel   Channel
+  locale    String      @default("fr-CI")
+  label     String      @default("A")
+  body      String
+  cta       String?
+  hashtags  Json        @default("[]")
+  aiRunId   String?
+  createdAt DateTime    @default(now())
+  updatedAt DateTime    @updatedAt
+
+  @@unique([contentId, channel, label])
+}
+
+model Approval {
+  id            String    @id @default(cuid())
+  workspaceId   String
+  workspace     Workspace @relation(fields: [workspaceId], references: [id], onDelete: Restrict)
+  entityType    String // content | strategy_plan | brand_guideline
+  entityId      String
+  status        String    @default("PENDING") // PENDING | APPROVED | REJECTED
+  requestedById String?
+  decidedById   String?
+  comment       String?
+  decidedAt     DateTime?
+  createdAt     DateTime  @default(now())
+
+  @@index([workspaceId, status])
+  @@index([entityType, entityId])
+}
+
+// ───────────────────────────── AI ─────────────────────────────
+
+enum AiRunStatus {
+  RUNNING
+  SUCCEEDED
+  FAILED
+}
+
+/// Traçabilité complète de chaque appel IA (§21) : modèle, version de prompt, coût, durée, résultat.
+model AIRun {
+  id             String      @id @default(cuid())
+  organizationId String
+  workspaceId    String?
+  actorId        String?
+  taskType       String
+  promptKey      String
+  promptVersion  Int
+  provider       String?
+  model          String?
+  attemptedProviders Json    @default("[]")
+  status         AiRunStatus @default(RUNNING)
+  input          Json
+  output         Json?
+  error          String?
+  latencyMs      Int?
+  inputTokens    Int?
+  outputTokens   Int?
+  creditsCharged Int         @default(0)
+  safety         Json?
+  traceId        String
+  createdAt      DateTime    @default(now())
+  finishedAt     DateTime?
+
+  @@index([organizationId, createdAt])
+  @@index([workspaceId, taskType])
+}
+
+/// Événements d'usage append-only (protégés par trigger SQL).
+model AIUsageEvent {
+  id             String   @id @default(cuid())
+  organizationId String
+  workspaceId    String?
+  aiRunId        String
+  kind           String // TEXT | IMAGE | VIDEO | TRANSCRIPTION | VOICE
+  provider       String
+  model          String
+  units          Int
+  credits        Int
+  createdAt      DateTime @default(now())
+
+  @@index([organizationId, createdAt])
+}
+
+// ───────────────────────────── Billing ─────────────────────────────
+
+enum PlanCode {
+  FREE
+  STARTER
+  BUSINESS
+  PRO
+  AGENCY
+}
+
+model Subscription {
+  id               String       @id @default(cuid())
+  organizationId   String       @unique
+  organization     Organization @relation(fields: [organizationId], references: [id], onDelete: Restrict)
+  planCode         PlanCode     @default(FREE)
+  status           String       @default("ACTIVE")
+  currentPeriodStart DateTime   @default(now())
+  currentPeriodEnd DateTime
+  createdAt        DateTime     @default(now())
+  updatedAt        DateTime     @updatedAt
+}
+
+model CreditWallet {
+  id             String              @id @default(cuid())
+  organizationId String              @unique
+  organization   Organization        @relation(fields: [organizationId], references: [id], onDelete: Restrict)
+  balance        Int                 @default(0)
+  updatedAt      DateTime            @updatedAt
+  transactions   CreditTransaction[]
+}
+
+/// Ledger de crédits append-only. `idempotencyKey` garantit qu'une opération n'est jamais appliquée deux fois.
+model CreditTransaction {
+  id             String       @id @default(cuid())
+  walletId       String
+  wallet         CreditWallet @relation(fields: [walletId], references: [id], onDelete: Restrict)
+  organizationId String
+  amount         Int // positif = crédit, négatif = débit
+  balanceAfter   Int
+  kind           String // GRANT | CONSUME | REFUND | PURCHASE | ADJUST
+  reason         String
+  refType        String?
+  refId          String?
+  idempotencyKey String       @unique
+  createdAt      DateTime     @default(now())
+
+  @@index([organizationId, createdAt])
+}
+
+// ───────────────────────────── Jobs ─────────────────────────────
+
+enum JobStatus {
+  QUEUED
+  RUNNING
+  SUCCEEDED
+  FAILED
+  CANCELLED
+  DEAD
+}
+
+/// File de jobs Postgres (SELECT … FOR UPDATE SKIP LOCKED). Idempotente via idempotencyKey.
+model Job {
+  id             String    @id @default(cuid())
+  organizationId String
+  workspaceId    String?
+  type           String
+  payload        Json
+  status         JobStatus @default(QUEUED)
+  attempts       Int       @default(0)
+  maxAttempts    Int       @default(3)
+  runAt          DateTime  @default(now())
+  lockedAt       DateTime?
+  lockedBy       String?
+  progress       Int       @default(0)
+  lastError      String?
+  result         Json?
+  idempotencyKey String?   @unique
+  correlationId  String
+  createdById    String?
+  createdAt      DateTime  @default(now())
+  updatedAt      DateTime  @updatedAt
+  finishedAt     DateTime?
+
+  @@index([status, runAt])
+  @@index([organizationId, createdAt])
+}
+
+// ───────────────────────────── Governance ─────────────────────────────
+
+/// Journal d'audit append-only (UPDATE/DELETE bloqués par trigger SQL).
+model AuditLog {
+  id             String   @id @default(cuid())
+  organizationId String
+  workspaceId    String?
+  actorId        String?
+  action         String
+  entityType     String
+  entityId       String?
+  metadata       Json     @default("{}")
+  ip             String?
+  correlationId  String?
+  createdAt      DateTime @default(now())
+
+  @@index([organizationId, createdAt])
+  @@index([workspaceId, createdAt])
+}
