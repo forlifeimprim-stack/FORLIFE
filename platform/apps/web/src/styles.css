@@ -201,6 +201,7 @@ input:focus, textarea:focus, select:focus { border-color: var(--accent); outline
 .checks { display: flex; flex-wrap: wrap; gap: 8px; }
 .check { display: inline-flex; align-items: center; gap: 6px; border: 1px solid var(--border); border-radius: 999px; padding: 6px 12px; cursor: pointer; font-size: 0.85rem; background: var(--surface); }
 .check input { width: auto; accent-color: var(--accent); }
+input[type="checkbox"], input[type="radio"] { width: auto; flex: none; accent-color: var(--accent); }
 .check:has(input:checked) { border-color: var(--accent); background: var(--accent-soft); }
 
 /* ───── Badges ───── */
