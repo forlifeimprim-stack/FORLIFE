@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import { CONTENT_STATUS_LABELS, OBJECTIVE_LABELS, type ContentStatus } from "@forlife/shared";
 import { useAuth, useWorkspace } from "../lib/auth";
 import { useResource } from "../lib/hooks";
-import { fmtDate, fmtDateTime, fmtNumber } from "../lib/i18n";
+import { fmtDate, fmtDateTime, fmtNumber, fmtXof } from "../lib/i18n";
 import type { Objective, Recommendation } from "../lib/types";
 import { Alert, Badge, Card, Empty, PageHeader, Score } from "../components/ui";
 
@@ -16,6 +16,8 @@ interface Dashboard {
   auditScore: number | null;
   credits: { balance: number; monthly: number; plan: string };
   aiRunsLast30Days: number;
+  sales: { newLeads7d: number; staleLeads: number; wonThisMonth: number; revenueThisMonth: number; tasksDue: number } | null;
+  subscription: { planCode: string; paidUntil: string | null } | null;
 }
 
 export function Home() {
@@ -27,6 +29,8 @@ export function Home() {
   const done = data.setup.filter((s) => s.done).length;
   const pct = Math.round((done / data.setup.length) * 100);
   const c = data.contentByStatus;
+  const paidUntil = data.subscription?.paidUntil ? new Date(data.subscription.paidUntil) : null;
+  const expiresSoon = paidUntil && data.subscription?.planCode !== "FREE" && paidUntil.getTime() - Date.now() < 7 * 864e5;
 
   return (
     <>
@@ -39,6 +43,45 @@ export function Home() {
           </Link>
         }
       />
+      {expiresSoon && (
+        <div style={{ marginBottom: 16 }}>
+          <Alert tone="warning">
+            Votre plan {data.credits.plan} expire le {fmtDate(paidUntil!.toISOString())}. <Link to="/settings?tab=billing">Renouveler par mobile money</Link>
+          </Alert>
+        </div>
+      )}
+      {data.sales && (
+        <div className="grid grid-4" style={{ marginBottom: 16 }}>
+          <Card>
+            <div className="kpi">
+              <span className="label">Ventes ce mois-ci</span>
+              <span className="value">{fmtXof(data.sales.revenueThisMonth)}</span>
+              <span className="small muted">{data.sales.wonThisMonth} vente(s) gagnée(s)</span>
+            </div>
+          </Card>
+          <Card>
+            <div className="kpi">
+              <span className="label">Nouveaux leads (7 j)</span>
+              <span className="value">{data.sales.newLeads7d}</span>
+              <Link to="/crm" className="small">Ouvrir le CRM</Link>
+            </div>
+          </Card>
+          <Card>
+            <div className="kpi">
+              <span className="label">Leads à relancer</span>
+              <span className="value" style={data.sales.staleLeads ? { color: "var(--warning)" } : undefined}>{data.sales.staleLeads}</span>
+              <span className="small muted">sans action depuis 7 jours</span>
+            </div>
+          </Card>
+          <Card>
+            <div className="kpi">
+              <span className="label">Tâches du jour</span>
+              <span className="value">{data.sales.tasksDue}</span>
+              <Link to="/analytics" className="small">Voir le ROI</Link>
+            </div>
+          </Card>
+        </div>
+      )}
       <div className="grid grid-4" style={{ marginBottom: 16 }}>
         <Card>
           <div className="kpi">

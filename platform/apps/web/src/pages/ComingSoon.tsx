@@ -6,7 +6,6 @@ const MODULES: Record<string, { title: string; phase: string; items: string[] }>
   social: { title: "Social Hub", phase: "Phase 3", items: ["Connexion OAuth Meta, TikTok, LinkedIn, YouTube", "Tokens chiffrés, rotation et révocation", "Publication idempotente avec retry et historique", "Statistiques par publication"] },
   campaigns: { title: "Campaign Manager", phase: "Phase 5", items: ["Brief central unique pour tous les assets", "Budget en FCFA, audiences, période, canaux", "Variantes A/B et approbations", "Automatisations bornées (copilot / autopilot)"] },
   crm: { title: "CRM & Leads", phase: "Phase 5", items: ["Capture de leads (formulaires, WhatsApp, campagnes)", "Pipeline, scoring IA, tâches et relances", "Attribution lead → vente existante Forlife"] },
-  analytics: { title: "Analytics & ROI", phase: "Phase 2–6", items: ["Engagement, leads, conversions par contenu et campagne", "Distinction stricte données réelles / estimations", "Creative Score et comparaison des variantes", "Rapports clients pour agences"] },
   copilot: { title: "AI Copilot & Agents", phase: "Phase 6", items: ["Chat contextualisé avec la mémoire de l'entreprise", "12 agents spécialisés (Strategist, Critic, Optimizer…)", "Modes assisté, copilot et autopilot borné", "Aucune action externe sans permission explicite et traçable"] },
 };
 

@@ -2,6 +2,8 @@ import { Prisma } from "@prisma/client";
 import { PLANS, type PlanCode } from "@forlife/shared";
 import { prisma, type Tx } from "../../lib/prisma.js";
 import { paymentRequired } from "../../lib/errors.js";
+import { loadConfig } from "../../config.js";
+import { layout, sendEmail } from "../mail/mailer.js";
 
 export interface LedgerOp {
   organizationId: string;
@@ -81,6 +83,7 @@ export const ledger = {
   grant: (op: LedgerOp) => apply(op, "GRANT", 1),
   consume: (op: LedgerOp) => apply(op, "CONSUME", -1),
   refund: (op: LedgerOp) => apply(op, "REFUND", 1),
+  purchase: (op: LedgerOp) => apply(op, "PURCHASE", 1),
 };
 
 /** Crée l'abonnement + le portefeuille d'une nouvelle organisation (dans la transaction d'inscription). */
@@ -115,31 +118,50 @@ export async function grantMonthlyAllowance(organizationId: string): Promise<Led
   });
 }
 
-function addMonth(d: Date): Date {
+export function addMonths(d: Date, months = 1): Date {
   const n = new Date(d);
-  n.setMonth(n.getMonth() + 1);
+  n.setMonth(n.getMonth() + months);
   return n;
 }
 
-/** Renouvelle les abonnements arrivés à échéance et verse l'allocation de la nouvelle période. */
+/**
+ * Renouvelle les abonnements arrivés à échéance et verse l'allocation de la nouvelle période.
+ * Un plan payant non réglé (ou dont la période offerte est terminée) repasse automatiquement en Free.
+ */
 export async function renewDueSubscriptions(now = new Date()): Promise<number> {
   const due = await prisma.subscription.findMany({ where: { status: "ACTIVE", currentPeriodEnd: { lte: now } }, take: 500 });
   let renewed = 0;
   for (const sub of due) {
     let start = sub.currentPeriodEnd;
-    let end = addMonth(start);
+    let end = addMonths(start);
     while (end <= now) {
       start = end;
-      end = addMonth(end);
+      end = addMonths(end);
     }
+    const expired = sub.planCode !== "FREE" && (!sub.paidUntil || sub.paidUntil.getTime() <= start.getTime() + 60_000);
     // Mise à jour conditionnelle : un seul worker renouvelle une période donnée.
     const res = await prisma.subscription.updateMany({
       where: { id: sub.id, currentPeriodEnd: sub.currentPeriodEnd },
-      data: { currentPeriodStart: start, currentPeriodEnd: end },
+      data: { currentPeriodStart: start, currentPeriodEnd: end, ...(expired ? { planCode: "FREE", paidUntil: null } : {}) },
     });
     if (!res.count) continue;
+    if (expired) {
+      await prisma.auditLog.create({ data: { organizationId: sub.organizationId, action: "subscription.expired", entityType: "subscription", entityId: sub.id, metadata: { from: sub.planCode } } });
+      await notifyExpired(sub.organizationId, sub.planCode).catch(() => undefined);
+    }
     await grantMonthlyAllowance(sub.organizationId);
     renewed++;
   }
   return renewed;
+}
+
+async function notifyExpired(organizationId: string, planCode: PlanCode) {
+  const owner = await prisma.membership.findFirst({ where: { organizationId, role: "OWNER" }, include: { user: true } });
+  if (!owner) return;
+  const mail = layout(`Votre plan ${PLANS[planCode].name} est arrivé à échéance`, [
+    `Bonjour ${owner.user.name},`,
+    "Votre espace est repassé au plan Free : vos données sont intactes, mais les crédits mensuels sont réduits.",
+    "Réabonnez-vous en quelques secondes par Orange Money, MTN MoMo, Moov, Wave ou carte.",
+  ], { label: "Renouveler mon abonnement", url: `${loadConfig().APP_URL}/settings?tab=billing` });
+  await sendEmail({ to: owner.user.email, subject: "Votre abonnement Forlife Com a expiré", template: "subscription.expired", ...mail });
 }

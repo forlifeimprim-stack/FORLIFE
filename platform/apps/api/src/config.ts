@@ -37,10 +37,19 @@ const schema = z.object({
   META_APP_ID: z.string().optional(),
   META_APP_SECRET: z.string().optional(),
   META_GRAPH_VERSION: z.string().default("v21.0"),
-  /** Compte de démonstration (publication simulée). Désactiver en production si non souhaité. */
   /** Binaire FFmpeg utilisé par le Video Studio. */
   FFMPEG_PATH: z.string().default("ffmpeg"),
+  /** Compte de démonstration (publication simulée). Désactiver en production si non souhaité. */
   SOCIAL_SANDBOX_ENABLED: z
+    .string()
+    .default("true")
+    .transform((v) => v === "true"),
+  /** Paiements : CinetPay (Orange Money, MTN MoMo, Moov, Wave, carte). Sans clés, seul le mode démo est proposé. */
+  CINETPAY_API_KEY: z.string().optional(),
+  CINETPAY_SITE_ID: z.string().optional(),
+  CINETPAY_API_URL: z.string().url().default("https://api-checkout.cinetpay.com/v2"),
+  /** Paiement de démonstration (aucun argent réel). À désactiver en production. */
+  PAYMENT_SANDBOX_ENABLED: z
     .string()
     .default("true")
     .transform((v) => v === "true"),

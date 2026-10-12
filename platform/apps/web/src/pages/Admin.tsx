@@ -145,7 +145,7 @@ export function AdminPage() {
                       <select
                         value={o.plan}
                         aria-label={`Plan de ${o.name}`}
-                        onChange={(e) => act(() => api.patch(`/admin/organizations/${o.id}/plan`, { planCode: e.target.value }), `Plan de ${o.name} mis à jour`)}
+                        onChange={(e) => act(() => api.patch(`/admin/organizations/${o.id}/plan`, { planCode: e.target.value }), e.target.value === "FREE" ? `${o.name} est repassé au plan Free` : `Plan de ${o.name} mis à jour : 1 mois offert (retour au plan Free à l'échéance sans paiement)`)}
                       >
                         {PLAN_CODES.map((p) => (
                           <option key={p} value={p}>

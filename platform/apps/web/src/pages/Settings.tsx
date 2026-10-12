@@ -1,4 +1,6 @@
 import { useState } from "react";
+import { useSearchParams } from "react-router-dom";
+import { BillingOffers } from "./Billing";
 import { ROLE_LABELS, ROLES, canAssignRole, type PlanDefinition, type Role } from "@forlife/shared";
 import { api } from "../lib/api";
 import { useAuth } from "../lib/auth";
@@ -17,7 +19,9 @@ export function SettingsPage() {
     ["ai", "Traçabilité IA", can("ai:read")],
   ];
   const visible = tabs.filter((t) => t[2]);
-  const [tab, setTab] = useState<Tab>(visible[0]?.[0] ?? "members");
+  const [params] = useSearchParams();
+  const wanted = visible.find((t) => t[0] === params.get("tab"))?.[0];
+  const [tab, setTab] = useState<Tab>(wanted ?? visible[0]?.[0] ?? "members");
   return (
     <>
       <PageHeader title="Paramètres" question="Équipe, consommation et gouvernance." />
@@ -170,7 +174,7 @@ interface BillingData {
   plan: PlanDefinition;
   balance: number;
   lowBalance: boolean;
-  subscription: { currentPeriodEnd: string };
+  subscription: { currentPeriodEnd: string; planCode: string; paidUntil: string | null };
   transactions: { id: string; amount: number; balanceAfter: number; kind: string; reason: string; createdAt: string }[];
   usageLast30Days: { kind: string; credits: number; units: number; runs: number }[];
 }
@@ -199,13 +203,14 @@ function Billing() {
         </Card>
         <Card>
           <div className="kpi">
-            <span className="label">Renouvellement</span>
+            <span className="label">Prochaine allocation de crédits</span>
             <span className="value" style={{ fontSize: "1.1rem" }}>
               {fmtDateTime(data.subscription.currentPeriodEnd)}
             </span>
           </div>
         </Card>
       </div>
+      <BillingOffers currentPlan={data.subscription.planCode} paidUntil={data.subscription.paidUntil} />
       <Card title="Usage des 30 derniers jours (par type)">
         {data.usageLast30Days.length === 0 ? (
           <Empty title="Aucun usage" />

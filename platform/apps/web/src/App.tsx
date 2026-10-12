@@ -21,16 +21,19 @@ import { PublicFormPage } from "./pages/PublicForm";
 import { SocialHubPage } from "./pages/SocialHub";
 import { CreativeBriefPage, CreativeStudioPage } from "./pages/CreativeStudio";
 import { VideoProjectPage, VideoStudioPage } from "./pages/VideoStudio";
+import { AnalyticsPage } from "./pages/Analytics";
+import { BillingReturnPage, DemoCheckoutPage } from "./pages/Billing";
 import { useLocation } from "react-router-dom";
 
 export function App() {
   const { me, loading, workspace } = useAuth();
   const loc = useLocation();
   // Formulaires publics : accessibles connecté ou non, sans l'interface de l'application.
-  if (loc.pathname.startsWith("/f/")) {
+  if (loc.pathname.startsWith("/f/") || loc.pathname.startsWith("/pay/demo/")) {
     return (
       <Routes>
         <Route path="/f/:slug" element={<PublicFormPage />} />
+        <Route path="/pay/demo/:id" element={<DemoCheckoutPage />} />
       </Routes>
     );
   }
@@ -74,6 +77,8 @@ export function App() {
         <Route path="creative" element={<CreativeStudioPage />} />
         <Route path="creative/:id" element={<CreativeBriefPage />} />
         <Route path="video" element={<VideoStudioPage />} />
+        <Route path="analytics" element={<AnalyticsPage />} />
+        <Route path="billing/return" element={<BillingReturnPage />} />
         <Route path="video/:id" element={<VideoProjectPage />} />
         <Route path="campaigns" element={<CampaignsPage />} />
         <Route path="campaigns/:id" element={<CampaignDetailPage />} />

@@ -1,4 +1,5 @@
 import { renewDueSubscriptions } from "../billing/ledger.js";
+import { sweepPendingPayments } from "../payments/service.js";
 import { collectMetrics, dispatchDuePublications } from "../social/service.js";
 
 /** Tâches périodiques de la plateforme (toutes idempotentes : plusieurs workers peuvent tourner). */
@@ -7,6 +8,8 @@ export function startScheduler(log?: (msg: string, extra?: object) => void) {
     try {
       const n = await renewDueSubscriptions();
       if (n) log?.("billing.renewed", { count: n });
+      const p = await sweepPendingPayments();
+      if (p) log?.("payments.swept", { count: p });
     } catch (e) {
       log?.("scheduler.error", { error: e instanceof Error ? e.message : String(e) });
     }

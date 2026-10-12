@@ -6,7 +6,7 @@ import { badRequest, notFound } from "../../lib/errors.js";
 import { parse } from "../../lib/validation.js";
 import { audit } from "../../lib/audit.js";
 import { authenticate, requirePlatformAdmin } from "../../plugins/auth.js";
-import { ledger } from "../billing/ledger.js";
+import { addMonths, ledger } from "../billing/ledger.js";
 
 const idParams = z.object({ id: z.string() });
 
@@ -94,13 +94,16 @@ export async function adminRoutes(app: FastifyInstance) {
   app.patch("/api/admin/organizations/:id/plan", async (req) => {
     const admin = await requirePlatformAdmin(req);
     const { id } = parse(idParams, req.params);
-    const { planCode } = parse(z.object({ planCode: z.enum(PLAN_CODES) }), req.body);
+    // `months` : durée offerte (ex. « 1 mois Starter offert ») ; à l'échéance, retour automatique au plan Free.
+    const { planCode, months } = parse(z.object({ planCode: z.enum(PLAN_CODES), months: z.number().int().min(1).max(24).default(1) }), req.body);
     const sub = await prisma.subscription.findUnique({ where: { organizationId: id } });
     if (!sub) throw notFound("Organisation");
-    if (sub.planCode === planCode) return sub;
+    if (sub.planCode === planCode && planCode === "FREE") return sub;
+    const base = sub.planCode === planCode && sub.paidUntil && sub.paidUntil > new Date() ? sub.paidUntil : new Date();
+    const paidUntil = planCode === "FREE" ? null : addMonths(base, months);
     const updated = await prisma.$transaction(async (tx) => {
-      const u = await tx.subscription.update({ where: { organizationId: id }, data: { planCode } });
-      await audit({ organizationId: id, actorId: admin.userId, action: "platform.plan.changed", entityType: "subscription", entityId: sub.id, ip: admin.ip, correlationId: admin.correlationId, metadata: { from: sub.planCode, to: planCode } }, tx);
+      const u = await tx.subscription.update({ where: { organizationId: id }, data: { planCode, paidUntil } });
+      await audit({ organizationId: id, actorId: admin.userId, action: "platform.plan.changed", entityType: "subscription", entityId: sub.id, ip: admin.ip, correlationId: admin.correlationId, metadata: { from: sub.planCode, to: planCode, months, paidUntil } }, tx);
       return u;
     });
     // Montée en gamme : la différence d'allocation est versée immédiatement (une fois par changement).

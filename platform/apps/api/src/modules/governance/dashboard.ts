@@ -1,6 +1,6 @@
 import type { FastifyInstance } from "fastify";
 import { z } from "zod";
-import { PLANS } from "@forlife/shared";
+import { PLANS, can } from "@forlife/shared";
 import { prisma } from "../../lib/prisma.js";
 import { parse } from "../../lib/validation.js";
 import { authenticate, requireWorkspace } from "../../plugins/auth.js";
@@ -26,6 +26,15 @@ export async function dashboardRoutes(app: FastifyInstance) {
       prisma.approval.count({ where: { workspaceId, status: "PENDING" } }),
       prisma.aIRun.count({ where: { workspaceId, createdAt: { gte: new Date(Date.now() - 30 * 864e5) } } }),
     ]);
+    // Ventes : visibles seulement pour les rôles ayant accès au CRM.
+    const sales = can(ctx.role, "crm:read")
+      ? await Promise.all([
+          prisma.lead.count({ where: { workspaceId, createdAt: { gte: new Date(Date.now() - 7 * 864e5) } } }),
+          prisma.lead.count({ where: { workspaceId, stage: { in: ["NEW", "CONTACTED", "QUALIFIED", "PROPOSAL"] }, lastActivityAt: { lt: new Date(Date.now() - 7 * 864e5) } } }),
+          prisma.lead.aggregate({ where: { workspaceId, stage: "WON", wonAt: { gte: new Date(now.getFullYear(), now.getMonth(), 1) } }, _sum: { valueAmount: true }, _count: true }),
+          prisma.crmTask.count({ where: { workspaceId, doneAt: null, dueAt: { lte: new Date(now.getTime() + 864e5) } } }),
+        ]).then(([newLeads7d, staleLeads, won, tasksDue]) => ({ newLeads7d, staleLeads, wonThisMonth: won._count, revenueThisMonth: won._sum.valueAmount ?? 0, tasksDue }))
+      : null;
     const counts = Object.fromEntries(byStatus.map((s) => [s.status, s._count]));
     const totalContents = byStatus.reduce((n, s) => n + s._count, 0);
     const plan = PLANS[sub?.planCode ?? "FREE"];
@@ -46,6 +55,8 @@ export async function dashboardRoutes(app: FastifyInstance) {
       auditScore,
       credits: { balance: wallet?.balance ?? 0, monthly: plan.monthlyCredits, plan: plan.name },
       aiRunsLast30Days: aiRuns,
+      sales,
+      subscription: sub ? { planCode: sub.planCode, paidUntil: sub.paidUntil } : null,
     };
   });
 }

@@ -7,7 +7,6 @@ import { LogoMark } from "./ui";
 
 /** Modules prévus par la roadmap, affichés pour donner la vision produit complète. */
 const UPCOMING = [
-  { key: "analytics", label: "Analytics & ROI", phase: "Phase 2–6" },
   { key: "copilot", label: "AI Copilot", phase: "Phase 6" },
 ];
 
@@ -76,6 +75,7 @@ export function Layout() {
           {(can("crm:read") || can("campaigns:read")) && <div className="nav-section">Ventes</div>}
           {can("campaigns:read") && <NavLink to="/campaigns">Campagnes</NavLink>}
           {can("crm:read") && <NavLink to="/crm">CRM & leads</NavLink>}
+          {can("campaigns:read") && <NavLink to="/analytics">Analytics & ROI</NavLink>}
           <div className="nav-section">{t("nav.soon")}</div>
           {UPCOMING.map((m) => (
             <NavLink key={m.key} to={`/soon/${m.key}`} className="soon">

@@ -25,6 +25,8 @@ import { campaignRoutes } from "./modules/campaigns/routes.js";
 import { socialRoutes } from "./modules/social/routes.js";
 import { creativeRoutes } from "./modules/creative/routes.js";
 import { videoRoutes } from "./modules/video/routes.js";
+import { paymentRoutes } from "./modules/payments/routes.js";
+import { analyticsRoutes } from "./modules/analytics/routes.js";
 import { invitationRoutes } from "./modules/org/invitations.js";
 import { passwordRoutes } from "./modules/identity/password.js";
 
@@ -55,6 +57,11 @@ export async function buildServer(options: { logger?: boolean } = {}) {
   await app.register(jwt, { secret: cfg.JWT_SECRET });
   await app.register(multipart);
   await app.register(rateLimit, { max: 300, timeWindow: "1 minute" });
+
+  // Notifications des prestataires de paiement (formulaire URL-encodé).
+  app.addContentTypeParser("application/x-www-form-urlencoded", { parseAs: "string" }, (_req, body, done) => {
+    done(null, Object.fromEntries(new URLSearchParams(body as string)));
+  });
 
   app.addHook("onSend", async (req, reply) => {
     reply.header("x-correlation-id", req.id);
@@ -93,6 +100,8 @@ export async function buildServer(options: { logger?: boolean } = {}) {
   await app.register(socialRoutes);
   await app.register(creativeRoutes);
   await app.register(videoRoutes);
+  await app.register(paymentRoutes);
+  await app.register(analyticsRoutes);
 
   return app;
 }

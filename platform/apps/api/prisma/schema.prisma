@@ -118,6 +118,7 @@ model Organization {
   workspaces  Workspace[]
   wallet      CreditWallet?
   subscription Subscription?
+  payments    Payment[]
 }
 
 model Membership {
@@ -608,6 +609,8 @@ model Subscription {
   status           String       @default("ACTIVE")
   currentPeriodStart DateTime   @default(now())
   currentPeriodEnd DateTime
+  /// Plan payant réglé (ou offert) jusqu'à cette date ; au-delà, retour automatique au plan Free.
+  paidUntil        DateTime?
   createdAt        DateTime     @default(now())
   updatedAt        DateTime     @updatedAt
 }
@@ -1082,4 +1085,53 @@ model VideoRender {
   finishedAt  DateTime?
 
   @@unique([projectId, version])
+}
+
+// ───────────────────────────── Paiements (mobile money, carte) ─────────────────────────────
+
+/// Paiement d'un abonnement ou d'un pack de crédits. Le statut n'est jamais déduit du webhook seul :
+/// il est toujours confirmé par une vérification auprès du prestataire.
+model Payment {
+  id             String       @id @default(cuid())
+  organizationId String
+  organization   Organization @relation(fields: [organizationId], references: [id], onDelete: Restrict)
+  /// SUBSCRIPTION | CREDITS
+  kind           String
+  planCode       PlanCode?
+  months         Int          @default(1)
+  packCode       String?
+  credits        Int          @default(0)
+  /// Montant en FCFA (XOF, sans décimales)
+  amount         Int
+  currency       String       @default("XOF")
+  /// cinetpay | sandbox
+  provider       String
+  /// Identifiant de transaction transmis au prestataire (unique)
+  providerRef    String       @unique
+  checkoutUrl    String?
+  /// PENDING | SUCCEEDED | FAILED | CANCELLED
+  status         String       @default("PENDING")
+  method         String?
+  failureReason  String?
+  idempotencyKey String       @unique
+  createdById    String?
+  createdAt      DateTime     @default(now())
+  paidAt         DateTime?
+  lastCheckedAt  DateTime?
+  events         PaymentEvent[]
+
+  @@index([organizationId, createdAt])
+  @@index([status, createdAt])
+}
+
+model PaymentEvent {
+  id        String   @id @default(cuid())
+  paymentId String
+  payment   Payment  @relation(fields: [paymentId], references: [id], onDelete: Cascade)
+  /// CREATED | NOTIFY | CHECK | FULFILLED | FAILED | EXPIRED
+  type      String
+  payload   Json     @default("{}")
+  createdAt DateTime @default(now())
+
+  @@index([paymentId, createdAt])
 }
