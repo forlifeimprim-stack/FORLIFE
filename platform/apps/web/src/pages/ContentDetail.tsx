@@ -7,6 +7,7 @@ import { errorMessage, useResource } from "../lib/hooks";
 import { fmtDateTime, utcToZonedInput, zonedToUtc } from "../lib/i18n";
 import type { ContentItem, Variant } from "../lib/types";
 import { AiNotice, Alert, Badge, Button, Card, Field, LogoMark, PageHeader, StatusBadge } from "../components/ui";
+import { SecureImg } from "./CreativeStudio";
 
 export function ContentDetail() {
   const { id = "" } = useParams();
@@ -175,7 +176,7 @@ export function ContentDetail() {
         <h2>Prévisualisation par réseau</h2>
         <div className="previews">
           {c.variants.map((v) => (
-            <VariantPreview key={v.id} ws={ws} contentId={c.id} brandName={workspace.name} variant={v} editable={editable} onSaved={reload} />
+            <VariantPreview key={v.id} ws={ws} contentId={c.id} brandName={workspace.name} variant={v} editable={editable} onSaved={reload} mediaVersionId={c.mediaVersionId ?? null} />
           ))}
         </div>
       </div>
@@ -183,7 +184,7 @@ export function ContentDetail() {
   );
 }
 
-function VariantPreview({ ws, contentId, brandName, variant, editable, onSaved }: { ws: string; contentId: string; brandName: string; variant: Variant; editable: boolean; onSaved: () => void }) {
+function VariantPreview({ ws, contentId, brandName, variant, editable, onSaved, mediaVersionId }: { ws: string; contentId: string; brandName: string; variant: Variant; editable: boolean; onSaved: () => void; mediaVersionId: string | null }) {
   const [editing, setEditing] = useState(false);
   const [body, setBody] = useState(variant.body);
   const [tags, setTags] = useState(variant.hashtags.join(" "));
@@ -225,7 +226,14 @@ function VariantPreview({ ws, contentId, brandName, variant, editable, onSaved }
           </button>
         )}
       </div>
-      {["INSTAGRAM", "TIKTOK", "FACEBOOK"].includes(variant.channel) && !editing && <div className="preview-media">Visuel — Creative Studio (Phase 2)</div>}
+      {["INSTAGRAM", "TIKTOK", "FACEBOOK", "LINKEDIN"].includes(variant.channel) && !editing &&
+        (mediaVersionId ? (
+          <SecureImg src={`${ws}/creative/versions/${mediaVersionId}/image`} className="preview-img" />
+        ) : (
+          <Link to={`/creative?contentId=${contentId}`} className="preview-media">
+            + Créer le visuel{variant.channel === "INSTAGRAM" ? " (obligatoire pour Instagram)" : ""}
+          </Link>
+        ))}
       {editing ? (
         <div className="stack" style={{ padding: 12 }}>
           {err && <Alert tone="error">{err}</Alert>}

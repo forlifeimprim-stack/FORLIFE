@@ -67,6 +67,7 @@ export interface ContentItem {
   scheduledAt: string | null;
   revision: number;
   aiRunId: string | null;
+  mediaVersionId?: string | null;
   updatedAt: string;
   createdAt: string;
   pillar?: { id: string; name: string } | null;

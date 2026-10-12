@@ -357,6 +357,77 @@ Rédige 3 messages WhatsApp de relance (moins de 400 caractères chacun) avec de
   },
 };
 
+
+
+// ───────────── Creative Director : concepts visuels ─────────────
+
+export const conceptsOutput = z.object({
+  concepts: z.array(
+    z.object({
+      title: z.string(),
+      rationale: z.string(),
+      layout: z.enum(["BOLD", "PRODUCT_HERO", "SPLIT", "OFFER_BADGE", "QUOTE"]),
+      headline: z.string(),
+      subline: z.string(),
+      cta: z.string(),
+      mood: z.enum(["dark", "light", "accent"]),
+      imagePrompt: z.string(),
+    }),
+  ),
+});
+export type ConceptsOutput = z.infer<typeof conceptsOutput>;
+
+export interface ConceptsInput {
+  context: BrandContext;
+  brief: { objective: ObjectiveType; subject: string; offer: string | null; cta: string | null; artDirection: string | null; format: string; hasProductPhoto: boolean };
+}
+
+export const conceptsPrompt: PromptDefinition<ConceptsInput, ConceptsOutput> = {
+  key: "creative.concepts",
+  version: 1,
+  task: "creative.concepts",
+  usageKind: "TEXT",
+  system: `${BASE_SYSTEM}\nTu joues le rôle de Creative Director : tu proposes des concepts visuels orientés conversion, pas des images génériques. Le texte sera composé par un moteur de design : il doit être court et exact.`,
+  render: (i) => `Contexte entreprise :
+${renderContext(i.context)}
+
+Brief visuel :
+- Objectif : ${OBJECTIVE_LABELS[i.brief.objective]}
+- Sujet : ${i.brief.subject}
+${i.brief.offer ? `- Offre : ${i.brief.offer}` : ""}
+${i.brief.cta ? `- Appel à l'action souhaité : ${i.brief.cta}` : ""}
+${i.brief.artDirection ? `- Direction artistique : ${i.brief.artDirection}` : ""}
+- Format : ${i.brief.format}
+- Photo réelle du produit disponible : ${i.brief.hasProductPhoto ? "oui (à mettre en valeur, sans la modifier)" : "non"}
+
+Propose exactement 3 concepts (A, B, C) réellement différents. Pour chacun :
+- layout parmi BOLD (titre impactant), PRODUCT_HERO (produit en vedette, seulement si photo), SPLIT (image et texte), OFFER_BADGE (seulement si une offre existe), QUOTE (témoignage, seulement si une vraie preuve existe dans le contexte) ;
+- headline de 40 caractères maximum, subline de 70 caractères maximum, cta de 28 caractères maximum ;
+- mood : dark, light ou accent ;
+- imagePrompt : description en anglais d'un fond photographique réaliste pour un générateur d'images (sans texte dans l'image) ;
+- rationale : pourquoi ce concept sert l'objectif.`,
+  output: conceptsOutput,
+  textForSafety: (o) => o.concepts.flatMap((c) => [c.headline, c.subline, c.cta]),
+  maxTokens: 6000,
+  mock: (i) => {
+    const b = i.context.brandName;
+    const offer = i.brief.offer;
+    const cta = (i.brief.cta ?? "Écrivez-nous sur WhatsApp").slice(0, 28);
+    const subject = i.brief.subject.length > 38 ? `${i.brief.subject.slice(0, 37).trim()}…` : i.brief.subject;
+    return {
+      concepts: [
+        { title: "Promesse forte", rationale: "Un titre court et contrasté capte l'attention en moins de deux secondes dans le fil.", layout: "BOLD" as const, headline: subject, subline: `${b}${i.context.city ? ` · ${i.context.city}` : ""} — qualité et proximité.`, cta, mood: "dark" as const, imagePrompt: `professional photo related to ${i.context.sector}, warm light, african small business` },
+        i.brief.hasProductPhoto
+          ? { title: "Le produit en vedette", rationale: "La vraie photo du produit rassure et prouve la qualité.", layout: "PRODUCT_HERO" as const, headline: subject, subline: "Fait avec soin, livré à temps.", cta, mood: "light" as const, imagePrompt: "clean studio background, soft shadow" }
+          : { title: "Image et message", rationale: "Un équilibre visuel clair entre ambiance et message.", layout: "SPLIT" as const, headline: subject, subline: "Fait avec soin, livré à temps.", cta, mood: "light" as const, imagePrompt: `lifestyle scene, ${i.context.sector}, natural light, Abidjan` },
+        offer
+          ? { title: "Offre irrésistible", rationale: "La pastille d'offre crée une raison d'agir maintenant.", layout: "OFFER_BADGE" as const, headline: subject, subline: `Offre ${b} pour une durée limitée.`, cta, mood: "accent" as const, imagePrompt: "festive background, orange tones" }
+          : { title: "Couleur de marque", rationale: "Un aplat aux couleurs de la marque renforce la mémorisation.", layout: "BOLD" as const, headline: subject, subline: `${b}, la référence de proximité.`, cta, mood: "accent" as const, imagePrompt: "abstract orange shapes" },
+      ],
+    };
+  },
+};
+
 /** Registre des instructions versionnées (clé → définition). */
 export const PROMPTS = {
   [brandDnaPrompt.key]: brandDnaPrompt,
@@ -364,5 +435,6 @@ export const PROMPTS = {
   [ideasPrompt.key]: ideasPrompt,
   [postPrompt.key]: postPrompt,
   [followupPrompt.key]: followupPrompt,
+  [conceptsPrompt.key]: conceptsPrompt,
 };
 

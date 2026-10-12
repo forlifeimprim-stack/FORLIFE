@@ -8,6 +8,7 @@ import { audit } from "../../lib/audit.js";
 import { enqueue } from "../jobs/queue.js";
 import { adapterFor } from "./registry.js";
 import { SocialError } from "./types.js";
+import { signedMediaUrl } from "../creative/service.js";
 
 /**
  * À la programmation d'un contenu : une Publication par (variante × compte connecté compatible).
@@ -69,6 +70,8 @@ export async function publishJob(job: Job): Promise<Prisma.InputJsonValue> {
   if (pub.status === "PUBLISHED" || pub.externalId) return { externalId: pub.externalId, alreadyPublished: true };
   if (pub.status === "CANCELLED") return { cancelled: true };
   const variant = await prisma.contentVariant.findUniqueOrThrow({ where: { id: pub.variantId } });
+  const content = await prisma.contentItem.findUniqueOrThrow({ where: { id: pub.contentId }, select: { mediaVersionId: true } });
+  const imageUrl = content.mediaVersionId ? signedMediaUrl(content.mediaVersionId) : null;
   const account = pub.socialAccount;
   const fail = async (err: SocialError | Error, final: boolean) => {
     const code = err instanceof SocialError ? err.code : "UNKNOWN";
@@ -79,7 +82,7 @@ export async function publishJob(job: Job): Promise<Prisma.InputJsonValue> {
   try {
     if (account.status !== "CONNECTED" || !account.credential) throw new SocialError("AUTH", "Compte social déconnecté : reconnectez-le dans le Social Hub");
     const token = decryptSecret(account.credential.accessTokenEnc, loadConfig().ENCRYPTION_KEY);
-    const res = await adapterFor(account.provider).publish(account, token, { text: hashtagsText(variant.body, variant.hashtags) }, pub.idempotencyKey);
+    const res = await adapterFor(account.provider).publish(account, token, { text: hashtagsText(variant.body, variant.hashtags), imageUrl }, pub.idempotencyKey);
     await prisma.$transaction([
       prisma.publication.update({ where: { id: pub.id }, data: { status: "PUBLISHED", externalId: res.externalId, externalUrl: res.url ?? null, publishedAt: new Date(), attempts: job.attempts, lastError: null } }),
       prisma.publicationAttempt.create({ data: { publicationId: pub.id, attemptNo: job.attempts, status: "SUCCEEDED" } }),

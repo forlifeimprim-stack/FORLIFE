@@ -25,6 +25,7 @@
     "@fastify/rate-limit": "^11.2.1",
     "@forlife/shared": "0.1.0",
     "@prisma/client": "6.19.3",
+    "@resvg/resvg-js": "^2.6.2",
     "fastify": "^5.12.5",
     "zod": "^4.6.5"
   },

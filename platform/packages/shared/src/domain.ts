@@ -172,3 +172,20 @@ export const CHANNEL_PROVIDERS: Partial<Record<Channel, SocialProvider[]>> = {
   YOUTUBE: ["YOUTUBE"],
 };
 export const PUBLICATION_STATUS_LABELS = { QUEUED: "En file", PUBLISHING: "Publication…", PUBLISHED: "Publié", FAILED: "Échec", CANCELLED: "Annulé" } as const;
+
+// ───── Creative Studio ─────
+export const CREATIVE_FORMATS = {
+  SQUARE: { label: "Carré 1:1 (post)", width: 1080, height: 1080 },
+  PORTRAIT: { label: "Portrait 4:5 (Instagram)", width: 1080, height: 1350 },
+  STORY: { label: "Story / Reel 9:16", width: 1080, height: 1920 },
+  LANDSCAPE: { label: "Paysage (Facebook, lien)", width: 1200, height: 628 },
+} as const;
+export type CreativeFormat = keyof typeof CREATIVE_FORMATS;
+export const CREATIVE_LAYOUTS = {
+  BOLD: "Titre impactant",
+  PRODUCT_HERO: "Produit en vedette",
+  SPLIT: "Image et texte côte à côte",
+  OFFER_BADGE: "Offre en pastille",
+  QUOTE: "Témoignage / citation",
+} as const;
+export type CreativeLayout = keyof typeof CREATIVE_LAYOUTS;

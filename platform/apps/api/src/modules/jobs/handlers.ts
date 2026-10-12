@@ -5,6 +5,7 @@ import { contentIdeasJob, contentPostJob } from "../content/jobs.js";
 import { crmFollowupJob } from "../crm/jobs.js";
 import { campaignPackJob } from "../campaigns/jobs.js";
 import { publishJob } from "../social/service.js";
+import { creativeConceptsJob } from "../creative/service.js";
 
 export function registerAllJobHandlers(): void {
   registerJobHandler("ai.brand_dna", brandDnaJob);
@@ -14,4 +15,5 @@ export function registerAllJobHandlers(): void {
   registerJobHandler("ai.crm_followup", crmFollowupJob);
   registerJobHandler("ai.campaign_pack", campaignPackJob);
   registerJobHandler("social.publish", publishJob);
+  registerJobHandler("ai.creative_concepts", creativeConceptsJob);
 }

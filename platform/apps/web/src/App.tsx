@@ -19,6 +19,7 @@ import { CrmPage } from "./pages/Crm";
 import { CampaignsPage, CampaignDetailPage } from "./pages/Campaigns";
 import { PublicFormPage } from "./pages/PublicForm";
 import { SocialHubPage } from "./pages/SocialHub";
+import { CreativeBriefPage, CreativeStudioPage } from "./pages/CreativeStudio";
 import { useLocation } from "react-router-dom";
 
 export function App() {
@@ -69,6 +70,8 @@ export function App() {
         <Route path="admin" element={<AdminPage />} />
         <Route path="crm" element={<CrmPage />} />
         <Route path="social" element={<SocialHubPage />} />
+        <Route path="creative" element={<CreativeStudioPage />} />
+        <Route path="creative/:id" element={<CreativeBriefPage />} />
         <Route path="campaigns" element={<CampaignsPage />} />
         <Route path="campaigns/:id" element={<CampaignDetailPage />} />
         <Route path="invite" element={<InvitePage />} />

@@ -184,6 +184,7 @@ model Workspace {
   leadForms        LeadForm[]
   socialAccounts   SocialAccount[]
   publications     Publication[]
+  creativeBriefs   CreativeBrief[]
 
   @@unique([organizationId, slug])
   @@index([organizationId])
@@ -489,6 +490,8 @@ model ContentItem {
   /// Verrou optimiste : incrémenté à chaque modification.
   revision    Int              @default(1)
   aiRunId     String?
+  /// Visuel retenu (version de création) utilisé pour la publication (obligatoire sur Instagram)
+  mediaVersionId String?
   createdById String?
   createdAt   DateTime         @default(now())
   updatedAt   DateTime         @updatedAt
@@ -941,4 +944,70 @@ model SocialMetricSnapshot {
   isSimulated   Boolean     @default(false)
 
   @@unique([publicationId, capturedAt])
+}
+
+// ───────────────────────────── Creative Studio ─────────────────────────────
+
+model CreativeBrief {
+  id            String            @id @default(cuid())
+  workspaceId   String
+  workspace     Workspace         @relation(fields: [workspaceId], references: [id], onDelete: Restrict)
+  contentId     String?
+  campaignId    String?
+  objective     ObjectiveType
+  /// SQUARE 1080×1080 | PORTRAIT 1080×1350 | STORY 1080×1920 | LANDSCAPE 1200×628
+  format        String            @default("SQUARE")
+  subject       String
+  offer         String?
+  cta           String?
+  /// Photo produit réelle (BrandAsset) : le produit fourni est conservé tel quel (§9)
+  productAssetId String?
+  artDirection  String?
+  status        String            @default("DRAFT") // DRAFT | CONCEPTS | DONE
+  aiRunId       String?
+  createdById   String?
+  createdAt     DateTime          @default(now())
+  updatedAt     DateTime          @updatedAt
+  concepts      CreativeConcept[]
+
+  @@index([workspaceId, createdAt])
+}
+
+model CreativeConcept {
+  id         String            @id @default(cuid())
+  briefId    String
+  brief      CreativeBrief     @relation(fields: [briefId], references: [id], onDelete: Cascade)
+  label      String // A | B | C
+  title      String
+  rationale  String
+  layout     String
+  headline   String
+  subline    String?
+  cta        String?
+  mood       String?
+  imagePrompt String?
+  createdAt  DateTime          @default(now())
+  versions   CreativeVersion[]
+}
+
+model CreativeVersion {
+  id          String          @id @default(cuid())
+  conceptId   String
+  concept     CreativeConcept @relation(fields: [conceptId], references: [id], onDelete: Cascade)
+  workspaceId String
+  version     Int
+  /// Paramètres de composition (texte, palette, mise en page) : régénération ciblée et historique
+  spec        Json
+  storageKey  String          @unique
+  width       Int
+  height      Int
+  /// Creative Critic : scores par dimension + recommandations (jamais une garantie de conversion)
+  critic      Json
+  score       Int
+  status      String          @default("DRAFT") // DRAFT | APPROVED
+  createdById String?
+  createdAt   DateTime        @default(now())
+
+  @@unique([conceptId, version])
+  @@index([workspaceId, createdAt])
 }
