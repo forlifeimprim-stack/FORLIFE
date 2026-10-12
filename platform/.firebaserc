@@ -1,0 +1,6 @@
+{
+  "projects": { "default": "forlifecom-6eef9" },
+  "targets": {
+    "forlifecom-6eef9": { "hosting": { "app": ["forlifecom-app"] } }
+  }
+}

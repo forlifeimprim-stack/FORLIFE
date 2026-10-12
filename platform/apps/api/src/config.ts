@@ -11,7 +11,8 @@ const schema = z.object({
     .string()
     .default("true")
     .transform((v) => v === "true"),
-  STORAGE_DRIVER: z.enum(["local"]).default("local"),
+  STORAGE_DRIVER: z.enum(["local", "gcs"]).default("local"),
+  GCS_BUCKET: z.string().optional(),
   STORAGE_LOCAL_DIR: z.string().default("./storage"),
   AI_PROVIDERS: z
     .string()
@@ -66,6 +67,8 @@ export function loadConfig(env: NodeJS.ProcessEnv = process.env): Config {
       throw new Error(`Configuration invalide :\n${z.prettifyError(parsed.error)}`);
     }
     cached = parsed.data;
+    // Sécurité : en production, le paiement de démonstration (qui active des plans sans argent réel) est coupé sauf activation explicite.
+    if (cached.NODE_ENV === "production" && env.PAYMENT_SANDBOX_ENABLED === undefined) cached.PAYMENT_SANDBOX_ENABLED = false;
   }
   return cached;
 }

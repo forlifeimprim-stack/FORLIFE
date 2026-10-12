@@ -8,14 +8,14 @@
 | Importer des assets et obtenir un Brand DNA exploitable | ✅ | upload validé + `brand/analyze` → version brouillon à valider |
 | Générer une stratégie à partir d'objectifs et du contexte | ✅ | `strategy/plans/generate`, traçabilité profil v. + objectifs |
 | Générer un post et l'adapter à plusieurs réseaux | ✅ | `contents/generate`, variantes par canal |
-| Création image depuis le brief et l'identité | ⏳ Phase 2 | — |
-| Conserver les versions et permettre la régénération | ✅ (Brand DNA, profil, plans) / ⏳ (créations) | |
-| Vidéo 10–15 s script → storyboard → rendu | ⏳ Phase 4 | |
-| Comptes sociaux en OAuth, tokens jamais en clair | 🟡 chiffrement prêt, OAuth Phase 3 | `lib/crypto.ts` + test |
-| Publication programmée idempotente et observable | 🟡 programmation + jobs idempotents ; publication réelle Phase 3 | |
-| Performances d'un contenu reliées à une campagne | 🟡 lien contenu → campagne modélisé ; métriques Phase 3/5 | |
-| Leads associés à une source/campagne | ⏳ Phase 5 | |
-| Rapport de performance | ⏳ Phase 6 | |
+| Création image depuis le brief et l'identité | ✅ | Creative Studio : 3 concepts, vraie photo produit, Critic — `creative.test.ts` |
+| Conserver les versions et permettre la régénération | ✅ | versions Brand DNA, plans, visuels (historique), rendus vidéo |
+| Vidéo 10–15 s script → storyboard → rendu | ✅ | Video Studio : storyboard IA, édition par scène, MP4 9:16 + SRT — `video.test.ts` |
+| Comptes sociaux en OAuth, tokens jamais en clair | ✅ | OAuth Meta (état haché à usage unique), AES-256-GCM — `social.test.ts` |
+| Publication programmée idempotente et observable | ✅ | `Publication` + `PublicationAttempt`, relance, historique |
+| Performances d'un contenu reliées à une campagne | ✅ | métriques réelles/simulées séparées, Analytics par campagne |
+| Leads associés à une source/campagne | ✅ | source, campagne, contenu, formulaire — `crm-campaigns.test.ts` |
+| Rapport de performance | ✅ | Analytics & ROI, export CSV, impression PDF — `payments-analytics.test.ts` |
 | Recommandations IA : contexte indiqué, estimations signalées | ✅ | `Recommendation.isEstimate`, `evidence` |
 | Les rôles empêchent les actions non autorisées | ✅ | `tenancy.test.ts` |
 | Opérations critiques journalisées | ✅ | `AuditLog` append-only |
@@ -33,12 +33,14 @@
 | P0-07 | Ledger crédits/coûts idempotent | ✅ |
 | P0-08 | Objectifs / audiences / concurrents | ✅ |
 | P0-09 | Posts / variantes / calendrier + workflow d'approbation | ✅ |
-| P1-01 → P1-08 | Creative, image, critic, OAuth social, publication, métriques, CRM, campagnes | ⏳ prochaines itérations |
-| P2 / P3 | Vidéo, analytics, optimizer, WhatsApp, autopilot, agence, API publique | ⏳ |
+| P1-01 → P1-08 | Creative, image, critic, OAuth social, publication, métriques, CRM, campagnes | ✅ |
+| P2 | Vidéo, analytics, paiements mobile money, back-office | ✅ |
+| P3 | AI Copilot, WhatsApp Business API, optimizer, autopilot, white-label agence, API publique | ⏳ |
 
 ## Prochaines étapes recommandées
 
-1. **Phase 2 — Creative AI** : choisir le premier fournisseur image, pipeline Brief → Concepts → Critic → Brand/Safety Check.
-2. **Phase 3 — Social Hub** : apps Meta/TikTok (délais de revue des permissions à anticiper), OAuth + `SocialCredential` chiffré,
-   publication idempotente (`Publication` + `PublicationAttempt`).
-3. Invitations membres par email, réinitialisation de mot de passe, driver S3, renouvellement mensuel automatique des crédits.
+1. **Mise en ligne** : suivre [03-deploiement.md](03-deploiement.md) (Cloud SQL, bucket, secrets, second site Firebase, workflow GitHub).
+2. **Clés à ajouter par le propriétaire** : Anthropic (IA réelle), CinetPay (encaissement), Meta (publication), Resend (emails).
+3. **Revue d'app Meta** (permissions `pages_manage_posts`, `instagram_content_publish`) : prévoir 1 à 3 semaines.
+4. **Valider les tarifs des packs de crédits** (provisoires : 5 000 / 18 000 / 48 000 FCFA).
+5. Phase suivante : AI Copilot, WhatsApp Business API (messages entrants → leads), connecteurs LinkedIn/TikTok/YouTube.

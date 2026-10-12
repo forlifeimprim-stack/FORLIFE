@@ -14,11 +14,16 @@ Ce dossier contient **l'application**. Le site vitrine Forlife Com' reste à la 
 | J0 | Audit du dépôt, décisions structurantes | ✅ [docs/00-audit-J0.md](docs/00-audit-J0.md) |
 | J1 — Fondation | Tenant, auth, RBAC, billing/crédits, AI Gateway, jobs, audit, design system | ✅ |
 | J2 — Strategy + Content | Business Profile, objectifs, audiences, concurrents, plan IA, Brand DNA, Content Factory, approbations, calendrier | ✅ (MVP) |
-| J3 → J10 | Creative image, Social Hub, CRM/Campagnes, Vidéo, Analytics, WhatsApp, Autopilot | ⏳ roadmap ([docs/02-suivi.md](docs/02-suivi.md)) |
+| J3 — Ventes | CRM & leads (kanban, scoring, relances WhatsApp IA), formulaires publics, Campaign Manager | ✅ |
+| J4 — Diffusion | Social Hub (OAuth Meta, jetons chiffrés, publication idempotente, métriques), compte de démonstration | ✅ |
+| J5 — Création | Creative Studio (3 concepts, moteur de design, Critic), Video Studio 9:16 (storyboard, rendu MP4, sous-titres) | ✅ |
+| J6 — Business | Analytics & ROI, export CSV/PDF, paiements mobile money (CinetPay), back-office super-admin | ✅ |
+| J7 — Mise en ligne | Docker, Cloud Run, Firebase Hosting, workflow GitHub | ✅ prêt — [docs/03-deploiement.md](docs/03-deploiement.md) |
+| Ensuite | AI Copilot, WhatsApp Business API, Autopilot, LinkedIn/TikTok/YouTube | ⏳ ([docs/02-suivi.md](docs/02-suivi.md)) |
 
 ## Démarrage rapide
 
-Prérequis : Node.js ≥ 20, PostgreSQL 16 (ou `docker compose up -d`).
+Prérequis : Node.js ≥ 20, PostgreSQL 16 (ou `docker compose up -d`), FFmpeg (rendu vidéo).
 
 ```bash
 cd platform
@@ -58,11 +63,21 @@ platform/
 │       ├── content      Content Factory, variantes par réseau, workflow, programmation
 │       ├── approvals    centre d'approbation (human-in-the-loop)
 │       ├── ai           AI Gateway : registry, router + fallback, prompts versionnés, sécurité, usage
-│       ├── billing      ledger de crédits idempotent
-│       ├── jobs         file Postgres (SKIP LOCKED), retry backoff+jitter, dead-letter
-│       └── storage      interface de stockage objet (local ; S3 prévu)
-├── apps/web             React + Vite : onboarding, accueil, Brand DNA, stratégie, Content Studio, calendrier, approbations, paramètres
+│       ├── billing      ledger de crédits idempotent, renouvellement mensuel, expiration des plans
+│       ├── payments     CinetPay + guichet de démo, vérification serveur, livraison idempotente
+│       ├── analytics    entonnoir, ROI des campagnes, attribution des leads, export CSV
+│       ├── crm          contacts, leads, scoring, tâches, formulaires publics
+│       ├── campaigns    Campaign Manager + pack de campagne IA
+│       ├── social       OAuth Meta, comptes, publications idempotentes, métriques
+│       ├── creative     moteur de design SVG→PNG, Creative Director, Critic
+│       ├── video        storyboard IA, rendu MP4 9:16 (FFmpeg), contrôle qualité
+│       ├── admin        back-office plateforme (organisations, plans, crédits, suspension)
+│       ├── jobs         file Postgres (SKIP LOCKED), retry backoff+jitter, dead-letter, planificateur
+│       └── storage      stockage objet (disque local en dev, Google Cloud Storage en production)
+├── apps/web             React + Vite : toutes les pages (accueil, Brand DNA, stratégie, Content/Creative/Video Studio,
+│                        calendrier, Social Hub, campagnes, CRM, Analytics, facturation, back-office)
 └── docs/                audit J0, architecture & décisions, suivi des critères d'acceptation
 ```
 
-Voir [docs/01-architecture.md](docs/01-architecture.md) pour les choix techniques détaillés.
+Voir [docs/01-architecture.md](docs/01-architecture.md) pour les choix techniques détaillés et
+[docs/03-deploiement.md](docs/03-deploiement.md) pour la mise en ligne.

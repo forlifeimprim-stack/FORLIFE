@@ -4,7 +4,8 @@ import { prisma } from "../../lib/prisma.js";
 import { randomToken, sha256 } from "../../lib/crypto.js";
 import { unauthorized } from "../../lib/errors.js";
 
-export const REFRESH_COOKIE = "flc_rt";
+// « __session » : seul cookie transmis par Firebase Hosting aux services Cloud Run.
+export const REFRESH_COOKIE = "__session";
 
 export async function issueSession(app: FastifyInstance, req: FastifyRequest, reply: FastifyReply, userId: string) {
   const cfg = loadConfig();
