@@ -92,7 +92,7 @@ export type AiTaskType = keyof typeof TASK_CREDIT_COST;
 /** Seuils d'alerte de consommation (pourcentage de l'allocation mensuelle restante). */
 export const CREDIT_ALERT_THRESHOLDS = [0.2, 0.05] as const;
 
-/** Packs de crédits ponctuels (sans abonnement). Tarifs provisoires, à valider. */
+/** Packs de crédits ponctuels (sans abonnement). Tarifs validés le 12/10/2026. */
 export const CREDIT_PACKS = {
   PACK_500: { code: "PACK_500", credits: 500, priceXof: 5000, label: "Pack Essentiel" },
   PACK_2000: { code: "PACK_2000", credits: 2000, priceXof: 18000, label: "Pack Croissance" },

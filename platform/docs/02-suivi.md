@@ -37,10 +37,20 @@
 | P2 | Vidéo, analytics, paiements mobile money, back-office | ✅ |
 | P3 | AI Copilot, WhatsApp Business API, optimizer, autopilot, white-label agence, API publique | ⏳ |
 
+## Tarifs validés (12/10/2026)
+
+| Offre | Prix | Crédits |
+|---|---|---|
+| Free / Starter / Business / Pro / Agency | 0 / 15 000 / 45 000 / 95 000 / 250 000 FCFA par mois | 200 / 1 500 / 5 000 / 12 000 / 40 000 par mois |
+| Pack Essentiel | 5 000 FCFA | 500 |
+| Pack Croissance | 18 000 FCFA | 2 000 |
+| Pack Volume | 48 000 FCFA | 6 000 |
+
+Abonnements payés d'avance : 3 mois −5 %, 12 mois −15 %.
+
 ## Prochaines étapes recommandées
 
 1. **Mise en ligne** : suivre [03-deploiement.md](03-deploiement.md) (Cloud SQL, bucket, secrets, second site Firebase, workflow GitHub).
 2. **Clés à ajouter par le propriétaire** : Anthropic (IA réelle), CinetPay (encaissement), Meta (publication), Resend (emails).
 3. **Revue d'app Meta** (permissions `pages_manage_posts`, `instagram_content_publish`) : prévoir 1 à 3 semaines.
-4. **Valider les tarifs des packs de crédits** (provisoires : 5 000 / 18 000 / 48 000 FCFA).
-5. Phase suivante : AI Copilot, WhatsApp Business API (messages entrants → leads), connecteurs LinkedIn/TikTok/YouTube.
+4. Phase suivante : AI Copilot, WhatsApp Business API (messages entrants → leads), connecteurs LinkedIn/TikTok/YouTube.
