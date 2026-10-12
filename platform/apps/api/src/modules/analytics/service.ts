@@ -190,10 +190,10 @@ function buildInsights(d: { sales: Awaited<ReturnType<typeof salesBlock>> | null
 /** Export CSV (séparateur « ; » pour Excel en français, BOM UTF-8). */
 export function analyticsCsv(a: Awaited<ReturnType<typeof computeAnalytics>>, workspaceName: string): string {
   const esc = (v: unknown) => {
-    const s = v === null || v === undefined ? "" : String(v);
-    // Neutralise les formules (injection CSV) et échappe les guillemets.
-    const safe = /^[=+\-@\t\r]/.test(s) ? `'${s}` : s;
-    return /[";\n]/.test(safe) ? `"${safe.replace(/"/g, '""')}"` : safe;
+    // Caractères de contrôle remplacés (pas de saut de ligne caché), formules neutralisées, guillemets échappés.
+    const s = (v === null || v === undefined ? "" : String(v)).replace(/[\u0000-\u001f\u007f]+/g, " ");
+    const safe = /^\s*[=+\-@]/.test(s) ? `'${s}` : s;
+    return /[";]/.test(safe) ? `"${safe.replace(/"/g, '""')}"` : safe;
   };
   const row = (...v: unknown[]) => v.map(esc).join(";");
   const lines = [

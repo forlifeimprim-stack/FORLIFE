@@ -3,13 +3,16 @@ import { z } from "zod";
 import { CHANNELS, OBJECTIVE_TYPES, ROLE_PERMISSIONS } from "@forlife/shared";
 import { prisma } from "../../lib/prisma.js";
 import { loadConfig } from "../../config.js";
-import { hashPassword, slugify, verifyPassword } from "../../lib/crypto.js";
-import { badRequest, conflict, unauthorized } from "../../lib/errors.js";
+import { dummyPasswordHash, hashPassword, needsRehash, slugify, verifyPassword } from "../../lib/crypto.js";
+import { AppError, badRequest, conflict, unauthorized } from "../../lib/errors.js";
 import { parse } from "../../lib/validation.js";
 import { audit } from "../../lib/audit.js";
-import { authenticate } from "../../plugins/auth.js";
-import { grantMonthlyAllowance, provisionBilling } from "../billing/ledger.js";
+import { clientIp } from "../../lib/request.js";
+import { hit, limit, peek, reset } from "../../lib/throttle.js";
+import { authenticate, isEffectiveAdmin } from "../../plugins/auth.js";
+import { provisionBilling } from "../billing/ledger.js";
 import { issueSession, revokeCurrent, rotateSession } from "./sessions.js";
+import { sendVerificationEmail } from "./verification.js";
 
 const signupSchema = z.object({
   name: z.string().trim().min(2).max(80),
@@ -44,24 +47,26 @@ async function uniqueOrgSlug(name: string): Promise<string> {
   throw conflict("Impossible de générer un identifiant d'organisation unique");
 }
 
-/** Exige un en-tête personnalisé sur les routes à cookie (protection CSRF, en plus de SameSite=strict). */
-function requireCsrfHeader(headers: Record<string, unknown>) {
+/**
+ * Exige un en-tête personnalisé sur les routes qui posent ou utilisent le cookie de session
+ * (protection CSRF, y compris « login CSRF ») : un formulaire d'un autre site ne peut pas l'ajouter.
+ */
+export function requireCsrfHeader(headers: Record<string, unknown>) {
   if (headers["x-forlife-csrf"] !== "1") throw badRequest("En-tête anti-CSRF manquant");
 }
 
-/** Promeut les emails listés dans PLATFORM_ADMIN_EMAILS (seul moyen de devenir administrateur de la plateforme). */
-export async function syncPlatformAdmin(userId: string, email: string) {
-  if (loadConfig().PLATFORM_ADMIN_EMAILS.includes(email.toLowerCase())) {
-    await prisma.user.updateMany({ where: { id: userId, isPlatformAdmin: false }, data: { isPlatformAdmin: true } });
-  }
-}
+// Connexion : 10 échecs par compte et par quart d'heure, quelle que soit l'adresse IP déclarée.
+const LOGIN_MAX_FAILURES = 10;
+const LOGIN_WINDOW_S = 15 * 60;
 
 export async function identityRoutes(app: FastifyInstance) {
   const authRateLimit = { config: { rateLimit: { max: 10, timeWindow: "1 minute" } } };
 
   /** Critère d'acceptation : un nouvel utilisateur crée son organisation et son premier workspace sans intervention humaine. */
   app.post("/api/auth/signup", authRateLimit, async (req, reply) => {
+    requireCsrfHeader(req.headers);
     const body = parse(signupSchema, req.body);
+    await limit(`signup-ip:${clientIp(req)}`, 20, 3600, "Trop de comptes créés depuis cette connexion. Réessayez plus tard.");
     if (await prisma.user.findUnique({ where: { email: body.email } })) throw conflict("Un compte existe déjà avec cet email");
     const passwordHash = await hashPassword(body.password);
     const slug = await uniqueOrgSlug(body.organizationName);
@@ -93,23 +98,30 @@ export async function identityRoutes(app: FastifyInstance) {
         await tx.objective.create({ data: { workspaceId: workspace.id, ...body.objective, periodStart: start, periodEnd: end } });
       }
       await provisionBilling(tx, org.id);
-      await audit({ organizationId: org.id, workspaceId: workspace.id, actorId: user.id, action: "org.created", entityType: "organization", entityId: org.id, ip: req.ip, correlationId: req.id }, tx);
+      await audit({ organizationId: org.id, workspaceId: workspace.id, actorId: user.id, action: "org.created", entityType: "organization", entityId: org.id, ip: clientIp(req), correlationId: req.id }, tx);
       return { user, org, workspace };
     });
-    await grantMonthlyAllowance(org.id);
-    await syncPlatformAdmin(user.id, user.email);
+    // Les crédits offerts du plan Free sont versés à la confirmation de l'email.
+    await sendVerificationEmail(user);
     const tokens = await issueSession(app, req, reply, user.id);
     reply.code(201);
     return { ...tokens, organizationId: org.id, workspaceId: workspace.id };
   });
 
   app.post("/api/auth/login", authRateLimit, async (req, reply) => {
+    requireCsrfHeader(req.headers);
     const body = parse(loginSchema, req.body);
+    const key = `login:${body.email}`;
+    if ((await peek(key)) >= LOGIN_MAX_FAILURES) throw new AppError(429, "RATE_LIMITED", "Trop de tentatives sur ce compte. Réessayez dans 15 minutes ou réinitialisez votre mot de passe.");
     const user = await prisma.user.findUnique({ where: { email: body.email } });
     // Vérification systématique pour un temps de réponse constant (pas d'énumération de comptes).
-    const ok = await verifyPassword(body.password, user?.passwordHash ?? "scrypt$16384$8$1$AAAA$AAAA");
-    if (!user || !ok) throw unauthorized("Email ou mot de passe incorrect");
-    await syncPlatformAdmin(user.id, user.email);
+    const ok = await verifyPassword(body.password, user?.passwordHash ?? (await dummyPasswordHash()));
+    if (!user || !ok) {
+      await hit(key, LOGIN_WINDOW_S);
+      throw unauthorized("Email ou mot de passe incorrect");
+    }
+    await reset(key);
+    if (needsRehash(user.passwordHash)) await prisma.user.update({ where: { id: user.id }, data: { passwordHash: await hashPassword(body.password) } });
     return issueSession(app, req, reply, user.id);
   });
 
@@ -141,11 +153,11 @@ export async function identityRoutes(app: FastifyInstance) {
         const workspaces = await prisma.workspace.findMany({
           where: {
             organizationId: m.organizationId,
-            status: "ACTIVE",
+            status: { in: ["ACTIVE", "LOCKED"] },
             ...(m.allWorkspaces ? {} : { id: { in: m.workspaces.map((w) => w.workspaceId) } }),
           },
           orderBy: { createdAt: "asc" },
-          select: { id: true, name: true, slug: true, timezone: true },
+          select: { id: true, name: true, slug: true, timezone: true, status: true },
         });
         return {
           id: m.organization.id,
@@ -161,6 +173,19 @@ export async function identityRoutes(app: FastifyInstance) {
         };
       }),
     );
-    return { user: { id: user.id, email: user.email, name: user.name, locale: user.locale, isPlatformAdmin: user.isPlatformAdmin }, organizations };
+    const listed = loadConfig().PLATFORM_ADMIN_EMAILS.includes(user.email.toLowerCase());
+    return {
+      user: {
+        id: user.id,
+        email: user.email,
+        name: user.name,
+        locale: user.locale,
+        emailVerified: !!user.emailVerifiedAt,
+        isPlatformAdmin: isEffectiveAdmin(user),
+        // Email autorisé mais back-office pas encore activé avec le code d'activation.
+        canClaimAdmin: listed && !user.isPlatformAdmin,
+      },
+      organizations,
+    };
   });
 }

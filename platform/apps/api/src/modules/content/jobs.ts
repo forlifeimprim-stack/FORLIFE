@@ -85,7 +85,7 @@ export async function contentPostJob(job: Job) {
       });
       await tx.contentItem.update({
         where: { id: p.contentId },
-        data: { title: o.title.slice(0, 200), hook: o.hook, body: o.body, cta: o.cta, status: "DRAFT", aiRunId: ai.runId, revision: { increment: 1 } },
+        data: { title: o.title.slice(0, 200), hook: o.hook, body: o.body, cta: o.cta, status: "DRAFT", aiRunId: ai.runId, revision: { increment: 1 }, contentVersion: { increment: 1 } },
       });
       await audit({ organizationId: job.organizationId, workspaceId: p.workspaceId, actorId: p.actorId, action: "content.generated", entityType: "content", entityId: p.contentId, correlationId: job.correlationId, metadata: { aiRunId: ai.runId, channels: p.channels } }, tx);
     });

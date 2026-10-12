@@ -26,7 +26,8 @@ export async function jobRoutes(app: FastifyInstance) {
   app.post("/api/workspaces/:workspaceId/jobs/:id/cancel", async (req) => {
     const { workspaceId, id } = parse(params, req.params);
     await requireWorkspace(req, workspaceId, "ai:generate");
-    const res = await prisma.job.updateMany({ where: { id, workspaceId, status: "QUEUED", createdById: req.user.sub }, data: { status: "CANCELLED", finishedAt: new Date() } });
+    // Les rendus vidéo (déjà débités, projet verrouillé) vont jusqu'au bout : succès ou remboursement automatique.
+    const res = await prisma.job.updateMany({ where: { id, workspaceId, status: "QUEUED", createdById: req.user.sub, type: { not: "video.render" } }, data: { status: "CANCELLED", finishedAt: new Date() } });
     if (!res.count) throw badRequest("Ce traitement ne peut plus être annulé");
     const job = await prisma.job.findUniqueOrThrow({ where: { id } });
     const contentId = (job.payload as { contentId?: string }).contentId;

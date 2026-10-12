@@ -34,11 +34,35 @@ model User {
   locale       String       @default("fr-CI")
   /// Administrateur de la plateforme Forlife Com (back-office global). Jamais attribuable via l'API publique.
   isPlatformAdmin Boolean   @default(false)
+  /// Possession de l'email prouvée (lien de vérification, invitation ou réinitialisation reçus par email).
+  emailVerifiedAt DateTime?
   createdAt    DateTime     @default(now())
   updatedAt    DateTime     @updatedAt
   memberships  Membership[]
   sessions     Session[]
   passwordResets PasswordReset[]
+  emailVerifications EmailVerification[]
+}
+
+model EmailVerification {
+  id        String    @id @default(cuid())
+  userId    String
+  user      User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  tokenHash String    @unique
+  expiresAt DateTime
+  usedAt    DateTime?
+  createdAt DateTime  @default(now())
+
+  @@index([userId])
+}
+
+/// Compteurs de limitation partagés entre instances (indépendants de l'adresse IP déclarée par le client).
+model RateLimitBucket {
+  key     String   @id
+  count   Int      @default(0)
+  resetAt DateTime
+
+  @@index([resetAt])
 }
 
 model PasswordReset {
@@ -152,6 +176,8 @@ model MembershipWorkspace {
 enum WorkspaceStatus {
   ACTIVE
   ARCHIVED
+  /// Au-delà du nombre d'espaces du plan (plan expiré ou réduit) : lecture seule jusqu'au réabonnement.
+  LOCKED
 }
 
 model Workspace {
@@ -491,6 +517,10 @@ model ContentItem {
   scheduledAt DateTime?
   /// Verrou optimiste : incrémenté à chaque modification.
   revision    Int              @default(1)
+  /// Version du contenu publiable (textes, variantes, visuel) : incrémentée à chaque modification de fond.
+  contentVersion  Int          @default(1)
+  /// Version effectivement approuvée par un humain ; seule celle-ci peut être programmée et publiée.
+  approvedVersion Int?
   aiRunId     String?
   /// Visuel retenu (version de création) utilisé pour la publication (obligatoire sur Instagram)
   mediaVersionId String?
@@ -532,6 +562,8 @@ model Approval {
   decidedById   String?
   comment       String?
   decidedAt     DateTime?
+  /// Version du contenu soumise : la décision ne vaut que pour cette version.
+  contentVersion Int?
   createdAt     DateTime  @default(now())
 
   @@index([workspaceId, status])
@@ -882,6 +914,8 @@ model OAuthState {
   provider    String
   expiresAt   DateTime
   usedAt      DateTime?
+  /// Comptes autorisés en attente du choix de l'utilisateur (JSON chiffré, jetons compris).
+  pendingEnc  String?
   createdAt   DateTime  @default(now())
 }
 

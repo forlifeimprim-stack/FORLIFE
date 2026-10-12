@@ -73,6 +73,17 @@ describe("CRM", () => {
     expect(lead.source).toBe("FORM");
     expect(lead.campaignId).toBe(camp.id);
     expect(lead.contact.consentWhatsApp).toBe(true);
+    // Un anonyme ne peut ni réactiver un consentement retiré, ni modifier la fiche existante.
+    await prisma.contact.update({ where: { id: lead.contactId }, data: { consentWhatsApp: false, email: "ama@vrai.ci" } });
+    const again = await app.inject({ method: "POST", url: `/api/public/forms/${form.slug}`, remoteAddress: "10.9.0.4", payload: { name: "Usurpateur", phone: "0585801856", email: "pirate@x.ci", consentWhatsApp: true } });
+    expect(again.statusCode).toBe(200);
+    const contact = await prisma.contact.findUniqueOrThrow({ where: { id: lead.contactId } });
+    expect(contact.consentWhatsApp).toBe(false);
+    expect(contact.email).toBe("ama@vrai.ci");
+    expect(contact.name).toBe("Ama Kouassi");
+    // Au plus 3 demandes par numéro et par jour, quelle que soit l'adresse IP.
+    await app.inject({ method: "POST", url: `/api/public/forms/${form.slug}`, remoteAddress: "10.9.0.5", payload: { name: "Ama", phone: "0585801856", consentWhatsApp: true } });
+    expect((await app.inject({ method: "POST", url: `/api/public/forms/${form.slug}`, remoteAddress: "10.9.0.6", payload: { name: "Ama", phone: "0585801856", consentWhatsApp: true } })).statusCode).toBe(429);
     await app.inject({ method: "PATCH", url: `/api/workspaces/${acc.workspaceId}/crm/forms/${form.id}`, headers: auth(acc), payload: { active: false } });
     expect((await app.inject({ method: "GET", url: `/api/public/forms/${form.slug}` })).statusCode).toBe(404);
   });

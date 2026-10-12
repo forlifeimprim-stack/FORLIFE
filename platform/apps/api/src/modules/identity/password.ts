@@ -5,7 +5,10 @@ import { prisma } from "../../lib/prisma.js";
 import { hashPassword, randomToken, sha256 } from "../../lib/crypto.js";
 import { badRequest } from "../../lib/errors.js";
 import { parse } from "../../lib/validation.js";
+import { hit } from "../../lib/throttle.js";
 import { layout, sendEmail } from "../mail/mailer.js";
+import { revokeAllSessions } from "./sessions.js";
+import { markEmailVerified } from "./verification.js";
 
 const RESET_TTL_MS = 60 * 60 * 1000;
 
@@ -15,17 +18,22 @@ export async function passwordRoutes(app: FastifyInstance) {
 
   app.post("/api/auth/forgot-password", limit, async (req) => {
     const { email } = parse(z.object({ email: z.email().transform((e) => e.toLowerCase()) }), req.body);
-    const user = await prisma.user.findUnique({ where: { email } });
+    // Au plus 3 emails par adresse et par heure (anti-bombardement), sans le révéler au demandeur.
+    const sent = await hit(`forgot:${email}`, 3600);
+    const user = sent <= 3 ? await prisma.user.findUnique({ where: { email } }) : null;
     if (user) {
       const token = randomToken(32);
+      // Un seul lien valable à la fois.
+      await prisma.passwordReset.updateMany({ where: { userId: user.id, usedAt: null }, data: { usedAt: new Date() } });
       await prisma.passwordReset.create({ data: { userId: user.id, tokenHash: sha256(token), expiresAt: new Date(Date.now() + RESET_TTL_MS) } });
       const url = `${loadConfig().APP_URL}/reset-password?token=${token}`;
-      await sendEmail({
+      // Envoi non bloquant : même temps de réponse que pour une adresse inconnue.
+      void sendEmail({
         to: email,
         subject: "Réinitialisez votre mot de passe Forlife Com",
         template: "password_reset",
         ...layout("Réinitialisation du mot de passe", [`Bonjour ${user.name},`, "Vous avez demandé à réinitialiser votre mot de passe. Ce lien est valable 1 heure.", "Si vous n'êtes pas à l'origine de cette demande, ignorez cet email."], { label: "Choisir un nouveau mot de passe", url }),
-      });
+      }).catch(() => undefined);
     }
     return { ok: true };
   });
@@ -40,9 +48,13 @@ export async function passwordRoutes(app: FastifyInstance) {
       const used = await tx.passwordReset.updateMany({ where: { id: reset.id, usedAt: null }, data: { usedAt: new Date() } });
       if (!used.count) throw badRequest("Lien invalide ou expiré");
       await tx.user.update({ where: { id: reset.userId }, data: { passwordHash } });
-      // Toutes les sessions existantes sont révoquées.
-      await tx.session.updateMany({ where: { userId: reset.userId, revokedAt: null }, data: { revokedAt: new Date() } });
+      // Les autres liens encore en attente ne servent plus.
+      await tx.passwordReset.updateMany({ where: { userId: reset.userId, usedAt: null }, data: { usedAt: new Date() } });
     });
+    // Toutes les sessions existantes sont révoquées (jetons d'accès compris).
+    await revokeAllSessions(reset.userId);
+    // Le lien a été reçu par email : l'adresse est prouvée.
+    await markEmailVerified(reset.userId);
     return { ok: true };
   });
 }

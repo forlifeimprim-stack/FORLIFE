@@ -9,6 +9,7 @@ import { auditCtx, authenticate, requireWorkspace } from "../../plugins/auth.js"
 import { enqueue } from "../jobs/queue.js";
 import { getStorage } from "../storage/storage.js";
 import { chargeVideoRender, qualityCheck } from "./service.js";
+import { ledger } from "../billing/ledger.js";
 
 const wsParams = z.object({ workspaceId: z.string() });
 const wsIdParams = z.object({ workspaceId: z.string(), id: z.string() });
@@ -116,18 +117,29 @@ export async function videoRoutes(app: FastifyInstance) {
     const { requestId } = parse(z.object({ requestId: z.uuid() }), req.body);
     const project = await loadProject(workspaceId, id);
     // Double clic : on renvoie le rendu déjà lancé pour cette demande.
-    const previous = await prisma.job.findUnique({ where: { idempotencyKey: `video.render:${requestId}` } });
+    const jobKey = `video.render:${ctx.organizationId}:${requestId}`;
+    const previous = await prisma.job.findUnique({ where: { idempotencyKey: jobKey } });
     if (previous) return project.renders.find((r) => r.id === (previous.payload as { renderId?: string }).renderId) ?? null;
     if (project.scenes.length === 0) throw badRequest("Le storyboard n'est pas encore prêt");
-    if (project.status === "RENDERING") throw conflict("Un rendu est déjà en cours");
-    const charged = await chargeVideoRender(ctx.organizationId, workspaceId, ctx.userId, requestId);
-    if (!charged) return project.renders[0] ?? null;
-    const render = await prisma.$transaction(async (tx) => {
-      const r = await tx.videoRender.create({ data: { projectId: id, version: (project.renders[0]?.version ?? 0) + 1, createdById: ctx.userId } });
-      await tx.videoProject.update({ where: { id }, data: { status: "RENDERING" } });
-      await enqueue({ organizationId: ctx.organizationId, workspaceId, type: "video.render", payload: { workspaceId, projectId: id, renderId: r.id, actorId: ctx.userId, requestId }, correlationId: ctx.correlationId, createdById: ctx.userId, idempotencyKey: `video.render:${requestId}`, maxAttempts: 2 }, tx);
-      return r;
-    });
+    // Entrée atomique en rendu : deux lancements simultanés ne peuvent pas être débités tous les deux.
+    const entered = await prisma.videoProject.updateMany({ where: { id, workspaceId, status: { not: "RENDERING" } }, data: { status: "RENDERING" } });
+    if (!entered.count) throw conflict("Un rendu est déjà en cours");
+    let charged = false;
+    let render;
+    try {
+      charged = await chargeVideoRender(ctx.organizationId, workspaceId, ctx.userId, requestId);
+      if (!charged) throw conflict("Cette demande de rendu a déjà été traitée");
+      render = await prisma.$transaction(async (tx) => {
+        const r = await tx.videoRender.create({ data: { projectId: id, version: (project.renders[0]?.version ?? 0) + 1, createdById: ctx.userId } });
+        await enqueue({ organizationId: ctx.organizationId, workspaceId, type: "video.render", payload: { workspaceId, projectId: id, renderId: r.id, actorId: ctx.userId, requestId }, correlationId: ctx.correlationId, createdById: ctx.userId, idempotencyKey: jobKey, maxAttempts: 2 }, tx);
+        return r;
+      });
+    } catch (e) {
+      // Échec avant la mise en file : crédits rendus et projet débloqué.
+      if (charged) await ledger.refund({ organizationId: ctx.organizationId, amount: TASK_CREDIT_COST["video.render"], reason: "Remboursement : rendu vidéo non lancé", idempotencyKey: `video-refund:${ctx.organizationId}:${requestId}` });
+      await prisma.videoProject.updateMany({ where: { id, status: "RENDERING" }, data: { status: project.status } });
+      throw e;
+    }
     await audit({ ...auditCtx(ctx), action: "video.render_requested", entityType: "video_render", entityId: render.id });
     reply.code(202);
     return render;
@@ -149,10 +161,10 @@ export async function videoRoutes(app: FastifyInstance) {
       .send(data);
   });
 
-  /** Validation humaine de la vidéo. */
+  /** Validation humaine de la vidéo (droit d'approbation requis). */
   app.post("/api/workspaces/:workspaceId/video/renders/:id/approve", { preHandler: authenticate }, async (req) => {
     const { workspaceId, id } = parse(wsIdParams, req.params);
-    const ctx = await requireWorkspace(req, workspaceId, "content:update");
+    const ctx = await requireWorkspace(req, workspaceId, "content:approve");
     const r = await prisma.videoRender.findFirst({ where: { id, project: { workspaceId }, status: "SUCCEEDED" } });
     if (!r) throw notFound("Vidéo");
     await prisma.videoProject.update({ where: { id: r.projectId }, data: { status: "APPROVED" } });

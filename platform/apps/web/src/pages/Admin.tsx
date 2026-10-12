@@ -32,9 +32,57 @@ interface OrgRow {
   owner: { name: string; email: string } | null;
 }
 
-/** Back-office Forlife Com : pilotage de toutes les organisations clientes. */
+/** Back-office Forlife Com : activation par code, puis pilotage de toutes les organisations clientes. */
 export function AdminPage() {
   const { me } = useAuth();
+  if (me?.user.isPlatformAdmin) return <AdminConsole />;
+  if (me?.user.canClaimAdmin) return <AdminClaim />;
+  return <Navigate to="/" replace />;
+}
+
+/** Première activation : l'email autorisé ne suffit pas, il faut le code remis au propriétaire de l'infrastructure. */
+function AdminClaim() {
+  const { reload } = useAuth();
+  const [code, setCode] = useState("");
+  const [busy, setBusy] = useState(false);
+  const [err, setErr] = useState<string | null>(null);
+  const submit = async () => {
+    setBusy(true);
+    setErr(null);
+    try {
+      await api.post("/admin/claim", { code });
+      await reload();
+    } catch (e) {
+      setErr(errorMessage(e));
+    } finally {
+      setBusy(false);
+    }
+  };
+  return (
+    <>
+      <PageHeader title="Activer le back-office" question="Une étape de sécurité, une seule fois." />
+      <Card>
+        <div className="stack" style={{ maxWidth: 520 }}>
+          <p>
+            Votre adresse est autorisée à administrer la plateforme. Saisissez le <strong>code d'activation</strong> affiché à la fin du script d'installation dans Cloud Shell.
+          </p>
+          <p className="small muted">Code oublié ? Dans Cloud Shell : gcloud secrets versions access latest --secret=forlife-admin-bootstrap</p>
+          {err && <Alert tone="error">{err}</Alert>}
+          <Field label="Code d'activation">
+            <input value={code} onChange={(e) => setCode(e.target.value)} autoComplete="off" spellCheck={false} />
+          </Field>
+          <div>
+            <Button busy={busy} disabled={code.trim().length < 8} onClick={submit}>
+              Activer
+            </Button>
+          </div>
+        </div>
+      </Card>
+    </>
+  );
+}
+
+function AdminConsole() {
   const [q, setQ] = useState("");
   const [search, setSearch] = useState("");
   const stats = useResource<Stats>("/admin/stats");
@@ -43,7 +91,6 @@ export function AdminPage() {
   const [suspend, setSuspend] = useState<OrgRow | null>(null);
   const [msg, setMsg] = useState<{ tone: "success" | "error"; text: string } | null>(null);
 
-  if (!me?.user.isPlatformAdmin) return <Navigate to="/" replace />;
   const s = stats.data;
   const refresh = () => Promise.all([stats.reload(), orgs.reload()]);
   const act = async (fn: () => Promise<unknown>, ok: string) => {

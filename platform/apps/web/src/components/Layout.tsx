@@ -4,6 +4,7 @@ import { PLANS } from "@forlife/shared";
 import { useAuth } from "../lib/auth";
 import { t } from "../lib/i18n";
 import { LogoMark } from "./ui";
+import { VerifyEmailBanner } from "../pages/VerifyEmail";
 
 /** Modules prévus par la roadmap, affichés pour donner la vision produit complète. */
 const UPCOMING = [
@@ -17,7 +18,7 @@ export function Layout() {
   useEffect(() => setOpen(false), [location.pathname]);
   if (!me || !org || !workspace) return null;
 
-  const options = me.organizations.flatMap((o) => o.workspaces.map((w) => ({ value: `${o.id}|${w.id}`, label: me.organizations.length > 1 ? `${o.name} · ${w.name}` : w.name })));
+  const options = me.organizations.flatMap((o) => o.workspaces.map((w) => ({ value: `${o.id}|${w.id}`, label: `${me.organizations.length > 1 ? `${o.name} · ${w.name}` : w.name}${w.status === "LOCKED" ? " (lecture seule)" : ""}` })));
   const plan = PLANS[org.plan];
 
   return (
@@ -82,7 +83,7 @@ export function Layout() {
               {m.label} <small>{m.phase}</small>
             </NavLink>
           ))}
-          {me.user.isPlatformAdmin && (
+          {(me.user.isPlatformAdmin || me.user.canClaimAdmin) && (
             <>
               <div className="nav-section">Plateforme</div>
               <NavLink to="/admin">Back-office</NavLink>
@@ -108,6 +109,7 @@ export function Layout() {
       </aside>
       <main className="main" id="contenu">
         {org.status === "SUSPENDED" && <div className="alert alert-error" style={{ marginBottom: 16 }}>Cette organisation est suspendue. Contactez le support Forlife Com sur WhatsApp : +225 05 85 80 18 56.</div>}
+        <VerifyEmailBanner />
         <Outlet />
       </main>
     </div>

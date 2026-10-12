@@ -8,6 +8,8 @@ import { parse } from "../../lib/validation.js";
 import { audit } from "../../lib/audit.js";
 import { loadConfig } from "../../config.js";
 import { auditCtx, authenticate, requireWorkspace } from "../../plugins/auth.js";
+import { isSafeImage } from "../../lib/image.js";
+import { rasterizeSvg } from "../creative/composer.js";
 import { ALLOWED_MIME, getStorage, safeExtension, validateUpload } from "../storage/storage.js";
 import { enqueue } from "../jobs/queue.js";
 import { CHANNELS, TASK_CREDIT_COST } from "@forlife/shared";
@@ -169,14 +171,29 @@ export async function brandRoutes(app: FastifyInstance) {
     if (!ALLOWED_MIME.includes(file.mimetype) || !validateUpload(file.mimetype, data)) {
       throw badRequest(`Type de fichier refusé. Formats acceptés : PNG, JPEG, WebP, SVG, PDF, TXT`);
     }
+    let mime = file.mimetype;
+    let fileName = file.filename.replace(/[^\p{L}\p{N}._ -]/gu, "_").slice(0, 120) || "fichier";
+    let content = data;
+    if (mime === "image/svg+xml") {
+      // Un SVG peut contenir du script : il est converti en PNG à l'import et n'est jamais servi tel quel.
+      if (data.length > 1024 * 1024) throw badRequest("Logo SVG trop volumineux (1 Mo maximum)");
+      try {
+        content = rasterizeSvg(data.toString("utf8"), 1200);
+      } catch {
+        throw badRequest("SVG illisible : exportez votre logo en PNG");
+      }
+      mime = "image/png";
+      fileName = fileName.replace(/\.svg$/i, "") + ".png";
+    } else if (mime.startsWith("image/") && !isSafeImage(content, mime)) {
+      throw badRequest("Image trop grande : 8 000 pixels de côté et 40 mégapixels au maximum");
+    }
     const typeField = (file.fields.type as { value?: string } | undefined)?.value;
     const type = ["logo", "photo", "catalog", "document", "other"].includes(typeField ?? "") ? typeField! : "other";
-    const fileName = file.filename.replace(/[^\p{L}\p{N}._ -]/gu, "_").slice(0, 120) || "fichier";
     const storageKey = `${ctx.organizationId}/${workspaceId}/${createId()}${safeExtension(fileName)}`;
-    await getStorage().put(storageKey, data, file.mimetype);
+    await getStorage().put(storageKey, content, mime);
     const brand = await prisma.brand.findUnique({ where: { workspaceId }, select: { id: true } });
     const asset = await prisma.brandAsset.create({
-      data: { workspaceId, brandId: brand?.id ?? null, type, fileName, mime: file.mimetype, sizeBytes: data.length, checksum: sha256(data), storageKey, createdById: ctx.userId },
+      data: { workspaceId, brandId: brand?.id ?? null, type, fileName, mime, sizeBytes: content.length, checksum: sha256(content), storageKey, createdById: ctx.userId },
     });
     await audit({ ...auditCtx(ctx), action: "asset.uploaded", entityType: "brand_asset", entityId: asset.id, metadata: { mime: asset.mime, size: asset.sizeBytes } });
     reply.code(201);

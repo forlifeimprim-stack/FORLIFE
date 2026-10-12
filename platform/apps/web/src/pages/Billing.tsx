@@ -253,12 +253,12 @@ export function DemoCheckoutPage() {
   const [busy, setBusy] = useState(false);
   const [err, setErr] = useState<string | null>(null);
   useEffect(() => {
-    api.get<typeof info>(`/public/payments/demo/${id}?t=${encodeURIComponent(t)}`).then(setInfo).catch((e) => setErr(errorMessage(e)));
+    api.post<typeof info>("/public/payments/demo/lookup", { id, t }).then(setInfo).catch((e) => setErr(errorMessage(e)));
   }, [id, t]);
   const submit = async (outcome: "success" | "failure") => {
     setBusy(true);
     try {
-      await api.post(`/public/payments/demo/${id}?t=${encodeURIComponent(t)}`, { outcome, method });
+      await api.post("/public/payments/demo/pay", { id, t, outcome, method });
       location.href = `/billing/return?payment=${id}`;
     } catch (e) {
       setErr(errorMessage(e));

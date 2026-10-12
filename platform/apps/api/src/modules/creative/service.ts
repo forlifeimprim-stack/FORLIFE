@@ -4,6 +4,8 @@ import { TASK_CREDIT_COST, type CreativeFormat, type CreativeLayout } from "@for
 import { loadConfig } from "../../config.js";
 import { prisma } from "../../lib/prisma.js";
 import { createId } from "../../lib/id.js";
+import { deriveKey } from "../../lib/crypto.js";
+import { isSafeImage } from "../../lib/image.js";
 import { notFound } from "../../lib/errors.js";
 import { audit } from "../../lib/audit.js";
 import { ledger } from "../billing/ledger.js";
@@ -16,11 +18,18 @@ import { critique } from "./critic.js";
 
 const RENDERABLE = ["image/png", "image/jpeg", "image/webp"];
 
+async function safeImage(mime: string, storageKey: string): Promise<Image | null> {
+  const data = await getStorage().get(storageKey);
+  return isSafeImage(data, mime) ? { mime, data } : null;
+}
+
 async function loadImage(workspaceId: string, assetId: string | null | undefined): Promise<Image | null> {
   if (!assetId) return null;
   const asset = await prisma.brandAsset.findFirst({ where: { id: assetId, workspaceId, deletedAt: null } });
   if (!asset || !RENDERABLE.includes(asset.mime)) return null;
-  return { mime: asset.mime, data: await getStorage().get(asset.storageKey) };
+  const data = await getStorage().get(asset.storageKey);
+  // Jamais de décodage d'une image aux dimensions démesurées (gel ou saturation mémoire du serveur).
+  return isSafeImage(data, asset.mime) ? { mime: asset.mime, data } : null;
 }
 
 /** Identité visuelle utilisée par le moteur : couleur et logo issus du Brand DNA. */
@@ -37,7 +46,7 @@ async function brandVisuals(workspaceId: string) {
     brandName: ws.brand?.name ?? ws.name,
     brandColor,
     forbidden,
-    logo: logo ? { mime: logo.mime, data: await getStorage().get(logo.storageKey) } : null,
+    logo: logo ? await safeImage(logo.mime, logo.storageKey) : null,
   };
 }
 
@@ -102,7 +111,7 @@ export async function renderVersion(conceptId: string, overrides: VersionOverrid
 /** Facture un rendu supplémentaire (usage IMAGE tracé comme tout appel au moteur de création). */
 export async function chargeRender(organizationId: string, workspaceId: string, actorId: string, requestId: string) {
   const credits = TASK_CREDIT_COST["creative.render"];
-  const charge = await ledger.consume({ organizationId, amount: credits, reason: "Création : nouvelle version de visuel", idempotencyKey: `render:${requestId}`, refType: "creative_render" });
+  const charge = await ledger.consume({ organizationId, amount: credits, reason: "Création : nouvelle version de visuel", idempotencyKey: `render:${organizationId}:${requestId}`, refType: "creative_render" });
   if (charge.replayed) return false;
   const run = await prisma.aIRun.create({
     data: { organizationId, workspaceId, actorId, taskType: "creative.render", promptKey: "creative.render", promptVersion: 1, provider: "forlife-composer", model: "svg-composer-1", status: "SUCCEEDED", input: {}, creditsCharged: credits, traceId: requestId, finishedAt: new Date() },
@@ -146,7 +155,8 @@ export async function creativeConceptsJob(job: Job) {
 
 // ───── URL publique signée (nécessaire à Instagram, qui télécharge le visuel) ─────
 
-const sign = (versionId: string, exp: number) => createHmac("sha256", loadConfig().JWT_SECRET).update(`media:${versionId}:${exp}`).digest("base64url");
+// Clé dédiée (dérivée) : une signature de média ne peut servir à rien d'autre.
+const sign = (versionId: string, exp: number) => createHmac("sha256", deriveKey(loadConfig().JWT_SECRET, "media-url")).update(`media:${versionId}:${exp}`).digest("base64url");
 
 export function signedMediaUrl(versionId: string, ttlSeconds = 7 * 86400): string {
   const exp = Math.floor(Date.now() / 1000) + ttlSeconds;

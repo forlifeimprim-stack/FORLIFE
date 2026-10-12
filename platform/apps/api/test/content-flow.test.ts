@@ -76,6 +76,36 @@ describe("Content Factory & workflow d'approbation", () => {
     expect(stale.statusCode).toBe(409);
   });
 
+  it("une approbation ne vaut que pour la version relue : modifier, échouer ou changer de visuel exige une nouvelle validation", async () => {
+    const owner = await signup();
+    await prisma.subscription.update({ where: { organizationId: owner.organizationId }, data: { planCode: "PRO" } });
+    const creator = await addMember(owner, "CREATOR");
+    const app = await getApp();
+    const { contentId } = await generatePost(owner);
+    const url = `/api/workspaces/${owner.workspaceId}/contents/${contentId}`;
+    const get = async () => (await app.inject({ method: "GET", url, headers: auth(owner) })).json();
+    // v1 soumise, puis modifiée par le créateur avant la décision : la demande périmée est annulée.
+    await app.inject({ method: "POST", url: `${url}/submit`, headers: auth(creator) });
+    const stale = await prisma.approval.findFirstOrThrow({ where: { entityId: contentId, status: "PENDING" } });
+    const c1 = await get();
+    expect((await app.inject({ method: "PATCH", url, headers: auth(creator), payload: { revision: c1.revision, body: "Texte jamais relu" } })).statusCode).toBe(200);
+    expect((await app.inject({ method: "POST", url: `/api/workspaces/${owner.workspaceId}/approvals/${stale.id}/decide`, headers: auth(owner), payload: { decision: "APPROVED" } })).statusCode).toBe(400);
+    expect((await get()).status).toBe("DRAFT");
+    // v2 soumise et approuvée : programmable.
+    await app.inject({ method: "POST", url: `${url}/submit`, headers: auth(creator) });
+    const fresh = await prisma.approval.findFirstOrThrow({ where: { entityId: contentId, status: "PENDING" } });
+    expect((await app.inject({ method: "POST", url: `/api/workspaces/${owner.workspaceId}/approvals/${fresh.id}/decide`, headers: auth(owner), payload: { decision: "APPROVED" } })).statusCode).toBe(200);
+    // Contenu en échec modifié par le créateur : retour en brouillon, reprogrammation refusée.
+    await prisma.contentItem.update({ where: { id: contentId }, data: { status: "FAILED" } });
+    const c2 = await get();
+    expect((await app.inject({ method: "PATCH", url, headers: auth(creator), payload: { revision: c2.revision, body: "Autre texte non validé" } })).statusCode).toBe(200);
+    expect((await get()).status).toBe("DRAFT");
+    expect((await app.inject({ method: "POST", url: `${url}/schedule`, headers: auth(creator), payload: { scheduledAt: new Date(Date.now() + 3600_000).toISOString() } })).statusCode).toBe(400);
+    // Le créateur ne peut pas « valider » lui-même un visuel ou une vidéo.
+    expect((await app.inject({ method: "POST", url: `/api/workspaces/${owner.workspaceId}/creative/versions/inexistant/approve`, headers: auth(creator) })).statusCode).toBe(403);
+    expect((await app.inject({ method: "POST", url: `/api/workspaces/${owner.workspaceId}/video/renders/inexistant/approve`, headers: auth(creator) })).statusCode).toBe(403);
+  });
+
   it("la génération est idempotente avec un en-tête Idempotency-Key", async () => {
     const acc = await signup();
     const app = await getApp();

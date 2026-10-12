@@ -1,12 +1,16 @@
+import { timingSafeEqual } from "node:crypto";
 import type { FastifyInstance } from "fastify";
 import { z } from "zod";
 import { PLAN_CODES, PLANS } from "@forlife/shared";
+import { loadConfig } from "../../config.js";
 import { prisma } from "../../lib/prisma.js";
-import { badRequest, notFound } from "../../lib/errors.js";
+import { sha256 } from "../../lib/crypto.js";
+import { badRequest, forbidden, notFound } from "../../lib/errors.js";
+import { limit } from "../../lib/throttle.js";
 import { parse } from "../../lib/validation.js";
 import { audit } from "../../lib/audit.js";
 import { authenticate, requirePlatformAdmin } from "../../plugins/auth.js";
-import { addMonths, ledger } from "../billing/ledger.js";
+import { addMonths, enforceWorkspaceLimit, ledger } from "../billing/ledger.js";
 
 const idParams = z.object({ id: z.string() });
 
@@ -16,6 +20,28 @@ const idParams = z.object({ id: z.string() });
  */
 export async function adminRoutes(app: FastifyInstance) {
   app.addHook("preHandler", authenticate);
+
+  /**
+   * Activation du back-office : l'email doit figurer dans PLATFORM_ADMIN_EMAILS ET l'utilisateur doit fournir
+   * le code d'activation (secret « forlife-admin-bootstrap », connu du seul propriétaire de l'infrastructure).
+   * S'inscrire avec l'email d'un administrateur ne suffit donc jamais.
+   */
+  app.post("/api/admin/claim", async (req) => {
+    const { code } = parse(z.object({ code: z.string().trim().min(1).max(200) }), req.body);
+    const uid = req.user.sub;
+    await limit(`admin-claim:${uid}`, 5, 3600, "Trop d'essais. Réessayez dans une heure.");
+    const cfg = loadConfig();
+    const user = await prisma.user.findUniqueOrThrow({ where: { id: uid } });
+    const expected = cfg.ADMIN_BOOTSTRAP_TOKEN;
+    const valid = !!expected && timingSafeEqual(Buffer.from(sha256(code)), Buffer.from(sha256(expected)));
+    if (!cfg.PLATFORM_ADMIN_EMAILS.includes(user.email.toLowerCase()) || !valid) {
+      req.log.warn({ userId: uid }, "platform.admin_claim_refused");
+      throw forbidden("Code d'activation invalide");
+    }
+    await prisma.user.update({ where: { id: uid }, data: { isPlatformAdmin: true } });
+    req.log.info({ userId: uid }, "platform.admin_claimed");
+    return { ok: true };
+  });
 
   app.get("/api/admin/stats", async (req) => {
     await requirePlatformAdmin(req);
@@ -106,6 +132,7 @@ export async function adminRoutes(app: FastifyInstance) {
       await audit({ organizationId: id, actorId: admin.userId, action: "platform.plan.changed", entityType: "subscription", entityId: sub.id, ip: admin.ip, correlationId: admin.correlationId, metadata: { from: sub.planCode, to: planCode, months, paidUntil } }, tx);
       return u;
     });
+    await enforceWorkspaceLimit(id);
     // Montée en gamme : la différence d'allocation est versée immédiatement (une fois par changement).
     const diff = PLANS[planCode].monthlyCredits - PLANS[sub.planCode].monthlyCredits;
     if (diff > 0) {
@@ -119,7 +146,7 @@ export async function adminRoutes(app: FastifyInstance) {
     const { id } = parse(idParams, req.params);
     const body = parse(z.object({ amount: z.number().int().refine((n) => n !== 0 && Math.abs(n) <= 1_000_000, "Montant invalide"), reason: z.string().trim().min(3).max(200), requestId: z.uuid() }), req.body);
     if (!(await prisma.organization.findUnique({ where: { id } }))) throw notFound("Organisation");
-    const op = { organizationId: id, amount: Math.abs(body.amount), reason: `Ajustement Forlife : ${body.reason}`, idempotencyKey: `admin:${body.requestId}`, refType: "admin", refId: admin.userId };
+    const op = { organizationId: id, amount: Math.abs(body.amount), reason: `Ajustement Forlife : ${body.reason}`, idempotencyKey: `admin:${id}:${body.requestId}`, refType: "admin", refId: admin.userId };
     const res = body.amount > 0 ? await ledger.grant(op) : await ledger.consume(op);
     if (!res.replayed) {
       await audit({ organizationId: id, actorId: admin.userId, action: "platform.credits.adjusted", entityType: "credit_wallet", ip: admin.ip, correlationId: admin.correlationId, metadata: { amount: body.amount, reason: body.reason } });

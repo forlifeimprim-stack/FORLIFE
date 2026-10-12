@@ -7,17 +7,12 @@ import { badRequest, conflict, forbidden, notFound } from "../../lib/errors.js";
 import { parse } from "../../lib/validation.js";
 import { audit } from "../../lib/audit.js";
 import { auditCtx, authenticate, requireOrg } from "../../plugins/auth.js";
+import { accessScope } from "./invitations.js";
 
 const orgParams = z.object({ orgId: z.string() });
 const memberParams = z.object({ orgId: z.string(), membershipId: z.string() });
 
-const addMemberSchema = z.object({
-  email: z.email().transform((e) => e.toLowerCase()),
-  role: z.enum(ROLES),
-  allWorkspaces: z.boolean().default(true),
-  workspaceIds: z.array(z.string()).default([]),
-});
-const updateMemberSchema = addMemberSchema.omit({ email: true }).partial();
+const updateMemberSchema = z.object({ role: z.enum(ROLES), allWorkspaces: z.boolean(), workspaceIds: z.array(z.string()).max(100) }).partial();
 const workspaceSchema = z.object({ name: z.string().trim().min(2).max(80), sector: z.string().trim().min(2).max(80).default("Non précisé") });
 
 export async function orgRoutes(app: FastifyInstance) {
@@ -35,36 +30,7 @@ export async function orgRoutes(app: FastifyInstance) {
     return members.map((m) => ({ id: m.id, role: m.role, allWorkspaces: m.allWorkspaces, workspaceIds: m.workspaces.map((w) => w.workspaceId), user: m.user }));
   });
 
-  app.post("/api/orgs/:orgId/members", async (req, reply) => {
-    const { orgId } = parse(orgParams, req.params);
-    const ctx = await requireOrg(req, orgId, "members:manage");
-    const body = parse(addMemberSchema, req.body);
-    if (!canAssignRole(ctx.role, body.role)) throw forbidden("Vous ne pouvez pas attribuer ce rôle");
-    const user = await prisma.user.findUnique({ where: { email: body.email } });
-    if (!user) throw notFound("Utilisateur (la personne doit d'abord créer son compte Forlife)");
-    const plan = PLANS[(await prisma.subscription.findUniqueOrThrow({ where: { organizationId: orgId } })).planCode];
-    if ((await prisma.membership.count({ where: { organizationId: orgId } })) >= plan.maxMembers) {
-      throw badRequest(`Votre plan ${plan.name} est limité à ${plan.maxMembers} membres`);
-    }
-    await assertWorkspacesInOrg(orgId, body.workspaceIds);
-    const existing = await prisma.membership.findUnique({ where: { organizationId_userId: { organizationId: orgId, userId: user.id } } });
-    if (existing) throw conflict("Cette personne est déjà membre");
-    const membership = await prisma.$transaction(async (tx) => {
-      const m = await tx.membership.create({
-        data: {
-          organizationId: orgId,
-          userId: user.id,
-          role: body.role,
-          allWorkspaces: body.allWorkspaces,
-          workspaces: { create: body.workspaceIds.map((workspaceId) => ({ workspaceId })) },
-        },
-      });
-      await audit({ ...auditCtx(ctx), action: "member.added", entityType: "membership", entityId: m.id, metadata: { email: body.email, role: body.role } }, tx);
-      return m;
-    });
-    reply.code(201);
-    return membership;
-  });
+  // Ajout d'un membre : uniquement par invitation (le lien reçu par email prouve l'adresse et vaut consentement).
 
   app.patch("/api/orgs/:orgId/members/:membershipId", async (req) => {
     const { orgId, membershipId } = parse(memberParams, req.params);
@@ -76,16 +42,17 @@ export async function orgRoutes(app: FastifyInstance) {
     if (body.role && !canAssignRole(ctx.role, body.role)) throw forbidden("Vous ne pouvez pas attribuer ce rôle");
     if (target.role === "OWNER" && body.role && body.role !== "OWNER") await assertNotLastOwner(orgId);
     if (body.workspaceIds) await assertWorkspacesInOrg(orgId, body.workspaceIds);
+    // Le périmètre est recalculé à chaque changement : une agence n'obtient jamais l'accès à toute l'organisation.
+    const current = await prisma.membershipWorkspace.findMany({ where: { membershipId }, select: { workspaceId: true } });
+    const scope = accessScope(body.role ?? target.role, body.allWorkspaces ?? target.allWorkspaces, body.workspaceIds ?? current.map((w) => w.workspaceId));
     return prisma.$transaction(async (tx) => {
-      if (body.workspaceIds) {
-        await tx.membershipWorkspace.deleteMany({ where: { membershipId } });
-        await tx.membershipWorkspace.createMany({ data: body.workspaceIds.map((workspaceId) => ({ membershipId, workspaceId })) });
-      }
+      await tx.membershipWorkspace.deleteMany({ where: { membershipId } });
+      if (scope.workspaceIds.length) await tx.membershipWorkspace.createMany({ data: scope.workspaceIds.map((workspaceId) => ({ membershipId, workspaceId })) });
       const m = await tx.membership.update({
         where: { id: membershipId },
-        data: { role: body.role, allWorkspaces: body.allWorkspaces },
+        data: { role: body.role, allWorkspaces: scope.allWorkspaces },
       });
-      await audit({ ...auditCtx(ctx), action: "member.updated", entityType: "membership", entityId: m.id, metadata: { from: target.role, to: m.role } }, tx);
+      await audit({ ...auditCtx(ctx), action: "member.updated", entityType: "membership", entityId: m.id, metadata: { from: target.role, to: m.role, allWorkspaces: scope.allWorkspaces } }, tx);
       return m;
     });
   });
@@ -109,15 +76,17 @@ export async function orgRoutes(app: FastifyInstance) {
     const { orgId } = parse(orgParams, req.params);
     const ctx = await requireOrg(req, orgId, "workspace:create");
     const body = parse(workspaceSchema, req.body);
-    const plan = PLANS[(await prisma.subscription.findUniqueOrThrow({ where: { organizationId: orgId } })).planCode];
-    if ((await prisma.workspace.count({ where: { organizationId: orgId, status: "ACTIVE" } })) >= plan.maxWorkspaces) {
-      throw badRequest(`Votre plan ${plan.name} est limité à ${plan.maxWorkspaces} workspace(s)`);
-    }
     let slug = slugify(body.name);
     if (await prisma.workspace.findUnique({ where: { organizationId_slug: { organizationId: orgId, slug } } })) {
       slug = `${slug}-${Math.random().toString(36).slice(2, 6)}`;
     }
     const ws = await prisma.$transaction(async (tx) => {
+      // Verrou sur l'abonnement : le plafond du plan ne peut pas être dépassé par des requêtes simultanées.
+      await tx.$queryRaw`SELECT 1 FROM "Subscription" WHERE "organizationId" = ${orgId} FOR UPDATE`;
+      const plan = PLANS[(await tx.subscription.findUniqueOrThrow({ where: { organizationId: orgId } })).planCode];
+      if ((await tx.workspace.count({ where: { organizationId: orgId, status: "ACTIVE" } })) >= plan.maxWorkspaces) {
+        throw badRequest(`Votre plan ${plan.name} est limité à ${plan.maxWorkspaces} workspace(s)`);
+      }
       const ws = await tx.workspace.create({ data: { organizationId: orgId, name: body.name, slug } });
       await tx.brand.create({ data: { workspaceId: ws.id, name: body.name } });
       await tx.businessProfile.create({ data: { workspaceId: ws.id, version: 1, sector: body.sector, createdById: ctx.userId } });
@@ -173,9 +142,11 @@ export async function orgRoutes(app: FastifyInstance) {
 
   app.get("/api/orgs/:orgId/ai-runs", async (req) => {
     const { orgId } = parse(orgParams, req.params);
-    await requireOrg(req, orgId, "ai:read");
+    const ctx = await requireOrg(req, orgId, "ai:read");
+    // Un membre limité à certains workspaces ne voit que leurs exécutions.
+    const m = await prisma.membership.findUniqueOrThrow({ where: { organizationId_userId: { organizationId: orgId, userId: ctx.userId } }, include: { workspaces: { select: { workspaceId: true } } } });
     return prisma.aIRun.findMany({
-      where: { organizationId: orgId },
+      where: { organizationId: orgId, ...(m.allWorkspaces ? {} : { workspaceId: { in: m.workspaces.map((w) => w.workspaceId) } }) },
       orderBy: { createdAt: "desc" },
       take: 50,
       // Les entrées/prompts complets ne sont pas renvoyés au client (§21).

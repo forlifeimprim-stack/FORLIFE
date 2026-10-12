@@ -33,6 +33,11 @@ const publicView = (p: { id: string; kind: string; planCode: PlanCode | null; mo
 });
 
 export async function paymentRoutes(app: FastifyInstance) {
+  // Notifications CinetPay (formulaire URL-encodé) : analyseur limité à ce plugin, jamais aux routes d'authentification.
+  app.addContentTypeParser("application/x-www-form-urlencoded", { parseAs: "string", bodyLimit: 16 * 1024 }, (_req, body, done) => {
+    done(null, Object.fromEntries(new URLSearchParams(body as string)));
+  });
+
   /** Offres et moyens de paiement disponibles. */
   app.get("/api/orgs/:orgId/billing/offers", { preHandler: authenticate }, async (req) => {
     const { orgId } = parse(orgParams, req.params);
@@ -83,41 +88,35 @@ export async function paymentRoutes(app: FastifyInstance) {
   });
 
   /** Notification CinetPay : jamais crue sur parole, toujours confirmée par l'API de vérification. */
-  app.post("/api/public/payments/cinetpay/notify", async (req, reply) => {
+  app.post("/api/public/payments/cinetpay/notify", { config: { rateLimit: { max: 120, timeWindow: "1 minute" } } }, async (req, reply) => {
     const body = (req.body ?? {}) as Record<string, unknown>;
     const ref = typeof body.cpm_trans_id === "string" ? body.cpm_trans_id.slice(0, 64) : null;
     if (ref) {
       const p = await prisma.payment.findUnique({ where: { providerRef: ref } });
-      if (p) {
-        await prisma.paymentEvent.create({ data: { paymentId: p.id, type: "NOTIFY", payload: { site: String(body.cpm_site_id ?? "").slice(0, 40) } } });
-        await reconcile(p.id, "notify");
-      }
+      // Seul un paiement en attente déclenche une vérification (elle-même limitée à une toutes les 10 s).
+      if (p && p.status === "PENDING" && p.provider === "cinetpay") await reconcile(p.id, "notify");
     }
     return reply.code(200).send({ ok: true });
   });
 
-  // ───── Paiement de démonstration (aucun argent réel) ─────
-  const demoParams = z.object({ id: z.string().max(40) });
-  const demoQuery = z.object({ t: z.string().max(64) });
+  // ───── Paiement de démonstration (aucun argent réel) : jeton dans le corps, jamais dans l'URL ─────
+  const demoBody = z.object({ id: z.string().max(40), t: z.string().max(64) });
 
-  app.get("/api/public/payments/demo/:id", async (req) => {
-    const { id } = parse(demoParams, req.params);
-    const { t } = parse(demoQuery, req.query);
+  app.post("/api/public/payments/demo/lookup", async (req) => {
+    const { id, t } = parse(demoBody, req.body);
     if (!paymentProviders().sandbox || !verifyDemoToken(id, t)) throw notFound("Paiement");
     const p = await prisma.payment.findUnique({ where: { id }, include: { organization: { select: { name: true } } } });
     if (!p || p.provider !== "sandbox") throw notFound("Paiement");
     return { id: p.id, label: describe(p), amount: p.amount, currency: p.currency, status: p.status, reference: p.providerRef, organization: p.organization.name };
   });
 
-  app.post("/api/public/payments/demo/:id", async (req) => {
-    const { id } = parse(demoParams, req.params);
-    const { t } = parse(demoQuery, req.query);
-    const body = parse(z.object({ outcome: z.enum(["success", "failure"]), method: z.enum(["ORANGE_MONEY", "MTN_MOMO", "MOOV_MONEY", "WAVE", "CARD"]) }), req.body);
-    if (!paymentProviders().sandbox || !verifyDemoToken(id, t)) throw notFound("Paiement");
-    const p = await prisma.payment.findUnique({ where: { id } });
+  app.post("/api/public/payments/demo/pay", async (req) => {
+    const body = parse(demoBody.extend({ outcome: z.enum(["success", "failure"]), method: z.enum(["ORANGE_MONEY", "MTN_MOMO", "MOOV_MONEY", "WAVE", "CARD"]) }), req.body);
+    if (!paymentProviders().sandbox || !verifyDemoToken(body.id, body.t)) throw notFound("Paiement");
+    const p = await prisma.payment.findUnique({ where: { id: body.id } });
     if (!p || p.provider !== "sandbox") throw notFound("Paiement");
-    if (p.status === "PENDING") await prisma.paymentEvent.create({ data: { paymentId: id, type: "DEMO", payload: body } });
-    const r = await reconcile(id, "demo");
+    if (p.status === "PENDING") await prisma.paymentEvent.create({ data: { paymentId: p.id, type: "DEMO", payload: { outcome: body.outcome, method: body.method } } });
+    const r = await reconcile(p.id, "demo");
     return { status: r.status };
   });
 }

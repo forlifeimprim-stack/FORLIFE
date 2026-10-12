@@ -2,18 +2,24 @@ import type { FastifyInstance } from "fastify";
 import { z } from "zod";
 import { loadConfig } from "../../config.js";
 import { prisma } from "../../lib/prisma.js";
-import { encryptSecret, randomToken, sha256 } from "../../lib/crypto.js";
-import { badRequest, notFound } from "../../lib/errors.js";
+import { clientIp } from "../../lib/request.js";
+import { decryptSecret, encryptSecret, randomToken, sha256 } from "../../lib/crypto.js";
+import { badRequest, forbidden, notFound } from "../../lib/errors.js";
 import { parse } from "../../lib/validation.js";
 import { audit } from "../../lib/audit.js";
 import { auditCtx, authenticate, requireWorkspace } from "../../plugins/auth.js";
 import { adapterByKey, getAdapters } from "./registry.js";
 import { settleContent } from "./service.js";
-import { SocialError } from "./types.js";
+import { assertApprovedVersion } from "../content/service.js";
+import { SocialError, type ConnectedAccount } from "./types.js";
 
 const wsParams = z.object({ workspaceId: z.string() });
 const wsIdParams = z.object({ workspaceId: z.string(), id: z.string() });
-const redirectUri = (key: string) => `${loadConfig().API_PUBLIC_URL}/api/social/oauth/${key}/callback`;
+/**
+ * Le retour OAuth arrive sur l'interface (pas sur l'API) : c'est le navigateur connecté qui termine la liaison,
+ * avec sa propre session. Un lien d'autorisation transmis à un tiers ne peut donc rien rattacher.
+ */
+const redirectUri = (key: string) => `${loadConfig().APP_URL}/social/callback/${key}`;
 
 export async function socialRoutes(app: FastifyInstance) {
   app.get("/api/workspaces/:workspaceId/social/accounts", { preHandler: authenticate }, async (req) => {
@@ -39,37 +45,56 @@ export async function socialRoutes(app: FastifyInstance) {
     return { url: adapter.authorizeUrl(state, redirectUri(connector)) };
   });
 
-  /** Retour OAuth (navigateur) : jetons chiffrés, comptes créés ou reconnectés, puis redirection vers l'interface. */
-  app.get("/api/social/oauth/:connector/callback", async (req, reply) => {
-    const { connector } = parse(z.object({ connector: z.string() }), req.params);
-    const q = parse(z.object({ code: z.string().max(2000).optional(), state: z.string().max(200).optional(), error: z.string().optional(), error_description: z.string().optional() }), req.query);
-    const back = (params: Record<string, string>) => reply.redirect(`${loadConfig().APP_URL}/social?${new URLSearchParams(params)}`);
-    if (!q.state) return back({ error: "Réponse OAuth invalide" });
-    const stateRow = await prisma.oAuthState.findUnique({ where: { stateHash: sha256(q.state) } });
-    if (!stateRow || stateRow.usedAt || stateRow.expiresAt < new Date() || stateRow.provider !== connector) return back({ error: "Lien de connexion expiré, recommencez" });
+  /**
+   * Fin de connexion OAuth, appelée par l'interface avec la session de l'utilisateur.
+   * L'état doit avoir été créé par CE même utilisateur, qui doit toujours pouvoir gérer le workspace.
+   * Les comptes autorisés sont mis en attente (chiffrés) : l'utilisateur choisit ensuite ceux à connecter.
+   */
+  app.post("/api/social/oauth/complete", { preHandler: authenticate }, async (req) => {
+    const body = parse(z.object({ connector: z.enum(["meta", "sandbox"]), state: z.string().min(10).max(200), code: z.string().max(2000).optional(), error: z.string().max(200).optional() }), req.body);
+    const stateRow = await prisma.oAuthState.findUnique({ where: { stateHash: sha256(body.state) } });
+    if (!stateRow || stateRow.expiresAt < new Date() || stateRow.provider !== body.connector) throw badRequest("Lien de connexion expiré, recommencez");
+    if (stateRow.userId !== req.user.sub) throw forbidden("Cette connexion a été lancée depuis un autre compte. Recommencez depuis votre Social Hub.");
+    await requireWorkspace(req, stateRow.workspaceId, "social:manage");
     const used = await prisma.oAuthState.updateMany({ where: { id: stateRow.id, usedAt: null }, data: { usedAt: new Date() } });
-    if (!used.count) return back({ error: "Lien de connexion déjà utilisé" });
-    if (q.error || !q.code) return back({ error: q.error_description ?? "Connexion annulée" });
-    const adapter = adapterByKey(connector);
-    if (!adapter) return back({ error: "Connecteur inconnu" });
+    if (!used.count) throw badRequest("Lien de connexion déjà utilisé");
+    if (body.error || !body.code) throw badRequest("Connexion annulée");
+    const adapter = adapterByKey(body.connector);
+    if (!adapter?.isConfigured()) throw badRequest("Connecteur indisponible");
+    let accounts: ConnectedAccount[];
     try {
-      const accounts = await adapter.exchange(q.code, redirectUri(connector));
-      const workspace = await prisma.workspace.findUniqueOrThrow({ where: { id: stateRow.workspaceId }, select: { organizationId: true } });
-      const key = loadConfig().ENCRYPTION_KEY;
-      for (const a of accounts) {
-        const acc = await prisma.socialAccount.upsert({
-          where: { workspaceId_provider_externalId: { workspaceId: stateRow.workspaceId, provider: a.provider, externalId: a.externalId } },
-          update: { name: a.name, avatarUrl: a.avatarUrl ?? null, status: "CONNECTED", lastError: null, scopes: a.scopes },
-          create: { workspaceId: stateRow.workspaceId, provider: a.provider, externalId: a.externalId, name: a.name, avatarUrl: a.avatarUrl ?? null, scopes: a.scopes, connectedById: stateRow.userId },
-        });
-        const cred = { accessTokenEnc: encryptSecret(a.accessToken, key), refreshTokenEnc: a.refreshToken ? encryptSecret(a.refreshToken, key) : null, expiresAt: a.expiresAt ?? null };
-        await prisma.socialCredential.upsert({ where: { socialAccountId: acc.id }, update: cred, create: { socialAccountId: acc.id, ...cred } });
-        await audit({ organizationId: workspace.organizationId, workspaceId: stateRow.workspaceId, actorId: stateRow.userId, action: "social.connected", entityType: "social_account", entityId: acc.id, ip: req.ip, correlationId: req.id, metadata: { provider: a.provider } });
-      }
-      return back({ connected: String(accounts.length) });
+      accounts = await adapter.exchange(body.code, redirectUri(body.connector));
     } catch (e) {
-      return back({ error: e instanceof SocialError ? e.message : "La connexion a échoué" });
+      throw badRequest(e instanceof SocialError ? e.message : "La connexion a échoué");
     }
+    if (!accounts.length) throw badRequest("Aucune page ou compte professionnel trouvé pour ce profil");
+    await prisma.oAuthState.update({ where: { id: stateRow.id }, data: { pendingEnc: encryptSecret(JSON.stringify(accounts), loadConfig().ENCRYPTION_KEY), expiresAt: new Date(Date.now() + 15 * 60_000) } });
+    return { workspaceId: stateRow.workspaceId, accounts: accounts.map((a) => ({ provider: a.provider, externalId: a.externalId, name: a.name, avatarUrl: a.avatarUrl ?? null })) };
+  });
+
+  /** Connexion des seuls comptes choisis par l'utilisateur, dans le workspace qui a lancé la connexion. */
+  app.post("/api/social/oauth/select", { preHandler: authenticate }, async (req) => {
+    const body = parse(z.object({ state: z.string().min(10).max(200), externalIds: z.array(z.string().max(200)).min(1).max(50) }), req.body);
+    const stateRow = await prisma.oAuthState.findUnique({ where: { stateHash: sha256(body.state) } });
+    if (!stateRow?.pendingEnc || stateRow.expiresAt < new Date() || stateRow.userId !== req.user.sub) throw badRequest("Sélection expirée, recommencez la connexion");
+    const ctx = await requireWorkspace(req, stateRow.workspaceId, "social:manage");
+    // Usage unique : la liste en attente est effacée avant toute écriture.
+    const taken = await prisma.oAuthState.updateMany({ where: { id: stateRow.id, pendingEnc: { not: null } }, data: { pendingEnc: null } });
+    if (!taken.count) throw badRequest("Sélection déjà enregistrée");
+    const key = loadConfig().ENCRYPTION_KEY;
+    const pending = JSON.parse(decryptSecret(stateRow.pendingEnc, key)) as (ConnectedAccount & { expiresAt?: string | null })[];
+    const chosen = pending.filter((a) => body.externalIds.includes(a.externalId));
+    for (const a of chosen) {
+      const acc = await prisma.socialAccount.upsert({
+        where: { workspaceId_provider_externalId: { workspaceId: stateRow.workspaceId, provider: a.provider, externalId: a.externalId } },
+        update: { name: a.name, avatarUrl: a.avatarUrl ?? null, status: "CONNECTED", lastError: null, scopes: a.scopes },
+        create: { workspaceId: stateRow.workspaceId, provider: a.provider, externalId: a.externalId, name: a.name, avatarUrl: a.avatarUrl ?? null, scopes: a.scopes, connectedById: ctx.userId },
+      });
+      const cred = { accessTokenEnc: encryptSecret(a.accessToken, key), refreshTokenEnc: a.refreshToken ? encryptSecret(a.refreshToken, key) : null, expiresAt: a.expiresAt ? new Date(a.expiresAt) : null };
+      await prisma.socialCredential.upsert({ where: { socialAccountId: acc.id }, update: cred, create: { socialAccountId: acc.id, ...cred } });
+      await audit({ ...auditCtx(ctx), action: "social.connected", entityType: "social_account", entityId: acc.id, ip: clientIp(req), metadata: { provider: a.provider } });
+    }
+    return { connected: chosen.length, workspaceId: stateRow.workspaceId };
   });
 
   app.delete("/api/workspaces/:workspaceId/social/accounts/:id", { preHandler: authenticate }, async (req) => {
@@ -112,6 +137,7 @@ export async function socialRoutes(app: FastifyInstance) {
     const pub = await prisma.publication.findFirst({ where: { id, workspaceId } });
     if (!pub) throw notFound("Publication");
     if (pub.status !== "FAILED") throw badRequest("Seule une publication en échec peut être relancée");
+    assertApprovedVersion(await prisma.contentItem.findUniqueOrThrow({ where: { id: pub.contentId }, select: { contentVersion: true, approvedVersion: true } }));
     await prisma.$transaction(async (tx) => {
       await tx.publication.update({ where: { id }, data: { status: "QUEUED", scheduledAt: new Date(), lastError: null } });
       await tx.contentItem.updateMany({ where: { id: pub.contentId, status: "FAILED" }, data: { status: "SCHEDULED" } });

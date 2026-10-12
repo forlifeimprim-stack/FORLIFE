@@ -10,17 +10,21 @@ import { addMember, auth, getApp, prisma, signup, type TestAccount } from "./hel
 
 afterEach(() => setAdapters(undefined));
 
-async function connectSandbox(acc: TestAccount) {
+/** Lance la connexion, puis fait ce que fait l'interface au retour OAuth : terminer avec la session, puis choisir les pages. */
+async function connectSandbox(acc: TestAccount, finisher: TestAccount = acc) {
   const app = await getApp();
   const { url } = (await app.inject({ method: "POST", url: `/api/workspaces/${acc.workspaceId}/social/connect`, headers: auth(acc), payload: { connector: "sandbox" } })).json();
   const cb = new URL(url);
-  const res = await app.inject({ method: "GET", url: `${cb.pathname}${cb.search}` });
-  return { res, callbackPath: `${cb.pathname}${cb.search}` };
+  const callback = { connector: "sandbox", state: cb.searchParams.get("state")!, code: cb.searchParams.get("code")! };
+  const complete = await app.inject({ method: "POST", url: "/api/social/oauth/complete", headers: auth(finisher), payload: callback });
+  if (complete.statusCode !== 200) return { complete, callback };
+  const select = await app.inject({ method: "POST", url: "/api/social/oauth/select", headers: auth(finisher), payload: { state: callback.state, externalIds: complete.json().accounts.map((a: { externalId: string }) => a.externalId) } });
+  return { complete, select, callback };
 }
 
 /** Crée un contenu approuvé avec une variante Facebook, prêt à programmer. */
 async function approvedContent(acc: TestAccount, body = "Nouvelle collection disponible") {
-  const item = await prisma.contentItem.create({ data: { workspaceId: acc.workspaceId, title: "Post test", body, status: "APPROVED" } });
+  const item = await prisma.contentItem.create({ data: { workspaceId: acc.workspaceId, title: "Post test", body, status: "APPROVED", approvedVersion: 1 } });
   await prisma.contentVariant.create({ data: { contentId: item.id, channel: "FACEBOOK", body, hashtags: ["Forlife"] } });
   await prisma.contentVariant.create({ data: { contentId: item.id, channel: "WHATSAPP", body } });
   return item;
@@ -36,14 +40,23 @@ async function scheduleNowish(acc: TestAccount, contentId: string) {
 describe("Social Hub — connexion", () => {
   it("connecte un compte via OAuth avec un état à usage unique et chiffre le jeton", async () => {
     const acc = await signup();
-    const { res, callbackPath } = await connectSandbox(acc);
-    expect(res.statusCode).toBe(302);
-    expect(res.headers.location).toContain("/social?connected=1");
+    const { complete, select, callback } = await connectSandbox(acc);
+    expect(complete.statusCode).toBe(200);
+    expect(complete.json().accounts[0]).not.toHaveProperty("accessToken");
+    expect(select!.json().connected).toBe(1);
     const account = await prisma.socialAccount.findFirstOrThrow({ where: { workspaceId: acc.workspaceId }, include: { credential: true } });
     expect(account.credential?.accessTokenEnc).not.toContain("sandbox-token");
     const app = await getApp();
-    const replay = await app.inject({ method: "GET", url: callbackPath });
-    expect(replay.headers.location).toContain("error=");
+    expect((await app.inject({ method: "POST", url: "/api/social/oauth/complete", headers: auth(acc), payload: callback })).statusCode).toBe(400);
+    expect((await app.inject({ method: "POST", url: "/api/social/oauth/select", headers: auth(acc), payload: { state: callback.state, externalIds: ["sandbox-page"] } })).statusCode).toBe(400);
+  });
+
+  it("un lien d'autorisation transmis à un tiers ne rattache jamais ses pages au workspace de l'initiateur", async () => {
+    const attacker = await signup();
+    const victim = await signup();
+    const { complete } = await connectSandbox(attacker, victim);
+    expect(complete.statusCode).toBe(403);
+    expect(await prisma.socialAccount.count({ where: { workspaceId: attacker.workspaceId } })).toBe(0);
   });
 
   it("réserve la connexion des comptes aux rôles habilités", async () => {

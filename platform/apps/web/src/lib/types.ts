@@ -5,6 +5,8 @@ export interface WorkspaceSummary {
   name: string;
   slug: string;
   timezone: string;
+  /** LOCKED : au-delà du nombre d'espaces du plan, en lecture seule. */
+  status?: "ACTIVE" | "LOCKED";
 }
 export interface OrgSummary {
   id: string;
@@ -19,7 +21,7 @@ export interface OrgSummary {
   workspaces: WorkspaceSummary[];
 }
 export interface Me {
-  user: { id: string; email: string; name: string; locale: string; isPlatformAdmin: boolean };
+  user: { id: string; email: string; name: string; locale: string; emailVerified: boolean; isPlatformAdmin: boolean; canClaimAdmin: boolean };
   organizations: OrgSummary[];
 }
 

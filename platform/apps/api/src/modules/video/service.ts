@@ -9,6 +9,7 @@ import { runAI } from "../ai/gateway.js";
 import { loadBrandContext } from "../ai/context.js";
 import { storyboardPrompt, type StoryboardInput, type StoryboardOutput } from "../ai/prompts.js";
 import { getStorage } from "../storage/storage.js";
+import { isSafeImage } from "../../lib/image.js";
 import { palettes, type Image } from "../creative/composer.js";
 import { END_CARD, renderVideo, srt, type PlannedScene, type VideoPlan } from "./renderer.js";
 
@@ -73,13 +74,14 @@ async function loadPhoto(workspaceId: string, assetId: string | null): Promise<I
   if (!assetId) return null;
   const a = await prisma.brandAsset.findFirst({ where: { id: assetId, workspaceId, deletedAt: null } });
   if (!a || !PHOTO_MIME.includes(a.mime)) return null;
-  return { mime: a.mime, data: await getStorage().get(a.storageKey) };
+  const data = await getStorage().get(a.storageKey);
+  return isSafeImage(data, a.mime) ? { mime: a.mime, data } : null;
 }
 
 /** Débit du rendu (usage VIDEO tracé). */
 export async function chargeVideoRender(organizationId: string, workspaceId: string, actorId: string, requestId: string) {
   const credits = TASK_CREDIT_COST["video.render"];
-  const charge = await ledger.consume({ organizationId, amount: credits, reason: "Vidéo : rendu 9:16", idempotencyKey: `video:${requestId}`, refType: "video_render" });
+  const charge = await ledger.consume({ organizationId, amount: credits, reason: "Vidéo : rendu 9:16", idempotencyKey: `video:${organizationId}:${requestId}`, refType: "video_render" });
   if (charge.replayed) return false;
   const run = await prisma.aIRun.create({
     data: { organizationId, workspaceId, actorId, taskType: "video.render", promptKey: "video.render", promptVersion: 1, provider: "forlife-video", model: "svg-motion-1", status: "SUCCEEDED", input: {}, creditsCharged: credits, traceId: requestId, finishedAt: new Date() },
@@ -111,7 +113,10 @@ export async function renderJob(job: Job) {
       total: Math.round((t + END_CARD) * 10) / 10,
       palette: palettes(brandColor)["dark"],
       brandName: project.workspace.brand?.name ?? project.workspace.name,
-      logo: logo ? { mime: logo.mime, data: await getStorage().get(logo.storageKey) } : null,
+      logo: logo ? await (async () => {
+        const data = await getStorage().get(logo.storageKey);
+        return isSafeImage(data, logo.mime) ? { mime: logo.mime, data } : null;
+      })() : null,
       cta: project.cta ?? "Écrivez-nous sur WhatsApp",
       offer: project.offer,
     };
@@ -140,7 +145,7 @@ export async function renderJob(job: Job) {
         prisma.videoRender.update({ where: { id: r.id }, data: { status: "FAILED", error: message.slice(0, 500), finishedAt: new Date() } }),
         prisma.videoProject.update({ where: { id: project.id }, data: { status: "FAILED" } }),
       ]);
-      await ledger.refund({ organizationId: job.organizationId, amount: TASK_CREDIT_COST["video.render"], reason: "Remboursement : rendu vidéo en échec", idempotencyKey: `video-refund:${p.requestId}` });
+      await ledger.refund({ organizationId: job.organizationId, amount: TASK_CREDIT_COST["video.render"], reason: "Remboursement : rendu vidéo en échec", idempotencyKey: `video-refund:${job.organizationId}:${p.requestId}` });
       throw new AppError(422, "VIDEO_RENDER_FAILED", message);
     }
     throw e;

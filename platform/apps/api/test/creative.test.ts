@@ -109,7 +109,14 @@ describe("Creative Studio", () => {
     const app = await getApp();
     const versionId = brief.concepts[1].versions[0].id;
     await app.inject({ method: "POST", url: `/api/workspaces/${acc.workspaceId}/creative/versions/${versionId}/approve`, headers: auth(acc) });
-    expect((await prisma.contentItem.findUniqueOrThrow({ where: { id: item.id } })).mediaVersionId).toBe(versionId);
+    const changed = await prisma.contentItem.findUniqueOrThrow({ where: { id: item.id } });
+    expect(changed.mediaVersionId).toBe(versionId);
+    // Nouveau visuel = nouvelle version du contenu : retour en brouillon, programmation refusée avant revalidation.
+    expect(changed.status).toBe("DRAFT");
+    expect((await app.inject({ method: "POST", url: `/api/workspaces/${acc.workspaceId}/contents/${item.id}/schedule`, headers: auth(acc), payload: { scheduledAt: new Date(Date.now() + 60_000).toISOString() } })).statusCode).toBe(400);
+    await app.inject({ method: "POST", url: `/api/workspaces/${acc.workspaceId}/contents/${item.id}/submit`, headers: auth(acc) });
+    const pending = await prisma.approval.findFirstOrThrow({ where: { entityId: item.id, status: "PENDING" } });
+    expect((await app.inject({ method: "POST", url: `/api/workspaces/${acc.workspaceId}/approvals/${pending.id}/decide`, headers: auth(acc), payload: { decision: "APPROVED" } })).statusCode).toBe(200);
 
     // URL signée : valide, puis altérée
     const url = new URL(signedMediaUrl(versionId));
@@ -135,3 +142,40 @@ describe("Creative Studio", () => {
     expect(seen).toContain(`/api/public/media/${versionId}?e=`);
   });
 });
+
+describe("Imports sécurisés", () => {
+  async function upload(acc: TestAccount, name: string, mime: string, data: Buffer) {
+    const app = await getApp();
+    const boundary = "----forlife";
+    const head = Buffer.from(`--${boundary}\r\nContent-Disposition: form-data; name="type"\r\n\r\nlogo\r\n--${boundary}\r\nContent-Disposition: form-data; name="file"; filename="${name}"\r\nContent-Type: ${mime}\r\n\r\n`);
+    return app.inject({ method: "POST", url: `/api/workspaces/${acc.workspaceId}/assets`, headers: { ...auth(acc), "content-type": `multipart/form-data; boundary=${boundary}` }, payload: Buffer.concat([head, data, Buffer.from(`\r\n--${boundary}--\r\n`)]) });
+  }
+
+  it("convertit un logo SVG en PNG : aucun script ne peut être servi", async () => {
+    const acc = await signup();
+    const svg = '<svg xmlns="http://www.w3.org/2000/svg" width="200" height="100"><rect width="200" height="100" fill="#EA7822"/><set attributeName="onmouseover" to="alert(1)"/></svg>';
+    const res = await upload(acc, "logo.svg", "image/svg+xml", Buffer.from(svg));
+    expect(res.statusCode).toBe(201);
+    expect(res.json().mime).toBe("image/png");
+    expect(res.json().fileName).toBe("logo.png");
+    const app = await getApp();
+    const file = await app.inject({ method: "GET", url: `/api/workspaces/${acc.workspaceId}/assets/${res.json().id}/file`, headers: auth(acc) });
+    expect(file.headers["content-type"]).toBe("image/png");
+    expect(file.rawPayload.subarray(1, 4).toString()).toBe("PNG");
+    // SVG avec image intégrée : refusé (pas de décodage caché).
+    const embedded = '<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="10" height="10"><image xlink:href="data:image/png;base64,AAAA" width="10" height="10"/></svg>';
+    expect((await upload(acc, "x.svg", "image/svg+xml", Buffer.from(embedded))).statusCode).toBe(400);
+  });
+
+  it("refuse une image aux dimensions démesurées sans la décoder", async () => {
+    const acc = await signup();
+    // En-tête PNG valide annonçant 20 000 × 20 000 pixels.
+    const png = productPng();
+    const bomb = Buffer.from(png);
+    bomb.writeUInt32BE(20000, 16);
+    bomb.writeUInt32BE(20000, 20);
+    expect((await upload(acc, "bombe.png", "image/png", bomb)).statusCode).toBe(400);
+    expect((await upload(acc, "ok.png", "image/png", png)).statusCode).toBe(201);
+  });
+});
+

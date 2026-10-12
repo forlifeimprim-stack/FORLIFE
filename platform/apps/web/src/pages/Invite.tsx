@@ -25,7 +25,7 @@ export function InvitePage() {
   const [f, setF] = useState({ name: "", password: "" });
 
   useEffect(() => {
-    api.get<InviteInfo>(`/invitations/${token}`).then(setInfo).catch((e) => setErr(errorMessage(e)));
+    api.post<InviteInfo>("/invitations/lookup", { token }).then(setInfo).catch((e) => setErr(errorMessage(e)));
   }, [token]);
 
   const finish = async (organizationId: string) => {
@@ -42,7 +42,7 @@ export function InvitePage() {
     setErr(null);
     try {
       if (!me && info?.accountExists) await login(info.email, f.password);
-      const res = await api.post<{ accessToken?: string; organizationId: string }>(`/invitations/${token}/accept`, me || info?.accountExists ? {} : f);
+      const res = await api.post<{ accessToken?: string; organizationId: string }>("/invitations/accept", me || info?.accountExists ? { token } : { token, ...f });
       if (res.accessToken) await adoptSession(res.accessToken);
       await finish(res.organizationId);
     } catch (e2) {

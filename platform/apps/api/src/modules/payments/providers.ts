@@ -1,6 +1,7 @@
 import { createHmac, timingSafeEqual } from "node:crypto";
 import { loadConfig } from "../../config.js";
 import { prisma } from "../../lib/prisma.js";
+import { deriveKey } from "../../lib/crypto.js";
 
 export interface CheckoutInput {
   paymentId: string;
@@ -89,7 +90,7 @@ export class CinetPayProvider implements PaymentProvider {
 
 // ───── Démonstration : aucun argent réel, parcours identique ─────
 
-export const demoToken = (paymentId: string) => createHmac("sha256", loadConfig().JWT_SECRET).update(`pay-demo:${paymentId}`).digest("base64url").slice(0, 32);
+export const demoToken = (paymentId: string) => createHmac("sha256", deriveKey(loadConfig().JWT_SECRET, "payment-demo")).update(`pay-demo:${paymentId}`).digest("base64url").slice(0, 32);
 
 export function verifyDemoToken(paymentId: string, token: string): boolean {
   const a = Buffer.from(demoToken(paymentId));

@@ -1,6 +1,6 @@
 import type { FastifyInstance } from "fastify";
 import { z } from "zod";
-import { CAMPAIGN_STATUSES, CHANNELS, OBJECTIVE_TYPES, TASK_CREDIT_COST } from "@forlife/shared";
+import { CAMPAIGN_STATUSES, CHANNELS, OBJECTIVE_TYPES, TASK_CREDIT_COST, can } from "@forlife/shared";
 import { prisma } from "../../lib/prisma.js";
 import { badRequest, notFound, paymentRequired } from "../../lib/errors.js";
 import { parse } from "../../lib/validation.js";
@@ -33,12 +33,14 @@ export async function campaignRoutes(app: FastifyInstance) {
 
   app.get("/api/workspaces/:workspaceId/campaigns", async (req) => {
     const { workspaceId } = parse(wsParams, req.params);
-    await requireWorkspace(req, workspaceId, "campaigns:read");
+    const ctx = await requireWorkspace(req, workspaceId, "campaigns:read");
     const campaigns = await prisma.campaign.findMany({
       where: { workspaceId },
       include: { _count: { select: { contents: true, leads: true } } },
       orderBy: [{ status: "asc" }, { createdAt: "desc" }],
     });
+    // Leads et chiffre d'affaires : réservés aux rôles ayant accès au CRM.
+    if (!can(ctx.role, "crm:read")) return campaigns.map(({ _count, ...c }) => ({ ...c, _count: { contents: _count.contents, leads: null }, wonCount: null, wonValue: null }));
     const won = await prisma.lead.groupBy({ by: ["campaignId"], where: { workspaceId, stage: "WON", campaignId: { in: campaigns.map((c) => c.id) } }, _count: true, _sum: { valueAmount: true } });
     const byId = new Map(won.map((w) => [w.campaignId, w]));
     return campaigns.map((c) => ({ ...c, wonCount: byId.get(c.id)?._count ?? 0, wonValue: byId.get(c.id)?._sum.valueAmount ?? 0 }));
@@ -57,7 +59,8 @@ export async function campaignRoutes(app: FastifyInstance) {
   /** Vue campagne : brief, contenus, leads et résultats commerciaux réels. */
   app.get("/api/workspaces/:workspaceId/campaigns/:id", async (req) => {
     const { workspaceId, id } = parse(wsIdParams, req.params);
-    await requireWorkspace(req, workspaceId, "campaigns:read");
+    const ctx = await requireWorkspace(req, workspaceId, "campaigns:read");
+    const crm = can(ctx.role, "crm:read");
     const c = await prisma.campaign.findFirst({
       where: { id, workspaceId },
       include: {
@@ -66,6 +69,7 @@ export async function campaignRoutes(app: FastifyInstance) {
       },
     });
     if (!c) throw notFound("Campagne");
+    if (!crm) return { ...c, forms: [], results: null, packCreditCost: { ideas: TASK_CREDIT_COST["content.ideas"], perPost: TASK_CREDIT_COST["content.post"] } };
     const leads = await prisma.lead.groupBy({ by: ["stage"], where: { workspaceId, campaignId: id }, _count: true, _sum: { valueAmount: true } });
     const total = leads.reduce((n, l) => n + l._count, 0);
     const won = leads.find((l) => l.stage === "WON");

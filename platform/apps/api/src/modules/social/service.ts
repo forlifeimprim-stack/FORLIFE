@@ -39,7 +39,8 @@ export async function cancelPublications(tx: Tx, contentId: string) {
 
 /** Réserve atomiquement les publications arrivées à échéance et les confie à la file de jobs. */
 export async function dispatchDuePublications(now = new Date()): Promise<number> {
-  const due = await prisma.publication.findMany({ where: { status: "QUEUED", scheduledAt: { lte: now } }, take: 100, orderBy: { scheduledAt: "asc" }, include: { workspace: { select: { organizationId: true } } } });
+  // Les organisations suspendues ne publient plus rien.
+  const due = await prisma.publication.findMany({ where: { status: "QUEUED", scheduledAt: { lte: now }, workspace: { status: "ACTIVE", organization: { status: "ACTIVE" } } }, take: 100, orderBy: { scheduledAt: "asc" }, include: { workspace: { select: { organizationId: true } } } });
   let n = 0;
   for (const pub of due) {
     const claimed = await prisma.publication.updateMany({ where: { id: pub.id, status: "QUEUED" }, data: { status: "PUBLISHING" } });
@@ -70,7 +71,7 @@ export async function publishJob(job: Job): Promise<Prisma.InputJsonValue> {
   if (pub.status === "PUBLISHED" || pub.externalId) return { externalId: pub.externalId, alreadyPublished: true };
   if (pub.status === "CANCELLED") return { cancelled: true };
   const variant = await prisma.contentVariant.findUniqueOrThrow({ where: { id: pub.variantId } });
-  const content = await prisma.contentItem.findUniqueOrThrow({ where: { id: pub.contentId }, select: { mediaVersionId: true } });
+  const content = await prisma.contentItem.findUniqueOrThrow({ where: { id: pub.contentId }, select: { mediaVersionId: true, contentVersion: true, approvedVersion: true, workspace: { select: { organization: { select: { status: true } } } } } });
   const imageUrl = content.mediaVersionId ? signedMediaUrl(content.mediaVersionId) : null;
   const account = pub.socialAccount;
   const fail = async (err: SocialError | Error, final: boolean) => {
@@ -80,6 +81,9 @@ export async function publishJob(job: Job): Promise<Prisma.InputJsonValue> {
     if (final) await settleContent(pub.contentId);
   };
   try {
+    // Garde-fous au moment de publier : version approuvée uniquement, organisation active.
+    if (content.approvedVersion !== content.contentVersion) throw new SocialError("INVALID", "Contenu modifié depuis son approbation : publication annulée");
+    if (content.workspace.organization.status !== "ACTIVE") throw new SocialError("INVALID", "Organisation suspendue : publication annulée");
     if (account.status !== "CONNECTED" || !account.credential) throw new SocialError("AUTH", "Compte social déconnecté : reconnectez-le dans le Social Hub");
     const token = decryptSecret(account.credential.accessTokenEnc, loadConfig().ENCRYPTION_KEY);
     const res = await adapterFor(account.provider).publish(account, token, { text: hashtagsText(variant.body, variant.hashtags), imageUrl }, pub.idempotencyKey);

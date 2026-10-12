@@ -32,9 +32,9 @@ interface Campaign {
   channels: Channel[];
   startAt: string | null;
   endAt: string | null;
-  _count?: { contents: number; leads: number };
-  wonCount?: number;
-  wonValue?: number;
+  _count?: { contents: number; leads: number | null };
+  wonCount?: number | null;
+  wonValue?: number | null;
 }
 
 const statusTone = (s: CampaignStatus) => (s === "ACTIVE" ? "success" : s === "PAUSED" ? "warning" : s === "COMPLETED" ? "neutral" : "accent");
@@ -71,12 +71,16 @@ export function CampaignsPage() {
                 <span>
                   <b>{c._count?.contents ?? 0}</b> <span className="small muted">contenus</span>
                 </span>
-                <span>
-                  <b>{c._count?.leads ?? 0}</b> <span className="small muted">leads</span>
-                </span>
-                <span>
-                  <b>{fmtXof(c.wonValue ?? 0)}</b> <span className="small muted">gagnés</span>
-                </span>
+                {c.wonValue != null && (
+                  <>
+                    <span>
+                      <b>{c._count?.leads ?? 0}</b> <span className="small muted">leads</span>
+                    </span>
+                    <span>
+                      <b>{fmtXof(c.wonValue)}</b> <span className="small muted">gagnés</span>
+                    </span>
+                  </>
+                )}
               </div>
             </Link>
           ))}
@@ -192,7 +196,8 @@ function CampaignModal({ open, ws, initial, onClose, onSaved }: { open: boolean;
 interface CampaignDetail extends Campaign {
   contents: { id: string; title: string; status: ContentStatus; scheduledAt: string | null; variants: { channel: Channel }[] }[];
   forms: { id: string; slug: string; title: string; submissions: number; active: boolean }[];
-  results: { leads: number; byStage: Partial<Record<LeadStage, number>>; wonCount: number; wonValue: number; costPerLead: number | null };
+  /** null : résultats commerciaux réservés aux rôles ayant accès au CRM. */
+  results: { leads: number; byStage: Partial<Record<LeadStage, number>>; wonCount: number; wonValue: number; costPerLead: number | null } | null;
   packCreditCost: { ideas: number; perPost: number };
 }
 
@@ -263,18 +268,19 @@ export function CampaignDetailPage() {
       />
       <div className="stack">
         {err && <Alert tone="error">{err}</Alert>}
+        {c.results && (
         <div className="grid grid-4">
           <Card>
             <div className="kpi">
               <span className="label">Leads générés</span>
-              <span className="value">{c.results.leads}</span>
+              <span className="value">{c.results!.leads}</span>
             </div>
           </Card>
           <Card>
             <div className="kpi">
               <span className="label">Ventes gagnées</span>
-              <span className="value">{fmtXof(c.results.wonValue)}</span>
-              <span className="small muted">{c.results.wonCount} affaire(s)</span>
+              <span className="value">{fmtXof(c.results!.wonValue)}</span>
+              <span className="small muted">{c.results!.wonCount} affaire(s)</span>
             </div>
           </Card>
           <Card>
@@ -286,11 +292,12 @@ export function CampaignDetailPage() {
           <Card>
             <div className="kpi">
               <span className="label">Coût par lead (réel)</span>
-              <span className="value">{c.results.costPerLead != null ? fmtXof(c.results.costPerLead) : "—"}</span>
+              <span className="value">{c.results!.costPerLead != null ? fmtXof(c.results!.costPerLead) : "—"}</span>
               <span className="small muted">budget ÷ leads</span>
             </div>
           </Card>
         </div>
+        )}
         <div className="grid grid-2">
           <Card title="Brief central">
             <p style={{ whiteSpace: "pre-wrap", marginTop: 0 }}>{c.brief || <span className="muted">Pas encore de brief.</span>}</p>
@@ -306,8 +313,9 @@ export function CampaignDetailPage() {
               {c.endAt ? ` au ${fmtDate(c.endAt)}` : ""}
             </p>
           </Card>
+        {c.results && (
           <Card title="Pipeline de la campagne">
-            {c.results.leads === 0 ? (
+            {c.results!.leads === 0 ? (
               <Empty title="Aucun lead rattaché pour l'instant">
                 <Link to="/crm" className="small">
                   Ouvrir le CRM
@@ -315,15 +323,16 @@ export function CampaignDetailPage() {
               </Empty>
             ) : (
               <ul className="list">
-                {(Object.keys(c.results.byStage) as LeadStage[]).map((s) => (
+                {(Object.keys(c.results!.byStage) as LeadStage[]).map((s) => (
                   <li key={s}>
                     <span>{LEAD_STAGE_LABELS[s]}</span>
-                    <b>{c.results.byStage[s]}</b>
+                    <b>{c.results!.byStage[s]}</b>
                   </li>
                 ))}
               </ul>
             )}
           </Card>
+        )}
         </div>
         <Card
           title="Contenus de la campagne"

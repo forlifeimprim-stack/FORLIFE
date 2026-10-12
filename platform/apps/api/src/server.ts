@@ -29,6 +29,8 @@ import { paymentRoutes } from "./modules/payments/routes.js";
 import { analyticsRoutes } from "./modules/analytics/routes.js";
 import { invitationRoutes } from "./modules/org/invitations.js";
 import { passwordRoutes } from "./modules/identity/password.js";
+import { verificationRoutes } from "./modules/identity/verification.js";
+import { clientIp } from "./lib/request.js";
 
 export async function buildServer(options: { logger?: boolean } = {}) {
   const cfg = loadConfig();
@@ -45,7 +47,9 @@ export async function buildServer(options: { logger?: boolean } = {}) {
       const h = req.headers["x-correlation-id"];
       return typeof h === "string" && /^[\w-]{8,64}$/.test(h) ? h : randomUUID();
     },
-    trustProxy: true,
+    // Jamais « trustProxy: true » : l'entrée de gauche de X-Forwarded-For est fournie par le client.
+    // L'adresse du client est déterminée par lib/request.ts (clientIp).
+    trustProxy: false,
     bodyLimit: 1024 * 1024,
   });
 
@@ -55,13 +59,9 @@ export async function buildServer(options: { logger?: boolean } = {}) {
   await app.register(cors, { origin: cfg.WEB_ORIGIN.split(","), credentials: true });
   await app.register(cookie);
   await app.register(jwt, { secret: cfg.JWT_SECRET });
-  await app.register(multipart);
-  await app.register(rateLimit, { max: 300, timeWindow: "1 minute" });
-
-  // Notifications des prestataires de paiement (formulaire URL-encodé).
-  app.addContentTypeParser("application/x-www-form-urlencoded", { parseAs: "string" }, (_req, body, done) => {
-    done(null, Object.fromEntries(new URLSearchParams(body as string)));
-  });
+  // Un seul fichier par requête, quelques petits champs : rien d'autre n'est mis en mémoire.
+  await app.register(multipart, { limits: { fields: 5, fieldSize: 1024, parts: 6, files: 1, fileSize: cfg.MAX_UPLOAD_BYTES } });
+  await app.register(rateLimit, { max: 300, timeWindow: "1 minute", keyGenerator: (req) => clientIp(req) });
 
   app.addHook("onSend", async (req, reply) => {
     reply.header("x-correlation-id", req.id);
@@ -92,6 +92,7 @@ export async function buildServer(options: { logger?: boolean } = {}) {
   await app.register(jobRoutes);
   await app.register(dashboardRoutes);
   await app.register(passwordRoutes);
+  await app.register(verificationRoutes);
   await app.register(invitationRoutes);
   await app.register(adminRoutes);
   await app.register(crmRoutes);

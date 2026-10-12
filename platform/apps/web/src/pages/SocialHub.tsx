@@ -1,5 +1,5 @@
-import { useEffect, useState } from "react";
-import { Link, useSearchParams } from "react-router-dom";
+import { useEffect, useRef, useState } from "react";
+import { Link, useLocation, useNavigate, useParams, useSearchParams } from "react-router-dom";
 import { PUBLICATION_STATUS_LABELS, SOCIAL_PROVIDER_LABELS, type SocialProvider } from "@forlife/shared";
 import { api } from "../lib/api";
 import { useAuth, useWorkspace } from "../lib/auth";
@@ -41,20 +41,12 @@ const pubTone = (s: PubStatus) => (s === "PUBLISHED" ? "success" : s === "FAILED
 export function SocialHubPage() {
   const { ws } = useWorkspace();
   const { can } = useAuth();
-  const [params, setParams] = useSearchParams();
+  const routerLocation = useLocation();
   const accounts = useResource<{ accounts: Account[]; connectors: Record<string, boolean> }>(`${ws}/social/accounts`);
   const pubs = useResource<Publication[]>(`${ws}/social/publications`);
   const overview = useResource<Overview>(`${ws}/social/overview`);
-  const [msg, setMsg] = useState<{ tone: "success" | "error"; text: string } | null>(null);
-
-  // Retour de la connexion OAuth
-  useEffect(() => {
-    const connected = params.get("connected");
-    const error = params.get("error");
-    if (connected) setMsg({ tone: "success", text: `${connected} compte(s) connecté(s) avec succès.` });
-    if (error) setMsg({ tone: "error", text: error });
-    if (connected || error) setParams({}, { replace: true });
-  }, [params, setParams]);
+  // Message transmis par la page de retour OAuth (jamais lu depuis l'URL).
+  const [msg, setMsg] = useState<{ tone: "success" | "error"; text: string } | null>((routerLocation.state as { msg?: { tone: "success" | "error"; text: string } } | null)?.msg ?? null);
 
   const connect = async (connector: "meta" | "sandbox") => {
     setMsg(null);
@@ -263,5 +255,93 @@ function PubTable({ items, onRetry }: { items: Publication[]; onRetry?: (p: Publ
         </tbody>
       </table>
     </div>
+  );
+}
+
+interface PendingAccount {
+  provider: SocialProvider;
+  externalId: string;
+  name: string;
+  avatarUrl: string | null;
+}
+
+/**
+ * Retour OAuth : la liaison est terminée par l'utilisateur connecté (sa session), puis il choisit
+ * explicitement les pages à connecter à ce workspace.
+ */
+export function SocialCallbackPage() {
+  const { connector = "" } = useParams();
+  const [params] = useSearchParams();
+  const navigate = useNavigate();
+  const [accounts, setAccounts] = useState<PendingAccount[] | null>(null);
+  const [chosen, setChosen] = useState<string[]>([]);
+  const [err, setErr] = useState<string | null>(null);
+  const [busy, setBusy] = useState(false);
+  const started = useRef(false);
+  const state = params.get("state") ?? "";
+
+  useEffect(() => {
+    if (started.current) return;
+    started.current = true;
+    api
+      .post<{ accounts: PendingAccount[] }>("/social/oauth/complete", { connector, state, code: params.get("code") ?? undefined, error: params.get("error") ? "denied" : undefined })
+      .then((r) => {
+        setAccounts(r.accounts);
+        setChosen(r.accounts.length === 1 ? [r.accounts[0]!.externalId] : []);
+      })
+      .catch((e) => setErr(errorMessage(e)));
+  }, [connector, state, params]);
+
+  const save = async () => {
+    setBusy(true);
+    try {
+      const r = await api.post<{ connected: number }>("/social/oauth/select", { state, externalIds: chosen });
+      navigate("/social", { replace: true, state: { msg: { tone: "success", text: `${r.connected} compte(s) connecté(s) avec succès.` } } });
+    } catch (e) {
+      setErr(errorMessage(e));
+      setBusy(false);
+    }
+  };
+
+  return (
+    <>
+      <PageHeader title="Connexion des comptes" question="Quelles pages voulez-vous publier depuis cet espace ?" />
+      <Card>
+        {err && (
+          <div className="stack">
+            <Alert tone="error">{err}</Alert>
+            <Link to="/social">Retour au Social Hub</Link>
+          </div>
+        )}
+        {!err && !accounts && <p className="muted">Finalisation de la connexion…</p>}
+        {accounts && (
+          <div className="stack">
+            <ul className="list">
+              {accounts.map((a) => (
+                <li key={a.externalId}>
+                  <label className="row" style={{ cursor: "pointer" }}>
+                    <input type="checkbox" checked={chosen.includes(a.externalId)} onChange={(e) => setChosen((c) => (e.target.checked ? [...c, a.externalId] : c.filter((x) => x !== a.externalId)))} />
+                    {a.avatarUrl ? <img src={a.avatarUrl} alt="" width={32} height={32} style={{ borderRadius: "50%" }} /> : <span className="avatar" />}
+                    <span>
+                      <strong>{a.name}</strong>
+                      <div className="small muted">{SOCIAL_PROVIDER_LABELS[a.provider]}</div>
+                    </span>
+                  </label>
+                </li>
+              ))}
+            </ul>
+            <div className="row">
+              <Button busy={busy} disabled={!chosen.length} onClick={save}>
+                Connecter {chosen.length || ""} compte(s)
+              </Button>
+              <Link to="/social" className="small">
+                Annuler
+              </Link>
+            </div>
+            <p className="small muted">Seuls les comptes cochés sont connectés. Leurs jetons d'accès sont chiffrés et ne quittent jamais nos serveurs.</p>
+          </div>
+        )}
+      </Card>
+    </>
   );
 }

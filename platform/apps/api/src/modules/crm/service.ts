@@ -12,14 +12,19 @@ export interface ContactInput {
   consentWhatsApp?: boolean;
 }
 
-/** Retrouve ou crée un contact, dédoublonné par téléphone normalisé. */
-export async function upsertContact(tx: Tx, workspaceId: string, c: ContactInput) {
+/**
+ * Retrouve ou crée un contact, dédoublonné par téléphone normalisé.
+ * `untrusted` (formulaire public, sans authentification) : une fiche existante n'est jamais modifiée
+ * — ni ses coordonnées, ni son consentement (un retrait de consentement ne peut pas être annulé par un tiers).
+ */
+export async function upsertContact(tx: Tx, workspaceId: string, c: ContactInput, opts: { untrusted?: boolean } = {}) {
   const phone = c.phone ? normalizePhone(c.phone) : null;
   if (c.phone && !phone) throw badRequest("Numéro de téléphone invalide");
   if (!phone && !c.email) throw badRequest("Un téléphone ou un email est requis");
   const consent = c.consentWhatsApp ? { consentWhatsApp: true, consentAt: new Date() } : {};
   if (phone) {
     const existing = await tx.contact.findUnique({ where: { workspaceId_phone: { workspaceId, phone } } });
+    if (existing && opts.untrusted) return existing;
     if (existing) {
       return tx.contact.update({
         where: { id: existing.id },
@@ -52,9 +57,9 @@ export async function rescore(tx: Tx, leadId: string) {
 export async function createLead(
   tx: Tx,
   workspaceId: string,
-  input: { contact: ContactInput; title?: string; source: LeadSource; campaignId?: string | null; contentId?: string | null; formId?: string | null; valueAmount?: number | null; note?: string | null; actorId?: string | null },
+  input: { contact: ContactInput; title?: string; source: LeadSource; campaignId?: string | null; contentId?: string | null; formId?: string | null; valueAmount?: number | null; note?: string | null; actorId?: string | null; untrusted?: boolean },
 ) {
-  const contact = await upsertContact(tx, workspaceId, input.contact);
+  const contact = await upsertContact(tx, workspaceId, input.contact, { untrusted: input.untrusted });
   const lead = await tx.lead.create({
     data: {
       workspaceId,

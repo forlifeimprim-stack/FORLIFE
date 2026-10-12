@@ -1,7 +1,7 @@
 import type { FastifyInstance } from "fastify";
 import { z } from "zod";
 import { prisma } from "../../lib/prisma.js";
-import { badRequest, notFound } from "../../lib/errors.js";
+import { badRequest, conflict, notFound } from "../../lib/errors.js";
 import { parse } from "../../lib/validation.js";
 import { audit } from "../../lib/audit.js";
 import { auditCtx, authenticate, requireWorkspace } from "../../plugins/auth.js";
@@ -45,7 +45,13 @@ export async function approvalRoutes(app: FastifyInstance) {
       });
       if (!res.count) throw badRequest("Cette demande a déjà été traitée");
       if (approval.entityType === "content") {
-        await transition(tx, workspaceId, approval.entityId, body.decision === "APPROVED" ? "APPROVED" : "DRAFT");
+        const item = await tx.contentItem.findFirst({ where: { id: approval.entityId, workspaceId }, select: { contentVersion: true } });
+        if (!item) throw notFound("Contenu");
+        // La décision ne vaut que pour la version relue.
+        if (body.decision === "APPROVED" && approval.contentVersion !== item.contentVersion) {
+          throw conflict("Le contenu a changé depuis cette demande : relisez la nouvelle version");
+        }
+        await transition(tx, workspaceId, approval.entityId, body.decision === "APPROVED" ? "APPROVED" : "DRAFT", body.decision === "APPROVED" ? { approvedVersion: item.contentVersion } : {});
       }
       await audit({ ...auditCtx(ctx), action: `approval.${body.decision.toLowerCase()}`, entityType: approval.entityType, entityId: approval.entityId, metadata: { approvalId: id, selfApproval: approval.requestedById === ctx.userId } }, tx);
       return { ok: true, status: body.decision };

@@ -61,11 +61,39 @@ describe("Isolation des tenants et RBAC", () => {
     const admin = await addMember(owner, "ADMIN");
     const app = await getApp();
     const target = await signup();
-    const escalate = await app.inject({ method: "POST", url: `/api/orgs/${owner.organizationId}/members`, headers: auth(admin), payload: { email: target.email, role: "OWNER" } });
+    const escalate = await app.inject({ method: "POST", url: `/api/orgs/${owner.organizationId}/invitations`, headers: auth(admin), payload: { email: target.email, role: "OWNER" } });
     expect(escalate.statusCode).toBe(403);
+    // L'ajout direct (sans invitation acceptée) n'existe plus.
+    expect((await app.inject({ method: "POST", url: `/api/orgs/${owner.organizationId}/members`, headers: auth(owner), payload: { email: target.email, role: "VIEWER" } })).statusCode).toBe(404);
     const ownerMembership = await prisma.membership.findFirstOrThrow({ where: { organizationId: owner.organizationId, role: "OWNER" } });
     const removeOwner = await app.inject({ method: "DELETE", url: `/api/orgs/${owner.organizationId}/members/${ownerMembership.id}`, headers: auth(owner) });
     expect(removeOwner.statusCode).toBe(400);
+  });
+
+  it("passer un membre en agence restreint toujours son accès aux workspaces assignés", async () => {
+    const owner = await signup();
+    await prisma.subscription.update({ where: { organizationId: owner.organizationId }, data: { planCode: "AGENCY" } });
+    const app = await getApp();
+    const ws2 = (await app.inject({ method: "POST", url: `/api/orgs/${owner.organizationId}/workspaces`, headers: auth(owner), payload: { name: "Client B" } })).json();
+    const editor = await addMember(owner, "EDITOR");
+    const m = await prisma.membership.findFirstOrThrow({ where: { organizationId: owner.organizationId, userId: editor.userId } });
+    expect(m.allWorkspaces).toBe(true);
+    // Sans workspace assigné : refusé ; avec : accès limité, même si le client demande « tous les workspaces ».
+    expect((await app.inject({ method: "PATCH", url: `/api/orgs/${owner.organizationId}/members/${m.id}`, headers: auth(owner), payload: { role: "AGENCY" } })).statusCode).toBe(400);
+    const r = await app.inject({ method: "PATCH", url: `/api/orgs/${owner.organizationId}/members/${m.id}`, headers: auth(owner), payload: { role: "AGENCY", allWorkspaces: true, workspaceIds: [ws2.id] } });
+    expect(r.statusCode).toBe(200);
+    expect(r.json().allWorkspaces).toBe(false);
+    expect((await app.inject({ method: "GET", url: `/api/workspaces/${owner.workspaceId}/contents`, headers: auth(editor) })).statusCode).toBe(404);
+    expect((await app.inject({ method: "GET", url: `/api/workspaces/${ws2.id}/contents`, headers: auth(editor) })).statusCode).toBe(200);
+  });
+
+  it("le plafond de workspaces résiste aux requêtes simultanées", async () => {
+    const owner = await signup();
+    await prisma.subscription.update({ where: { organizationId: owner.organizationId }, data: { planCode: "BUSINESS" } }); // 3 workspaces
+    const app = await getApp();
+    const res = await Promise.all(Array.from({ length: 6 }, (_, i) => app.inject({ method: "POST", url: `/api/orgs/${owner.organizationId}/workspaces`, headers: auth(owner), payload: { name: `Client ${i}` } })));
+    expect(res.filter((r) => r.statusCode === 201)).toHaveLength(2);
+    expect(await prisma.workspace.count({ where: { organizationId: owner.organizationId } })).toBe(3);
   });
 
   it("applique les quotas du plan", async () => {

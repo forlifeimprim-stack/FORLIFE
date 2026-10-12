@@ -1,6 +1,7 @@
 import type { Prisma } from "@prisma/client";
 import { TASK_CREDIT_COST } from "@forlife/shared";
 import { prisma } from "../../lib/prisma.js";
+import { loadConfig } from "../../config.js";
 import { AppError } from "../../lib/errors.js";
 import { ledger } from "../billing/ledger.js";
 import { getRegistry } from "./registry.js";
@@ -67,6 +68,12 @@ export async function runAI<I, O>(req: AIRequest<I>): Promise<AIResponse<O>> {
       const output = parsed.data as O;
       const safety = checkSafety(prompt.textForSafety(output), req.forbiddenWords);
       const latencyMs = Date.now() - started;
+      // En production, un contenu simulé (fournisseur de démonstration) n'est jamais facturé.
+      const simulatedInProd = provider.name === "mock" && loadConfig().NODE_ENV === "production";
+      if (simulatedInProd && !charge.replayed) {
+        await ledger.refund({ organizationId: req.organizationId, amount: credits, reason: `Remboursement IA : ${prompt.task} (contenu simulé)`, idempotencyKey: `ai-refund:${req.idempotencyKey}`, refType: "ai_run", refId: run.id });
+      }
+      const billed = charge.replayed || simulatedInProd ? 0 : credits;
       await prisma.$transaction([
         prisma.aIRun.update({
           where: { id: run.id },
@@ -79,7 +86,7 @@ export async function runAI<I, O>(req: AIRequest<I>): Promise<AIResponse<O>> {
             latencyMs,
             inputTokens: result.inputTokens ?? null,
             outputTokens: result.outputTokens ?? null,
-            creditsCharged: charge.replayed ? 0 : credits,
+            creditsCharged: billed,
             safety: safety as unknown as Prisma.InputJsonValue,
             finishedAt: new Date(),
           },
@@ -93,7 +100,7 @@ export async function runAI<I, O>(req: AIRequest<I>): Promise<AIResponse<O>> {
             provider: provider.name,
             model: result.model,
             units: (result.inputTokens ?? 0) + (result.outputTokens ?? 0),
-            credits: charge.replayed ? 0 : credits,
+            credits: billed,
           },
         }),
       ]);
@@ -102,7 +109,7 @@ export async function runAI<I, O>(req: AIRequest<I>): Promise<AIResponse<O>> {
         output,
         provider: provider.name,
         model: result.model,
-        creditsCharged: charge.replayed ? 0 : credits,
+        creditsCharged: billed,
         safety,
         isSimulated: provider.name === "mock",
         latencyMs,

@@ -1,9 +1,12 @@
 import type { FastifyInstance } from "fastify";
 import { z } from "zod";
 import { prisma } from "../../lib/prisma.js";
+import { clientIp } from "../../lib/request.js";
 import { badRequest, notFound } from "../../lib/errors.js";
 import { parse } from "../../lib/validation.js";
 import { audit } from "../../lib/audit.js";
+import { limit } from "../../lib/throttle.js";
+import { normalizePhone } from "@forlife/shared";
 import { createLead } from "./service.js";
 
 const slugParams = z.object({ slug: z.string().min(3).max(40) });
@@ -34,6 +37,9 @@ export async function publicFormRoutes(app: FastifyInstance) {
     const form = await prisma.leadForm.findUnique({ where: { slug }, include: { workspace: { select: { organizationId: true, organization: { select: { status: true } } } } } });
     if (!form || !form.active || form.workspace.organization.status !== "ACTIVE") throw notFound("Formulaire");
     if (body.website) throw badRequest("Requête invalide");
+    // Limites indépendantes de l'adresse IP : par formulaire et par numéro.
+    await limit(`form:${form.id}`, 200, 3600, "Ce formulaire reçoit trop de demandes. Réessayez dans quelques minutes.");
+    await limit(`form-phone:${form.workspaceId}:${normalizePhone(body.phone) ?? body.phone}`, 3, 86400, "Votre demande a déjà été enregistrée. Nous vous recontactons très vite.");
     const { lead } = await prisma.$transaction(async (tx) => {
       const r = await createLead(tx, form.workspaceId, {
         contact: { name: body.name, phone: body.phone, email: body.email ?? null, consentWhatsApp: true },
@@ -41,10 +47,11 @@ export async function publicFormRoutes(app: FastifyInstance) {
         source: "FORM",
         campaignId: form.campaignId,
         formId: form.id,
-        note: body.message ? `Message : ${body.message}` : null,
+        untrusted: true,
+        note: [body.message ? `Message : ${body.message}` : null, `Coordonnées saisies sur le formulaire : ${body.name}${body.email ? `, ${body.email}` : ""}`].filter(Boolean).join("\n"),
       });
       await tx.leadForm.update({ where: { id: form.id }, data: { submissions: { increment: 1 } } });
-      await audit({ organizationId: form.workspace.organizationId, workspaceId: form.workspaceId, action: "lead.captured", entityType: "lead", entityId: r.lead.id, ip: req.ip, correlationId: req.id, metadata: { formId: form.id } }, tx);
+      await audit({ organizationId: form.workspace.organizationId, workspaceId: form.workspaceId, action: "lead.captured", entityType: "lead", entityId: r.lead.id, ip: clientIp(req), correlationId: req.id, metadata: { formId: form.id } }, tx);
       return r;
     });
     return { ok: true, thankYou: form.thankYou, reference: lead.id.slice(-6).toUpperCase() };

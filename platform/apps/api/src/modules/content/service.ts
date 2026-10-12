@@ -20,7 +20,7 @@ export async function transition(
   workspaceId: string,
   id: string,
   to: ContentStatus,
-  extra: { scheduledAt?: Date | null } = {},
+  extra: { scheduledAt?: Date | null; approvedVersion?: number } = {},
 ) {
   const item = await tx.contentItem.findFirst({ where: { id, workspaceId } });
   if (!item) throw notFound("Contenu");
@@ -33,4 +33,21 @@ export async function transition(
   });
   if (!res.count) throw conflict("Le contenu a été modifié entre-temps, rechargez la page");
   return { before: item.status };
+}
+
+/**
+ * Modification de fond d'un contenu (texte, variante, visuel) : nouvelle version, retour en brouillon
+ * si elle avait été soumise, approuvée ou était en échec, et annulation des demandes d'approbation en cours.
+ * L'approbation précédente ne vaut plus : rien ne pourra être programmé avant une nouvelle validation.
+ */
+export async function markContentChanged(tx: Tx, id: string, status: ContentStatus) {
+  const backToDraft = status === "APPROVED" || status === "REVIEW" || status === "FAILED";
+  await tx.contentItem.update({ where: { id }, data: { contentVersion: { increment: 1 }, ...(backToDraft ? { status: "DRAFT" } : {}) } });
+  await tx.approval.updateMany({ where: { entityType: "content", entityId: id, status: "PENDING" }, data: { status: "REJECTED", comment: "Contenu modifié après la demande : nouvelle soumission nécessaire", decidedAt: new Date() } });
+  return backToDraft;
+}
+
+/** Seule la version approuvée d'un contenu peut être programmée ou publiée. */
+export function assertApprovedVersion(item: { contentVersion: number; approvedVersion: number | null }) {
+  if (item.approvedVersion !== item.contentVersion) throw badRequest("Ce contenu a été modifié depuis son approbation : soumettez-le de nouveau");
 }

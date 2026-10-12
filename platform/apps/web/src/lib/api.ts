@@ -38,7 +38,7 @@ export async function refreshSession(): Promise<boolean> {
 }
 
 async function request<T>(method: string, path: string, body?: unknown, extraHeaders: Record<string, string> = {}, retry = true): Promise<T> {
-  const headers: Record<string, string> = { ...extraHeaders };
+  const headers: Record<string, string> = { "x-forlife-csrf": "1", ...extraHeaders };
   if (accessToken) headers.authorization = `Bearer ${accessToken}`;
   let payload: BodyInit | undefined;
   if (body instanceof FormData) payload = body;

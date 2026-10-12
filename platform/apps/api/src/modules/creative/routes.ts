@@ -1,7 +1,8 @@
 import type { FastifyInstance } from "fastify";
 import { z } from "zod";
 import { CREATIVE_FORMATS, CREATIVE_LAYOUTS, OBJECTIVE_TYPES, TASK_CREDIT_COST } from "@forlife/shared";
-import { prisma } from "../../lib/prisma.js";
+import { prisma, type Tx } from "../../lib/prisma.js";
+import { markContentChanged } from "../content/service.js";
 import { badRequest, notFound } from "../../lib/errors.js";
 import { parse } from "../../lib/validation.js";
 import { audit } from "../../lib/audit.js";
@@ -111,34 +112,37 @@ export async function creativeRoutes(app: FastifyInstance) {
       reply.code(201);
       return v;
     } catch (e) {
-      await ledger.refund({ organizationId: ctx.organizationId, amount: TASK_CREDIT_COST["creative.render"], reason: "Remboursement : rendu de visuel en échec", idempotencyKey: `render-refund:${requestId}` });
+      await ledger.refund({ organizationId: ctx.organizationId, amount: TASK_CREDIT_COST["creative.render"], reason: "Remboursement : rendu de visuel en échec", idempotencyKey: `render-refund:${ctx.organizationId}:${requestId}` });
       throw e;
     }
   });
 
-  /** Validation humaine d'un visuel ; s'il est lié à un contenu, il devient son média de publication. */
+  /**
+   * Validation humaine d'un visuel (droit d'approbation requis). S'il est lié à un contenu, il devient son média :
+   * c'est une modification de fond, le contenu devra être (re)validé avant toute programmation.
+   */
   app.post("/api/workspaces/:workspaceId/creative/versions/:id/approve", { preHandler: authenticate }, async (req) => {
     const { workspaceId, id } = parse(wsIdParams, req.params);
-    const ctx = await requireWorkspace(req, workspaceId, "content:update");
+    const ctx = await requireWorkspace(req, workspaceId, "content:approve");
     const v = await prisma.creativeVersion.findFirst({ where: { id, workspaceId }, include: { concept: { include: { brief: true } } } });
     if (!v) throw notFound("Visuel");
+    const contentId = v.concept.brief.contentId;
     await prisma.$transaction(async (tx) => {
       await tx.creativeVersion.update({ where: { id }, data: { status: "APPROVED" } });
       await tx.creativeBrief.update({ where: { id: v.concept.briefId }, data: { status: "DONE" } });
-      if (v.concept.brief.contentId) await tx.contentItem.update({ where: { id: v.concept.brief.contentId }, data: { mediaVersionId: id } });
+      if (contentId) await setContentMedia(tx, workspaceId, contentId, id);
       await audit({ ...auditCtx(ctx), action: "creative.approved", entityType: "creative_version", entityId: id, metadata: { score: v.score } }, tx);
     });
-    return { ok: true, contentId: v.concept.brief.contentId };
+    return { ok: true, contentId };
   });
 
-  /** Associer (ou retirer) un visuel à un contenu existant. */
+  /** Associer (ou retirer) un visuel à un contenu existant : le contenu repasse par l'approbation. */
   app.post("/api/workspaces/:workspaceId/contents/:id/media", { preHandler: authenticate }, async (req) => {
     const { workspaceId, id } = parse(wsIdParams, req.params);
     const ctx = await requireWorkspace(req, workspaceId, "content:update");
     const { versionId } = parse(z.object({ versionId: z.string().nullable() }), req.body);
     if (versionId && !(await prisma.creativeVersion.findFirst({ where: { id: versionId, workspaceId } }))) throw badRequest("Visuel inconnu");
-    const res = await prisma.contentItem.updateMany({ where: { id, workspaceId }, data: { mediaVersionId: versionId } });
-    if (!res.count) throw notFound("Contenu");
+    await prisma.$transaction((tx) => setContentMedia(tx, workspaceId, id, versionId));
     await audit({ ...auditCtx(ctx), action: "content.media_set", entityType: "content", entityId: id, metadata: { versionId } });
     return { ok: true };
   });
@@ -150,4 +154,14 @@ export async function creativeRoutes(app: FastifyInstance) {
     if (!verifyMediaSignature(id, q.e, q.s)) throw notFound("Visuel");
     return sendPng(reply, await versionImage(id), "public, max-age=86400");
   });
+}
+
+/** Change le visuel d'un contenu : interdit une fois programmé ou publié ; sinon nouvelle version à revalider. */
+async function setContentMedia(tx: Tx, workspaceId: string, contentId: string, versionId: string | null) {
+  const item = await tx.contentItem.findFirst({ where: { id: contentId, workspaceId } });
+  if (!item) throw notFound("Contenu");
+  if (["SCHEDULED", "PUBLISHED", "GENERATING", "ARCHIVED"].includes(item.status)) throw badRequest("Déprogrammez ce contenu avant de changer son visuel");
+  if (item.mediaVersionId === versionId) return;
+  await tx.contentItem.update({ where: { id: contentId }, data: { mediaVersionId: versionId, revision: { increment: 1 } } });
+  await markContentChanged(tx, contentId, item.status);
 }

@@ -179,20 +179,31 @@ export function srt(plan: VideoPlan): string {
  * Recadre une photo une seule fois au format 9:16 (avec marge pour les mouvements de caméra)
  * et la recompresse en JPEG : évite de décoder une image de plusieurs mégapixels à chaque image.
  */
-export async function normalizePhoto(img: Image): Promise<Image> {
+export function normalizePhoto(img: Image): Promise<Image> {
   const tw = Math.round(W * 1.25);
   const th = Math.round(H * 1.25);
-  const ff = spawn(loadConfig().FFMPEG_PATH, ["-loglevel", "error", "-i", "pipe:0", "-vf", `scale=${tw}:${th}:force_original_aspect_ratio=increase,crop=${tw}:${th}`, "-frames:v", "1", "-q:v", "3", "-f", "image2", "-c:v", "mjpeg", "pipe:1"], { stdio: ["pipe", "pipe", "ignore"] });
+  return ffmpegImage(img, [`scale=${tw}:${th}:force_original_aspect_ratio=increase,crop=${tw}:${th}`], ["-q:v", "3", "-c:v", "mjpeg"], "image/jpeg");
+}
+
+/** Logo réduit une seule fois (PNG, transparence conservée) : il n'est plus décodé en pleine taille à chaque image. */
+export function normalizeLogo(img: Image): Promise<Image> {
+  return ffmpegImage(img, ["scale=600:300:force_original_aspect_ratio=decrease"], ["-c:v", "png"], "image/png");
+}
+
+async function ffmpegImage(img: Image, filters: string[], codec: string[], mime: string): Promise<Image> {
+  const ff = spawn(loadConfig().FFMPEG_PATH, ["-loglevel", "error", "-i", "pipe:0", "-vf", filters.join(","), "-frames:v", "1", ...codec, "-f", "image2", "pipe:1"], { stdio: ["pipe", "pipe", "ignore"] });
   const chunks: Buffer[] = [];
   ff.stdout.on("data", (d: Buffer) => chunks.push(d));
-  const done = new Promise<number>((resolve, reject) => {
-    ff.on("error", reject);
+  // En cas d'échec (FFmpeg absent…), l'image d'origine est conservée : le rendu principal signalera l'erreur.
+  const done = new Promise<number>((resolve) => {
+    ff.on("error", () => resolve(-1));
     ff.on("close", resolve);
   });
+  ff.stdin.on("error", () => undefined);
   ff.stdin.end(img.data);
   const code = await done;
   if (code !== 0 || !chunks.length) return img;
-  return { mime: "image/jpeg", data: Buffer.concat(chunks) };
+  return { mime, data: Buffer.concat(chunks) };
 }
 
 /** Rendu complet en MP4 (H.264 + AAC, 1080×1920, 30 i/s). */
@@ -203,7 +214,7 @@ export async function renderVideo(input: VideoPlan, onProgress?: (pct: number) =
     if (s.photo && !cache.has(s.photo.data)) cache.set(s.photo.data, await normalizePhoto(s.photo));
     scenes.push({ ...s, photo: s.photo ? cache.get(s.photo.data)! : null });
   }
-  const plan = { ...input, scenes };
+  const plan = { ...input, scenes, logo: input.logo ? await normalizeLogo(input.logo) : null };
   const prepared = prepare(plan);
   const dir = await mkdtemp(join(tmpdir(), "forlife-video-"));
   const out = join(dir, "video.mp4");

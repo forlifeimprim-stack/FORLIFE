@@ -1,7 +1,7 @@
 import { Prisma } from "@prisma/client";
 import { PLANS, type PlanCode } from "@forlife/shared";
 import { prisma, type Tx } from "../../lib/prisma.js";
-import { paymentRequired } from "../../lib/errors.js";
+import { conflict, paymentRequired } from "../../lib/errors.js";
 import { loadConfig } from "../../config.js";
 import { layout, sendEmail } from "../mail/mailer.js";
 
@@ -25,9 +25,32 @@ function isUniqueViolation(e: unknown): boolean {
   return e instanceof Prisma.PrismaClientKnownRequestError && e.code === "P2002";
 }
 
-async function existing(idempotencyKey: string): Promise<LedgerResult | null> {
+async function existing(idempotencyKey: string, organizationId: string): Promise<LedgerResult | null> {
   const tx = await prisma.creditTransaction.findUnique({ where: { idempotencyKey } });
-  return tx ? { transactionId: tx.id, balanceAfter: tx.balanceAfter, replayed: true } : null;
+  if (!tx) return null;
+  // Une clé appartient à une seule organisation : jamais de « rejeu » sur l'opération d'un autre client.
+  if (tx.organizationId !== organizationId) throw conflict("Identifiant de requête déjà utilisé");
+  return { transactionId: tx.id, balanceAfter: tx.balanceAfter, replayed: true };
+}
+
+type Kind = "GRANT" | "CONSUME" | "REFUND" | "PURCHASE" | "ADJUST";
+
+/** Écriture du mouvement dans une transaction existante (solde conditionnel + ligne du ledger). */
+async function write(tx: Tx, op: LedgerOp, kind: Kind, sign: 1 | -1): Promise<LedgerResult> {
+  const delta = sign * op.amount;
+  const rows = await tx.$queryRaw<{ id: string; balance: number }[]>`
+    UPDATE "CreditWallet" SET "balance" = "balance" + ${delta}, "updatedAt" = now()
+    WHERE "organizationId" = ${op.organizationId} AND "balance" + ${delta} >= 0
+    RETURNING "id", "balance"`;
+  const wallet = rows[0];
+  if (!wallet) {
+    const current = await tx.creditWallet.findUnique({ where: { organizationId: op.organizationId } });
+    throw paymentRequired("Crédits insuffisants pour cette opération", { required: op.amount, balance: current?.balance ?? 0 });
+  }
+  const created = await tx.creditTransaction.create({
+    data: { walletId: wallet.id, organizationId: op.organizationId, amount: delta, balanceAfter: wallet.balance, kind, reason: op.reason, refType: op.refType ?? null, refId: op.refId ?? null, idempotencyKey: op.idempotencyKey },
+  });
+  return { transactionId: created.id, balanceAfter: wallet.balance, replayed: false };
 }
 
 /**
@@ -35,44 +58,16 @@ async function existing(idempotencyKey: string): Promise<LedgerResult | null> {
  * - la mise à jour du solde est conditionnelle (jamais négatif, sans race condition) ;
  * - la clé d'idempotence unique empêche toute double application, y compris en concurrence.
  */
-async function apply(op: LedgerOp, kind: "GRANT" | "CONSUME" | "REFUND" | "PURCHASE" | "ADJUST", sign: 1 | -1): Promise<LedgerResult> {
+async function apply(op: LedgerOp, kind: Kind, sign: 1 | -1): Promise<LedgerResult> {
   if (!Number.isInteger(op.amount) || op.amount <= 0) throw new Error("Le montant doit être un entier positif");
-  const already = await existing(op.idempotencyKey);
+  const already = await existing(op.idempotencyKey, op.organizationId);
   if (already) return already;
   try {
-    return await prisma.$transaction(async (tx) => {
-      const delta = sign * op.amount;
-      const rows = await tx.$queryRaw<{ id: string; balance: number }[]>`
-        UPDATE "CreditWallet" SET "balance" = "balance" + ${delta}, "updatedAt" = now()
-        WHERE "organizationId" = ${op.organizationId} AND "balance" + ${delta} >= 0
-        RETURNING "id", "balance"`;
-      const wallet = rows[0];
-      if (!wallet) {
-        const current = await tx.creditWallet.findUnique({ where: { organizationId: op.organizationId } });
-        throw paymentRequired("Crédits insuffisants pour cette opération", {
-          required: op.amount,
-          balance: current?.balance ?? 0,
-        });
-      }
-      const created = await tx.creditTransaction.create({
-        data: {
-          walletId: wallet.id,
-          organizationId: op.organizationId,
-          amount: delta,
-          balanceAfter: wallet.balance,
-          kind,
-          reason: op.reason,
-          refType: op.refType ?? null,
-          refId: op.refId ?? null,
-          idempotencyKey: op.idempotencyKey,
-        },
-      });
-      return { transactionId: created.id, balanceAfter: wallet.balance, replayed: false };
-    });
+    return await prisma.$transaction((tx) => write(tx, op, kind, sign));
   } catch (e) {
     // Course perdue contre une requête identique : la transaction a été annulée, on renvoie l'opération gagnante.
     if (isUniqueViolation(e)) {
-      const replay = await existing(op.idempotencyKey);
+      const replay = await existing(op.idempotencyKey, op.organizationId);
       if (replay) return replay;
     }
     throw e;
@@ -84,6 +79,11 @@ export const ledger = {
   consume: (op: LedgerOp) => apply(op, "CONSUME", -1),
   refund: (op: LedgerOp) => apply(op, "REFUND", 1),
   purchase: (op: LedgerOp) => apply(op, "PURCHASE", 1),
+  /** Crédit à l'intérieur d'une transaction englobante (tout ou rien avec le reste de l'opération). */
+  creditInTx: (tx: Tx, op: LedgerOp, kind: "GRANT" | "PURCHASE") => {
+    if (!Number.isInteger(op.amount) || op.amount <= 0) throw new Error("Le montant doit être un entier positif");
+    return write(tx, op, kind, 1);
+  },
 };
 
 /** Crée l'abonnement + le portefeuille d'une nouvelle organisation (dans la transaction d'inscription). */
@@ -105,6 +105,11 @@ export async function grantMonthlyAllowance(organizationId: string): Promise<Led
   const sub = await prisma.subscription.findUniqueOrThrow({ where: { organizationId } });
   const wallet = await prisma.creditWallet.findUniqueOrThrow({ where: { organizationId } });
   const plan = PLANS[sub.planCode];
+  // Plan Free : crédits offerts seulement si le propriétaire a confirmé son email (anti-inscriptions en masse).
+  if (sub.planCode === "FREE") {
+    const verifiedOwner = await prisma.membership.findFirst({ where: { organizationId, role: "OWNER", user: { emailVerifiedAt: { not: null } } }, select: { id: true } });
+    if (!verifiedOwner) return null;
+  }
   const amount = Math.min(plan.monthlyCredits, Math.max(0, plan.monthlyCredits * 2 - wallet.balance));
   if (amount <= 0) return null;
   const period = sub.currentPeriodStart.toISOString().slice(0, 10);
@@ -146,6 +151,7 @@ export async function renewDueSubscriptions(now = new Date()): Promise<number> {
     });
     if (!res.count) continue;
     if (expired) {
+      await enforceWorkspaceLimit(sub.organizationId);
       await prisma.auditLog.create({ data: { organizationId: sub.organizationId, action: "subscription.expired", entityType: "subscription", entityId: sub.id, metadata: { from: sub.planCode } } });
       await notifyExpired(sub.organizationId, sub.planCode).catch(() => undefined);
     }
@@ -164,4 +170,19 @@ async function notifyExpired(organizationId: string, planCode: PlanCode) {
     "Réabonnez-vous en quelques secondes par Orange Money, MTN MoMo, Moov, Wave ou carte.",
   ], { label: "Renouveler mon abonnement", url: `${loadConfig().APP_URL}/settings?tab=billing` });
   await sendEmail({ to: owner.user.email, subject: "Votre abonnement Forlife Com a expiré", template: "subscription.expired", ...mail });
+}
+
+/**
+ * Applique le nombre d'espaces du plan courant : les plus récents au-delà de la limite passent en lecture seule
+ * (LOCKED), et sont débloqués dès qu'un plan suffisant est repris. Aucune donnée n'est supprimée.
+ */
+export async function enforceWorkspaceLimit(organizationId: string) {
+  const sub = await prisma.subscription.findUnique({ where: { organizationId } });
+  if (!sub) return;
+  const max = PLANS[sub.planCode].maxWorkspaces;
+  const all = await prisma.workspace.findMany({ where: { organizationId, status: { in: ["ACTIVE", "LOCKED"] } }, orderBy: { createdAt: "asc" }, select: { id: true, status: true } });
+  const keep = all.slice(0, max).filter((w) => w.status === "LOCKED").map((w) => w.id);
+  const lock = all.slice(max).filter((w) => w.status === "ACTIVE").map((w) => w.id);
+  if (keep.length) await prisma.workspace.updateMany({ where: { id: { in: keep } }, data: { status: "ACTIVE" } });
+  if (lock.length) await prisma.workspace.updateMany({ where: { id: { in: lock } }, data: { status: "LOCKED" } });
 }

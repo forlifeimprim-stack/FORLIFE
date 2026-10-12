@@ -247,6 +247,17 @@ export function composeSvg(input: CompositionSpec, assets: CompositionAssets = {
   return { svg, width: W, height: H, metrics: { headlineLines: head.lines.length, headlineSize: head.size, textOverPhoto } };
 }
 
+/**
+ * Conversion d'un SVG importé en PNG (largeur fixe). Aucun script n'est exécuté par resvg ;
+ * les images intégrées et les proportions extrêmes sont refusées (pas de décodage géant).
+ */
+export function rasterizeSvg(svg: string, width: number): Buffer {
+  if (/<image[\s>]|<foreignObject|xlink:href\s*=\s*["']data:/i.test(svg)) throw new Error("SVG avec image intégrée");
+  const r = new Resvg(svg, { font: { fontFiles: fonts(), loadSystemFonts: false, defaultFontFamily: "Poppins" }, fitTo: { mode: "width", value: width } });
+  if (!r.width || !r.height || (r.height / r.width) * width > 4000) throw new Error("Proportions du SVG non supportées");
+  return r.render().asPng();
+}
+
 export function renderPng(svg: string): Buffer {
   const r = new Resvg(svg, { font: { fontFiles: fonts(), loadSystemFonts: false, defaultFontFamily: "Poppins" }, fitTo: { mode: "original" } });
   return r.render().asPng();

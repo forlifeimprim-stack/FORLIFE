@@ -5,7 +5,7 @@ import { loadConfig } from "../../config.js";
 import { prisma } from "../../lib/prisma.js";
 import { badRequest } from "../../lib/errors.js";
 import { audit } from "../../lib/audit.js";
-import { addMonths, ledger } from "../billing/ledger.js";
+import { addMonths, enforceWorkspaceLimit, ledger } from "../billing/ledger.js";
 import { layout, sendEmail } from "../mail/mailer.js";
 import { paymentProviders, type PaymentProvider, type VerifiedPayment } from "./providers.js";
 
@@ -45,12 +45,24 @@ export async function createPayment(input: { organizationId: string; userId: str
   }
 }
 
-/** Interroge le prestataire et applique le résultat. Seule source de vérité du statut. */
-export async function reconcile(paymentId: string, source: string): Promise<Payment> {
+// Une vérification auprès du prestataire au plus toutes les 10 secondes par paiement (anti-inondation du webhook).
+const CHECK_INTERVAL_MS = 10_000;
+
+/**
+ * Interroge le prestataire et applique le résultat. Seule source de vérité du statut.
+ * `allowCancelled` : un paiement expiré côté Forlife mais finalement accepté chez le prestataire est livré.
+ */
+export async function reconcile(paymentId: string, source: string, opts: { allowCancelled?: boolean } = {}): Promise<Payment> {
   const payment = await prisma.payment.findUniqueOrThrow({ where: { id: paymentId } });
-  if (payment.status !== "PENDING") return payment;
+  if (payment.status !== "PENDING" && !(opts.allowCancelled && payment.status === "CANCELLED")) return payment;
   const provider = paymentProviders()[payment.provider as PaymentProvider["key"]];
   if (!provider) return payment;
+  // Réservation atomique du créneau de vérification : les appels rapprochés ne déclenchent rien.
+  const slot = await prisma.payment.updateMany({
+    where: { id: payment.id, OR: [{ lastCheckedAt: null }, { lastCheckedAt: { lt: new Date(Date.now() - CHECK_INTERVAL_MS) } }] },
+    data: { lastCheckedAt: new Date() },
+  });
+  if (!slot.count && source !== "demo") return payment;
   let verified: VerifiedPayment;
   try {
     verified = await provider.verify(payment.providerRef);
@@ -59,43 +71,62 @@ export async function reconcile(paymentId: string, source: string): Promise<Paym
     return payment;
   }
   await event(payment.id, "CHECK", { source, status: verified.status, raw: verified.raw ?? null });
-  await prisma.payment.update({ where: { id: payment.id }, data: { lastCheckedAt: new Date() } });
   if (verified.status === "SUCCEEDED") {
-    // Garde-fou : le montant encaissé doit correspondre au montant attendu.
-    if ((verified.amount !== undefined && Number.isFinite(verified.amount) && verified.amount < payment.amount) || (verified.currency && verified.currency !== payment.currency)) {
-      await prisma.payment.updateMany({ where: { id: payment.id, status: "PENDING" }, data: { status: "FAILED", failureReason: "Montant encaissé différent du montant attendu" } });
-      await audit({ organizationId: payment.organizationId, action: "payment.amount_mismatch", entityType: "payment", entityId: payment.id, metadata: { expected: payment.amount, got: verified.amount ?? null } });
+    // Garde-fou strict : montant et devise confirmés par le prestataire, sinon pas de livraison.
+    const amountOk = typeof verified.amount === "number" && Number.isFinite(verified.amount) && verified.amount >= payment.amount;
+    const currencyOk = verified.currency === payment.currency;
+    if (!amountOk || !currencyOk) {
+      await prisma.payment.updateMany({ where: { id: payment.id, status: { in: ["PENDING", "CANCELLED"] } }, data: { status: "FAILED", failureReason: "Montant ou devise non confirmés par le prestataire : vérification manuelle nécessaire" } });
+      await audit({ organizationId: payment.organizationId, action: "payment.amount_mismatch", entityType: "payment", entityId: payment.id, metadata: { expected: payment.amount, got: verified.amount ?? null, currency: verified.currency ?? null } });
     } else {
       await fulfill(payment, verified.method);
     }
-  } else if (verified.status === "FAILED") {
+  } else if (verified.status === "FAILED" && payment.status === "PENDING") {
     await prisma.payment.updateMany({ where: { id: payment.id, status: "PENDING" }, data: { status: "FAILED", failureReason: (verified.reason ?? "Paiement refusé").slice(0, 300), method: verified.method } });
   }
   return prisma.payment.findUniqueOrThrow({ where: { id: payment.id } });
 }
 
-/** Livraison (une seule fois, même si webhook et retour navigateur arrivent ensemble). */
+/** Mois restants (fractionnaires) d'une période payée, à leur valeur en FCFA. */
+function remainingValue(planCode: Exclude<PlanCode, "FREE">, paidUntil: Date, now: Date) {
+  const days = Math.max(0, (paidUntil.getTime() - now.getTime()) / 864e5);
+  return (days / 30) * PLANS[planCode].monthlyPriceXof;
+}
+
+/**
+ * Livraison en une seule transaction : statut payé, crédits et abonnement sont appliqués ensemble ou pas du tout.
+ * Une seule livraison possible, même si webhook, retour navigateur et balayage arrivent ensemble.
+ */
 async function fulfill(payment: Payment, method?: string) {
   const now = new Date();
-  const won = await prisma.payment.updateMany({ where: { id: payment.id, status: "PENDING" }, data: { status: "SUCCEEDED", paidAt: now, method: method ?? null } });
-  if (!won.count) return;
-  if (payment.kind === "CREDITS") {
-    await ledger.purchase({ organizationId: payment.organizationId, amount: payment.credits, reason: `Achat de ${payment.credits} crédits`, idempotencyKey: `payment:${payment.id}`, refType: "payment", refId: payment.id });
-  } else {
-    const plan = payment.planCode!;
-    const sub = await prisma.subscription.findUniqueOrThrow({ where: { organizationId: payment.organizationId } });
-    const extending = sub.planCode === plan && sub.paidUntil && sub.paidUntil > now;
-    if (extending) {
-      await prisma.subscription.update({ where: { id: sub.id }, data: { paidUntil: addMonths(sub.paidUntil!, payment.months), status: "ACTIVE" } });
+  const delivered = await prisma.$transaction(async (tx) => {
+    const won = await tx.payment.updateMany({ where: { id: payment.id, status: { in: ["PENDING", "CANCELLED"] } }, data: { status: "SUCCEEDED", paidAt: now, method: method ?? null, failureReason: null } });
+    if (!won.count) return false;
+    if (payment.kind === "CREDITS") {
+      await ledger.creditInTx(tx, { organizationId: payment.organizationId, amount: payment.credits, reason: `Achat de ${payment.credits} crédits`, idempotencyKey: `payment:${payment.id}`, refType: "payment", refId: payment.id }, "PURCHASE");
     } else {
-      // Nouveau plan : nouvelle période immédiate et allocation complète du plan.
-      await prisma.subscription.update({ where: { id: sub.id }, data: { planCode: plan, status: "ACTIVE", currentPeriodStart: now, currentPeriodEnd: addMonths(now), paidUntil: addMonths(now, payment.months) } });
-      await ledger.grant({ organizationId: payment.organizationId, amount: PLANS[plan].monthlyCredits, reason: `Abonnement ${PLANS[plan].name} activé`, idempotencyKey: `payment:${payment.id}`, refType: "payment", refId: payment.id });
+      const plan = payment.planCode as Exclude<PlanCode, "FREE">;
+      await tx.$queryRaw`SELECT 1 FROM "Subscription" WHERE "organizationId" = ${payment.organizationId} FOR UPDATE`;
+      const sub = await tx.subscription.findUniqueOrThrow({ where: { organizationId: payment.organizationId } });
+      const active = sub.planCode !== "FREE" && sub.paidUntil && sub.paidUntil > now;
+      if (active && sub.planCode === plan) {
+        await tx.subscription.update({ where: { id: sub.id }, data: { paidUntil: addMonths(sub.paidUntil!, payment.months), status: "ACTIVE" } });
+      } else {
+        // Changement de plan : la période déjà payée de l'ancien plan est convertie au prorata en jours du nouveau plan.
+        const carriedDays = active ? Math.floor(remainingValue(sub.planCode as Exclude<PlanCode, "FREE">, sub.paidUntil!, now) / (PLANS[plan].monthlyPriceXof / 30)) : 0;
+        const paidUntil = new Date(addMonths(now, payment.months).getTime() + carriedDays * 864e5);
+        await tx.subscription.update({ where: { id: sub.id }, data: { planCode: plan, status: "ACTIVE", currentPeriodStart: now, currentPeriodEnd: addMonths(now), paidUntil } });
+        await ledger.creditInTx(tx, { organizationId: payment.organizationId, amount: PLANS[plan].monthlyCredits, reason: `Abonnement ${PLANS[plan].name} activé`, idempotencyKey: `payment:${payment.id}`, refType: "payment", refId: payment.id }, "GRANT");
+      }
     }
+    await tx.paymentEvent.create({ data: { paymentId: payment.id, type: "FULFILLED", payload: { method: method ?? null } } });
+    await audit({ organizationId: payment.organizationId, actorId: payment.createdById, action: "payment.succeeded", entityType: "payment", entityId: payment.id, metadata: { amount: payment.amount, kind: payment.kind, planCode: payment.planCode, credits: payment.credits, provider: payment.provider } }, tx);
+    return true;
+  });
+  if (delivered) {
+    if (payment.kind === "SUBSCRIPTION") await enforceWorkspaceLimit(payment.organizationId);
+    await sendReceipt(payment, now, method).catch(() => undefined);
   }
-  await event(payment.id, "FULFILLED", { method: method ?? null });
-  await audit({ organizationId: payment.organizationId, actorId: payment.createdById, action: "payment.succeeded", entityType: "payment", entityId: payment.id, metadata: { amount: payment.amount, kind: payment.kind, planCode: payment.planCode, credits: payment.credits, provider: payment.provider } });
-  await sendReceipt(payment, now, method).catch(() => undefined);
 }
 
 async function sendReceipt(payment: Payment, paidAt: Date, method?: string) {
@@ -124,5 +155,8 @@ export async function sweepPendingPayments(now = new Date()): Promise<number> {
   }
   const pending = await prisma.payment.findMany({ where: { status: "PENDING", provider: { not: "sandbox" }, createdAt: { lt: new Date(now.getTime() - 2 * 60e3), gte: new Date(now.getTime() - 48 * 3600e3) } }, select: { id: true }, take: 100 });
   for (const p of pending) await reconcile(p.id, "sweep");
-  return expired.length + pending.length;
+  // Paiements expirés depuis moins de 7 jours : un encaissement tardif chez le prestataire est quand même livré (1 vérification / heure).
+  const late = await prisma.payment.findMany({ where: { status: "CANCELLED", provider: { not: "sandbox" }, createdAt: { gte: new Date(now.getTime() - 7 * 864e5) }, OR: [{ lastCheckedAt: null }, { lastCheckedAt: { lt: new Date(now.getTime() - 3600e3) } }] }, select: { id: true }, take: 50 });
+  for (const p of late) await reconcile(p.id, "sweep-late", { allowCancelled: true });
+  return expired.length + pending.length + late.length;
 }

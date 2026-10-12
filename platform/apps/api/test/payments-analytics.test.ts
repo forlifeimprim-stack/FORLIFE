@@ -18,7 +18,7 @@ async function buy(acc: TestAccount, purchase: Record<string, unknown>, provider
 
 async function payDemo(paymentId: string, outcome: "success" | "failure" = "success") {
   const app = await getApp();
-  return app.inject({ method: "POST", url: `/api/public/payments/demo/${paymentId}?t=${demoToken(paymentId)}`, payload: { outcome, method: "ORANGE_MONEY" } });
+  return app.inject({ method: "POST", url: "/api/public/payments/demo/pay", payload: { id: paymentId, t: demoToken(paymentId), outcome, method: "ORANGE_MONEY" } });
 }
 
 /** Faux CinetPay : contrôle de ce que renvoie l'API de vérification. */
@@ -43,7 +43,8 @@ describe("Paiements", () => {
     expect(p.checkoutUrl).toContain(`/pay/demo/${p.id}`);
     // Page publique : un mauvais jeton ne donne rien
     const app = await getApp();
-    expect((await app.inject({ method: "GET", url: `/api/public/payments/demo/${p.id}?t=faux` })).statusCode).toBe(404);
+    expect((await app.inject({ method: "POST", url: "/api/public/payments/demo/lookup", payload: { id: p.id, t: "faux" } })).statusCode).toBe(404);
+    expect((await app.inject({ method: "POST", url: "/api/public/payments/demo/lookup", payload: { id: p.id, t: demoToken(p.id) } })).json().amount).toBe(5000);
     expect((await payDemo(p.id)).json().status).toBe("SUCCEEDED");
     await payDemo(p.id); // rejeu
     expect(await balance(acc.organizationId)).toBe(200 + 500);
@@ -82,6 +83,20 @@ describe("Paiements", () => {
     expect(await balance(acc.organizationId)).toBe(200 + 1500);
   });
 
+  it("changer de plan conserve au prorata la période déjà payée", async () => {
+    const acc = await signup();
+    const p = (await buy(acc, { kind: "SUBSCRIPTION", planCode: "STARTER", months: 12 })).json();
+    await payDemo(p.id);
+    const up = (await buy(acc, { kind: "SUBSCRIPTION", planCode: "PRO", months: 1 })).json();
+    await payDemo(up.id);
+    const sub = await prisma.subscription.findUniqueOrThrow({ where: { organizationId: acc.organizationId } });
+    expect(sub.planCode).toBe("PRO");
+    // ~12 mois Starter (15 000) ≈ 180 000 FCFA ≈ 57 jours de Pro (95 000 / mois), en plus du mois payé.
+    const days = (sub.paidUntil!.getTime() - Date.now()) / 864e5;
+    expect(days).toBeGreaterThan(80);
+    expect(days).toBeLessThan(95);
+  });
+
   it("un plan non renouvelé repasse en Free à l'échéance", async () => {
     const acc = await signup();
     const p = (await buy(acc, { kind: "SUBSCRIPTION", planCode: "BUSINESS", months: 1 })).json();
@@ -93,6 +108,24 @@ describe("Paiements", () => {
     const after = await prisma.subscription.findUniqueOrThrow({ where: { organizationId: acc.organizationId } });
     expect(after.planCode).toBe("FREE");
     expect(testMailbox.some((m) => m.to === acc.email && m.template === "subscription.expired")).toBe(true);
+  });
+
+  it("à l'expiration, les espaces au-delà du plan passent en lecture seule, puis sont débloqués au réabonnement", async () => {
+    const acc = await signup();
+    const app = await getApp();
+    const p = (await buy(acc, { kind: "SUBSCRIPTION", planCode: "BUSINESS", months: 1 })).json();
+    await payDemo(p.id);
+    const ws2 = (await app.inject({ method: "POST", url: `/api/orgs/${acc.organizationId}/workspaces`, headers: auth(acc), payload: { name: "Client B" } })).json();
+    const sub = await prisma.subscription.findUniqueOrThrow({ where: { organizationId: acc.organizationId } });
+    await prisma.subscription.update({ where: { id: sub.id }, data: { currentPeriodEnd: new Date(Date.now() - 1000), paidUntil: new Date(Date.now() - 1000) } });
+    await renewDueSubscriptions();
+    expect((await prisma.workspace.findUniqueOrThrow({ where: { id: ws2.id } })).status).toBe("LOCKED");
+    expect((await app.inject({ method: "GET", url: `/api/workspaces/${ws2.id}/contents`, headers: auth(acc) })).statusCode).toBe(200);
+    expect((await app.inject({ method: "POST", url: `/api/workspaces/${ws2.id}/contents`, headers: auth(acc), payload: { title: "Bloqué" } })).statusCode).toBe(403);
+    expect((await app.inject({ method: "POST", url: `/api/workspaces/${acc.workspaceId}/contents`, headers: auth(acc), payload: { title: "Autorisé" } })).statusCode).toBe(201);
+    const again = (await buy(acc, { kind: "SUBSCRIPTION", planCode: "BUSINESS", months: 1 })).json();
+    await payDemo(again.id);
+    expect((await prisma.workspace.findUniqueOrThrow({ where: { id: ws2.id } })).status).toBe("ACTIVE");
   });
 
   it("CinetPay : le webhook déclenche une vérification, le montant est contrôlé", async () => {
@@ -110,10 +143,17 @@ describe("Paiements", () => {
     const notify = (ref: string) => app.inject({ method: "POST", url: "/api/public/payments/cinetpay/notify", headers: { "content-type": "application/x-www-form-urlencoded" }, payload: `cpm_trans_id=${ref}&cpm_site_id=site` });
     expect((await notify(p.reference)).statusCode).toBe(200);
     expect(await balance(acc.organizationId)).toBe(200);
+    // Inondation du webhook : une seule vérification auprès du prestataire toutes les 10 secondes.
+    const checks = calls.length;
+    for (let i = 0; i < 5; i++) await notify(p.reference);
+    expect(calls.length).toBe(checks);
     state.status = "ACCEPTED";
+    await prisma.payment.update({ where: { id: p.id }, data: { lastCheckedAt: new Date(Date.now() - 60_000) } });
     await notify(p.reference);
+    await prisma.payment.update({ where: { id: p.id }, data: { lastCheckedAt: new Date(Date.now() - 60_000) } });
     await notify(p.reference);
     expect(await balance(acc.organizationId)).toBe(2200);
+    expect(await prisma.creditTransaction.count({ where: { organizationId: acc.organizationId, kind: "PURCHASE" } })).toBe(1);
     // Montant falsifié : refusé
     const p2 = (await buy(acc, { kind: "CREDITS", packCode: "PACK_6000" }, "cinetpay")).json();
     state.amount = 100;

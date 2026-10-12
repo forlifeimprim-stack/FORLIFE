@@ -7,7 +7,7 @@ import { parse } from "../../lib/validation.js";
 import { audit } from "../../lib/audit.js";
 import { auditCtx, authenticate, requireWorkspace } from "../../plugins/auth.js";
 import { enqueue } from "../jobs/queue.js";
-import { getContent, transition } from "./service.js";
+import { getContent, transition, markContentChanged, assertApprovedVersion } from "./service.js";
 import { cancelPublications, schedulePublications } from "../social/service.js";
 
 const wsParams = z.object({ workspaceId: z.string() });
@@ -108,13 +108,12 @@ export async function contentRoutes(app: FastifyInstance) {
     const item = await prisma.contentItem.findFirst({ where: { id, workspaceId } });
     if (!item) throw notFound("Contenu");
     if (!["DRAFT", "REVIEW", "APPROVED", "FAILED"].includes(item.status)) throw badRequest("Ce contenu ne peut plus être modifié dans cet état");
-    // Toute modification d'un contenu validé le renvoie en brouillon : il devra être revalidé.
-    const backToDraft = item.status === "APPROVED" || item.status === "REVIEW";
-    const res = await prisma.contentItem.updateMany({
-      where: { id, workspaceId, revision },
-      data: { ...data, revision: { increment: 1 }, ...(backToDraft ? { status: "DRAFT" } : {}) },
+    // Toute modification d'un contenu validé (ou en échec) le renvoie en brouillon : il devra être revalidé.
+    const backToDraft = await prisma.$transaction(async (tx) => {
+      const res = await tx.contentItem.updateMany({ where: { id, workspaceId, revision }, data: { ...data, revision: { increment: 1 } } });
+      if (!res.count) throw conflict("Le contenu a été modifié entre-temps, rechargez la page");
+      return markContentChanged(tx, id, item.status);
     });
-    if (!res.count) throw conflict("Le contenu a été modifié entre-temps, rechargez la page");
     await audit({ ...auditCtx(ctx), action: "content.updated", entityType: "content", entityId: id, metadata: { fields: Object.keys(data), resetToDraft: backToDraft } });
     return getContent(workspaceId, id);
   });
@@ -128,10 +127,8 @@ export async function contentRoutes(app: FastifyInstance) {
     if (!["DRAFT", "REVIEW", "APPROVED", "FAILED"].includes(item.status)) throw badRequest("Ce contenu ne peut plus être modifié dans cet état");
     await prisma.$transaction(async (tx) => {
       await tx.contentVariant.update({ where: { id: variantId }, data });
-      await tx.contentItem.update({
-        where: { id },
-        data: { revision: { increment: 1 }, ...(item.status === "APPROVED" || item.status === "REVIEW" ? { status: "DRAFT" } : {}) },
-      });
+      await tx.contentItem.update({ where: { id }, data: { revision: { increment: 1 } } });
+      await markContentChanged(tx, id, item.status);
       await audit({ ...auditCtx(ctx), action: "content.variant.updated", entityType: "content_variant", entityId: variantId }, tx);
     });
     return getContent(workspaceId, id);
@@ -246,7 +243,8 @@ export async function contentRoutes(app: FastifyInstance) {
     const ctx = await requireWorkspace(req, workspaceId, "approvals:create");
     await prisma.$transaction(async (tx) => {
       await transition(tx, workspaceId, id, "REVIEW");
-      const approval = await tx.approval.create({ data: { workspaceId, entityType: "content", entityId: id, requestedById: ctx.userId } });
+      const { contentVersion } = await tx.contentItem.findUniqueOrThrow({ where: { id }, select: { contentVersion: true } });
+      const approval = await tx.approval.create({ data: { workspaceId, entityType: "content", entityId: id, requestedById: ctx.userId, contentVersion } });
       await audit({ ...auditCtx(ctx), action: "content.submitted", entityType: "content", entityId: id, metadata: { approvalId: approval.id } }, tx);
     });
     return getContent(workspaceId, id);
@@ -259,6 +257,7 @@ export async function contentRoutes(app: FastifyInstance) {
     if (scheduledAt.getTime() < Date.now() - 60_000) throw badRequest("La date de programmation doit être dans le futur");
     const item = await prisma.contentItem.findFirst({ where: { id, workspaceId } });
     if (!item) throw notFound("Contenu");
+    assertApprovedVersion(item);
     await prisma.$transaction(async (tx) => {
       if (item.status === "SCHEDULED") {
         // Re-planification (glisser-déposer dans le calendrier) : seule la date change.

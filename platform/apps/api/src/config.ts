@@ -25,11 +25,16 @@ const schema = z.object({
   MAX_UPLOAD_BYTES: z.coerce.number().default(15 * 1024 * 1024),
   /** URL publique de l'interface (liens dans les emails). */
   APP_URL: z.string().default("http://localhost:5173"),
-  /** Emails promus administrateurs de la plateforme à la connexion (séparés par des virgules). */
+  /**
+   * Emails autorisés à administrer la plateforme (séparés par des virgules). L'email seul ne suffit pas :
+   * l'activation du back-office exige aussi ADMIN_BOOTSTRAP_TOKEN (code connu du seul propriétaire).
+   * Retirer un email de la liste coupe immédiatement son accès.
+   */
   PLATFORM_ADMIN_EMAILS: z
     .string()
     .default("")
     .transform((v) => v.split(",").map((s) => s.trim().toLowerCase()).filter(Boolean)),
+  ADMIN_BOOTSTRAP_TOKEN: z.string().min(16).optional(),
   EMAIL_DRIVER: z.enum(["log", "resend"]).default("log"),
   EMAIL_FROM: z.string().default("Forlife Com <no-reply@forlifecom.ci>"),
   RESEND_API_KEY: z.string().optional(),
@@ -66,6 +71,7 @@ export function loadConfig(env: NodeJS.ProcessEnv = process.env): Config {
     if (!parsed.success) {
       throw new Error(`Configuration invalide :\n${z.prettifyError(parsed.error)}`);
     }
+    if (parsed.data.NODE_ENV === "production") assertProductionSecrets(parsed.data);
     cached = parsed.data;
     // Sécurité : en production, le paiement de démonstration (qui active des plans sans argent réel) est coupé sauf activation explicite.
     if (cached.NODE_ENV === "production" && env.PAYMENT_SANDBOX_ENABLED === undefined) cached.PAYMENT_SANDBOX_ENABLED = false;
@@ -76,4 +82,18 @@ export function loadConfig(env: NodeJS.ProcessEnv = process.env): Config {
 /** Réservé aux tests. */
 export function resetConfigCache(): void {
   cached = undefined;
+}
+
+const EXAMPLE_JWT_SECRET = "change-me-dev-only-secret-at-least-32-chars";
+const EXAMPLE_ENCRYPTION_KEY = "ZGV2LW9ubHktZW5jcnlwdGlvbi1rZXktMzItYnl0ZXM=";
+
+/** Refuse de démarrer en production avec des secrets d'exemple ou trop faibles. */
+function assertProductionSecrets(c: Config) {
+  const problems: string[] = [];
+  if (c.JWT_SECRET === EXAMPLE_JWT_SECRET || /change-me|dev-only|test-secret/i.test(c.JWT_SECRET) || c.JWT_SECRET.length < 43) {
+    problems.push("JWT_SECRET est une valeur d'exemple ou trop courte (générer : openssl rand -base64 48)");
+  }
+  if (c.ENCRYPTION_KEY === EXAMPLE_ENCRYPTION_KEY) problems.push("ENCRYPTION_KEY est la valeur d'exemple (générer : openssl rand -base64 32)");
+  if (c.ADMIN_BOOTSTRAP_TOKEN && c.ADMIN_BOOTSTRAP_TOKEN.length < 24) problems.push("ADMIN_BOOTSTRAP_TOKEN doit faire au moins 24 caractères");
+  if (problems.length) throw new Error(`Configuration de production refusée :\n- ${problems.join("\n- ")}`);
 }
