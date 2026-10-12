@@ -33,3 +33,24 @@ describe("cycle de vie du contenu", () => {
     expect(canTransition("APPROVED", "SCHEDULED")).toBe(true);
   });
 });
+
+import { normalizePhone, scoreLead } from "./domain.js";
+describe("CRM", () => {
+  it("normalise les numéros ivoiriens", () => {
+    expect(normalizePhone("07 49 56 70 82")).toBe("+2250749567082");
+    expect(normalizePhone("+225 05 85 80 18 56")).toBe("+2250585801856");
+    expect(normalizePhone("00225 0585801856")).toBe("+2250585801856");
+    expect(normalizePhone("abc")).toBeNull();
+  });
+  it("explique chaque point du score", () => {
+    const r = scoreLead({ hasPhone: true, hasEmail: false, consent: true, source: "WHATSAPP", fromCampaign: false, activities: 1, valueAmount: null, stage: "NEW" });
+    expect(r.score).toBe(55);
+    expect(r.reasons.map((x) => x.label)).toContain("Accepte d'être contacté sur WhatsApp");
+  });
+  it("donne l'accès CRM aux bons rôles", async () => {
+    const { can } = await import("./rbac.js");
+    expect(can("EDITOR", "crm:update")).toBe(true);
+    expect(can("CREATOR", "crm:read")).toBe(false);
+    expect(can("VIEWER", "crm:read")).toBe(false);
+  });
+});

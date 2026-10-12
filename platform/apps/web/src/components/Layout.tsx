@@ -10,8 +10,6 @@ const UPCOMING = [
   { key: "creative", label: "Creative Studio", phase: "Phase 2" },
   { key: "video", label: "Video Studio", phase: "Phase 4" },
   { key: "social", label: "Social Hub", phase: "Phase 3" },
-  { key: "campaigns", label: "Campagnes", phase: "Phase 5" },
-  { key: "crm", label: "CRM & Leads", phase: "Phase 5" },
   { key: "analytics", label: "Analytics & ROI", phase: "Phase 2–6" },
   { key: "copilot", label: "AI Copilot", phase: "Phase 6" },
 ];
@@ -75,6 +73,9 @@ export function Layout() {
           <NavLink to="/content">{t("nav.content")}</NavLink>
           <NavLink to="/calendar">{t("nav.calendar")}</NavLink>
           <NavLink to="/approvals">{t("nav.approvals")}</NavLink>
+          {(can("crm:read") || can("campaigns:read")) && <div className="nav-section">Ventes</div>}
+          {can("campaigns:read") && <NavLink to="/campaigns">Campagnes</NavLink>}
+          {can("crm:read") && <NavLink to="/crm">CRM & leads</NavLink>}
           <div className="nav-section">{t("nav.soon")}</div>
           {UPCOMING.map((m) => (
             <NavLink key={m.key} to={`/soon/${m.key}`} className="soon">

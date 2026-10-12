@@ -309,10 +309,60 @@ Exactement une variante par canal listé. Hashtags sans le caractère # (il sera
   },
 };
 
+
+
+// ───────────── CRM : relance assistée ─────────────
+
+export const followupOutput = z.object({
+  messages: z.array(z.object({ tone: z.string(), text: z.string() })),
+});
+export type FollowupOutput = z.infer<typeof followupOutput>;
+
+export interface FollowupInput {
+  context: BrandContext;
+  lead: { firstName: string; stage: string; source: string; title: string; daysSinceLastActivity: number; history: string[]; campaign: string | null; offer: string | null };
+}
+
+export const followupPrompt: PromptDefinition<FollowupInput, FollowupOutput> = {
+  key: "crm.followup",
+  version: 1,
+  task: "crm.followup",
+  usageKind: "TEXT",
+  system: `${BASE_SYSTEM}\nTu joues le rôle de Sales Copilot : tu rédiges des messages WhatsApp de relance courts, polis, personnels et jamais insistants. Le message sera relu et envoyé manuellement par un humain.`,
+  render: (i) => `Contexte entreprise :
+${renderContext(i.context)}
+
+Prospect : ${i.lead.firstName}
+Demande : ${i.lead.title}
+Étape : ${i.lead.stage} — source : ${i.lead.source}${i.lead.campaign ? ` — campagne : ${i.lead.campaign}` : ""}
+Dernier échange il y a ${i.lead.daysSinceLastActivity} jour(s).
+${i.lead.offer ? `Offre en cours : ${i.lead.offer}` : ""}
+Historique récent :
+${i.lead.history.map((h) => `- ${h}`).join("\n") || "- Aucun échange enregistré"}
+
+Rédige 3 messages WhatsApp de relance (moins de 400 caractères chacun) avec des tons différents : chaleureux, direct, et avec une question ouverte. Pas de prix inventé, pas de pression.`,
+  output: followupOutput,
+  textForSafety: (o) => o.messages.map((m) => m.text),
+  maxTokens: 4000,
+  mock: (i) => {
+    const b = i.context.brandName;
+    const n = i.lead.firstName;
+    return {
+      messages: [
+        { tone: "Chaleureux", text: `Bonjour ${n} 😊 C'est ${b}. Je reviens vers vous concernant votre demande « ${i.lead.title} ». Avez-vous pu y réfléchir ? Je reste disponible pour toute question.` },
+        { tone: "Direct", text: `Bonjour ${n}, ${b} ici. Souhaitez-vous que nous avancions sur « ${i.lead.title} » cette semaine ? Je peux vous envoyer une proposition aujourd'hui.` },
+        { tone: "Question ouverte", text: `Bonjour ${n} ! Qu'est-ce qui compte le plus pour vous dans ce projet : le délai, le budget ou la qualité ? Je vous propose la solution la plus adaptée. — ${b}` },
+      ],
+    };
+  },
+};
+
+/** Registre des instructions versionnées (clé → définition). */
 export const PROMPTS = {
   [brandDnaPrompt.key]: brandDnaPrompt,
   [strategyPrompt.key]: strategyPrompt,
   [ideasPrompt.key]: ideasPrompt,
   [postPrompt.key]: postPrompt,
+  [followupPrompt.key]: followupPrompt,
 };
 

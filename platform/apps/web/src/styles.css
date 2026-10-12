@@ -282,6 +282,20 @@ th { color: var(--text-muted); font-weight: 500; font-size: 0.8rem; }
 .backlog { display: grid; gap: 6px; }
 .backlog .cal-item { background: var(--success-soft); color: var(--success); white-space: normal; }
 
+/* ───── CRM ───── */
+.kanban { display: grid; grid-template-columns: repeat(6, minmax(200px, 1fr)); gap: 10px; overflow-x: auto; padding-bottom: 8px; }
+.kanban-col { background: var(--surface-2); border-radius: var(--radius); padding: 10px; display: flex; flex-direction: column; gap: 8px; min-height: 200px; border: 2px solid transparent; }
+.kanban-col.drop { border-color: var(--accent); border-style: dashed; background: var(--accent-soft); }
+.kanban-head { display: flex; justify-content: space-between; align-items: baseline; gap: 6px; padding: 2px 4px 6px; }
+.lead-card { text-align: left; display: grid; gap: 3px; background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-sm); padding: 10px; cursor: pointer; font: inherit; color: inherit; }
+.lead-card:hover { border-color: var(--accent); }
+.lead-score { font-size: 0.72rem; font-weight: 600; border-radius: 999px; padding: 1px 8px; background: var(--surface-2); color: var(--text-muted); }
+.lead-score.warm { background: var(--warning-soft); color: var(--warning); }
+.lead-score.hot { background: var(--accent-soft); color: var(--accent-strong); }
+.followup { border: 1px solid var(--border); border-radius: var(--radius-sm); padding: 12px; }
+.campaign-card { text-decoration: none; color: inherit; display: block; }
+.campaign-card:hover { border-color: var(--accent); }
+
 /* ───── Auth ───── */
 .auth { min-height: 100%; display: grid; grid-template-columns: 1fr 1fr; }
 .auth-aside { background: var(--sidebar-bg); color: var(--sidebar-text); padding: 48px; display: flex; flex-direction: column; justify-content: space-between; gap: 32px; }
@@ -295,7 +309,7 @@ th { color: var(--text-muted); font-weight: 500; font-size: 0.8rem; }
 .steps span.on { background: var(--accent); }
 
 /* ───── Modal ───── */
-.modal { border: none; border-radius: var(--radius); padding: 18px; width: min(640px, calc(100vw - 32px)); background: var(--surface); color: var(--text); box-shadow: 0 20px 60px rgb(0 0 0 / 0.3); }
+.modal { max-height: calc(100vh - 32px); overflow-y: auto; border: none; border-radius: var(--radius); padding: 18px; width: min(640px, calc(100vw - 32px)); background: var(--surface); color: var(--text); box-shadow: 0 20px 60px rgb(0 0 0 / 0.3); }
 .modal::backdrop { background: rgb(0 0 0 / 0.5); }
 .modal-body { display: grid; gap: 14px; }
 .modal-foot { display: flex; justify-content: flex-end; gap: 8px; margin-top: 16px; }

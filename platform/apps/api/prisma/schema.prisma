@@ -178,6 +178,10 @@ model Workspace {
   assets           BrandAsset[]
   products         Product[]
   approvals        Approval[]
+  contacts         Contact[]
+  leads            Lead[]
+  tasks            CrmTask[]
+  leadForms        LeadForm[]
 
   @@unique([organizationId, slug])
   @@index([organizationId])
@@ -446,9 +450,18 @@ model Campaign {
   startAt     DateTime?
   endAt       DateTime?
   status      String        @default("DRAFT") // DRAFT | ACTIVE | PAUSED | COMPLETED
+  channels    Json          @default("[]")
+  audience    String?
+  offer       String?
+  kpiTarget   String?
+  approvedById String?
+  approvedAt  DateTime?
+  createdById String?
   createdAt   DateTime      @default(now())
   updatedAt   DateTime      @updatedAt
   contents    ContentItem[]
+  leads       Lead[]
+  forms       LeadForm[]
 
   @@index([workspaceId, status])
 }
@@ -675,4 +688,133 @@ model AuditLog {
 
   @@index([organizationId, createdAt])
   @@index([workspaceId, createdAt])
+}
+
+// ───────────────────────────── CRM ─────────────────────────────
+
+enum LeadStage {
+  NEW
+  CONTACTED
+  QUALIFIED
+  PROPOSAL
+  WON
+  LOST
+}
+
+enum LeadSource {
+  WHATSAPP
+  FORM
+  FACEBOOK
+  INSTAGRAM
+  TIKTOK
+  LINKEDIN
+  WEBSITE
+  REFERRAL
+  WALK_IN
+  OTHER
+}
+
+model Contact {
+  id              String    @id @default(cuid())
+  workspaceId     String
+  workspace       Workspace @relation(fields: [workspaceId], references: [id], onDelete: Restrict)
+  name            String
+  /// Téléphone normalisé E.164 (+225…), clé de dédoublonnage
+  phone           String?
+  email           String?
+  company         String?
+  city            String?
+  tags            Json      @default("[]")
+  /// Consentement explicite à être contacté sur WhatsApp (§5.5)
+  consentWhatsApp Boolean   @default(false)
+  consentAt       DateTime?
+  notes           String?
+  createdAt       DateTime  @default(now())
+  updatedAt       DateTime  @updatedAt
+  leads           Lead[]
+
+  @@unique([workspaceId, phone])
+  @@index([workspaceId, name])
+}
+
+model Lead {
+  id           String     @id @default(cuid())
+  workspaceId  String
+  workspace    Workspace  @relation(fields: [workspaceId], references: [id], onDelete: Restrict)
+  contactId    String
+  contact      Contact    @relation(fields: [contactId], references: [id], onDelete: Restrict)
+  title        String
+  source       LeadSource @default(OTHER)
+  campaignId   String?
+  campaign     Campaign?  @relation(fields: [campaignId], references: [id], onDelete: SetNull)
+  /// Contenu ayant généré le lead (attribution)
+  contentId    String?
+  formId       String?
+  stage        LeadStage  @default(NEW)
+  score        Int        @default(0)
+  scoreReasons Json       @default("[]")
+  /// Valeur estimée en unités mineures (XOF). La vente réelle reste dans le domaine Sales.
+  valueAmount  Int?
+  currency     String     @default("XOF")
+  assigneeId   String?
+  lostReason   String?
+  wonAt        DateTime?
+  lastActivityAt DateTime @default(now())
+  revision     Int        @default(1)
+  createdAt    DateTime   @default(now())
+  updatedAt    DateTime   @updatedAt
+  activities   LeadActivity[]
+  tasks        CrmTask[]
+
+  @@index([workspaceId, stage])
+  @@index([workspaceId, campaignId])
+  @@index([contactId])
+}
+
+model LeadActivity {
+  id          String   @id @default(cuid())
+  workspaceId String
+  leadId      String
+  lead        Lead     @relation(fields: [leadId], references: [id], onDelete: Cascade)
+  type        String // NOTE | CALL | WHATSAPP | EMAIL | MEETING | STAGE_CHANGE | SYSTEM
+  body        String
+  actorId     String?
+  createdAt   DateTime @default(now())
+
+  @@index([leadId, createdAt])
+}
+
+model CrmTask {
+  id          String    @id @default(cuid())
+  workspaceId String
+  workspace   Workspace @relation(fields: [workspaceId], references: [id], onDelete: Restrict)
+  leadId      String?
+  lead        Lead?     @relation(fields: [leadId], references: [id], onDelete: Cascade)
+  title       String
+  dueAt       DateTime?
+  doneAt      DateTime?
+  assigneeId  String?
+  createdById String?
+  createdAt   DateTime  @default(now())
+
+  @@index([workspaceId, doneAt, dueAt])
+}
+
+/// Formulaire public de capture de leads (lien partageable, liste d'attente, campagne).
+model LeadForm {
+  id          String    @id @default(cuid())
+  workspaceId String
+  workspace   Workspace @relation(fields: [workspaceId], references: [id], onDelete: Restrict)
+  slug        String    @unique
+  title       String
+  description String?
+  /// Message de confirmation affiché après envoi
+  thankYou    String    @default("Merci ! Nous vous recontactons très vite sur WhatsApp.")
+  campaignId  String?
+  campaign    Campaign? @relation(fields: [campaignId], references: [id], onDelete: SetNull)
+  active      Boolean   @default(true)
+  submissions Int       @default(0)
+  createdAt   DateTime  @default(now())
+
+  @@index([workspaceId])
 }

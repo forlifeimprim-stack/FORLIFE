@@ -81,6 +81,7 @@ export const TASK_CREDIT_COST = {
   "strategy.plan": 25,
   "content.ideas": 8,
   "content.post": 10,
+  "crm.followup": 3,
 } as const;
 export type AiTaskType = keyof typeof TASK_CREDIT_COST;
 

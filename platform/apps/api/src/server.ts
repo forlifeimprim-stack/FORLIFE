@@ -19,6 +19,9 @@ import { jobRoutes } from "./modules/jobs/routes.js";
 import { dashboardRoutes } from "./modules/governance/dashboard.js";
 import { registerAllJobHandlers } from "./modules/jobs/handlers.js";
 import { adminRoutes } from "./modules/admin/routes.js";
+import { crmRoutes } from "./modules/crm/routes.js";
+import { publicFormRoutes } from "./modules/crm/public.js";
+import { campaignRoutes } from "./modules/campaigns/routes.js";
 import { invitationRoutes } from "./modules/org/invitations.js";
 import { passwordRoutes } from "./modules/identity/password.js";
 
@@ -81,6 +84,9 @@ export async function buildServer(options: { logger?: boolean } = {}) {
   await app.register(passwordRoutes);
   await app.register(invitationRoutes);
   await app.register(adminRoutes);
+  await app.register(crmRoutes);
+  await app.register(publicFormRoutes);
+  await app.register(campaignRoutes);
 
   return app;
 }

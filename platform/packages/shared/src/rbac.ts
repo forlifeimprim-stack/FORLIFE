@@ -25,6 +25,7 @@ export const MODULES = [
   "strategy",
   "content",
   "campaigns",
+  "crm",
   "approvals",
   "ai",
   "billing",
@@ -62,6 +63,7 @@ export const ROLE_PERMISSIONS: Record<Role, ReadonlySet<Permission>> = {
     "campaigns:approve",
     ...write("approvals"),
     "approvals:approve",
+    ...write("crm"),
     "workspace:read",
     "workspace:update",
     "workspace:create",
@@ -72,6 +74,9 @@ export const ROLE_PERMISSIONS: Record<Role, ReadonlySet<Permission>> = {
   ]),
   EDITOR: new Set<Permission>([
     ...CREATIVE_WORK,
+    "crm:read",
+    "crm:create",
+    "crm:update",
     "approvals:read",
     "approvals:create",
     "workspace:read",
@@ -86,12 +91,13 @@ export const ROLE_PERMISSIONS: Record<Role, ReadonlySet<Permission>> = {
     "ai:generate",
   ]),
   ANALYST: new Set<Permission>([
-    ...read("brand", "assets", "strategy", "content", "campaigns", "approvals", "workspace", "org", "ai", "billing", "audit"),
+    ...read("brand", "assets", "strategy", "content", "campaigns", "crm", "approvals", "workspace", "org", "ai", "billing", "audit"),
   ]),
   VIEWER: new Set<Permission>([...read("brand", "assets", "strategy", "content", "campaigns", "workspace", "org")]),
   // Agence : travaille comme un manager, mais uniquement sur les workspaces clients qui lui sont assignés.
   AGENCY: new Set<Permission>([
     ...CREATIVE_WORK,
+    ...write("crm"),
     "content:approve",
     ...write("approvals"),
     "approvals:approve",

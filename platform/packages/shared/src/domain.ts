@@ -89,3 +89,65 @@ export type JobStatus = (typeof JOB_STATUSES)[number];
 
 export const AI_MODES = ["ASSISTED", "COPILOT", "AUTOPILOT"] as const;
 export type AiMode = (typeof AI_MODES)[number];
+
+// ───── CRM ─────
+export const LEAD_STAGES = ["NEW", "CONTACTED", "QUALIFIED", "PROPOSAL", "WON", "LOST"] as const;
+export type LeadStage = (typeof LEAD_STAGES)[number];
+export const LEAD_STAGE_LABELS: Record<LeadStage, string> = {
+  NEW: "Nouveau",
+  CONTACTED: "Contacté",
+  QUALIFIED: "Qualifié",
+  PROPOSAL: "Devis envoyé",
+  WON: "Gagné",
+  LOST: "Perdu",
+};
+
+export const LEAD_SOURCES = ["WHATSAPP", "FORM", "FACEBOOK", "INSTAGRAM", "TIKTOK", "LINKEDIN", "WEBSITE", "REFERRAL", "WALK_IN", "OTHER"] as const;
+export type LeadSource = (typeof LEAD_SOURCES)[number];
+export const LEAD_SOURCE_LABELS: Record<LeadSource, string> = {
+  WHATSAPP: "WhatsApp",
+  FORM: "Formulaire",
+  FACEBOOK: "Facebook",
+  INSTAGRAM: "Instagram",
+  TIKTOK: "TikTok",
+  LINKEDIN: "LinkedIn",
+  WEBSITE: "Site web",
+  REFERRAL: "Recommandation",
+  WALK_IN: "Visite en boutique",
+  OTHER: "Autre",
+};
+
+export const CAMPAIGN_STATUSES = ["DRAFT", "ACTIVE", "PAUSED", "COMPLETED"] as const;
+export type CampaignStatus = (typeof CAMPAIGN_STATUSES)[number];
+export const CAMPAIGN_STATUS_LABELS: Record<CampaignStatus, string> = { DRAFT: "Brouillon", ACTIVE: "Active", PAUSED: "En pause", COMPLETED: "Terminée" };
+
+/**
+ * Normalise un numéro ivoirien / international en E.164.
+ * « 07 49 56 70 82 » → « +2250749567082 » (numéros CI à 10 chiffres depuis 2021).
+ */
+export function normalizePhone(raw: string, defaultCountryCode = "225"): string | null {
+  const digits = raw.replace(/[^\d+]/g, "");
+  if (!digits) return null;
+  let n = digits.startsWith("+") ? digits.slice(1) : digits.startsWith("00") ? digits.slice(2) : `${defaultCountryCode}${digits}`;
+  n = n.replace(/\D/g, "");
+  return n.length >= 8 && n.length <= 15 ? `+${n}` : null;
+}
+
+/**
+ * Score de lead transparent (0–100) : chaque point est expliqué.
+ * Les signaux viennent de données réelles du CRM, pas d'une estimation opaque.
+ */
+export function scoreLead(input: { hasPhone: boolean; hasEmail: boolean; consent: boolean; source: LeadSource; fromCampaign: boolean; activities: number; valueAmount: number | null; stage: LeadStage }) {
+  const reasons: { label: string; points: number }[] = [];
+  const add = (label: string, points: number) => points && reasons.push({ label, points });
+  add("Téléphone renseigné", input.hasPhone ? 20 : 0);
+  add("Email renseigné", input.hasEmail ? 5 : 0);
+  add("Accepte d'être contacté sur WhatsApp", input.consent ? 15 : 0);
+  add("Source à forte intention", ["WHATSAPP", "REFERRAL", "WALK_IN", "FORM"].includes(input.source) ? 15 : 5);
+  add("Issu d'une campagne", input.fromCampaign ? 10 : 0);
+  add("Échanges récents", Math.min(20, input.activities * 5));
+  add("Valeur estimée renseignée", input.valueAmount ? 10 : 0);
+  add("Avancement dans le pipeline", { NEW: 0, CONTACTED: 3, QUALIFIED: 8, PROPOSAL: 12, WON: 0, LOST: 0 }[input.stage]);
+  const score = Math.min(100, reasons.reduce((n, r) => n + r.points, 0));
+  return { score, reasons };
+}
