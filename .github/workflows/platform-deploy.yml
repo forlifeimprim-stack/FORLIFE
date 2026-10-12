@@ -1,80 +1,178 @@
 name: Déploiement plateforme (Cloud Run + Firebase Hosting)
 
-# Déclenchement manuel uniquement : Actions → « Déploiement plateforme » → Run workflow.
+# Déploiement automatique à chaque envoi sur main ou sur la branche de développement, dès que
+# platform/deploy/production.env est renseigné (GCP_PROJECT_ID). Aucune clé GCP stockée dans GitHub :
+# authentification par Workload Identity Federation, limitée à ce dépôt et à ces branches.
 on:
+  push:
+    branches: [main, claude/app-development-sbl2ff]
+    paths: ["platform/**", ".github/workflows/platform-deploy.yml"]
   workflow_dispatch:
 
 permissions:
   contents: read
 
-env:
-  PROJECT_ID: ${{ vars.GCP_PROJECT_ID || 'forlifecom-6eef9' }}
-  REGION: europe-west1
-  SERVICE: forlife-api
-  REPOSITORY: forlife
+concurrency:
+  group: platform-deploy
+  cancel-in-progress: false
 
 jobs:
-  deploy:
+  config:
     runs-on: ubuntu-latest
-    environment: production
+    outputs:
+      enabled: ${{ steps.cfg.outputs.enabled }}
     steps:
       - uses: actions/checkout@v4
-
-      - name: Authentification Google Cloud
-        uses: google-github-actions/auth@v2
-        with:
-          credentials_json: ${{ secrets.GCP_SA_KEY }}
-
-      - uses: google-github-actions/setup-gcloud@v2
-
-      - name: Image de l'API (Artifact Registry)
+      - id: cfg
         run: |
-          IMAGE="$REGION-docker.pkg.dev/$PROJECT_ID/$REPOSITORY/$SERVICE:${GITHUB_SHA::12}"
-          gcloud auth configure-docker "$REGION-docker.pkg.dev" --quiet
-          docker build -t "$IMAGE" platform
-          docker push "$IMAGE"
-          echo "IMAGE=$IMAGE" >> "$GITHUB_ENV"
+          set -a; . platform/deploy/production.env; set +a
+          if [ -n "$GCP_PROJECT_ID" ]; then echo "enabled=true" >> "$GITHUB_OUTPUT"; else echo "enabled=false" >> "$GITHUB_OUTPUT"; echo "::notice::Déploiement inactif : platform/deploy/production.env n'est pas encore renseigné."; fi
 
-      - name: Déploiement Cloud Run
+  # Tests complets avant toute mise en ligne (même suite que la CI).
+  test:
+    needs: config
+    if: needs.config.outputs.enabled == 'true'
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: platform
+    services:
+      postgres:
+        image: postgres:16
         env:
-          APP_URL: ${{ vars.APP_URL }}
-          GCS_BUCKET: ${{ vars.GCS_BUCKET }}
-          CLOUDSQL_INSTANCE: ${{ vars.CLOUDSQL_INSTANCE }}
-          AI_PROVIDERS: ${{ vars.AI_PROVIDERS || 'anthropic,mock' }}
-          PLATFORM_ADMIN_EMAILS: ${{ vars.PLATFORM_ADMIN_EMAILS }}
-          EMAIL_DRIVER: ${{ vars.EMAIL_DRIVER || 'log' }}
-          EMAIL_FROM: ${{ vars.EMAIL_FROM || 'Forlife Com <no-reply@forlifecom.ci>' }}
-          PAYMENT_SANDBOX_ENABLED: ${{ vars.PAYMENT_SANDBOX_ENABLED || 'false' }}
-          SOCIAL_SANDBOX_ENABLED: ${{ vars.SOCIAL_SANDBOX_ENABLED || 'true' }}
-          # Secrets optionnels (ex. « ANTHROPIC_API_KEY=forlife-anthropic-key:latest,CINETPAY_API_KEY=forlife-cinetpay-key:latest »)
-          EXTRA_SECRETS: ${{ vars.EXTRA_SECRETS }}
-          # Variables supplémentaires séparées par « | » (ex. « CINETPAY_SITE_ID=123|META_APP_ID=456 »)
-          EXTRA_ENV: ${{ vars.EXTRA_ENV }}
-        run: |
-          SECRETS="DATABASE_URL=forlife-database-url:latest,JWT_SECRET=forlife-jwt-secret:latest,ENCRYPTION_KEY=forlife-encryption-key:latest"
-          [ -n "$EXTRA_SECRETS" ] && SECRETS="$SECRETS,$EXTRA_SECRETS"
-          ENVV="^|^NODE_ENV=production|STORAGE_DRIVER=gcs|GCS_BUCKET=$GCS_BUCKET|APP_URL=$APP_URL|API_PUBLIC_URL=$APP_URL|WEB_ORIGIN=$APP_URL|AI_PROVIDERS=$AI_PROVIDERS|PLATFORM_ADMIN_EMAILS=$PLATFORM_ADMIN_EMAILS|EMAIL_DRIVER=$EMAIL_DRIVER|EMAIL_FROM=$EMAIL_FROM|PAYMENT_SANDBOX_ENABLED=$PAYMENT_SANDBOX_ENABLED|SOCIAL_SANDBOX_ENABLED=$SOCIAL_SANDBOX_ENABLED|RUN_WORKER_INLINE=true"
-          [ -n "$EXTRA_ENV" ] && ENVV="$ENVV|$EXTRA_ENV"
-          gcloud run deploy "$SERVICE" \
-            --image "$IMAGE" --region "$REGION" --platform managed \
-            --service-account "forlife-api@$PROJECT_ID.iam.gserviceaccount.com" \
-            --allow-unauthenticated \
-            --cpu 2 --memory 2Gi --timeout 300 --concurrency 40 \
-            --min-instances 1 --max-instances 4 --no-cpu-throttling \
-            ${CLOUDSQL_INSTANCE:+--add-cloudsql-instances "$CLOUDSQL_INSTANCE"} \
-            --set-env-vars "$ENVV" \
-            --set-secrets "$SECRETS"
-
+          POSTGRES_USER: forlife
+          POSTGRES_PASSWORD: forlife
+          POSTGRES_DB: forlife_com_test
+        ports: ["5432:5432"]
+        options: >-
+          --health-cmd "pg_isready -U forlife -d forlife_com_test"
+          --health-interval 5s --health-timeout 5s --health-retries 10
+    env:
+      TEST_DATABASE_URL: postgresql://forlife:forlife@localhost:5432/forlife_com_test
+      DATABASE_URL: postgresql://forlife:forlife@localhost:5432/forlife_com_test
+    steps:
+      - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with:
           node-version: "22"
           cache: npm
           cache-dependency-path: platform/package-lock.json
+      - run: sudo apt-get update -qq && sudo apt-get install -y -qq ffmpeg
+      - run: npm ci
+      - run: npm run typecheck
+      - run: npm test
 
-      - name: Build de l'interface
+  # Construction SANS aucun identifiant cloud (les scripts d'installation npm n'ont accès à rien).
+  build:
+    needs: test
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: npm
+          cache-dependency-path: platform/package-lock.json
+      - name: Interface web
         working-directory: platform
         run: npm ci && npm run build:shared && npm run build -w @forlife/web
+      - uses: actions/upload-artifact@v4
+        with:
+          name: web-dist
+          path: platform/apps/web/dist
+          retention-days: 3
+      - name: Image Docker de l'API
+        run: docker build -t forlife-api:${{ github.sha }} platform && docker save forlife-api:${{ github.sha }} | gzip > api-image.tar.gz
+      - uses: actions/upload-artifact@v4
+        with:
+          name: api-image
+          path: api-image.tar.gz
+          retention-days: 3
 
-      - name: Firebase Hosting (cible « app »)
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment: production
+    permissions:
+      contents: read
+      id-token: write
+    steps:
+      - uses: actions/checkout@v4
+      - name: Configuration
+        run: |
+          set -a; . platform/deploy/production.env; set +a
+          for v in GCP_PROJECT_ID GCP_PROJECT_NUMBER REGION CLOUDSQL_INSTANCE GCS_BUCKET; do
+            [ -n "${!v}" ] || { echo "::error::$v manquant dans platform/deploy/production.env"; exit 1; }
+          done
+          SITE="${FIREBASE_SITE:-$GCP_PROJECT_ID}"
+          {
+            echo "PROJECT=$GCP_PROJECT_ID"; echo "REGION=$REGION"; echo "SITE=$SITE"
+            echo "APP_URL=https://$SITE.web.app"
+            echo "IMAGE=$REGION-docker.pkg.dev/$GCP_PROJECT_ID/forlife/forlife-api:${GITHUB_SHA::12}"
+            echo "WIF=projects/$GCP_PROJECT_NUMBER/locations/global/workloadIdentityPools/github/providers/github-actions"
+            echo "DEPLOY_SA=github-deploy@$GCP_PROJECT_ID.iam.gserviceaccount.com"
+            echo "API_SA=forlife-api@$GCP_PROJECT_ID.iam.gserviceaccount.com"
+          } >> "$GITHUB_ENV"
+
+      - uses: actions/download-artifact@v4
+        with:
+          name: api-image
+      - uses: actions/download-artifact@v4
+        with:
+          name: web-dist
+          path: platform/apps/web/dist
+
+      # Identifiants éphémères (1 h), uniquement pour ce job et à partir d'ici.
+      - name: Authentification Google Cloud (sans clé)
+        uses: google-github-actions/auth@v2
+        with:
+          workload_identity_provider: ${{ env.WIF }}
+          service_account: ${{ env.DEPLOY_SA }}
+      - uses: google-github-actions/setup-gcloud@v2
+
+      - name: Publication de l'image
+        run: |
+          gcloud auth configure-docker "$REGION-docker.pkg.dev" --quiet
+          docker load < api-image.tar.gz
+          docker tag "forlife-api:$GITHUB_SHA" "$IMAGE"
+          docker push "$IMAGE"
+
+      - name: Migrations (compte propriétaire, job séparé)
+        run: |
+          set -a; . platform/deploy/production.env; set +a
+          gcloud run jobs deploy forlife-migrate --project "$PROJECT" --region "$REGION" --image "$IMAGE" \
+            --service-account "$API_SA" --set-cloudsql-instances "$CLOUDSQL_INSTANCE" \
+            --set-secrets DATABASE_URL=forlife-database-migrator-url:latest \
+            --command sh --args="-c,npx prisma migrate deploy && npx prisma db execute --file prisma/grants.sql --schema prisma/schema.prisma" \
+            --max-retries 0 --task-timeout 600 --quiet
+          gcloud run jobs execute forlife-migrate --project "$PROJECT" --region "$REGION" --wait
+
+      - name: Déploiement Cloud Run (compte applicatif restreint)
+        run: |
+          set -a; . platform/deploy/production.env; set +a
+          SECRETS="DATABASE_URL=forlife-database-url:latest,JWT_SECRET=forlife-jwt-secret:latest,ENCRYPTION_KEY=forlife-encryption-key:latest,PLATFORM_ADMIN_EMAILS=forlife-admin-emails:latest,ADMIN_BOOTSTRAP_TOKEN=forlife-admin-bootstrap:latest"
+          if [ -n "$OPTIONAL_SECRETS" ]; then
+            for pair in ${OPTIONAL_SECRETS//,/ }; do SECRETS="$SECRETS,${pair%%=*}=${pair#*=}:latest"; done
+          fi
+          ENVV="^|^NODE_ENV=production|STORAGE_DRIVER=gcs|GCS_BUCKET=$GCS_BUCKET|APP_URL=$APP_URL|API_PUBLIC_URL=$APP_URL|WEB_ORIGIN=$APP_URL|AI_PROVIDERS=$AI_PROVIDERS|EMAIL_DRIVER=$EMAIL_DRIVER|EMAIL_FROM=$EMAIL_FROM|PAYMENT_SANDBOX_ENABLED=$PAYMENT_SANDBOX_ENABLED|SOCIAL_SANDBOX_ENABLED=$SOCIAL_SANDBOX_ENABLED|RUN_WORKER_INLINE=true"
+          [ -n "$EXTRA_ENV" ] && ENVV="$ENVV|$EXTRA_ENV"
+          gcloud run deploy forlife-api --project "$PROJECT" --region "$REGION" --image "$IMAGE" --platform managed \
+            --service-account "$API_SA" --allow-unauthenticated \
+            --cpu 2 --memory 2Gi --timeout 300 --concurrency 40 \
+            --min-instances 1 --max-instances 4 --no-cpu-throttling \
+            --add-cloudsql-instances "$CLOUDSQL_INSTANCE" \
+            --set-env-vars "$ENVV" --set-secrets "$SECRETS" --quiet
+
+      - name: Firebase Hosting
         working-directory: platform
-        run: npx --yes firebase-tools@13 deploy --only hosting:app --project "$PROJECT_ID" --non-interactive
+        run: |
+          printf '{"projects":{"default":"%s"},"targets":{"%s":{"hosting":{"app":["%s"]}}}}' "$PROJECT" "$PROJECT" "$SITE" > .firebaserc
+          npx --yes firebase-tools@13.35.1 deploy --only hosting:app --project "$PROJECT" --non-interactive
+
+      - name: Contrôle de santé
+        run: |
+          for i in $(seq 1 10); do
+            if curl -fsS "$APP_URL/api/health" | grep -q '"status":"ok"'; then echo "✅ $APP_URL en ligne (base de données connectée)"; exit 0; fi
+            sleep 6
+          done
+          echo "::error::$APP_URL/api/health ne répond pas"; exit 1

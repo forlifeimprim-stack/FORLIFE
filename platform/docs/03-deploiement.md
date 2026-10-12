@@ -1,164 +1,109 @@
-# Mise en ligne de Forlife Com (Cloud Run + Firebase Hosting)
-
-Architecture de production :
+# Mise en ligne de Forlife Com — projet Firebase « AI Growth et Creative OS »
 
 ```
-Navigateur ──► Firebase Hosting (site « forlifecom-app »)
+Navigateur ──► Firebase Hosting  https://<ID-du-projet>.web.app
                  ├─ /            → interface React (apps/web/dist)
                  └─ /api/**      → Cloud Run « forlife-api » (europe-west1)
-                                      ├─ API Fastify + worker + planificateur (même conteneur)
-                                      ├─ Cloud SQL PostgreSQL 16
-                                      ├─ Cloud Storage (fichiers, visuels, vidéos)
-                                      └─ Secret Manager (clés)
+                                      ├─ API + worker + planificateur (compte base « forlife_app », droits restreints)
+                                      ├─ Cloud SQL PostgreSQL (connexion chiffrée par le connecteur Cloud SQL)
+                                      ├─ Cloud Storage privé (fichiers, visuels, vidéos)
+                                      └─ Secret Manager (toutes les clés)
+               Job Cloud Run « forlife-migrate » : migrations avec le compte propriétaire « forlife », à chaque déploiement
 ```
 
-Le site vitrine actuel (racine du dépôt, `firebase.json` à la racine) **n'est pas modifié** :
-l'application est déployée sur un **second site Firebase** du même projet `forlifecom-6eef9`.
+Le site vitrine existant (projet `forlifecom-6eef9`) n'est pas concerné.
 
-> Toutes les clés secrètes sont saisies **par vous** dans Google Cloud (Secret Manager) ou dans
-> GitHub (Settings → Secrets). Elles ne doivent jamais être envoyées par message ni committées.
+> **Règle d'or : aucun secret ne passe par le chat ni par GitHub.** Le dépôt est public. Les mots de passe
+> et clés sont générés dans Google Cloud et rangés dans Secret Manager. GitHub se connecte à Google Cloud
+> sans clé (Workload Identity Federation), uniquement depuis ce dépôt et ses branches de travail.
 
----
+## 1. Une commande dans Cloud Shell (≈ 5 min)
 
-## 1. Préparation unique (≈ 30 min)
-
-Depuis [Cloud Shell](https://shell.cloud.google.com) connecté au projet `forlifecom-6eef9` :
+Ouvrez [Cloud Shell](https://shell.cloud.google.com) (compte propriétaire du projet), puis :
 
 ```bash
-PROJECT=forlifecom-6eef9
-REGION=europe-west1
-gcloud config set project $PROJECT
-
-# 1.1 Activer les services
-gcloud services enable run.googleapis.com sqladmin.googleapis.com artifactregistry.googleapis.com \
-  secretmanager.googleapis.com storage.googleapis.com cloudbuild.googleapis.com
-
-# 1.2 Dépôt d'images Docker
-gcloud artifacts repositories create forlife --repository-format=docker --location=$REGION
-
-# 1.3 Base de données PostgreSQL (plus petite instance ; à agrandir avec la croissance)
-gcloud sql instances create forlife-db --database-version=POSTGRES_16 --region=$REGION \
-  --tier=db-g1-small --storage-auto-increase --backup-start-time=02:00
-gcloud sql databases create forlife --instance=forlife-db
-gcloud sql users create forlife --instance=forlife-db --password='CHOISISSEZ-UN-MOT-DE-PASSE-LONG'
-
-# 1.4 Stockage des fichiers (privé)
-gcloud storage buckets create gs://forlifecom-app-files --location=$REGION --uniform-bucket-level-access
-
-# 1.5 Compte de service de l'API
-gcloud iam service-accounts create forlife-api --display-name="Forlife Com API"
-SA=forlife-api@$PROJECT.iam.gserviceaccount.com
-gcloud projects add-iam-policy-binding $PROJECT --member=serviceAccount:$SA --role=roles/cloudsql.client
-gcloud projects add-iam-policy-binding $PROJECT --member=serviceAccount:$SA --role=roles/secretmanager.secretAccessor
-gcloud storage buckets add-iam-policy-binding gs://forlifecom-app-files --member=serviceAccount:$SA --role=roles/storage.objectAdmin
+bash <(curl -fsSL https://raw.githubusercontent.com/forlifeimprim-stack/FORLIFE/claude/app-development-sbl2ff/platform/scripts/gcp-setup.sh)
 ```
 
-### 1.6 Secrets obligatoires (Secret Manager)
+Le script détecte le projet « AI Growth et Creative OS » et votre instance PostgreSQL, puis :
 
-```bash
-# URL de connexion Cloud SQL (socket Unix fourni par Cloud Run)
-printf 'postgresql://forlife:VOTRE-MOT-DE-PASSE@localhost/forlife?host=/cloudsql/forlifecom-6eef9:europe-west1:forlife-db' \
-  | gcloud secrets create forlife-database-url --data-file=-
-openssl rand -base64 48 | tr -d '\n' | gcloud secrets create forlife-jwt-secret --data-file=-
-openssl rand -base64 32 | tr -d '\n' | gcloud secrets create forlife-encryption-key --data-file=-
-```
-
-> ⚠️ Conservez une copie de `forlife-encryption-key` : elle chiffre les jetons des réseaux sociaux.
-> La changer oblige à reconnecter les comptes sociaux.
-
-### 1.7 Secrets optionnels (à ajouter quand vous les avez)
-
-| Fonction | Secret à créer | Variable |
-|---|---|---|
-| IA réelle (Claude) | `forlife-anthropic-key` | `ANTHROPIC_API_KEY` |
-| Paiement CinetPay | `forlife-cinetpay-key` | `CINETPAY_API_KEY` (+ `CINETPAY_SITE_ID` en variable) |
-| Publication Facebook/Instagram | `forlife-meta-secret` | `META_APP_SECRET` (+ `META_APP_ID` en variable) |
-| Emails (Resend) | `forlife-resend-key` | `RESEND_API_KEY` |
-
-Exemple : `printf 'VOTRE-CLE' | gcloud secrets create forlife-anthropic-key --data-file=-`
-(tapez la commande vous-même dans Cloud Shell).
-
-### 1.8 Second site Firebase pour l'application
-
-Console Firebase → Hosting → **Ajouter un autre site** → identifiant `forlifecom-app`
-(si l'identifiant est pris, choisissez-en un autre et remplacez-le dans `platform/.firebaserc`).
-L'application sera servie sur `https://forlifecom-app.web.app` ; vous pourrez ensuite y associer
-un domaine (ex. `app.forlifecom.ci`) depuis la même page.
-
-### 1.9 Clé de déploiement pour GitHub
-
-```bash
-gcloud iam service-accounts create github-deploy --display-name="GitHub deploy"
-D=github-deploy@$PROJECT.iam.gserviceaccount.com
-for ROLE in roles/run.admin roles/artifactregistry.writer roles/iam.serviceAccountUser roles/firebasehosting.admin roles/serviceusage.serviceUsageConsumer; do
-  gcloud projects add-iam-policy-binding $PROJECT --member=serviceAccount:$D --role=$ROLE
-done
-gcloud iam service-accounts keys create github-deploy.json --iam-account=$D
-```
-
-Dans GitHub → dépôt → **Settings → Secrets and variables → Actions** :
-
-- **Secret** `GCP_SA_KEY` : contenu du fichier `github-deploy.json` (puis supprimez le fichier de Cloud Shell).
-- **Variables** :
-
-| Variable | Exemple |
+| Étape | Effet |
 |---|---|
-| `APP_URL` | `https://forlifecom-app.web.app` |
-| `GCS_BUCKET` | `forlifecom-app-files` |
-| `CLOUDSQL_INSTANCE` | `forlifecom-6eef9:europe-west1:forlife-db` |
-| `PLATFORM_ADMIN_EMAILS` | votre email (accès au back-office) |
-| `AI_PROVIDERS` | `anthropic,mock` (ou `mock` tant que la clé n'est pas ajoutée) |
-| `EXTRA_SECRETS` | `ANTHROPIC_API_KEY=forlife-anthropic-key:latest,CINETPAY_API_KEY=forlife-cinetpay-key:latest` |
-| `EXTRA_ENV` | `CINETPAY_SITE_ID=123456\|META_APP_ID=1234567890` |
-| `EMAIL_DRIVER` | `resend` (si `RESEND_API_KEY` ajouté), sinon `log` |
-| `PAYMENT_SANDBOX_ENABLED` | `false` en production (`true` uniquement pour une démo) |
+| Sécurisation Cloud SQL | connexions chiffrées obligatoires, aucun réseau ouvert, sauvegardes 14 j + restauration à la minute, protection contre la suppression |
+| Comptes de base | `forlife` (propriétaire, migrations uniquement) et `forlife_app` (application) — mots de passe aléatoires jamais affichés |
+| Secret Manager | URL de base (×2), clé JWT, clé de chiffrement, email administrateur, code d'activation du back-office |
+| Stockage | bucket privé, accès public interdit |
+| Comptes de service | `forlife-api` (ses secrets, son bucket, Cloud SQL) et `github-deploy` (déploiement seulement) |
+| GitHub | fédération d'identité limitée aux pushs de ce dépôt sur `main` et la branche de développement (jamais une pull request) |
 
----
+À la fin, il affiche :
 
-## 2. Déployer
+1. **un bloc de configuration sans secret** (ID et numéro du projet, instance, bucket, site) → **envoyez-le à Claude** ;
+2. **un code d'activation du back-office** → **gardez-le pour vous** (ne l'envoyez à personne).
 
-GitHub → **Actions → « Déploiement plateforme (Cloud Run + Firebase Hosting) » → Run workflow**.
+## 2. Déploiement
 
-Le workflow :
-1. construit l'image Docker de l'API (FFmpeg et polices inclus) et la publie dans Artifact Registry ;
-2. déploie Cloud Run (les migrations de base de données s'appliquent au démarrage) ;
-3. construit l'interface et la publie sur le site Firebase `forlifecom-app`.
+Claude renseigne `platform/deploy/production.env` avec le bloc reçu et pousse : le workflow
+« Déploiement plateforme » se lance automatiquement :
 
-Vérification : `https://forlifecom-app.web.app/api/health` doit répondre `{"status":"ok",…}`.
+1. tests complets (API + base de données) ;
+2. construction de l'interface et de l'image Docker **sans aucun identifiant cloud** ;
+3. authentification Google éphémère, publication de l'image ;
+4. job de migration (compte propriétaire) puis droits restreints du compte applicatif ;
+5. déploiement Cloud Run (compte `forlife_app`) puis Firebase Hosting ;
+6. contrôle : `https://<ID>.web.app/api/health` doit répondre `{"status":"ok"}` (base connectée).
 
 ## 3. Premier accès administrateur
 
-1. Ouvrez `https://forlifecom-app.web.app/signup` et créez votre compte **avec l'email déclaré
-   dans `PLATFORM_ADMIN_EMAILS`**.
-2. Le menu **Plateforme → Back-office** apparaît : `https://forlifecom-app.web.app/admin`.
-3. Pour les 15 premiers clients : back-office → organisation → plan **Starter** (1 mois offert,
-   retour automatique au plan Free à l'échéance sans paiement).
+1. Créez votre compte sur `https://<ID>.web.app/signup` avec l'email donné au script.
+2. Menu **Plateforme → Back-office** : saisissez le **code d'activation** (oublié ? dans Cloud Shell :
+   `gcloud secrets versions access latest --secret=forlife-admin-bootstrap`).
+3. S'inscrire avec l'email administrateur **ne suffit jamais** sans ce code. Retirer un email du secret
+   `forlife-admin-emails` coupe son accès immédiatement.
 
-## 4. Brancher les services externes
+## 4. Brancher les services (quand vous êtes prêt)
 
-| Service | Où le configurer | URL de retour à déclarer |
-|---|---|---|
-| CinetPay | back-office CinetPay → API key + Site ID | Notification : `https://forlifecom-app.web.app/api/public/payments/cinetpay/notify` |
-| Meta (Facebook/Instagram) | developers.facebook.com → app → Facebook Login | Redirection OAuth : `https://forlifecom-app.web.app/api/social/oauth/meta/callback` |
-| Resend (emails) | resend.com → domaine `forlifecom.ci` vérifié | — |
+Chaque clé se crée **dans Cloud Shell, par vous** (exemple : `printf 'VOTRE-CLE' | gcloud secrets create forlife-anthropic-key --data-file=-`),
+puis dites à Claude quels secrets existent : il les ajoute à `OPTIONAL_SECRETS` (noms uniquement).
 
-Après ajout d'un secret, relancez le workflow de déploiement.
+| Service | Secret | Réglage non secret | À déclarer chez le prestataire |
+|---|---|---|---|
+| IA réelle (Claude) | `forlife-anthropic-key` → `ANTHROPIC_API_KEY` | `AI_PROVIDERS=anthropic,mock` | — |
+| Emails (Resend) | `forlife-resend-key` → `RESEND_API_KEY` | `EMAIL_DRIVER=resend` | domaine expéditeur vérifié |
+| Paiement CinetPay | `forlife-cinetpay-key` → `CINETPAY_API_KEY` | `CINETPAY_SITE_ID` (EXTRA_ENV) | notification : `https://<ID>.web.app/api/public/payments/cinetpay/notify` |
+| Facebook / Instagram | `forlife-meta-secret` → `META_APP_SECRET` | `META_APP_ID` (EXTRA_ENV) | redirection OAuth : `https://<ID>.web.app/social/callback/meta` |
 
-## 5. Coûts indicatifs (à faible trafic)
+Pour chaque nouveau secret, autorisez le compte de l'API à le lire :
+`gcloud secrets add-iam-policy-binding NOM --member=serviceAccount:forlife-api@<ID>.iam.gserviceaccount.com --role=roles/secretmanager.secretAccessor`.
 
-| Poste | Estimation mensuelle |
+> Tant que Resend n'est pas branché, les emails (confirmation d'adresse, mot de passe oublié, invitations)
+> ne partent pas : les 200 crédits offerts du plan Free ne sont versés qu'après confirmation de l'email.
+> Brancher Resend est donc prioritaire avant d'ouvrir les inscriptions au public.
+
+## 5. Sécurité en production (résumé)
+
+- Authentification : sessions révocables immédiatement, refresh token à usage unique, verrou de 15 min
+  après 10 échecs par compte (indépendant de l'adresse IP), en-tête anti-CSRF, scrypt renforcé.
+- Back-office : email autorisé **et** code d'activation ; accès retiré dès que l'email sort de la liste.
+- Multi-tenant : chaque requête vérifie organisation, workspace et rôle ; agences limitées à leurs espaces.
+- Contenus : une approbation ne vaut que pour la version relue ; toute modification exige une nouvelle validation.
+- Paiements : statut toujours confirmé auprès de CinetPay, montant et devise vérifiés, livraison atomique.
+- Fichiers : SVG convertis en PNG à l'import, images démesurées refusées sans décodage.
+- Base : l'application ne peut ni modifier le schéma, ni réécrire ou vider l'audit et le registre des crédits.
+- Navigateur : CSP stricte, HSTS, aucune intégration dans un autre site.
+
+Limite connue : l'adresse `*.run.app` de Cloud Run reste joignable directement (nécessaire à Firebase Hosting).
+Les limites par adresse IP y sont donc « au mieux » ; les protections critiques reposent sur des compteurs
+par compte, par numéro et par formulaire, stockés en base.
+
+## 6. Coûts et exploitation
+
+| Poste | Estimation mensuelle (faible trafic) |
 |---|---|
 | Cloud Run (1 instance toujours active, 2 vCPU / 2 Go) | ~ 60 à 90 USD |
-| Cloud SQL `db-g1-small` | ~ 25 à 30 USD |
-| Cloud Storage + Artifact Registry | < 5 USD |
-| Firebase Hosting | gratuit (quota Spark/Blaze) |
+| Cloud SQL (selon la taille choisie) | ~ 10 à 30 USD |
+| Stockage, Artifact Registry, Hosting | < 5 USD |
 
-Pour réduire les coûts au lancement : `--min-instances 0` (le worker ne tourne alors que pendant
-les requêtes : publications programmées et rendus vidéo moins réactifs) ou `--cpu 1 --memory 1Gi`.
-
-## 6. Exploitation
-
-- **Logs** : Cloud Run → forlife-api → Journaux (chaque requête porte un `x-correlation-id`).
-- **Sauvegardes** : Cloud SQL sauvegarde chaque nuit (02:00) ; restauration depuis la console.
-- **Mise à jour** : chaque relance du workflow déploie la dernière version de la branche choisie.
-- **Retour arrière** : Cloud Run → Révisions → rediriger 100 % du trafic vers la révision précédente.
+- Journaux : Cloud Run → forlife-api → Journaux (chaque requête porte un `x-correlation-id`).
+- Retour arrière : Cloud Run → Révisions → 100 % du trafic sur la révision précédente.
+- Sauvegardes : Cloud SQL → Sauvegardes (restauration à la minute près sur 7 jours).

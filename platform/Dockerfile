@@ -31,5 +31,6 @@ ENV NODE_ENV=production PORT=8080 STORAGE_DRIVER=gcs
 WORKDIR /app/apps/api
 USER node
 EXPOSE 8080
-# Les migrations sont appliquées au démarrage (verrou Prisma : sûr avec plusieurs instances).
-CMD ["sh", "-c", "npx prisma migrate deploy && node dist/main.js"]
+# Les migrations ne sont PAS lancées par l'application : un job Cloud Run dédié (« forlife-migrate »)
+# les applique avec le compte propriétaire, puis l'API tourne avec un compte aux droits restreints.
+CMD ["node", "dist/main.js"]
