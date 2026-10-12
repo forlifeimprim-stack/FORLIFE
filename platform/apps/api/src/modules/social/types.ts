@@ -1,0 +1,53 @@
+import type { SocialProvider } from "@prisma/client";
+
+export interface ConnectedAccount {
+  provider: SocialProvider;
+  externalId: string;
+  name: string;
+  avatarUrl?: string | null;
+  accessToken: string;
+  refreshToken?: string | null;
+  expiresAt?: Date | null;
+  scopes: string[];
+}
+
+export interface PostPayload {
+  text: string;
+  link?: string | null;
+  /** URL publique d'un visuel (obligatoire pour Instagram). */
+  imageUrl?: string | null;
+}
+
+export interface MetricsResult {
+  impressions: number;
+  reach: number;
+  engagement: number;
+  clicks: number;
+  isSimulated: boolean;
+}
+
+export type SocialErrorCode = "AUTH" | "RATE_LIMIT" | "TRANSIENT" | "INVALID" | "NEEDS_MEDIA" | "NOT_CONFIGURED";
+
+export class SocialError extends Error {
+  constructor(
+    public readonly code: SocialErrorCode,
+    message: string,
+  ) {
+    super(message);
+  }
+  /** Seules les erreurs transitoires sont réessayées (§5.4). */
+  get retryable(): boolean {
+    return this.code === "TRANSIENT" || this.code === "RATE_LIMIT";
+  }
+}
+
+/** Contrat connecteur (spécification §5.1) : le domaine ne dépend jamais d'une API externe. */
+export interface SocialProviderAdapter {
+  readonly key: string;
+  readonly providers: readonly SocialProvider[];
+  isConfigured(): boolean;
+  authorizeUrl(state: string, redirectUri: string): string;
+  exchange(code: string, redirectUri: string): Promise<ConnectedAccount[]>;
+  publish(account: { provider: SocialProvider; externalId: string }, accessToken: string, post: PostPayload, idempotencyKey: string): Promise<{ externalId: string; url?: string | null }>;
+  fetchMetrics(account: { provider: SocialProvider; externalId: string }, accessToken: string, externalPostId: string): Promise<MetricsResult>;
+}

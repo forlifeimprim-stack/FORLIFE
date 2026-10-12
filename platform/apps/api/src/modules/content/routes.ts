@@ -8,6 +8,7 @@ import { audit } from "../../lib/audit.js";
 import { auditCtx, authenticate, requireWorkspace } from "../../plugins/auth.js";
 import { enqueue } from "../jobs/queue.js";
 import { getContent, transition } from "./service.js";
+import { cancelPublications, schedulePublications } from "../social/service.js";
 
 const wsParams = z.object({ workspaceId: z.string() });
 const wsIdParams = z.object({ workspaceId: z.string(), id: z.string() });
@@ -266,7 +267,9 @@ export async function contentRoutes(app: FastifyInstance) {
       } else {
         await transition(tx, workspaceId, id, "SCHEDULED", { scheduledAt });
       }
-      await audit({ ...auditCtx(ctx), action: "content.scheduled", entityType: "content", entityId: id, metadata: { scheduledAt: scheduledAt.toISOString() } }, tx);
+      // Publications automatiques sur les comptes connectés (les autres canaux restent manuels).
+      const publications = await schedulePublications(tx, workspaceId, id, scheduledAt);
+      await audit({ ...auditCtx(ctx), action: "content.scheduled", entityType: "content", entityId: id, metadata: { scheduledAt: scheduledAt.toISOString(), publications } }, tx);
     });
     return getContent(workspaceId, id);
   });
@@ -276,6 +279,7 @@ export async function contentRoutes(app: FastifyInstance) {
     const ctx = await requireWorkspace(req, workspaceId, "content:update");
     await prisma.$transaction(async (tx) => {
       await transition(tx, workspaceId, id, "APPROVED", { scheduledAt: null });
+      await cancelPublications(tx, id);
       await audit({ ...auditCtx(ctx), action: "content.unscheduled", entityType: "content", entityId: id }, tx);
     });
     return getContent(workspaceId, id);

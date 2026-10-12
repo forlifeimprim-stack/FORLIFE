@@ -106,10 +106,11 @@ export function ContentDetail() {
                 Programmer
               </Button>
             </div>
-            <p className="muted small">La publication automatique sur les réseaux arrive avec le Social Hub (Phase 3). En attendant, le calendrier sert de planning éditorial.</p>
+            <p className="muted small">Les variantes Facebook et Instagram partent automatiquement à l'heure prévue sur les comptes connectés dans le <Link to="/social">Social Hub</Link>. WhatsApp et email restent à diffuser manuellement.</p>
           </Card>
         )}
         {c.status === "SCHEDULED" && c.scheduledAt && <Alert tone="info">Programmé pour le {fmtDateTime(c.scheduledAt)}.</Alert>}
+        {can("social:read") && ["SCHEDULED", "PUBLISHED", "FAILED"].includes(c.status) && <ContentPublications ws={ws} contentId={c.id} />}
         {c.aiRunId && <AiNotice />}
 
         <div className="grid grid-2">
@@ -261,5 +262,31 @@ function VariantPreview({ ws, contentId, brandName, variant, editable, onSaved }
         )}
       </div>
     </article>
+  );
+}
+
+function ContentPublications({ ws, contentId }: { ws: string; contentId: string }) {
+  const { data } = useResource<{ id: string; status: string; externalUrl: string | null; lastError: string | null; socialAccount: { name: string } }[]>(`${ws}/social/publications?contentId=${contentId}`);
+  if (!data?.length) return <Alert tone="info">Aucun compte social connecté pour ces canaux : diffusion manuelle. <Link to="/social">Connecter un compte</Link></Alert>;
+  const labels: Record<string, string> = { QUEUED: "En file", PUBLISHING: "Publication…", PUBLISHED: "Publié", FAILED: "Échec", CANCELLED: "Annulé" };
+  return (
+    <Card title="Publications automatiques">
+      <ul className="list">
+        {data.map((p) => (
+          <li key={p.id}>
+            <span>{p.socialAccount.name}</span>
+            <span className="row">
+              <Badge tone={p.status === "PUBLISHED" ? "success" : p.status === "FAILED" ? "danger" : "warning"}>{labels[p.status] ?? p.status}</Badge>
+              {p.externalUrl && (
+                <a href={p.externalUrl} target="_blank" rel="noreferrer" className="small">
+                  Voir la publication
+                </a>
+              )}
+              {p.lastError && <span className="small" style={{ color: "var(--danger)" }}>{p.lastError}</span>}
+            </span>
+          </li>
+        ))}
+      </ul>
+    </Card>
   );
 }

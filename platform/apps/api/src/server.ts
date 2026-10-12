@@ -22,6 +22,7 @@ import { adminRoutes } from "./modules/admin/routes.js";
 import { crmRoutes } from "./modules/crm/routes.js";
 import { publicFormRoutes } from "./modules/crm/public.js";
 import { campaignRoutes } from "./modules/campaigns/routes.js";
+import { socialRoutes } from "./modules/social/routes.js";
 import { invitationRoutes } from "./modules/org/invitations.js";
 import { passwordRoutes } from "./modules/identity/password.js";
 
@@ -87,6 +88,7 @@ export async function buildServer(options: { logger?: boolean } = {}) {
   await app.register(crmRoutes);
   await app.register(publicFormRoutes);
   await app.register(campaignRoutes);
+  await app.register(socialRoutes);
 
   return app;
 }

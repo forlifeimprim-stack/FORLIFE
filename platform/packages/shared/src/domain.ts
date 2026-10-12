@@ -151,3 +151,24 @@ export function scoreLead(input: { hasPhone: boolean; hasEmail: boolean; consent
   const score = Math.min(100, reasons.reduce((n, r) => n + r.points, 0));
   return { score, reasons };
 }
+
+// ───── Social Hub ─────
+export const SOCIAL_PROVIDERS = ["FACEBOOK_PAGE", "INSTAGRAM_BUSINESS", "LINKEDIN", "TIKTOK", "YOUTUBE", "SANDBOX"] as const;
+export type SocialProvider = (typeof SOCIAL_PROVIDERS)[number];
+export const SOCIAL_PROVIDER_LABELS: Record<SocialProvider, string> = {
+  FACEBOOK_PAGE: "Page Facebook",
+  INSTAGRAM_BUSINESS: "Instagram professionnel",
+  LINKEDIN: "LinkedIn",
+  TIKTOK: "TikTok",
+  YOUTUBE: "YouTube",
+  SANDBOX: "Compte de démonstration",
+};
+/** Canal éditorial → types de comptes capables de le publier. */
+export const CHANNEL_PROVIDERS: Partial<Record<Channel, SocialProvider[]>> = {
+  FACEBOOK: ["FACEBOOK_PAGE", "SANDBOX"],
+  INSTAGRAM: ["INSTAGRAM_BUSINESS", "SANDBOX"],
+  LINKEDIN: ["LINKEDIN"],
+  TIKTOK: ["TIKTOK"],
+  YOUTUBE: ["YOUTUBE"],
+};
+export const PUBLICATION_STATUS_LABELS = { QUEUED: "En file", PUBLISHING: "Publication…", PUBLISHED: "Publié", FAILED: "Échec", CANCELLED: "Annulé" } as const;

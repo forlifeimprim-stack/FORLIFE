@@ -1,4 +1,5 @@
 import { renewDueSubscriptions } from "../billing/ledger.js";
+import { collectMetrics, dispatchDuePublications } from "../social/service.js";
 
 /** Tâches périodiques de la plateforme (toutes idempotentes : plusieurs workers peuvent tourner). */
 export function startScheduler(log?: (msg: string, extra?: object) => void) {
@@ -10,7 +11,24 @@ export function startScheduler(log?: (msg: string, extra?: object) => void) {
       log?.("scheduler.error", { error: e instanceof Error ? e.message : String(e) });
     }
   };
+  // Publications dues : vérifiées toutes les 30 secondes.
+  const publish = async () => {
+    try {
+      const n = await dispatchDuePublications();
+      if (n) log?.("social.dispatched", { count: n });
+    } catch (e) {
+      log?.("scheduler.error", { error: e instanceof Error ? e.message : String(e) });
+    }
+  };
+  const metrics = async () => {
+    try {
+      await collectMetrics();
+    } catch (e) {
+      log?.("scheduler.error", { error: e instanceof Error ? e.message : String(e) });
+    }
+  };
   void tick();
-  const timer = setInterval(tick, 5 * 60_000);
-  return { stop: () => clearInterval(timer) };
+  void publish();
+  const timers = [setInterval(tick, 5 * 60_000), setInterval(publish, 30_000), setInterval(metrics, 60 * 60_000)];
+  return { stop: () => timers.forEach(clearInterval) };
 }

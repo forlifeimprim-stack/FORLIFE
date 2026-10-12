@@ -32,6 +32,16 @@ const schema = z.object({
   EMAIL_DRIVER: z.enum(["log", "resend"]).default("log"),
   EMAIL_FROM: z.string().default("Forlife Com <no-reply@forlifecom.ci>"),
   RESEND_API_KEY: z.string().optional(),
+  /** URL publique de l'API (callbacks OAuth). */
+  API_PUBLIC_URL: z.string().default("http://localhost:4000"),
+  META_APP_ID: z.string().optional(),
+  META_APP_SECRET: z.string().optional(),
+  META_GRAPH_VERSION: z.string().default("v21.0"),
+  /** Compte de démonstration (publication simulée). Désactiver en production si non souhaité. */
+  SOCIAL_SANDBOX_ENABLED: z
+    .string()
+    .default("true")
+    .transform((v) => v === "true"),
 });
 
 export type Config = z.infer<typeof schema>;

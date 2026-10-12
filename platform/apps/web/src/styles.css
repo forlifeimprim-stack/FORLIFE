@@ -296,6 +296,9 @@ th { color: var(--text-muted); font-weight: 500; font-size: 0.8rem; }
 .campaign-card { text-decoration: none; color: inherit; display: block; }
 .campaign-card:hover { border-color: var(--accent); }
 
+.connectors { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 10px; margin-top: 16px; }
+.connector { display: flex; justify-content: space-between; align-items: center; gap: 10px; border: 1px solid var(--border); border-radius: var(--radius-sm); padding: 12px 14px; }
+
 /* ───── Auth ───── */
 .auth { min-height: 100%; display: grid; grid-template-columns: 1fr 1fr; }
 .auth-aside { background: var(--sidebar-bg); color: var(--sidebar-text); padding: 48px; display: flex; flex-direction: column; justify-content: space-between; gap: 32px; }

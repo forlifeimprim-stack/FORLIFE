@@ -4,6 +4,7 @@ import { strategyPlanJob } from "../strategy/jobs.js";
 import { contentIdeasJob, contentPostJob } from "../content/jobs.js";
 import { crmFollowupJob } from "../crm/jobs.js";
 import { campaignPackJob } from "../campaigns/jobs.js";
+import { publishJob } from "../social/service.js";
 
 export function registerAllJobHandlers(): void {
   registerJobHandler("ai.brand_dna", brandDnaJob);
@@ -12,4 +13,5 @@ export function registerAllJobHandlers(): void {
   registerJobHandler("ai.content_post", contentPostJob);
   registerJobHandler("ai.crm_followup", crmFollowupJob);
   registerJobHandler("ai.campaign_pack", campaignPackJob);
+  registerJobHandler("social.publish", publishJob);
 }

@@ -182,6 +182,8 @@ model Workspace {
   leads            Lead[]
   tasks            CrmTask[]
   leadForms        LeadForm[]
+  socialAccounts   SocialAccount[]
+  publications     Publication[]
 
   @@unique([organizationId, slug])
   @@index([organizationId])
@@ -491,6 +493,7 @@ model ContentItem {
   createdAt   DateTime         @default(now())
   updatedAt   DateTime         @updatedAt
   variants    ContentVariant[]
+  publications Publication[]
 
   @@index([workspaceId, status])
   @@index([workspaceId, scheduledAt])
@@ -817,4 +820,125 @@ model LeadForm {
   createdAt   DateTime  @default(now())
 
   @@index([workspaceId])
+}
+
+// ───────────────────────────── Social Hub ─────────────────────────────
+
+enum SocialProvider {
+  FACEBOOK_PAGE
+  INSTAGRAM_BUSINESS
+  LINKEDIN
+  TIKTOK
+  YOUTUBE
+  SANDBOX
+}
+
+model SocialAccount {
+  id           String          @id @default(cuid())
+  workspaceId  String
+  workspace    Workspace       @relation(fields: [workspaceId], references: [id], onDelete: Restrict)
+  provider     SocialProvider
+  externalId   String
+  name         String
+  avatarUrl    String?
+  /// CONNECTED | EXPIRED | REVOKED | ERROR
+  status       String          @default("CONNECTED")
+  scopes       Json            @default("[]")
+  lastError    String?
+  connectedById String?
+  createdAt    DateTime        @default(now())
+  updatedAt    DateTime        @updatedAt
+  credential   SocialCredential?
+  publications Publication[]
+
+  @@unique([workspaceId, provider, externalId])
+  @@index([workspaceId, status])
+}
+
+/// Jetons OAuth chiffrés (AES-256-GCM) — jamais en clair en base ni dans les logs.
+model SocialCredential {
+  id              String        @id @default(cuid())
+  socialAccountId String        @unique
+  socialAccount   SocialAccount @relation(fields: [socialAccountId], references: [id], onDelete: Cascade)
+  accessTokenEnc  String
+  refreshTokenEnc String?
+  expiresAt       DateTime?
+  updatedAt       DateTime      @updatedAt
+}
+
+/// État OAuth anti-CSRF (usage unique, 10 minutes).
+model OAuthState {
+  id          String    @id @default(cuid())
+  stateHash   String    @unique
+  workspaceId String
+  userId      String
+  provider    String
+  expiresAt   DateTime
+  usedAt      DateTime?
+  createdAt   DateTime  @default(now())
+}
+
+enum PublicationStatus {
+  QUEUED
+  PUBLISHING
+  PUBLISHED
+  FAILED
+  CANCELLED
+}
+
+/// Publication créée AVANT l'appel externe ; la clé d'idempotence empêche toute double publication.
+model Publication {
+  id              String            @id @default(cuid())
+  workspaceId     String
+  workspace       Workspace         @relation(fields: [workspaceId], references: [id], onDelete: Restrict)
+  contentId       String
+  content         ContentItem       @relation(fields: [contentId], references: [id], onDelete: Restrict)
+  variantId       String
+  socialAccountId String
+  socialAccount   SocialAccount     @relation(fields: [socialAccountId], references: [id], onDelete: Restrict)
+  scheduledAt     DateTime
+  status          PublicationStatus @default(QUEUED)
+  idempotencyKey  String            @unique
+  externalId      String?
+  externalUrl     String?
+  attempts        Int               @default(0)
+  lastError       String?
+  publishedAt     DateTime?
+  createdAt       DateTime          @default(now())
+  updatedAt       DateTime          @updatedAt
+  attemptsLog     PublicationAttempt[]
+  metrics         SocialMetricSnapshot[]
+
+  @@index([status, scheduledAt])
+  @@index([workspaceId, scheduledAt])
+  @@index([contentId])
+}
+
+model PublicationAttempt {
+  id            String      @id @default(cuid())
+  publicationId String
+  publication   Publication @relation(fields: [publicationId], references: [id], onDelete: Cascade)
+  attemptNo     Int
+  status        String // SUCCEEDED | FAILED
+  errorCode     String?
+  errorMessage  String?
+  createdAt     DateTime    @default(now())
+
+  @@index([publicationId])
+}
+
+/// Mesures par publication. `isSimulated` distingue le bac à sable des données réelles (§14).
+model SocialMetricSnapshot {
+  id            String      @id @default(cuid())
+  publicationId String
+  publication   Publication @relation(fields: [publicationId], references: [id], onDelete: Cascade)
+  /// Arrondi à l'heure : une seule mesure par heure (dédoublonnage)
+  capturedAt    DateTime
+  impressions   Int         @default(0)
+  reach         Int         @default(0)
+  engagement    Int         @default(0)
+  clicks        Int         @default(0)
+  isSimulated   Boolean     @default(false)
+
+  @@unique([publicationId, capturedAt])
 }
