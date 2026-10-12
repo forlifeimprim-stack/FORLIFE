@@ -33,6 +33,7 @@ Les règles d'intégration Forlife One (§7) ne peuvent donc pas être appliqué
 | Premier fournisseur LLM | Anthropic Claude (`claude-opus-5-5`, configurable) + simulateur déterministe | Oui (registry) |
 | Premier fournisseur image / vidéo | À choisir en Phase 2 / 4 (aucun couplage dans le domaine) | — |
 | Budget IA par plan | Crédits mensuels : Free 200, Starter 1 500, Business 5 000, Pro 12 000, Agency 40 000 | Oui (`packages/shared/src/billing.ts`) |
+| Grille tarifaire (validée le 12/10/2026) | Free 0, Starter 15 000, Business 45 000, Pro 95 000, Agency 250 000 FCFA / mois | Oui (`packages/shared/src/billing.ts`) |
 | Réseaux P0/P1 | Modélisés : Facebook, Instagram, TikTok, LinkedIn, YouTube, X, WhatsApp, Email ; connexions OAuth en Phase 3 | — |
 | Politique d'approbation | Revue obligatoire avant programmation ; rôles Owner/Admin/Manager/Agency approuvent ; auto-approbation tracée dans l'audit | Oui |
 | Consentement WhatsApp | Phase 7 (opt-in, templates, fenêtres de conversation) | — |
@@ -40,5 +41,5 @@ Les règles d'intégration Forlife One (§7) ne peuvent donc pas être appliqué
 | Environnements / secrets | Variables d'environnement validées au démarrage ; secrets chiffrés AES-256-GCM en base | Oui |
 | Fuseau / devise par défaut | `Africa/Abidjan`, XOF (FCFA), locale `fr-CI` | Oui (par organisation/workspace) |
 
-Points à confirmer par l'équipe produit : grille tarifaire en FCFA, choix des fournisseurs image/vidéo,
+Points à confirmer par l'équipe produit : choix des fournisseurs image/vidéo,
 et disponibilité du dépôt Forlife One.

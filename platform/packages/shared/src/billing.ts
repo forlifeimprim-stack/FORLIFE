@@ -10,7 +10,7 @@ export interface PlanDefinition {
   code: PlanCode;
   name: string;
   target: string;
-  /** Prix mensuel en FCFA (XOF), indicatif — la facturation réelle sera branchée en Phase 7. */
+  /** Prix mensuel en FCFA (XOF), grille validée le 12/10/2026 — l'encaissement (mobile money, carte) sera branché en Phase 7. */
   monthlyPriceXof: number;
   monthlyCredits: number;
   maxWorkspaces: number;
