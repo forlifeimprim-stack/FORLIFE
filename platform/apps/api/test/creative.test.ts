@@ -121,7 +121,10 @@ describe("Creative Studio", () => {
     // URL signée : valide, puis altérée
     const url = new URL(signedMediaUrl(versionId));
     expect((await app.inject({ method: "GET", url: `${url.pathname}${url.search}` })).statusCode).toBe(200);
-    expect((await app.inject({ method: "GET", url: `${url.pathname}${url.search.replace(/s=./, "s=X")}` })).statusCode).toBe(404);
+    // Signature altérée (premier caractère toujours changé) : refusée.
+    const sig = url.searchParams.get("s")!;
+    url.searchParams.set("s", `${sig[0] === "A" ? "B" : "A"}${sig.slice(1)}`);
+    expect((await app.inject({ method: "GET", url: `${url.pathname}${url.search}` })).statusCode).toBe(404);
 
     // Compte Instagram connecté (adaptateur espion) : le visuel est transmis
     let seen: string | null | undefined;
