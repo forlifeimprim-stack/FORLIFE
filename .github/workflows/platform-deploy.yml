@@ -112,6 +112,7 @@ jobs:
             echo "WIF=projects/$GCP_PROJECT_NUMBER/locations/global/workloadIdentityPools/github/providers/github-actions"
             echo "DEPLOY_SA=github-deploy@$GCP_PROJECT_ID.iam.gserviceaccount.com"
             echo "API_SA=forlife-api@$GCP_PROJECT_ID.iam.gserviceaccount.com"
+            echo "MIGRATE_SA=forlife-migrate@$GCP_PROJECT_ID.iam.gserviceaccount.com"
           } >> "$GITHUB_ENV"
 
       - uses: actions/download-artifact@v4
@@ -137,15 +138,24 @@ jobs:
           docker tag "forlife-api:$GITHUB_SHA" "$IMAGE"
           docker push "$IMAGE"
 
+      # Compte de service dédié (seul à lire les identifiants du propriétaire) : migrations, puis création ou
+      # mise en conformité du compte applicatif « forlife_app » et de ses droits restreints (src/ops/db-release.ts).
       - name: Migrations (compte propriétaire, job séparé)
         run: |
           set -a; . platform/deploy/production.env; set +a
           gcloud run jobs deploy forlife-migrate --project "$PROJECT" --region "$REGION" --image "$IMAGE" \
-            --service-account "$API_SA" --set-cloudsql-instances "$CLOUDSQL_INSTANCE" \
-            --set-secrets DATABASE_URL=forlife-database-migrator-url:latest \
-            --command sh --args="-c,npx prisma migrate deploy && npx prisma db execute --file prisma/grants.sql --schema prisma/schema.prisma" \
+            --service-account "$MIGRATE_SA" --set-cloudsql-instances "$CLOUDSQL_INSTANCE" \
+            --set-secrets DATABASE_URL=forlife-database-migrator-url:latest,APP_DATABASE_URL=forlife-database-url:latest \
+            --set-env-vars CHECKPOINT_DISABLE=1 \
+            --command sh --args="-c,npx prisma migrate deploy && node dist/ops/db-release.js" \
             --max-retries 0 --task-timeout 600 --quiet
-          gcloud run jobs execute forlife-migrate --project "$PROJECT" --region "$REGION" --wait
+          if ! gcloud run jobs execute forlife-migrate --project "$PROJECT" --region "$REGION" --wait; then
+            echo "::group::Journal du job de migration"
+            gcloud logging read 'resource.type="cloud_run_job" AND resource.labels.job_name="forlife-migrate"' \
+              --project "$PROJECT" --freshness 30m --limit 60 --format 'value(textPayload)' | tac || true
+            echo "::endgroup::"
+            echo "::error::Le job de migration a échoué (journal ci-dessus)"; exit 1
+          fi
 
       - name: Déploiement Cloud Run (compte applicatif restreint)
         run: |
@@ -156,12 +166,22 @@ jobs:
           fi
           ENVV="^|^NODE_ENV=production|STORAGE_DRIVER=gcs|GCS_BUCKET=$GCS_BUCKET|APP_URL=$APP_URL|API_PUBLIC_URL=$APP_URL|WEB_ORIGIN=$APP_URL|AI_PROVIDERS=$AI_PROVIDERS|EMAIL_DRIVER=$EMAIL_DRIVER|EMAIL_FROM=$EMAIL_FROM|PAYMENT_SANDBOX_ENABLED=$PAYMENT_SANDBOX_ENABLED|SOCIAL_SANDBOX_ENABLED=$SOCIAL_SANDBOX_ENABLED|RUN_WORKER_INLINE=true"
           [ -n "$EXTRA_ENV" ] && ENVV="$ENVV|$EXTRA_ENV"
-          gcloud run deploy forlife-api --project "$PROJECT" --region "$REGION" --image "$IMAGE" --platform managed \
+          if ! gcloud run deploy forlife-api --project "$PROJECT" --region "$REGION" --image "$IMAGE" --platform managed \
             --service-account "$API_SA" --allow-unauthenticated \
             --cpu 2 --memory 2Gi --timeout 300 --concurrency 40 \
             --min-instances 1 --max-instances 4 --no-cpu-throttling \
             --add-cloudsql-instances "$CLOUDSQL_INSTANCE" \
-            --set-env-vars "$ENVV" --set-secrets "$SECRETS" --quiet
+            --set-env-vars "$ENVV" --set-secrets "$SECRETS" --quiet; then
+            # Journal du démarrage de la nouvelle révision uniquement (aucun trafic utilisateur).
+            REV="$(gcloud run services describe forlife-api --project "$PROJECT" --region "$REGION" --format 'value(status.latestCreatedRevisionName)' 2>/dev/null || true)"
+            if [ -n "$REV" ]; then
+              echo "::group::Démarrage de la révision $REV"
+              gcloud logging read "resource.type=\"cloud_run_revision\" AND resource.labels.revision_name=\"$REV\"" \
+                --project "$PROJECT" --freshness 30m --limit 40 --format 'value(textPayload,jsonPayload.msg,jsonPayload.err.message)' | tac || true
+              echo "::endgroup::"
+            fi
+            echo "::error::Le déploiement Cloud Run a échoué"; exit 1
+          fi
 
       - name: Firebase Hosting
         working-directory: platform

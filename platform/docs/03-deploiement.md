@@ -31,10 +31,10 @@ si le projet n'en a pas encore : db-f1-micro ≈ 10 USD/mois ou db-g1-small ≈ 
 | Étape | Effet |
 |---|---|
 | Sécurisation Cloud SQL | connexions chiffrées obligatoires, aucun réseau ouvert, sauvegardes 14 j + restauration à la minute, protection contre la suppression |
-| Comptes de base | `forlife` (propriétaire, migrations uniquement) et `forlife_app` (application) — mots de passe aléatoires jamais affichés |
+| Comptes de base | `forlife` (propriétaire, migrations uniquement) ; `forlife_app` (application) est créé au déploiement **en SQL**, sans le rôle `cloudsqlsuperuser` que gcloud donne à ses comptes — mots de passe aléatoires jamais affichés |
 | Secret Manager | URL de base (×2), clé JWT, clé de chiffrement, email administrateur, code d'activation du back-office |
 | Stockage | bucket privé, accès public interdit |
-| Comptes de service | `forlife-api` (ses secrets, son bucket, Cloud SQL) et `github-deploy` (déploiement seulement) |
+| Comptes de service | `forlife-api` (ses secrets, son bucket, Cloud SQL), `forlife-migrate` (seul à lire les identifiants du propriétaire) et `github-deploy` (déploiement seulement) |
 | GitHub | fédération d'identité limitée aux pushs de ce dépôt sur `main` et la branche de développement (jamais une pull request) |
 
 À la fin, il affiche :
@@ -50,7 +50,7 @@ Claude renseigne `platform/deploy/production.env` avec le bloc reçu et pousse :
 1. tests complets (API + base de données) ;
 2. construction de l'interface et de l'image Docker **sans aucun identifiant cloud** ;
 3. authentification Google éphémère, publication de l'image ;
-4. job de migration (compte propriétaire) puis droits restreints du compte applicatif ;
+4. job de migration (compte propriétaire) : création ou mise en conformité du compte applicatif, puis ses droits restreints ;
 5. déploiement Cloud Run (compte `forlife_app`) puis Firebase Hosting ;
 6. contrôle : `https://<ID>.web.app/api/health` doit répondre `{"status":"ok"}` (base connectée).
 
@@ -90,7 +90,8 @@ Pour chaque nouveau secret, autorisez le compte de l'API à le lire :
 - Contenus : une approbation ne vaut que pour la version relue ; toute modification exige une nouvelle validation.
 - Paiements : statut toujours confirmé auprès de CinetPay, montant et devise vérifiés, livraison atomique.
 - Fichiers : SVG convertis en PNG à l'import, images démesurées refusées sans décodage.
-- Base : l'application ne peut ni modifier le schéma, ni réécrire ou vider l'audit et le registre des crédits.
+- Base : l'application ne peut ni modifier le schéma, ni supprimer une table, ni réécrire ou vider l'audit et le
+  registre des crédits ; elle ne peut pas lire les identifiants du propriétaire des tables.
 - Navigateur : CSP stricte, HSTS, aucune intégration dans un autre site.
 
 Limite connue : l'adresse `*.run.app` de Cloud Run reste joignable directement (nécessaire à Firebase Hosting).

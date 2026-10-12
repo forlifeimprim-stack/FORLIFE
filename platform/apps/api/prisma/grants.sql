@@ -1,5 +1,6 @@
 -- Droits du rôle d'exécution « forlife_app » (production) : lecture/écriture des données, rien d'autre.
--- Les migrations sont appliquées par le propriétaire des tables (rôle « forlife ») dans un job séparé ;
+-- Les migrations sont appliquées par le propriétaire des tables (rôle « forlife ») dans un job séparé, qui crée
+-- aussi « forlife_app » sans aucun droit d'administration (src/ops/db-release.ts) puis applique ce fichier ;
 -- l'application ne peut ni modifier le schéma, ni réécrire ou vider les journaux en ajout seul.
 -- Rejoué à chaque déploiement (idempotent) ; sans effet si le rôle n'existe pas (développement, tests).
 DO $$

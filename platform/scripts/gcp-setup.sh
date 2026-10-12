@@ -38,6 +38,7 @@ ok "ID $PROJECT — numéro $PROJECT_NUMBER"
 BUCKET="${BUCKET:-${PROJECT}-files}"
 SITE="${SITE:-$PROJECT}"
 API_SA="forlife-api@${PROJECT}.iam.gserviceaccount.com"
+MIGRATE_SA="forlife-migrate@${PROJECT}.iam.gserviceaccount.com"
 DEPLOY_SA="github-deploy@${PROJECT}.iam.gserviceaccount.com"
 
 info "1/9 Services Google Cloud"
@@ -131,8 +132,32 @@ db_account() { # $1 = utilisateur, $2 = secret
 }
 # Propriétaire des tables : utilisé UNIQUEMENT par le job de migration.
 db_account "$DB_USER" forlife-database-migrator-url
-# Compte de l'application : lecture/écriture des données seulement (droits posés à chaque déploiement).
-db_account forlife_app forlife-database-url
+
+# Compte de l'application : PAS créé par gcloud. Les comptes gcloud reçoivent « cloudsqlsuperuser »,
+# propriétaire de la base : ils pourraient supprimer des tables, journal d'audit compris. Le job de migration
+# le crée en SQL, sans aucun droit d'administration, avec le mot de passe rangé ici, puis lui donne la seule
+# lecture/écriture des données (prisma/grants.sql).
+app_account() {
+  local user=forlife_app secret=forlife-database-url pw
+  if [[ "$(gcloud secrets describe "$secret" --format='value(labels.provision)' 2>/dev/null)" == "sql" ]]; then
+    ok "compte « $user » : géré par le déploiement (droits minimaux)"; return
+  fi
+  if grep -qx "$user" <<<"$USERS"; then
+    gcloud sql users delete "$user" --instance="$INSTANCE" --quiet >/dev/null
+    ok "ancien compte « $user » créé par gcloud supprimé (droits trop larges)"
+  fi
+  if gcloud secrets describe "$secret" >/dev/null 2>&1; then
+    ok "$secret déjà présent (mot de passe conservé)"
+  else
+    pw="$(randpw)"
+    printf 'postgresql://%s:%s@localhost/%s?host=/cloudsql/%s&connection_limit=%s' "$user" "$pw" "$DB_NAME" "$CONNECTION" "$CONN_LIMIT" \
+      | gcloud secrets create "$secret" --replication-policy=automatic --data-file=- >/dev/null
+    ok "URL du compte « $user » rangée dans $secret"
+  fi
+  gcloud secrets update "$secret" --update-labels=provision=sql --quiet >/dev/null
+  ok "compte « $user » : créé au déploiement, lecture/écriture des données seulement"
+}
+app_account
 
 info "5/9 Clés de l'application (Secret Manager)"
 if gcloud secrets describe forlife-jwt-secret >/dev/null 2>&1; then ok "forlife-jwt-secret déjà présent"; else
@@ -173,22 +198,37 @@ info "7/9 Comptes de service (droits minimaux)"
 gcloud iam service-accounts describe "$API_SA" >/dev/null 2>&1 \
   || gcloud iam service-accounts create forlife-api --display-name="Forlife Com API" --quiet >/dev/null
 gcloud projects add-iam-policy-binding "$PROJECT" --member="serviceAccount:$API_SA" --role=roles/cloudsql.client --condition=None --quiet >/dev/null
-for S in forlife-database-url forlife-database-migrator-url forlife-jwt-secret forlife-encryption-key forlife-admin-emails forlife-admin-bootstrap; do
+for S in forlife-database-url forlife-jwt-secret forlife-encryption-key forlife-admin-emails forlife-admin-bootstrap; do
   gcloud secrets add-iam-policy-binding "$S" --member="serviceAccount:$API_SA" --role=roles/secretmanager.secretAccessor --quiet >/dev/null
 done
+# L'API ne doit jamais pouvoir lire les identifiants du propriétaire des tables (accordés par une version antérieure).
+gcloud secrets remove-iam-policy-binding forlife-database-migrator-url --member="serviceAccount:$API_SA" \
+  --role=roles/secretmanager.secretAccessor --quiet >/dev/null 2>&1 || true
 gcloud storage buckets add-iam-policy-binding "gs://$BUCKET" --member="serviceAccount:$API_SA" --role=roles/storage.objectAdmin --quiet >/dev/null
 ok "forlife-api : Cloud SQL, ses propres secrets et son bucket uniquement"
+
+# Migrations : compte de service distinct, seul à lire les identifiants du propriétaire des tables.
+gcloud iam service-accounts describe "$MIGRATE_SA" >/dev/null 2>&1 \
+  || gcloud iam service-accounts create forlife-migrate --display-name="Forlife Com migrations" --quiet >/dev/null
+gcloud projects add-iam-policy-binding "$PROJECT" --member="serviceAccount:$MIGRATE_SA" --role=roles/cloudsql.client --condition=None --quiet >/dev/null
+for S in forlife-database-migrator-url forlife-database-url; do
+  gcloud secrets add-iam-policy-binding "$S" --member="serviceAccount:$MIGRATE_SA" --role=roles/secretmanager.secretAccessor --quiet >/dev/null
+done
+ok "forlife-migrate : migrations et compte applicatif uniquement"
 
 gcloud artifacts repositories describe "$REPO" --location="$REGION" >/dev/null 2>&1 \
   || gcloud artifacts repositories create "$REPO" --repository-format=docker --location="$REGION" --quiet >/dev/null
 gcloud iam service-accounts describe "$DEPLOY_SA" >/dev/null 2>&1 \
   || gcloud iam service-accounts create github-deploy --display-name="GitHub deploy" --quiet >/dev/null
-for ROLE in roles/run.admin roles/firebasehosting.admin roles/serviceusage.serviceUsageConsumer; do
+# logging.viewer : afficher dans GitHub le journal d'un job de migration ou d'un démarrage en échec.
+for ROLE in roles/run.admin roles/firebasehosting.admin roles/serviceusage.serviceUsageConsumer roles/logging.viewer; do
   gcloud projects add-iam-policy-binding "$PROJECT" --member="serviceAccount:$DEPLOY_SA" --role="$ROLE" --condition=None --quiet >/dev/null
 done
 gcloud artifacts repositories add-iam-policy-binding "$REPO" --location="$REGION" --member="serviceAccount:$DEPLOY_SA" --role=roles/artifactregistry.writer --quiet >/dev/null
-# Le déploiement peut « agir en tant que » forlife-api, et seulement lui.
-gcloud iam service-accounts add-iam-policy-binding "$API_SA" --member="serviceAccount:$DEPLOY_SA" --role=roles/iam.serviceAccountUser --quiet >/dev/null
+# Le déploiement peut « agir en tant que » forlife-api et forlife-migrate, et seulement eux.
+for SA in "$API_SA" "$MIGRATE_SA"; do
+  gcloud iam service-accounts add-iam-policy-binding "$SA" --member="serviceAccount:$DEPLOY_SA" --role=roles/iam.serviceAccountUser --quiet >/dev/null
+done
 ok "github-deploy : déploiement uniquement"
 
 info "8/9 Connexion GitHub sans clé (Workload Identity Federation)"

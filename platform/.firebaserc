@@ -1,6 +1,6 @@
 {
-  "projects": { "default": "forlifecom-6eef9" },
+  "projects": { "default": "ai-growth-et-creative-os" },
   "targets": {
-    "forlifecom-6eef9": { "hosting": { "app": ["forlifecom-app"] } }
+    "ai-growth-et-creative-os": { "hosting": { "app": ["ai-growth-et-creative-os"] } }
   }
 }
