@@ -38,6 +38,8 @@ const schema = z.object({
   META_APP_SECRET: z.string().optional(),
   META_GRAPH_VERSION: z.string().default("v21.0"),
   /** Compte de démonstration (publication simulée). Désactiver en production si non souhaité. */
+  /** Binaire FFmpeg utilisé par le Video Studio. */
+  FFMPEG_PATH: z.string().default("ffmpeg"),
   SOCIAL_SANDBOX_ENABLED: z
     .string()
     .default("true")

@@ -189,3 +189,9 @@ export const CREATIVE_LAYOUTS = {
   QUOTE: "Témoignage / citation",
 } as const;
 export type CreativeLayout = keyof typeof CREATIVE_LAYOUTS;
+
+// ───── Video Studio ─────
+export const VIDEO_DURATIONS = [10, 12, 15] as const;
+export const VIDEO_MOTIONS = { ZOOM_IN: "Zoom avant", ZOOM_OUT: "Zoom arrière", PAN: "Travelling", POP: "Apparition dynamique" } as const;
+export type VideoMotion = keyof typeof VIDEO_MOTIONS;
+export const VIDEO_STATUS_LABELS: Record<string, string> = { DRAFT: "Brouillon", STORYBOARD: "Storyboard prêt", RENDERING: "Rendu en cours", RENDERED: "Vidéo prête", FAILED: "Échec du rendu", APPROVED: "Validée" };

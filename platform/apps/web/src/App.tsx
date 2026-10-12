@@ -20,6 +20,7 @@ import { CampaignsPage, CampaignDetailPage } from "./pages/Campaigns";
 import { PublicFormPage } from "./pages/PublicForm";
 import { SocialHubPage } from "./pages/SocialHub";
 import { CreativeBriefPage, CreativeStudioPage } from "./pages/CreativeStudio";
+import { VideoProjectPage, VideoStudioPage } from "./pages/VideoStudio";
 import { useLocation } from "react-router-dom";
 
 export function App() {
@@ -72,6 +73,8 @@ export function App() {
         <Route path="social" element={<SocialHubPage />} />
         <Route path="creative" element={<CreativeStudioPage />} />
         <Route path="creative/:id" element={<CreativeBriefPage />} />
+        <Route path="video" element={<VideoStudioPage />} />
+        <Route path="video/:id" element={<VideoProjectPage />} />
         <Route path="campaigns" element={<CampaignsPage />} />
         <Route path="campaigns/:id" element={<CampaignDetailPage />} />
         <Route path="invite" element={<InvitePage />} />

@@ -185,6 +185,7 @@ model Workspace {
   socialAccounts   SocialAccount[]
   publications     Publication[]
   creativeBriefs   CreativeBrief[]
+  videoProjects    VideoProject[]
 
   @@unique([organizationId, slug])
   @@index([organizationId])
@@ -1010,4 +1011,75 @@ model CreativeVersion {
 
   @@unique([conceptId, version])
   @@index([workspaceId, createdAt])
+}
+
+// ───────────────────────────── Video Studio ─────────────────────────────
+
+/// Machine à états : DRAFT → STORYBOARD → RENDERING → RENDERED | FAILED → APPROVED
+model VideoProject {
+  id             String        @id @default(cuid())
+  workspaceId    String
+  workspace      Workspace     @relation(fields: [workspaceId], references: [id], onDelete: Restrict)
+  title          String
+  objective      ObjectiveType
+  brief          String
+  offer          String?
+  cta            String?
+  /// 10 | 12 | 15 secondes
+  durationTarget Int           @default(15)
+  hook           String?
+  productAssetIds Json         @default("[]")
+  status         String        @default("DRAFT")
+  contentId      String?
+  campaignId     String?
+  aiRunId        String?
+  createdById    String?
+  createdAt      DateTime      @default(now())
+  updatedAt      DateTime      @updatedAt
+  scenes         VideoScene[]
+  renders        VideoRender[]
+
+  @@index([workspaceId, createdAt])
+}
+
+model VideoScene {
+  id        String       @id @default(cuid())
+  projectId String
+  project   VideoProject @relation(fields: [projectId], references: [id], onDelete: Cascade)
+  order     Int
+  /// Durée en secondes
+  duration  Float
+  /// Texte à l'écran (court)
+  overlay   String
+  /// Narration / sous-titre
+  caption   String
+  /// Photo réelle (BrandAsset) ; sinon fond graphique aux couleurs de la marque
+  assetId   String?
+  /// ZOOM_IN | ZOOM_OUT | PAN | POP
+  motion    String       @default("ZOOM_IN")
+  updatedAt DateTime     @updatedAt
+
+  @@index([projectId, order])
+}
+
+model VideoRender {
+  id          String       @id @default(cuid())
+  projectId   String
+  project     VideoProject @relation(fields: [projectId], references: [id], onDelete: Cascade)
+  version     Int
+  status      String       @default("QUEUED") // QUEUED | RENDERING | SUCCEEDED | FAILED
+  progress    Int          @default(0)
+  storageKey  String?
+  srtKey      String?
+  durationSec Float?
+  sizeBytes   Int?
+  /// Contrôle qualité / score de rétention potentielle (estimation)
+  qc          Json?
+  score       Int?
+  error       String?
+  createdById String?
+  createdAt   DateTime     @default(now())
+  finishedAt  DateTime?
+
+  @@unique([projectId, version])
 }

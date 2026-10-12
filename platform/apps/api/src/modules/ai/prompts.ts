@@ -428,6 +428,66 @@ Propose exactement 3 concepts (A, B, C) réellement différents. Pour chacun :
   },
 };
 
+// ───────────── Video Director : storyboard 10–15 s ─────────────
+
+export const storyboardOutput = z.object({
+  hook: z.string(),
+  scenes: z.array(z.object({ duration: z.number(), overlay: z.string(), caption: z.string(), usePhoto: z.boolean(), motion: z.enum(["ZOOM_IN", "ZOOM_OUT", "PAN", "POP"]) })),
+  cta: z.string(),
+});
+export type StoryboardOutput = z.infer<typeof storyboardOutput>;
+
+export interface StoryboardInput {
+  context: BrandContext;
+  video: { objective: ObjectiveType; brief: string; offer: string | null; cta: string | null; duration: number; photos: number };
+}
+
+export const storyboardPrompt: PromptDefinition<StoryboardInput, StoryboardOutput> = {
+  key: "video.storyboard",
+  version: 1,
+  task: "video.storyboard",
+  usageKind: "TEXT",
+  system: `${BASE_SYSTEM}\nTu joues le rôle de Video Director pour des micro-vidéos verticales TikTok / Reels / Shorts. Une vidéo est une micro-histoire publicitaire (accroche → tension ou bénéfice → preuve → appel à l'action), jamais une succession aléatoire de plans.`,
+  render: (i) => `Contexte entreprise :
+${renderContext(i.context)}
+
+Vidéo :
+- Objectif : ${OBJECTIVE_LABELS[i.video.objective]}
+- Idée / script : ${i.video.brief}
+${i.video.offer ? `- Offre : ${i.video.offer}` : ""}
+${i.video.cta ? `- Appel à l'action : ${i.video.cta}` : ""}
+- Durée totale : ${i.video.duration} secondes (la carte finale de 2,5 s est ajoutée automatiquement, ne la compte pas)
+- Photos réelles disponibles : ${i.video.photos}
+
+Produis un storyboard de 3 à 5 scènes dont la somme des durées vaut ${i.video.duration - 2.5} secondes :
+- scène 1 = accroche visuelle forte, 2 secondes maximum ;
+- overlay : texte à l'écran de 6 mots maximum, sans emoji ;
+- caption : sous-titre de narration, 90 caractères maximum ;
+- usePhoto : true si la scène montre une vraie photo (uniquement si des photos existent) ;
+- motion : ZOOM_IN, ZOOM_OUT, PAN ou POP.
+Donne aussi le hook (accroche) et un cta de 28 caractères maximum.`,
+  output: storyboardOutput,
+  textForSafety: (o) => [o.hook, o.cta, ...o.scenes.flatMap((s) => [s.overlay, s.caption])],
+  maxTokens: 4000,
+  mock: (i) => {
+    const total = i.video.duration - 2.5;
+    const b = i.context.brandName;
+    const has = i.video.photos > 0;
+    const parts = [
+      { share: 0.18, overlay: "Stop, regardez ça", caption: `Vous cherchez ${i.context.offer ?? "un service de qualité"} ?`, usePhoto: has, motion: "POP" as const },
+      { share: 0.3, overlay: "Fait avec soin", caption: `Chez ${b}, chaque commande est préparée avec exigence.`, usePhoto: has, motion: "ZOOM_IN" as const },
+      { share: 0.27, overlay: i.video.offer ? `Offre : ${i.video.offer}` : "Livré à temps", caption: i.video.offer ? `Profitez de ${i.video.offer} dès maintenant.` : "Des délais tenus, un service proche de vous.", usePhoto: has, motion: "PAN" as const },
+      { share: 0.25, overlay: "Vos clients vont adorer", caption: `${b}${i.context.city ? `, à ${i.context.city}` : ""} : la qualité qui se voit.`, usePhoto: false, motion: "ZOOM_OUT" as const },
+    ];
+    return {
+      hook: parts[0]!.overlay,
+      scenes: parts.map((p) => ({ duration: Math.round(total * p.share * 10) / 10, overlay: p.overlay, caption: p.caption, usePhoto: p.usePhoto, motion: p.motion })),
+      cta: (i.video.cta ?? "Écrivez-nous sur WhatsApp").slice(0, 28),
+    };
+  },
+};
+
+
 /** Registre des instructions versionnées (clé → définition). */
 export const PROMPTS = {
   [brandDnaPrompt.key]: brandDnaPrompt,
@@ -436,5 +496,6 @@ export const PROMPTS = {
   [postPrompt.key]: postPrompt,
   [followupPrompt.key]: followupPrompt,
   [conceptsPrompt.key]: conceptsPrompt,
+  [storyboardPrompt.key]: storyboardPrompt,
 };
 

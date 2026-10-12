@@ -7,7 +7,6 @@ import { LogoMark } from "./ui";
 
 /** Modules prévus par la roadmap, affichés pour donner la vision produit complète. */
 const UPCOMING = [
-  { key: "video", label: "Video Studio", phase: "Phase 4" },
   { key: "analytics", label: "Analytics & ROI", phase: "Phase 2–6" },
   { key: "copilot", label: "AI Copilot", phase: "Phase 6" },
 ];
@@ -70,6 +69,7 @@ export function Layout() {
           <div className="nav-section">Production</div>
           <NavLink to="/content">{t("nav.content")}</NavLink>
           <NavLink to="/creative">Creative Studio</NavLink>
+          <NavLink to="/video">Video Studio</NavLink>
           <NavLink to="/calendar">{t("nav.calendar")}</NavLink>
           <NavLink to="/approvals">{t("nav.approvals")}</NavLink>
           {can("social:read") && <NavLink to="/social">Social Hub</NavLink>}

@@ -3,7 +3,6 @@ import { Card, PageHeader } from "../components/ui";
 
 const MODULES: Record<string, { title: string; phase: string; items: string[] }> = {
   creative: { title: "AI Creative Director", phase: "Phase 2", items: ["Brief → concepts A/B/C → direction artistique", "Génération multi-fournisseurs avec conservation du produit réel", "Critic séparé, Brand Check, Safety Check, Human Feel Score", "Texte composé par le moteur de design (pas dans l'image)", "Historique des versions et régénération ciblée"] },
-  video: { title: "AI Video Studio", phase: "Phase 4", items: ["Hook → script → storyboard → scènes", "Micro-vidéos verticales 10, 12 et 15 s (9:16)", "Voix off, sous-titres automatiques, musique sous licence", "Régénération d'une seule scène", "Exports TikTok, Reels et Shorts"] },
   social: { title: "Social Hub", phase: "Phase 3", items: ["Connexion OAuth Meta, TikTok, LinkedIn, YouTube", "Tokens chiffrés, rotation et révocation", "Publication idempotente avec retry et historique", "Statistiques par publication"] },
   campaigns: { title: "Campaign Manager", phase: "Phase 5", items: ["Brief central unique pour tous les assets", "Budget en FCFA, audiences, période, canaux", "Variantes A/B et approbations", "Automatisations bornées (copilot / autopilot)"] },
   crm: { title: "CRM & Leads", phase: "Phase 5", items: ["Capture de leads (formulaires, WhatsApp, campagnes)", "Pipeline, scoring IA, tâches et relances", "Attribution lead → vente existante Forlife"] },

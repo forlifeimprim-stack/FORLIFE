@@ -24,6 +24,7 @@ import { publicFormRoutes } from "./modules/crm/public.js";
 import { campaignRoutes } from "./modules/campaigns/routes.js";
 import { socialRoutes } from "./modules/social/routes.js";
 import { creativeRoutes } from "./modules/creative/routes.js";
+import { videoRoutes } from "./modules/video/routes.js";
 import { invitationRoutes } from "./modules/org/invitations.js";
 import { passwordRoutes } from "./modules/identity/password.js";
 
@@ -91,6 +92,7 @@ export async function buildServer(options: { logger?: boolean } = {}) {
   await app.register(campaignRoutes);
   await app.register(socialRoutes);
   await app.register(creativeRoutes);
+  await app.register(videoRoutes);
 
   return app;
 }
