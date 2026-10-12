@@ -40,9 +40,37 @@ SITE="${SITE:-$PROJECT}"
 API_SA="forlife-api@${PROJECT}.iam.gserviceaccount.com"
 DEPLOY_SA="github-deploy@${PROJECT}.iam.gserviceaccount.com"
 
+info "1/9 Services Google Cloud"
+gcloud services enable cloudbilling.googleapis.com --quiet
+[[ "$(gcloud billing projects describe "$PROJECT" --format='value(billingEnabled)' 2>/dev/null)" == "True" ]] \
+  || die "La facturation n'est pas activée sur $PROJECT. Dans la console Firebase : ⚙ Paramètres du projet → Utilisation et facturation → passer au forfait Blaze, puis relancez."
+gcloud services enable run.googleapis.com sqladmin.googleapis.com artifactregistry.googleapis.com \
+  secretmanager.googleapis.com storage.googleapis.com iamcredentials.googleapis.com \
+  sts.googleapis.com firebasehosting.googleapis.com --quiet
+ok "services activés (facturation active)"
+
 if [[ -z "${INSTANCE:-}" ]]; then
-  mapfile -t PG < <(gcloud sql instances list --filter='databaseVersion~^POSTGRES' --format='value(name)')
-  if (( ${#PG[@]} == 0 )); then die "Aucune instance PostgreSQL trouvée dans $PROJECT."
+  mapfile -t PG < <(gcloud sql instances list --format='value(name,databaseVersion)' | awk '$2 ~ /^POSTGRES/ {print $1}')
+  if (( ${#PG[@]} == 0 )); then
+    warn "Aucune instance PostgreSQL (Cloud SQL) dans $PROJECT."
+    echo "  Le script peut la créer maintenant, déjà sécurisée (région $REGION, PostgreSQL 16) :"
+    echo "    1) Économique  — db-f1-micro  (0,6 Go de RAM)  ≈ 10 USD/mois — suffisant au lancement"
+    echo "    2) Recommandée — db-g1-small  (1,7 Go de RAM)  ≈ 27 USD/mois"
+    echo "    3) Ne rien créer (j'ai déjà une base ailleurs)"
+    read -r -p "  Votre choix [1/2/3] : " CHOICE
+    case "$CHOICE" in
+      1) TIER=db-f1-micro ;;
+      2) TIER=db-g1-small ;;
+      *) die "Aucune instance créée. Si votre base PostgreSQL est dans un autre projet ou chez un autre hébergeur, dites-le à Claude." ;;
+    esac
+    INSTANCE="${NEW_INSTANCE:-forlife-db}"
+    echo "  Création de « $INSTANCE » ($TIER) : 5 à 10 minutes, ne fermez pas Cloud Shell…"
+    gcloud sql instances create "$INSTANCE" --database-version=POSTGRES_16 --edition=enterprise --tier="$TIER" \
+      --region="$REGION" --availability-type=zonal --storage-type=SSD --storage-size=10 --storage-auto-increase \
+      --backup-start-time=02:00 --enable-point-in-time-recovery --retained-backups-count=14 \
+      --ssl-mode=ENCRYPTED_ONLY --deletion-protection --quiet \
+      || die "Création impossible (quota ou facturation ?). Réessayez, ou envoyez le message d'erreur à Claude."
+    ok "instance « $INSTANCE » créée"
   elif (( ${#PG[@]} == 1 )); then INSTANCE="${PG[0]}"
   else
     echo "  Plusieurs instances PostgreSQL :"; select INSTANCE in "${PG[@]}"; do [[ -n "$INSTANCE" ]] && break; done
@@ -50,12 +78,9 @@ if [[ -z "${INSTANCE:-}" ]]; then
 fi
 INSTANCE_REGION="$(gcloud sql instances describe "$INSTANCE" --format='value(region)')"
 [[ "$INSTANCE_REGION" == "$REGION" ]] || warn "Instance en $INSTANCE_REGION, Cloud Run en $REGION : cela fonctionne, mais la même région est plus rapide."
-
-info "1/9 Services Google Cloud"
-gcloud services enable run.googleapis.com sqladmin.googleapis.com artifactregistry.googleapis.com \
-  secretmanager.googleapis.com storage.googleapis.com iamcredentials.googleapis.com \
-  sts.googleapis.com firebasehosting.googleapis.com --quiet
-ok "services activés"
+# Petite instance : moins de connexions par instance de l'API (plafond de connexions de PostgreSQL).
+TIER_NOW="$(gcloud sql instances describe "$INSTANCE" --format='value(settings.tier)')"
+CONN_LIMIT=5; [[ "$TIER_NOW" == "db-f1-micro" ]] && CONN_LIMIT=3
 
 info "2/9 Instance Cloud SQL « $INSTANCE »"
 gcloud sql instances describe "$INSTANCE" --format='value(name)' >/dev/null 2>&1 \
@@ -100,7 +125,7 @@ db_account() { # $1 = utilisateur, $2 = secret
   else
     gcloud sql users create "$user" --instance="$INSTANCE" --password="$pw" --quiet >/dev/null
   fi
-  printf 'postgresql://%s:%s@localhost/%s?host=/cloudsql/%s&connection_limit=5' "$user" "$pw" "$DB_NAME" "$CONNECTION" \
+  printf 'postgresql://%s:%s@localhost/%s?host=/cloudsql/%s&connection_limit=%s' "$user" "$pw" "$DB_NAME" "$CONNECTION" "$CONN_LIMIT" \
     | gcloud secrets create "$secret" --replication-policy=automatic --data-file=- >/dev/null
   ok "compte « $user » prêt, URL rangée dans $secret"
 }

@@ -25,7 +25,8 @@ Ouvrez [Cloud Shell](https://shell.cloud.google.com) (compte propriétaire du pr
 bash <(curl -fsSL https://raw.githubusercontent.com/forlifeimprim-stack/FORLIFE/claude/app-development-sbl2ff/platform/scripts/gcp-setup.sh)
 ```
 
-Le script détecte le projet « AI Growth et Creative OS » et votre instance PostgreSQL, puis :
+Le script détecte le projet « AI Growth et Creative OS » et votre instance PostgreSQL (et propose de la créer
+si le projet n'en a pas encore : db-f1-micro ≈ 10 USD/mois ou db-g1-small ≈ 27 USD/mois), puis :
 
 | Étape | Effet |
 |---|---|
