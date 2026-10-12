@@ -5,3 +5,4 @@ process.env.ENCRYPTION_KEY = Buffer.alloc(32, 7).toString("base64");
 process.env.AI_PROVIDERS = "mock";
 process.env.RUN_WORKER_INLINE = "false";
 process.env.STORAGE_LOCAL_DIR = "./storage-test";
+process.env.PLATFORM_ADMIN_EMAILS = "admin@forlife.test";

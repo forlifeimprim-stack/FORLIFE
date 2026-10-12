@@ -22,6 +22,16 @@ const schema = z.object({
   ACCESS_TOKEN_TTL_SECONDS: z.coerce.number().default(15 * 60),
   REFRESH_TOKEN_TTL_DAYS: z.coerce.number().default(30),
   MAX_UPLOAD_BYTES: z.coerce.number().default(15 * 1024 * 1024),
+  /** URL publique de l'interface (liens dans les emails). */
+  APP_URL: z.string().default("http://localhost:5173"),
+  /** Emails promus administrateurs de la plateforme à la connexion (séparés par des virgules). */
+  PLATFORM_ADMIN_EMAILS: z
+    .string()
+    .default("")
+    .transform((v) => v.split(",").map((s) => s.trim().toLowerCase()).filter(Boolean)),
+  EMAIL_DRIVER: z.enum(["log", "resend"]).default("log"),
+  EMAIL_FROM: z.string().default("Forlife Com <no-reply@forlifecom.ci>"),
+  RESEND_API_KEY: z.string().optional(),
 });
 
 export type Config = z.infer<typeof schema>;

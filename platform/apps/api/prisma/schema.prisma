@@ -32,10 +32,58 @@ model User {
   passwordHash String
   name         String
   locale       String       @default("fr-CI")
+  /// Administrateur de la plateforme Forlife Com (back-office global). Jamais attribuable via l'API publique.
+  isPlatformAdmin Boolean   @default(false)
   createdAt    DateTime     @default(now())
   updatedAt    DateTime     @updatedAt
   memberships  Membership[]
   sessions     Session[]
+  passwordResets PasswordReset[]
+}
+
+model PasswordReset {
+  id        String    @id @default(cuid())
+  userId    String
+  user      User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  tokenHash String    @unique
+  expiresAt DateTime
+  usedAt    DateTime?
+  createdAt DateTime  @default(now())
+
+  @@index([userId])
+}
+
+model Invitation {
+  id             String       @id @default(cuid())
+  organizationId String
+  organization   Organization @relation(fields: [organizationId], references: [id], onDelete: Cascade)
+  email          String
+  role           Role
+  allWorkspaces  Boolean      @default(true)
+  workspaceIds   Json         @default("[]")
+  tokenHash      String       @unique
+  invitedById    String?
+  expiresAt      DateTime
+  acceptedAt     DateTime?
+  revokedAt      DateTime?
+  createdAt      DateTime     @default(now())
+
+  @@index([organizationId])
+  @@index([email])
+}
+
+/// Journal des emails envoyés (traçabilité + driver « log » en développement).
+model EmailOutbox {
+  id        String   @id @default(cuid())
+  to        String
+  subject   String
+  template  String
+  status    String   @default("SENT") // SENT | FAILED | LOGGED
+  error     String?
+  provider  String
+  createdAt DateTime @default(now())
+
+  @@index([to, createdAt])
 }
 
 model Session {
@@ -60,8 +108,12 @@ model Organization {
   country     String        @default("CI")
   currency    String        @default("XOF")
   timezone    String        @default("Africa/Abidjan")
+  /// ACTIVE | SUSPENDED (suspension par un administrateur de la plateforme)
+  status      String        @default("ACTIVE")
+  suspendedReason String?
   createdAt   DateTime      @default(now())
   updatedAt   DateTime      @updatedAt
+  invitations Invitation[]
   memberships Membership[]
   workspaces  Workspace[]
   wallet      CreditWallet?

@@ -18,6 +18,9 @@ import { approvalRoutes } from "./modules/approvals/routes.js";
 import { jobRoutes } from "./modules/jobs/routes.js";
 import { dashboardRoutes } from "./modules/governance/dashboard.js";
 import { registerAllJobHandlers } from "./modules/jobs/handlers.js";
+import { adminRoutes } from "./modules/admin/routes.js";
+import { invitationRoutes } from "./modules/org/invitations.js";
+import { passwordRoutes } from "./modules/identity/password.js";
 
 export async function buildServer(options: { logger?: boolean } = {}) {
   const cfg = loadConfig();
@@ -75,6 +78,9 @@ export async function buildServer(options: { logger?: boolean } = {}) {
   await app.register(approvalRoutes);
   await app.register(jobRoutes);
   await app.register(dashboardRoutes);
+  await app.register(passwordRoutes);
+  await app.register(invitationRoutes);
+  await app.register(adminRoutes);
 
   return app;
 }

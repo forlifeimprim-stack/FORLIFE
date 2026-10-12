@@ -12,6 +12,9 @@ import { CalendarPage } from "./pages/Calendar";
 import { ApprovalsPage } from "./pages/Approvals";
 import { SettingsPage } from "./pages/Settings";
 import { ComingSoon } from "./pages/ComingSoon";
+import { InvitePage } from "./pages/Invite";
+import { ForgotPassword, ResetPassword } from "./pages/PasswordReset";
+import { AdminPage } from "./pages/Admin";
 
 export function App() {
   const { me, loading, workspace } = useAuth();
@@ -26,11 +29,15 @@ export function App() {
     return (
       <Routes>
         <Route path="/signup" element={<Signup />} />
+        <Route path="/invite" element={<InvitePage />} />
+        <Route path="/forgot-password" element={<ForgotPassword />} />
+        <Route path="/reset-password" element={<ResetPassword />} />
         <Route path="*" element={<Login />} />
       </Routes>
     );
   }
   if (!workspace) {
+    if (location.pathname === "/invite") return <InvitePage />;
     return <div className="auth-main">Aucun espace de travail accessible. Contactez l'administrateur de votre organisation.</div>;
   }
   return (
@@ -45,6 +52,8 @@ export function App() {
         <Route path="approvals" element={<ApprovalsPage />} />
         <Route path="settings" element={<SettingsPage />} />
         <Route path="soon/:module" element={<ComingSoon />} />
+        <Route path="admin" element={<AdminPage />} />
+        <Route path="invite" element={<InvitePage />} />
         <Route path="*" element={<Navigate to="/" replace />} />
       </Route>
     </Routes>

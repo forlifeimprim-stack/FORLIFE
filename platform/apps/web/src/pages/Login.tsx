@@ -44,6 +44,9 @@ export function Login() {
             Se connecter
           </Button>
           <p className="muted small">
+            <Link to="/forgot-password">Mot de passe oublié ?</Link>
+          </p>
+          <p className="muted small">
             Pas encore de compte ? <Link to="/signup">Créer mon espace gratuitement</Link>
           </p>
         </form>

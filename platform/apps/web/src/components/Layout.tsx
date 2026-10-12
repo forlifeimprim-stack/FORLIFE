@@ -81,6 +81,12 @@ export function Layout() {
               {m.label} <small>{m.phase}</small>
             </NavLink>
           ))}
+          {me.user.isPlatformAdmin && (
+            <>
+              <div className="nav-section">Plateforme</div>
+              <NavLink to="/admin">Back-office</NavLink>
+            </>
+          )}
           {(can("members:read") || can("billing:read")) && (
             <>
               <div className="nav-section">Organisation</div>
@@ -100,6 +106,7 @@ export function Layout() {
         </div>
       </aside>
       <main className="main" id="contenu">
+        {org.status === "SUSPENDED" && <div className="alert alert-error" style={{ marginBottom: 16 }}>Cette organisation est suspendue. Contactez le support Forlife Com sur WhatsApp : +225 05 85 80 18 56.</div>}
         <Outlet />
       </main>
     </div>

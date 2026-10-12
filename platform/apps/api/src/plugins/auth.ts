@@ -46,8 +46,10 @@ export async function requireOrg(req: FastifyRequest, organizationId: string, pe
   const uid = userId(req);
   const membership = await prisma.membership.findUnique({
     where: { organizationId_userId: { organizationId, userId: uid } },
+    include: { organization: { select: { status: true } } },
   });
   if (!membership) throw notFound("Organisation");
+  assertActive(membership.organization.status);
   if (!can(membership.role, permission)) throw forbidden();
   return { userId: uid, organizationId, workspaceId: null, role: membership.role, correlationId: req.id, ip: req.ip };
 }
@@ -58,7 +60,7 @@ export async function requireOrg(req: FastifyRequest, organizationId: string, pe
  */
 export async function requireWorkspace(req: FastifyRequest, workspaceId: string, permission: Permission): Promise<TenantContext> {
   const uid = userId(req);
-  const workspace = await prisma.workspace.findUnique({ where: { id: workspaceId }, select: { id: true, organizationId: true } });
+  const workspace = await prisma.workspace.findUnique({ where: { id: workspaceId }, select: { id: true, organizationId: true, organization: { select: { status: true } } } });
   if (!workspace) throw notFound("Workspace");
   const membership = await prisma.membership.findUnique({
     where: { organizationId_userId: { organizationId: workspace.organizationId, userId: uid } },
@@ -67,6 +69,7 @@ export async function requireWorkspace(req: FastifyRequest, workspaceId: string,
   if (!membership) throw notFound("Workspace");
   const hasAccess = membership.allWorkspaces || membership.workspaces.length > 0;
   if (!hasAccess) throw notFound("Workspace");
+  assertActive(workspace.organization.status);
   if (!can(membership.role, permission)) throw forbidden();
   return {
     userId: uid,
@@ -76,6 +79,18 @@ export async function requireWorkspace(req: FastifyRequest, workspaceId: string,
     correlationId: req.id,
     ip: req.ip,
   };
+}
+
+function assertActive(status: string) {
+  if (status === "SUSPENDED") throw forbidden("Cette organisation est suspendue. Contactez le support Forlife Com.");
+}
+
+/** Réservé aux administrateurs de la plateforme (back-office global). */
+export async function requirePlatformAdmin(req: FastifyRequest): Promise<{ userId: string; correlationId: string; ip: string }> {
+  const uid = userId(req);
+  const user = await prisma.user.findUnique({ where: { id: uid }, select: { isPlatformAdmin: true } });
+  if (!user?.isPlatformAdmin) throw notFound("Ressource");
+  return { userId: uid, correlationId: req.id, ip: req.ip };
 }
 
 /** Raccourci : contexte d'audit à partir du contexte tenant. */

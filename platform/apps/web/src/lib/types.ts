@@ -14,11 +14,12 @@ export interface OrgSummary {
   role: Role;
   permissions: Permission[];
   plan: PlanCode;
+  status: "ACTIVE" | "SUSPENDED";
   credits: number;
   workspaces: WorkspaceSummary[];
 }
 export interface Me {
-  user: { id: string; email: string; name: string; locale: string };
+  user: { id: string; email: string; name: string; locale: string; isPlatformAdmin: boolean };
   organizations: OrgSummary[];
 }
 

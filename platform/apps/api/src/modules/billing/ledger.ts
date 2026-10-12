@@ -94,17 +94,52 @@ export async function provisionBilling(tx: Tx, organizationId: string, planCode:
   await tx.creditWallet.create({ data: { organizationId, balance: 0 } });
 }
 
-/** Allocation mensuelle du plan (idempotente par organisation et période). */
-export async function grantMonthlyAllowance(organizationId: string): Promise<LedgerResult> {
+/**
+ * Allocation mensuelle du plan (idempotente par organisation et période).
+ * Report plafonné : le solde après allocation ne dépasse pas 2 × l'allocation mensuelle.
+ */
+export async function grantMonthlyAllowance(organizationId: string): Promise<LedgerResult | null> {
   const sub = await prisma.subscription.findUniqueOrThrow({ where: { organizationId } });
+  const wallet = await prisma.creditWallet.findUniqueOrThrow({ where: { organizationId } });
   const plan = PLANS[sub.planCode];
+  const amount = Math.min(plan.monthlyCredits, Math.max(0, plan.monthlyCredits * 2 - wallet.balance));
+  if (amount <= 0) return null;
   const period = sub.currentPeriodStart.toISOString().slice(0, 10);
   return ledger.grant({
     organizationId,
-    amount: plan.monthlyCredits,
+    amount,
     reason: `Allocation mensuelle ${plan.name}`,
     idempotencyKey: `allowance:${organizationId}:${period}`,
     refType: "subscription",
     refId: sub.id,
   });
+}
+
+function addMonth(d: Date): Date {
+  const n = new Date(d);
+  n.setMonth(n.getMonth() + 1);
+  return n;
+}
+
+/** Renouvelle les abonnements arrivés à échéance et verse l'allocation de la nouvelle période. */
+export async function renewDueSubscriptions(now = new Date()): Promise<number> {
+  const due = await prisma.subscription.findMany({ where: { status: "ACTIVE", currentPeriodEnd: { lte: now } }, take: 500 });
+  let renewed = 0;
+  for (const sub of due) {
+    let start = sub.currentPeriodEnd;
+    let end = addMonth(start);
+    while (end <= now) {
+      start = end;
+      end = addMonth(end);
+    }
+    // Mise à jour conditionnelle : un seul worker renouvelle une période donnée.
+    const res = await prisma.subscription.updateMany({
+      where: { id: sub.id, currentPeriodEnd: sub.currentPeriodEnd },
+      data: { currentPeriodStart: start, currentPeriodEnd: end },
+    });
+    if (!res.count) continue;
+    await grantMonthlyAllowance(sub.organizationId);
+    renewed++;
+  }
+  return renewed;
 }

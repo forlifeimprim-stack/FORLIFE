@@ -2,6 +2,7 @@ import type { FastifyInstance } from "fastify";
 import { z } from "zod";
 import { CHANNELS, OBJECTIVE_TYPES, ROLE_PERMISSIONS } from "@forlife/shared";
 import { prisma } from "../../lib/prisma.js";
+import { loadConfig } from "../../config.js";
 import { hashPassword, slugify, verifyPassword } from "../../lib/crypto.js";
 import { badRequest, conflict, unauthorized } from "../../lib/errors.js";
 import { parse } from "../../lib/validation.js";
@@ -48,6 +49,13 @@ function requireCsrfHeader(headers: Record<string, unknown>) {
   if (headers["x-forlife-csrf"] !== "1") throw badRequest("En-tête anti-CSRF manquant");
 }
 
+/** Promeut les emails listés dans PLATFORM_ADMIN_EMAILS (seul moyen de devenir administrateur de la plateforme). */
+export async function syncPlatformAdmin(userId: string, email: string) {
+  if (loadConfig().PLATFORM_ADMIN_EMAILS.includes(email.toLowerCase())) {
+    await prisma.user.updateMany({ where: { id: userId, isPlatformAdmin: false }, data: { isPlatformAdmin: true } });
+  }
+}
+
 export async function identityRoutes(app: FastifyInstance) {
   const authRateLimit = { config: { rateLimit: { max: 10, timeWindow: "1 minute" } } };
 
@@ -89,6 +97,7 @@ export async function identityRoutes(app: FastifyInstance) {
       return { user, org, workspace };
     });
     await grantMonthlyAllowance(org.id);
+    await syncPlatformAdmin(user.id, user.email);
     const tokens = await issueSession(app, req, reply, user.id);
     reply.code(201);
     return { ...tokens, organizationId: org.id, workspaceId: workspace.id };
@@ -100,6 +109,7 @@ export async function identityRoutes(app: FastifyInstance) {
     // Vérification systématique pour un temps de réponse constant (pas d'énumération de comptes).
     const ok = await verifyPassword(body.password, user?.passwordHash ?? "scrypt$16384$8$1$AAAA$AAAA");
     if (!user || !ok) throw unauthorized("Email ou mot de passe incorrect");
+    await syncPlatformAdmin(user.id, user.email);
     return issueSession(app, req, reply, user.id);
   });
 
@@ -145,11 +155,12 @@ export async function identityRoutes(app: FastifyInstance) {
           role: m.role,
           permissions: [...ROLE_PERMISSIONS[m.role]],
           plan: m.organization.subscription?.planCode ?? "FREE",
+          status: m.organization.status,
           credits: m.organization.wallet?.balance ?? 0,
           workspaces,
         };
       }),
     );
-    return { user: { id: user.id, email: user.email, name: user.name, locale: user.locale }, organizations };
+    return { user: { id: user.id, email: user.email, name: user.name, locale: user.locale, isPlatformAdmin: user.isPlatformAdmin }, organizations };
   });
 }

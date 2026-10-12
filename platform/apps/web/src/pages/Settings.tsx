@@ -47,6 +47,7 @@ interface Member {
 function Members() {
   const { org, me, can } = useAuth();
   const { data, reload } = useResource<Member[]>(`/orgs/${org!.id}/members`);
+  const invites = useResource<{ id: string; email: string; role: Role; expiresAt: string }[]>(`/orgs/${org!.id}/invitations`);
   const [f, setF] = useState({ email: "", role: "EDITOR" as Role, workspaceIds: [] as string[] });
   const [msg, setMsg] = useState<{ tone: "success" | "error"; text: string } | null>(null);
   const manage = can("members:manage");
@@ -54,10 +55,10 @@ function Members() {
 
   const add = async () => {
     try {
-      await api.post(`/orgs/${org!.id}/members`, { email: f.email, role: f.role, allWorkspaces: !restricted, workspaceIds: restricted ? f.workspaceIds : [] });
-      setMsg({ tone: "success", text: "Membre ajouté" });
+      await api.post(`/orgs/${org!.id}/invitations`, { email: f.email, role: f.role, allWorkspaces: !restricted, workspaceIds: restricted ? f.workspaceIds : [] });
+      setMsg({ tone: "success", text: `Invitation envoyée à ${f.email}` });
       setF({ ...f, email: "" });
-      void reload();
+      void invites.reload();
     } catch (e) {
       setMsg({ tone: "error", text: errorMessage(e) });
     }
@@ -84,7 +85,7 @@ function Members() {
     <div className="stack">
       {msg && <Alert tone={msg.tone}>{msg.text}</Alert>}
       {manage && (
-        <Card title="Ajouter un membre">
+        <Card title="Inviter un membre">
           <div className="stack">
             <div className="row">
               <input type="email" placeholder="email@entreprise.ci" value={f.email} onChange={(e) => setF({ ...f, email: e.target.value })} style={{ flex: 2, minWidth: 200 }} aria-label="Email" />
@@ -96,7 +97,7 @@ function Members() {
                 ))}
               </select>
               <Button disabled={!f.email || (restricted && f.workspaceIds.length === 0)} onClick={add}>
-                Ajouter
+                Envoyer l'invitation
               </Button>
             </div>
             {restricted && (
@@ -109,8 +110,26 @@ function Members() {
                 ))}
               </div>
             )}
-            <p className="muted small">La personne doit avoir créé son compte Forlife. Les invitations par email arrivent prochainement.</p>
+            <p className="muted small">La personne reçoit un email avec un lien valable 7 jours pour rejoindre votre organisation.</p>
           </div>
+        </Card>
+      )}
+      {!!invites.data?.length && (
+        <Card title="Invitations en attente">
+          <ul className="list">
+            {invites.data.map((i) => (
+              <li key={i.id}>
+                <span>
+                  {i.email} · <Badge tone="accent">{ROLE_LABELS[i.role]}</Badge>
+                </span>
+                {manage && (
+                  <Button variant="ghost" onClick={() => api.del(`/orgs/${org!.id}/invitations/${i.id}`).then(invites.reload)}>
+                    Annuler
+                  </Button>
+                )}
+              </li>
+            ))}
+          </ul>
         </Card>
       )}
       <Card title="Membres">

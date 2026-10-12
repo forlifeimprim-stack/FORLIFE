@@ -13,6 +13,7 @@ interface AuthState {
   reload: () => Promise<void>;
   login: (email: string, password: string) => Promise<void>;
   completeSignup: (token: string, workspaceId: string) => Promise<void>;
+  adoptSession: (token: string) => Promise<void>;
   logout: () => Promise<void>;
 }
 
@@ -85,6 +86,10 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       const o = fresh.organizations[0];
       if (o) selectWorkspace(o.id, workspaceId);
       setMe(fresh);
+    },
+    adoptSession: async (token) => {
+      setAccessToken(token);
+      await reload();
     },
     logout: async () => {
       await api.post("/auth/logout", {}, { "x-forlife-csrf": "1" }).catch(() => undefined);
