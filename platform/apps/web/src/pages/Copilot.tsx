@@ -90,7 +90,10 @@ export function CopilotPage() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [pending, thread]);
 
-  useEffect(() => endRef.current?.scrollIntoView({ behavior: "smooth", block: "end" }), [thread?.messages.length, pending]);
+  // Bloc explicite : scrollIntoView renvoie une promesse sur les navigateurs récents ; React ne doit pas la prendre pour un nettoyage.
+  useEffect(() => {
+    endRef.current?.scrollIntoView({ behavior: "smooth", block: "end" });
+  }, [thread?.messages.length, pending]);
 
   if (home.error) return <Alert tone="error">{home.error}</Alert>;
   if (!home.data) return <p className="muted">Chargement…</p>;

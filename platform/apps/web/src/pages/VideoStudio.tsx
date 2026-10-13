@@ -309,7 +309,9 @@ function SceneEditor({ ws, scene, index, photos, editable, onSaved }: { ws: stri
   const [f, setF] = useState(scene);
   const [saving, setSaving] = useState(false);
   const [err, setErr] = useState<string | null>(null);
-  useEffect(() => setF(scene), [scene]);
+  useEffect(() => {
+    setF(scene);
+  }, [scene]);
   const dirty = f.overlay !== scene.overlay || f.caption !== scene.caption || f.duration !== scene.duration || f.assetId !== scene.assetId || f.motion !== scene.motion;
   const words = f.overlay.trim().split(/\s+/).filter(Boolean).length;
 

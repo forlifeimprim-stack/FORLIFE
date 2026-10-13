@@ -87,7 +87,9 @@ function DnaTab({ ws, approved, draft, versions, onChange }: { ws: string; appro
   const [err, setErr] = useState<string | null>(null);
   const shown = draft ?? approved;
 
-  useEffect(() => setEdit(draft), [draft]);
+  useEffect(() => {
+    setEdit(draft);
+  }, [draft]);
 
   const act = async (fn: () => Promise<unknown>) => {
     setBusy(true);
