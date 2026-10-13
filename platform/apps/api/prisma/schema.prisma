@@ -213,6 +213,8 @@ model Workspace {
   publications     Publication[]
   creativeBriefs   CreativeBrief[]
   videoProjects    VideoProject[]
+  copilotSettings  CopilotSettings?
+  copilotConversations CopilotConversation[]
 
   @@unique([organizationId, slug])
   @@index([organizationId])
@@ -1168,4 +1170,91 @@ model PaymentEvent {
   createdAt DateTime @default(now())
 
   @@index([paymentId, createdAt])
+}
+
+// ───────────── AI Copilot & Agents (Phase 6) ─────────────
+
+enum CopilotMode {
+  ASSISTED
+  COPILOT
+  AUTOPILOT
+}
+
+enum CopilotActionStatus {
+  PROPOSED
+  EXECUTED
+  REJECTED
+  FAILED
+}
+
+/// Réglages du Copilot par workspace : mode et périmètre de l'autopilot borné.
+model CopilotSettings {
+  workspaceId    String      @id
+  workspace      Workspace   @relation(fields: [workspaceId], references: [id], onDelete: Cascade)
+  mode           CopilotMode @default(COPILOT)
+  /// Types d'actions internes exécutables sans validation en mode AUTOPILOT.
+  autoActions    Json        @default("[]")
+  /// Nombre maximal d'actions automatiques par 24 h glissantes.
+  dailyAutoLimit Int         @default(10)
+  updatedById    String?
+  updatedAt      DateTime    @updatedAt
+}
+
+/// Conversation privée d'un membre avec un agent, dans un workspace.
+model CopilotConversation {
+  id             String           @id @default(cuid())
+  organizationId String
+  workspaceId    String
+  workspace      Workspace        @relation(fields: [workspaceId], references: [id], onDelete: Restrict)
+  userId         String
+  agent          String
+  title          String           @default("Nouvelle conversation")
+  createdAt      DateTime         @default(now())
+  updatedAt      DateTime         @updatedAt
+  messages       CopilotMessage[]
+  actions        CopilotAction[]
+
+  @@index([workspaceId, userId, updatedAt])
+}
+
+model CopilotMessage {
+  id             String              @id @default(cuid())
+  conversationId String
+  conversation   CopilotConversation @relation(fields: [conversationId], references: [id], onDelete: Cascade)
+  role           String // USER | ASSISTANT
+  content        String              @default("")
+  status         String              @default("DONE") // PENDING | DONE | FAILED
+  jobId          String?
+  aiRunId        String?
+  isSimulated    Boolean             @default(false)
+  createdAt      DateTime            @default(now())
+  actions        CopilotAction[]
+
+  @@index([conversationId, createdAt])
+}
+
+/// Action proposée par le Copilot : n'est exécutée qu'après accord explicite (ou autopilot borné), tracée.
+model CopilotAction {
+  id             String              @id @default(cuid())
+  organizationId String
+  workspaceId    String
+  conversationId String
+  conversation   CopilotConversation @relation(fields: [conversationId], references: [id], onDelete: Cascade)
+  messageId      String
+  message        CopilotMessage      @relation(fields: [messageId], references: [id], onDelete: Cascade)
+  type           String
+  title          String
+  params         Json                @default("{}")
+  rationale      String?
+  status         CopilotActionStatus @default(PROPOSED)
+  auto           Boolean             @default(false)
+  decidedById    String?
+  decidedAt      DateTime?
+  resultType     String?
+  resultId       String?
+  error          String?
+  createdAt      DateTime            @default(now())
+
+  @@index([workspaceId, status, decidedAt])
+  @@index([conversationId])
 }

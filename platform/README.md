@@ -19,7 +19,8 @@ Ce dossier contient **l'application**. Le site vitrine Forlife Com' reste à la 
 | J5 — Création | Creative Studio (3 concepts, moteur de design, Critic), Video Studio 9:16 (storyboard, rendu MP4, sous-titres) | ✅ |
 | J6 — Business | Analytics & ROI, export CSV/PDF, paiements mobile money (CinetPay), back-office super-admin | ✅ |
 | J7 — Mise en ligne | Docker, Cloud Run, Firebase Hosting, workflow GitHub | ✅ prêt — [docs/03-deploiement.md](docs/03-deploiement.md) |
-| Ensuite | AI Copilot, WhatsApp Business API, Autopilot, LinkedIn/TikTok/YouTube | ⏳ ([docs/02-suivi.md](docs/02-suivi.md)) |
+| Phase 6 — AI Copilot | Chat avec la mémoire de l'entreprise, 12 agents, modes assisté / copilot / autopilot borné, actions validées et auditées | ✅ |
+| Ensuite | WhatsApp Business API, Optimizer avancé, LinkedIn/TikTok/YouTube | ⏳ ([docs/02-suivi.md](docs/02-suivi.md)) |
 
 ## Démarrage rapide
 

@@ -35,7 +35,8 @@
 | P0-09 | Posts / variantes / calendrier + workflow d'approbation | ✅ |
 | P1-01 → P1-08 | Creative, image, critic, OAuth social, publication, métriques, CRM, campagnes | ✅ |
 | P2 | Vidéo, analytics, paiements mobile money, back-office | ✅ |
-| P3 | AI Copilot, WhatsApp Business API, optimizer, autopilot, white-label agence, API publique | ⏳ |
+| P3a | AI Copilot & 12 agents, mémoire de l'entreprise, modes assisté / copilot / autopilot borné | ✅ |
+| P3b | WhatsApp Business API, optimizer avancé, white-label agence, API publique | ⏳ |
 
 ## Tarifs validés (12/10/2026)
 
@@ -53,4 +54,4 @@ Abonnements payés d'avance : 3 mois −5 %, 12 mois −15 %.
 1. **Mise en ligne** : suivre [03-deploiement.md](03-deploiement.md) (Cloud SQL, bucket, secrets, second site Firebase, workflow GitHub).
 2. **Clés à ajouter par le propriétaire** : Anthropic (IA réelle), CinetPay (encaissement), Meta (publication), Resend (emails).
 3. **Revue d'app Meta** (permissions `pages_manage_posts`, `instagram_content_publish`) : prévoir 1 à 3 semaines.
-4. Phase suivante : AI Copilot, WhatsApp Business API (messages entrants → leads), connecteurs LinkedIn/TikTok/YouTube.
+4. Phase suivante : WhatsApp Business API (messages entrants → leads), connecteurs LinkedIn/TikTok/YouTube.

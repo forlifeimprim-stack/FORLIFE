@@ -86,6 +86,7 @@ export const TASK_CREDIT_COST = {
   "creative.render": 2,
   "video.storyboard": 8,
   "video.render": 15,
+  "copilot.chat": 2,
 } as const;
 export type AiTaskType = keyof typeof TASK_CREDIT_COST;
 

@@ -7,9 +7,7 @@ import { LogoMark } from "./ui";
 import { VerifyEmailBanner } from "../pages/VerifyEmail";
 
 /** Modules prévus par la roadmap, affichés pour donner la vision produit complète. */
-const UPCOMING = [
-  { key: "copilot", label: "AI Copilot", phase: "Phase 6" },
-];
+const UPCOMING: { key: string; label: string; phase: string }[] = [];
 
 export function Layout() {
   const { me, org, workspace, selectWorkspace, logout, can } = useAuth();
@@ -63,6 +61,7 @@ export function Layout() {
           <NavLink to="/" end>
             {t("nav.home")}
           </NavLink>
+          {can("ai:read") && <NavLink to="/copilot">AI Copilot</NavLink>}
           <div className="nav-section">Business Brain</div>
           <NavLink to="/brand">{t("nav.brand")}</NavLink>
           <NavLink to="/strategy">{t("nav.strategy")}</NavLink>
@@ -77,7 +76,7 @@ export function Layout() {
           {can("campaigns:read") && <NavLink to="/campaigns">Campagnes</NavLink>}
           {can("crm:read") && <NavLink to="/crm">CRM & leads</NavLink>}
           {can("campaigns:read") && <NavLink to="/analytics">Analytics & ROI</NavLink>}
-          <div className="nav-section">{t("nav.soon")}</div>
+          {UPCOMING.length > 0 && <div className="nav-section">{t("nav.soon")}</div>}
           {UPCOMING.map((m) => (
             <NavLink key={m.key} to={`/soon/${m.key}`} className="soon">
               {m.label} <small>{m.phase}</small>

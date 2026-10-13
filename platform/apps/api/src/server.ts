@@ -27,6 +27,7 @@ import { creativeRoutes } from "./modules/creative/routes.js";
 import { videoRoutes } from "./modules/video/routes.js";
 import { paymentRoutes } from "./modules/payments/routes.js";
 import { analyticsRoutes } from "./modules/analytics/routes.js";
+import { copilotRoutes } from "./modules/copilot/routes.js";
 import { invitationRoutes } from "./modules/org/invitations.js";
 import { passwordRoutes } from "./modules/identity/password.js";
 import { verificationRoutes } from "./modules/identity/verification.js";
@@ -103,6 +104,7 @@ export async function buildServer(options: { logger?: boolean } = {}) {
   await app.register(videoRoutes);
   await app.register(paymentRoutes);
   await app.register(analyticsRoutes);
+  await app.register(copilotRoutes);
 
   return app;
 }

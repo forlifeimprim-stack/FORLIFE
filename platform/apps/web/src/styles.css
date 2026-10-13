@@ -439,3 +439,32 @@ a.preview-media { text-decoration: none; font-weight: 500; }
 
 .link-button { background: none; border: none; padding: 0; font: inherit; color: var(--accent-strong); text-decoration: underline; cursor: pointer; }
 .link-button:disabled { opacity: 0.6; cursor: default; }
+
+/* ───────── AI Copilot ───────── */
+.copilot-layout { display: grid; grid-template-columns: minmax(240px, 320px) 1fr; gap: 16px; align-items: start; }
+@media (max-width: 900px) { .copilot-layout { grid-template-columns: 1fr; } }
+.agent-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; }
+.agent-card { display: grid; gap: 2px; text-align: left; padding: 8px 10px; border: 1px solid var(--border); border-radius: var(--radius-sm); background: var(--surface); color: var(--text); cursor: pointer; font: inherit; }
+.agent-card small { color: var(--text-muted); font-size: 12px; }
+.agent-card:hover, .agent-card.active { border-color: var(--accent); background: var(--accent-soft); }
+.conv-list { list-style: none; margin: 0; padding: 0; display: grid; gap: 4px; }
+.conv-list li { display: flex; gap: 8px; align-items: flex-start; justify-content: space-between; padding: 6px 8px; border-radius: var(--radius-sm); }
+.conv-list li.active { background: var(--surface-2); }
+.conv-list li > .link-button:first-child { display: grid; text-align: left; gap: 2px; min-width: 0; }
+.conv-list li > .link-button:first-child span { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.chat-card .card-body, .chat-card { min-width: 0; }
+.chat { display: grid; gap: 12px; max-height: 60vh; overflow-y: auto; padding: 4px 2px; margin: 12px 0; }
+.bubble { display: grid; gap: 8px; padding: 10px 14px; border-radius: var(--radius); max-width: 92%; overflow-wrap: anywhere; }
+.bubble p { margin: 0; }
+.bubble-user { justify-self: end; background: var(--accent-soft); }
+.bubble-agent { justify-self: start; background: var(--surface-2); }
+.bubble-failed { background: var(--danger-soft); }
+.action-card { display: grid; gap: 6px; padding: 10px 12px; border: 1px solid var(--border); border-radius: var(--radius-sm); background: var(--surface); }
+.action-card p { margin: 0; max-height: 10em; overflow: auto; }
+.chat-input { display: grid; gap: 8px; }
+.chat-input textarea { width: 100%; resize: vertical; }
+.chat-input .row { justify-content: space-between; }
+.radio-row { display: flex; gap: 10px; align-items: flex-start; cursor: pointer; }
+.radio-row input { margin-top: 4px; }
+fieldset.stack { border: 0; padding: 0; margin: 0 0 12px; gap: 10px; }
+fieldset.stack legend { font-weight: 600; margin-bottom: 8px; }

@@ -46,6 +46,7 @@ const TASK_LABELS: Record<string, string> = {
   "content.ideas": "Idées de contenus",
   "content.post": "Rédaction de posts",
   "crm.followup": "Relances CRM",
+  "copilot.chat": "AI Copilot",
   "creative.concepts": "Concepts visuels",
   "creative.render": "Versions de visuels",
   "video.storyboard": "Storyboards vidéo",

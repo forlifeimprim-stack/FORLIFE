@@ -12,6 +12,7 @@ import { CalendarPage } from "./pages/Calendar";
 import { ApprovalsPage } from "./pages/Approvals";
 import { SettingsPage } from "./pages/Settings";
 import { ComingSoon } from "./pages/ComingSoon";
+import { CopilotPage } from "./pages/Copilot";
 import { InvitePage } from "./pages/Invite";
 import { ForgotPassword, ResetPassword } from "./pages/PasswordReset";
 import { AdminPage } from "./pages/Admin";
@@ -73,6 +74,7 @@ export function App() {
         <Route path="approvals" element={<ApprovalsPage />} />
         <Route path="settings" element={<SettingsPage />} />
         <Route path="soon/:module" element={<ComingSoon />} />
+        <Route path="copilot" element={<CopilotPage />} />
         <Route path="admin" element={<AdminPage />} />
         <Route path="crm" element={<CrmPage />} />
         <Route path="social" element={<SocialHubPage />} />
