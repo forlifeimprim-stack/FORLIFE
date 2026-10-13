@@ -55,7 +55,7 @@ export function InvitePage() {
   return (
     <div className="auth">
       <AuthAside />
-      <div className="auth-main">
+      <div className="auth-main" role="main">
         <form className="auth-card card" onSubmit={accept}>
           <h1>Invitation</h1>
           {err && <Alert tone="error">{err}</Alert>}

@@ -160,7 +160,7 @@ function AdminConsole() {
         {orgs.data?.length === 0 ? (
           <Empty title="Aucune organisation" />
         ) : (
-          <div className="table-wrap">
+          <div className="table-wrap" tabIndex={0}>
             <table>
               <thead>
                 <tr>

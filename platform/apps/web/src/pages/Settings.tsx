@@ -236,7 +236,7 @@ function Billing() {
         )}
       </Card>
       <Card title="Ledger de crédits (auditable)">
-        <div className="table-wrap">
+        <div className="table-wrap" tabIndex={0}>
           <table>
             <thead>
               <tr>
@@ -268,7 +268,7 @@ function Audit() {
   const { data } = useResource<{ items: { id: string; action: string; entityType: string; actorName: string | null; createdAt: string; ip: string | null }[] }>(`/orgs/${org!.id}/audit`);
   return (
     <Card title="Journal d'audit (immuable)">
-      <div className="table-wrap">
+      <div className="table-wrap" tabIndex={0}>
         <table>
           <thead>
             <tr>
@@ -302,7 +302,7 @@ function AiRuns() {
   return (
     <Card title="Traçabilité des générations IA">
       <p className="muted small">Chaque génération enregistre la tâche, la version de l'instruction, le fournisseur, le modèle, la durée et le coût.</p>
-      <div className="table-wrap">
+      <div className="table-wrap" tabIndex={0}>
         <table>
           <thead>
             <tr>

@@ -104,8 +104,8 @@ export function AnalyticsPage() {
           {data.insights.length > 0 && (
             <Card title="À retenir">
               <ul className="insights">
-                {data.insights.map((i) => (
-                  <li key={i.text} className={i.tone}>
+                {data.insights.map((i, idx) => (
+                  <li key={`${idx}-${i.text}`} className={i.tone}>
                     {i.text}
                   </li>
                 ))}
@@ -154,7 +154,7 @@ export function AnalyticsPage() {
                 <Link to="/campaigns">Créer une campagne</Link>
               </Empty>
             ) : (
-              <div className="table-wrap">
+              <div className="table-wrap" tabIndex={0}>
                 <table>
                   <thead>
                     <tr>
@@ -218,7 +218,7 @@ export function AnalyticsPage() {
             {data.topContents.length === 0 ? (
               <Empty title="Aucune publication sur la période" />
             ) : (
-              <div className="table-wrap">
+              <div className="table-wrap" tabIndex={0}>
                 <table>
                   <thead>
                     <tr>
@@ -230,8 +230,8 @@ export function AnalyticsPage() {
                     </tr>
                   </thead>
                   <tbody>
-                    {data.topContents.map((c) => (
-                      <tr key={c.contentId + c.provider}>
+                    {data.topContents.map((c, idx) => (
+                      <tr key={`${c.contentId}-${c.provider}-${idx}`}>
                         <td>
                           <Link to={`/content/${c.contentId}`}>{c.title}</Link>
                         </td>
@@ -254,8 +254,8 @@ export function AnalyticsPage() {
           </Card>
 
           <ul className="small muted">
-            {data.notes.map((n) => (
-              <li key={n}>{n}</li>
+            {data.notes.map((n, idx) => (
+              <li key={`${idx}-${n}`}>{n}</li>
             ))}
           </ul>
         </div>
@@ -297,8 +297,8 @@ function Bars({ rows }: { rows: { label: string; value: number; extra?: string }
   const max = Math.max(1, ...rows.map((r) => r.value));
   return (
     <div className="funnel">
-      {rows.map((r) => (
-        <div key={r.label} className="funnel-row">
+      {rows.map((r, i) => (
+        <div key={`${r.label}-${i}`} className="funnel-row">
           <span className="small">{r.label}</span>
           <div className="funnel-bar">
             <span style={{ width: `${(r.value / max) * 100}%`, background: "var(--accent)" }} />
@@ -321,7 +321,7 @@ function Weekly({ weeks }: { weeks: { week: string; publications: number; leads:
     <div>
       <svg viewBox="0 0 100 40" preserveAspectRatio="none" className="weekly" role="img" aria-label="Publications et leads par semaine">
         {shown.map((w, i) => (
-          <g key={w.week}>
+          <g key={`${w.week}-${i}`}>
             <rect x={i * bw + bw * 0.12} width={bw * 0.36} y={40 - (w.publications / max) * 38} height={(w.publications / max) * 38} fill="var(--border)" />
             <rect x={i * bw + bw * 0.52} width={bw * 0.36} y={40 - (w.leads / max) * 38} height={(w.leads / max) * 38} fill="var(--accent)" />
           </g>

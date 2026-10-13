@@ -31,7 +31,7 @@ export function PublicFormPage() {
   };
 
   return (
-    <div className="auth-main" style={{ minHeight: "100%", background: "var(--bg)" }}>
+    <div className="auth-main" role="main" style={{ minHeight: "100%", background: "var(--bg)" }}>
       <form className="auth-card card" onSubmit={submit}>
         <div className="row">
           <span className="avatar">

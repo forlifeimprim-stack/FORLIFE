@@ -197,7 +197,7 @@ function ConnectorTile({ name, detail, available, onConnect, pending }: { name: 
 
 function PubTable({ items, onRetry }: { items: Publication[]; onRetry?: (p: Publication) => void }) {
   return (
-    <div className="table-wrap">
+    <div className="table-wrap" tabIndex={0}>
       <table>
         <thead>
           <tr>
@@ -206,7 +206,7 @@ function PubTable({ items, onRetry }: { items: Publication[]; onRetry?: (p: Publ
             <th>Date</th>
             <th>Statut</th>
             <th>Résultats</th>
-            <th />
+            <th><span className="sr-only">Actions</span></th>
           </tr>
         </thead>
         <tbody>

@@ -29,7 +29,7 @@ export function Login() {
   return (
     <div className="auth">
       <AuthAside />
-      <div className="auth-main">
+      <div className="auth-main" role="main">
         <form className="auth-card card" onSubmit={submit}>
           <h1>Connexion</h1>
           <p className="muted">{t("app.tagline")}</p>

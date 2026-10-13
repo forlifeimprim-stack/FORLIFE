@@ -25,7 +25,7 @@ export function ForgotPassword() {
   return (
     <div className="auth">
       <AuthAside />
-      <div className="auth-main">
+      <div className="auth-main" role="main">
         <form className="auth-card card" onSubmit={submit}>
           <h1>Mot de passe oublié</h1>
           {err && <Alert tone="error">{err}</Alert>}
@@ -72,7 +72,7 @@ export function ResetPassword() {
   return (
     <div className="auth">
       <AuthAside />
-      <div className="auth-main">
+      <div className="auth-main" role="main">
         <form className="auth-card card" onSubmit={submit}>
           <h1>Nouveau mot de passe</h1>
           {err && <Alert tone="error">{err}</Alert>}

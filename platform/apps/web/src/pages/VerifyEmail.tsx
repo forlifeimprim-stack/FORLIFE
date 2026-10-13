@@ -24,7 +24,7 @@ export function VerifyEmailPage() {
       .catch((e) => setState({ ok: false, text: errorMessage(e) }));
   }, [token, me, reload]);
   return (
-    <div className="auth-main">
+    <div className="auth-main" role="main">
       <div className="auth-card card stack">
         <h1>Confirmation de l'email</h1>
         {!state ? <p className="muted">Vérification…</p> : <Alert tone={state.ok ? "success" : "error"}>{state.text}</Alert>}

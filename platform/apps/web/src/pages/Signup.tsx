@@ -61,9 +61,9 @@ export function Signup() {
   return (
     <div className="auth">
       <AuthAside />
-      <div className="auth-main">
+      <div className="auth-main" role="main">
         <form className="auth-card card" onSubmit={submit}>
-          <div className="steps" aria-label={`Étape ${step + 1} sur 3`}>
+          <div className="steps" role="img" aria-label={`Étape ${step + 1} sur 3`}>
             {[0, 1, 2].map((i) => (
               <span key={i} className={i <= step ? "on" : ""} />
             ))}

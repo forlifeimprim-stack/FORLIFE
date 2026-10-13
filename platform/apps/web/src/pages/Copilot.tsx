@@ -182,7 +182,7 @@ export function CopilotPage() {
                         {data.agents.find((a) => a.key === c.agent)?.name} · {fmtDateTime(c.updatedAt)}
                       </small>
                     </button>
-                    <button className="link-button" aria-label="Supprimer la conversation" onClick={() => void remove(c.id)}>
+                    <button className="link-button conv-delete" aria-label="Supprimer la conversation" onClick={() => void remove(c.id)}>
                       ✕
                     </button>
                   </li>

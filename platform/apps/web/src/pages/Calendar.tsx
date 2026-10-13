@@ -83,7 +83,7 @@ export function CalendarPage() {
       />
       {err && <Alert tone="error">{err}</Alert>}
       <div className="grid" style={{ gridTemplateColumns: "minmax(0, 1fr)", gap: 16 }}>
-        <div className="cal" role="grid" aria-label="Calendrier du mois">
+        <div className="cal" role="group" aria-label="Calendrier du mois">
           {DOW.map((d) => (
             <div key={d} className="cal-dow">
               {d}

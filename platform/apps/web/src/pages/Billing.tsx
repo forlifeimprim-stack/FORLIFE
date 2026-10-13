@@ -139,7 +139,7 @@ export function BillingOffers({ currentPlan, paidUntil }: { currentPlan: string;
         {payments.data?.length === 0 ? (
           <Empty title="Aucun paiement" />
         ) : (
-          <div className="table-wrap">
+          <div className="table-wrap" tabIndex={0}>
             <table>
               <thead>
                 <tr>

@@ -14,6 +14,12 @@ export function Layout() {
   const [open, setOpen] = useState(false);
   const location = useLocation();
   useEffect(() => setOpen(false), [location.pathname]);
+  useEffect(() => {
+    if (!open) return;
+    const onKey = (e: KeyboardEvent) => e.key === "Escape" && setOpen(false);
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, [open]);
   if (!me || !org || !workspace) return null;
 
   const options = me.organizations.flatMap((o) => o.workspaces.map((w) => ({ value: `${o.id}|${w.id}`, label: `${me.organizations.length > 1 ? `${o.name} · ${w.name}` : w.name}${w.status === "LOCKED" ? " (lecture seule)" : ""}` })));
@@ -21,7 +27,7 @@ export function Layout() {
 
   return (
     <div className={`shell ${open ? "nav-open" : ""}`}>
-      <div className="topbar-mobile">
+      <header className="topbar-mobile">
         <button onClick={() => setOpen(!open)} aria-label="Menu" aria-expanded={open}>
           ☰
         </button>
@@ -29,7 +35,8 @@ export function Layout() {
           <LogoMark size={22} /> <strong>{workspace.name}</strong>
         </div>
         <span />
-      </div>
+      </header>
+      {open && <div className="nav-backdrop" aria-hidden="true" onClick={() => setOpen(false)} />}
       <aside className="sidebar" aria-label="Navigation principale">
         <div className="brand-row">
           <LogoMark />
