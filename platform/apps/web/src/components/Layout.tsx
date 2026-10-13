@@ -6,6 +6,7 @@ import { t } from "../lib/i18n";
 import { LogoMark } from "./ui";
 import { VerifyEmailBanner } from "../pages/VerifyEmail";
 import { DemoVideoHost, openDemo } from "./DemoVideo";
+import { ErrorBoundary } from "./ErrorBoundary";
 
 /** Modules prévus par la roadmap, affichés pour donner la vision produit complète. */
 const UPCOMING: { key: string; label: string; phase: string }[] = [];
@@ -118,7 +119,9 @@ export function Layout() {
       <main className="main" id="contenu">
         {org.status === "SUSPENDED" && <div className="alert alert-error" style={{ marginBottom: 16 }}>Cette organisation est suspendue. Contactez le support Forlife Com sur WhatsApp : +225 05 85 80 18 56.</div>}
         <VerifyEmailBanner />
-        <Outlet />
+        <ErrorBoundary resetKey={location.pathname}>
+          <Outlet />
+        </ErrorBoundary>
       </main>
       <DemoVideoHost userId={me.user.id} />
     </div>

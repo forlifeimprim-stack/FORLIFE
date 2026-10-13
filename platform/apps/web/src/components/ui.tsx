@@ -95,8 +95,15 @@ export function Modal({ open, title, onClose, children, footer }: { open: boolea
   useEffect(() => {
     const d = ref.current;
     if (!d) return;
-    if (open && !d.open) d.showModal();
-    if (!open && d.open) d.close();
+    // Navigateurs sans <dialog> modale (anciens Safari / WebView) : simple affichage.
+    if (open && !d.open) {
+      if (typeof d.showModal === "function") d.showModal();
+      else d.setAttribute("open", "");
+    }
+    if (!open && d.open) {
+      if (typeof d.close === "function") d.close();
+      else d.removeAttribute("open");
+    }
   }, [open]);
   return (
     <dialog ref={ref} className="modal" onClose={onClose} aria-labelledby="modal-title">
