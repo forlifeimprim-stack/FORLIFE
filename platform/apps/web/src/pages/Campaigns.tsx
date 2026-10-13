@@ -18,6 +18,7 @@ import { useAuth, useWorkspace } from "../lib/auth";
 import { errorMessage, useJob, useResource } from "../lib/hooks";
 import { fmtDate, fmtXof } from "../lib/i18n";
 import { Alert, Badge, Button, Card, ChannelChip, CreditCost, Empty, Field, JobStatus, Modal, PageHeader, StatusBadge } from "../components/ui";
+import { ChannelIcon } from "../components/SocialIcon";
 
 interface Campaign {
   id: string;
@@ -184,6 +185,7 @@ function CampaignModal({ open, ws, initial, onClose, onSaved }: { open: boolean;
           {CHANNELS.map((c) => (
             <label key={c} className="check">
               <input type="checkbox" checked={f.channels.includes(c)} onChange={(e) => setF({ ...f, channels: e.target.checked ? [...f.channels, c] : f.channels.filter((x) => x !== c) })} />
+              <ChannelIcon channel={c} />
               {CHANNEL_LABELS[c]}
             </label>
           ))}

@@ -8,6 +8,7 @@ import { fmtDateTime, utcToZonedInput, zonedToUtc } from "../lib/i18n";
 import type { ContentItem, Variant } from "../lib/types";
 import { AiNotice, Alert, Badge, Button, Card, Field, LogoMark, PageHeader, StatusBadge } from "../components/ui";
 import { SecureImg } from "./CreativeStudio";
+import { ChannelIcon } from "../components/SocialIcon";
 
 export function ContentDetail() {
   const { id = "" } = useParams();
@@ -218,7 +219,10 @@ function VariantPreview({ ws, contentId, brandName, variant, editable, onSaved, 
         </span>
         <div style={{ flex: 1 }}>
           <strong className="small">{brandName}</strong>
-          <div className="muted small">{CHANNEL_LABELS[variant.channel]}</div>
+          <div className="muted small row" style={{ gap: 4 }}>
+            <ChannelIcon channel={variant.channel} size={14} />
+            {CHANNEL_LABELS[variant.channel]}
+          </div>
         </div>
         {editable && !editing && (
           <button className="btn btn-ghost" onClick={() => setEditing(true)}>

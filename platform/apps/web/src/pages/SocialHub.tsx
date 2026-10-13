@@ -1,11 +1,12 @@
 import { useEffect, useRef, useState } from "react";
 import { Link, useLocation, useNavigate, useParams, useSearchParams } from "react-router-dom";
-import { PUBLICATION_STATUS_LABELS, SOCIAL_PROVIDER_LABELS, type SocialProvider } from "@forlife/shared";
+import { PUBLICATION_STATUS_LABELS, SOCIAL_PROVIDER_LABELS, type Channel, type SocialProvider } from "@forlife/shared";
 import { api } from "../lib/api";
 import { useAuth, useWorkspace } from "../lib/auth";
 import { errorMessage, useResource } from "../lib/hooks";
 import { fmtDateTime, fmtNumber } from "../lib/i18n";
 import { Alert, Badge, Button, Card, Empty, PageHeader } from "../components/ui";
+import { ChannelIcon, ProviderIcon } from "../components/SocialIcon";
 
 interface Account {
   id: string;
@@ -127,7 +128,10 @@ export function SocialHubPage() {
                     {a.avatarUrl ? <img src={a.avatarUrl} alt="" width={36} height={36} style={{ borderRadius: "50%" }} /> : <span className="avatar" />}
                     <div>
                       <strong>{a.name}</strong>
-                      <div className="small muted">{SOCIAL_PROVIDER_LABELS[a.provider]}</div>
+                      <div className="small muted row" style={{ gap: 4 }}>
+                        <ProviderIcon provider={a.provider} size={14} />
+                        {SOCIAL_PROVIDER_LABELS[a.provider]}
+                      </div>
                       {a.status !== "CONNECTED" && <div className="small" style={{ color: "var(--danger)" }}>{a.lastError ?? "Reconnexion nécessaire"}</div>}
                     </div>
                   </div>
@@ -145,11 +149,11 @@ export function SocialHubPage() {
           )}
           {can("social:manage") && (
             <div className="connectors">
-              <ConnectorTile name="Facebook & Instagram" detail="Pages Facebook et comptes Instagram professionnels (Meta)" available={!!c.meta} onConnect={() => connect("meta")} pending="Activation en cours" />
+              <ConnectorTile icons={["FACEBOOK", "INSTAGRAM"]} name="Facebook & Instagram" detail="Pages Facebook et comptes Instagram professionnels (Meta)" available={!!c.meta} onConnect={() => connect("meta")} pending="Activation en cours" />
               <ConnectorTile name="Compte de démonstration" detail="Publication simulée pour découvrir le Social Hub sans risque" available={!!c.sandbox} onConnect={() => connect("sandbox")} />
-              <ConnectorTile name="LinkedIn" detail="Pages entreprise" available={false} />
-              <ConnectorTile name="TikTok" detail="Publication de vidéos" available={false} />
-              <ConnectorTile name="YouTube" detail="Shorts et vidéos" available={false} />
+              <ConnectorTile icons={["LINKEDIN"]} name="LinkedIn" detail="Pages entreprise" available={false} />
+              <ConnectorTile icons={["TIKTOK"]} name="TikTok" detail="Publication de vidéos" available={false} />
+              <ConnectorTile icons={["YOUTUBE"]} name="YouTube" detail="Shorts et vidéos" available={false} />
             </div>
           )}
           <p className="muted small">
@@ -177,11 +181,20 @@ export function SocialHubPage() {
   );
 }
 
-function ConnectorTile({ name, detail, available, onConnect, pending }: { name: string; detail: string; available: boolean; onConnect?: () => void; pending?: string }) {
+function ConnectorTile({ name, detail, available, onConnect, pending, icons = [] }: { name: string; detail: string; available: boolean; onConnect?: () => void; pending?: string; icons?: Channel[] }) {
   return (
     <div className="connector">
       <div>
-        <strong>{name}</strong>
+        <strong className="row" style={{ gap: 6, flexWrap: "nowrap", alignItems: "center" }}>
+          {icons.length > 0 && (
+            <span className="row" style={{ gap: 3, flexWrap: "nowrap" }}>
+              {icons.map((ch) => (
+                <ChannelIcon key={ch} channel={ch} size={20} />
+              ))}
+            </span>
+          )}
+          <span>{name}</span>
+        </strong>
         <div className="small muted">{detail}</div>
       </div>
       {available ? (
@@ -219,7 +232,10 @@ function PubTable({ items, onRetry }: { items: Publication[]; onRetry?: (p: Publ
                 </td>
                 <td>
                   {p.socialAccount.name}
-                  <div className="small muted">{SOCIAL_PROVIDER_LABELS[p.socialAccount.provider]}</div>
+                  <div className="small muted row" style={{ gap: 4 }}>
+                    <ProviderIcon provider={p.socialAccount.provider} size={14} />
+                    {SOCIAL_PROVIDER_LABELS[p.socialAccount.provider]}
+                  </div>
                 </td>
                 <td>{fmtDateTime(p.publishedAt ?? p.scheduledAt)}</td>
                 <td>
@@ -324,7 +340,10 @@ export function SocialCallbackPage() {
                     {a.avatarUrl ? <img src={a.avatarUrl} alt="" width={32} height={32} style={{ borderRadius: "50%" }} /> : <span className="avatar" />}
                     <span>
                       <strong>{a.name}</strong>
-                      <div className="small muted">{SOCIAL_PROVIDER_LABELS[a.provider]}</div>
+                      <div className="small muted row" style={{ gap: 4 }}>
+                        <ProviderIcon provider={a.provider} size={14} />
+                        {SOCIAL_PROVIDER_LABELS[a.provider]}
+                      </div>
                     </span>
                   </label>
                 </li>

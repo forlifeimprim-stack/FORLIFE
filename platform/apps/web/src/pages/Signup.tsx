@@ -6,6 +6,7 @@ import { useAuth } from "../lib/auth";
 import { errorMessage } from "../lib/hooks";
 import { Alert, Button, Field } from "../components/ui";
 import { AuthAside } from "./AuthAside";
+import { ChannelIcon } from "../components/SocialIcon";
 
 const SECTORS = ["Commerce de détail", "Mode et textile", "Restauration", "Beauté et cosmétique", "Éducation et formation", "Imprimerie et communication", "BTP et immobilier", "Santé", "Services aux entreprises", "Agriculture et agroalimentaire", "Événementiel", "Autre"];
 
@@ -145,6 +146,7 @@ export function Signup() {
                         checked={f.channels.includes(c)}
                         onChange={(e) => set("channels", e.target.checked ? [...f.channels, c] : f.channels.filter((x) => x !== c))}
                       />
+                      <ChannelIcon channel={c} />
                       {CHANNEL_LABELS[c]}
                     </label>
                   ))}

@@ -7,6 +7,7 @@ import { errorMessage, useJob, useResource } from "../lib/hooks";
 import { fmtDateTime } from "../lib/i18n";
 import type { ContentItem, Idea, Objective, SafetyResult } from "../lib/types";
 import { AiNotice, Alert, Button, Card, ChannelChip, CreditCost, Empty, Field, JobStatus, PageHeader, StatusBadge } from "../components/ui";
+import { ChannelIcon } from "../components/SocialIcon";
 
 const FORMAT_LABELS: Record<string, string> = { POST: "Post", CAROUSEL: "Carrousel", STORY: "Story", VIDEO_SCRIPT: "Script vidéo", EMAIL: "Email", WHATSAPP_MESSAGE: "Message WhatsApp" };
 
@@ -167,6 +168,7 @@ export function ContentStudio() {
                         checked={activeChannels.includes(c)}
                         onChange={(e) => setChannels(e.target.checked ? [...activeChannels, c] : activeChannels.filter((x) => x !== c))}
                       />
+                      <ChannelIcon channel={c} />
                       {CHANNEL_LABELS[c]}
                     </label>
                   ))}

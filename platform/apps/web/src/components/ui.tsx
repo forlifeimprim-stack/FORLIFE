@@ -2,6 +2,7 @@ import { useEffect, useRef, type ButtonHTMLAttributes, type ReactNode } from "re
 import { CHANNEL_LABELS, CONTENT_STATUS_LABELS, type Channel, type ContentStatus } from "@forlife/shared";
 import { t } from "../lib/i18n";
 import type { SafetyResult } from "../lib/types";
+import { ChannelIcon } from "./SocialIcon";
 
 export function LogoMark({ size = 28 }: { size?: number }) {
   return (
@@ -60,7 +61,12 @@ export function Badge({ children, tone = "neutral" }: { children: ReactNode; ton
 }
 
 export function ChannelChip({ channel }: { channel: Channel }) {
-  return <span className={`chip ch-${channel.toLowerCase()}`}>{CHANNEL_LABELS[channel]}</span>;
+  return (
+    <span className={`chip ch-${channel.toLowerCase()}`}>
+      <ChannelIcon channel={channel} size={13} />
+      {CHANNEL_LABELS[channel]}
+    </span>
+  );
 }
 
 export function Field({ label, hint, children }: { label: string; hint?: string; children: ReactNode }) {

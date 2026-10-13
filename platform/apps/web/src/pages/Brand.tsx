@@ -6,6 +6,7 @@ import { errorMessage, useJob, useResource } from "../lib/hooks";
 import { fmtDate, fmtXof } from "../lib/i18n";
 import type { Guideline, SafetyResult } from "../lib/types";
 import { AiNotice, Alert, Badge, Button, Card, CreditCost, Empty, Field, JobStatus, ListInput, Modal, PageHeader, TagList } from "../components/ui";
+import { ChannelIcon } from "../components/SocialIcon";
 
 interface BrandData {
   brand: { id: string; name: string; mission: string | null; positioning: string | null; values: string[]; lockedFacts: string[]; guidelines: Guideline[] };
@@ -272,7 +273,7 @@ function GuidelineView({ g }: { g: Guideline }) {
               <ul className="small">
                 {g.voiceByChannel.map((v) => (
                   <li key={v.channel}>
-                    <b>{CHANNEL_LABELS[v.channel]}</b> : {v.guidance}
+                    <ChannelIcon channel={v.channel} size={14} /> <b>{CHANNEL_LABELS[v.channel]}</b> : {v.guidance}
                   </li>
                 ))}
               </ul>

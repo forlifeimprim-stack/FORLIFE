@@ -6,6 +6,7 @@ import { errorMessage, useJob, useResource } from "../lib/hooks";
 import { fmtDate, fmtDateTime, fmtNumber } from "../lib/i18n";
 import type { Objective, Recommendation, SafetyResult } from "../lib/types";
 import { AiNotice, Alert, Badge, Button, Card, CreditCost, Empty, Field, JobStatus, PageHeader, Score, TagList } from "../components/ui";
+import { ChannelIcon } from "../components/SocialIcon";
 
 interface Profile {
   version: number;
@@ -409,6 +410,7 @@ function ProfileCard({ ws, profile, onChange }: { ws: string; profile: Profile |
             {CHANNELS.map((c) => (
               <label key={c} className="check">
                 <input type="checkbox" disabled={ro} checked={f.channels.includes(c)} onChange={(e) => setF({ ...f, channels: e.target.checked ? [...f.channels, c] : f.channels.filter((x) => x !== c) })} />
+                <ChannelIcon channel={c} />
                 {CHANNEL_LABELS[c]}
               </label>
             ))}

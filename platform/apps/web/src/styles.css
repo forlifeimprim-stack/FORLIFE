@@ -492,3 +492,6 @@ td select { min-width: 120px; }
 .demo-video { position: relative; aspect-ratio: 16 / 9; background: #0d0d0d; border-radius: var(--radius-sm); overflow: hidden; margin-bottom: 12px; }
 .demo-video video { width: 100%; height: 100%; display: block; }
 dialog.modal:has(.demo-video) { width: min(960px, calc(100vw - 24px)); max-width: none; }
+.channel-icon { flex: none; vertical-align: -2px; }
+.chip { display: inline-flex; align-items: center; gap: 4px; }
+.check .channel-icon { margin-right: 2px; }
