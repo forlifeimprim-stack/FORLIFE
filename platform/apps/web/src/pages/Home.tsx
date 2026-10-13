@@ -5,6 +5,7 @@ import { useResource } from "../lib/hooks";
 import { fmtDate, fmtDateTime, fmtNumber, fmtXof } from "../lib/i18n";
 import type { Objective, Recommendation } from "../lib/types";
 import { Alert, Badge, Card, Empty, PageHeader, Score } from "../components/ui";
+import { DemoVideoButton } from "../components/DemoVideo";
 
 interface Dashboard {
   setup: { key: string; label: string; done: boolean; to: string }[];
@@ -38,9 +39,12 @@ export function Home() {
         title={`Bonjour ${me?.user.name.split(" ")[0] ?? ""} 👋`}
         question={`Que faire aujourd'hui pour faire grandir ${workspace.name} ?`}
         actions={
-          <Link className="btn btn-primary" to="/content">
-            Créer un contenu
-          </Link>
+          <>
+            <DemoVideoButton />
+            <Link className="btn btn-primary" to="/content">
+              Créer un contenu
+            </Link>
+          </>
         }
       />
       {expiresSoon && (

@@ -5,6 +5,7 @@ import { useAuth } from "../lib/auth";
 import { t } from "../lib/i18n";
 import { LogoMark } from "./ui";
 import { VerifyEmailBanner } from "../pages/VerifyEmail";
+import { DemoVideoHost, openDemo } from "./DemoVideo";
 
 /** Modules prévus par la roadmap, affichés pour donner la vision produit complète. */
 const UPCOMING: { key: string; label: string; phase: string }[] = [];
@@ -110,6 +111,7 @@ export function Layout() {
           <span>
             {me.user.name} · {org.name}
           </span>
+          <button onClick={openDemo}>▶ Vidéo de démo</button>
           <button onClick={() => void logout()}>Se déconnecter</button>
         </div>
       </aside>
@@ -118,6 +120,7 @@ export function Layout() {
         <VerifyEmailBanner />
         <Outlet />
       </main>
+      <DemoVideoHost userId={me.user.id} />
     </div>
   );
 }
