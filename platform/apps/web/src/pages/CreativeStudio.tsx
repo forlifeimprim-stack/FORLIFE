@@ -1,3 +1,4 @@
+import { Skeleton } from "../components/Delight";
 import { useEffect, useState } from "react";
 import { Link, useNavigate, useParams, useSearchParams } from "react-router-dom";
 import { CREATIVE_FORMATS, CREATIVE_LAYOUTS, OBJECTIVE_LABELS, OBJECTIVE_TYPES, TASK_CREDIT_COST, type CreativeFormat, type CreativeLayout, type ObjectiveType } from "@forlife/shared";
@@ -189,7 +190,7 @@ export function CreativeBriefPage() {
   const { ws } = useWorkspace();
   const { data, error, reload } = useResource<BriefDetail>(`${ws}/creative/briefs/${id}`);
   if (error) return <Alert tone="error">{error}</Alert>;
-  if (!data) return <p className="muted">Chargement…</p>;
+  if (!data) return <Skeleton />;
   return (
     <>
       <PageHeader

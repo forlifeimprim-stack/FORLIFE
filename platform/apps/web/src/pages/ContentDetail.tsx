@@ -1,3 +1,5 @@
+import { celebrate } from "../components/Delight";
+import { Skeleton } from "../components/Delight";
 import { useEffect, useState } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { CHANNEL_LABELS, CHANNEL_LIMITS } from "@forlife/shared";
@@ -33,7 +35,7 @@ export function ContentDetail() {
   }, [c?.status, reload]);
 
   if (error) return <Alert tone="error">{error}</Alert>;
-  if (!c) return <p className="muted">Chargement…</p>;
+  if (!c) return <Skeleton />;
 
   const editable = can("content:update") && ["DRAFT", "REVIEW", "APPROVED", "FAILED"].includes(c.status);
   const run = async (fn: () => Promise<unknown>) => {
@@ -104,7 +106,7 @@ export function ContentDetail() {
             <div className="row">
               <input type="datetime-local" value={when} onChange={(e) => setWhen(e.target.value)} style={{ width: "auto" }} aria-label="Date et heure de publication" />
               <span className="muted small">Fuseau : {workspace.timezone}</span>
-              <Button busy={busy} onClick={() => run(() => api.post(`${ws}/contents/${c.id}/schedule`, { scheduledAt: zonedToUtc(when, workspace.timezone).toISOString() }))}>
+              <Button busy={busy} onClick={() => run(() => api.post(`${ws}/contents/${c.id}/schedule`, { scheduledAt: zonedToUtc(when, workspace.timezone).toISOString() }).then(() => celebrate("Contenu programmé : il partira automatiquement à l'heure prévue.")))}>
                 Programmer
               </Button>
             </div>

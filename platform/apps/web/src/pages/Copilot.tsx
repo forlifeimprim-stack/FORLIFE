@@ -1,3 +1,4 @@
+import { Skeleton } from "../components/Delight";
 import { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import type { CopilotActionType, CopilotAgentKey, CopilotMode } from "@forlife/shared";
@@ -96,7 +97,7 @@ export function CopilotPage() {
   }, [thread?.messages.length, pending]);
 
   if (home.error) return <Alert tone="error">{home.error}</Alert>;
-  if (!home.data) return <p className="muted">Chargement…</p>;
+  if (!home.data) return <Skeleton />;
   const data = home.data;
   const agent = data.agents.find((a) => a.key === agentKey) ?? data.agents[0]!;
   const mode = data.modes.find((m) => m.key === data.settings.mode)!;

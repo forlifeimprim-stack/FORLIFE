@@ -1,3 +1,4 @@
+import { Skeleton } from "../components/Delight";
 import { useState } from "react";
 import { useSearchParams } from "react-router-dom";
 import { BillingOffers } from "./Billing";
@@ -182,7 +183,7 @@ interface BillingData {
 function Billing() {
   const { org } = useAuth();
   const { data } = useResource<BillingData>(`/orgs/${org!.id}/billing`);
-  if (!data) return <p className="muted">Chargement…</p>;
+  if (!data) return <Skeleton />;
   return (
     <div className="stack">
       {data.lowBalance && <Alert tone="warning">Votre solde de crédits est bas (moins de 20 % de votre allocation mensuelle).</Alert>}

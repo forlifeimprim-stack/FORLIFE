@@ -1,3 +1,4 @@
+import { Skeleton } from "../components/Delight";
 import { useEffect, useState } from "react";
 import { CHANNEL_LABELS } from "@forlife/shared";
 import { api, fetchBlobUrl } from "../lib/api";
@@ -25,7 +26,7 @@ export function BrandPage() {
   const [analyzeOpen, setAnalyzeOpen] = useState(false);
 
   if (error) return <Alert tone="error">{error}</Alert>;
-  if (!data) return <p className="muted">Chargement…</p>;
+  if (!data) return <Skeleton />;
 
   const approved = data.brand.guidelines.find((g) => g.status === "APPROVED") ?? null;
   const draft = data.brand.guidelines.find((g) => g.status === "DRAFT") ?? null;

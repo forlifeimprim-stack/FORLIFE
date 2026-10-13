@@ -1,3 +1,4 @@
+import { celebrate } from "../components/Delight";
 import { useState } from "react";
 import { LEAD_SOURCE_LABELS, LEAD_SOURCES, LEAD_STAGE_LABELS, LEAD_STAGES, type LeadSource, type LeadStage } from "@forlife/shared";
 import { api } from "../lib/api";
@@ -60,6 +61,7 @@ export function CrmPage() {
     setErr(null);
     try {
       await api.patch(`${ws}/crm/leads/${lead.id}`, { revision: lead.revision, stage, lostReason });
+      if (stage === "WON") celebrate(`Vente gagnée avec ${lead.contact.name} ! Bravo.`);
       await pipeline.reload();
     } catch (e) {
       setErr(errorMessage(e));

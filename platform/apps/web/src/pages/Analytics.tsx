@@ -1,3 +1,4 @@
+import { Skeleton } from "../components/Delight";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { LEAD_STAGE_LABELS, OBJECTIVE_LABELS, SOCIAL_PROVIDER_LABELS, type LeadStage, type ObjectiveType, type SocialProvider } from "@forlife/shared";
@@ -95,7 +96,7 @@ export function AnalyticsPage() {
       />
       {error && <Alert tone="error">{error}</Alert>}
       {!data ? (
-        <p className="muted">Chargement…</p>
+        <Skeleton />
       ) : (
         <div className="stack report">
           <p className="print-only small">

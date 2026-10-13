@@ -7,6 +7,8 @@ import { LogoMark } from "./ui";
 import { VerifyEmailBanner } from "../pages/VerifyEmail";
 import { DemoVideoHost, openDemo } from "./DemoVideo";
 import { ErrorBoundary } from "./ErrorBoundary";
+import { Icon } from "./Icon";
+import { CelebrationHost } from "./Delight";
 
 /** Modules prévus par la roadmap, affichés pour donner la vision produit complète. */
 const UPCOMING: { key: string; label: string; phase: string }[] = [];
@@ -42,6 +44,7 @@ export function Layout() {
       </header>
       {open && <div className="nav-backdrop" aria-hidden="true" onClick={() => setOpen(false)} />}
       <aside className="sidebar" aria-label="Navigation principale">
+        <div className="sidebar-glow" aria-hidden="true" />
         <div className="brand-row">
           <LogoMark />
           <div>
@@ -70,23 +73,47 @@ export function Layout() {
         </div>
         <nav className="nav">
           <NavLink to="/" end>
-            {t("nav.home")}
+            <Icon name="home" /> <span>{t("nav.home")}</span>
           </NavLink>
-          {can("ai:read") && <NavLink to="/copilot">AI Copilot</NavLink>}
+          {can("ai:read") && <NavLink to="/copilot" className="nav-copilot">
+              <Icon name="copilot" /> <span>AI Copilot</span>
+            </NavLink>}
           <div className="nav-section">Business Brain</div>
-          <NavLink to="/brand">{t("nav.brand")}</NavLink>
-          <NavLink to="/strategy">{t("nav.strategy")}</NavLink>
+          <NavLink to="/brand">
+            <Icon name="brand" /> <span>{t("nav.brand")}</span>
+          </NavLink>
+          <NavLink to="/strategy">
+            <Icon name="strategy" /> <span>{t("nav.strategy")}</span>
+          </NavLink>
           <div className="nav-section">Production</div>
-          <NavLink to="/content">{t("nav.content")}</NavLink>
-          <NavLink to="/creative">Creative Studio</NavLink>
-          <NavLink to="/video">Video Studio</NavLink>
-          <NavLink to="/calendar">{t("nav.calendar")}</NavLink>
-          <NavLink to="/approvals">{t("nav.approvals")}</NavLink>
-          {can("social:read") && <NavLink to="/social">Social Hub</NavLink>}
+          <NavLink to="/content">
+            <Icon name="content" /> <span>{t("nav.content")}</span>
+          </NavLink>
+          <NavLink to="/creative">
+            <Icon name="creative" /> <span>Creative Studio</span>
+          </NavLink>
+          <NavLink to="/video">
+            <Icon name="video" /> <span>Video Studio</span>
+          </NavLink>
+          <NavLink to="/calendar">
+            <Icon name="calendar" /> <span>{t("nav.calendar")}</span>
+          </NavLink>
+          <NavLink to="/approvals">
+            <Icon name="approvals" /> <span>{t("nav.approvals")}</span>
+          </NavLink>
+          {can("social:read") && <NavLink to="/social">
+              <Icon name="social" /> <span>Social Hub</span>
+            </NavLink>}
           {(can("crm:read") || can("campaigns:read")) && <div className="nav-section">Ventes</div>}
-          {can("campaigns:read") && <NavLink to="/campaigns">Campagnes</NavLink>}
-          {can("crm:read") && <NavLink to="/crm">CRM & leads</NavLink>}
-          {can("campaigns:read") && <NavLink to="/analytics">Analytics & ROI</NavLink>}
+          {can("campaigns:read") && <NavLink to="/campaigns">
+              <Icon name="campaigns" /> <span>Campagnes</span>
+            </NavLink>}
+          {can("crm:read") && <NavLink to="/crm">
+              <Icon name="crm" /> <span>CRM & leads</span>
+            </NavLink>}
+          {can("campaigns:read") && <NavLink to="/analytics">
+              <Icon name="analytics" /> <span>Analytics & ROI</span>
+            </NavLink>}
           {UPCOMING.length > 0 && <div className="nav-section">{t("nav.soon")}</div>}
           {UPCOMING.map((m) => (
             <NavLink key={m.key} to={`/soon/${m.key}`} className="soon">
@@ -96,13 +123,17 @@ export function Layout() {
           {(me.user.isPlatformAdmin || me.user.canClaimAdmin) && (
             <>
               <div className="nav-section">Plateforme</div>
-              <NavLink to="/admin">Back-office</NavLink>
+              <NavLink to="/admin">
+                <Icon name="admin" /> <span>Back-office</span>
+              </NavLink>
             </>
           )}
           {(can("members:read") || can("billing:read")) && (
             <>
               <div className="nav-section">Organisation</div>
-              <NavLink to="/settings">{t("nav.settings")}</NavLink>
+              <NavLink to="/settings">
+                <Icon name="settings" /> <span>{t("nav.settings")}</span>
+              </NavLink>
             </>
           )}
         </nav>
@@ -114,18 +145,25 @@ export function Layout() {
           <span>
             {me.user.name} · {org.name}
           </span>
-          <button onClick={openDemo}>▶ Vidéo de démo</button>
-          <button onClick={() => void logout()}>Se déconnecter</button>
+          <button onClick={openDemo}>
+            <Icon name="play" size={14} /> Vidéo de démo
+          </button>
+          <button onClick={() => void logout()}>
+            <Icon name="logout" size={14} /> Se déconnecter
+          </button>
         </div>
       </aside>
       <main className="main" id="contenu">
         {org.status === "SUSPENDED" && <div className="alert alert-error" style={{ marginBottom: 16 }}>Cette organisation est suspendue. Contactez le support Forlife Com sur WhatsApp : +225 05 85 80 18 56.</div>}
         <VerifyEmailBanner />
         <ErrorBoundary resetKey={location.pathname}>
-          <Outlet />
+          <div className="page-enter" key={location.pathname}>
+            <Outlet />
+          </div>
         </ErrorBoundary>
       </main>
       <DemoVideoHost userId={me.user.id} />
+      <CelebrationHost />
     </div>
   );
 }

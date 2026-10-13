@@ -1,3 +1,4 @@
+import { Skeleton } from "../components/Delight";
 import { useState } from "react";
 import { CHANNEL_LABELS, CHANNELS, OBJECTIVE_LABELS, OBJECTIVE_TYPES, type Channel, type ObjectiveType } from "@forlife/shared";
 import { api } from "../lib/api";
@@ -59,7 +60,7 @@ export function StrategyPage() {
   const [err, setErr] = useState<string | null>(null);
 
   if (error) return <Alert tone="error">{error}</Alert>;
-  if (!data) return <p className="muted">Chargement…</p>;
+  if (!data) return <Skeleton />;
 
   const generate = async () => {
     setErr(null);

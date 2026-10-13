@@ -1,3 +1,4 @@
+import { Skeleton } from "../components/Delight";
 import { useEffect, useState } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { OBJECTIVE_LABELS, OBJECTIVE_TYPES, TASK_CREDIT_COST, VIDEO_DURATIONS, VIDEO_MOTIONS, VIDEO_STATUS_LABELS, type ObjectiveType, type VideoMotion } from "@forlife/shared";
@@ -197,7 +198,7 @@ export function VideoProjectPage() {
   }, [rendering]); // eslint-disable-line react-hooks/exhaustive-deps
 
   if (error) return <Alert tone="error">{error}</Alert>;
-  if (!data) return <p className="muted">Chargement…</p>;
+  if (!data) return <Skeleton />;
   const total = data.scenes.reduce((n, s) => n + s.duration, 0) + 2.5;
   const latest = data.renders[0];
   const done = data.renders.find((r) => r.status === "SUCCEEDED");

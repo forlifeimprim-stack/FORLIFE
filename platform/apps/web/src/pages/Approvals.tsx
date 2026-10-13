@@ -1,3 +1,4 @@
+import { celebrate } from "../components/Delight";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { api } from "../lib/api";
@@ -29,6 +30,7 @@ export function ApprovalsPage() {
     setErr(null);
     try {
       await api.post(`${ws}/approvals/${id}/decide`, { decision, comment: comments[id] || undefined });
+      if (decision === "APPROVED") celebrate("Contenu approuvé : il est prêt à être programmé !");
       await reload();
     } catch (e) {
       setErr(errorMessage(e));

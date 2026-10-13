@@ -1,3 +1,4 @@
+import { Skeleton } from "../components/Delight";
 import { useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import {
@@ -213,7 +214,7 @@ export function CampaignDetailPage() {
   const [err, setErr] = useState<string | null>(null);
   const pack = useJob(ws);
   if (error) return <Alert tone="error">{error}</Alert>;
-  if (!c) return <p className="muted">Chargement…</p>;
+  if (!c) return <Skeleton />;
 
   const setStatus = async (status: CampaignStatus) => {
     setErr(null);
