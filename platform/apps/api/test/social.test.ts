@@ -3,6 +3,7 @@ import { drainQueue, processJob } from "../src/modules/jobs/queue.js";
 import { collectMetrics, dispatchDuePublications } from "../src/modules/social/service.js";
 import { setAdapters } from "../src/modules/social/registry.js";
 import { MetaAdapter } from "../src/modules/social/meta.js";
+import { LinkedInAdapter } from "../src/modules/social/linkedin.js";
 import { SandboxAdapter } from "../src/modules/social/sandbox.js";
 import { SocialError, type SocialProviderAdapter } from "../src/modules/social/types.js";
 import { resetConfigCache } from "../src/config.js";
@@ -216,6 +217,62 @@ describe("Adaptateur Meta (Graph API simulée)", () => {
     } finally {
       delete process.env.META_APP_ID;
       delete process.env.META_APP_SECRET;
+      resetConfigCache();
+    }
+  });
+});
+
+describe("Adaptateur LinkedIn (API simulée)", () => {
+  type Call = { url: string; init?: RequestInit };
+  const linkedin = (routes: Record<string, { status?: number; body?: unknown; headers?: Record<string, string> }>, calls: Call[] = []): typeof fetch =>
+    (async (input: string | URL | Request, init?: RequestInit) => {
+      calls.push({ url: String(input), init });
+      const url = new URL(String(input));
+      const key = Object.keys(routes).find((k) => url.pathname.endsWith(k));
+      const r = key ? routes[key]! : { status: 404, body: { message: "not found" } };
+      return new Response(JSON.stringify(r.body ?? {}), { status: r.status ?? 200, headers: r.headers });
+    }) as typeof fetch;
+
+  it("connecte le profil (et les pages administrées), publie via la Posts API et traduit les erreurs", async () => {
+    process.env.LINKEDIN_CLIENT_ID = "client";
+    process.env.LINKEDIN_CLIENT_SECRET = "secret";
+    resetConfigCache();
+    try {
+      const calls: Call[] = [];
+      const li = new LinkedInAdapter(
+        linkedin(
+          {
+            "/oauth/v2/accessToken": { body: { access_token: "tok", expires_in: 5184000, scope: "openid,profile,w_member_social,rw_organization_admin" } },
+            "/v2/userinfo": { body: { sub: "abc", name: "Awa Koné" } },
+            "/rest/organizationAcls": { body: { elements: [{ organization: "urn:li:organization:42" }] } },
+            "/rest/organizations/42": { body: { localizedName: "Boutique Awa" } },
+            "/rest/posts": { status: 201, headers: { "x-restli-id": "urn:li:share:777" } },
+          },
+          calls,
+        ),
+      );
+      expect(li.isConfigured()).toBe(true);
+      expect(li.authorizeUrl("st", "https://app.test/cb")).toContain("scope=openid+profile+w_member_social");
+      const accounts = await li.exchange("code", "https://app.test/cb");
+      expect(accounts.map((a) => [a.provider, a.externalId, a.name])).toEqual([
+        ["LINKEDIN", "urn:li:person:abc", "Awa Koné (profil)"],
+        ["LINKEDIN", "urn:li:organization:42", "Boutique Awa"],
+      ]);
+      const res = await li.publish({ provider: "LINKEDIN", externalId: "urn:li:organization:42" }, "tok", { text: "Bonjour", link: "https://forlife.test" });
+      expect(res).toEqual({ externalId: "urn:li:share:777", url: "https://www.linkedin.com/feed/update/urn:li:share:777/" });
+      const post = calls.find((c) => c.url.endsWith("/rest/posts"))!;
+      expect(JSON.parse(String(post.init!.body))).toMatchObject({ author: "urn:li:organization:42", commentary: "Bonjour\n\nhttps://forlife.test", lifecycleState: "PUBLISHED" });
+      expect((post.init!.headers as Record<string, string>)["LinkedIn-Version"]).toMatch(/^\d{6}$/);
+
+      const expired = new LinkedInAdapter(linkedin({ "/rest/posts": { status: 401, body: { message: "expired" } } }));
+      await expect(expired.publish({ provider: "LINKEDIN", externalId: "urn:li:person:abc" }, "t", { text: "x" })).rejects.toMatchObject({ code: "AUTH" });
+      const busy = new LinkedInAdapter(linkedin({ "/rest/posts": { status: 429 } }));
+      await expect(busy.publish({ provider: "LINKEDIN", externalId: "urn:li:person:abc" }, "t", { text: "x" })).rejects.toMatchObject({ code: "RATE_LIMIT" });
+      const down = new LinkedInAdapter(linkedin({ "/rest/posts": { status: 503 } }));
+      await expect(down.publish({ provider: "LINKEDIN", externalId: "urn:li:person:abc" }, "t", { text: "x" })).rejects.toMatchObject({ code: "TRANSIENT" });
+    } finally {
+      delete process.env.LINKEDIN_CLIENT_ID;
+      delete process.env.LINKEDIN_CLIENT_SECRET;
       resetConfigCache();
     }
   });

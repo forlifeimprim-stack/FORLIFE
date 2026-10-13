@@ -51,7 +51,7 @@ export function SocialHubPage() {
   // Message transmis par la page de retour OAuth (jamais lu depuis l'URL).
   const [msg, setMsg] = useState<{ tone: "success" | "error"; text: string } | null>((routerLocation.state as { msg?: { tone: "success" | "error"; text: string } } | null)?.msg ?? null);
 
-  const connect = async (connector: "meta" | "sandbox", network?: Channel) => {
+  const connect = async (connector: "meta" | "linkedin" | "sandbox", network?: Channel) => {
     setMsg(null);
     try {
       const { url } = await api.post<{ url: string }>(`${ws}/social/connect`, { connector, network });
@@ -152,7 +152,7 @@ export function SocialHubPage() {
           {can("social:manage") && (
             <div className="connectors">
               <ConnectorTile icons={["FACEBOOK", "INSTAGRAM"]} name="Facebook & Instagram" detail="Pages Facebook et comptes Instagram professionnels (Meta)" available={!!c.meta} onConnect={() => connect("meta")} pending="Clés Meta à ajouter" onTest={c.sandbox ? (n) => connect("sandbox", n) : undefined} testNetworks={["FACEBOOK", "INSTAGRAM"]} />
-              <ConnectorTile icons={["LINKEDIN"]} name="LinkedIn" detail="Pages entreprise" available={false} pending="Clés LinkedIn à ajouter" onTest={c.sandbox ? (n) => connect("sandbox", n) : undefined} testNetworks={["LINKEDIN"]} />
+              <ConnectorTile icons={["LINKEDIN"]} name="LinkedIn" detail="Profil et pages entreprise" available={!!c.linkedin} onConnect={() => connect("linkedin")} pending="Clés LinkedIn à ajouter" onTest={c.sandbox ? (n) => connect("sandbox", n) : undefined} testNetworks={["LINKEDIN"]} />
               <ConnectorTile icons={["TIKTOK"]} name="TikTok" detail="Publication de vidéos" available={false} pending="Clés TikTok à ajouter" onTest={c.sandbox ? (n) => connect("sandbox", n) : undefined} testNetworks={["TIKTOK"]} />
               <ConnectorTile icons={["YOUTUBE"]} name="YouTube" detail="Shorts et vidéos" available={false} pending="Clés Google à ajouter" onTest={c.sandbox ? (n) => connect("sandbox", n) : undefined} testNetworks={["YOUTUBE"]} />
             </div>

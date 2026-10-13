@@ -38,13 +38,16 @@ Ne collez jamais une clé directement sur la ligne de commande ni dans le chat.
 
 Instagram : le compte doit être **professionnel** et relié à une page Facebook ; une image est obligatoire.
 
-## 2. LinkedIn — connecteur à développer après création de l'app
+## 2. LinkedIn — prêt dans le code
 
 1. [linkedin.com/developers](https://www.linkedin.com/developers/apps) → **Create app** (associée à votre page entreprise).
 2. Produits : **Sign In with LinkedIn using OpenID Connect** et **Share on LinkedIn** ; pour publier au nom d'une
    page entreprise, demandez **Community Management API** (validation LinkedIn requise).
 3. **Auth → Authorized redirect URLs** : `https://ai-growth-et-creative-os.web.app/social/callback/linkedin`
 4. Rangez le **Client Secret** : secret `forlife-linkedin-secret` ; envoyez à Claude le **Client ID** et le nom du secret.
+5. Sans Community Management API, la publication se fait sur le profil du membre. Une fois l'API accordée,
+   demandez à Claude d'activer `LINKEDIN_ORG_SCOPES=true` : les pages entreprise administrées apparaîtront à la connexion.
+   (`LINKEDIN_API_VERSION`, format AAAAMM, fixe la version de l'API LinkedIn utilisée.)
 
 ## 3. TikTok — connecteur à développer après création de l'app
 

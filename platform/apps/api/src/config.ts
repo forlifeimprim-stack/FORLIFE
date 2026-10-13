@@ -43,6 +43,15 @@ const schema = z.object({
   META_APP_ID: z.string().optional(),
   META_APP_SECRET: z.string().optional(),
   META_GRAPH_VERSION: z.string().default("v21.0"),
+  LINKEDIN_CLIENT_ID: z.string().optional(),
+  LINKEDIN_CLIENT_SECRET: z.string().optional(),
+  /** Version mensuelle de l'API LinkedIn (AAAAMM) ; LinkedIn retire les versions après environ un an. */
+  LINKEDIN_API_VERSION: z.string().regex(/^\d{6}$/).default("202608"),
+  /** Pages entreprise : à activer seulement après validation de la Community Management API. */
+  LINKEDIN_ORG_SCOPES: z
+    .string()
+    .default("false")
+    .transform((v) => v === "true"),
   /** Binaire FFmpeg utilisé par le Video Studio. */
   FFMPEG_PATH: z.string().default("ffmpeg"),
   /** Compte de démonstration (publication simulée). Désactiver en production si non souhaité. */
