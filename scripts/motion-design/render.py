@@ -155,7 +155,7 @@ class Block:
                 acc += len(w) + 2; x += im.width - 2*p + gap
             y += size * lead
         self.bottom = y
-    def draw(self, cv, t, a=1.0, dy=0.0, dx=0.0, anim=0.38):
+    def draw(self, cv, t, a=1.0, dy=0.0, dx=0.0, anim=0.28):
         for it in self.items:
             p = prog(t, it['t'], anim)
             if p <= 0: continue
@@ -198,7 +198,12 @@ B_Q4 = Block([(84, [('L’essentiel', 'n'), ('est', 'n')]), (84, [('d’oser', '
 B_Q5 = Block([(62, [('même', 'l'), ('lorsque', 'l'), ('tout', 'l')]), (62, [('n’est', 'l'), ('pas', 'l'), ('encore', 'l'), ('clair.', 'i')])], q5, 1035)
 FOG_Y0, FOG_Y1 = 700, 1260
 
-DROP = t1['start']
+DROP = CUE['drop2']; DROP1 = CUE['drop1']; BREAK_T = CUE['break_t']; FINAL = CUE['final']
+
+def beat_pulse(t):
+    """1.0 on each kick, decaying; 0 where the groove has no kick (break, pre-drop beat, after the final hit)."""
+    if BREAK_T <= t < DROP1 or DROP - BEAT <= t < DROP or t >= FINAL + BEAT: return 0.0
+    return math.exp(-(t % BEAT) * 9)
 OSE = text_img('OSE', '800-normal', 290, CREAM)
 COMMC = text_img('COMMENCER', '800-normal', 132, ORANGE)
 f132 = F('800-normal', 132); COMMC_W = f132.getlength('COMMENCER'); asc132 = f132.getmetrics()[0]
@@ -285,9 +290,12 @@ def frame(i):
     cv = Image.new('RGBA', (W, H), BG + (255,))
     sh = Shapes()
     dx, dy, r, ga = dot_state(t)
+    bp_ = beat_pulse(t); r *= 1 + 0.14*bp_
     # ambient glow follows the dot
     amb = 0.16 + 0.1*math.sin(t*0.8)
     if DROP <= t < OUT_T: amb = lerp(0.85, 0.35, eo(prog(t, DROP, 1.4)))
+    amb += 0.13*bp_
+    if t >= FINAL: amb += 0.5*math.exp(-(t - FINAL)*2.5)
     glow(cv, dx, dy, 900, amb)
     camx = camy = 0.0
     if DROP <= t < DROP + 0.45:
@@ -471,9 +479,17 @@ def frame(i):
         d.rectangle([70, 1838, 70 + (W - 140)*t/DUR, 1840], fill=ORANGE + (int(255*ca),))
 
     # flash at the drop
+    f1 = 1 - prog(t, DROP1, 0.22)
+    if t >= DROP1 and f1 > 0: cv.alpha_composite(Image.new('RGBA', (W, H), (255, 220, 190, int(90*f1**2))))
+    f3 = 1 - prog(t, FINAL, 0.3)
+    if t >= FINAL and f3 > 0: cv.alpha_composite(Image.new('RGBA', (W, H), (255, 220, 190, int(70*f3**2))))
     fl = 1 - prog(t, DROP, 0.28)
     if t >= DROP and fl > 0: cv.alpha_composite(Image.new('RGBA', (W, H), (255, 236, 214, int(200*fl**2))))
     out = cv.convert('RGB')
+    z = 1 + 0.014*bp_ + (0.02*math.exp(-(t - DROP1)*6) if t >= DROP1 else 0)
+    if z > 1.002:
+        cw, ch_ = W/z, H/z
+        out = out.resize((W, H), Image.BILINEAR, box=((W - cw)/2, (H - ch_)/2, (W + cw)/2, (H + ch_)/2))
     out = ImageChops.multiply(out, VIGNETTE)
     out = Image.blend(out, GRAIN[i % len(GRAIN)], 0.045)
     fo = smooth(DUR - 0.9, DUR - 0.05, t)

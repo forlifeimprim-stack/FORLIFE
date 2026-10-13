@@ -14,6 +14,11 @@ Le point orange du logo Forlife joue le « premier pas » d'un bout à l'autre :
 5. **Le déclic** : « OSE COMMENCER. » arrive en explosion.
 6. **La signature** : le point reprend sa place dans le F du logo Forlife Com.
 
+## Son
+- **Musique** : groove afro-house original à 112 BPM (kick, clap, shaker, congas, basse « log drum », accords en contretemps, riff de kalimba), avec un break sur « Mais la vérité ? », un premier drop sur la citation et un gros drop sur « Ose commencer ». Tout est synthétisé, sans droits à payer.
+- **Voix** : Kokoro (voix française ff_siwis) à vitesse naturelle. Chaque phrase démarre sur la grille rythmique. Les phonèmes mal lus par espeak sont corrigés à la main (« ose » /oz/, « chose » /ʃoz/, « moment » /mɔmɑ̃/, « Forlife » /fɔʁlajf/).
+- **Contrôle** : `asr_check.py` fait transcrire chaque phrase par Whisper (sherpa-onnx) pour vérifier l'intelligibilité.
+
 ## Régénérer
 Prérequis : `pip install kokoro-onnx soundfile scipy numpy pillow fonttools`, ffmpeg,
 les modèles Kokoro (`kokoro-v1.0.onnx`, `voices-v1.0.bin`, publiés sur github.com/thewh1teagle/kokoro-onnx)
