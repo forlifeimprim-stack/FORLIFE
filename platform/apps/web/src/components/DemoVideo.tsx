@@ -55,7 +55,6 @@ export function DemoVideoButton({ label = "▶ Vidéo de démo (1 min 35)", vari
 
 export function DemoVideoHost({ userId }: { userId: string }) {
   const [open, setOpen] = useState(false);
-  const video = useRef<HTMLVideoElement>(null);
   useEffect(() => {
     if (!wasSeen(userId)) setOpen(true);
     const onOpen = () => setOpen(true);
@@ -63,12 +62,30 @@ export function DemoVideoHost({ userId }: { userId: string }) {
     return () => window.removeEventListener(EVENT, onOpen);
   }, [userId]);
   const close = () => {
-    video.current?.pause();
     markSeen(userId);
     setOpen(false);
   };
+  return <DemoVideoModal open={open} onClose={close} />;
+}
+
+/** Fenêtre de la vidéo de démo, partagée par l'accueil connecté et la page d'arrivée publique. */
+export function DemoVideoModal({ open, onClose, footerLabel = "Commencer", onAction }: { open: boolean; onClose: () => void; footerLabel?: string; onAction?: () => void }) {
+  const video = useRef<HTMLVideoElement>(null);
+  const close = () => {
+    video.current?.pause();
+    onClose();
+  };
   return (
-    <Modal open={open} title="Découvrez Forlife Com en 1 min 35" onClose={close} footer={<Button onClick={close}>Commencer</Button>}>
+    <Modal open={open} title="Découvrez Forlife Com en 1 min 35" onClose={close} footer={
+        <Button
+          onClick={() => {
+            close();
+            onAction?.();
+          }}
+        >
+          {footerLabel}
+        </Button>
+      }>
       <div className="demo-video">
         <video ref={video} poster={POSTER} controls preload="none" playsInline>
           {SOURCES.map((s) => (
