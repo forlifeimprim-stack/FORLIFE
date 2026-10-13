@@ -46,7 +46,7 @@ export interface SocialProviderAdapter {
   readonly key: string;
   readonly providers: readonly SocialProvider[];
   isConfigured(): boolean;
-  authorizeUrl(state: string, redirectUri: string): string;
+  authorizeUrl(state: string, redirectUri: string, options?: { network?: string }): string;
   exchange(code: string, redirectUri: string): Promise<ConnectedAccount[]>;
   publish(account: { provider: SocialProvider; externalId: string }, accessToken: string, post: PostPayload, idempotencyKey: string): Promise<{ externalId: string; url?: string | null }>;
   fetchMetrics(account: { provider: SocialProvider; externalId: string }, accessToken: string, externalPostId: string): Promise<MetricsResult>;

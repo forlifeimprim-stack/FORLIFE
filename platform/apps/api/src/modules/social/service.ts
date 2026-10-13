@@ -1,5 +1,5 @@
 import type { Job, Prisma } from "@prisma/client";
-import { CHANNEL_PROVIDERS, type Channel } from "@forlife/shared";
+import { CHANNEL_PROVIDERS, sandboxServes, type Channel } from "@forlife/shared";
 import { loadConfig } from "../../config.js";
 import { prisma, type Tx } from "../../lib/prisma.js";
 import { decryptSecret } from "../../lib/crypto.js";
@@ -23,7 +23,7 @@ export async function schedulePublications(tx: Tx, workspaceId: string, contentI
   let n = 0;
   for (const v of variants) {
     const providers = CHANNEL_PROVIDERS[v.channel as Channel] ?? [];
-    for (const acc of accounts.filter((a) => providers.includes(a.provider))) {
+    for (const acc of accounts.filter((a) => providers.includes(a.provider) && (a.provider !== "SANDBOX" || sandboxServes(a.externalId, v.channel as Channel)))) {
       await tx.publication.create({
         data: { workspaceId, contentId, variantId: v.id, socialAccountId: acc.id, scheduledAt, idempotencyKey: `${v.id}:${acc.id}:${scheduledAt.toISOString()}` },
       });

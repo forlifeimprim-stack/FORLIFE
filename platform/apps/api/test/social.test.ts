@@ -89,6 +89,29 @@ describe("Social Hub — publication", () => {
     expect((await prisma.publicationAttempt.count({ where: { publicationId: pub.id } }))).toBe(1);
   });
 
+  it("mode test par réseau : chaque compte de test ne publie que sur son réseau", async () => {
+    const acc = await signup();
+    const app = await getApp();
+    for (const network of ["LINKEDIN", "TIKTOK"]) {
+      const { url } = (await app.inject({ method: "POST", url: `/api/workspaces/${acc.workspaceId}/social/connect`, headers: auth(acc), payload: { connector: "sandbox", network } })).json();
+      const cb = new URL(url);
+      const state = cb.searchParams.get("state")!;
+      const complete = await app.inject({ method: "POST", url: "/api/social/oauth/complete", headers: auth(acc), payload: { connector: "sandbox", state, code: cb.searchParams.get("code")! } });
+      expect(complete.json().accounts).toEqual([expect.objectContaining({ externalId: `test-${network.toLowerCase()}`, provider: "SANDBOX" })]);
+      await app.inject({ method: "POST", url: "/api/social/oauth/select", headers: auth(acc), payload: { state, externalIds: [`test-${network.toLowerCase()}`] } });
+    }
+    const list = (await app.inject({ method: "GET", url: `/api/workspaces/${acc.workspaceId}/social/accounts`, headers: auth(acc) })).json();
+    expect(list.accounts.map((a: { network: string }) => a.network).sort()).toEqual(["LINKEDIN", "TIKTOK"]);
+    const item = await approvedContent(acc);
+    await prisma.contentVariant.create({ data: { contentId: item.id, channel: "LINKEDIN", body: "Version LinkedIn" } });
+    await scheduleNowish(acc, item.id);
+    const pubs = await prisma.publication.findMany({ where: { contentId: item.id }, include: { socialAccount: true } });
+    const variants = await prisma.contentVariant.findMany({ where: { contentId: item.id } });
+    const channelOf = (id: string) => variants.find((v) => v.id === id)?.channel;
+    // Facebook n'a pas de compte de test connecté ; TikTok n'a pas de variante : seule la variante LinkedIn part.
+    expect(pubs.map((p) => [channelOf(p.variantId), p.socialAccount.externalId])).toEqual([["LINKEDIN", "test-linkedin"]]);
+  });
+
   it("n'insiste pas sur une erreur définitive et permet la relance manuelle", async () => {
     const acc = await signup();
     await connectSandbox(acc);

@@ -495,3 +495,5 @@ dialog.modal:has(.demo-video) { width: min(960px, calc(100vw - 24px)); max-width
 .channel-icon { flex: none; vertical-align: -2px; }
 .chip { display: inline-flex; align-items: center; gap: 4px; }
 .check .channel-icon { margin-right: 2px; }
+.connector-actions { display: flex; flex-direction: column; align-items: flex-end; gap: 4px; }
+.connector-actions .btn-ghost { padding: 4px 8px; font-size: 0.85rem; }

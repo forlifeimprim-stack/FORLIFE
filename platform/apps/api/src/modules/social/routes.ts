@@ -1,5 +1,6 @@
 import type { FastifyInstance } from "fastify";
 import { z } from "zod";
+import { SANDBOX_NETWORKS, sandboxNetwork } from "@forlife/shared";
 import { loadConfig } from "../../config.js";
 import { prisma } from "../../lib/prisma.js";
 import { clientIp } from "../../lib/request.js";
@@ -27,22 +28,24 @@ export async function socialRoutes(app: FastifyInstance) {
     await requireWorkspace(req, workspaceId, "social:read");
     const accounts = await prisma.socialAccount.findMany({
       where: { workspaceId, status: { not: "REVOKED" } },
-      select: { id: true, provider: true, name: true, avatarUrl: true, status: true, lastError: true, createdAt: true },
+      select: { id: true, provider: true, externalId: true, name: true, avatarUrl: true, status: true, lastError: true, createdAt: true },
       orderBy: { createdAt: "asc" },
     });
-    return { accounts, connectors: Object.fromEntries(getAdapters().map((a) => [a.key, a.isConfigured()])) };
+    return {
+      accounts: accounts.map(({ externalId, ...a }) => ({ ...a, network: a.provider === "SANDBOX" ? sandboxNetwork(externalId) : null })),
+      connectors: Object.fromEntries(getAdapters().map((a) => [a.key, a.isConfigured()])) };
   });
 
   /** Démarre la connexion OAuth : état aléatoire à usage unique (anti-CSRF), valable 10 minutes. */
   app.post("/api/workspaces/:workspaceId/social/connect", { preHandler: authenticate }, async (req) => {
     const { workspaceId } = parse(wsParams, req.params);
     const ctx = await requireWorkspace(req, workspaceId, "social:manage");
-    const { connector } = parse(z.object({ connector: z.enum(["meta", "sandbox"]) }), req.body);
+    const { connector, network } = parse(z.object({ connector: z.enum(["meta", "sandbox"]), network: z.enum(SANDBOX_NETWORKS).optional() }), req.body);
     const adapter = adapterByKey(connector);
     if (!adapter?.isConfigured()) throw badRequest("Ce connecteur n'est pas encore activé sur la plateforme");
     const state = randomToken(24);
     await prisma.oAuthState.create({ data: { stateHash: sha256(state), workspaceId, userId: ctx.userId, provider: connector, expiresAt: new Date(Date.now() + 10 * 60_000) } });
-    return { url: adapter.authorizeUrl(state, redirectUri(connector)) };
+    return { url: adapter.authorizeUrl(state, redirectUri(connector), { network }) };
   });
 
   /**

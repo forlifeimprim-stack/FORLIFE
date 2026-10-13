@@ -167,10 +167,26 @@ export const SOCIAL_PROVIDER_LABELS: Record<SocialProvider, string> = {
 export const CHANNEL_PROVIDERS: Partial<Record<Channel, SocialProvider[]>> = {
   FACEBOOK: ["FACEBOOK_PAGE", "SANDBOX"],
   INSTAGRAM: ["INSTAGRAM_BUSINESS", "SANDBOX"],
-  LINKEDIN: ["LINKEDIN"],
-  TIKTOK: ["TIKTOK"],
-  YOUTUBE: ["YOUTUBE"],
+  LINKEDIN: ["LINKEDIN", "SANDBOX"],
+  TIKTOK: ["TIKTOK", "SANDBOX"],
+  YOUTUBE: ["YOUTUBE", "SANDBOX"],
 };
+
+/** Réseaux simulables en mode test (comptes « test-<réseau> » du bac à sable). */
+export const SANDBOX_NETWORKS = ["FACEBOOK", "INSTAGRAM", "LINKEDIN", "TIKTOK", "YOUTUBE"] as const;
+export type SandboxNetwork = (typeof SANDBOX_NETWORKS)[number];
+
+/** Réseau représenté par un compte de test (null : ancien compte de démonstration Facebook/Instagram). */
+export function sandboxNetwork(externalId: string): SandboxNetwork | null {
+  const n = externalId.startsWith("test-") ? externalId.slice(5).toUpperCase() : null;
+  return n && (SANDBOX_NETWORKS as readonly string[]).includes(n) ? (n as SandboxNetwork) : null;
+}
+
+/** Un compte du bac à sable ne publie que sur le réseau qu'il simule. */
+export function sandboxServes(externalId: string, channel: Channel): boolean {
+  const n = sandboxNetwork(externalId);
+  return n ? n === channel : channel === "FACEBOOK" || channel === "INSTAGRAM";
+}
 export const PUBLICATION_STATUS_LABELS = { QUEUED: "En file", PUBLISHING: "Publication…", PUBLISHED: "Publié", FAILED: "Échec", CANCELLED: "Annulé" } as const;
 
 // ───── Creative Studio ─────

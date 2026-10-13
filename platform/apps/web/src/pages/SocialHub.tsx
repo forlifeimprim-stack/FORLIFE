@@ -13,6 +13,8 @@ interface Account {
   provider: SocialProvider;
   name: string;
   avatarUrl: string | null;
+  /** Réseau simulé pour un compte de test. */
+  network: Channel | null;
   status: "CONNECTED" | "EXPIRED" | "ERROR";
   lastError: string | null;
   createdAt: string;
@@ -49,10 +51,10 @@ export function SocialHubPage() {
   // Message transmis par la page de retour OAuth (jamais lu depuis l'URL).
   const [msg, setMsg] = useState<{ tone: "success" | "error"; text: string } | null>((routerLocation.state as { msg?: { tone: "success" | "error"; text: string } } | null)?.msg ?? null);
 
-  const connect = async (connector: "meta" | "sandbox") => {
+  const connect = async (connector: "meta" | "sandbox", network?: Channel) => {
     setMsg(null);
     try {
-      const { url } = await api.post<{ url: string }>(`${ws}/social/connect`, { connector });
+      const { url } = await api.post<{ url: string }>(`${ws}/social/connect`, { connector, network });
       location.href = url;
     } catch (e) {
       setMsg({ tone: "error", text: errorMessage(e) });
@@ -129,8 +131,8 @@ export function SocialHubPage() {
                     <div>
                       <strong>{a.name}</strong>
                       <div className="small muted row" style={{ gap: 4 }}>
-                        <ProviderIcon provider={a.provider} size={14} />
-                        {SOCIAL_PROVIDER_LABELS[a.provider]}
+                        {a.network ? <ChannelIcon channel={a.network} size={14} /> : <ProviderIcon provider={a.provider} size={14} />}
+                        {a.network ? "Compte de test (publication simulée)" : SOCIAL_PROVIDER_LABELS[a.provider]}
                       </div>
                       {a.status !== "CONNECTED" && <div className="small" style={{ color: "var(--danger)" }}>{a.lastError ?? "Reconnexion nécessaire"}</div>}
                     </div>
@@ -149,11 +151,10 @@ export function SocialHubPage() {
           )}
           {can("social:manage") && (
             <div className="connectors">
-              <ConnectorTile icons={["FACEBOOK", "INSTAGRAM"]} name="Facebook & Instagram" detail="Pages Facebook et comptes Instagram professionnels (Meta)" available={!!c.meta} onConnect={() => connect("meta")} pending="Activation en cours" />
-              <ConnectorTile name="Compte de démonstration" detail="Publication simulée pour découvrir le Social Hub sans risque" available={!!c.sandbox} onConnect={() => connect("sandbox")} />
-              <ConnectorTile icons={["LINKEDIN"]} name="LinkedIn" detail="Pages entreprise" available={false} />
-              <ConnectorTile icons={["TIKTOK"]} name="TikTok" detail="Publication de vidéos" available={false} />
-              <ConnectorTile icons={["YOUTUBE"]} name="YouTube" detail="Shorts et vidéos" available={false} />
+              <ConnectorTile icons={["FACEBOOK", "INSTAGRAM"]} name="Facebook & Instagram" detail="Pages Facebook et comptes Instagram professionnels (Meta)" available={!!c.meta} onConnect={() => connect("meta")} pending="Clés Meta à ajouter" onTest={c.sandbox ? (n) => connect("sandbox", n) : undefined} testNetworks={["FACEBOOK", "INSTAGRAM"]} />
+              <ConnectorTile icons={["LINKEDIN"]} name="LinkedIn" detail="Pages entreprise" available={false} pending="Clés LinkedIn à ajouter" onTest={c.sandbox ? (n) => connect("sandbox", n) : undefined} testNetworks={["LINKEDIN"]} />
+              <ConnectorTile icons={["TIKTOK"]} name="TikTok" detail="Publication de vidéos" available={false} pending="Clés TikTok à ajouter" onTest={c.sandbox ? (n) => connect("sandbox", n) : undefined} testNetworks={["TIKTOK"]} />
+              <ConnectorTile icons={["YOUTUBE"]} name="YouTube" detail="Shorts et vidéos" available={false} pending="Clés Google à ajouter" onTest={c.sandbox ? (n) => connect("sandbox", n) : undefined} testNetworks={["YOUTUBE"]} />
             </div>
           )}
           <p className="muted small">
@@ -181,7 +182,27 @@ export function SocialHubPage() {
   );
 }
 
-function ConnectorTile({ name, detail, available, onConnect, pending, icons = [] }: { name: string; detail: string; available: boolean; onConnect?: () => void; pending?: string; icons?: Channel[] }) {
+const TEST_LABELS: Partial<Record<Channel, string>> = { FACEBOOK: "Tester Facebook", INSTAGRAM: "Tester Instagram", LINKEDIN: "Tester", TIKTOK: "Tester", YOUTUBE: "Tester" };
+
+function ConnectorTile({
+  name,
+  detail,
+  available,
+  onConnect,
+  pending,
+  icons = [],
+  onTest,
+  testNetworks = [],
+}: {
+  name: string;
+  detail: string;
+  available: boolean;
+  onConnect?: () => void;
+  pending?: string;
+  icons?: Channel[];
+  onTest?: (network: Channel) => void;
+  testNetworks?: Channel[];
+}) {
   return (
     <div className="connector">
       <div>
@@ -197,13 +218,22 @@ function ConnectorTile({ name, detail, available, onConnect, pending, icons = []
         </strong>
         <div className="small muted">{detail}</div>
       </div>
-      {available ? (
-        <Button variant="secondary" onClick={onConnect}>
-          Connecter
-        </Button>
-      ) : (
-        <Badge>{pending ?? "Bientôt"}</Badge>
-      )}
+      <div className="connector-actions">
+        {available ? (
+          <Button variant="secondary" onClick={onConnect}>
+            Connecter
+          </Button>
+        ) : (
+          <Badge>{pending ?? "Bientôt"}</Badge>
+        )}
+        {!available &&
+          onTest &&
+          testNetworks.map((n) => (
+            <Button key={n} variant="ghost" onClick={() => onTest(n)} title="Compte de test : publication simulée, statistiques simulées">
+              {TEST_LABELS[n] ?? "Tester"}
+            </Button>
+          ))}
+      </div>
     </div>
   );
 }
