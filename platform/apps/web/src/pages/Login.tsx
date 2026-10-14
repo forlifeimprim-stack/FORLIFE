@@ -49,6 +49,9 @@ export function Login() {
           <p className="muted small">
             Pas encore de compte ? <Link to="/signup">Créer mon espace gratuitement</Link>
           </p>
+          <p className="muted small legal-links">
+            <Link to="/conditions">Conditions d'utilisation</Link> · <Link to="/confidentialite">Confidentialité</Link>
+          </p>
         </form>
       </div>
     </div>

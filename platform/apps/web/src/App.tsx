@@ -26,14 +26,22 @@ import { AnalyticsPage } from "./pages/Analytics";
 import { BillingReturnPage, DemoCheckoutPage } from "./pages/Billing";
 import { VerifyEmailPage } from "./pages/VerifyEmail";
 import { useLocation } from "react-router-dom";
+import { PrivacyPage, TermsPage } from "./pages/Legal";
+
+/** Pages légales publiques (exigées par TikTok, Meta, LinkedIn, Google). */
+const LEGAL_PATHS = ["/confidentialite", "/privacy", "/conditions", "/terms"];
 
 export function App() {
   const { me, loading, workspace } = useAuth();
   const loc = useLocation();
   // Formulaires publics : accessibles connecté ou non, sans l'interface de l'application.
-  if (loc.pathname.startsWith("/f/") || loc.pathname.startsWith("/pay/demo/")) {
+  if (loc.pathname.startsWith("/f/") || loc.pathname.startsWith("/pay/demo/") || LEGAL_PATHS.includes(loc.pathname)) {
     return (
       <Routes>
+        <Route path="/confidentialite" element={<PrivacyPage />} />
+        <Route path="/privacy" element={<PrivacyPage />} />
+        <Route path="/conditions" element={<TermsPage />} />
+        <Route path="/terms" element={<TermsPage />} />
         <Route path="/f/:slug" element={<PublicFormPage />} />
         <Route path="/pay/demo/:id" element={<DemoCheckoutPage />} />
       </Routes>
