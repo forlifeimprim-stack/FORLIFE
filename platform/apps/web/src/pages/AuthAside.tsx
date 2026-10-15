@@ -129,7 +129,7 @@ export function AuthAside() {
           <p className="hero-sub">Stratégie, contenus, visuels, vidéos, publication et ventes : toute votre croissance au même endroit, pensée pour les PME d'Afrique francophone.</p>
           <div className="row hero-cta">
             <button type="button" className="btn btn-glow" onClick={() => setDemo(true)}>
-              <span aria-hidden="true">▶</span> Voir la démo (1 min 35)
+              <span aria-hidden="true">▶</span> Voir la présentation (2 min)
             </button>
           </div>
         </div>

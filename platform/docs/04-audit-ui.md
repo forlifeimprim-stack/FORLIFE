@@ -21,6 +21,6 @@ Bundle web : 130 ko compressés (JS) + 6 ko (CSS).
 
 ## Vidéo de démonstration
 
-`apps/web/public/demo/` : vidéo guidée de 1 min 35 (captures réelles de la plateforme, voix off française, sous-titres
-incrustés, transcription dans la fenêtre), en WebM (VP9) et MP4 (H.264). Proposée automatiquement à la première
+`apps/web/public/demo/` : vidéo de présentation de 2 min (motion design Remotion `marketing/ad`, captures réelles
+de la plateforme, voix off Henri style bande-annonce, transcription dans la fenêtre), MP4 H.264 720p. Proposée automatiquement à la première
 connexion sur chaque appareil, puis disponible depuis l'accueil (« Vidéo de démo ») et le pied du menu.
