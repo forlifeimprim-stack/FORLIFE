@@ -55,8 +55,8 @@ Instagram : le compte doit être **professionnel** et relié à une page Faceboo
 2. Produits : **Login Kit** et **Content Posting API** (scopes `user.info.basic`, `video.upload`, `video.list` ; `video.publish` n'est pas utilisé).
 3. **Redirect URI** (Login Kit) : `https://ai-growth-et-creative-os.web.app/social/callback/tiktok`
 4. Client Key déjà configurée : `TIKTOK_CLIENT_KEY=awv6vweag5ljkjxp` (dans `EXTRA_ENV`).
-5. **Client Secret** : créez le secret `forlife-tiktok-secret` dans Secret Manager, **puis seulement** ajoutez
-   `TIKTOK_CLIENT_SECRET=forlife-tiktok-secret` à `OPTIONAL_SECRETS` (un secret absent fait échouer le déploiement).
+5. **Client Secret** : secret `forlife-tiktok-secret` dans Secret Manager, branché via
+   `TIKTOK_CLIENT_SECRET=forlife-tiktok-secret` dans `OPTIONAL_SECRETS` (un secret absent fait échouer le déploiement).
 6. Fonctionnement : la dernière vidéo terminée du Video Studio rattachée au contenu est envoyée dans les
    brouillons TikTok du compte ; l'utilisateur la publie depuis l'application TikTok. Le jeton (24 h) est
    renouvelé automatiquement ; les statistiques (vues, j'aime, commentaires, partages) remontent après publication.
