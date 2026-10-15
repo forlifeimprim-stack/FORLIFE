@@ -6,6 +6,7 @@ Spot de 50 s (1920×1080, 30 i/s) pour encourager les bacheliers à s'inscrire �
 |---|---|
 | `uvci-motion-design.mp4` | Vidéo finale, prête pour Facebook, YouTube et WhatsApp |
 | `index.html` | Version web interactive (autonome : polices et son intégrés) |
+| `assets/logo-*.png` | Logo officiel UVCI extrait de l'affiche et reconstruit en HD (`tools/logo.py`) |
 | `voix-off.mp3` | Voix off seule (ElevenLabs, voix « LyLyPodcast ») |
 | `bande-son.mp3` | Mixage final : voix off + musique |
 | `src/template.html` | Source de l'animation (canvas, rendu déterministe `render(t)`) |
@@ -14,12 +15,14 @@ Spot de 50 s (1920×1080, 30 i/s) pour encourager les bacheliers à s'inscrire �
 ## Découpage (calé sur la voix off)
 1. **0–4 s** : une salle de classe en fil de fer… qui éclate en particules sur « sans murs ».
 2. **4–9 s** : les particules forment un smartphone avec l'espace étudiant (« elle vient à toi »), puis zoom à travers l'écran.
-3. **9–12 s** : révélation du logotype UVCI, barre tricolore, nom complet.
+3. **9–12 s** : passage au blanc, révélation du logo officiel UVCI, nom dévoilé au rythme de la voix.
 4. **12–16 s** : Publique · 100 % en ligne · métiers du numérique.
 5. **16–28 s** : carrousel des 6 spécialités, puis la nouveauté IA & robotique (réseau de neurones).
 6. **28–36 s** : parcours Licence → Master → Doctorat, carte de Côte d'Ivoire où l'UVCI rejoint chaque ville.
 7. **36–40 s** : slogan « Mon université avec moi. Partout. Et à tout moment. »
-8. **40–50 s** : saisie de « uvci.online », clic sur « S'inscrire », confettis, carton final.
+8. **40–50 s** : saisie de « uvci.online », clic sur « S'inscrire », confettis, carton final blanc avec le logo officiel.
+
+Charte : violet `#7C2888`, vert `#158C4E`, vert lime `#8EF25A` (repris de l'affiche officielle).
 
 ## Régénérer
 ```bash

@@ -10,6 +10,9 @@ css = "\n".join(
     f"src:url(data:font/woff2;base64,{b64(fonts / f)}) format('woff2')}}" for n, s, w, f in faces)
 html = (root / "src" / "template.html").read_text()
 audio = sys.argv[1] if len(sys.argv) > 1 else "bande-son.mp3"
+logos = {k: "data:image/png;base64," + b64(root / "assets" / f"logo-{n}.png") for k, n in (("FULL", "uvci"), ("MARK", "mark"), ("TEXT", "text"))}
+for k, v in logos.items():
+    html = html.replace(f"__LOGO_{k}__", v)
 html = html.replace("/*__FONTS__*/", css).replace("__AUDIO__", "data:audio/mpeg;base64," + b64(root / audio))
 (root / "index.html").write_text(html)
 print("index.html", len(html) // 1024, "Ko")

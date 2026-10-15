@@ -54,7 +54,7 @@ CHORDS = [
     [43, 50, 54, 57, 59],
     [45, 52, 59, 62, 66],
 ]
-BAR = 2.5  # 96 bpm, 4 temps
+BAR = 4 * 60 / 112  # 112 bpm, 4 temps (plus dynamique)
 BEAT = BAR / 4
 
 
@@ -111,7 +111,7 @@ while t0 < 46.0:
         m = ch[pattern[i % 8]] + 12
         g = 0.07 * intensity(t0) * (0.6 if t0 < 9 else 1)
         add(pluck(midi(m)), t0, g, pan=0.45 * np.sin(i * 0.9))
-    t0 += step
+    t0 += step if t0 < 16.4 else BEAT / 4
     i += 1
 
 # --- Basse
@@ -143,7 +143,7 @@ def hat():
 
 K = kick()
 HH = hat()
-for start, end, every in [(16.4, 35.8, 1), (40.1, 46.0, 2)]:
+for start, end, every in [(9.15, 35.8, 1), (40.1, 46.0, 1)]:
     t0 = start
     b = 0
     while t0 < end:
