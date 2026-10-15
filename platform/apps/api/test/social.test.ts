@@ -1,9 +1,10 @@
 import { afterEach, describe, expect, it } from "vitest";
 import { drainQueue, processJob } from "../src/modules/jobs/queue.js";
-import { collectMetrics, dispatchDuePublications } from "../src/modules/social/service.js";
+import { accessTokenFor, collectMetrics, dispatchDuePublications } from "../src/modules/social/service.js";
 import { setAdapters } from "../src/modules/social/registry.js";
 import { MetaAdapter } from "../src/modules/social/meta.js";
 import { LinkedInAdapter } from "../src/modules/social/linkedin.js";
+import { TikTokAdapter } from "../src/modules/social/tiktok.js";
 import { SandboxAdapter } from "../src/modules/social/sandbox.js";
 import { SocialError, type SocialProviderAdapter } from "../src/modules/social/types.js";
 import { resetConfigCache } from "../src/config.js";
@@ -276,4 +277,95 @@ describe("Adaptateur LinkedIn (API simulée)", () => {
       resetConfigCache();
     }
   });
+});
+
+describe("Adaptateur TikTok (API simulée)", () => {
+  type Call = { url: string; init?: RequestInit };
+  const tiktok = (routes: Record<string, { status?: number; body?: unknown }>, calls: Call[] = []): typeof fetch =>
+    (async (input: string | URL | Request, init?: RequestInit) => {
+      calls.push({ url: String(input), init });
+      const url = new URL(String(input));
+      const key = Object.keys(routes).find((k) => url.pathname.endsWith(k));
+      const r = key ? routes[key]! : { status: 404, body: { error: { code: "not_found", message: "not found" } } };
+      return new Response(JSON.stringify(r.body ?? {}), { status: r.status ?? 200 });
+    }) as typeof fetch;
+  const withKeys = async (fn: () => Promise<void>) => {
+    process.env.TIKTOK_CLIENT_KEY = "ck";
+    process.env.TIKTOK_CLIENT_SECRET = "cs";
+    resetConfigCache();
+    try {
+      await fn();
+    } finally {
+      delete process.env.TIKTOK_CLIENT_KEY;
+      delete process.env.TIKTOK_CLIENT_SECRET;
+      resetConfigCache();
+    }
+  };
+  const ok = { error: { code: "ok", message: "" } };
+
+  it("connecte le compte, envoie la vidéo dans les brouillons et lit les statistiques", () =>
+    withKeys(async () => {
+      const calls: Call[] = [];
+      const tt = new TikTokAdapter(
+        tiktok(
+          {
+            "/oauth/token/": { body: { access_token: "act", refresh_token: "rft", expires_in: 86400, open_id: "oid", scope: "user.info.basic,video.upload,video.list" } },
+            "/user/info/": { body: { data: { user: { open_id: "oid", display_name: "Boutique Awa" } }, ...ok } },
+            "/inbox/video/init/": { body: { data: { publish_id: "v_inbox_1", upload_url: "https://upload.tiktok.test/up/1" }, ...ok } },
+            "/up/1": { status: 201 },
+            "/status/fetch/": { body: { data: { status: "PUBLISH_COMPLETE", publicaly_available_post_id: [7_123] }, ...ok } },
+            "/video/query/": { body: { data: { videos: [{ id: "7123", view_count: 900, like_count: 40, comment_count: 5, share_count: 3 }] }, ...ok } },
+          },
+          calls,
+        ),
+      );
+      expect(tt.isConfigured()).toBe(true);
+      const auth = new URL(tt.authorizeUrl("st", "https://app.test/social/callback/tiktok"));
+      expect(auth.searchParams.get("client_key")).toBe("ck");
+      expect(auth.searchParams.get("scope")).toBe("user.info.basic,video.upload,video.list");
+      const [acc] = await tt.exchange("code", "https://app.test/social/callback/tiktok");
+      expect(acc).toMatchObject({ provider: "TIKTOK", externalId: "oid", name: "Boutique Awa (TikTok)", accessToken: "act", refreshToken: "rft" });
+      expect(acc!.expiresAt!.getTime()).toBeGreaterThan(Date.now());
+
+      const video = Buffer.alloc(2048, 1);
+      const res = await tt.publish({ provider: "TIKTOK", externalId: "oid" }, "act", { text: "Promo", loadVideo: async () => video });
+      expect(res).toEqual({ externalId: "v_inbox_1", url: null });
+      const init = calls.find((c) => c.url.includes("/inbox/video/init/"))!;
+      expect(JSON.parse(String(init.init!.body))).toEqual({ source_info: { source: "FILE_UPLOAD", video_size: 2048, chunk_size: 2048, total_chunk_count: 1 } });
+      const put = calls.find((c) => c.url.endsWith("/up/1"))!;
+      expect((put.init!.headers as Record<string, string>)["content-range"]).toBe("bytes 0-2047/2048");
+
+      expect(await tt.fetchMetrics({ provider: "TIKTOK", externalId: "oid" }, "act", "v_inbox_1")).toEqual({ impressions: 900, reach: 900, engagement: 48, clicks: 0, isSimulated: false });
+    }));
+
+  it("exige une vidéo et traduit les erreurs TikTok", () =>
+    withKeys(async () => {
+      const tt = new TikTokAdapter(tiktok({}));
+      await expect(tt.publish({ provider: "TIKTOK", externalId: "oid" }, "t", { text: "x", loadVideo: async () => null })).rejects.toMatchObject({ code: "NEEDS_MEDIA" });
+      const v = { text: "x", loadVideo: async () => Buffer.alloc(10) };
+      const expired = new TikTokAdapter(tiktok({ "/inbox/video/init/": { status: 401, body: { error: { code: "access_token_invalid", message: "invalid" } } } }));
+      await expect(expired.publish({ provider: "TIKTOK", externalId: "oid" }, "t", v)).rejects.toMatchObject({ code: "AUTH" });
+      const spam = new TikTokAdapter(tiktok({ "/inbox/video/init/": { status: 403, body: { error: { code: "spam_risk_too_many_pending_share", message: "pending" } } } }));
+      await expect(spam.publish({ provider: "TIKTOK", externalId: "oid" }, "t", v)).rejects.toMatchObject({ code: "RATE_LIMIT" });
+      const pending = new TikTokAdapter(tiktok({ "/status/fetch/": { body: { data: { status: "SEND_TO_USER_INBOX" }, ...ok } } }));
+      expect((await pending.fetchMetrics({ provider: "TIKTOK", externalId: "oid" }, "t", "p")).impressions).toBe(0);
+    }));
+
+  it("renouvelle un jeton qui expire et le ré-enregistre chiffré", () =>
+    withKeys(async () => {
+      setAdapters([new TikTokAdapter(tiktok({ "/oauth/token/": { body: { access_token: "neuf", refresh_token: "rft2", expires_in: 86400 } } }))]);
+      const acc = await signup();
+      const { encryptSecret, decryptSecret } = await import("../src/lib/crypto.js");
+      const { loadConfig } = await import("../src/config.js");
+      const key = loadConfig().ENCRYPTION_KEY;
+      const account = await prisma.socialAccount.create({
+        data: { workspaceId: acc.workspaceId, provider: "TIKTOK", externalId: "oid", name: "TikTok", scopes: [], credential: { create: { accessTokenEnc: encryptSecret("vieux", key), refreshTokenEnc: encryptSecret("rft", key), expiresAt: new Date(Date.now() + 60_000) } } },
+        include: { credential: true },
+      });
+      expect(await accessTokenFor({ ...account, credential: account.credential! })).toBe("neuf");
+      const cred = await prisma.socialCredential.findUniqueOrThrow({ where: { socialAccountId: account.id } });
+      expect(decryptSecret(cred.accessTokenEnc, key)).toBe("neuf");
+      expect(decryptSecret(cred.refreshTokenEnc!, key)).toBe("rft2");
+      expect(cred.expiresAt!.getTime()).toBeGreaterThan(Date.now() + 3600_000);
+    }));
 });

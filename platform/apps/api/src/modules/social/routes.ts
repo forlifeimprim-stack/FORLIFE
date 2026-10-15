@@ -14,6 +14,7 @@ import { settleContent } from "./service.js";
 import { assertApprovedVersion } from "../content/service.js";
 import { SocialError, type ConnectedAccount } from "./types.js";
 
+const CONNECTORS = ["meta", "linkedin", "tiktok", "sandbox"] as const;
 const wsParams = z.object({ workspaceId: z.string() });
 const wsIdParams = z.object({ workspaceId: z.string(), id: z.string() });
 /**
@@ -40,7 +41,7 @@ export async function socialRoutes(app: FastifyInstance) {
   app.post("/api/workspaces/:workspaceId/social/connect", { preHandler: authenticate }, async (req) => {
     const { workspaceId } = parse(wsParams, req.params);
     const ctx = await requireWorkspace(req, workspaceId, "social:manage");
-    const { connector, network } = parse(z.object({ connector: z.enum(["meta", "linkedin", "sandbox"]), network: z.enum(SANDBOX_NETWORKS).optional() }), req.body);
+    const { connector, network } = parse(z.object({ connector: z.enum(CONNECTORS), network: z.enum(SANDBOX_NETWORKS).optional() }), req.body);
     const adapter = adapterByKey(connector);
     if (!adapter?.isConfigured()) throw badRequest("Ce connecteur n'est pas encore activé sur la plateforme");
     const state = randomToken(24);
@@ -54,7 +55,7 @@ export async function socialRoutes(app: FastifyInstance) {
    * Les comptes autorisés sont mis en attente (chiffrés) : l'utilisateur choisit ensuite ceux à connecter.
    */
   app.post("/api/social/oauth/complete", { preHandler: authenticate }, async (req) => {
-    const body = parse(z.object({ connector: z.enum(["meta", "linkedin", "sandbox"]), state: z.string().min(10).max(200), code: z.string().max(2000).optional(), error: z.string().max(200).optional() }), req.body);
+    const body = parse(z.object({ connector: z.enum(CONNECTORS), state: z.string().min(10).max(200), code: z.string().max(2000).optional(), error: z.string().max(200).optional() }), req.body);
     const stateRow = await prisma.oAuthState.findUnique({ where: { stateHash: sha256(body.state) } });
     if (!stateRow || stateRow.expiresAt < new Date() || stateRow.provider !== body.connector) throw badRequest("Lien de connexion expiré, recommencez");
     if (stateRow.userId !== req.user.sub) throw forbidden("Cette connexion a été lancée depuis un autre compte. Recommencez depuis votre Social Hub.");

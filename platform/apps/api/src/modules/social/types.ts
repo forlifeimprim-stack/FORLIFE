@@ -16,6 +16,14 @@ export interface PostPayload {
   link?: string | null;
   /** URL publique d'un visuel (obligatoire pour Instagram). */
   imageUrl?: string | null;
+  /** Vidéo terminée associée au contenu (chargée seulement par les réseaux vidéo, comme TikTok). */
+  loadVideo?: () => Promise<Buffer | null>;
+}
+
+export interface RefreshedToken {
+  accessToken: string;
+  refreshToken?: string | null;
+  expiresAt?: Date | null;
 }
 
 export interface MetricsResult {
@@ -49,5 +57,7 @@ export interface SocialProviderAdapter {
   authorizeUrl(state: string, redirectUri: string, options?: { network?: string }): string;
   exchange(code: string, redirectUri: string): Promise<ConnectedAccount[]>;
   publish(account: { provider: SocialProvider; externalId: string }, accessToken: string, post: PostPayload, idempotencyKey: string): Promise<{ externalId: string; url?: string | null }>;
+  /** Renouvelle un jeton d'accès de courte durée (réseaux dont le jeton expire vite, comme TikTok). */
+  refresh?(refreshToken: string): Promise<RefreshedToken>;
   fetchMetrics(account: { provider: SocialProvider; externalId: string }, accessToken: string, externalPostId: string): Promise<MetricsResult>;
 }

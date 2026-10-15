@@ -52,6 +52,9 @@ const schema = z.object({
     .string()
     .default("false")
     .transform((v) => v === "true"),
+  /** TikTok for Developers : Client key (publique) et Client secret (Secret Manager). */
+  TIKTOK_CLIENT_KEY: z.string().optional(),
+  TIKTOK_CLIENT_SECRET: z.string().optional(),
   /** Binaire FFmpeg utilisé par le Video Studio. */
   FFMPEG_PATH: z.string().default("ffmpeg"),
   /** Compte de démonstration (publication simulée). Désactiver en production si non souhaité. */

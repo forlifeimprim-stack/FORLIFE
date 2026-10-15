@@ -1,14 +1,15 @@
-import type { Job, Prisma } from "@prisma/client";
+import type { Job, Prisma, SocialAccount, SocialCredential } from "@prisma/client";
 import { CHANNEL_PROVIDERS, sandboxServes, type Channel } from "@forlife/shared";
 import { loadConfig } from "../../config.js";
 import { prisma, type Tx } from "../../lib/prisma.js";
-import { decryptSecret } from "../../lib/crypto.js";
+import { decryptSecret, encryptSecret } from "../../lib/crypto.js";
 import { AppError } from "../../lib/errors.js";
 import { audit } from "../../lib/audit.js";
 import { enqueue } from "../jobs/queue.js";
 import { adapterFor } from "./registry.js";
 import { SocialError } from "./types.js";
 import { signedMediaUrl } from "../creative/service.js";
+import { getStorage } from "../storage/storage.js";
 
 /**
  * À la programmation d'un contenu : une Publication par (variante × compte connecté compatible).
@@ -59,6 +60,33 @@ export async function settleContent(contentId: string) {
   await prisma.contentItem.updateMany({ where: { id: contentId, status: "SCHEDULED" }, data: { status, revision: { increment: 1 } } });
 }
 
+/**
+ * Jeton d'accès utilisable : renouvelé (et ré-enregistré chiffré) quand il expire dans moins de 10 minutes
+ * et que le réseau le permet. Un refus de renouvellement remonte en erreur AUTH (compte à reconnecter).
+ */
+export async function accessTokenFor(account: SocialAccount & { credential: SocialCredential }): Promise<string> {
+  const key = loadConfig().ENCRYPTION_KEY;
+  const cred = account.credential;
+  const adapter = adapterFor(account.provider);
+  const expiring = cred.expiresAt && cred.expiresAt.getTime() < Date.now() + 10 * 60_000;
+  if (!expiring || !adapter.refresh || !cred.refreshTokenEnc) return decryptSecret(cred.accessTokenEnc, key);
+  const t = await adapter.refresh(decryptSecret(cred.refreshTokenEnc, key));
+  await prisma.socialCredential.update({
+    where: { id: cred.id },
+    data: { accessTokenEnc: encryptSecret(t.accessToken, key), ...(t.refreshToken ? { refreshTokenEnc: encryptSecret(t.refreshToken, key) } : {}), expiresAt: t.expiresAt ?? null },
+  });
+  return t.accessToken;
+}
+
+/** Dernière vidéo terminée du Video Studio rattachée au contenu. */
+async function contentVideo(workspaceId: string, contentId: string): Promise<Buffer | null> {
+  const render = await prisma.videoRender.findFirst({
+    where: { status: "SUCCEEDED", storageKey: { not: null }, project: { workspaceId, contentId } },
+    orderBy: { createdAt: "desc" },
+  });
+  return render?.storageKey ? getStorage().get(render.storageKey) : null;
+}
+
 function hashtagsText(body: string, tags: unknown): string {
   const list = Array.isArray(tags) ? tags.filter((t): t is string => typeof t === "string") : [];
   return list.length ? `${body}\n\n${list.map((t) => `#${t}`).join(" ")}` : body;
@@ -85,8 +113,9 @@ export async function publishJob(job: Job): Promise<Prisma.InputJsonValue> {
     if (content.approvedVersion !== content.contentVersion) throw new SocialError("INVALID", "Contenu modifié depuis son approbation : publication annulée");
     if (content.workspace.organization.status !== "ACTIVE") throw new SocialError("INVALID", "Organisation suspendue : publication annulée");
     if (account.status !== "CONNECTED" || !account.credential) throw new SocialError("AUTH", "Compte social déconnecté : reconnectez-le dans le Social Hub");
-    const token = decryptSecret(account.credential.accessTokenEnc, loadConfig().ENCRYPTION_KEY);
-    const res = await adapterFor(account.provider).publish(account, token, { text: hashtagsText(variant.body, variant.hashtags), imageUrl }, pub.idempotencyKey);
+    const token = await accessTokenFor({ ...account, credential: account.credential });
+    const loadVideo = () => contentVideo(pub.workspaceId, pub.contentId);
+    const res = await adapterFor(account.provider).publish(account, token, { text: hashtagsText(variant.body, variant.hashtags), imageUrl, loadVideo }, pub.idempotencyKey);
     await prisma.$transaction([
       prisma.publication.update({ where: { id: pub.id }, data: { status: "PUBLISHED", externalId: res.externalId, externalUrl: res.url ?? null, publishedAt: new Date(), attempts: job.attempts, lastError: null } }),
       prisma.publicationAttempt.create({ data: { publicationId: pub.id, attemptNo: job.attempts, status: "SUCCEEDED" } }),
@@ -122,7 +151,7 @@ export async function collectMetrics(): Promise<number> {
   for (const pub of pubs) {
     if (!pub.externalId || !pub.socialAccount.credential) continue;
     try {
-      const token = decryptSecret(pub.socialAccount.credential.accessTokenEnc, loadConfig().ENCRYPTION_KEY);
+      const token = await accessTokenFor({ ...pub.socialAccount, credential: pub.socialAccount.credential });
       const m = await adapterFor(pub.socialAccount.provider).fetchMetrics(pub.socialAccount, token, pub.externalId);
       await prisma.socialMetricSnapshot.upsert({
         where: { publicationId_capturedAt: { publicationId: pub.id, capturedAt: at } },

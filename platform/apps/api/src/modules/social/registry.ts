@@ -1,13 +1,14 @@
 import type { SocialProvider } from "@prisma/client";
 import { MetaAdapter } from "./meta.js";
 import { LinkedInAdapter } from "./linkedin.js";
+import { TikTokAdapter } from "./tiktok.js";
 import { SandboxAdapter } from "./sandbox.js";
 import type { SocialProviderAdapter } from "./types.js";
 
 let adapters: SocialProviderAdapter[] | undefined;
 
 export function getAdapters(): SocialProviderAdapter[] {
-  adapters ??= [new MetaAdapter(), new LinkedInAdapter(), new SandboxAdapter()];
+  adapters ??= [new MetaAdapter(), new LinkedInAdapter(), new TikTokAdapter(), new SandboxAdapter()];
   return adapters;
 }
 /** Réservé aux tests (injection d'un adaptateur Meta avec fetch simulé). */
