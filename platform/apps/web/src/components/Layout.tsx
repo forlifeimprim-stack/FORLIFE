@@ -154,7 +154,7 @@ export function Layout() {
         </div>
       </aside>
       <main className="main" id="contenu">
-        {org.status === "SUSPENDED" && <div className="alert alert-error" style={{ marginBottom: 16 }}>Cette organisation est suspendue. Contactez le support Forlife Com sur WhatsApp : +225 05 85 80 18 56.</div>}
+        {org.status === "SUSPENDED" && <div className="alert alert-error" style={{ marginBottom: 16 }}>Cette organisation est suspendue. Contactez le support Forlife Com sur WhatsApp ou par téléphone : +225 07 79 59 05 62 ou +225 05 85 80 18 56.</div>}
         <VerifyEmailBanner />
         <ErrorBoundary resetKey={location.pathname}>
           <div className="page-enter" key={location.pathname}>

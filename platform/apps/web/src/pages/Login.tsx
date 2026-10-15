@@ -52,6 +52,9 @@ export function Login() {
           <p className="muted small legal-links">
             <Link to="/conditions">Conditions d'utilisation</Link> · <Link to="/confidentialite">Confidentialité</Link>
           </p>
+          <p className="muted small">
+            Besoin d'aide ? WhatsApp et appels : <a href="https://wa.me/2250779590562" target="_blank" rel="noreferrer">+225 07 79 59 05 62</a> · <a href="https://wa.me/2250585801856" target="_blank" rel="noreferrer">+225 05 85 80 18 56</a>
+          </p>
         </form>
       </div>
     </div>

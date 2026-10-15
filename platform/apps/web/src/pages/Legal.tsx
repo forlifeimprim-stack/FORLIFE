@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { LogoMark } from "../components/ui";
 
 const UPDATED = "14 octobre 2026";
-const CONTACT = "WhatsApp +225 05 85 80 18 56";
+const CONTACT = "WhatsApp et appels : +225 07 79 59 05 62 · +225 05 85 80 18 56";
 
 function LegalLayout({ title, children }: { title: string; children: ReactNode }) {
   return (
