@@ -32,9 +32,10 @@ const CTA = [106, 121] as const;
 
 /** Voix off : fichier et instant de départ (secondes). */
 export const VO_CUES: { file: string; at: number }[] = [
-  { file: "intro", at: 0.6 },
-  { file: "reveal", at: 8.0 },
-  ...CHAPTERS.map((c) => ({ file: c.key, at: c.at[0] + 0.35 })),
+  { file: "intro", at: 0.4 },
+  { file: "reveal", at: 7.5 },
+  // « login » démarre après la fin de « reveal », qui déborde sur le début du chapitre.
+  ...CHAPTERS.map((c) => ({ file: c.key, at: c.key === "login" ? 12.9 : c.at[0] + 0.35 })),
   { file: "success", at: SUCCESS[0] + 0.4 },
   { file: "cta", at: CTA[0] + 0.5 },
 ];
