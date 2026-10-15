@@ -55,6 +55,11 @@ const schema = z.object({
   /** TikTok for Developers : Client key (publique) et Client secret (Secret Manager). */
   TIKTOK_CLIENT_KEY: z.string().optional(),
   TIKTOK_CLIENT_SECRET: z.string().optional(),
+  /** Google Cloud (YouTube Data API) : ID client OAuth (public) et code secret (Secret Manager). */
+  GOOGLE_CLIENT_ID: z.string().optional(),
+  GOOGLE_CLIENT_SECRET: z.string().optional(),
+  /** Visibilité des vidéos envoyées : « private » tant que l'audit YouTube n'est pas obtenu, puis « public ». */
+  YOUTUBE_PRIVACY: z.enum(["private", "unlisted", "public"]).default("private"),
   /** Binaire FFmpeg utilisé par le Video Studio. */
   FFMPEG_PATH: z.string().default("ffmpeg"),
   /** Compte de démonstration (publication simulée). Désactiver en production si non souhaité. */

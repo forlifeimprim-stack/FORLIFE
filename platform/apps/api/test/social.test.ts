@@ -5,6 +5,7 @@ import { setAdapters } from "../src/modules/social/registry.js";
 import { MetaAdapter } from "../src/modules/social/meta.js";
 import { LinkedInAdapter } from "../src/modules/social/linkedin.js";
 import { TikTokAdapter } from "../src/modules/social/tiktok.js";
+import { YouTubeAdapter, youtubeTitle } from "../src/modules/social/youtube.js";
 import { SandboxAdapter } from "../src/modules/social/sandbox.js";
 import { SocialError, type SocialProviderAdapter } from "../src/modules/social/types.js";
 import { resetConfigCache } from "../src/config.js";
@@ -367,5 +368,75 @@ describe("Adaptateur TikTok (API simulée)", () => {
       expect(decryptSecret(cred.accessTokenEnc, key)).toBe("neuf");
       expect(decryptSecret(cred.refreshTokenEnc!, key)).toBe("rft2");
       expect(cred.expiresAt!.getTime()).toBeGreaterThan(Date.now() + 3600_000);
+    }));
+});
+
+describe("Adaptateur YouTube (API simulée)", () => {
+  type Call = { url: string; init?: RequestInit };
+  type Route = { status?: number; body?: unknown; headers?: Record<string, string> };
+  const google = (routes: Record<string, Route>, calls: Call[] = []): typeof fetch =>
+    (async (input: string | URL | Request, init?: RequestInit) => {
+      calls.push({ url: String(input), init });
+      const url = new URL(String(input));
+      const key = Object.keys(routes).find((k) => (url.pathname + url.search).includes(k));
+      const r = key ? routes[key]! : { status: 404, body: { error: { code: 404, message: "not found" } } };
+      return new Response(JSON.stringify(r.body ?? {}), { status: r.status ?? 200, headers: r.headers });
+    }) as typeof fetch;
+  const withKeys = async (fn: () => Promise<void>) => {
+    process.env.GOOGLE_CLIENT_ID = "gid.apps.googleusercontent.com";
+    process.env.GOOGLE_CLIENT_SECRET = "gs";
+    resetConfigCache();
+    try {
+      await fn();
+    } finally {
+      delete process.env.GOOGLE_CLIENT_ID;
+      delete process.env.GOOGLE_CLIENT_SECRET;
+      resetConfigCache();
+    }
+  };
+
+  it("connecte la chaîne, envoie la vidéo en privé et lit les statistiques", () =>
+    withKeys(async () => {
+      const calls: Call[] = [];
+      const yt = new YouTubeAdapter(
+        google(
+          {
+            "/token": { body: { access_token: "ya29", refresh_token: "1//rt", expires_in: 3599, scope: "https://www.googleapis.com/auth/youtube.upload https://www.googleapis.com/auth/youtube.readonly" } },
+            "/channels?": { body: { items: [{ id: "UC123", snippet: { title: "Boutique Awa", thumbnails: { default: { url: "https://yt.test/a.jpg" } } } }] } },
+            "uploadType=resumable": { headers: { location: "https://www.googleapis.com/upload/session/42" } },
+            "/upload/session/42": { body: { id: "vid42" } },
+            "/videos?part=statistics": { body: { items: [{ statistics: { viewCount: "1200", likeCount: "80", commentCount: "6" } }] } },
+          },
+          calls,
+        ),
+      );
+      const auth = new URL(yt.authorizeUrl("st", "https://app.test/social/callback/youtube"));
+      expect(auth.searchParams.get("access_type")).toBe("offline");
+      expect(auth.searchParams.get("scope")).toContain("youtube.upload");
+      const [acc] = await yt.exchange("code", "https://app.test/social/callback/youtube");
+      expect(acc).toMatchObject({ provider: "YOUTUBE", externalId: "UC123", name: "Boutique Awa (YouTube)", refreshToken: "1//rt" });
+
+      const res = await yt.publish({ provider: "YOUTUBE", externalId: "UC123" }, "ya29", { text: "Promo <rentrée>\nTout à -20 %", loadVideo: async () => Buffer.alloc(4096, 2) });
+      expect(res).toEqual({ externalId: "vid42", url: "https://youtu.be/vid42" });
+      const start = calls.find((c) => c.url.includes("uploadType=resumable"))!;
+      expect(JSON.parse(String(start.init!.body))).toMatchObject({ snippet: { title: "Promo rentrée" }, status: { privacyStatus: "private", selfDeclaredMadeForKids: false } });
+      expect((start.init!.headers as Record<string, string>)["x-upload-content-length"]).toBe("4096");
+
+      expect(await yt.fetchMetrics({ provider: "YOUTUBE", externalId: "UC123" }, "ya29", "vid42")).toEqual({ impressions: 1200, reach: 1200, engagement: 86, clicks: 0, isSimulated: false });
+      expect((await yt.refresh("1//rt")).refreshToken).toBe("1//rt");
+    }));
+
+  it("exige une vidéo, traduit les erreurs et borne le titre", () =>
+    withKeys(async () => {
+      const v = { text: "x", loadVideo: async () => Buffer.alloc(10) };
+      await expect(new YouTubeAdapter(google({})).publish({ provider: "YOUTUBE", externalId: "UC" }, "t", { text: "x", loadVideo: async () => null })).rejects.toMatchObject({ code: "NEEDS_MEDIA" });
+      const quota = new YouTubeAdapter(google({ "uploadType=resumable": { status: 403, body: { error: { code: 403, message: "quota", errors: [{ reason: "quotaExceeded" }] } } } }));
+      await expect(quota.publish({ provider: "YOUTUBE", externalId: "UC" }, "t", v)).rejects.toMatchObject({ code: "RATE_LIMIT" });
+      const expired = new YouTubeAdapter(google({ "uploadType=resumable": { status: 401, body: { error: { code: 401, message: "Invalid Credentials" } } } }));
+      await expect(expired.publish({ provider: "YOUTUBE", externalId: "UC" }, "t", v)).rejects.toMatchObject({ code: "AUTH" });
+      const revoked = new YouTubeAdapter(google({ "/token": { status: 400, body: { error: "invalid_grant", error_description: "Token has been expired or revoked." } } }));
+      await expect(revoked.refresh("rt")).rejects.toMatchObject({ code: "AUTH" });
+      expect(youtubeTitle("a".repeat(150))).toHaveLength(100);
+      expect(youtubeTitle("\n\n")).toBe("Nouvelle vidéo");
     }));
 });

@@ -61,15 +61,17 @@ Instagram : le compte doit être **professionnel** et relié à une page Faceboo
    brouillons TikTok du compte ; l'utilisateur la publie depuis l'application TikTok. Le jeton (24 h) est
    renouvelé automatiquement ; les statistiques (vues, j'aime, commentaires, partages) remontent après publication.
 
-## 4. YouTube (Google) — connecteur à développer après création de l'app
+## 4. YouTube (Google) — connecteur prêt
 
-1. [console.cloud.google.com](https://console.cloud.google.com), projet **AI Growth et Creative OS** →
-   **API et services → Bibliothèque** → activez **YouTube Data API v3**.
-2. **Écran de consentement OAuth** : type **Externe**, scope `https://www.googleapis.com/auth/youtube.upload`.
-3. **Identifiants → Créer → ID client OAuth** (application Web), URI de redirection :
-   `https://ai-growth-et-creative-os.web.app/social/callback/youtube`
-4. Rangez le **Code secret du client** : secret `forlife-youtube-secret` ; envoyez à Claude l'**ID client** et le nom du secret.
-5. Pour publier publiquement, Google exige la validation de l'écran de consentement (scope sensible).
+1. [console.cloud.google.com](https://console.cloud.google.com), projet **AI Growth et Creative OS** → activer **YouTube Data API v3**.
+2. Écran de consentement OAuth (Externe) : scopes `youtube.upload` et `youtube.readonly` ; pages Confidentialité / Conditions de l'application.
+3. ID client OAuth « Application Web », URI de redirection : `https://ai-growth-et-creative-os.web.app/social/callback/youtube`
+4. ID client déjà configuré : `GOOGLE_CLIENT_ID=…apps.googleusercontent.com` (dans `EXTRA_ENV`).
+5. Code secret : secret `forlife-google-secret` dans Secret Manager, **puis seulement** ajoutez
+   `GOOGLE_CLIENT_SECRET=forlife-google-secret` à `OPTIONAL_SECRETS` (un secret absent fait échouer le déploiement).
+6. Fonctionnement : la dernière vidéo terminée du Video Studio rattachée au contenu est envoyée sur la chaîne
+   (vertical court → Short), en **privé** tant que `YOUTUBE_PRIVACY` n'est pas passé à `public` — à faire après
+   l'audit « YouTube API Services », l'API forçant le privé avant. Jeton (1 h) renouvelé automatiquement.
 
 ## 5. Emails (Resend) — prêt dans le code, prioritaire
 

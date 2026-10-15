@@ -14,7 +14,7 @@ import { settleContent } from "./service.js";
 import { assertApprovedVersion } from "../content/service.js";
 import { SocialError, type ConnectedAccount } from "./types.js";
 
-const CONNECTORS = ["meta", "linkedin", "tiktok", "sandbox"] as const;
+const CONNECTORS = ["meta", "linkedin", "tiktok", "youtube", "sandbox"] as const;
 const wsParams = z.object({ workspaceId: z.string() });
 const wsIdParams = z.object({ workspaceId: z.string(), id: z.string() });
 /**
