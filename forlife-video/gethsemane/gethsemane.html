@@ -1,0 +1,324 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<title>Gethsémané – habillage</title>
+<style>
+@font-face{font-family:Play;font-weight:400;font-style:normal;src:url(brand/fonts/playfair-display-latin-400-normal.woff2),url(brand/fonts/playfair-display-latin-ext-400-normal.woff2)}
+@font-face{font-family:Play;font-weight:700;font-style:normal;src:url(brand/fonts/playfair-display-latin-700-normal.woff2),url(brand/fonts/playfair-display-latin-ext-700-normal.woff2)}
+@font-face{font-family:Play;font-weight:400;font-style:italic;src:url(brand/fonts/playfair-display-latin-400-italic.woff2),url(brand/fonts/playfair-display-latin-ext-400-italic.woff2)}
+@font-face{font-family:Play;font-weight:600;font-style:italic;src:url(brand/fonts/playfair-display-latin-600-italic.woff2),url(brand/fonts/playfair-display-latin-ext-600-italic.woff2)}
+@font-face{font-family:Int;font-weight:400;src:url(brand/fonts/inter-latin-400-normal.woff2),url(brand/fonts/inter-latin-ext-400-normal.woff2)}
+@font-face{font-family:Int;font-weight:600;src:url(brand/fonts/inter-latin-600-normal.woff2),url(brand/fonts/inter-latin-ext-600-normal.woff2)}
+@font-face{font-family:Int;font-weight:700;src:url(brand/fonts/inter-latin-700-normal.woff2),url(brand/fonts/inter-latin-ext-700-normal.woff2)}
+:root{--ink:#2D1C14;--gold:#B4842C;--line:#D9AC4E;--paper:#F7F2EA}
+html,body{margin:0;width:1080px;height:1920px;overflow:hidden;background:transparent}
+body.preview{background:#555}
+#stage{position:absolute;inset:0;overflow:hidden}
+.abs{position:absolute}
+.mask{overflow:hidden;display:inline-block;vertical-align:bottom;padding:0 .06em;margin-right:.18em}
+.mask:last-child{margin-right:0}
+.mask>span{display:inline-block;will-change:transform}
+.eyebrow{font:600 30px/1 Int;letter-spacing:.32em;color:var(--gold)}
+.serif{font-family:Play;color:var(--ink)}
+.it{font-style:italic}
+.plate{background:rgba(255,253,249,.93);border:1.5px solid rgba(180,132,44,.38);border-radius:30px;box-shadow:0 24px 70px rgba(45,28,20,.18),0 2px 6px rgba(45,28,20,.06)}
+.center{left:0;right:0;text-align:center}
+#hud{position:fixed;left:10px;bottom:10px;font:14px monospace;color:#fff;background:#000a;padding:4px 8px;z-index:999;display:none}
+body.preview #hud{display:block}
+</style>
+</head>
+<body>
+<div id="stage">
+  <!-- fond sombre intro / outro avec trou arrondi qui révèle la vidéo -->
+    <div id="hole" class="abs" style="z-index:2"></div>
+  <div id="holeRing" class="abs" style="z-index:3;border:2px solid var(--gold)"></div>
+
+  <!-- INTRO -->
+  <div id="intro" class="abs" style="inset:0;z-index:5;background:radial-gradient(ellipse 70% 45% at 50% 47%, rgba(255,255,255,.95), rgba(255,255,255,0) 72%)">
+    <div id="iLine" class="abs" style="left:540px;top:700px;height:2px;background:var(--line)"></div>
+    <div id="iFam" class="abs center serif it" style="top:770px;font-size:120px"><span class="mask"><span>Famille,</span></span></div>
+    <div id="iEye" class="abs center eyebrow" style="top:760px"></div>
+    <div id="iName" class="abs center serif" style="top:830px;font-size:150px;line-height:1.1"></div>
+    <div id="iRole" class="abs center" style="top:1040px;font:400 34px/1.3 Int;color:rgba(45,28,20,.72);letter-spacing:.04em"></div>
+    <div id="iDia" class="abs" style="left:529px;top:1140px;width:22px;height:22px;border:2px solid var(--gold);transform:rotate(45deg)"></div>
+  </div>
+
+  <!-- carton nom (bas) -->
+  <div id="lt" class="abs plate" style="left:80px;top:1610px;width:920px;height:200px;z-index:10;overflow:hidden">
+    <div id="ltBar" class="abs" style="left:44px;top:46px;width:6px;height:108px;background:var(--line);border-radius:3px"></div>
+    <div id="ltName" class="abs serif" style="left:84px;top:36px;font-size:66px;white-space:nowrap"></div>
+    <div id="ltRole" class="abs eyebrow" style="left:86px;top:126px;font-size:24px;letter-spacing:.24em;white-space:nowrap"></div>
+  </div>
+
+  <!-- titre haut générique (réutilisé par plusieurs moments) -->
+  <div id="top" class="abs center" style="top:150px;z-index:10;transform-origin:50% 0">
+    <div id="topPlate" class="abs plate" style="left:50%;top:0"></div>
+    <div id="topEye" class="eyebrow" style="position:relative;margin-top:52px"></div>
+    <div id="topTitle" class="serif" style="position:relative;white-space:nowrap;margin-top:22px;font-size:92px;line-height:1.12"></div>
+    <div id="topSub" style="position:relative;margin-top:22px;font:400 32px/1.3 Int;color:rgba(45,28,20,.72)"></div>
+  </div>
+
+  <!-- cartes événements (bas) -->
+  <div id="cards" class="abs" style="left:80px;top:1590px;width:920px;z-index:10">
+    <div class="card abs plate" style="left:0;top:0;width:920px;height:140px;overflow:hidden">
+      <div class="num abs serif it" style="left:40px;top:26px;font-size:72px;color:var(--gold)">01</div>
+      <div class="l1 abs eyebrow" style="left:170px;top:34px;font-size:24px">VENDREDI 10/07</div>
+      <div class="l2 abs serif" style="left:170px;top:70px;font-size:44px;white-space:nowrap">N’Zuessi · Yamoussoukro</div>
+    </div>
+    <div class="card abs plate" style="left:0;top:160px;width:920px;height:140px;overflow:hidden">
+      <div class="num abs serif it" style="left:40px;top:26px;font-size:72px;color:var(--gold)">02</div>
+      <div class="l1 abs eyebrow" style="left:170px;top:34px;font-size:24px">VENDREDI SUIVANT</div>
+      <div class="l2 abs serif" style="left:170px;top:70px;font-size:44px;white-space:nowrap">Côté Coco · Bouaké</div>
+    </div>
+  </div>
+
+  <!-- OUTRO -->
+  <div id="outro" class="abs" style="inset:0;z-index:20;background:radial-gradient(ellipse 70% 45% at 50% 47%, rgba(255,255,255,.95), rgba(255,255,255,0) 72%)">
+    <div id="oDia" class="abs" style="left:527px;top:500px;width:26px;height:26px;border:2px solid var(--gold);transform:rotate(45deg)"></div>
+    <div id="oEye" class="abs center eyebrow" style="top:600px">RENDEZ-VOUS À</div>
+    <div id="oTitle" class="abs center serif it" style="top:650px;font-size:150px;line-height:1.15"></div>
+    <div id="oLine" class="abs" style="left:540px;top:880px;height:2px;background:var(--line)"></div>
+    <div id="oR1" class="abs center" style="top:930px;font:400 38px/1.3 Int;color:var(--ink)"><b style="color:var(--gold);font-weight:600">VENDREDI 10/07</b>&nbsp;&nbsp;N’Zuessi, Yamoussoukro</div>
+    <div id="oR2" class="abs center" style="top:1000px;font:400 38px/1.3 Int;color:var(--ink)"><b style="color:var(--gold);font-weight:600">VENDREDI SUIVANT</b>&nbsp;&nbsp;Côté Coco, Bouaké</div>
+    <div id="oEns" class="abs center serif it" style="top:1130px;font-size:64px;color:var(--gold)"></div>
+    <div id="oBless" class="abs center serif" style="top:1230px;font-size:46px;color:rgba(45,28,20,.8)"></div>
+  </div>
+</div>
+<div id="hud"></div>
+<script>
+// ---------- outils ----------
+const W = 1080, H = 1920;
+const VO = 5.2;              // la vidéo source démarre à cette seconde du film
+const VEND = VO + 79.23;     // fin de la vidéo source
+const END = 95.5;
+const clamp = (x, a = 0, b = 1) => Math.min(b, Math.max(a, x));
+const lerp = (a, b, k) => a + (b - a) * k;
+const io = x => { x = clamp(x); return x < .5 ? 4 * x * x * x : 1 - Math.pow(-2 * x + 2, 3) / 2; };
+const out = x => { x = clamp(x); return 1 - Math.pow(1 - x, 3); };
+const o5 = x => { x = clamp(x); return 1 - Math.pow(1 - x, 5); };
+const inn = x => { x = clamp(x); return x * x * x; };
+const expo = x => { x = clamp(x); return x === 1 ? 1 : 1 - Math.pow(2, -10 * x); };
+// ressort analytique : réponse indicielle (f = fréquence Hz, z = amortissement)
+function step(tau, f = 2.2, z = 0.78) {
+  if (tau <= 0) return 0;
+  const w = 2 * Math.PI * f, wd = w * Math.sqrt(1 - z * z);
+  return 1 - Math.exp(-z * w * tau) * (Math.cos(wd * tau) + (z * w / wd) * Math.sin(wd * tau));
+}
+const $ = id => document.getElementById(id);
+
+// découpe un texte en mots masqués
+function words(el, text, extraClass = '') {
+  el.innerHTML = text.split(' ').map(w => `<span class="mask ${extraClass}"><span>${w}</span></span>`).join('');
+  return [...el.querySelectorAll('.mask>span')];
+}
+// texte qui monte en masque, mot à mot (55 ms) avec légère rotation ; sortie vers le haut
+function rise(spans, t, tin, tout, stagger = 0.055) {
+  spans.forEach((s, i) => {
+    const a = step(t - tin - i * stagger, 1.9, 0.8);
+    const b = tout == null ? 0 : io((t - tout - i * 0.03) / 0.42);
+    const y = (1 - a) * 105 - b * 105;
+    s.style.transform = `translateY(${y}%) rotate(${(1 - a) * 4 - b * 2}deg)`;
+  });
+}
+const vis = (el, on) => { el.style.visibility = on ? 'inherit' : 'hidden'; };
+
+// ---------- construction ----------
+const famSpans = [...$('iFam').querySelectorAll('.mask>span')];
+const eyeSpans = words($('iEye'), 'UN MESSAGE IMPORTANT DE');
+const nameSpans = words($('iName'), 'Koffi <i>Élisée</i>'.replace('<i>', '').replace('</i>', ''));
+nameSpans[1].style.fontStyle = 'italic'; nameSpans[1].style.color = '#B4842C';
+const roleSpans = words($('iRole'), 'Responsable des affaires spirituelles · l’Union');
+const ltName = words($('ltName'), 'Kouadio Koffi Élisée');
+const ltRole = words($('ltRole'), 'RESPONSABLE DES AFFAIRES SPIRITUELLES');
+const cards = [...document.querySelectorAll('.card')];
+const oTitle = words($('oTitle'), 'Gethsémané');
+const oEns = words($('oEns'), 'Ensemble, nous pouvons réussir.');
+const oBless = words($('oBless'), 'Que Dieu vous bénisse.');
+
+// moments « titre haut » : [entrée, sortie, sur-titre, titre, sous-titre, italique]
+const TOPS = [
+  [VO + 20.0, VO + 37.6, 'EN PRÉSENTIEL', '2 spéciaux <b>Gethsémané</b>', '', false],
+  [VO + 38.3, VO + 41.9, 'INVITE TON FRÈRE, TA SŒUR, TON PAPA', 'Soyons nombreux.', '', true],
+  [VO + 42.2, VO + 46.4, 'UN MERVEILLEUX MOMENT', 'En présence de Dieu', '', true],
+  [VO + 49.4, VO + 58.4, 'ÉLAN DE SOLIDARITÉ', 'Pour nos frères et sœurs', 'qui traversent une période de deuil', false],
+  [VO + 58.7, VO + 62.2, 'MONTRONS NOTRE', 'Fraternité · Unité', '', true],
+  [VO + 62.5, VO + 67.1, 'PEU IMPORTE LE MONTANT', 'Chaque franc compte', '', false],
+  [VO + 67.3, VO + 73.6, 'L’ARGENT PLUS L’ARGENT', '1 + 1', 'ensemble, chaque geste s’additionne', false],
+  [VO + 74.2, VO + 78.9, 'ENSEMBLE,', 'Nous pouvons réussir.', '', true],
+];
+// pré-construction des contenus de chaque moment
+const topEl = { eye: $('topEye'), title: $('topTitle'), sub: $('topSub'), plate: $('topPlate') };
+const built = TOPS.map(([a, b, eye, title, sub, it]) => {
+  const tmp = document.createElement('div');
+  const e = document.createElement('div'); const ti = document.createElement('div'); const su = document.createElement('div');
+  words(e, eye);
+  ti.innerHTML = title.split(' ').map(w => {
+    const gold = w.startsWith('<b>');
+    w = w.replace('<b>', '').replace('</b>', '');
+    return `<span class="mask"><span style="${gold ? 'color:#B4842C;font-style:italic' : ''}">${w}</span></span>`;
+  }).join('');
+  if (it) ti.style.fontStyle = 'italic';
+  words(su, sub);
+  return { a, b, eyeHTML: e.innerHTML, titleHTML: ti.innerHTML, subHTML: su.innerHTML, it, hasSub: !!sub, big: title === '1 + 1' };
+});
+let currentTop = -1;
+function setTop(i) {
+  if (i === currentTop) return;
+  currentTop = i;
+  if (i < 0) return;
+  const B = built[i];
+  topEl.eye.innerHTML = B.eyeHTML; topEl.title.innerHTML = B.titleHTML; topEl.sub.innerHTML = B.subHTML;
+  topEl.title.style.fontStyle = B.it ? 'italic' : 'normal';
+  topEl.title.style.fontSize = B.big ? '150px' : (TOPS[i][3].length > 20 && !TOPS[i][3].includes('<b>') ? '80px' : '92px');
+  topEl.title.style.color = B.big ? '#B4842C' : '';
+  topEl.sub.style.display = B.hasSub ? 'block' : 'none';
+}
+
+// ---------- seek ----------
+window.seek = async (t) => {
+  $('hud').textContent = t.toFixed(2) + ' s';
+  const ioIn = io((t - 4.75) / 0.75);          // ouverture du trou
+  const ioOut = io((t - (VEND - 0.55)) / 0.7);   // fermeture
+  const inMain = t > 5.5 && t < VEND - 0.55;
+
+  // fond + trou
+  let holeK = t < VEND - 1 ? ioIn : 1 - ioOut;   // 0 = fermé, 1 = plein écran
+  const bgOn = holeK < 1;
+  vis($('hole'), bgOn); vis($('holeRing'), bgOn && holeK > 0);
+  if (bgOn) {
+    // le rectangle arrondi grandit depuis le centre et dégage le coin le plus éloigné
+    const hw = lerp(0, W * 1.12, holeK), hh = lerp(0, H * 1.12, Math.pow(holeK, 0.85));
+    const r = lerp(60, 0, holeK);
+    const hole = $('hole'), ring = $('holeRing');
+    for (const el of [hole, ring]) {
+      el.style.left = (W / 2 - hw / 2) + 'px'; el.style.top = (H / 2 - hh / 2) + 'px';
+      el.style.width = hw + 'px'; el.style.height = hh + 'px'; el.style.borderRadius = r + 'px';
+    }
+    // fond : dégradé radial chaud très léger, porté par l'ombre du trou
+    hole.style.boxShadow = `0 0 0 3000px #F4EDE2`;
+    ring.style.opacity = holeK > 0 ? (1 - holeK) * 0.9 : 0;
+  }
+
+  // ---------- INTRO ----------
+  const intro = $('intro');
+  vis(intro, t < 5.6);
+  if (t < 5.6) {
+    const cam = 1 + 0.035 * io(t / 5) + 0.06 * inn((t - 4.6) / 0.9);
+    const lift = -140 * io((t - 4.55) / 0.8);
+    intro.style.transform = `translateY(${lift}px) scale(${cam})`;
+    intro.style.opacity = 1 - io((t - 4.7) / 0.6);
+    const lw = 560 * step(t - 0.25, 1.1, 0.85);
+    $('iLine').style.width = lw + 'px'; $('iLine').style.left = (540 - lw / 2) + 'px';
+    $('iLine').style.top = lerp(700, 725, io((t - 1.45) / 0.6)) + 'px';
+    rise(famSpans, t, 0.35, 1.45);
+    rise(eyeSpans, t, 1.55, 4.5, 0.06);
+    rise(nameSpans, t, 3.25, 4.55, 0.12);
+    rise(roleSpans, t, 3.75, 4.6, 0.035);
+    const d = step(t - 3.9, 1.6, 0.8);
+    $('iDia').style.transform = `rotate(${45 + (1 - d) * 90}deg) scale(${d})`;
+    $('iDia').style.opacity = d * (1 - io((t - 4.5) / 0.4));
+  }
+
+  // ---------- carton nom ----------
+  const lt = $('lt');
+  const la = VO + 8.6, lb = VO + 14.0;
+  vis(lt, t > la - 0.1 && t < lb + 0.8);
+  if (t > la - 0.1 && t < lb + 0.8) {
+    const a = step(t - la, 1.5, 0.82), b = io((t - lb) / 0.6);
+    lt.style.transform = `translateY(${(1 - a) * 60 + b * 40}px)`;
+    lt.style.opacity = clamp(a * 1.4) * (1 - b);
+    lt.style.clipPath = `inset(0 ${(1 - out((t - la) / 0.6)) * 100}% 0 0 round 30px)`;
+    $('ltBar').style.transform = `scaleY(${step(t - la - 0.15, 1.8, 0.8)})`;
+    rise(ltName, t, la + 0.2, null, 0.07);
+    rise(ltRole, t, la + 0.45, null, 0.03);
+    // micro-dérive
+    $('ltName').style.transform = `translateX(${(t - la) * 2}px)`;
+  }
+
+  // ---------- titres du haut ----------
+  let idx = -1;
+  for (let i = 0; i < TOPS.length; i++) if (t >= TOPS[i][0] - 0.05 && t < TOPS[i][1] + 0.55) idx = i;
+  setTop(idx);
+  vis($('top'), idx >= 0);
+  if (idx >= 0) {
+    const [a, b] = TOPS[idx];
+    const ex = io((t - b) / 0.5);
+    const eyeS = [...topEl.eye.querySelectorAll('.mask>span')];
+    const tiS = [...topEl.title.querySelectorAll('.mask>span')];
+    const suS = [...topEl.sub.querySelectorAll('.mask>span')];
+    rise(eyeS, t, a, b, 0.04);
+    rise(tiS, t, a + 0.15, b + 0.05, 0.09);
+    rise(suS, t, a + 0.4, b + 0.08, 0.035);
+    // plaque derrière le titre : s’ouvre depuis le centre
+    const inner = el => { let w = 0; el.querySelectorAll('.mask').forEach(m => { w += m.offsetWidth + parseFloat(getComputedStyle(m).marginRight); }); return w; };
+    const pw = Math.min(980, Math.max(inner(topEl.eye), inner(topEl.title), inner(topEl.sub)) + 190);
+    const last = built[idx].hasSub ? topEl.sub : topEl.title;
+    const ph = last.offsetTop + last.offsetHeight + 50;
+    const k = step(t - a + 0.05, 1.6, 0.85) * (1 - ex);
+    const pl = topEl.plate;
+    pl.style.width = pw * (0.6 + 0.4 * k) + 'px'; pl.style.height = ph + 'px';
+    pl.style.marginLeft = -(pw * (0.6 + 0.4 * k)) / 2 + 'px';
+    pl.style.opacity = k;
+    // dérive lente vers le haut + punch léger à l’entrée
+    const drift = -(t - a) * 4;
+    const punch = 1 + 0.03 * Math.exp(-(t - a) * 3) * (t > a ? 1 : 0);
+    $('top').style.transform = `translateY(${drift - ex * 30}px) scale(${punch})`;
+  }
+
+  // ---------- cartes événements ----------
+  const ca = [VO + 24.5, VO + 28.9], cb = VO + 37.6;
+  const cOn = t > ca[0] - 0.1 && t < cb + 0.9;
+  vis($('cards'), cOn);
+  if (cOn) {
+    cards.forEach((c, i) => {
+      const a = step(t - ca[i], 1.5, 0.82), b = io((t - cb - i * 0.08) / 0.6);
+      c.style.transform = `translateX(${(1 - a) * 1100 - b * 1100}px)`;
+      c.style.opacity = t < ca[i] ? 0 : 1;
+      const n = c.querySelector('.num'); n.style.transform = `translateY(${(1 - step(t - ca[i] - 0.15, 1.8, 0.8)) * 60}px)`;
+      c.querySelector('.l2').style.transform = `translateX(${(1 - o5((t - ca[i] - 0.2) / 0.8)) * 80 + (t - ca[i]) * 1.5}px)`;
+    });
+  }
+
+  // ---------- OUTRO ----------
+  const o0 = VEND + 0.3; // début de la voix off de fin
+  const outro = $('outro');
+  vis(outro, t > VEND - 0.4);
+  if (t > VEND - 0.4) {
+    const cam = 1 + 0.02 * io((t - o0) / 10);
+    outro.style.transform = `scale(${cam})`;
+    const d = step(t - (o0 - 0.3), 1.4, 0.8);
+    $('oDia').style.transform = `rotate(${45 + (1 - d) * 90}deg) scale(${d})`;
+    $('oEye').style.opacity = out((t - o0) / 0.5); $('oEye').style.transform = `translateY(${(1 - o5((t - o0) / 0.8)) * 30}px)`;
+    rise(oTitle, t, o0 + 0.7, null);
+    const lw = 620 * step(t - (o0 + 1.6), 1.2, 0.85);
+    $('oLine').style.width = lw + 'px'; $('oLine').style.left = (540 - lw / 2) + 'px';
+    [['oR1', o0 + 2.1], ['oR2', o0 + 3.5]].forEach(([id, a]) => {
+      const k = step(t - a, 1.6, 0.82);
+      $(id).style.opacity = clamp(k); $(id).style.transform = `translateY(${(1 - k) * 40}px)`;
+    });
+    rise(oEns, t, o0 + 4.6, null, 0.11);
+    rise(oBless, t, o0 + 7.15, null, 0.1);
+  }
+};
+
+// ---------- aperçu ----------
+let playing = false, T = 0, last = 0;
+function loop(now) {
+  if (playing) { T += (now - last) / 1000; if (T > END) T = 0; window.seek(T); }
+  last = now; requestAnimationFrame(loop);
+}
+if (location.search.includes('preview')) {
+  document.body.classList.add('preview');
+  addEventListener('keydown', e => {
+    if (e.code === 'Space') playing = !playing;
+    if (e.code === 'ArrowRight') { T += 1 / 30; window.seek(T); }
+    if (e.code === 'ArrowLeft') { T -= 1 / 30; window.seek(T); }
+    if (e.code === 'KeyR') { T = 0; playing = true; }
+  });
+  requestAnimationFrame(loop);
+}
+document.fonts.ready.then(() => { window.seek(0); window.ready = true; });
+</script>
+</body>
+</html>
