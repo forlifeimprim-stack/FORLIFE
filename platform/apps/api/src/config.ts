@@ -61,6 +61,8 @@ const schema = z.object({
   /** Visibilité des vidéos envoyées : « private » tant que l'audit YouTube n'est pas obtenu, puis « public ». */
   /** Clé d'API YouTube (facultative) : lecture des chaînes publiques sans compte YouTube connecté. */
   YOUTUBE_API_KEY: z.string().optional(),
+  /** Voix off du Video Studio : « google » = Cloud Text-to-Speech (compte de service), « none » = désactivée. */
+  TTS_PROVIDER: z.enum(["none", "google"]).default("none"),
   YOUTUBE_PRIVACY: z.enum(["private", "unlisted", "public"]).default("private"),
   /** Binaire FFmpeg utilisé par le Video Studio. */
   FFMPEG_PATH: z.string().default("ffmpeg"),

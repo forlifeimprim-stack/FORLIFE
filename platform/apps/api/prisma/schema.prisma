@@ -1089,6 +1089,8 @@ model VideoProject {
   cta            String?
   /// 10 | 12 | 15 secondes
   durationTarget Int           @default(15)
+  /// Voix off : NONE | FEMALE | MALE (lecture des sous-titres de chaque scène)
+  voice          String        @default("NONE")
   hook           String?
   productAssetIds Json         @default("[]")
   status         String        @default("DRAFT")

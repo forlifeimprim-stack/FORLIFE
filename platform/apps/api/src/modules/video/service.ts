@@ -12,6 +12,7 @@ import { getStorage } from "../storage/storage.js";
 import { isSafeImage } from "../../lib/image.js";
 import { palettes, type Image } from "../creative/composer.js";
 import { END_CARD, renderVideo, srt, type PlannedScene, type VideoPlan } from "./renderer.js";
+import { getSynthesizer } from "./tts.js";
 
 const PHOTO_MIME = ["image/png", "image/jpeg", "image/webp"];
 const ids = (v: unknown) => (Array.isArray(v) ? v.filter((x): x is string => typeof x === "string") : []);
@@ -90,6 +91,28 @@ export async function chargeVideoRender(organizationId: string, workspaceId: str
   return true;
 }
 
+/**
+ * Voix off : synthèse du sous-titre de chaque scène. Si le service vocal est indisponible, la vidéo est rendue
+ * sans voix et la raison est notée dans le contrôle qualité (le rendu ne doit jamais échouer pour la voix).
+ */
+async function addVoiceover(plan: VideoPlan, voice: string): Promise<string | null> {
+  if (voice !== "FEMALE" && voice !== "MALE") return null;
+  const tts = getSynthesizer();
+  if (!tts) return "Voix off non activée sur ce serveur : vidéo rendue avec musique seule.";
+  try {
+    const clips = [];
+    for (const s of plan.scenes) {
+      if (!s.caption.trim()) continue;
+      const audio = await tts.synthesize(s.caption, voice, s.end - s.start);
+      if (audio) clips.push({ start: s.start, end: s.end, audio });
+    }
+    plan.voiceover = clips;
+    return null;
+  } catch (e) {
+    return `Voix off indisponible (${e instanceof Error ? e.message : String(e)}) : vidéo rendue avec musique seule.`;
+  }
+}
+
 export async function renderJob(job: Job) {
   const p = job.payload as { workspaceId: string; projectId: string; renderId: string; actorId: string; requestId: string };
   const r = await prisma.videoRender.findUniqueOrThrow({ where: { id: p.renderId } });
@@ -120,6 +143,7 @@ export async function renderJob(job: Job) {
       cta: project.cta ?? "Écrivez-nous sur WhatsApp",
       offer: project.offer,
     };
+    const voiceNote = await addVoiceover(plan, project.voice);
     let last = 0;
     const mp4 = await renderVideo(plan, (pct) => {
       if (pct - last >= 10) {
@@ -130,7 +154,7 @@ export async function renderJob(job: Job) {
     const base = `${job.organizationId}/${p.workspaceId}/video/${createId()}`;
     await getStorage().put(`${base}.mp4`, mp4, "video/mp4");
     await getStorage().put(`${base}.srt`, Buffer.from(srt(plan), "utf8"), "text/plain");
-    const qc = qualityCheck(project, project.scenes);
+    const qc = { ...qualityCheck(project, project.scenes), ...(voiceNote ? { voice: voiceNote } : {}) };
     await prisma.$transaction([
       prisma.videoRender.update({ where: { id: r.id }, data: { status: "SUCCEEDED", progress: 100, storageKey: `${base}.mp4`, srtKey: `${base}.srt`, durationSec: plan.total, sizeBytes: mp4.length, qc: qc as unknown as Prisma.InputJsonValue, score: qc.score, finishedAt: new Date() } }),
       prisma.videoProject.update({ where: { id: project.id }, data: { status: "RENDERED" } }),

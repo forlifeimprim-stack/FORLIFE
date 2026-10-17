@@ -28,6 +28,8 @@ interface Render {
   score: number | null;
   error: string | null;
   createdAt: string;
+  /** Contrôle qualité du rendu ; « voice » explique une voix off non appliquée. */
+  qc?: { voice?: string } | null;
 }
 interface Qc {
   score: number;
@@ -42,6 +44,7 @@ interface Project {
   offer: string | null;
   cta: string | null;
   durationTarget: number;
+  voice: Voice;
   hook: string | null;
   status: string;
   scenes: Scene[];
@@ -57,6 +60,21 @@ interface Asset {
 }
 
 const PHOTO = ["image/png", "image/jpeg", "image/webp"];
+
+type Voice = "NONE" | "FEMALE" | "MALE";
+const VOICE_LABELS: Record<Voice, string> = { NONE: "Sans voix (musique seule)", FEMALE: "Voix féminine", MALE: "Voix masculine" };
+
+function VoiceSelect({ value, onChange, disabled }: { value: Voice; onChange: (v: Voice) => void; disabled?: boolean }) {
+  return (
+    <select value={value} disabled={disabled} onChange={(e) => onChange(e.target.value as Voice)}>
+      {(Object.keys(VOICE_LABELS) as Voice[]).map((v) => (
+        <option key={v} value={v}>
+          {VOICE_LABELS[v]}
+        </option>
+      ))}
+    </select>
+  );
+}
 const statusTone = (s: string) => (s === "APPROVED" || s === "RENDERED" ? "success" : s === "FAILED" ? "danger" : s === "RENDERING" ? "warning" : "neutral");
 const scoreTone = (s: number) => (s >= 80 ? "success" : s >= 60 ? "warning" : "danger");
 
@@ -67,7 +85,7 @@ export function VideoStudioPage() {
   const projects = useResource<{ id: string; title: string; objective: ObjectiveType; durationTarget: number; status: string; scenes: number; createdAt: string; lastRender: { score: number | null } | null }[]>(`${ws}/video/projects`);
   const assets = useResource<{ assets: Asset[] }>(`${ws}/brand`);
   const photos = assets.data?.assets.filter((a) => PHOTO.includes(a.mime) && a.type !== "logo") ?? [];
-  const [f, setF] = useState({ title: "", objective: "SALES" as ObjectiveType, brief: "", offer: "", cta: "", durationTarget: 15 as (typeof VIDEO_DURATIONS)[number], productAssetIds: [] as string[] });
+  const [f, setF] = useState({ title: "", objective: "SALES" as ObjectiveType, brief: "", offer: "", cta: "", durationTarget: 15 as (typeof VIDEO_DURATIONS)[number], voice: "NONE" as Voice, productAssetIds: [] as string[] });
   const [err, setErr] = useState<string | null>(null);
   const job = useJob(ws);
 
@@ -128,6 +146,9 @@ export function VideoStudioPage() {
                 <input value={f.cta} onChange={(e) => setF({ ...f, cta: e.target.value })} placeholder="Ex. Écrivez-nous sur WhatsApp" maxLength={40} />
               </Field>
             </div>
+            <Field label="Voix off" hint="Une voix française lit le sous-titre de chaque scène, par-dessus la musique.">
+              <VoiceSelect value={f.voice} onChange={(voice) => setF({ ...f, voice })} />
+            </Field>
             <Field label="Vraies photos à mettre en scène (5 max.)" hint={photos.length ? "Photos conservées telles quelles : l'IA ne les modifie jamais" : "Importez des photos dans Brand DNA → Assets"}>
               <div className="photo-picker">
                 {photos.map((p) => (
@@ -290,6 +311,20 @@ export function VideoProjectPage() {
               ) : (
                 <div className="stack">
                   {latest?.status === "FAILED" && <Alert tone="error">Le dernier rendu a échoué ({latest.error}). Vos crédits ont été remboursés.</Alert>}
+                  <Field label="Voix off">
+                    <VoiceSelect
+                      value={data.voice}
+                      disabled={!editable}
+                      onChange={async (voice) => {
+                        try {
+                          await api.patch(`${ws}/video/projects/${data.id}`, { voice });
+                          void reload();
+                        } catch (e) {
+                          setErr(errorMessage(e));
+                        }
+                      }}
+                    />
+                  </Field>
                   {can("ai:generate") && (
                     <Button busy={busy} disabled={!data.scenes.length} onClick={render}>
                       {done ? "Rendre une nouvelle version" : "Générer la vidéo"}
@@ -297,6 +332,7 @@ export function VideoProjectPage() {
                   )}
                 </div>
               )}
+              {done?.qc?.voice && <Alert tone="info">{done.qc.voice}</Alert>}
               {done && <VideoPlayer ws={ws} render={done} canApprove={can("content:update") && data.status !== "APPROVED"} onApprove={() => approve(done)} />}
             </Card>
           </div>

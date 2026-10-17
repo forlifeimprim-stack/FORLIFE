@@ -11,6 +11,8 @@ import { getStorage } from "../storage/storage.js";
 import { chargeVideoRender, qualityCheck } from "./service.js";
 import { ledger } from "../billing/ledger.js";
 
+import { VOICES } from "./tts.js";
+
 const wsParams = z.object({ workspaceId: z.string() });
 const wsIdParams = z.object({ workspaceId: z.string(), id: z.string() });
 const motions = Object.keys(VIDEO_MOTIONS) as [keyof typeof VIDEO_MOTIONS, ...(keyof typeof VIDEO_MOTIONS)[]];
@@ -49,6 +51,7 @@ export async function videoRoutes(app: FastifyInstance) {
         offer: z.string().trim().max(60).nullish(),
         cta: z.string().trim().max(40).nullish(),
         durationTarget: z.union(VIDEO_DURATIONS.map((d) => z.literal(d)) as [z.ZodLiteral<10>, z.ZodLiteral<12>, z.ZodLiteral<15>]).default(15),
+        voice: z.enum(VOICES).default("NONE"),
         productAssetIds: z.array(z.string()).max(5).default([]),
         contentId: z.string().nullish(),
         campaignId: z.string().nullish(),
@@ -102,7 +105,7 @@ export async function videoRoutes(app: FastifyInstance) {
   app.patch("/api/workspaces/:workspaceId/video/projects/:id", { preHandler: authenticate }, async (req) => {
     const { workspaceId, id } = parse(wsIdParams, req.params);
     const ctx = await requireWorkspace(req, workspaceId, "content:update");
-    const body = parse(z.object({ title: z.string().trim().min(3).max(120).optional(), cta: z.string().trim().max(40).nullish(), offer: z.string().trim().max(60).nullish() }), req.body);
+    const body = parse(z.object({ title: z.string().trim().min(3).max(120).optional(), cta: z.string().trim().max(40).nullish(), offer: z.string().trim().max(60).nullish(), voice: z.enum(VOICES).optional() }), req.body);
     const res = await prisma.videoProject.updateMany({ where: { id, workspaceId, status: { not: "RENDERING" } }, data: body });
     if (!res.count) throw notFound("Projet vidéo");
     await audit({ ...auditCtx(ctx), action: "video.project_updated", entityType: "video_project", entityId: id });

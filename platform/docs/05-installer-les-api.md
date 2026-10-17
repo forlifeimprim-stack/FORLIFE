@@ -73,6 +73,17 @@ Instagram : le compte doit être **professionnel** et relié à une page Faceboo
    (vertical court → Short), en **privé** tant que `YOUTUBE_PRIVACY` n'est pas passé à `public` — à faire après
    l'audit « YouTube API Services », l'API forçant le privé avant. Jeton (1 h) renouvelé automatiquement.
 
+## Voix off du Video Studio (Google Text-to-Speech)
+
+La voix off utilise le compte de service de Cloud Run : **aucune clé à créer**. Il suffit d'activer l'API une
+fois :
+[console.cloud.google.com/apis/library/texttospeech.googleapis.com](https://console.cloud.google.com/apis/library/texttospeech.googleapis.com?project=ai-growth-et-creative-os)
+→ **Activer**.
+
+Voix utilisées : `fr-FR-Neural2-A` (féminine) et `fr-FR-Neural2-B` (masculine). Le premier million de caractères
+par mois est gratuit, soit environ 15 000 vidéos. Tant que l'API n'est pas activée, les vidéos sont rendues avec
+la musique seule, et la raison s'affiche sous le lecteur.
+
 ### « Analyser mes réseaux » (Business Brain)
 
 L'utilisateur colle le lien de chaque page ; ce que chaque réseau permet de lire :

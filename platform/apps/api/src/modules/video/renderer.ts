@@ -1,5 +1,5 @@
 import { spawn } from "node:child_process";
-import { mkdtemp, readFile, rm } from "node:fs/promises";
+import { mkdtemp, readFile, rm, writeFile } from "node:fs/promises";
 import { tmpdir } from "node:os";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
@@ -34,6 +34,8 @@ export interface VideoPlan {
   logo: Image | null;
   cta: string;
   offer: string | null;
+  /** Voix off : un extrait audio (MP3) par scène, joué à son début et coupé à sa fin. */
+  voiceover?: { start: number; end: number; audio: Buffer }[];
 }
 
 const clamp = (x: number, a = 0, b = 1) => Math.min(b, Math.max(a, x));
@@ -219,12 +221,35 @@ export async function renderVideo(input: VideoPlan, onProgress?: (pct: number) =
   const dir = await mkdtemp(join(tmpdir(), "forlife-video-"));
   const out = join(dir, "video.mp4");
   try {
+    // Voix off : chaque extrait est calé sur le début de sa scène ; la musique passe en retrait dessous.
+    const voice = input.voiceover ?? [];
+    const voiceInputs: string[] = [];
+    for (const [i, v] of voice.entries()) {
+      const file = join(dir, `voix-${i}.mp3`);
+      await writeFile(file, v.audio);
+      voiceInputs.push("-i", file);
+    }
+    const audioMap = voice.length
+      ? [
+          "-filter_complex",
+          [
+            "[1:a]volume=0.4[m]",
+            ...voice.map((v, i) => {
+              const dur = Math.max(0.3, v.end - v.start);
+              return `[${i + 2}:a]atrim=0:${dur.toFixed(2)},afade=t=out:st=${Math.max(0, dur - 0.15).toFixed(2)}:d=0.15,adelay=${Math.round(v.start * 1000)}:all=1,volume=1.6[v${i}]`;
+            }),
+            `[m]${voice.map((_, i) => `[v${i}]`).join("")}amix=inputs=${voice.length + 1}:duration=first:normalize=0[a]`,
+          ].join(";"),
+          "-map", "0:v", "-map", "[a]",
+        ]
+      : ["-map", "0:v", "-map", "1:a"];
     const ff = spawn(loadConfig().FFMPEG_PATH, [
       "-y", "-loglevel", "error",
       // Pixels bruts RGBA : pas de compression PNG intermédiaire.
       "-f", "rawvideo", "-pix_fmt", "rgba", "-s", `${W}x${H}`, "-framerate", String(FPS), "-i", "-",
       "-f", "lavfi", "-i", musicFilter(plan.total),
-      "-map", "0:v", "-map", "1:a",
+      ...voiceInputs,
+      ...audioMap,
       "-c:v", "libx264", "-preset", "veryfast", "-crf", "21", "-pix_fmt", "yuv420p", "-r", String(FPS),
       "-c:a", "aac", "-b:a", "128k", "-shortest", "-movflags", "+faststart", out,
     ], { stdio: ["pipe", "ignore", "pipe"] });
