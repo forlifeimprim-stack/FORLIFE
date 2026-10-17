@@ -9,8 +9,8 @@ export function loadFaceApi() {
     const faceapi = await import(FACE_API_URL);
     const tf = faceapi.tf;
     // WebGL (carte graphique) si possible, sinon WebAssembly, sinon processeur.
-    tf.setWasmPaths?.(TF_WASM_URL);
-    for (const backend of ["webgl", "wasm", "cpu"]) {
+    if (TF_WASM_URL) tf.setWasmPaths?.(TF_WASM_URL);
+    for (const backend of TF_WASM_URL ? ["webgl", "wasm", "cpu"] : ["webgl", "cpu"]) {
       try {
         if (await tf.setBackend(backend)) {
           await tf.ready();

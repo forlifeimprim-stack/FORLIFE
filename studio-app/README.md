@@ -10,14 +10,13 @@ Cahier des charges : [`../docs/studio-app/CAHIER_DES_CHARGES.md`](../docs/studio
 | `web/` | **Application web** : espace photographe (dépôt des photos, retouche et visages dans le navigateur, QR du jour) + parcours client (selfie → ses photos, 30 jours) | **Prête** — mode démonstration sans Firebase, mode production avec Firebase |
 | `firebase/` | Règles Firestore/Storage + Cloud Functions (galerie par selfie, URL signées, purge à 30 jours) | Prêtes à déployer |
 | — | Appli Android « ForLife Capture » (extérieur) | À venir (MVP 1 bis) |
-| — | Galerie client (selfie, 30 jours) | À venir (MVP 2) |
 
 ---
 
 ## Application web
 
-- **Client** : `index.html#/` → consentement → selfie → ses photos (lien privé de 30 jours, WhatsApp, téléchargement).
-- **Photographe** : `index.html#/studio` → déposer ou photographier, retouche automatique, visages, QR du jour.
+- **Client** : `index.html#accueil` → consentement → selfie → ses photos (lien privé de 30 jours, WhatsApp, téléchargement).
+- **Photographe** : `index.html#studio` → déposer ou photographier, retouche automatique, visages, QR du jour.
 - Sans configuration Firebase (`web/js/config.js`), l'application tourne en **mode démonstration** : tout reste dans le navigateur.
 
 ### Mise en production sur Firebase (projet `forlifecom-6eef9`)

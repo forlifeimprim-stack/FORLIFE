@@ -13,7 +13,8 @@ const esc = (s) => String(s ?? "").replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "
 const plural = (n, w) => `${n} ${w}${n > 1 ? "s" : ""}`;
 const longDay = (day) => new Date(`${day}T12:00:00Z`).toLocaleDateString("fr-FR", { weekday: "long", day: "numeric", month: "long", timeZone: "UTC" });
 const baseUrl = () => location.href.split("#")[0];
-const brand = `<a class="brand" href="#/" aria-label="ForLife Studio, accueil"><svg aria-hidden="true"><use href="#logo-f"/></svg><b>ForLife</b><i>Studio</i></a>`;
+const galleryLink = (id) => `${baseUrl()}#g-${id}`;
+const brand = `<a class="brand" href="#accueil" aria-label="ForLife Studio, accueil"><svg aria-hidden="true"><use href="#logo-f"/></svg><b>ForLife</b><i>Studio</i></a>`;
 const demoBadge = () => (store.mode === "demo" ? `<span class="badge-demo" title="Les photos restent dans ce navigateur">Démonstration</span>` : "");
 
 export function toast(message, kind = "info") {
@@ -41,19 +42,25 @@ function revealImg(img) {
   else img.addEventListener("load", () => img.classList.add("is-loaded"), { once: true });
 }
 
+let downloadsCap;
 async function download(url, filename) {
-  try {
-    const blob = await (await fetch(url)).blob();
-    const a = document.createElement("a");
-    a.href = URL.createObjectURL(blob);
-    a.download = filename;
-    document.body.append(a);
-    a.click();
-    a.remove();
-    setTimeout(() => URL.revokeObjectURL(a.href), 4000);
-  } catch {
-    window.open(url, "_blank", "noopener");
+  const blob = await (await fetch(url)).blob();
+  // Dans une page hébergée par Claude, le téléchargement passe par la fonction prévue.
+  if (window.claude?.use) {
+    downloadsCap ??= window.claude.use("downloads").catch(() => null);
+    const cap = await downloadsCap;
+    if (cap) {
+      try { await cap.save({ filename, data: blob }); } catch { /* refusé par le visiteur */ }
+      return;
+    }
   }
+  const a = document.createElement("a");
+  a.href = URL.createObjectURL(blob);
+  a.download = filename;
+  document.body.append(a);
+  a.click();
+  a.remove();
+  setTimeout(() => URL.revokeObjectURL(a.href), 4000);
 }
 
 let qrLib = null;
@@ -134,7 +141,7 @@ async function searchWithSelfie(file, day) {
     }
     el.querySelector("#msg").textContent = "Recherche dans les photos du jour";
     const gallery = await store.createGallery({ day, descriptor });
-    location.hash = `#/g/${gallery.id}`;
+    location.hash = `#g-${gallery.id}`;
   } catch (err) {
     console.error(err);
     toast("La recherche a échoué. Vérifiez votre connexion et réessayez.", "err");
@@ -156,14 +163,14 @@ function viewGallery(galleryId) {
 
   const stop = store.watchGallery(galleryId, (res) => {
     if (!res) {
-      box.innerHTML = `<div class="empty-card"><h1 class="display" style="font-size:32px">Lien expiré</h1><p class="muted">Ce lien n'est plus valide (accès de ${STUDIO.galleryDays} jours). Rapprochez‑vous du studio.</p><a class="btn btn--primary" href="#/">Nouvelle recherche</a></div>`;
+      box.innerHTML = `<div class="empty-card"><h1 class="display" style="font-size:32px">Lien expiré</h1><p class="muted">Ce lien n'est plus valide (accès de ${STUDIO.galleryDays} jours). Rapprochez‑vous du studio.</p><a class="btn btn--primary" href="#accueil">Nouvelle recherche</a></div>`;
       return;
     }
     const { gallery, photos } = res;
     if (!headDone) {
       headDone = true;
       const days = Math.max(0, Math.ceil((gallery.expiresAt - Date.now()) / 86400000));
-      const link = `${baseUrl()}#/g/${galleryId}`;
+      const link = galleryLink(galleryId);
       box.innerHTML = `
         <div class="gallery__head">
           <div><h1 class="display">Vos <em>photos</em></h1><p class="small" id="count"></p></div>
@@ -177,7 +184,7 @@ function viewGallery(galleryId) {
           <svg class="iris-spin" aria-hidden="true"><use href="#iris"/></svg>
           <p><b>Pas encore de photo de vous.</b></p>
           <p class="muted small">Les photos apparaissent ici automatiquement pendant la séance, gardez cette page ouverte.</p>
-          <a class="btn btn--ghost btn--sm" href="#/">Refaire mon selfie</a>
+          <a class="btn btn--ghost btn--sm" href="#accueil">Refaire mon selfie</a>
         </div>
         <div class="wa-box">
           <b>Gardez ce lien pour ${STUDIO.galleryDays} jours</b>
@@ -188,10 +195,19 @@ function viewGallery(galleryId) {
             <button class="btn btn--wa" id="wa" type="button"><svg class="icon" aria-hidden="true"><use href="#i-whatsapp"/></svg>Recevoir sur WhatsApp</button>
             <button class="btn btn--ghost" id="copy" type="button">Copier le lien</button>
           </div>
+          <input class="input" id="linkText" readonly hidden value="${esc(link)}" aria-label="Lien de vos photos">
           <p class="small">Sans WhatsApp, copiez le lien ou ajoutez cette page à votre écran d'accueil : elle fonctionne dans n'importe quel navigateur.</p>
         </div>`;
       box.querySelector("#copy").addEventListener("click", async () => {
-        try { await navigator.clipboard.writeText(link); toast("Lien copié"); } catch { prompt("Copiez ce lien :", link); }
+        try {
+          await navigator.clipboard.writeText(link);
+          toast("Lien copié");
+        } catch {
+          const out = box.querySelector("#linkText");
+          out.hidden = false;
+          out.select();
+          toast("Sélectionnez et copiez le lien affiché.");
+        }
       });
       box.querySelector("#wa").addEventListener("click", () => {
         const phone = box.querySelector("#phone").value.replace(/[^\d]/g, "");
@@ -257,7 +273,7 @@ function swatch(p) {
 
 function viewStudio() {
   const day = today();
-  const galleryEntry = `${baseUrl()}#/`;
+  const galleryEntry = `${baseUrl()}#accueil`;
   const el = mount(`
     <div class="studio">
       <header class="bar">
@@ -265,7 +281,7 @@ function viewStudio() {
         <span class="bar__day"><small>Dossier du jour</small><b>${esc(day)}</b></span>
         ${demoBadge()}
         <div class="bar__right">
-          <a class="btn btn--ghost btn--sm" href="#/" target="_blank" rel="noopener">Vue client</a>
+          <a class="btn btn--ghost btn--sm" href="#accueil">Vue client</a>
           ${store.mode === "firebase" ? '<button class="btn btn--ghost btn--sm" id="logout" type="button">Déconnexion</button>' : ""}
         </div>
       </header>
@@ -305,7 +321,7 @@ function viewStudio() {
             <div class="qr-wrap">
               <div class="qr" id="qr" aria-label="QR code de la page client"></div>
               <span class="link">${esc(galleryEntry)}</span>
-              <button class="btn btn--ghost btn--sm" id="print" type="button">Imprimer le QR</button>
+              <button class="btn btn--ghost btn--sm" id="print" type="button">Télécharger le QR (à imprimer)</button>
             </div>
           </section>
         </aside>
@@ -337,14 +353,12 @@ function viewStudio() {
 
   // QR
   qrSvg(galleryEntry).then((svg) => (el.querySelector("#qr").innerHTML = svg)).catch(() => (el.querySelector("#qr").textContent = "QR indisponible hors ligne"));
-  el.querySelector("#print").addEventListener("click", () => {
-    const w = window.open("", "_blank", "width=600,height=800");
-    if (!w) return;
-    w.document.write(`<title>QR ForLife Studio</title><body style="font-family:Poppins,sans-serif;text-align:center;padding:40px;color:#2A1A15">
-      <div style="width:320px;margin:0 auto">${el.querySelector("#qr").innerHTML}</div>
-      <h2 style="font-family:Georgia,serif;font-weight:500;font-size:30px;margin:24px 0 8px">Retrouvez vos photos</h2>
-      <p>Scannez, faites un selfie : vos photos ForLife Studio s'affichent.</p><script>onload=()=>print()<\/script></body>`);
-    w.document.close();
+  el.querySelector("#print").addEventListener("click", async () => {
+    const svg = el.querySelector("#qr svg");
+    if (!svg) return;
+    const url = URL.createObjectURL(new Blob([svg.outerHTML], { type: "image/svg+xml" }));
+    await download(url, `QR-ForLife-Studio.svg`);
+    URL.revokeObjectURL(url);
   });
 
   // Import des photos
@@ -385,8 +399,16 @@ function viewStudio() {
       if (!first && !studioState.known.has(p.id) && !reduceMotion) li.classList.add("is-new");
       li.innerHTML = `<img alt="${esc(p.name || "Photo")}" loading="lazy"><div class="tile__meta"><span class="chip">${plural((p.faces || []).length, "visage")}</span><button class="tile__del" type="button" aria-label="Supprimer cette photo"><svg aria-hidden="true"><use href="#i-trash"/></svg></button></div>`;
       li.querySelector("img").src = p.thumb;
-      li.querySelector(".tile__del").addEventListener("click", async () => {
-        if (!confirm("Supprimer définitivement cette photo ?")) return;
+      const del = li.querySelector(".tile__del");
+      del.addEventListener("click", async () => {
+        // Deux clics : le premier arme la suppression pendant 3 s.
+        if (!del.classList.contains("is-armed")) {
+          del.classList.add("is-armed");
+          del.setAttribute("aria-label", "Confirmer la suppression");
+          toast("Cliquez à nouveau sur la corbeille pour supprimer.");
+          setTimeout(() => { del.classList.remove("is-armed"); del.setAttribute("aria-label", "Supprimer cette photo"); }, 3000);
+          return;
+        }
         await store.deletePhoto(p.id, p.day);
         if (store.mode === "firebase") li.remove();
       });
@@ -447,10 +469,10 @@ let authOff = null;
 function route() {
   authOff?.();
   authOff = null;
-  const hash = location.hash || "#/";
-  const g = hash.match(/^#\/g\/([\w-]+)/);
+  const hash = location.hash || "#accueil";
+  const g = hash.match(/^#g-([\w-]+)/);
   if (g) return viewGallery(g[1]);
-  if (hash.startsWith("#/studio")) {
+  if (hash === "#studio") {
     if (store.mode === "demo") return viewStudio();
     authOff = store.onAuth((user) => (user ? viewStudio() : viewLogin()));
     return;
