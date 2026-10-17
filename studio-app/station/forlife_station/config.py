@@ -42,6 +42,8 @@ class StationConfig:
     web_max_side: int = 2048
     hd_max_side: int = 0  # 0 = pleine définition
     thumb_max_side: int = 400
+    public_base_url: str = "https://photos.forlife.com"  # galerie client (QR)
+    ui_port: int = 8787
     backend: str = "local"  # "local" ou "firebase"
     firebase_credentials: str = ""  # chemin du compte de service (Station)
     firebase_bucket: str = ""

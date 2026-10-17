@@ -204,6 +204,8 @@ def process(
         res.renditions["web"] = write_jpeg(out_dir / "web" / f"{name}.jpg", web, 88)
         thumb, _ = resize_max(web, thumb_max_side)
         res.renditions["thumb"] = write_jpeg(out_dir / "thumbs" / f"{name}.jpg", thumb, 80)
+        # Version « avant » (non retouchée) pour la comparaison avant/après de la Station.
+        res.renditions["before"] = write_jpeg(out_dir / "avant" / f"{name}.jpg", web_src, 80)
         res.timings["express"] = time.perf_counter() - t
 
     if "hd" in passes:

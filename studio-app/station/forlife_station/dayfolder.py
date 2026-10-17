@@ -8,7 +8,7 @@ from datetime import datetime
 from pathlib import Path
 from zoneinfo import ZoneInfo
 
-SUBDIRS = ("originaux", "hd", "web", "thumbs", "faces")
+SUBDIRS = ("originaux", "hd", "web", "thumbs", "avant", "faces")
 
 
 def slugify(text: str) -> str:

@@ -30,7 +30,7 @@ def test_folder_name_uses_abidjan_date_and_location():
 
 def test_ensure_day_folder(tmp_path):
     root = ensure_day_folder(tmp_path, "2026-10-17")
-    assert {p.name for p in root.iterdir()} == {"originaux", "hd", "web", "thumbs", "faces"}
+    assert {p.name for p in root.iterdir()} == {"originaux", "hd", "web", "thumbs", "avant", "faces"}
 
 
 def test_queue_newest_first_and_retries(tmp_path):

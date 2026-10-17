@@ -8,6 +8,7 @@ from dataclasses import asdict, dataclass, fields
 from pathlib import Path
 
 BUILTIN_DIR = Path(__file__).parent / "presets"
+ORDER = ["signature", "peaux-ebene", "corporate", "editorial", "exterieur", "noir-blanc", "evenement-rapide"]
 
 
 @dataclass
@@ -48,4 +49,5 @@ def load_presets(user_dir: Path | None = None) -> dict[str, Preset]:
     presets = {p.stem: _from_file(p) for p in sorted(BUILTIN_DIR.glob("*.json"))}
     if user_dir and Path(user_dir).is_dir():
         presets.update({p.stem: _from_file(p) for p in sorted(Path(user_dir).glob("*.json"))})
-    return presets
+    rank = {k: i for i, k in enumerate(ORDER)}
+    return dict(sorted(presets.items(), key=lambda kv: (rank.get(kv[0], len(ORDER)), kv[0])))

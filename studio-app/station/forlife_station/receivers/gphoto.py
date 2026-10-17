@@ -10,6 +10,7 @@ from __future__ import annotations
 import logging
 import shutil
 import subprocess
+import sys
 import threading
 import time
 from pathlib import Path
@@ -57,6 +58,9 @@ class TetherReceiver:
         pattern = str(self.target_dir / f"{self.cam.name}_%Y%m%d-%H%M%S_%f.%C")
         while not self._stop.is_set():
             cmd = base_command(self.cam) + ["--capture-tethered", "--keep", "--force-overwrite", "--filename", pattern]
+            if sys.platform == "darwin":
+                # macOS s'empare des appareils PTP (Photos, Transfert d'images) : on libère le boîtier.
+                subprocess.run(["killall", "ptpcamerad"], capture_output=True)
             try:
                 self._proc = subprocess.Popen(cmd, stdout=subprocess.PIPE, stderr=subprocess.STDOUT, text=True, bufsize=1)
             except FileNotFoundError:

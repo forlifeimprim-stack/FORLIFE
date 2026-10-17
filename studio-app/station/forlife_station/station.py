@@ -72,6 +72,9 @@ class Station:
             self.publishers.append(FirebasePublisher(cfg.firebase_credentials, cfg.firebase_bucket, cfg.studio_id))
         self._stop = threading.Event()
         self._threads: list[threading.Thread] = []
+        # Dernière activité par source (ftp:<ip>, pcremote:<boîtier>, dossier).
+        self.sources: dict[str, dict] = {}
+        self.tethers: list = []
 
     # --- Réception -----------------------------------------------------------------
     @property
@@ -83,6 +86,9 @@ class Station:
 
     def on_file(self, path: Path, source: str) -> None:
         """Appelé par les récepteurs (FTP, PC Remote, dossier) pour chaque photo arrivée."""
+        info = self.sources.setdefault(source, {"count": 0})
+        info["count"] += 1
+        info["lastSeen"] = time.time()
         folder = self.current_folder()
         root = ensure_day_folder(self.cfg.library_dir, folder)
         dest = root / "originaux" / Path(path).name
@@ -149,7 +155,7 @@ class Station:
         for pub in self.publishers:
             pub.publish(job.folder, pid, phase, files, meta)
         self.queue.advance(job.id, next_status, pid)
-        self.events.emit("published" if phase == "hd" else "express_ready", photo_id=pid, folder=job.folder, phase=phase, thumb=f"/media/{job.folder}/thumbs/{pid}.jpg", web=f"/media/{job.folder}/web/{pid}.jpg", faces=meta.get("faceCount"))
+        self.events.emit("published" if phase == "hd" else "express_ready", photo_id=pid, folder=job.folder, phase=phase, thumb=f"/media/{job.folder}/thumbs/{pid}.jpg", web=f"/media/{job.folder}/web/{pid}.jpg", before=f"/media/{job.folder}/avant/{pid}.jpg", faces=meta.get("faceCount"), sharpness=meta.get("sharpness"), timings=meta.get("timings") or meta.get("hdTimings"))
 
     def start_workers(self) -> None:
         def loop():
@@ -165,11 +171,52 @@ class Station:
     def stop(self) -> None:
         self._stop.set()
 
+    def set_preset(self, key: str) -> None:
+        if key not in self.presets:
+            raise KeyError(key)
+        self.cfg.active_preset = key
+        self.events.emit("preset", preset=key)
+
+    def set_location(self, location: str) -> None:
+        self.cfg.location = location.strip()
+        self.events.emit("folder", folder=self.current_folder())
+
+    def photos(self, folder: str) -> list[dict]:
+        manifest = self.cfg.library_dir / folder / "photos.json"
+        if not manifest.exists():
+            return []
+        data = json.loads(manifest.read_text(encoding="utf-8"))
+        out = []
+        for pid, entry in data.items():
+            files = entry.get("files", {})
+            out.append({
+                "id": pid,
+                "name": entry.get("name"),
+                "phase": entry.get("phase"),
+                "faces": entry.get("faceCount", 0),
+                "sharpness": entry.get("sharpness"),
+                "receivedAt": entry.get("receivedAt"),
+                "thumb": f"/media/{folder}/{files['thumbs']}" if "thumbs" in files else None,
+                "web": f"/media/{folder}/{files['web']}" if "web" in files else None,
+                "before": f"/media/{folder}/avant/{pid}.jpg",
+            })
+        out.sort(key=lambda p: p.get("receivedAt") or 0, reverse=True)
+        return out
+
     def status(self) -> dict:
+        now = time.time()
         return {
             "folder": self.current_folder(),
+            "location": self.cfg.location,
             "preset": self.preset.key,
             "queue": self.queue.counts(),
             "faces": self.face_engine is not None,
             "backend": self.cfg.backend,
+            "galleryUrl": f"{self.cfg.public_base_url.rstrip('/')}/s/{self.cfg.studio_id}",
+            "sources": [
+                {"id": k, "count": v["count"], "ago": round(now - v["lastSeen"])} for k, v in sorted(self.sources.items())
+            ],
+            "tethers": [
+                {"name": t.cam.name, "port": t.cam.port, "connected": t.connected, "error": t.last_error} for t in self.tethers
+            ],
         }
