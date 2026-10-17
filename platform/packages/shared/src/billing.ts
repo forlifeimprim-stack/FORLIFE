@@ -78,6 +78,7 @@ export type UsageKind = (typeof USAGE_KINDS)[number];
 /** Coût forfaitaire en crédits par tâche IA (estimation affichée avant exécution). */
 export const TASK_CREDIT_COST = {
   "brand.dna": 15,
+  "social.audit": 12,
   "strategy.plan": 25,
   "content.ideas": 8,
   "content.post": 10,

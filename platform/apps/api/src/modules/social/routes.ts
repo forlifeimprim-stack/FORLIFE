@@ -1,6 +1,6 @@
 import type { FastifyInstance } from "fastify";
 import { z } from "zod";
-import { SANDBOX_NETWORKS, sandboxNetwork } from "@forlife/shared";
+import { SANDBOX_NETWORKS, TASK_CREDIT_COST, sandboxNetwork } from "@forlife/shared";
 import { loadConfig } from "../../config.js";
 import { prisma } from "../../lib/prisma.js";
 import { clientIp } from "../../lib/request.js";
@@ -11,6 +11,9 @@ import { audit } from "../../lib/audit.js";
 import { auditCtx, authenticate, requireWorkspace } from "../../plugins/auth.js";
 import { adapterByKey, getAdapters } from "./registry.js";
 import { settleContent } from "./service.js";
+import { enqueue } from "../jobs/queue.js";
+import { parsePageLink } from "./links.js";
+import { NETWORK_LABELS } from "./audit.js";
 import { assertApprovedVersion } from "../content/service.js";
 import { SocialError, type ConnectedAccount } from "./types.js";
 
@@ -163,5 +166,48 @@ export async function socialRoutes(app: FastifyInstance) {
       return { publications: list.length, impressions: list.reduce((n, m) => n + m!.impressions, 0), reach: list.reduce((n, m) => n + m!.reach, 0), engagement: list.reduce((n, m) => n + m!.engagement, 0), clicks: list.reduce((n, m) => n + m!.clicks, 0) };
     };
     return { published30d: pubs.length, real: sum(false), simulated: sum(true) };
+  });
+
+  /** Dernière analyse des réseaux + comptes connectés (pour savoir si l'analyse est possible). */
+  app.get("/api/workspaces/:workspaceId/social/audit", { preHandler: authenticate }, async (req) => {
+    const { workspaceId } = parse(wsParams, req.params);
+    await requireWorkspace(req, workspaceId, "social:read");
+    const [latest, accounts] = await Promise.all([
+      prisma.socialAudit.findFirst({ where: { workspaceId }, orderBy: { createdAt: "desc" }, select: { id: true, links: true, postsCount: true, stats: true, report: true, createdAt: true } }),
+      prisma.socialAccount.count({ where: { workspaceId, status: "CONNECTED" } }),
+    ]);
+    return { latest, connectedAccounts: accounts, creditCost: TASK_CREDIT_COST["social.audit"] };
+  });
+
+  /** Lance l'analyse des pages dont l'utilisateur donne le lien (un par réseau) : lecture puis audit IA (asynchrone). */
+  app.post("/api/workspaces/:workspaceId/social/audit", { preHandler: authenticate }, async (req, reply) => {
+    const { workspaceId } = parse(wsParams, req.params);
+    const ctx = await requireWorkspace(req, workspaceId, "ai:generate");
+    await requireWorkspace(req, workspaceId, "social:read");
+    const link = z.string().trim().max(300).optional().transform((v) => v || undefined);
+    const { links } = parse(z.object({ links: z.object(Object.fromEntries(SANDBOX_NETWORKS.map((n) => [n, link])) as Record<(typeof SANDBOX_NETWORKS)[number], typeof link>) }), req.body);
+    const given = Object.entries(links).filter(([, v]) => v) as [(typeof SANDBOX_NETWORKS)[number], string][];
+    if (!given.length) throw badRequest("Indiquez le lien d'au moins une de vos pages");
+    const invalid = given.filter(([n, v]) => !parsePageLink(n, v)).map(([n]) => NETWORK_LABELS[n]);
+    if (invalid.length) throw badRequest(`Lien non reconnu pour : ${invalid.join(", ")}. Copiez l'adresse de la page depuis le navigateur (ex. https://www.facebook.com/mapage).`);
+    const job = await enqueue({
+      organizationId: ctx.organizationId,
+      workspaceId,
+      type: "ai.social_audit",
+      payload: { workspaceId, actorId: ctx.userId, links: Object.fromEntries(given) },
+      correlationId: ctx.correlationId,
+      createdById: ctx.userId,
+    });
+    reply.code(202);
+    return { jobId: job.id, estimatedCredits: TASK_CREDIT_COST["social.audit"] };
+  });
+
+  /** Textes des publications analysées, réutilisés comme sources du Brand DNA. */
+  app.get("/api/workspaces/:workspaceId/social/audit/:id/sources", { preHandler: authenticate }, async (req) => {
+    const { workspaceId, id } = parse(wsIdParams, req.params);
+    await requireWorkspace(req, workspaceId, "brand:update");
+    const a = await prisma.socialAudit.findFirst({ where: { id, workspaceId }, select: { sourcesText: true } });
+    if (!a) throw notFound("Analyse");
+    return { sources: a.sourcesText };
   });
 }

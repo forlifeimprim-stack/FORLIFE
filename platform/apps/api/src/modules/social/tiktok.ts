@@ -1,6 +1,6 @@
 import { loadConfig } from "../../config.js";
 import type { SocialProvider } from "@prisma/client";
-import { SocialError, type ConnectedAccount, type MetricsResult, type PostPayload, type RefreshedToken, type SocialProviderAdapter } from "./types.js";
+import { SocialError, type ConnectedAccount, type MetricsResult, type PostPayload, type RecentPost, type RefreshedToken, type SocialProviderAdapter } from "./types.js";
 
 /** Login Kit (profil) + Content Posting API en mode brouillon (video.upload) + statistiques (video.list). */
 const SCOPES = ["user.info.basic", "video.upload", "video.list"];
@@ -158,5 +158,34 @@ export class TikTokAdapter implements SocialProviderAdapter {
     if (!v) return empty;
     const views = v.view_count ?? 0;
     return { impressions: views, reach: views, engagement: (v.like_count ?? 0) + (v.comment_count ?? 0) + (v.share_count ?? 0), clicks: 0, isSimulated: false };
+  }
+
+  async fetchRecentPosts(_account: { provider: SocialProvider; externalId: string }, token: string, limit: number): Promise<RecentPost[]> {
+    const { videos } = await this.call<{ videos?: { id: string; title?: string; video_description?: string; create_time?: number; share_url?: string; view_count?: number; like_count?: number; comment_count?: number; share_count?: number }[] }>(
+      "/video/list/?fields=id,title,video_description,create_time,share_url,view_count,like_count,comment_count,share_count",
+      token,
+      { max_count: Math.min(20, limit) },
+    );
+    return (videos ?? []).map((v) => ({
+      externalId: v.id,
+      text: v.video_description || v.title || "",
+      createdAt: v.create_time ? new Date(v.create_time * 1000) : null,
+      url: v.share_url ?? null,
+      format: "vidéo",
+      likes: v.like_count ?? 0,
+      comments: v.comment_count ?? 0,
+      shares: v.share_count ?? 0,
+      views: v.view_count ?? 0,
+    }));
+  }
+
+  /** Nom d'utilisateur du compte (nécessite le droit user.info.profile) ; null s'il n'est pas accordé. */
+  async fetchUsername(token: string): Promise<string | null> {
+    try {
+      const { user } = await this.call<{ user?: { username?: string } }>("/user/info/?fields=username", token);
+      return user?.username ?? null;
+    } catch {
+      return null;
+    }
   }
 }

@@ -5,6 +5,7 @@ import { Login } from "./pages/Login";
 import { Signup } from "./pages/Signup";
 import { Home } from "./pages/Home";
 import { BrandPage } from "./pages/Brand";
+import { SocialAuditPage } from "./pages/SocialAudit";
 import { StrategyPage } from "./pages/Strategy";
 import { ContentStudio } from "./pages/ContentStudio";
 import { ContentDetail } from "./pages/ContentDetail";
@@ -74,6 +75,7 @@ export function App() {
     <Routes>
       <Route element={<Layout />}>
         <Route index element={<Home />} />
+        <Route path="audit" element={<SocialAuditPage />} />
         <Route path="brand" element={<BrandPage />} />
         <Route path="strategy" element={<StrategyPage />} />
         <Route path="content" element={<ContentStudio />} />

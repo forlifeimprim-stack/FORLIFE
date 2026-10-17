@@ -198,6 +198,7 @@ model Workspace {
   competitors      Competitor[]
   objectives       Objective[]
   strategyPlans    StrategyPlan[]
+  socialAudits     SocialAudit[]
   recommendations  Recommendation[]
   pillars          ContentPillar[]
   contents         ContentItem[]
@@ -872,6 +873,25 @@ enum SocialProvider {
   TIKTOK
   YOUTUBE
   SANDBOX
+}
+
+/// Analyse des publications déjà en ligne sur les comptes connectés (chiffres mesurés + audit IA).
+model SocialAudit {
+  id          String    @id @default(cuid())
+  workspaceId String
+  workspace   Workspace @relation(fields: [workspaceId], references: [id], onDelete: Restrict)
+  /// Liens des pages analysées, par réseau (FACEBOOK, INSTAGRAM, TIKTOK, YOUTUBE, LINKEDIN).
+  links       Json      @default("{}")
+  postsCount  Int
+  stats       Json
+  report      Json
+  /// Textes des publications, réutilisables comme sources du Brand DNA.
+  sourcesText String
+  aiRunId     String?
+  createdById String?
+  createdAt   DateTime  @default(now())
+
+  @@index([workspaceId, createdAt])
 }
 
 model SocialAccount {

@@ -1,6 +1,6 @@
 import { loadConfig } from "../../config.js";
 import type { SocialProvider } from "@prisma/client";
-import { SocialError, type ConnectedAccount, type MetricsResult, type PostPayload, type RefreshedToken, type SocialProviderAdapter } from "./types.js";
+import { SocialError, type ConnectedAccount, type MetricsResult, type PostPayload, type ProfileInfo, type RecentPost, type RefreshedToken, type SocialProviderAdapter } from "./types.js";
 
 /** Envoi de vidéos + lecture de la chaîne et des statistiques. */
 const SCOPES = ["https://www.googleapis.com/auth/youtube.upload", "https://www.googleapis.com/auth/youtube.readonly"];
@@ -78,7 +78,7 @@ export class YouTubeAdapter implements SocialProviderAdapter {
   }
 
   private async get<T>(path: string, token: string): Promise<T> {
-    const res = await this.send(`${API}${path}`, { headers: { authorization: `Bearer ${token}` } });
+    const res = await this.send(`${API}${path}`, { headers: token ? { authorization: `Bearer ${token}` } : {} });
     if (!res.ok) await this.fail(res);
     return (await res.json()) as T;
   }
@@ -142,5 +142,49 @@ export class YouTubeAdapter implements SocialProviderAdapter {
     const s = items?.[0]?.statistics ?? {};
     const views = Number(s.viewCount ?? 0);
     return { impressions: views, reach: views, engagement: Number(s.likeCount ?? 0) + Number(s.commentCount ?? 0), clicks: 0, isSimulated: false };
+  }
+
+  async fetchRecentPosts(account: { provider: SocialProvider; externalId: string }, token: string, limit: number): Promise<RecentPost[]> {
+    return (await this.fetchChannel({ id: account.externalId }, { token }, limit))?.posts ?? [];
+  }
+
+  /**
+   * Chaîne publique quelconque (par @pseudo, ID ou ancien nom d'utilisateur) et ses dernières vidéos.
+   * Fonctionne avec le jeton d'une chaîne connectée ou avec une clé d'API YouTube.
+   */
+  async fetchChannel(ref: { handle?: string; id?: string; username?: string }, auth: { token?: string; apiKey?: string }, limit: number): Promise<{ channelId: string; profile: ProfileInfo; posts: RecentPost[] } | null> {
+    const q = (path: string) => (auth.token ? path : `${path}&key=${encodeURIComponent(auth.apiKey ?? "")}`);
+    const get = <T>(path: string) => this.get<T>(q(path), auth.token ?? "");
+    const by = ref.id ? `id=${encodeURIComponent(ref.id)}` : ref.handle ? `forHandle=${encodeURIComponent(ref.handle.startsWith("@") ? ref.handle : `@${ref.handle}`)}` : `forUsername=${encodeURIComponent(ref.username ?? "")}`;
+    const { items: channels } = await get<{ items?: { id: string; snippet?: { title?: string; description?: string }; statistics?: { subscriberCount?: string; hiddenSubscriberCount?: boolean }; contentDetails?: { relatedPlaylists?: { uploads?: string } } }[] }>(
+      `/channels?part=snippet,statistics,contentDetails&${by}`,
+    );
+    const c = channels?.[0];
+    if (!c) return null;
+    const profile = { name: c.snippet?.title ?? "Chaîne YouTube", bio: c.snippet?.description || null, followers: c.statistics?.hiddenSubscriberCount ? null : c.statistics?.subscriberCount ? Number(c.statistics.subscriberCount) : null };
+    const uploads = c.contentDetails?.relatedPlaylists?.uploads;
+    if (!uploads) return { channelId: c.id, profile, posts: [] };
+    // Les vidéos d'une chaîne sont rangées dans sa playlist « uploads ».
+    const { items: entries } = await get<{ items?: { contentDetails?: { videoId?: string } }[] }>(`/playlistItems?part=contentDetails&maxResults=${Math.min(50, limit)}&playlistId=${encodeURIComponent(uploads)}`);
+    const ids = (entries ?? []).map((e) => e.contentDetails?.videoId).filter((x): x is string => !!x);
+    if (!ids.length) return { channelId: c.id, profile, posts: [] };
+    const { items: videos } = await get<{ items?: { id: string; snippet?: { title?: string; description?: string; publishedAt?: string }; statistics?: { viewCount?: string; likeCount?: string; commentCount?: string } }[] }>(
+      `/videos?part=snippet,statistics&id=${ids.map(encodeURIComponent).join(",")}`,
+    );
+    return {
+      channelId: c.id,
+      profile,
+      posts: (videos ?? []).map((v) => ({
+        externalId: v.id,
+        text: [v.snippet?.title, v.snippet?.description].filter(Boolean).join("\n"),
+        createdAt: v.snippet?.publishedAt ? new Date(v.snippet.publishedAt) : null,
+        url: `https://youtu.be/${v.id}`,
+        format: "vidéo",
+        likes: Number(v.statistics?.likeCount ?? 0),
+        comments: Number(v.statistics?.commentCount ?? 0),
+        shares: 0,
+        views: Number(v.statistics?.viewCount ?? 0),
+      })),
+    };
   }
 }

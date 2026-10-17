@@ -5,6 +5,7 @@ import { contentIdeasJob, contentPostJob } from "../content/jobs.js";
 import { crmFollowupJob } from "../crm/jobs.js";
 import { campaignPackJob } from "../campaigns/jobs.js";
 import { publishJob } from "../social/service.js";
+import { socialAuditJob } from "../social/audit.js";
 import { creativeConceptsJob } from "../creative/service.js";
 import { renderJob, storyboardJob } from "../video/service.js";
 import { copilotReplyJob } from "../copilot/service.js";
@@ -17,6 +18,7 @@ export function registerAllJobHandlers(): void {
   registerJobHandler("ai.crm_followup", crmFollowupJob);
   registerJobHandler("ai.campaign_pack", campaignPackJob);
   registerJobHandler("social.publish", publishJob);
+  registerJobHandler("ai.social_audit", socialAuditJob);
   registerJobHandler("ai.creative_concepts", creativeConceptsJob);
   registerJobHandler("ai.video_storyboard", storyboardJob);
   registerJobHandler("video.render", renderJob);

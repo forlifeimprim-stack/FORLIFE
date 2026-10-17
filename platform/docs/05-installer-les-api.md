@@ -73,6 +73,20 @@ Instagram : le compte doit être **professionnel** et relié à une page Faceboo
    (vertical court → Short), en **privé** tant que `YOUTUBE_PRIVACY` n'est pas passé à `public` — à faire après
    l'audit « YouTube API Services », l'API forçant le privé avant. Jeton (1 h) renouvelé automatiquement.
 
+### « Analyser mes réseaux » (Business Brain)
+
+L'utilisateur colle le lien de chaque page ; ce que chaque réseau permet de lire :
+
+| Réseau | Lecture des publications | Condition |
+|---|---|---|
+| Facebook | Oui | La Page doit être connectée dans le Social Hub (Meta ne laisse lire que les Pages administrées). |
+| Instagram | Oui, même un autre compte | Un compte Instagram professionnel connecté ; le compte du lien doit être professionnel ou créateur (Business Discovery). |
+| TikTok | Oui | Le compte doit être connecté. Pour vérifier le pseudo du lien, ajouter le scope `user.info.profile` dans TikTok for Developers (sinon un seul compte connecté est pris tel quel). |
+| YouTube | Oui, toute chaîne publique | Une chaîne connectée, ou une clé d'API facultative `YOUTUBE_API_KEY` (Google Cloud → Identifiants → Clé API, limitée à YouTube Data API v3). |
+| LinkedIn | Non | Présentation publique de la page uniquement (l'API des pages exige la validation « Community Management »). |
+
+À défaut de publications lisibles, l'analyse retient la présentation publique de la page (titre et description du lien).
+
 ## 5. Emails (Resend) — prêt dans le code, prioritaire
 
 1. [resend.com](https://resend.com) → **Domains** → ajoutez votre domaine (ex. `forlifecom.ci`) et créez

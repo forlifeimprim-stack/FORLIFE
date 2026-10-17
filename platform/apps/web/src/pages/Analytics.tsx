@@ -43,6 +43,7 @@ interface Analytics {
 const PERIODS = [7, 30, 90, 365] as const;
 const TASK_LABELS: Record<string, string> = {
   "brand.dna": "Brand DNA",
+  "social.audit": "Analyse des réseaux",
   "strategy.plan": "Stratégie",
   "content.ideas": "Idées de contenus",
   "content.post": "Rédaction de posts",

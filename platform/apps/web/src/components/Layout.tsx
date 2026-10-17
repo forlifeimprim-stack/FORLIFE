@@ -79,6 +79,9 @@ export function Layout() {
               <Icon name="copilot" /> <span>AI Copilot</span>
             </NavLink>}
           <div className="nav-section">Business Brain</div>
+          {can("social:read") && <NavLink to="/audit">
+              <Icon name="radar" /> <span>Analyser mes réseaux</span>
+            </NavLink>}
           <NavLink to="/brand">
             <Icon name="brand" /> <span>{t("nav.brand")}</span>
           </NavLink>

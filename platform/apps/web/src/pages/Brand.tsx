@@ -1,5 +1,6 @@
 import { Skeleton } from "../components/Delight";
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import { CHANNEL_LABELS } from "@forlife/shared";
 import { api, fetchBlobUrl } from "../lib/api";
 import { useAuth, useWorkspace } from "../lib/auth";
@@ -109,7 +110,10 @@ function DnaTab({ ws, approved, draft, versions, onChange }: { ws: string; appro
     return (
       <Card>
         <Empty title="Pas encore de Brand DNA">
-          <p>Lancez l'analyse IA à partir de vos textes, ou créez une première version manuellement.</p>
+          <p>
+            Le plus simple : <Link to="/audit">analysez d'abord vos réseaux</Link>, puis construisez le Brand DNA à partir de vos publications. Vous pouvez aussi lancer l'analyse IA à partir de vos textes, ou créer une première
+            version manuellement.
+          </p>
           {can("brand:update") && (
             <Button variant="secondary" busy={busy} onClick={() => act(() => api.post(`${ws}/brand/guidelines`, {}))}>
               Créer manuellement

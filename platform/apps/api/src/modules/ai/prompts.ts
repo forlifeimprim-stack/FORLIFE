@@ -489,6 +489,71 @@ Donne aussi le hook (accroche) et un cta de 28 caractères maximum.`,
 
 
 /** Registre des instructions versionnées (clé → définition). */
+// ───────────── Analyse des réseaux ─────────────
+
+export const socialAuditOutput = z.object({
+  summary: z.string(),
+  score: z.number().int(),
+  observedTone: z.string(),
+  contentThemes: z.array(z.string()),
+  strengths: z.array(z.string()),
+  weaknesses: z.array(z.string()),
+  recommendations: z.array(z.object({ title: z.string(), rationale: z.string() })),
+});
+export type SocialAuditOutput = z.infer<typeof socialAuditOutput>;
+
+export interface SocialAuditInput {
+  context: BrandContext;
+  /** Statistiques calculées sur les publications réelles (jamais inventées par l'IA). */
+  facts: string;
+  samples: { network: string; format: string; date: string | null; engagement: number; views: number | null; text: string }[];
+}
+
+export const socialAuditPrompt: PromptDefinition<SocialAuditInput, SocialAuditOutput> = {
+  key: "social.audit",
+  version: 1,
+  task: "social.audit",
+  usageKind: "TEXT",
+  system: `${BASE_SYSTEM}\nTu joues le rôle d'Analyste réseaux sociaux : tu audites les publications déjà en ligne de l'entreprise pour dire ce qui fonctionne, ce qui manque et quoi faire ensuite.`,
+  render: (i) => `Contexte entreprise :
+${renderContext(i.context)}
+
+Chiffres mesurés sur les comptes connectés (exacts, à reprendre tels quels) :
+${i.facts}
+
+Publications analysées (réseau · format · date · interactions · vues · texte) :
+${i.samples.map((p, n) => `${n + 1}. ${p.network} · ${p.format} · ${p.date ?? "date inconnue"} · ${p.engagement} interactions${p.views !== null ? ` · ${p.views} vues` : ""}\n   « ${p.text || "(sans texte)"} »`).join("\n")}
+
+Produis l'audit :
+- summary : 3 à 4 phrases, le constat principal et ce qu'il faut changer en premier ;
+- score : note globale de 0 à 100 (régularité, engagement, clarté de l'offre, appels à l'action) ;
+- observedTone : le ton réellement employé dans ces publications ;
+- contentThemes : 3 à 6 thèmes récurrents ;
+- strengths et weaknesses : 3 à 5 points chacun, appuyés sur les publications ou les chiffres ;
+- recommendations : 3 à 5 actions concrètes et priorisées (title + rationale).
+N'invente aucun chiffre : cite seulement ceux fournis ci-dessus.`,
+  output: socialAuditOutput,
+  textForSafety: (o) => [o.summary, ...o.recommendations.map((r) => r.title)],
+  maxTokens: 3000,
+  mock: (i) => {
+    const networks = Array.from(new Set(i.samples.map((p) => p.network)));
+    const best = [...i.samples].sort((a, b) => b.engagement - a.engagement)[0];
+    return {
+      summary: `${i.context.brandName} publie sur ${networks.join(", ") || "ses réseaux"} avec ${i.samples.length} publications analysées. ${best ? `La publication la plus engageante est un format ${best.format} sur ${best.network}.` : ""} Priorité : publier plus régulièrement et terminer chaque post par un appel à l'action clair vers WhatsApp.`,
+      score: Math.min(85, 40 + i.samples.length * 3),
+      observedTone: "Chaleureux et direct, orienté offre et service client.",
+      contentThemes: ["Nouveautés et arrivages", "Promotions", "Coulisses", "Service client et livraison"],
+      strengths: ["Ton proche et rassurant", "Offres concrètes mises en avant", "Contact WhatsApp souvent rappelé"],
+      weaknesses: ["Rythme de publication irrégulier", "Peu de preuves (avis, avant/après)", "Accroches de première ligne à renforcer"],
+      recommendations: [
+        { title: "Publier 3 fois par semaine sur le créneau le plus engageant", rationale: "La régularité fait remonter la portée et habitue l'audience." },
+        { title: "Multiplier le format qui engage le plus", rationale: best ? `Le format ${best.format} obtient les meilleurs résultats.` : "Testez vidéo, carrousel et photo pour repérer le gagnant." },
+        { title: "Ajouter une preuve à chaque promotion", rationale: "Avis client, photo réelle ou avant/après renforcent la confiance." },
+      ],
+    };
+  },
+};
+
 export const PROMPTS = {
   [brandDnaPrompt.key]: brandDnaPrompt,
   [strategyPrompt.key]: strategyPrompt,
@@ -497,5 +562,6 @@ export const PROMPTS = {
   [followupPrompt.key]: followupPrompt,
   [conceptsPrompt.key]: conceptsPrompt,
   [storyboardPrompt.key]: storyboardPrompt,
+  [socialAuditPrompt.key]: socialAuditPrompt,
 };
 

@@ -1,6 +1,6 @@
 import { loadConfig } from "../../config.js";
 import type { SocialProvider } from "@prisma/client";
-import { SocialError, type ConnectedAccount, type MetricsResult, type PostPayload, type SocialProviderAdapter } from "./types.js";
+import { SocialError, type ConnectedAccount, type MetricsResult, type PostPayload, type ProfileInfo, type RecentPost, type SocialProviderAdapter } from "./types.js";
 
 /** Permissions minimales demandées (§5.3 : scopes minimaux). */
 const SCOPES = ["pages_show_list", "pages_read_engagement", "pages_manage_posts", "read_insights", "instagram_basic", "instagram_content_publish", "business_management"];
@@ -108,5 +108,91 @@ export class MetaAdapter implements SocialProviderAdapter {
     const r = await this.call<{ data: { name: string; values: { value: number }[] }[] }>(`/${postId}/insights?metric=post_impressions,post_impressions_unique,post_engaged_users,post_clicks`, undefined, token);
     const v = (n: string) => r.data.find((d) => d.name === n)?.values[0]?.value ?? 0;
     return { impressions: v("post_impressions"), reach: v("post_impressions_unique"), engagement: v("post_engaged_users"), clicks: v("post_clicks"), isSimulated: false };
+  }
+
+  async fetchRecentPosts(account: { provider: SocialProvider; externalId: string }, token: string, limit: number): Promise<RecentPost[]> {
+    if (account.provider === "INSTAGRAM_BUSINESS") {
+      const r = await this.call<{ data?: { id: string; caption?: string; timestamp?: string; media_type?: string; media_product_type?: string; permalink?: string; like_count?: number; comments_count?: number }[] }>(
+        `/${account.externalId}/media?fields=id,caption,timestamp,media_type,media_product_type,permalink,like_count,comments_count&limit=${limit}`,
+        undefined,
+        token,
+      );
+      return (r.data ?? []).map((m) => ({
+        externalId: m.id,
+        text: m.caption ?? "",
+        createdAt: m.timestamp ? new Date(m.timestamp) : null,
+        url: m.permalink ?? null,
+        format: m.media_product_type === "REELS" ? "reel" : m.media_type === "CAROUSEL_ALBUM" ? "carrousel" : m.media_type === "VIDEO" ? "vidéo" : "photo",
+        likes: m.like_count ?? 0,
+        comments: m.comments_count ?? 0,
+        shares: 0,
+        views: null,
+      }));
+    }
+    if (account.provider !== "FACEBOOK_PAGE") throw new SocialError("INVALID", "Type de compte non pris en charge par Meta");
+    return this.pagePosts(account.externalId, token, limit);
+  }
+
+  /** Identifiant d'une Page à partir de son nom d'utilisateur (ou de son ID) ; null si introuvable avec ce jeton. */
+  async resolvePageId(ref: string, token: string): Promise<string | null> {
+    try {
+      const r = await this.call<{ id?: string }>(`/${encodeURIComponent(ref)}?fields=id`, undefined, token);
+      return r.id ?? null;
+    } catch (e) {
+      if (e instanceof SocialError && e.code === "INVALID") return null;
+      throw e;
+    }
+  }
+
+  /**
+   * Compte Instagram professionnel quelconque, lu par son nom d'utilisateur (Business Discovery),
+   * via un compte Instagram connecté. Ne fonctionne que pour les comptes professionnels ou créateurs.
+   */
+  async discoverInstagram(viaIgId: string, token: string, username: string, limit: number): Promise<{ profile: ProfileInfo; posts: RecentPost[] }> {
+    const r = await this.call<{
+      business_discovery?: { username?: string; name?: string; biography?: string; followers_count?: number; media?: { data?: { id: string; caption?: string; timestamp?: string; media_type?: string; media_product_type?: string; permalink?: string; like_count?: number; comments_count?: number }[] } };
+    }>(
+      `/${viaIgId}?fields=business_discovery.username(${encodeURIComponent(username)}){username,name,biography,followers_count,media.limit(${limit}){id,caption,timestamp,media_type,media_product_type,permalink,like_count,comments_count}}`,
+      undefined,
+      token,
+    );
+    const d = r.business_discovery;
+    if (!d) throw new SocialError("INVALID", "Compte Instagram introuvable");
+    return {
+      profile: { name: d.name || `@${d.username ?? username}`, bio: d.biography ?? null, followers: d.followers_count ?? null },
+      posts: (d.media?.data ?? []).map((m) => ({
+        externalId: m.id,
+        text: m.caption ?? "",
+        createdAt: m.timestamp ? new Date(m.timestamp) : null,
+        url: m.permalink ?? null,
+        format: m.media_product_type === "REELS" ? "reel" : m.media_type === "CAROUSEL_ALBUM" ? "carrousel" : m.media_type === "VIDEO" ? "vidéo" : "photo",
+        likes: m.like_count ?? 0,
+        comments: m.comments_count ?? 0,
+        shares: 0,
+        views: null,
+      })),
+    };
+  }
+
+  private async pagePosts(pageId: string, token: string, limit: number): Promise<RecentPost[]> {
+    const r = await this.call<{
+      data?: { id: string; message?: string; created_time?: string; permalink_url?: string; attachments?: { data?: { media_type?: string }[] }; shares?: { count?: number }; reactions?: { summary?: { total_count?: number } }; comments?: { summary?: { total_count?: number } } }[];
+    }>(
+      `/${pageId}/posts?fields=id,message,created_time,permalink_url,attachments{media_type},shares,reactions.summary(total_count).limit(0),comments.summary(total_count).limit(0)&limit=${limit}`,
+      undefined,
+      token,
+    );
+    const formats: Record<string, string> = { photo: "photo", video: "vidéo", album: "carrousel", link: "lien" };
+    return (r.data ?? []).map((p) => ({
+      externalId: p.id,
+      text: p.message ?? "",
+      createdAt: p.created_time ? new Date(p.created_time) : null,
+      url: p.permalink_url ?? null,
+      format: formats[p.attachments?.data?.[0]?.media_type ?? ""] ?? "texte",
+      likes: p.reactions?.summary?.total_count ?? 0,
+      comments: p.comments?.summary?.total_count ?? 0,
+      shares: p.shares?.count ?? 0,
+      views: null,
+    }));
   }
 }
