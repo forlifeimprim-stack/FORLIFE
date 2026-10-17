@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # Voix off de la présentation : Microsoft Henri (neural, gratuit via edge-tts), plus grave et traitée
-# façon bande-annonce. Usage : presentation-voix.sh <edge-tts> <dossier de sortie>
+# façon bande-annonce. Usage : presentation-voix.sh <edge-tts> <dossier de sortie> [fichier de répliques]
 set -euo pipefail
 EDGE="$1"; OUT="$2"; mkdir -p "$OUT"
 DIR="$(cd "$(dirname "$0")" && pwd)"
@@ -15,4 +15,4 @@ acompressor=threshold=-22dB:ratio=5:attack=4:release=90:makeup=7dB,aecho=0.8:0.6
 alimiter=limit=0.89,loudnorm=I=-16:TP=-1.5:LRA=7" -ac 2 -b:a 192k "$OUT/$key.mp3"
   rm -f "$OUT/$key.raw.mp3"
   printf "%s %.2f s\n" "$key" "$(ffprobe -v error -show_entries format=duration -of csv=p=0 "$OUT/$key.mp3")"
-done < "$DIR/presentation-voix.txt"
+done < "${3:-$DIR/presentation-voix.txt}"

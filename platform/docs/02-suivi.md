@@ -1,5 +1,7 @@
 # Suivi — critères d'acceptation et backlog
 
+> Audit complet du 17/10/2026, section par section, avec ce qui reste à faire : [07-audit-cahier-des-charges.md](07-audit-cahier-des-charges.md).
+
 ## Critères d'acceptation (cahier des charges §28)
 
 | Critère | Statut | Preuve |
@@ -36,6 +38,7 @@
 | P1-01 → P1-08 | Creative, image, critic, OAuth social, publication, métriques, CRM, campagnes | ✅ |
 | P2 | Vidéo, analytics, paiements mobile money, back-office | ✅ |
 | P3a | AI Copilot & 12 agents, mémoire de l'entreprise, modes assisté / copilot / autopilot borné | ✅ |
+| Audit 17/10 | Gouvernance des données, espaces de travail, PDF, alertes crédits, voix off, fonds photo IA, validation des plateformes | ✅ |
 | P3b | WhatsApp Business API, optimizer avancé, white-label agence, API publique | ⏳ |
 
 ## Tarifs validés (12/10/2026)

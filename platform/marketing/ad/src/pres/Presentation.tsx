@@ -13,22 +13,23 @@ const DROP = 7.6;
 
 /** Chapitres : [début, fin] dans la vidéo, et passage de la prise filmée (app.mp4) à montrer. */
 export const CHAPTERS = [
-  { key: "login", n: "", title: "Votre espace", text: "Créez votre espace en une minute… gratuitement.", at: [12, 17], clip: 8.6 },
-  { key: "home", n: "01", title: "Accueil & missions", text: "Chaque matin, vos missions du jour : ce qui compte vraiment pour vendre plus.", at: [17, 24.5], clip: 19.6 },
-  { key: "brand", n: "02", title: "Brand DNA", text: "Votre ton, vos produits, vos mots interdits : chaque création reste fidèle à votre marque.", at: [24.5, 31], clip: 29.9 },
-  { key: "strategy", n: "03", title: "Stratégie", text: "Vos objectifs deviennent un plan d'action, classé par impact.", at: [31, 37.5], clip: 40.0 },
-  { key: "content", n: "04", title: "Content Studio", text: "Vos publications, adaptées à chaque réseau.", at: [37.5, 44], clip: 49.6, nets: true },
-  { key: "creative", n: "05", title: "Creative Studio", text: "Des visuels à vos couleurs, notés par un critique exigeant.", at: [44, 50.5], clip: 58.8 },
-  { key: "video", n: "06", title: "Video Studio", text: "Des vidéos verticales de 15 secondes, avec storyboard et sous-titres.", at: [50.5, 57], clip: 68.8 },
-  { key: "approvals", n: "07", title: "Validation & calendrier", text: "Rien ne part sans votre accord. Vous validez, puis vous programmez.", at: [57, 64.5], clip: 78.4 },
-  { key: "social", n: "08", title: "Social Hub", text: "Publication automatique sur vos pages, résultats mesurés.", at: [64.5, 70.5], clip: 92.6 },
-  { key: "campaigns", n: "09", title: "Campagnes", text: "Des campagnes complètes, avec formulaires de capture et suivi des prospects.", at: [70.5, 76.5], clip: 101.0 },
-  { key: "crm", n: "10", title: "CRM & WhatsApp", text: "Chaque demande arrive dans le CRM. Relancez sur WhatsApp au bon moment.", at: [76.5, 82.5], clip: 109.3 },
-  { key: "analytics", n: "11", title: "Analytics & ROI", text: "Vos contenus reliés à vos ventes réelles, en FCFA.", at: [82.5, 88.5], clip: 117.0 },
-  { key: "copilot", n: "12", title: "AI Copilot & 12 agents", text: "Votre Copilot conseille et prépare le travail. Vous n'avez plus qu'à valider.", at: [88.5, 97], clip: 125.4 },
+  { key: "login", n: "", title: "Votre espace", text: "Créez votre espace en une minute… gratuitement.", at: [12, 17], clip: 8.9 },
+  { key: "home", n: "01", title: "Accueil & missions", text: "Chaque matin, vos missions du jour : ce qui compte vraiment pour vendre plus.", at: [17, 23.5], clip: 16.4 },
+  { key: "audit", n: "02", title: "Analyser mes réseaux", text: "Collez le lien de vos pages : l'IA lit vos publications et vous dit ce qui marche.", at: [23.5, 29.5], clip: 26.1 },
+  { key: "brand", n: "03", title: "Brand DNA", text: "Votre ton, vos produits, vos mots interdits : chaque création reste fidèle à votre marque.", at: [29.5, 35.8], clip: 36.5 },
+  { key: "strategy", n: "04", title: "Stratégie", text: "Vos objectifs deviennent un plan d'action, classé par impact.", at: [35.8, 42.1], clip: 46.3 },
+  { key: "content", n: "05", title: "Content Studio", text: "Vos publications, adaptées à chaque réseau.", at: [42.1, 48], clip: 55.7, nets: true },
+  { key: "creative", n: "06", title: "Creative Studio", text: "Des visuels à vos couleurs, notés par un critique exigeant.", at: [48, 54], clip: 65.2 },
+  { key: "video", n: "07", title: "Video Studio", text: "Des vidéos verticales de 15 secondes, avec sous-titres et voix off.", at: [54, 60.4], clip: 74.9 },
+  { key: "approvals", n: "08", title: "Validation & calendrier", text: "Rien ne part sans votre accord. Vous validez, puis vous programmez.", at: [60.4, 66.5], clip: 85.0 },
+  { key: "social", n: "09", title: "Social Hub", text: "Facebook, Instagram, TikTok, YouTube, LinkedIn : publication automatique, résultats mesurés.", at: [66.5, 71.8], clip: 99.0, nets: true },
+  { key: "campaigns", n: "10", title: "Campagnes", text: "Des campagnes complètes, avec formulaires de capture et suivi des prospects.", at: [71.8, 77.3], clip: 107.5 },
+  { key: "crm", n: "11", title: "CRM & WhatsApp", text: "Chaque demande arrive dans le CRM. Relancez sur WhatsApp au bon moment.", at: [77.3, 83.1], clip: 116.2 },
+  { key: "analytics", n: "12", title: "Analytics & ROI", text: "Vos contenus reliés à vos ventes réelles, en FCFA.", at: [83.1, 89.4], clip: 124.0 },
+  { key: "copilot", n: "13", title: "AI Copilot & 12 agents", text: "Votre Copilot conseille et prépare le travail. Vous n'avez plus qu'à valider.", at: [89.4, 98], clip: 132.8 },
 ] as const;
-const SUCCESS = [97, 106] as const;
-const CTA = [106, 121] as const;
+const SUCCESS = [98, 107.2] as const;
+const CTA = [107.2, 121] as const;
 
 /** Voix off : fichier et instant de départ (secondes). */
 export const VO_CUES: { file: string; at: number }[] = [
@@ -211,7 +212,7 @@ function Chapter({ t, i, c }: { t: number; i: number; c: Ch }) {
   );
 }
 
-/** Fil des 12 chapitres en bas de l'écran. */
+/** Fil des chapitres en bas de l'écran. */
 function Progress({ t }: { t: number }) {
   const first = CHAPTERS[1].at[0];
   const last = CHAPTERS[CHAPTERS.length - 1].at[1];
