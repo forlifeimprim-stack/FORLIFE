@@ -2,6 +2,7 @@ import { afterEach, describe, expect, it } from "vitest";
 import { drainQueue } from "../src/modules/jobs/queue.js";
 import { computeAuditStats, type AuditPost } from "../src/modules/social/audit.js";
 import { fetchPublicProfile, parsePageLink } from "../src/modules/social/links.js";
+import { purgeStalePlatformData } from "../src/modules/social/retention.js";
 import { setAdapters } from "../src/modules/social/registry.js";
 import { MetaAdapter } from "../src/modules/social/meta.js";
 import { TikTokAdapter } from "../src/modules/social/tiktok.js";
@@ -75,6 +76,38 @@ describe("Analyser mes réseaux", () => {
     expect(stats).toMatchObject({ totalPosts: 4, avgEngagement: 48, bestWeekday: "lundi", bestSlot: "soirée (18 h – 22 h)" });
     expect(stats.formats[0]).toEqual({ format: "vidéo", posts: 2, avgEngagement: 80 });
     expect(stats.topPosts[0]!.engagement).toBe(90);
+  });
+});
+
+describe("Conservation des données YouTube (30 jours)", () => {
+  it("supprime statistiques et analyses YouTube de plus de 30 jours, garde le reste", async () => {
+    const acc = await signup();
+    const day = 86_400_000;
+    const now = new Date();
+    const item = await prisma.contentItem.create({ data: { workspaceId: acc.workspaceId, title: "Vidéo", body: "x", status: "PUBLISHED", approvedVersion: 1 } });
+    const variant = await prisma.contentVariant.create({ data: { contentId: item.id, channel: "YOUTUBE", body: "x" } });
+    const pubFor = async (provider: "YOUTUBE" | "FACEBOOK_PAGE") => {
+      const account = await prisma.socialAccount.create({ data: { workspaceId: acc.workspaceId, provider, externalId: `${provider}-1`, name: provider } });
+      return prisma.publication.create({ data: { workspaceId: acc.workspaceId, contentId: item.id, variantId: variant.id, socialAccountId: account.id, scheduledAt: now, status: "PUBLISHED", idempotencyKey: `k-${provider}` } });
+    };
+    const yt = await pubFor("YOUTUBE");
+    const fb = await pubFor("FACEBOOK_PAGE");
+    for (const p of [yt, fb]) {
+      await prisma.socialMetricSnapshot.createMany({ data: [{ publicationId: p.id, capturedAt: new Date(now.getTime() - 40 * day) }, { publicationId: p.id, capturedAt: new Date(now.getTime() - 2 * day) }] });
+    }
+    const audit = (key: string, ageDays: number) =>
+      prisma.socialAudit.create({ data: { workspaceId: acc.workspaceId, postsCount: 1, stats: { accounts: [{ key, source: "lookup" }] }, report: {}, sourcesText: "", createdAt: new Date(now.getTime() - ageDays * day) } });
+    const oldYt = await audit("YOUTUBE", 40);
+    const oldFb = await audit("FACEBOOK", 40);
+    const recentYt = await audit("YOUTUBE", 5);
+
+    const res = await purgeStalePlatformData(now);
+    expect(res.metrics).toBeGreaterThanOrEqual(1);
+    expect(await prisma.socialMetricSnapshot.count({ where: { publicationId: yt.id } })).toBe(1);
+    expect(await prisma.socialMetricSnapshot.count({ where: { publicationId: fb.id } })).toBe(2);
+    const left = (await prisma.socialAudit.findMany({ where: { workspaceId: acc.workspaceId }, select: { id: true } })).map((a) => a.id);
+    expect(left).toEqual(expect.arrayContaining([oldFb.id, recentYt.id]));
+    expect(left).not.toContain(oldYt.id);
   });
 });
 

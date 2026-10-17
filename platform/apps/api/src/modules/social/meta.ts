@@ -3,7 +3,7 @@ import type { SocialProvider } from "@prisma/client";
 import { SocialError, type ConnectedAccount, type MetricsResult, type PostPayload, type ProfileInfo, type RecentPost, type SocialProviderAdapter } from "./types.js";
 
 /** Permissions minimales demandées (§5.3 : scopes minimaux). */
-const SCOPES = ["pages_show_list", "pages_read_engagement", "pages_manage_posts", "read_insights", "instagram_basic", "instagram_content_publish", "business_management"];
+const SCOPES = ["pages_show_list", "pages_read_engagement", "pages_manage_posts", "read_insights", "instagram_basic", "instagram_content_publish", "instagram_manage_insights", "business_management"];
 
 interface GraphError {
   error?: { message?: string; code?: number; type?: string; error_subcode?: number };

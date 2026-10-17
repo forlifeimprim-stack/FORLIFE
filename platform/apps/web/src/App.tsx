@@ -27,10 +27,10 @@ import { AnalyticsPage } from "./pages/Analytics";
 import { BillingReturnPage, DemoCheckoutPage } from "./pages/Billing";
 import { VerifyEmailPage } from "./pages/VerifyEmail";
 import { useLocation } from "react-router-dom";
-import { PrivacyPage, TermsPage } from "./pages/Legal";
+import { DataDeletionPage, PrivacyPage, TermsPage } from "./pages/Legal";
 
 /** Pages légales publiques (exigées par TikTok, Meta, LinkedIn, Google). */
-const LEGAL_PATHS = ["/confidentialite", "/privacy", "/conditions", "/terms"];
+const LEGAL_PATHS = ["/confidentialite", "/privacy", "/conditions", "/terms", "/suppression-des-donnees", "/data-deletion"];
 
 export function App() {
   const { me, loading, workspace } = useAuth();
@@ -43,6 +43,8 @@ export function App() {
         <Route path="/privacy" element={<PrivacyPage />} />
         <Route path="/conditions" element={<TermsPage />} />
         <Route path="/terms" element={<TermsPage />} />
+        <Route path="/suppression-des-donnees" element={<DataDeletionPage />} />
+        <Route path="/data-deletion" element={<DataDeletionPage />} />
         <Route path="/f/:slug" element={<PublicFormPage />} />
         <Route path="/pay/demo/:id" element={<DemoCheckoutPage />} />
       </Routes>

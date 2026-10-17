@@ -2,6 +2,7 @@ import { renewDueSubscriptions } from "../billing/ledger.js";
 import { sweepPendingPayments } from "../payments/service.js";
 import { purgeExpiredBuckets } from "../../lib/throttle.js";
 import { collectMetrics, dispatchDuePublications } from "../social/service.js";
+import { purgeStalePlatformData } from "../social/retention.js";
 
 /** Tâches périodiques de la plateforme (toutes idempotentes : plusieurs workers peuvent tourner). */
 export function startScheduler(log?: (msg: string, extra?: object) => void) {
@@ -28,6 +29,8 @@ export function startScheduler(log?: (msg: string, extra?: object) => void) {
   const metrics = async () => {
     try {
       await collectMetrics();
+      const purged = await purgeStalePlatformData();
+      if (purged.metrics || purged.audits) log?.("social.purged", purged);
     } catch (e) {
       log?.("scheduler.error", { error: e instanceof Error ? e.message : String(e) });
     }

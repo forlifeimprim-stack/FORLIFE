@@ -50,7 +50,7 @@ export function Login() {
             Pas encore de compte ? <Link to="/signup">Créer mon espace gratuitement</Link>
           </p>
           <p className="muted small legal-links">
-            <Link to="/conditions">Conditions d'utilisation</Link> · <Link to="/confidentialite">Confidentialité</Link>
+            <Link to="/conditions">Conditions d'utilisation</Link> · <Link to="/confidentialite">Confidentialité</Link> · <Link to="/suppression-des-donnees">Suppression des données</Link>
           </p>
           <p className="muted small">
             Besoin d'aide ? WhatsApp et appels : <a href="https://wa.me/2250779590562" target="_blank" rel="noreferrer">+225 07 79 59 05 62</a> · <a href="https://wa.me/2250585801856" target="_blank" rel="noreferrer">+225 05 85 80 18 56</a>
