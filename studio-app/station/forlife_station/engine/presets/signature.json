@@ -1,0 +1,15 @@
+{
+  "name": "Signature ForLife",
+  "description": "Peau douce et naturelle, tons légèrement chauds, contraste moyen.",
+  "exposure_target": 0.46,
+  "contrast": 0.12,
+  "saturation": 0.06,
+  "warmth": 0.08,
+  "tint": 0.0,
+  "shadows": 0.2,
+  "highlights": 0.25,
+  "skin_smoothing": 0.45,
+  "skin_texture": 0.35,
+  "sharpen": 0.25,
+  "vignette": 0.08
+}

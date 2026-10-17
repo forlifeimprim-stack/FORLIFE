@@ -1,0 +1,16 @@
+{
+  "name": "Peaux mates et ébène",
+  "description": "Rendu fidèle des carnations foncées : ombres ouvertes, sans grisaille ni rougeur.",
+  "exposure_target": 0.44,
+  "contrast": 0.08,
+  "saturation": 0.04,
+  "warmth": 0.05,
+  "tint": -0.02,
+  "shadows": 0.35,
+  "highlights": 0.2,
+  "skin_smoothing": 0.4,
+  "skin_texture": 0.4,
+  "sharpen": 0.25,
+  "vignette": 0.05,
+  "skin_glow": 0.1
+}

@@ -1,0 +1,15 @@
+{
+  "name": "Corporate / Badge",
+  "description": "Neutre, fidèle, peau légèrement unifiée.",
+  "exposure_target": 0.48,
+  "contrast": 0.06,
+  "saturation": 0.0,
+  "warmth": 0.0,
+  "tint": 0.0,
+  "shadows": 0.15,
+  "highlights": 0.2,
+  "skin_smoothing": 0.3,
+  "skin_texture": 0.45,
+  "sharpen": 0.3,
+  "vignette": 0.0
+}

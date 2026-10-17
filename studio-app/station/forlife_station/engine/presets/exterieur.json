@@ -1,0 +1,15 @@
+{
+  "name": "Extérieur lumière naturelle",
+  "description": "Contre-jour corrigé, ciel préservé.",
+  "exposure_target": 0.47,
+  "contrast": 0.1,
+  "saturation": 0.1,
+  "warmth": 0.04,
+  "tint": 0.0,
+  "shadows": 0.4,
+  "highlights": 0.45,
+  "skin_smoothing": 0.35,
+  "skin_texture": 0.4,
+  "sharpen": 0.25,
+  "vignette": 0.05
+}

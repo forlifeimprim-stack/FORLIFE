@@ -1,0 +1,30 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "forlife-station"
+version = "0.1.0"
+description = "Station ForLife Studio : réception des photos (Wi-Fi FTP, PC Remote), retouche automatique, visages et publication."
+requires-python = ">=3.10"
+dependencies = [
+  "numpy>=1.24",
+  "opencv-python-headless>=4.8",
+  "pyftpdlib>=1.5.9",
+]
+
+[project.optional-dependencies]
+firebase = ["firebase-admin>=6.5"]
+dev = ["pytest>=8"]
+
+[project.scripts]
+forlife-station = "forlife_station.cli:main"
+
+[tool.setuptools.packages.find]
+include = ["forlife_station*"]
+
+[tool.setuptools.package-data]
+forlife_station = ["engine/presets/*.json"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]

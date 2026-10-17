@@ -1,0 +1,15 @@
+{
+  "name": "Noir & Blanc Classique",
+  "description": "Noir et blanc contrasté.",
+  "exposure_target": 0.46,
+  "contrast": 0.22,
+  "saturation": -1.0,
+  "warmth": 0.0,
+  "tint": 0.0,
+  "shadows": 0.15,
+  "highlights": 0.25,
+  "skin_smoothing": 0.35,
+  "skin_texture": 0.4,
+  "sharpen": 0.3,
+  "vignette": 0.12
+}
