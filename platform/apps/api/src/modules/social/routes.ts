@@ -10,7 +10,7 @@ import { parse } from "../../lib/validation.js";
 import { audit } from "../../lib/audit.js";
 import { auditCtx, authenticate, requireWorkspace } from "../../plugins/auth.js";
 import { adapterByKey, getAdapters } from "./registry.js";
-import { settleContent } from "./service.js";
+import { revokeRemote, settleContent } from "./service.js";
 import { enqueue } from "../jobs/queue.js";
 import { parsePageLink } from "./links.js";
 import { NETWORK_LABELS } from "./audit.js";
@@ -107,8 +107,9 @@ export async function socialRoutes(app: FastifyInstance) {
   app.delete("/api/workspaces/:workspaceId/social/accounts/:id", { preHandler: authenticate }, async (req) => {
     const { workspaceId, id } = parse(wsIdParams, req.params);
     const ctx = await requireWorkspace(req, workspaceId, "social:manage");
-    const acc = await prisma.socialAccount.findFirst({ where: { id, workspaceId } });
+    const acc = await prisma.socialAccount.findFirst({ where: { id, workspaceId }, include: { credential: true } });
     if (!acc) throw notFound("Compte");
+    await revokeRemote(acc);
     const contents = await prisma.publication.findMany({ where: { socialAccountId: id, status: "QUEUED" }, select: { contentId: true } });
     await prisma.$transaction(async (tx) => {
       await tx.socialCredential.deleteMany({ where: { socialAccountId: id } });

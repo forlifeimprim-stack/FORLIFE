@@ -9,6 +9,7 @@ import { DemoVideoHost, openDemo } from "./DemoVideo";
 import { ErrorBoundary } from "./ErrorBoundary";
 import { Icon } from "./Icon";
 import { CelebrationHost } from "./Delight";
+import { DeletionPendingScreen } from "../pages/SettingsData";
 
 /** Modules prévus par la roadmap, affichés pour donner la vision produit complète. */
 const UPCOMING: { key: string; label: string; phase: string }[] = [];
@@ -27,6 +28,7 @@ export function Layout() {
     return () => window.removeEventListener("keydown", onKey);
   }, [open]);
   if (!me || !org || !workspace) return null;
+  if (org.status === "DELETION_PENDING") return <DeletionPendingScreen />;
 
   const options = me.organizations.flatMap((o) => o.workspaces.map((w) => ({ value: `${o.id}|${w.id}`, label: `${me.organizations.length > 1 ? `${o.name} · ${w.name}` : w.name}${w.status === "LOCKED" ? " (lecture seule)" : ""}` })));
   const plan = PLANS[org.plan];

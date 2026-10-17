@@ -339,6 +339,23 @@ function LeadModal({ ws, id, cost, onClose }: { ws: string; id: string; cost: nu
                   Ouvrir WhatsApp
                 </a>
               )}
+              {can("crm:delete") && (
+                <Button
+                  variant="danger"
+                  style={{ marginTop: 8, marginLeft: 8 }}
+                  onClick={async () => {
+                    if (!confirm(`Effacer ${lead.contact.name} et tout son historique (prospects, échanges, tâches) ? Cette action est définitive.`)) return;
+                    try {
+                      await api.del(`${ws}/crm/contacts/${lead.contact.id}`);
+                      onClose();
+                    } catch (e) {
+                      setErr(errorMessage(e));
+                    }
+                  }}
+                >
+                  Effacer le contact
+                </Button>
+              )}
             </div>
             <div>
               <div className="small muted">Score {lead.score}/100</div>

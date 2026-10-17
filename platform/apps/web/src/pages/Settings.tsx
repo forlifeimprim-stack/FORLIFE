@@ -2,6 +2,7 @@ import { Skeleton } from "../components/Delight";
 import { useState } from "react";
 import { useSearchParams } from "react-router-dom";
 import { BillingOffers } from "./Billing";
+import { DataRightsCard, WorkspacesCard } from "./SettingsData";
 import { ROLE_LABELS, ROLES, canAssignRole, type PlanDefinition, type Role } from "@forlife/shared";
 import { api } from "../lib/api";
 import { useAuth } from "../lib/auth";
@@ -9,12 +10,13 @@ import { errorMessage, useResource } from "../lib/hooks";
 import { fmtDateTime, fmtNumber, fmtXof } from "../lib/i18n";
 import { Alert, Badge, Button, Card, Empty, PageHeader } from "../components/ui";
 
-type Tab = "members" | "billing" | "audit" | "ai";
+type Tab = "members" | "workspaces" | "billing" | "audit" | "ai";
 
 export function SettingsPage() {
   const { can } = useAuth();
   const tabs: [Tab, string, boolean][] = [
     ["members", "Équipe", can("members:read")],
+    ["workspaces", "Espaces & données", can("workspace:read")],
     ["billing", "Plan & crédits", can("billing:read")],
     ["audit", "Journal d'audit", can("audit:read")],
     ["ai", "Traçabilité IA", can("ai:read")],
@@ -34,6 +36,12 @@ export function SettingsPage() {
         ))}
       </div>
       {tab === "members" && <Members />}
+      {tab === "workspaces" && (
+        <div className="stack">
+          <WorkspacesCard />
+          <DataRightsCard />
+        </div>
+      )}
       {tab === "billing" && <Billing />}
       {tab === "audit" && <Audit />}
       {tab === "ai" && <AiRuns />}

@@ -82,6 +82,8 @@ export interface SocialProviderAdapter {
   /** Renouvelle un jeton d'accès de courte durée (réseaux dont le jeton expire vite, comme TikTok). */
   refresh?(refreshToken: string): Promise<RefreshedToken>;
   fetchMetrics(account: { provider: SocialProvider; externalId: string }, accessToken: string, externalPostId: string): Promise<MetricsResult>;
+  /** Révoque l'autorisation côté réseau à la déconnexion (au mieux : une erreur n'empêche pas la suppression locale). */
+  revoke?(accessToken: string): Promise<void>;
   /** Dernières publications du compte, plus récentes d'abord (absent : réseau non lisible avec les droits actuels). */
   fetchRecentPosts?(account: { provider: SocialProvider; externalId: string }, accessToken: string, limit: number): Promise<RecentPost[]>;
 }

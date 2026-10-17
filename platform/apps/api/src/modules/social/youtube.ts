@@ -187,4 +187,8 @@ export class YouTubeAdapter implements SocialProviderAdapter {
       })),
     };
   }
+
+  async revoke(token: string): Promise<void> {
+    await this.send("https://oauth2.googleapis.com/revoke", { method: "POST", headers: { "content-type": "application/x-www-form-urlencoded" }, body: new URLSearchParams({ token }) });
+  }
 }

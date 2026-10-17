@@ -394,7 +394,7 @@ function AssetsTab({ ws, assets, onChange }: { ws: string; assets: BrandData["as
       }
     >
       {err && <Alert tone="error">{err}</Alert>}
-      <p className="muted small">Formats : PNG, JPEG, WebP, SVG, PDF, TXT (15 Mo max). Les documents texte enrichissent l'analyse Brand DNA.</p>
+      <p className="muted small">Formats : PNG, JPEG, WebP, SVG, PDF, TXT (15 Mo max). Les documents texte et PDF (présentation, catalogue) enrichissent l'analyse Brand DNA.</p>
       {assets.length === 0 ? (
         <Empty title="Aucun asset importé" />
       ) : (
@@ -507,7 +507,7 @@ function AnalyzeModal({ open, ws, cost, onClose, onDone }: { open: boolean; ws: 
       }
     >
       <p className="muted small">
-        Collez la présentation de l'entreprise, des anciens posts, le texte de votre site ou de votre catalogue. Les documents texte importés dans les assets sont ajoutés automatiquement.
+        Collez la présentation de l'entreprise, des anciens posts, le texte de votre site ou de votre catalogue. Les documents texte et PDF importés dans les assets sont ajoutés automatiquement.
       </p>
       <textarea rows={10} value={sources} onChange={(e) => setSources(e.target.value)} placeholder="Nous sommes…" />
       <JobStatus running={running} label="Le Brand Guardian analyse vos sources…" error={err} />

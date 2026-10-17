@@ -16,7 +16,9 @@ export interface OrgSummary {
   role: Role;
   permissions: Permission[];
   plan: PlanCode;
-  status: "ACTIVE" | "SUSPENDED";
+  status: "ACTIVE" | "SUSPENDED" | "DELETION_PENDING";
+  /** Date de la demande de suppression (effacement 30 jours après). */
+  deletionRequestedAt: string | null;
   credits: number;
   workspaces: WorkspaceSummary[];
 }

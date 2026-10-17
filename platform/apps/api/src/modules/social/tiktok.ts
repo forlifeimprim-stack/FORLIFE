@@ -188,4 +188,13 @@ export class TikTokAdapter implements SocialProviderAdapter {
       return null;
     }
   }
+
+  async revoke(token: string): Promise<void> {
+    if (!this.isConfigured()) return;
+    await this.send(`${API}/oauth/revoke/`, {
+      method: "POST",
+      headers: { "content-type": "application/x-www-form-urlencoded" },
+      body: new URLSearchParams({ client_key: this.cfg.TIKTOK_CLIENT_KEY!, client_secret: this.cfg.TIKTOK_CLIENT_SECRET!, token }),
+    });
+  }
 }

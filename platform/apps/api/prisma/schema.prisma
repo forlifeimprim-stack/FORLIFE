@@ -133,8 +133,11 @@ model Organization {
   currency    String        @default("XOF")
   timezone    String        @default("Africa/Abidjan")
   /// ACTIVE | SUSPENDED (suspension par un administrateur de la plateforme)
+  /// | DELETION_PENDING (suppression demandée par le propriétaire, annulable 30 jours) | DELETED (données effacées)
   status      String        @default("ACTIVE")
   suspendedReason String?
+  deletionRequestedAt   DateTime?
+  deletionRequestedById String?
   createdAt   DateTime      @default(now())
   updatedAt   DateTime      @updatedAt
   invitations Invitation[]

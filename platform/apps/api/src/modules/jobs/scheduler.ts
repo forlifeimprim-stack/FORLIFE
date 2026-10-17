@@ -3,6 +3,7 @@ import { sweepPendingPayments } from "../payments/service.js";
 import { purgeExpiredBuckets } from "../../lib/throttle.js";
 import { collectMetrics, dispatchDuePublications } from "../social/service.js";
 import { purgeStalePlatformData } from "../social/retention.js";
+import { purgeDueOrganizations } from "../governance/data.js";
 
 /** Tâches périodiques de la plateforme (toutes idempotentes : plusieurs workers peuvent tourner). */
 export function startScheduler(log?: (msg: string, extra?: object) => void) {
@@ -13,6 +14,8 @@ export function startScheduler(log?: (msg: string, extra?: object) => void) {
       const p = await sweepPendingPayments();
       if (p) log?.("payments.swept", { count: p });
       await purgeExpiredBuckets();
+      const purged = await purgeDueOrganizations();
+      if (purged) log?.("org.purged", { count: purged });
     } catch (e) {
       log?.("scheduler.error", { error: e instanceof Error ? e.message : String(e) });
     }

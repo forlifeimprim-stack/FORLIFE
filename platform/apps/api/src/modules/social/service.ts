@@ -6,7 +6,7 @@ import { decryptSecret, encryptSecret } from "../../lib/crypto.js";
 import { AppError } from "../../lib/errors.js";
 import { audit } from "../../lib/audit.js";
 import { enqueue } from "../jobs/queue.js";
-import { adapterFor } from "./registry.js";
+import { adapterFor, getAdapters } from "./registry.js";
 import { SocialError } from "./types.js";
 import { signedMediaUrl } from "../creative/service.js";
 import { getStorage } from "../storage/storage.js";
@@ -76,6 +76,18 @@ export async function accessTokenFor(account: SocialAccount & { credential: Soci
     data: { accessTokenEnc: encryptSecret(t.accessToken, key), ...(t.refreshToken ? { refreshTokenEnc: encryptSecret(t.refreshToken, key) } : {}), expiresAt: t.expiresAt ?? null },
   });
   return t.accessToken;
+}
+
+/** Retire l'autorisation côté réseau (au mieux, sans bloquer) : appelé avant de supprimer les jetons. */
+export async function revokeRemote(account: SocialAccount & { credential: SocialCredential | null }): Promise<void> {
+  if (!account.credential) return;
+  const adapter = getAdapters().find((a) => (a.providers as readonly string[]).includes(account.provider));
+  if (!adapter?.revoke) return;
+  try {
+    await adapter.revoke(decryptSecret(account.credential.accessTokenEnc, loadConfig().ENCRYPTION_KEY));
+  } catch {
+    // Jeton déjà expiré ou réseau injoignable : la suppression locale suffit.
+  }
 }
 
 /** Dernière vidéo terminée du Video Studio rattachée au contenu. */

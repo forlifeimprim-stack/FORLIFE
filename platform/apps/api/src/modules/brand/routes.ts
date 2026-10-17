@@ -46,6 +46,19 @@ const productSchema = z.object({
   locked: z.boolean().default(true),
 });
 
+/** Texte d'un document importé ; un PDF illisible (scanné, protégé) est simplement ignoré. */
+export async function documentText(data: Buffer, mime: string): Promise<string> {
+  if (mime !== "application/pdf") return data.toString("utf8");
+  try {
+    const { extractText, getDocumentProxy } = await import("unpdf");
+    const pdf = await getDocumentProxy(new Uint8Array(data));
+    const { text } = await extractText(pdf, { mergePages: true });
+    return text.replace(/[ \t]+/g, " ").replace(/\n{3,}/g, "\n\n").trim();
+  } catch {
+    return "";
+  }
+}
+
 export async function brandRoutes(app: FastifyInstance) {
   app.addHook("preHandler", authenticate);
 
@@ -124,8 +137,12 @@ export async function brandRoutes(app: FastifyInstance) {
     const body = parse(z.object({ sources: z.string().trim().max(30_000).default(""), includeTextAssets: z.boolean().default(true) }), req.body);
     let sources = body.sources;
     if (body.includeTextAssets) {
-      const docs = await prisma.brandAsset.findMany({ where: { workspaceId, mime: "text/plain", deletedAt: null }, take: 5 });
-      for (const d of docs) sources += `\n\n[${d.fileName}]\n${(await getStorage().get(d.storageKey)).toString("utf8").slice(0, 8000)}`;
+      // Documents texte et PDF (catalogue, présentation) : leur texte enrichit l'analyse.
+      const docs = await prisma.brandAsset.findMany({ where: { workspaceId, mime: { in: ["text/plain", "application/pdf"] }, deletedAt: null }, orderBy: { createdAt: "desc" }, take: 5 });
+      for (const d of docs) {
+        const text = await documentText(await getStorage().get(d.storageKey), d.mime);
+        if (text) sources += `\n\n[${d.fileName}]\n${text.slice(0, 8000)}`;
+      }
     }
     if (sources.trim().length < 50) throw badRequest("Fournissez au moins quelques phrases sur l'entreprise (50 caractères) ou importez un document texte");
     const job = await enqueue({

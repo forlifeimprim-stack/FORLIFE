@@ -110,6 +110,8 @@ export async function requireWorkspace(req: FastifyRequest, workspaceId: string,
 
 function assertActive(status: string) {
   if (status === "SUSPENDED") throw forbidden("Cette organisation est suspendue. Contactez le support Forlife Com.");
+  if (status === "DELETION_PENDING") throw forbidden("La suppression de cette organisation a été demandée. Le propriétaire peut l'annuler depuis l'application.");
+  if (status === "DELETED") throw notFound("Organisation");
 }
 
 /** Administrateur effectif : drapeau activé ET email toujours présent dans PLATFORM_ADMIN_EMAILS. */

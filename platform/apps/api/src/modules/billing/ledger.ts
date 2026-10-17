@@ -1,5 +1,5 @@
 import { Prisma } from "@prisma/client";
-import { PLANS, type PlanCode } from "@forlife/shared";
+import { CREDIT_ALERT_THRESHOLDS, PLANS, type PlanCode } from "@forlife/shared";
 import { prisma, type Tx } from "../../lib/prisma.js";
 import { conflict, paymentRequired } from "../../lib/errors.js";
 import { loadConfig } from "../../config.js";
@@ -74,9 +74,45 @@ async function apply(op: LedgerOp, kind: Kind, sign: 1 | -1): Promise<LedgerResu
   }
 }
 
+/**
+ * Prévient les propriétaires et administrateurs quand une consommation fait passer le solde sous 20 % puis 5 %
+ * de l'allocation mensuelle (un seul email par seuil franchi). Au mieux : n'échoue jamais l'opération.
+ */
+export async function notifyLowCredits(organizationId: string, before: number, after: number): Promise<void> {
+  try {
+    const sub = await prisma.subscription.findUnique({ where: { organizationId }, include: { organization: { select: { name: true } } } });
+    if (!sub) return;
+    const allowance = PLANS[sub.planCode].monthlyCredits;
+    const crossed = CREDIT_ALERT_THRESHOLDS.filter((t) => before >= allowance * t && after < allowance * t);
+    if (!crossed.length) return;
+    const pct = Math.round(Math.min(...crossed) * 100);
+    const admins = await prisma.membership.findMany({ where: { organizationId, role: { in: ["OWNER", "ADMIN"] } }, include: { user: { select: { email: true } } } });
+    const url = `${loadConfig().APP_URL}/settings?tab=billing`;
+    for (const m of admins) {
+      await sendEmail({
+        to: m.user.email,
+        subject: `Crédits Forlife Com : moins de ${pct} % restants`,
+        template: "credits-low",
+        ...layout(`Il vous reste ${after} crédits`, [
+          `Le solde de « ${sub.organization.name} » est passé sous ${pct} % de votre allocation mensuelle (${allowance} crédits).`,
+          "Pour continuer à générer contenus, visuels et vidéos sans interruption, rechargez avec un pack de crédits ou passez à une offre supérieure.",
+        ], { label: "Recharger mes crédits", url }),
+      });
+    }
+  } catch {
+    // L'alerte est un confort : une erreur d'envoi ne doit pas bloquer la consommation.
+  }
+}
+
+async function consume(op: LedgerOp): Promise<LedgerResult> {
+  const res = await apply(op, "CONSUME", -1);
+  if (!res.replayed) void notifyLowCredits(op.organizationId, res.balanceAfter + op.amount, res.balanceAfter);
+  return res;
+}
+
 export const ledger = {
   grant: (op: LedgerOp) => apply(op, "GRANT", 1),
-  consume: (op: LedgerOp) => apply(op, "CONSUME", -1),
+  consume,
   refund: (op: LedgerOp) => apply(op, "REFUND", 1),
   purchase: (op: LedgerOp) => apply(op, "PURCHASE", 1),
   /** Crédit à l'intérieur d'une transaction englobante (tout ou rien avec le reste de l'opération). */

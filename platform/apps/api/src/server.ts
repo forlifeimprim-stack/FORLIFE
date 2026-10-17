@@ -17,6 +17,7 @@ import { contentRoutes } from "./modules/content/routes.js";
 import { approvalRoutes } from "./modules/approvals/routes.js";
 import { jobRoutes } from "./modules/jobs/routes.js";
 import { dashboardRoutes } from "./modules/governance/dashboard.js";
+import { dataGovernanceRoutes } from "./modules/governance/data.js";
 import { registerAllJobHandlers } from "./modules/jobs/handlers.js";
 import { adminRoutes } from "./modules/admin/routes.js";
 import { crmRoutes } from "./modules/crm/routes.js";
@@ -92,6 +93,7 @@ export async function buildServer(options: { logger?: boolean } = {}) {
   await app.register(approvalRoutes);
   await app.register(jobRoutes);
   await app.register(dashboardRoutes);
+  await app.register(dataGovernanceRoutes);
   await app.register(passwordRoutes);
   await app.register(verificationRoutes);
   await app.register(invitationRoutes);

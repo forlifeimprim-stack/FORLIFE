@@ -168,6 +168,7 @@ export async function identityRoutes(app: FastifyInstance) {
           permissions: [...ROLE_PERMISSIONS[m.role]],
           plan: m.organization.subscription?.planCode ?? "FREE",
           status: m.organization.status,
+          deletionRequestedAt: m.organization.deletionRequestedAt,
           credits: m.organization.wallet?.balance ?? 0,
           workspaces,
         };
