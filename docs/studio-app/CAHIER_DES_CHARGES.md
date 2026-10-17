@@ -1,7 +1,7 @@
-# Cahier des charges — « ForLife Studio » (version 1.0)
+# Cahier des charges — « ForLife Studio » (version 1.1)
 
 > Application de capture, de retouche automatique et de livraison par reconnaissance faciale pour le studio photo de **forlife.com**.
-> Date : 17 octobre 2026 · Statut : **validé sur les points principaux**. Il reste quelques points secondaires (§15).
+> Date : 17 octobre 2026 · Statut : **validé**. Il reste deux points secondaires (§15).
 
 ### Décisions validées par ForLife
 | Sujet | Décision |
@@ -9,9 +9,13 @@
 | Boîtiers | **Sony FX30** et **Sony Alpha 7 III** (A7 III) |
 | Accès client | **Selfie + reconnaissance faciale** : le client ne voit que ses photos |
 | Lieux | **Studio** et **extérieur** (événements, sorties) |
-| Station | **PC au studio** (déjà disponible) |
+| Station | **iMac 2015** (Intel 3,3 GHz, 16 Go de RAM, 1 To) au studio, sous **macOS** |
+| Équipe | **1 photographe** |
+| Envoi du lien | **WhatsApp** si le client en a un, sinon **lien direct dans le navigateur** |
 | Prix pour le client | **Gratuit** (inclus dans la prestation) : pas de paiement ni de filigrane bloquant |
 | Durée d'accès client | **30 jours** |
+| Conservation des originaux | **30 jours** également, puis suppression automatique |
+| Identité visuelle | **Logo ForLife Studio** fourni : orange `#EA7821`, brun `#3B251F`, motif « diaphragme » (`docs/studio-app/brand/`) |
 | Style de retouche | Pas de réglage existant : **ForLife Studio fournit les presets de départ**, à calibrer ensemble |
 | Hébergement | **Firebase** (déjà utilisé pour forlife.com) |
 
@@ -61,7 +65,7 @@
 ### 3.2 Modes de connexion retenus
 | Situation | FX30 | A7 III |
 |---|---|---|
-| **Studio** | USB‑C vers le PC Station (recommandé) ou Wi‑Fi FTP | **USB** vers le PC Station (mode PC Remote) |
+| **Studio** | USB‑C vers l'iMac (recommandé) ou Wi‑Fi FTP | **USB** vers l'iMac (mode PC Remote) |
 | **Extérieur** | **Wi‑Fi FTP** vers un PC portable ou un mini‑PC, avec routeur 4G/5G de poche | **USB** vers un PC portable en bandoulière ou sur table, ou vers un mini‑PC dans un sac |
 | **Secours** | Import de la carte SD : la Station traite le dossier importé | Idem |
 
@@ -72,7 +76,7 @@ Logiciel : **libgphoto2** (gratuit), qui pilote les Sony en mode PC Remote et r�
 > 💡 Si vous voulez un jour le **sans‑fil sur l'A7 III**, la seule vraie solution est de changer de boîtier (A7 IV ou plus récent). L'application est prête pour ces modèles.
 
 ### 3.3 Matériel à prévoir pour l'extérieur
-- un PC portable (Windows 10+, 16 Go de RAM, GPU conseillé), ou un mini‑PC alimenté par une batterie externe ;
+- un ordinateur portable (Mac ou PC Windows, 16 Go de RAM conseillés) pour la Station mobile, puisque l'iMac reste au studio (voir §15) ;
 - un routeur 4G/5G de poche, qui crée aussi le Wi‑Fi dédié au FX30 ;
 - des câbles USB‑C de 3 m de qualité, avec attache anti‑arrachement ;
 - une batterie externe de 20 000 mAh ou plus.
@@ -85,7 +89,7 @@ Logiciel : **libgphoto2** (gratuit), qui pilote les Sony en mode PC Remote et r�
 [FX30]──Wi-Fi FTP / USB──┐
 [A7 III]─────USB─────────┤
                          ▼
-               ┌────────────────────┐        ┌──────────────── FIREBASE ─────────────────┐
+               ┌────────────────────┐   (iMac 2015 au studio)        ┌──────────────── FIREBASE ─────────────────┐
                │  STATION (PC)      │        │ Authentication (personnel + double auth.) │
                │  • réception       │  HTTPS │ Firestore (base de données + vecteurs)    │
                │  • retouche        │ ─────► │ Cloud Storage (photos, privé)             │
@@ -101,7 +105,7 @@ Logiciel : **libgphoto2** (gratuit), qui pilote les Sony en mode PC Remote et r�
 ### 4.1 Pile technique
 | Couche | Choix |
 |---|---|
-| Station | **Electron** (interface) + **Python** (capture, retouche, visages), installable sous Windows |
+| Station | **Electron** (interface) + **Python** (capture, retouche, visages), en application **macOS** (et Windows pour un éventuel portable) |
 | Capture | libgphoto2 (USB), pyftpdlib (serveur FTP/FTPS) |
 | Retouche | rawpy/LibRaw, OpenCV, libvips, LUT 3D `.cube`, MediaPipe, ONNX Runtime |
 | Visages | **OpenCV YuNet** (détection) + **SFace** (empreinte faciale). Licences Apache‑2.0, usage commercial autorisé |
@@ -111,6 +115,17 @@ Logiciel : **libgphoto2** (gratuit), qui pilote les Sony en mode PC Remote et r�
 | Comptes du personnel | **Firebase Authentication + Identity Platform** (double authentification par SMS ou application) |
 | Web (client et admin) | **Next.js / React + Tailwind**, en PWA sur **Firebase Hosting** (`photos.forlife.com`) |
 | Selfie côté client | **ONNX Runtime Web** : l'empreinte est calculée dans le navigateur du client |
+
+### 4.2 La Station sur l'iMac 2015
+- **Système** : l'iMac 2015 s'arrête à **macOS 12 Monterey**. L'application cible donc macOS 12 au minimum, avec une version d'Electron compatible.
+- **Puissance** : le processeur Intel 4 cœurs, sans carte graphique exploitable pour l'IA, fait tout le travail. La cible devient **5 à 8 s par photo** (§5). Les rafales sont mises en file d'attente et traitées dans l'ordre : le client voit ses photos arriver progressivement, sans perte.
+- **Optimisations prévues** :
+  - en direct, traitement du JPEG réduit (environ 3 000 px) ;
+  - la haute définition finale est calculée juste après, en arrière‑plan ;
+  - modèles légers (YuNet, SFace, MediaPipe), rapides sur processeur seul.
+- **Disque** : si l'iMac a un « Fusion Drive » ou un disque dur classique, **un SSD externe USB 3 (500 Go ou 1 To, environ 60 à 80 €)** est fortement conseillé pour l'espace de travail. Il fait gagner beaucoup de vitesse.
+- **Particularité macOS** : le système s'empare automatiquement de l'appareil photo branché (Photos, Transfert d'images). La Station désactive ce comportement pour garder la main sur le boîtier.
+- **Paramètres** : désactiver la mise en veille pendant les séances (géré par l'application).
 
 > ⚠️ Les modèles **InsightFace / ArcFace** pré‑entraînés sont plus précis, mais leur licence **interdit l'usage commercial**. On reste sur YuNet + SFace (ou dlib), dont les licences l'autorisent.
 
@@ -129,7 +144,7 @@ Logiciel : **libgphoto2** (gratuit), qui pilote les Sony en mode PC Remote et r�
 8. **Visages** : détection, puis empreintes (vecteurs de 128 dimensions) envoyées avec la photo.
 9. Exports : **HD** (pleine définition), **web** (2048 px) et **miniature**.
 
-Durée cible : **3 s ou moins par photo** sur le PC Station avec GPU, **8 s ou moins** sans GPU, en traitement parallèle pour les rafales.
+Durée cible sur l'iMac 2015 : **5 à 8 s par photo** pour la version visible par le client, en traitement parallèle (4 cœurs) pour les rafales.
 
 ### 5.2 Presets fournis au démarrage
 Puisque vous n'avez pas de réglage de référence, ForLife Studio fournit les presets suivants :
@@ -176,12 +191,19 @@ Export : PNG et SVG haute définition, et PDF de planche de badges avec le logo 
 3. Il **prend un selfie**. Un contrôle simple de « présence réelle » lui demande de tourner légèrement la tête ou de cligner des yeux.
 4. **L'empreinte du visage est calculée sur son téléphone.** Le selfie n'est **jamais envoyé ni enregistré**.
 5. Une Cloud Function compare cette empreinte aux visages **du dossier du jour, ou de l'événement, uniquement**.
-6. Le client arrive sur **sa galerie personnelle** :
+6. Le client arrive **immédiatement** sur **sa galerie personnelle**, dans son navigateur :
    - un lien privé est créé, valable **30 jours** ;
-   - il est conservé sur son téléphone, et peut être envoyé par WhatsApp ou SMS si le client donne son numéro (facultatif) ;
    - **les nouvelles photos de la journée s'ajoutent automatiquement** à sa galerie s'il est à nouveau reconnu.
-7. Il télécharge ses photos en HD (une par une ou en ZIP) et les partage.
-8. Bouton **« Ce n'est pas moi / il manque des photos »** : le photographe corrige l'association dans le back‑office.
+7. **Recevoir le lien sur WhatsApp** :
+   - le client saisit son numéro (indicatif +225 prérempli) ;
+   - ForLife lui envoie automatiquement un message WhatsApp au nom de **ForLife Studio**, avec son lien personnel ;
+   - un rappel est envoyé **à J‑3 avant l'expiration**.
+8. **S'il n'a pas WhatsApp** (ou si l'envoi échoue) :
+   - le lien reste affiché dans son navigateur, avec un bouton « Copier le lien » ;
+   - il peut enregistrer la galerie sur l'écran d'accueil de son téléphone, comme une application ;
+   - le même lien fonctionne sur n'importe quel appareil pendant 30 jours.
+9. Il télécharge ses photos en HD (une par une ou en ZIP) et les partage.
+10. Bouton **« Ce n'est pas moi / il manque des photos »** : le photographe corrige l'association dans le back‑office.
 
 Cas particuliers :
 - **Photo de groupe** : elle apparaît dans la galerie de chaque personne reconnue.
@@ -197,6 +219,7 @@ Cas particuliers :
 
 ### 6.6 Back‑office (personnel ForLife uniquement)
 - Calendrier des dossiers du jour et des événements, avec recherche.
+- **Compte à rebours de suppression** sur chaque dossier, alerte **à J‑5**, et bouton « Tout télécharger » pour archiver localement ce que vous voulez garder.
 - Accès à **toutes** les photos (originaux et retouches), téléchargement en masse (ZIP par jour ou par événement).
 - Gestion des galeries clients : voir, prolonger, révoquer, réassocier une photo.
 - Statistiques : photos par jour, scans, taux de reconnaissance, téléchargements.
@@ -227,11 +250,13 @@ dayFolders/{folderId}              studioId, date, lieu?, type (studio | eveneme
                                    nettete, yeuxFermes, masquee, creeLe
   faces/{faceId}                   photoId, embedding (vecteur 128), bbox, qualite
 clientGalleries/{galleryId}        folderId, tokenHash, embeddingClient (chiffré, supprimé à l'expiration),
-                                   photoIds[], telephone?, consentement {image, visage, date},
+                                   photoIds[], whatsapp? (numéro), whatsappStatut (envoye | echec | sans),
+                                   consentement {image, visage, whatsapp, date},
                                    creeLe, expireLe (+30 j), revoque
 accessLogs/{logId}                 galleryId, action (vue | telechargement | zip), horodatage, ipHash
 auditLogs/{logId}                  uid, action, objet, horodatage
 ```
+- La règle de cycle de vie de Cloud Storage **supprime tous les fichiers de plus de 30 jours** (originaux compris), et une purge Firestore efface les entrées correspondantes.
 - Index **vectoriel** Firestore sur `faces.embedding`, avec recherche limitée au `folderId` du jour.
 - Index composites sur `photos(statut, creeLe)` et `clientGalleries(expireLe)`.
 
@@ -260,13 +285,15 @@ studios/{studioId}/{AAAA-MM-JJ[_lieu]}/originaux/…
 
 **Données personnelles** (loi ivoirienne n° 2013‑450, ARTCI, et RGPD pour les clients européens)
 - Le visage est une **donnée biométrique sensible** : consentement explicite, finalité unique (retrouver ses photos), **selfie jamais stocké**.
-- **Purge automatique** (Cloud Function planifiée chaque nuit) : au‑delà de 30 jours, suppression des galeries clients, des empreintes de visage et des numéros de téléphone.
+- **Purge automatique** (Cloud Function planifiée chaque nuit) : au‑delà de 30 jours, suppression des **photos (originaux compris)**, des galeries clients, des empreintes de visage et des numéros WhatsApp. **La copie locale de l'iMac est purgée aussi**, sauf les dossiers archivés volontairement.
+- WhatsApp : consentement explicite à recevoir le message, aucun message marketing sans accord séparé.
 - Politique de confidentialité et mentions affichées sur la page du QR.
 - **Formalités ARTCI à réaliser** (déclaration ou autorisation du traitement biométrique) : à vérifier avec un juriste.
 - Hébergement Firebase : choisir la région **europe-west1 (Belgique)**, la plus proche avec un bon débit vers Abidjan, et le mentionner dans la politique.
 
 **Fiabilité**
-- Originaux en double : disque de la Station et Cloud Storage. Export hebdomadaire de Firestore.
+- Originaux en double pendant 30 jours (iMac et Cloud Storage). Export hebdomadaire de Firestore.
+- ⚠️ Après 30 jours, **la suppression est définitive** : le back‑office prévient à J‑5.
 - Transport en HTTPS ; FTPS ou Wi‑Fi dédié et isolé pour le FX30.
 - Journal d'audit et alertes (Firebase Alerts / Cloud Monitoring).
 
@@ -274,8 +301,15 @@ studios/{studioId}/{AAAA-MM-JJ[_lieu]}/originaux/…
 
 ## 10. UI / UX
 
-- **Identité** : charte de forlife.com (couleurs, typographies, logo de `assets/` et `css/`).
-- **Station** : mode sombre (neutre, pour juger les couleurs), grandes miniatures, statut très lisible de loin.
+- **Identité ForLife Studio** (logo fourni, `docs/studio-app/brand/forlife-studio-logo.webp`) :
+  - **Orange ForLife `#EA7821`** : couleur d'action (boutons, progression, accents) ;
+  - **Brun espresso `#3B251F`** : textes, fonds sombres de la Station ;
+  - **Blanc cassé `#FFF8F2`** : fond de la galerie client ;
+  - motif du **diaphragme** utilisé comme animation d'attente (« recherche de vos photos… ») et comme icône de déclenchement ;
+  - formes arrondies du « F » (coins très ronds, pilules) reprises dans les boutons et les cartes ;
+  - typographie : une sans‑serif géométrique et ronde (par exemple **Poppins** ou **Outfit**, gratuites).
+  - Il faudra une **version vectorielle du logo** (SVG ou PDF) pour l'impression des badges et des QR (§15).
+- **Station** : mode sombre brun et neutre (pour juger les couleurs), accents orange, grandes miniatures, statut très lisible de loin.
 - **Client** : mobile d'abord, trois écrans maximum avant de voir ses photos (scan → selfie → galerie).
 - Écrans clés :
   1. Station : tableau de bord, séance en direct, presets, boîtiers, impression des QR.
@@ -288,13 +322,13 @@ studios/{studioId}/{AAAA-MM-JJ[_lieu]}/originaux/…
 ## 11. Exigences non fonctionnelles
 | Critère | Cible |
 |---|---|
-| Délai entre déclenchement et photo dans la galerie (JPEG, 4G correcte) | **15 s ou moins** |
+| Délai entre déclenchement et photo dans la galerie (JPEG, 4G correcte, iMac 2015) | **20 s ou moins** hors rafale |
 | Rafale | Au moins 10 images/s acceptées sans perte (mise en file) |
 | Recherche selfie | Résultat en **3 s ou moins** pour un jour de 5 000 photos |
 | Précision | Moins de 1 % de fausses correspondances (seuil réglable) |
 | Hors ligne | Capture et retouche 100 % fonctionnelles, envoi au retour du réseau |
 | Galerie client | Premier affichage en moins de 2 s en 4G |
-| Compatibilité | Station : Windows 10/11. Clients : Android 9+, iOS 15+, navigateurs récents |
+| Compatibilité | Station : macOS 12 Monterey ou plus récent (iMac 2015), Windows 10/11 en option. Clients : Android 9+, iOS 15+, navigateurs récents |
 
 ---
 
@@ -308,12 +342,14 @@ studios/{studioId}/{AAAA-MM-JJ[_lieu]}/originaux/…
 ---
 
 ## 13. Coûts récurrents estimés (Firebase, offre Blaze à l'usage)
-Hypothèse : 1 000 photos par jour, environ 3 Mo par photo pour l'ensemble des versions, et 500 Go de téléchargements par mois.
+Hypothèse : 1 000 photos par jour, environ 3 Mo par photo pour l'ensemble des versions, et 500 Go de téléchargements par mois. Avec une conservation de 30 jours, le stockage **reste stable** (environ 90 Go) au lieu de grossir.
 - Logiciels de retouche et de reconnaissance faciale : **0 FCFA**.
-- Cloud Storage : environ 0,026 $/Go/mois, soit environ **8 à 25 $/mois** la première année (le stockage grossit chaque mois).
+- Cloud Storage : environ 0,026 $/Go/mois, soit environ **3 $/mois** pour 90 Go.
 - Sortie réseau (téléchargements des clients) : environ 0,12 $/Go, soit environ **60 $/mois** pour 500 Go. C'est le poste principal : la galerie affiche la version web, et la HD n'est servie qu'au téléchargement.
 - Firestore, Functions, Hosting et Auth : souvent **moins de 10 $/mois** à ce volume.
-- Pour réduire les coûts, déplacer les originaux de plus de 90 jours vers une classe de stockage d'archive (règle de cycle de vie).
+- **WhatsApp Business (API Cloud de Meta)** : messages « utilitaires » facturés par Meta à quelques centimes (environ 1 à 5 FCFA, voire moins, selon le barème Afrique en vigueur), soit environ **5 à 15 $/mois** pour 1 000 clients. Il faut un numéro dédié à ForLife Studio et un compte Meta Business vérifié.
+- **Total estimé : environ 75 à 90 $/mois**, très majoritairement pour les téléchargements des clients.
+- Matériel conseillé : un SSD externe pour l'iMac (environ 60 à 80 €).
 
 ---
 
@@ -325,17 +361,19 @@ Hypothèse : 1 000 photos par jour, environ 3 Mo par photo pour l'ensemble des v
 | Erreur de reconnaissance faciale | Seuil prudent, bouton « Ce n'est pas moi », correction par le photographe |
 | Usurpation (selfie d'une autre personne) | Contrôle de présence réelle, recherche limitée au jour, limitation du nombre d'essais |
 | Formalités ARTCI | À lancer en parallèle du développement |
+| Puissance limitée de l'iMac 2015 | Traitement en file d'attente, modèles légers, SSD externe ; ajout possible d'un Mac mini (M1 ou plus récent) plus tard sans changer l'application |
+| Suppression définitive à 30 jours | Alerte à J‑5, bouton « Tout télécharger », archivage local volontaire |
+| Validation Meta pour WhatsApp (quelques jours) | Lien dans le navigateur toujours disponible en attendant |
 
 ---
 
-## 15. Points restant à préciser (non bloquants pour démarrer)
-1. **Caractéristiques du PC Station** (processeur, RAM, carte graphique) ? Et avez‑vous un **PC portable** pour l'extérieur ?
-2. **Nombre de photographes** travaillant en même temps, et nombre de lieux ou studios ?
-3. **Numéro WhatsApp du client** : facultatif (recommandé), obligatoire, ou jamais demandé ?
-4. **Conservation interne** des originaux après les 30 jours clients : 1 an, 3 ans, illimitée ?
-5. **Intensité de la retouche de peau** par défaut : naturelle (recommandé) ou « beauty » marquée ?
-6. **Langues** de la galerie client : français seul, ou français et anglais ?
-7. **Petit logo ForLife** sur les photos HD des clients : oui (publicité gratuite) ou non ?
-8. **Délai ou budget** visé pour la mise en service du MVP ?
+## 15. Points restant à préciser (non bloquants)
+1. **Extérieur** : avez‑vous un **ordinateur portable** (Mac ou PC) pour les séances hors studio ? Sinon, les photos d'extérieur seront importées depuis la carte SD au retour au studio, puis traitées et publiées en différé.
+2. **Logo vectoriel** : pouvez‑vous fournir le logo en **SVG, PDF ou AI** ? Sinon, je le redessinerai en vectoriel à partir de l'image fournie.
 
-*Ce document sert désormais de base de développement. Prochaine étape : MVP 1 (Station + Firebase).*
+À prévoir côté ForLife pour la mise en service :
+- un **numéro de téléphone dédié** à ForLife Studio pour WhatsApp Business (il ne doit pas déjà être utilisé dans l'appli WhatsApp) ;
+- un compte **Meta Business** ;
+- l'accès au projet **Firebase** existant de forlife.com (passage à l'offre Blaze, paiement à l'usage).
+
+*Ce document sert de base de développement. Prochaine étape : MVP 1 (Station macOS + Firebase).*
