@@ -1025,6 +1025,8 @@ model CreativeBrief {
   cta           String?
   /// Photo produit réelle (BrandAsset) : le produit fourni est conservé tel quel (§9)
   productAssetId String?
+  /// Fond photo généré par IA pour chaque concept quand aucune photo produit n'est fournie (§9)
+  aiImage       Boolean           @default(false)
   artDirection  String?
   status        String            @default("DRAFT") // DRAFT | CONCEPTS | DONE
   aiRunId       String?
@@ -1049,6 +1051,10 @@ model CreativeConcept {
   cta        String?
   mood       String?
   imagePrompt String?
+  /// Fond photo généré par IA (stockage) ; null si aucun ou si la génération a échoué
+  backgroundKey String?
+  /// Raison pour laquelle le fond IA n'a pas pu être généré (affichée à l'utilisateur)
+  backgroundNote String?
   createdAt  DateTime          @default(now())
   versions   CreativeVersion[]
 }

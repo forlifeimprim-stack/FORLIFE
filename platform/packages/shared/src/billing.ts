@@ -85,6 +85,7 @@ export const TASK_CREDIT_COST = {
   "crm.followup": 3,
   "creative.concepts": 6,
   "creative.render": 2,
+  "creative.image": 4,
   "video.storyboard": 8,
   "video.render": 15,
   "copilot.chat": 2,

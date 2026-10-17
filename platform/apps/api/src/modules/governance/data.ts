@@ -79,6 +79,7 @@ async function purgeWorkspace(workspaceId: string) {
   const keys = [
     ...(await prisma.brandAsset.findMany({ where: w, select: { storageKey: true } })).map((x) => x.storageKey),
     ...(await prisma.creativeVersion.findMany({ where: w, select: { storageKey: true } })).map((x) => x.storageKey),
+    ...(await prisma.creativeConcept.findMany({ where: { brief: w }, select: { backgroundKey: true } })).map((x) => x.backgroundKey),
     ...(await prisma.videoRender.findMany({ where: { project: w }, select: { storageKey: true, srtKey: true } })).flatMap((x) => [x.storageKey, x.srtKey]),
   ].filter((k): k is string => !!k);
   for (const k of keys) await storage.remove(k).catch(() => undefined);

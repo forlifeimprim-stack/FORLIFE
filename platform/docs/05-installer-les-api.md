@@ -73,6 +73,23 @@ Instagram : le compte doit être **professionnel** et relié à une page Faceboo
    (vertical court → Short), en **privé** tant que `YOUTUBE_PRIVACY` n'est pas passé à `public` — à faire après
    l'audit « YouTube API Services », l'API forçant le privé avant. Jeton (1 h) renouvelé automatiquement.
 
+## Fonds photo IA du Creative Studio (Imagen, Vertex AI)
+
+Comme la voix off, cette fonction passe par le compte de service de Cloud Run : **aucune clé à créer**. Deux
+actions à faire une fois, dans Cloud Shell :
+
+```
+gcloud services enable aiplatform.googleapis.com --project ai-growth-et-creative-os
+gcloud projects add-iam-policy-binding ai-growth-et-creative-os \
+  --member=serviceAccount:forlife-api@ai-growth-et-creative-os.iam.gserviceaccount.com --role=roles/aiplatform.user
+```
+
+- Modèle : `imagen-4.0-generate-001`, région `us-central1` (réglables par `IMAGE_MODEL` et `VERTEX_LOCATION`).
+- Coût Google : environ 0,04 $ par image.
+- Facturation au client : 4 crédits par image, prélevés seulement si l'image est produite.
+- Tant que ces deux actions ne sont pas faites, les concepts gardent leur fond graphique, et la raison s'affiche
+  sous chaque concept.
+
 ## Voix off du Video Studio (Google Text-to-Speech)
 
 La voix off utilise le compte de service de Cloud Run : **aucune clé à créer**. Il suffit d'activer l'API une

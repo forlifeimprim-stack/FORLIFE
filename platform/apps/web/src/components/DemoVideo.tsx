@@ -10,13 +10,14 @@ const TRANSCRIPT = [
   "Voici Forlife Com. Votre équipe marketing… propulsée par l'IA.",
   "Créez votre espace en une minute. Gratuitement.",
   "Chaque matin, vos missions du jour : ce qui compte vraiment, pour vendre plus.",
+  "Collez le lien de vos pages : l'IA lit vos publications… et vous dit ce qui marche.",
   "Le Brand DNA retient votre ton, vos produits… et reste fidèle à votre marque.",
   "Fixez vos objectifs : l'IA construit votre plan, et classe chaque action par impact.",
   "Le Content Studio rédige vos publications, adaptées à chaque réseau.",
   "Le Creative Studio crée vos visuels à vos couleurs… notés par un critique exigeant.",
-  "Le Video Studio produit vos vidéos de quinze secondes, avec storyboard et sous-titres.",
+  "Le Video Studio produit vos vidéos de quinze secondes, avec sous-titres… et voix off.",
   "Rien ne part sans votre accord. Vous validez… puis vous programmez.",
-  "Le Social Hub publie sur vos pages, et mesure les résultats.",
+  "Le Social Hub publie sur vos cinq réseaux… et mesure les résultats.",
   "Lancez des campagnes complètes, avec formulaires et suivi des prospects.",
   "Chaque demande arrive dans le CRM. Relancez sur WhatsApp.",
   "Analytics et ROI relient vos contenus à vos ventes réelles. En francs CFA.",
@@ -95,7 +96,7 @@ export function DemoVideoModal({ open, onClose, footerLabel = "Commencer", onAct
           Votre navigateur ne lit pas cette vidéo.
         </video>
       </div>
-      <p className="muted small">Visite guidée : Brand DNA, stratégie, contenus, visuels et vidéos, validation, publication, campagnes, CRM, analytics et AI Copilot. Vous pouvez la revoir à tout moment depuis l'accueil.</p>
+      <p className="muted small">Visite guidée : analyse de vos réseaux, Brand DNA, stratégie, contenus, visuels et vidéos, validation, publication, campagnes, CRM, analytics et AI Copilot. Vous pouvez la revoir à tout moment depuis l'accueil.</p>
       <details>
         <summary>Transcription</summary>
         <ol className="small">

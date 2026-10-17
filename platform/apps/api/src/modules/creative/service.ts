@@ -15,6 +15,7 @@ import { conceptsPrompt, type ConceptsInput, type ConceptsOutput } from "../ai/p
 import { getStorage } from "../storage/storage.js";
 import { composeSvg, palettes, renderPng, type CompositionSpec, type Image } from "./composer.js";
 import { critique } from "./critic.js";
+import { getImageGenerator } from "./imagegen.js";
 
 const RENDERABLE = ["image/png", "image/jpeg", "image/webp"];
 
@@ -30,6 +31,40 @@ async function loadImage(workspaceId: string, assetId: string | null | undefined
   const data = await getStorage().get(asset.storageKey);
   // Jamais de décodage d'une image aux dimensions démesurées (gel ou saturation mémoire du serveur).
   return isSafeImage(data, asset.mime) ? { mime: asset.mime, data } : null;
+}
+
+const sniffMime = (key: string) => (key.endsWith(".png") ? "image/png" : "image/jpeg");
+
+/**
+ * Fond photo généré par IA pour un concept (§9) : facturé seulement si l'image est produite. En cas d'échec
+ * (service non activé, filtre de sécurité, crédits insuffisants), le concept garde son fond graphique et la raison est notée.
+ */
+async function generateBackground(conceptId: string, prompt: string, format: CreativeFormat, ctx: { organizationId: string; workspaceId: string; actorId: string; key: string }) {
+  const note = (backgroundNote: string) => prisma.creativeConcept.update({ where: { id: conceptId }, data: { backgroundNote } });
+  const gen = getImageGenerator();
+  if (!gen) return note("Génération d'images par IA non activée sur ce serveur : fond graphique aux couleurs de la marque.");
+  const cost = TASK_CREDIT_COST["creative.image"];
+  const wallet = await prisma.creditWallet.findUnique({ where: { organizationId: ctx.organizationId } });
+  if ((wallet?.balance ?? 0) < cost) return note("Crédits insuffisants pour le fond photo IA : fond graphique utilisé.");
+  let image: Image;
+  try {
+    image = await gen.generate(prompt, format);
+  } catch (e) {
+    return note(e instanceof Error ? e.message : "Génération d'image impossible");
+  }
+  if (!RENDERABLE.includes(image.mime) || !isSafeImage(image.data, image.mime)) return note("Image générée illisible : fond graphique utilisé.");
+  try {
+    await ledger.consume({ organizationId: ctx.organizationId, amount: cost, reason: "Création : fond photo généré par IA", idempotencyKey: `image:${ctx.key}`, refType: "creative_concept", refId: conceptId });
+  } catch {
+    return note("Crédits insuffisants pour le fond photo IA : fond graphique utilisé.");
+  }
+  const storageKey = `${ctx.organizationId}/${ctx.workspaceId}/creative/fond-${createId()}.${image.mime === "image/png" ? "png" : "jpg"}`;
+  await getStorage().put(storageKey, image.data, image.mime);
+  const run = await prisma.aIRun.create({
+    data: { organizationId: ctx.organizationId, workspaceId: ctx.workspaceId, actorId: ctx.actorId, taskType: "creative.image", promptKey: "creative.image", promptVersion: 1, provider: gen.provider, model: gen.model, status: "SUCCEEDED", input: { prompt, format }, creditsCharged: cost, traceId: ctx.key, finishedAt: new Date() },
+  });
+  await prisma.aIUsageEvent.create({ data: { organizationId: ctx.organizationId, workspaceId: ctx.workspaceId, aiRunId: run.id, kind: "IMAGE", provider: gen.provider, model: gen.model, units: 1, credits: cost } });
+  await prisma.creativeConcept.update({ where: { id: conceptId }, data: { backgroundKey: storageKey, backgroundNote: null } });
 }
 
 /** Identité visuelle utilisée par le moteur : couleur et logo issus du Brand DNA. */
@@ -64,7 +99,8 @@ export async function renderVersion(conceptId: string, overrides: VersionOverrid
   const brief = concept.brief;
   const prev = (concept.versions[0]?.spec ?? {}) as Partial<CompositionSpec & { mood: string }>;
   const visuals = await brandVisuals(brief.workspaceId);
-  const photo = await loadImage(brief.workspaceId, brief.productAssetId);
+  // La vraie photo produit prime toujours ; sinon, le fond photo généré par IA pour ce concept.
+  const photo = (await loadImage(brief.workspaceId, brief.productAssetId)) ?? (concept.backgroundKey ? await safeImage(sniffMime(concept.backgroundKey), concept.backgroundKey) : null);
   const mood = overrides.mood ?? (prev.mood as "dark" | "light" | "accent" | undefined) ?? ((concept.mood as "dark" | "light" | "accent") || "dark");
   const layout = overrides.layout ?? (prev.layout as CreativeLayout | undefined) ?? (concept.layout as CreativeLayout);
   const spec: CompositionSpec & { mood: string } = {
@@ -146,6 +182,9 @@ export async function creativeConceptsJob(job: Job) {
     const concept = await prisma.creativeConcept.create({
       data: { briefId: brief.id, label: "ABC"[i] ?? String(i + 1), title: c.title, rationale: c.rationale, layout: c.layout, headline: c.headline, subline: c.subline, cta: c.cta, mood: c.mood, imagePrompt: c.imagePrompt },
     });
+    if (brief.aiImage && !photo && c.imagePrompt.trim()) {
+      await generateBackground(concept.id, c.imagePrompt, brief.format as CreativeFormat, { organizationId: job.organizationId, workspaceId: p.workspaceId, actorId: p.actorId, key: `${job.id}:${i}` });
+    }
     await renderVersion(concept.id, {}, p.actorId);
   }
   await prisma.creativeBrief.update({ where: { id: brief.id }, data: { status: "CONCEPTS", aiRunId: ai.runId } });

@@ -51,6 +51,7 @@ const TASK_LABELS: Record<string, string> = {
   "copilot.chat": "AI Copilot",
   "creative.concepts": "Concepts visuels",
   "creative.render": "Versions de visuels",
+  "creative.image": "Fonds photo IA",
   "video.storyboard": "Storyboards vidéo",
   "video.render": "Rendus vidéo",
   "campaign.pack": "Packs de campagne",

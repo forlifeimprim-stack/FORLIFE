@@ -62,6 +62,11 @@ const schema = z.object({
   /** Clé d'API YouTube (facultative) : lecture des chaînes publiques sans compte YouTube connecté. */
   YOUTUBE_API_KEY: z.string().optional(),
   /** Voix off du Video Studio : « google » = Cloud Text-to-Speech (compte de service), « none » = désactivée. */
+  /** Fonds photo du Creative Studio : « vertex » = Imagen sur Vertex AI (compte de service), « none » = désactivé. */
+  IMAGE_PROVIDER: z.enum(["none", "vertex"]).default("none"),
+  IMAGE_MODEL: z.string().default("imagen-4.0-generate-001"),
+  VERTEX_LOCATION: z.string().default("us-central1"),
+  GOOGLE_CLOUD_PROJECT: z.string().optional(),
   TTS_PROVIDER: z.enum(["none", "google"]).default("none"),
   YOUTUBE_PRIVACY: z.enum(["private", "unlisted", "public"]).default("private"),
   /** Binaire FFmpeg utilisé par le Video Studio. */

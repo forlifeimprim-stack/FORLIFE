@@ -49,6 +49,7 @@ export async function creativeRoutes(app: FastifyInstance) {
         cta: z.string().trim().max(40).nullish(),
         artDirection: z.string().trim().max(500).nullish(),
         productAssetId: z.string().nullish(),
+        aiImage: z.boolean().default(false),
         contentId: z.string().nullish(),
         campaignId: z.string().nullish(),
       }),
@@ -61,7 +62,9 @@ export async function creativeRoutes(app: FastifyInstance) {
     const job = await enqueue({ organizationId: ctx.organizationId, workspaceId, type: "ai.creative_concepts", payload: { workspaceId, briefId: brief.id, actorId: ctx.userId }, correlationId: ctx.correlationId, createdById: ctx.userId });
     await audit({ ...auditCtx(ctx), action: "creative.brief_created", entityType: "creative_brief", entityId: brief.id });
     reply.code(202);
-    return { briefId: brief.id, jobId: job.id, estimatedCredits: TASK_CREDIT_COST["creative.concepts"] };
+    // Fond photo IA : 3 images au plus (une par concept), facturées seulement si elles sont produites.
+    const images = body.aiImage && !body.productAssetId ? 3 * TASK_CREDIT_COST["creative.image"] : 0;
+    return { briefId: brief.id, jobId: job.id, estimatedCredits: TASK_CREDIT_COST["creative.concepts"] + images };
   });
 
   app.get("/api/workspaces/:workspaceId/creative/briefs/:id", { preHandler: authenticate }, async (req) => {

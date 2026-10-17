@@ -28,6 +28,9 @@ interface Concept {
   label: string;
   title: string;
   rationale: string;
+  /** Fond photo généré par IA, et la raison s'il n'a pas pu l'être. */
+  backgroundKey: string | null;
+  backgroundNote: string | null;
   versions: Version[];
 }
 interface BriefDetail {
@@ -65,7 +68,7 @@ export function CreativeStudioPage() {
   const briefs = useResource<{ id: string; subject: string; objective: ObjectiveType; format: CreativeFormat; status: string; createdAt: string; best: { id: string; score: number; status: string } | null }[]>(`${ws}/creative/briefs`);
   const assets = useResource<{ assets: { id: string; type: string; fileName: string; mime: string }[] }>(`${ws}/brand`);
   const contents = useResource<{ id: string; title: string }[]>(`${ws}/contents`);
-  const [f, setF] = useState({ subject: "", objective: "SALES" as ObjectiveType, format: "SQUARE" as CreativeFormat, offer: "", cta: "", artDirection: "", productAssetId: "", contentId: params.get("contentId") ?? "" });
+  const [f, setF] = useState({ subject: "", objective: "SALES" as ObjectiveType, format: "SQUARE" as CreativeFormat, offer: "", cta: "", artDirection: "", productAssetId: "", aiImage: false, contentId: params.get("contentId") ?? "" });
   const [err, setErr] = useState<string | null>(null);
   const job = useJob(ws);
   const photos = assets.data?.assets.filter((a) => ["image/png", "image/jpeg", "image/webp"].includes(a.mime)) ?? [];
@@ -81,6 +84,7 @@ export function CreativeStudioPage() {
         cta: f.cta || null,
         artDirection: f.artDirection || null,
         productAssetId: f.productAssetId || null,
+        aiImage: f.aiImage && !f.productAssetId,
         contentId: f.contentId || null,
       });
       const final = await job.track(res.jobId);
@@ -151,6 +155,13 @@ export function CreativeStudioPage() {
                 <input value={f.artDirection} onChange={(e) => setF({ ...f, artDirection: e.target.value })} placeholder="Ex. premium, sobre, beaucoup d'espace" />
               </Field>
             </div>
+            <label className="row small" style={{ marginTop: 10, opacity: f.productAssetId ? 0.55 : 1 }}>
+              <input type="checkbox" checked={f.aiImage && !f.productAssetId} disabled={!!f.productAssetId} onChange={(e) => setF({ ...f, aiImage: e.target.checked })} />
+              <span>
+                Générer un <b>fond photo par IA</b> pour chaque concept (+{TASK_CREDIT_COST["creative.image"]} crédits par image, facturés seulement si l'image est produite)
+                {f.productAssetId ? " — inutile avec une vraie photo produit" : ""}
+              </span>
+            </label>
             <div className="row between" style={{ marginTop: 12 }}>
               <span className="muted small">3 concepts différents, notés par le Creative Critic. Le texte est composé par notre moteur : orthographe et prix exacts.</span>
               <Button busy={job.running} disabled={f.subject.trim().length < 3} onClick={submit}>
@@ -277,6 +288,8 @@ function ConceptCard({ ws, concept, format, hasOffer, cost, onChange }: { ws: st
           <p className="small" style={{ margin: 0 }}>
             {concept.rationale}
           </p>
+          {concept.backgroundKey && <Badge tone="accent">Fond photo généré par IA</Badge>}
+          {concept.backgroundNote && <p className="muted small" style={{ margin: 0 }}>ⓘ {concept.backgroundNote}</p>}
           <div>
             {v.critic.dimensions.map((d) => (
               <div key={d.key} className="critic-row" title={d.note}>
