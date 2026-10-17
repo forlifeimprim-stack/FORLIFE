@@ -1,4 +1,4 @@
-# Cahier des charges — « ForLife Studio » (version 1.1)
+# Cahier des charges — « ForLife Studio » (version 1.2)
 
 > Application de capture, de retouche automatique et de livraison par reconnaissance faciale pour le studio photo de **forlife.com**.
 > Date : 17 octobre 2026 · Statut : **validé**. Il reste deux points secondaires (§15).
@@ -8,14 +8,14 @@
 |---|---|
 | Boîtiers | **Sony FX30** et **Sony Alpha 7 III** (A7 III) |
 | Accès client | **Selfie + reconnaissance faciale** : le client ne voit que ses photos |
-| Lieux | **Studio** et **extérieur** (événements, sorties) |
+| Lieux | **Studio** (iMac) et **extérieur sans ordinateur** : un **téléphone Android** préconfiguré sert de relais (§3.3) |
 | Station | **iMac 2015** (Intel 3,3 GHz, 16 Go de RAM, 1 To) au studio, sous **macOS** |
 | Équipe | **1 photographe** |
 | Envoi du lien | **WhatsApp** si le client en a un, sinon **lien direct dans le navigateur** |
 | Prix pour le client | **Gratuit** (inclus dans la prestation) : pas de paiement ni de filigrane bloquant |
 | Durée d'accès client | **30 jours** |
 | Conservation des originaux | **30 jours** également, puis suppression automatique |
-| Identité visuelle | **Logo ForLife Studio** fourni : orange `#EA7821`, brun `#3B251F`, motif « diaphragme » (`docs/studio-app/brand/`) |
+| Identité visuelle | **Logo ForLife Studio** (F + diaphragme) et **logo vectoriel Forlife Com** (fichier .ai converti en SVG) : orange `#EA7821`, brun `#3B251F`, slogan « Imprimer l'avenir, valoriser les marques » (`docs/studio-app/brand/`) |
 | Style de retouche | Pas de réglage existant : **ForLife Studio fournit les presets de départ**, à calibrer ensemble |
 | Hébergement | **Firebase** (déjà utilisé pour forlife.com) |
 
@@ -66,20 +66,53 @@
 | Situation | FX30 | A7 III |
 |---|---|---|
 | **Studio** | USB‑C vers l'iMac (recommandé) ou Wi‑Fi FTP | **USB** vers l'iMac (mode PC Remote) |
-| **Extérieur** | **Wi‑Fi FTP** vers un PC portable ou un mini‑PC, avec routeur 4G/5G de poche | **USB** vers un PC portable en bandoulière ou sur table, ou vers un mini‑PC dans un sac |
-| **Secours** | Import de la carte SD : la Station traite le dossier importé | Idem |
+| **Extérieur (sans ordinateur)** | **Wi‑Fi FTP vers le téléphone ForLife** (point d'accès du téléphone) | **Câble USB‑C court vers le téléphone ForLife** (OTG) ; en secours, **carte SD Wi‑Fi** |
+| **Secours** | Import de la carte SD (Station ou téléphone avec lecteur USB‑C) | Idem |
 
-Logiciel : **libgphoto2** (gratuit), qui pilote les Sony en mode PC Remote et récupère chaque image dès le déclenchement. Le **Sony Camera Remote SDK** reste une solution de repli si un modèle pose problème. Le serveur FTP est intégré à la Station pour le FX30.
+Logiciel : **libgphoto2** (gratuit), qui pilote les Sony en mode PC Remote et récupère chaque image dès le déclenchement, sur l'iMac comme sur Android. Le **Sony Camera Remote SDK** reste une solution de repli. Un serveur FTP est intégré à la Station et à l'appli téléphone pour le FX30.
 
-**Rafales** : boîtier en **RAW + JPEG**. En direct, seul le **JPEG** est récupéré et traité. Les RAW sont importés en fin de journée pour d'éventuelles retouches premium.
+**Rafales** : boîtier en **RAW + JPEG**. En direct, seul le **JPEG** est récupéré et traité. Les RAW restent sur la carte et sont importés au studio pour d'éventuelles retouches premium.
 
-> 💡 Si vous voulez un jour le **sans‑fil sur l'A7 III**, la seule vraie solution est de changer de boîtier (A7 IV ou plus récent). L'application est prête pour ces modèles.
+### 3.3 Mode extérieur : le téléphone ForLife comme relais
+En extérieur, il n'y a **pas d'ordinateur** : un **téléphone Android dédié**, préconfiguré une fois pour toutes, reçoit les photos des boîtiers et les envoie au cloud en 4G/5G. **La retouche et la reconnaissance faciale sont faites dans le cloud** (§4.3), avec exactement les mêmes presets qu'au studio.
 
-### 3.3 Matériel à prévoir pour l'extérieur
-- un ordinateur portable (Mac ou PC Windows, 16 Go de RAM conseillés) pour la Station mobile, puisque l'iMac reste au studio (voir §15) ;
-- un routeur 4G/5G de poche, qui crée aussi le Wi‑Fi dédié au FX30 ;
-- des câbles USB‑C de 3 m de qualité, avec attache anti‑arrachement ;
-- une batterie externe de 20 000 mAh ou plus.
+```
+ [FX30] ──Wi-Fi (point d'accès du téléphone) + FTP──┐
+                                                   ├─► [Téléphone ForLife – appli « ForLife Capture »] ──4G/5G──► [Moteur cloud] ──► Galerie client
+ [A7 III] ──câble USB-C court (OTG)────────────────┘        • reçoit et met en file
+                                                            • envoie dès qu'il y a du réseau
+```
+
+**FX30 (sans fil)**
+1. Le téléphone active son **point d'accès Wi‑Fi** (nom et mot de passe fixes, par exemple `ForLife-Capture`).
+2. Le FX30 est **préconfiguré une seule fois** : il se connecte à ce réseau et fait le **transfert FTP automatique** vers le serveur FTP de l'appli, avec envoi du JPEG seulement.
+3. À chaque déclenchement, le JPEG part tout seul vers le téléphone, qui l'envoie au cloud en 4G/5G. Le téléphone utilise sa connexion mobile pendant qu'il partage son Wi‑Fi : c'est le fonctionnement normal d'un point d'accès.
+
+**A7 III (sans Wi‑Fi temps réel) : trois solutions, par ordre de préférence**
+1. **Câble USB‑C court (30 cm) vers le téléphone**, glissé dans une poche de harnais ou de ceinture :
+   - l'appli « ForLife Capture » pilote l'A7 III en mode PC Remote (libgphoto2 compilé pour Android) et récupère chaque photo dès le déclenchement ;
+   - le Wi‑Fi n'est pas utilisé et c'est la solution la plus fiable, mais elle **sera validée par un prototype dès la première semaine**.
+2. **Carte SD Wi‑Fi** (type ezShare, environ 15 à 30 €) dans l'A7 III :
+   - la carte crée son propre petit Wi‑Fi, et l'appli y récupère les nouvelles photos toutes les 2 à 3 secondes, sans câble ;
+   - limites : plus lente, et compatibilité à tester avec l'A7 III (§14).
+3. **Import différé** : la carte SD est lue sur le téléphone (lecteur USB‑C) ou au studio à la fin de la séance, puis traitée et publiée automatiquement.
+
+**Appli « ForLife Capture » (Android)**
+- **un seul bouton « Démarrer la séance »** : elle allume le point d'accès, le serveur FTP et l'écoute USB, et ouvre le dossier `date_lieu` ;
+- reste active écran éteint (service de premier plan) et empêche la mise en veille du transfert ;
+- **file d'attente hors ligne** : si la 4G coupe, les photos attendent dans le téléphone et partent dès le retour du réseau ;
+- miniatures en direct, preset actif, compteur de photos (« reçues / envoyées / publiées »), batterie et données mobiles consommées ;
+- affiche le **QR de l'événement** en plein écran, que les clients peuvent scanner sur place ;
+- envoi d'une **version réduite** (environ 3 000 px, 1,5 à 3 Mo) pour économiser les données. L'original reste sur la carte SD.
+
+**Pourquoi Android et pas iPhone** : iOS ne permet pas à une appli de faire tourner un serveur FTP en continu en arrière‑plan, ni de piloter facilement un appareil photo en USB. Android le permet.
+
+### 3.4 Matériel à prévoir pour l'extérieur
+- **un téléphone Android dédié** (Android 11 ou plus récent, USB‑C avec OTG, 8 Go de RAM, 128 Go, bonne batterie) ; un modèle milieu de gamme (Samsung Galaxy A35/A55, Redmi Note, Pixel 7a…) suffit ;
+- une **puce data 4G/5G** avec un bon forfait : environ 1,5 Go pour 500 photos ;
+- un **câble USB‑C vers USB‑C court** (A7 III vers téléphone) et un câble de 3 m pour le studio ;
+- une **batterie externe** de 20 000 mAh ou plus (le point d'accès et l'envoi consomment beaucoup) ;
+- optionnel : une **carte SD Wi‑Fi** pour l'A7 III (solution 2) et un lecteur de carte SD USB‑C.
 
 ---
 
@@ -98,6 +131,7 @@ Logiciel : **libgphoto2** (gratuit), qui pilote les Sony en mode PC Remote et r�
                └────────────────────┘        └───────────────────┬───────────────────────┘
                         ▲                                        │
        [Appli photographe (PWA)] ──── suivi en direct ───────────┤
+ [Téléphone « ForLife Capture »] ─ 4G ─► [Moteur cloud Cloud Run] ┤  (extérieur)
                                                                  ▼
                                    [Client : scan du QR → selfie → ses photos, 30 jours]
 ```
@@ -106,6 +140,8 @@ Logiciel : **libgphoto2** (gratuit), qui pilote les Sony en mode PC Remote et r�
 | Couche | Choix |
 |---|---|
 | Station | **Electron** (interface) + **Python** (capture, retouche, visages), en application **macOS** (et Windows pour un éventuel portable) |
+| Appli extérieur | **« ForLife Capture »** en **Android natif (Kotlin)** : serveur FTP, point d'accès, USB OTG avec libgphoto2 (NDK), envoi Firebase |
+| Moteur cloud | **Cloud Run** (conteneur Python), avec **le même code de retouche et de visages que la Station**, déclenché à chaque photo reçue dans Storage |
 | Capture | libgphoto2 (USB), pyftpdlib (serveur FTP/FTPS) |
 | Retouche | rawpy/LibRaw, OpenCV, libvips, LUT 3D `.cube`, MediaPipe, ONNX Runtime |
 | Visages | **OpenCV YuNet** (détection) + **SFace** (empreinte faciale). Licences Apache‑2.0, usage commercial autorisé |
@@ -116,7 +152,14 @@ Logiciel : **libgphoto2** (gratuit), qui pilote les Sony en mode PC Remote et r�
 | Web (client et admin) | **Next.js / React + Tailwind**, en PWA sur **Firebase Hosting** (`photos.forlife.com`) |
 | Selfie côté client | **ONNX Runtime Web** : l'empreinte est calculée dans le navigateur du client |
 
-### 4.2 La Station sur l'iMac 2015
+### 4.2 Un seul moteur, deux endroits
+Le moteur de retouche et de visages est écrit **une seule fois** (Python) et tourne :
+- **sur l'iMac** au studio, pour la rapidité et parce qu'il ne coûte rien ;
+- **dans le cloud (Cloud Run)** pour les photos venant du téléphone en extérieur, ou en renfort si l'iMac est éteint.
+
+Les presets sont synchronisés via Firestore : un changement sur l'iMac s'applique aussi en extérieur.
+
+### 4.3 La Station sur l'iMac 2015
 - **Système** : l'iMac 2015 s'arrête à **macOS 12 Monterey**. L'application cible donc macOS 12 au minimum, avec une version d'Electron compatible.
 - **Puissance** : le processeur Intel 4 cœurs, sans carte graphique exploitable pour l'IA, fait tout le travail. La cible devient **5 à 8 s par photo** (§5). Les rafales sont mises en file d'attente et traitées dans l'ordre : le client voit ses photos arriver progressivement, sans perte.
 - **Optimisations prévues** :
@@ -323,19 +366,23 @@ studios/{studioId}/{AAAA-MM-JJ[_lieu]}/originaux/…
 | Critère | Cible |
 |---|---|
 | Délai entre déclenchement et photo dans la galerie (JPEG, 4G correcte, iMac 2015) | **20 s ou moins** hors rafale |
+| Délai en extérieur (téléphone, 4G correcte) | **30 s ou moins** hors rafale |
+| Autonomie en extérieur | Au moins 4 h de séance avec batterie externe |
 | Rafale | Au moins 10 images/s acceptées sans perte (mise en file) |
 | Recherche selfie | Résultat en **3 s ou moins** pour un jour de 5 000 photos |
 | Précision | Moins de 1 % de fausses correspondances (seuil réglable) |
 | Hors ligne | Capture et retouche 100 % fonctionnelles, envoi au retour du réseau |
 | Galerie client | Premier affichage en moins de 2 s en 4G |
-| Compatibilité | Station : macOS 12 Monterey ou plus récent (iMac 2015), Windows 10/11 en option. Clients : Android 9+, iOS 15+, navigateurs récents |
+| Compatibilité | Appli extérieur : Android 11+. Station : macOS 12 Monterey ou plus récent (iMac 2015), Windows 10/11 en option. Clients : Android 9+, iOS 15+, navigateurs récents |
 
 ---
 
 ## 12. Planning indicatif
 | Lot | Contenu | Durée |
 |---|---|---|
+| **Semaine 1 : prototypes** | Test réel de l'A7 III en USB sur iMac **et sur Android**, du FX30 en FTP vers le téléphone, et de la carte SD Wi‑Fi | 1 semaine |
 | **MVP 1** | Station : capture USB (A7 III et FX30) et FTP (FX30), dossier du jour, 3 presets, envoi vers Firebase. Back‑office simple. Galerie par lien | 4 à 5 semaines |
+| **MVP 1 bis** | Appli Android « ForLife Capture » et moteur cloud (Cloud Run) | + 3 semaines |
 | **MVP 2** | Reconnaissance faciale (indexation et selfie), QR du jour et d'événement, expiration à 30 jours, purge, consentement | + 3 à 4 semaines |
 | **V1** | Retouche de peau avancée, éditeur de presets, séance de calibration, appli photographe PWA, statistiques, mode extérieur optimisé | + 3 à 4 semaines |
 
@@ -347,6 +394,8 @@ Hypothèse : 1 000 photos par jour, environ 3 Mo par photo pour l'ensemble des v
 - Cloud Storage : environ 0,026 $/Go/mois, soit environ **3 $/mois** pour 90 Go.
 - Sortie réseau (téléchargements des clients) : environ 0,12 $/Go, soit environ **60 $/mois** pour 500 Go. C'est le poste principal : la galerie affiche la version web, et la HD n'est servie qu'au téléchargement.
 - Firestore, Functions, Hosting et Auth : souvent **moins de 10 $/mois** à ce volume.
+- **Cloud Run** (retouche des photos d'extérieur) : quelques secondes de calcul par photo, soit environ **1 à 5 $/mois** pour quelques milliers de photos (une partie est incluse dans l'offre gratuite).
+- **Forfait data** du téléphone : environ 1,5 Go par séance de 500 photos.
 - **WhatsApp Business (API Cloud de Meta)** : messages « utilitaires » facturés par Meta à quelques centimes (environ 1 à 5 FCFA, voire moins, selon le barème Afrique en vigueur), soit environ **5 à 15 $/mois** pour 1 000 clients. Il faut un numéro dédié à ForLife Studio et un compte Meta Business vérifié.
 - **Total estimé : environ 75 à 90 $/mois**, très majoritairement pour les téléchargements des clients.
 - Matériel conseillé : un SSD externe pour l'iMac (environ 60 à 80 €).
@@ -361,19 +410,23 @@ Hypothèse : 1 000 photos par jour, environ 3 Mo par photo pour l'ensemble des v
 | Erreur de reconnaissance faciale | Seuil prudent, bouton « Ce n'est pas moi », correction par le photographe |
 | Usurpation (selfie d'une autre personne) | Contrôle de présence réelle, recherche limitée au jour, limitation du nombre d'essais |
 | Formalités ARTCI | À lancer en parallèle du développement |
+| Pilotage USB de l'A7 III depuis Android | Prototype en semaine 1 ; sinon carte SD Wi‑Fi, ou import différé de la carte SD |
+| 4G faible en extérieur | File d'attente dans le téléphone, version réduite des photos, envoi au retour du réseau |
+| Batterie du téléphone | Batterie externe, écran éteint pendant la séance |
 | Puissance limitée de l'iMac 2015 | Traitement en file d'attente, modèles légers, SSD externe ; ajout possible d'un Mac mini (M1 ou plus récent) plus tard sans changer l'application |
 | Suppression définitive à 30 jours | Alerte à J‑5, bouton « Tout télécharger », archivage local volontaire |
 | Validation Meta pour WhatsApp (quelques jours) | Lien dans le navigateur toujours disponible en attendant |
 
 ---
 
-## 15. Points restant à préciser (non bloquants)
-1. **Extérieur** : avez‑vous un **ordinateur portable** (Mac ou PC) pour les séances hors studio ? Sinon, les photos d'extérieur seront importées depuis la carte SD au retour au studio, puis traitées et publiées en différé.
-2. **Logo vectoriel** : pouvez‑vous fournir le logo en **SVG, PDF ou AI** ? Sinon, je le redessinerai en vectoriel à partir de l'image fournie.
+## 15. Points restant à préciser
+Tous les points bloquants sont tranchés. Le logo vectoriel a été reçu et converti (`brand/forlife-com-logo-horizontal.svg` et `brand/forlife-com-logo-vertical.svg`).
 
 À prévoir côté ForLife pour la mise en service :
+- un **téléphone Android dédié** et une **puce data** pour l'extérieur (§3.4) ;
 - un **numéro de téléphone dédié** à ForLife Studio pour WhatsApp Business (il ne doit pas déjà être utilisé dans l'appli WhatsApp) ;
 - un compte **Meta Business** ;
-- l'accès au projet **Firebase** existant de forlife.com (passage à l'offre Blaze, paiement à l'usage).
+- l'accès au projet **Firebase** existant de forlife.com (passage à l'offre Blaze, paiement à l'usage) ;
+- les deux boîtiers pendant la **semaine de prototypes**, pour les tests réels.
 
-*Ce document sert de base de développement. Prochaine étape : MVP 1 (Station macOS + Firebase).*
+*Ce document sert de base de développement. Prochaine étape : semaine de prototypes, puis MVP 1 (Station macOS + Firebase) et MVP 1 bis (appli Android + moteur cloud).*
