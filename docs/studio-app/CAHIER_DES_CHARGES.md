@@ -1,4 +1,4 @@
-# Cahier des charges — « ForLife Studio » (version 1.3)
+# Cahier des charges — « ForLife Studio » (version 1.4)
 
 > Application de capture, de retouche automatique et de livraison par reconnaissance faciale pour le studio photo de **forlife.com**.
 > Date : 17 octobre 2026 · Statut : **validé**. Il reste deux points secondaires (§15).
@@ -8,7 +8,8 @@
 |---|---|
 | Boîtiers | **Sony FX30** et **Sony Alpha 7 III** (A7 III) |
 | Accès client | **Selfie + reconnaissance faciale** : le client ne voit que ses photos |
-| **Objectif n°1** | **Le client récupère ses photos SUR PLACE**, en studio comme en extérieur, même si Internet est faible ou absent (§3.4) |
+| **Objectif n°1** | **Le client récupère ses photos SUR PLACE**, en studio comme en extérieur, depuis son propre téléphone (ses données mobiles) |
+| **Principe Wi‑Fi** | **Seuls les appareils photo** se connectent au Wi‑Fi ForLife : **Wi‑Fi du bureau** au studio, **point d'accès du téléphone ForLife** en extérieur. **Les clients ne se connectent jamais** à notre Wi‑Fi (§3) |
 | Lieux | **Studio** (iMac) et **extérieur sans ordinateur** : un **téléphone Android** préconfiguré sert de relais (§3.3) |
 | Station | **iMac 2015** (Intel 3,3 GHz, 16 Go de RAM, 1 To) au studio, sous **macOS** |
 | Équipe | **1 photographe** |
@@ -57,97 +58,75 @@
 
 ## 3. Connexion des boîtiers (FX30 et A7 III)
 
-### 3.1 Ce qu'il faut savoir
-- Le **Bluetooth** sert uniquement à l'appairage, au géomarquage et à la télécommande. Il est trop lent pour transférer des photos.
-- **L'A7 III ne sait pas envoyer ses photos en Wi‑Fi au fur et à mesure de la prise de vue.** Le transfert FTP automatique n'existe qu'à partir de l'A7 IV. Son Wi‑Fi « Envoyer vers ordinateur » ne transfère qu'après coup, et lentement.
-- **Pour l'A7 III, la voie temps réel est donc le câble USB** (mode « PC Remote »). Elle est rapide, fiable et adaptée aux rafales.
-- **Le FX30 dispose du transfert FTP automatique** en Wi‑Fi (avec un firmware récent), en plus de l'USB.
+### 3.1 Principe : l'appareil photo sur notre Wi‑Fi, le client sur ses données
+- **Les appareils photo se connectent au Wi‑Fi de ForLife**, et à lui seul :
+  - **au studio**, le Wi‑Fi du bureau. Les photos vont à l'**iMac**, branché sur le même réseau ;
+  - **en extérieur**, le point d'accès du **téléphone ForLife**. Les photos vont à l'**appli « ForLife Capture »** de ce téléphone.
+- **Le client ne se connecte à aucun Wi‑Fi ForLife.** Il scanne le QR avec **ses propres données mobiles**, fait son selfie et récupère ses photos.
+- Les réglages Wi‑Fi sont **enregistrés une fois pour toutes** dans chaque appareil (bureau + téléphone). L'appareil rejoint automatiquement le réseau disponible.
+- Le **Bluetooth** sert seulement à l'appairage et à la télécommande : il est trop lent pour les photos.
 
-### 3.2 Modes de connexion retenus
-| Situation | FX30 | A7 III |
+### 3.2 Comment chaque appareil envoie ses photos en Wi‑Fi
+| | **FX30** | **A7 III** |
 |---|---|---|
-| **Studio** | USB‑C vers l'iMac (recommandé) ou Wi‑Fi FTP | **USB** vers l'iMac (mode PC Remote) |
-| **Extérieur (sans ordinateur)** | **Wi‑Fi FTP vers le téléphone ForLife** (point d'accès du téléphone) | **Câble USB‑C court vers le téléphone ForLife** (OTG) ; en secours, **carte SD Wi‑Fi** |
-| **Secours** | Import de la carte SD (Station ou téléphone avec lecteur USB‑C) | Idem |
+| Fonction Sony utilisée | **Transfert FTP automatique** : chaque photo part dès qu'elle est prise | **« Commande via PC » (PC Remote) en Wi‑Fi**, mode point d'accès : l'application récupère chaque photo dès le déclenchement |
+| Studio | Wi‑Fi du bureau → iMac (serveur FTP intégré) | Wi‑Fi du bureau → iMac |
+| Extérieur | Point d'accès du téléphone → appli ForLife Capture | Point d'accès du téléphone → appli ForLife Capture |
+| Fiabilité | Fonction officielle, prévue pour ça | **À confirmer pendant la semaine d'essais** : la prise en charge du PC Remote en Wi‑Fi sur l'A7 III dépend de sa version de firmware, et son pilotage par un logiciel tiers (libgphoto2 en PTP/IP) n'est pas documenté pour ce modèle |
+| Plan B | Câble USB‑C | **Câble USB‑C court** vers l'iMac ou le téléphone (fiable, testé en semaine 1) |
 
-Logiciel : **libgphoto2** (gratuit), qui pilote les Sony en mode PC Remote et récupère chaque image dès le déclenchement, sur l'iMac comme sur Android. Le **Sony Camera Remote SDK** reste une solution de repli. Un serveur FTP est intégré à la Station et à l'appli téléphone pour le FX30.
+**Mise à jour des firmwares** : avant les essais, mettre le FX30 et l'A7 III à leur **dernière version de firmware** Sony. Les fonctions Wi‑Fi en dépendent.
 
-**Rafales** : boîtier en **RAW + JPEG**. En direct, seul le **JPEG** est récupéré et traité. Les RAW restent sur la carte et sont importés au studio pour d'éventuelles retouches premium.
+**Rafales** : boîtiers en **RAW + JPEG**. Seul le **JPEG** voyage en Wi‑Fi ; les RAW restent sur la carte et sont importés au studio si besoin. En rafale, les photos sont mises en file et arrivent les unes après les autres.
 
 ### 3.3 Mode extérieur : le téléphone ForLife comme relais
-En extérieur, il n'y a **pas d'ordinateur** : un **téléphone Android dédié**, préconfiguré une fois pour toutes, reçoit les photos des boîtiers et les envoie au cloud en 4G/5G. **La retouche et la reconnaissance faciale sont faites dans le cloud** (§4.3), avec exactement les mêmes presets qu'au studio.
-
 ```
- [FX30] ──Wi-Fi (point d'accès du téléphone) + FTP──┐
-                                                   ├─► [Téléphone ForLife – appli « ForLife Capture »] ──4G/5G──► [Moteur cloud] ──► Galerie client
- [A7 III] ──câble USB-C court (OTG)────────────────┘        • reçoit et met en file
-                                                            • envoie dès qu'il y a du réseau
+ [FX30]  ──Wi-Fi (point d'accès du téléphone) : FTP───────┐
+                                                        ├─► [Téléphone ForLife – « ForLife Capture »] ──4G/5G──► Cloud ──► Client (ses données mobiles)
+ [A7 III] ──Wi-Fi (point d'accès du téléphone) : PC Remote ┘     • retouche express sur place
+          (plan B : câble USB-C court)                           • envoi dès qu'il y a du réseau
 ```
-
-**FX30 (sans fil)**
-1. Le téléphone active son **point d'accès Wi‑Fi** (nom et mot de passe fixes, par exemple `ForLife-Capture`).
-2. Le FX30 est **préconfiguré une seule fois** : il se connecte à ce réseau et fait le **transfert FTP automatique** vers le serveur FTP de l'appli, avec envoi du JPEG seulement.
-3. À chaque déclenchement, le JPEG part tout seul vers le téléphone, qui l'envoie au cloud en 4G/5G. Le téléphone utilise sa connexion mobile pendant qu'il partage son Wi‑Fi : c'est le fonctionnement normal d'un point d'accès.
-
-**A7 III (sans Wi‑Fi temps réel) : trois solutions, par ordre de préférence**
-1. **Câble USB‑C court (30 cm) vers le téléphone**, glissé dans une poche de harnais ou de ceinture :
-   - l'appli « ForLife Capture » pilote l'A7 III en mode PC Remote (libgphoto2 compilé pour Android) et récupère chaque photo dès le déclenchement ;
-   - le Wi‑Fi n'est pas utilisé et c'est la solution la plus fiable, mais elle **sera validée par un prototype dès la première semaine**.
-2. **Carte SD Wi‑Fi** (type ezShare, environ 15 à 30 €) dans l'A7 III :
-   - la carte crée son propre petit Wi‑Fi, et l'appli y récupère les nouvelles photos toutes les 2 à 3 secondes, sans câble ;
-   - limites : plus lente, et compatibilité à tester avec l'A7 III (§14).
-3. **Import différé** : la carte SD est lue sur le téléphone (lecteur USB‑C) ou au studio à la fin de la séance, puis traitée et publiée automatiquement.
-
-**Appli « ForLife Capture » (Android)**
-- **un seul bouton « Démarrer la séance »** : elle allume le point d'accès, le serveur FTP et l'écoute USB, et ouvre le dossier `date_lieu` ;
-- reste active écran éteint (service de premier plan) et empêche la mise en veille du transfert ;
-- **file d'attente hors ligne** : si la 4G coupe, les photos attendent dans le téléphone et partent dès le retour du réseau ;
-- miniatures en direct, preset actif, compteur de photos (« reçues / envoyées / publiées »), batterie et données mobiles consommées ;
-- affiche le **QR de l'événement** en plein écran, que les clients peuvent scanner sur place ;
-- envoi d'une **version réduite** (environ 3 000 px, 1,5 à 3 Mo) pour économiser les données. L'original reste sur la carte SD.
-
-**Pourquoi Android et pas iPhone** : iOS ne permet pas à une appli de faire tourner un serveur FTP en continu en arrière‑plan, ni de piloter facilement un appareil photo en USB. Android le permet.
+- Le téléphone active son **point d'accès** (nom et mot de passe fixes, par exemple `ForLife-Capture`, **réservé aux appareils photo** : le mot de passe n'est jamais communiqué aux clients).
+- Le téléphone partage ce Wi‑Fi avec les appareils **et** utilise sa 4G/5G pour l'envoi : c'est le fonctionnement normal d'un point d'accès.
+- **Appli « ForLife Capture » (Android)** :
+  - **un seul bouton « Démarrer la séance »** : point d'accès, réception FTP, PC Remote, et dossier `date_lieu` ;
+  - fonctionne écran éteint ; **file d'attente** si la 4G coupe ;
+  - miniatures en direct, preset actif, compteurs « reçues / envoyées / publiées », batterie, données consommées ;
+  - affiche le **QR de l'événement** en plein écran.
+- **Pourquoi Android** : iOS ne permet pas à une appli de recevoir des photos en continu en arrière‑plan. Android le permet.
 
 ### 3.4 Garantie de récupération sur place (objectif n°1)
-Le client doit repartir **avec ses photos**, quel que soit le lieu et quelle que soit la qualité d'Internet. Pour cela, **la retouche et la reconnaissance faciale sont aussi faites sur place**, sur l'iMac au studio et sur le téléphone en extérieur. Le cloud sert à la diffusion et à l'accès pendant 30 jours, mais **n'est pas indispensable pour remettre les photos sur place**.
+Le client récupère ses photos **sur son téléphone, avec ses propres données mobiles**, quelques secondes après la prise de vue. Pour que ce soit rapide même avec une 4G moyenne :
 
-**Deux voies de livraison, choisies automatiquement**
-| | **Voie cloud** (normale) | **Voie locale** (secours automatique) |
-|---|---|---|
-| Quand | Internet correct | Internet faible ou coupé |
-| Comment | Le client scanne le QR avec ses propres données mobiles : selfie, puis ses photos | Le client scanne le **QR Wi‑Fi** : il rejoint le Wi‑Fi « ForLife‑Photos », et sa galerie s'ouvre servie **directement par l'iMac ou le téléphone**, sans Internet |
-| Délai | 20 à 30 s après le déclenchement | **5 à 15 s** après le déclenchement |
-| Après | Lien de 30 jours, WhatsApp | Les photos se synchronisent avec le cloud **dès le retour d'Internet** ; le lien de 30 jours et le message WhatsApp partent alors automatiquement |
+1. **Retouche faite sur place**, sur l'iMac au studio, et sur le téléphone en extérieur (retouche « express » de 1 à 3 s : couleur, style, peau, recadrage). On n'attend pas le cloud pour retoucher.
+2. **Visages calculés sur place** : l'empreinte part avec la photo, donc la photo est trouvable par selfie **dès son arrivée** dans le cloud.
+3. **Envoi en deux temps** :
+   - d'abord une **version légère** (environ 2 000 px, 300 à 500 Ko), qui passe en 1 à 2 s même en 4G moyenne. **Le client voit et peut télécharger sa photo** ;
+   - ensuite la **version HD**, qui remplace automatiquement la version légère dans sa galerie.
+4. **Ordre de priorité** : la dernière photo prise passe avant le reste de la file, pour que le client qui attend devant le photographe la reçoive en premier.
 
-Le QR affiché (badge, téléphone, comptoir) **choisit tout seul la bonne voie** : la page vérifie si le serveur local est joignable, sinon elle passe par le cloud. Un second QR « Wi‑Fi » (format standard reconnu par Android et iPhone) connecte le client au réseau local en un geste.
+**Délais visés** : environ **10 à 20 s** entre le déclenchement et la photo sur le téléphone du client (studio ou extérieur, 4G correcte).
 
-**Moteur embarqué sur le téléphone (extérieur)**
-- **Retouche « express »** sur le processeur graphique du téléphone : exposition et balance des blancs, look du preset (LUT), lissage de peau (masque MediaPipe), recadrage. Comptez 1 à 3 s par photo sur un téléphone milieu de gamme récent.
-- **Visages** : détection et empreintes (YuNet + SFace, en ONNX) calculées sur le téléphone ; la recherche par selfie se fait localement.
-- La **version finale** (retouche complète du moteur cloud) remplace ensuite automatiquement la version express dans la galerie de 30 jours, sans action du client.
+**Si Internet est vraiment absent** (zone blanche) : les photos restent en file dans le téléphone ou l'iMac. **Rien n'est perdu**. Dès le retour du réseau, elles sont publiées et le client reçoit **automatiquement son lien sur WhatsApp**. Le client peut faire son selfie sur place, et sa demande est mémorisée.
 
-**Comptoir de remise (option recommandée)** : une **tablette Android** posée sur un support, à l'entrée ou à la sortie, avec un écran « Retrouvez vos photos ». Le client fait son selfie sur la tablette, voit ses photos, puis scanne le QR de **sa** galerie pour les récupérer sur son téléphone (ou les recevoir sur WhatsApp). Pratique pour les clients sans données mobiles ou pressés.
-
-**Limites à connaître**
-- Un point d'accès de téléphone accepte en général **8 à 10 appareils à la fois**. Les clients se connectent quelques minutes, téléchargent, puis se déconnectent. Pour les gros événements, un **routeur Wi‑Fi de poche** (environ 30 à 50 €) peut prendre le relais.
-- L'A7 III doit utiliser la **solution 1 (câble vers le téléphone)** ou la **solution 2 (carte SD Wi‑Fi)** : l'import différé de la carte SD (solution 3) ne permet pas la remise sur place.
-- Le réseau Wi‑Fi local est **séparé et protégé** : les clients n'accèdent qu'à la page galerie, jamais au FTP ni aux autres photos (§9).
+**Comptoir (option)** : une **tablette ForLife** (reliée à notre Wi‑Fi, elle) affiche « Retrouvez vos photos ». Le client y fait son selfie et voit ses photos. Il scanne ensuite le QR de **sa** galerie, ou saisit son numéro WhatsApp, pour les récupérer **sur son téléphone, avec ses données**.
 
 ### 3.5 Matériel à prévoir pour l'extérieur
-- **un téléphone Android dédié** (Android 11 ou plus récent, USB‑C avec OTG, 8 Go de RAM, 128 Go, bonne batterie) ; un modèle milieu de gamme (Samsung Galaxy A35/A55, Redmi Note, Pixel 7a…) suffit ;
+- **un téléphone Android dédié** (Android 11 ou plus récent, point d'accès Wi‑Fi 5 GHz, USB‑C avec OTG pour le plan B, 8 Go de RAM, 128 Go, bonne batterie) ; un modèle milieu de gamme (Samsung Galaxy A35/A55, Redmi Note, Pixel 7a…) suffit ;
 - une **puce data 4G/5G** avec un bon forfait : environ 1,5 Go pour 500 photos ;
-- un **câble USB‑C vers USB‑C court** (A7 III vers téléphone) et un câble de 3 m pour le studio ;
+- un **câble USB‑C court** (plan B pour l'A7 III) ;
 - une **batterie externe** de 20 000 mAh ou plus (le point d'accès et l'envoi consomment beaucoup) ;
-- optionnel : une **carte SD Wi‑Fi** pour l'A7 III (solution 2) et un lecteur de carte SD USB‑C ;
-- optionnel : une **tablette Android** et son support pour le comptoir de remise, et un **routeur Wi‑Fi de poche** pour les gros événements.
+- optionnel : une **tablette Android** et son support pour le comptoir.
+
+**Au studio** : un **routeur Wi‑Fi de bureau** correct (2,4 et 5 GHz), avec idéalement un réseau **dédié aux appareils** (« ForLife‑Cam ») distinct du Wi‑Fi invités, et l'iMac sur le même réseau (en Wi‑Fi ou mieux en câble Ethernet).
 
 ---
 
 ## 4. Architecture
 
 ```
-[FX30]──Wi-Fi FTP / USB──┐
-[A7 III]─────USB─────────┤
+[FX30]──Wi-Fi FTP────────┐
+[A7 III]──Wi-Fi PC Remote ┤   (Wi-Fi du bureau ; plan B : USB)
                          ▼
                ┌────────────────────┐   (iMac 2015 au studio)        ┌──────────────── FIREBASE ─────────────────┐
                │  STATION (PC)      │        │ Authentication (personnel + double auth.) │
@@ -365,7 +344,7 @@ studios/{studioId}/{AAAA-MM-JJ[_lieu]}/originaux/…
 - Originaux en double pendant 30 jours (iMac et Cloud Storage). Export hebdomadaire de Firestore.
 - ⚠️ Après 30 jours, **la suppression est définitive** : le back‑office prévient à J‑5.
 - Transport en HTTPS ; FTPS ou Wi‑Fi dédié et isolé pour le FX30.
-- **Galerie locale** (iMac ou téléphone) : le serveur local n'expose que la page galerie et la recherche par selfie. Le FTP est protégé par mot de passe et réservé à l'adresse du boîtier. Les liens locaux sont à usage unique et expirent à la fin de la séance.
+- **Wi‑Fi réservé aux appareils photo** : mot de passe jamais communiqué aux clients ; FTP protégé par mot de passe et limité aux adresses des boîtiers ; réseau appareils séparé du Wi‑Fi invités au bureau.
 - Journal d'audit et alertes (Firebase Alerts / Cloud Monitoring).
 
 ---
@@ -395,7 +374,7 @@ studios/{studioId}/{AAAA-MM-JJ[_lieu]}/originaux/…
 |---|---|
 | Délai entre déclenchement et photo dans la galerie (JPEG, 4G correcte, iMac 2015) | **20 s ou moins** hors rafale |
 | Délai en extérieur (téléphone, 4G correcte) | **30 s ou moins** hors rafale |
-| **Remise sur place sans Internet** (voie locale) | **15 s ou moins** après le déclenchement, en studio comme en extérieur |
+| **Remise sur place** (photo visible et téléchargeable par le client) | **10 à 20 s** après le déclenchement, en studio comme en extérieur, 4G correcte |
 | Autonomie en extérieur | Au moins 4 h de séance avec batterie externe |
 | Rafale | Au moins 10 images/s acceptées sans perte (mise en file) |
 | Recherche selfie | Résultat en **3 s ou moins** pour un jour de 5 000 photos |
@@ -409,9 +388,9 @@ studios/{studioId}/{AAAA-MM-JJ[_lieu]}/originaux/…
 ## 12. Planning indicatif
 | Lot | Contenu | Durée |
 |---|---|---|
-| **Semaine 1 : prototypes** | Test réel de l'A7 III en USB sur iMac **et sur Android**, du FX30 en FTP vers le téléphone, et de la carte SD Wi‑Fi | 1 semaine |
+| **Semaine 1 : essais réels** | Mise à jour des firmwares ; **FX30 en Wi‑Fi FTP** (bureau → iMac, téléphone → appli) ; **A7 III en Wi‑Fi PC Remote** (bureau et téléphone) ; plan B USB | 1 semaine |
 | **MVP 1** | Station : capture USB (A7 III et FX30) et FTP (FX30), dossier du jour, 3 presets, envoi vers Firebase. Back‑office simple. Galerie par lien | 4 à 5 semaines |
-| **MVP 1 bis** | Appli Android « ForLife Capture » avec moteur embarqué et **galerie locale**, moteur cloud (Cloud Run) | + 4 semaines |
+| **MVP 1 bis** | Appli Android « ForLife Capture » (point d'accès, réception Wi‑Fi, retouche express, envoi en deux temps), moteur cloud (Cloud Run) | + 4 semaines |
 | **MVP 2** | Reconnaissance faciale (indexation et selfie), QR du jour et d'événement, expiration à 30 jours, purge, consentement | + 3 à 4 semaines |
 | **V1** | Retouche de peau avancée, éditeur de presets, séance de calibration, appli photographe PWA, statistiques, mode extérieur optimisé | + 3 à 4 semaines |
 
@@ -434,13 +413,11 @@ Hypothèse : 1 000 photos par jour, environ 3 Mo par photo pour l'ensemble des v
 ## 14. Risques et parades
 | Risque | Parade |
 |---|---|
-| L'A7 III n'a pas de Wi‑Fi temps réel | USB obligatoire (studio et extérieur) ; changement de boîtier envisageable plus tard |
-| Réseau faible en extérieur | File d'attente locale, envoi différé, routeur 4G/5G |
+| Le Wi‑Fi PC Remote de l'A7 III ne fonctionne pas avec notre appli | Constaté en semaine 1 ; plan B câble USB‑C court ; à terme, remplacement par un A7 IV (FTP automatique) |
 | Erreur de reconnaissance faciale | Seuil prudent, bouton « Ce n'est pas moi », correction par le photographe |
 | Usurpation (selfie d'une autre personne) | Contrôle de présence réelle, recherche limitée au jour, limitation du nombre d'essais |
 | Formalités ARTCI | À lancer en parallèle du développement |
-| Pilotage USB de l'A7 III depuis Android | Prototype en semaine 1 ; sinon carte SD Wi‑Fi, ou import différé de la carte SD |
-| 4G faible en extérieur | **Voie locale** : galerie servie par le téléphone en Wi‑Fi, synchronisation au retour du réseau |
+| 4G faible en extérieur | Version légère envoyée d'abord, priorité à la dernière photo ; sans réseau, file d'attente et lien WhatsApp automatique au retour |
 | Batterie du téléphone | Batterie externe, écran éteint pendant la séance |
 | Puissance limitée de l'iMac 2015 | Traitement en file d'attente, modèles légers, SSD externe ; ajout possible d'un Mac mini (M1 ou plus récent) plus tard sans changer l'application |
 | Suppression définitive à 30 jours | Alerte à J‑5, bouton « Tout télécharger », archivage local volontaire |
