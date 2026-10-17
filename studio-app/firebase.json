@@ -1,0 +1,18 @@
+{
+  "hosting": {
+    "target": "studio",
+    "public": "web",
+    "ignore": ["**/.*"],
+    "headers": [
+      { "source": "**/*.@(js|css|svg)", "headers": [{ "key": "Cache-Control", "value": "public, max-age=3600" }] },
+      { "source": "**", "headers": [
+        { "key": "X-Content-Type-Options", "value": "nosniff" },
+        { "key": "Referrer-Policy", "value": "same-origin" },
+        { "key": "Permissions-Policy", "value": "camera=(self)" }
+      ] }
+    ]
+  },
+  "firestore": { "rules": "firebase/firestore.rules" },
+  "storage": { "rules": "firebase/storage.rules" },
+  "functions": [{ "source": "firebase/functions", "codebase": "studio", "runtime": "nodejs20" }]
+}

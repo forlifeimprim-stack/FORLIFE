@@ -1,19 +1,20 @@
 rules_version = '2';
-// ForLife Studio : la base n'est JAMAIS lue directement par les clients.
-// - La Station écrit avec un compte de service (Admin SDK, hors règles).
-// - Les clients passent par les Cloud Functions (selfie -> galerie), qui
-//   vérifient le jeton de galerie et renvoient des URL signées.
-// - Le personnel (rôle porté par un custom claim, double authentification) lit tout.
+// ForLife Studio : seuls les comptes du personnel (rôle attribué par scripts/set-staff.js)
+// lisent et écrivent. Les clients passent exclusivement par les Cloud Functions.
 service cloud.firestore {
   match /databases/{database}/documents {
     function isStaff() {
-      return request.auth != null
-        && request.auth.token.role in ['admin', 'photographe']
-        && request.auth.token.firebase.sign_in_second_factor != null;
+      return request.auth != null && request.auth.token.role in ['admin', 'photographe'];
     }
+    match /studios/{studio}/days/{day}/photos/{photo} {
+      allow read, write: if isStaff();
+    }
+    match /studios/{studio}/days/{day} {
+      allow read, write: if isStaff();
+    }
+    // Galeries clients et limites de débit : Cloud Functions uniquement.
     match /{document=**} {
-      allow read: if isStaff();
-      allow write: if false;
+      allow read, write: if false;
     }
   }
 }

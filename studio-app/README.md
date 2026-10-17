@@ -7,11 +7,28 @@ Cahier des charges : [`../docs/studio-app/CAHIER_DES_CHARGES.md`](../docs/studio
 | Dossier | Contenu | État |
 |---|---|---|
 | `station/` | Station (iMac du studio) : réception Wi‑Fi FTP et PC Remote, retouche, visages, file d'attente, interface | **Opérationnelle en local** |
-| `firebase/` | Règles de sécurité Firestore et Storage | Règles posées ; Cloud Functions (selfie, galerie, WhatsApp) à venir |
+| `web/` | **Application web** : espace photographe (dépôt des photos, retouche et visages dans le navigateur, QR du jour) + parcours client (selfie → ses photos, 30 jours) | **Prête** — mode démonstration sans Firebase, mode production avec Firebase |
+| `firebase/` | Règles Firestore/Storage + Cloud Functions (galerie par selfie, URL signées, purge à 30 jours) | Prêtes à déployer |
 | — | Appli Android « ForLife Capture » (extérieur) | À venir (MVP 1 bis) |
 | — | Galerie client (selfie, 30 jours) | À venir (MVP 2) |
 
 ---
+
+## Application web
+
+- **Client** : `index.html#/` → consentement → selfie → ses photos (lien privé de 30 jours, WhatsApp, téléchargement).
+- **Photographe** : `index.html#/studio` → déposer ou photographier, retouche automatique, visages, QR du jour.
+- Sans configuration Firebase (`web/js/config.js`), l'application tourne en **mode démonstration** : tout reste dans le navigateur.
+
+### Mise en production sur Firebase (projet `forlifecom-6eef9`)
+1. Console Firebase : passer à l'offre **Blaze** (Cloud Functions et URL signées), activer **Authentication (e‑mail/mot de passe)**, **Firestore** (région `europe-west1`) et **Storage**.
+2. Créer le site d'hébergement : `npx firebase-tools hosting:sites:create forlife-studio`.
+3. Copier la configuration « Web » du projet dans `web/js/config.js` (`FIREBASE_CONFIG`).
+4. Depuis `studio-app/` : `npm --prefix firebase/functions install` puis
+   `npx firebase-tools deploy --only hosting:studio,firestore:rules,storage,functions:studio`.
+5. Créer le compte du photographe dans Authentication, puis lui donner le rôle :
+   `node firebase/functions/scripts/set-staff.js photographe@forlife.com`.
+6. (Option) Relier `photos.forlifecom.ci` au site dans Hosting > Domaine personnalisé.
 
 ## Installer la Station sur l'iMac (macOS 12 Monterey)
 

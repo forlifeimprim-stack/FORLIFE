@@ -1,12 +1,12 @@
 rules_version = '2';
-// Photos privées : accès client uniquement par URL signée générée par une Cloud Function.
+// Photos privées : le personnel écrit et lit ; les clients reçoivent des URL signées.
 service firebase.storage {
   match /b/{bucket}/o {
-    match /{allPaths=**} {
-      allow read: if request.auth != null
-        && request.auth.token.role in ['admin', 'photographe']
-        && request.auth.token.firebase.sign_in_second_factor != null;
-      allow write: if false;
+    match /studios/{studio}/{day}/{kind}/{file} {
+      allow read: if request.auth != null && request.auth.token.role in ['admin', 'photographe'];
+      allow write: if request.auth != null && request.auth.token.role in ['admin', 'photographe']
+        && request.resource.size < 15 * 1024 * 1024
+        && request.resource.contentType == 'image/jpeg';
     }
   }
 }
