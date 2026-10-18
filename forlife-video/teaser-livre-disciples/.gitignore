@@ -1,0 +1,6 @@
+out/
+sub*/
+probe/
+audio/*.wav
+audio/vo/*.wav
+__pycache__/
