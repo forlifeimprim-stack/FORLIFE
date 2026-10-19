@@ -1,0 +1,633 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<title>Teaser paysage — Faire des disciples et des familles</title>
+<style>
+@font-face{font-family:Fraunces;font-weight:600;src:url(brand/fonts/fraunces-latin-600-normal.woff2)format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+2000-206F,U+20AC,U+2122,U+2212}
+@font-face{font-family:Fraunces;font-weight:600;src:url(brand/fonts/fraunces-latin-ext-600-normal.woff2)format('woff2');unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+1E00-1EFF,U+2C60-2C7F,U+A720-A7FF}
+@font-face{font-family:Fraunces;font-weight:600;font-style:italic;src:url(brand/fonts/fraunces-latin-600-italic.woff2)format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+2000-206F,U+20AC,U+2122,U+2212}
+@font-face{font-family:Fraunces;font-weight:600;font-style:italic;src:url(brand/fonts/fraunces-latin-ext-600-italic.woff2)format('woff2');unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+1E00-1EFF,U+2C60-2C7F,U+A720-A7FF}
+@font-face{font-family:Fraunces;font-weight:800;src:url(brand/fonts/fraunces-latin-800-normal.woff2)format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+2000-206F,U+20AC,U+2122,U+2212}
+@font-face{font-family:Fraunces;font-weight:800;src:url(brand/fonts/fraunces-latin-ext-800-normal.woff2)format('woff2');unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+1E00-1EFF,U+2C60-2C7F,U+A720-A7FF}
+@font-face{font-family:Fraunces;font-weight:900;src:url(brand/fonts/fraunces-latin-900-normal.woff2)format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+2000-206F,U+20AC,U+2122,U+2212}
+@font-face{font-family:Fraunces;font-weight:900;src:url(brand/fonts/fraunces-latin-ext-900-normal.woff2)format('woff2');unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+1E00-1EFF,U+2C60-2C7F,U+A720-A7FF}
+@font-face{font-family:Poppins;font-weight:500;src:url(brand/fonts/poppins-latin-500-normal.woff2)format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+2000-206F,U+20AC,U+2122,U+2212}
+@font-face{font-family:Poppins;font-weight:500;src:url(brand/fonts/poppins-latin-ext-500-normal.woff2)format('woff2');unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+1E00-1EFF,U+2C60-2C7F,U+A720-A7FF}
+@font-face{font-family:Poppins;font-weight:600;src:url(brand/fonts/poppins-latin-600-normal.woff2)format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+2000-206F,U+20AC,U+2122,U+2212}
+@font-face{font-family:Poppins;font-weight:600;src:url(brand/fonts/poppins-latin-ext-600-normal.woff2)format('woff2');unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+1E00-1EFF,U+2C60-2C7F,U+A720-A7FF}
+:root{--cream:#FCF6EA;--paper:#F7EBD3;--brown:#3B1F12;--brown2:#6B3A1C;--orange:#D0651F;--gold:#D9A441;--green:#2F7D5B;--blue:#2F5D8A}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{background:#111;overflow:hidden;width:100%;height:100%}
+#wrap{position:absolute;left:0;top:0;transform-origin:0 0}
+#stage{position:relative;width:1920px;height:1080px;overflow:hidden;background:var(--cream);font-family:Poppins,sans-serif;color:var(--brown);-webkit-font-smoothing:antialiased}
+.L{position:absolute;left:0;top:0;width:1920px;height:1080px;overflow:hidden}
+.abs{position:absolute}
+.world{position:absolute;left:0;top:0;width:1920px;height:1080px;transform-origin:0 0}
+.tl{position:absolute;white-space:nowrap}
+.m{display:inline-block;overflow:hidden;vertical-align:top;padding:.08em .05em .2em;margin:-.08em -.05em -.2em}
+.w{display:inline-block}
+.caps{font-family:Poppins;font-weight:600;letter-spacing:.3em}
+.ser{font-family:Fraunces,serif}
+.gold-mask{-webkit-mask-size:contain;mask-size:contain;-webkit-mask-repeat:no-repeat;mask-repeat:no-repeat;-webkit-mask-position:center;mask-position:center;
+  background:linear-gradient(118deg,#7a4a10 0%,#b9832a 18%,#ecc160 34%,#fff2c2 var(--sh,50%),#e2b04c calc(var(--sh,50%) + 9%),#a8711c 78%,#7a4a10 100%)}
+.pat{position:absolute;-webkit-mask-image:url(brand/img/pattern.png);mask-image:url(brand/img/pattern.png);-webkit-mask-size:300px 300px;mask-size:300px 300px}
+.kente{position:absolute;background:url(brand/img/kente.jpg) repeat-x;background-size:auto 100%}
+svg{overflow:visible}
+#hud{position:fixed;right:12px;bottom:12px;font:13px/1.3 monospace;color:#fff;background:rgba(0,0,0,.6);padding:6px 10px;border-radius:6px;z-index:99}
+</style>
+</head>
+<body>
+<div id="wrap"><div id="stage"></div></div>
+<div id="hud">Espace : lecture/pause · ←/→ : image · R : rejouer · <span id="tc">0.00</span> s</div>
+<audio id="aud" src="audio/mix.wav" preload="auto"></audio>
+<script src="cues.js"></script>
+<script>
+// =====================================================================
+//  Moteur seek(t) déterministe — aucun timer, aucun état entre images.
+// =====================================================================
+const DUR = window.DUR, C = window.CUES, FPS = 60, DROP = window.DROP;
+const stage = document.getElementById('stage');
+const NS = 'http://www.w3.org/2000/svg';
+const clamp = (x, a = 0, b = 1) => Math.min(b, Math.max(a, x));
+const lerp = (a, b, k) => a + (b - a) * k;
+const io = k => k <= 0 ? 0 : k >= 1 ? 1 : k < .5 ? 4 * k * k * k : 1 - Math.pow(-2 * k + 2, 3) / 2;
+const sio = k => k <= 0 ? 0 : k >= 1 ? 1 : -(Math.cos(Math.PI * k) - 1) / 2;
+const out = k => k <= 0 ? 0 : k >= 1 ? 1 : 1 - Math.pow(1 - k, 3);
+const o5 = k => k <= 0 ? 0 : k >= 1 ? 1 : 1 - Math.pow(1 - k, 5);
+const inn = k => k <= 0 ? 0 : k >= 1 ? 1 : k * k * k;
+const expo = k => k <= 0 ? 0 : k >= 1 ? 1 : k < .5 ? Math.pow(2, 20 * k - 10) / 2 : (2 - Math.pow(2, -20 * k + 10)) / 2;
+const expoIn = k => k <= 0 ? 0 : k >= 1 ? 1 : Math.pow(2, 10 * k - 10);
+const P = (t, a, b, e = x => x) => e(clamp((t - a) / (b - a)));
+function spring(tau, k = 170, d = 26) {
+  if (tau <= 0) return 0;
+  const w0 = Math.sqrt(k), z = d / (2 * w0);
+  if (z < 1) { const wd = w0 * Math.sqrt(1 - z * z); return 1 - Math.exp(-z * w0 * tau) * (Math.cos(wd * tau) + z * w0 / wd * Math.sin(wd * tau)); }
+  return 1 - Math.exp(-w0 * tau) * (1 + w0 * tau);
+}
+const SP = { ui: [320, 30], box: [170, 26], heavy: [120, 24], pop: [260, 24] };
+const sp = (t, t0, kind = 'box') => spring(t - t0, SP[kind][0], SP[kind][1]);
+function mulberry32(a) { return function () { a |= 0; a = a + 0x6D2B79F5 | 0; let t = Math.imul(a ^ a >>> 15, 1 | a); t = t + Math.imul(t ^ t >>> 7, 61 | t) ^ t; return ((t ^ t >>> 14) >>> 0) / 4294967296; } }
+const cue = (k, i) => C[k][i].t;
+const punch = (t, times, amp, k = 7) => times.reduce((s, ti) => s + (t >= ti ? amp * Math.exp(-(t - ti) * k) : 0), 0);
+function camAt(keys, t) {
+  if (t <= keys[0][0]) return keys[0].slice(1, 5);
+  for (let i = 0; i < keys.length - 1; i++) {
+    const a = keys[i], b = keys[i + 1];
+    if (t <= b[0]) { const e = (b[5] || io)(clamp((t - a[0]) / (b[0] - a[0])));
+      return [Math.exp(lerp(Math.log(a[1]), Math.log(b[1]), e)), lerp(a[2], b[2], e), lerp(a[3], b[3], e), lerp(a[4] || 0, b[4] || 0, e)]; }
+  }
+  return keys[keys.length - 1].slice(1, 5);
+}
+const applyCam = (el, [z, cx, cy, r]) => el.style.transform = `translate(960px,540px) scale(${z}) rotate(${r}deg) translate(${-cx}px,${-cy}px)`;
+function el(tag, cls, parent, css = {}, html) { const e = document.createElement(tag); if (cls) e.className = cls; Object.assign(e.style, css); if (html !== undefined) e.innerHTML = html; parent.appendChild(e); return e; }
+function sv(tag, parent, attrs = {}) { const e = document.createElementNS(NS, tag); for (const k in attrs) e.setAttribute(k, attrs[k]); parent.appendChild(e); return e; }
+function svgLayer(parent, w = 1920, h = 1080, css = {}) { const s = sv('svg', parent, { width: w, height: h }); Object.assign(s.style, { position: 'absolute', left: 0, top: 0 }, css); return s; }
+const img = p => `url(brand/img/${p})`;
+
+// ---------- mots en masque ----------
+const W = [], LATE = [];
+// position d'un mot (coordonnées du parent de la ligne), mesurée une fois les polices chargées
+function wbox(d, i) { const m = d.querySelectorAll('.m')[i]; const half = d.style.transform.includes('-50%') ? d.offsetWidth / 2 : 0; return { x: d.offsetLeft - half + m.offsetLeft, w: m.offsetWidth }; }
+function line(parent, words, times, css, cls = '', outT = null, align = 'left') {
+  const d = el('div', 'tl ' + cls, parent, css);
+  if (align === 'center') { d.style.transform = 'translateX(-50%)'; d.style.textAlign = 'center'; }
+  words.forEach((w, i) => {
+    const m = el('span', 'm', d); const s = el('span', 'w', m, {}, w);
+    W.push({ e: s, t0: times[i], out: outT === null ? null : outT + i * 0.03 });
+    if (i < words.length - 1) d.appendChild(document.createTextNode(' '));
+  });
+  return d;
+}
+function updWords(t) {
+  for (const o of W) {
+    const p = spring(t - o.t0, 240, 27);
+    let y = (1 - p) * 125, r = (1 - p) * 8, op = t < o.t0 ? 0 : 1;
+    if (o.out !== null && t > o.out) { const q = inn(clamp((t - o.out) / .3)); y = -135 * q; r = -5 * q; }
+    o.e.style.transform = `translateY(${y}%) rotate(${r}deg)`; o.e.style.opacity = op;
+  }
+}
+
+// ---------- trait de marqueur dessiné à la main ----------
+const MK = [];
+function marker(svg, pts, t0, dur, color = 'var(--orange)', width = 12, seed = 1, jit = 5) {
+  const R = mulberry32(seed);
+  const p = pts.map(([x, y]) => [x + (R() - .5) * jit, y + (R() - .5) * jit]);
+  let d = `M ${p[0][0]} ${p[0][1]}`;
+  for (let i = 0; i < p.length - 1; i++) {
+    const p0 = p[Math.max(0, i - 1)], p1 = p[i], p2 = p[i + 1], p3 = p[Math.min(p.length - 1, i + 2)];
+    d += ` C ${p1[0] + (p2[0] - p0[0]) / 6} ${p1[1] + (p2[1] - p0[1]) / 6} ${p2[0] - (p3[0] - p1[0]) / 6} ${p2[1] - (p3[1] - p1[1]) / 6} ${p2[0]} ${p2[1]}`;
+  }
+  const path = sv('path', svg, { d, fill: 'none', stroke: color, 'stroke-width': width, 'stroke-linecap': 'round', 'stroke-linejoin': 'round', opacity: .95 });
+  const len = path.getTotalLength(); path.setAttribute('stroke-dasharray', len + ' ' + len); path.setAttribute('stroke-dashoffset', len);
+  const o = { path, len, t0, dur }; MK.push(o); return o;
+}
+function updMarkers(t) { for (const m of MK) m.path.setAttribute('stroke-dashoffset', m.len * (1 - P(t, m.t0, m.t0 + m.dur, sio))); }
+const ellipsePts = (cx, cy, rx, ry, turns = 1.12, n = 28, a0 = -2.2) => Array.from({ length: n + 1 }, (_, i) => { const a = a0 + i / n * Math.PI * 2 * turns; return [cx + rx * Math.cos(a) * (1 + 0.03 * i / n), cy + ry * Math.sin(a)]; });
+
+// ---------- personnage pictogramme (composant) ----------
+const SKIN = ['#7a4a2e', '#8d5a3b', '#5e3a24', '#9a6440', '#6c4129'];
+function person(svg, x, y, o = {}) {
+  const s = o.scale || 1, g = sv('g', svg), inner = sv('g', g);
+  const skin = o.skin || SKIN[0], cloth = o.cloth || '#cdb9a0', pants = o.pants || '#5b4636';
+  const parts = { g, inner, x, y, s, cloth: [] };
+  // jambes
+  if (o.dress) {
+    sv('rect', inner, { x: -24, y: -60, width: 18, height: 60, rx: 9, fill: skin }); sv('rect', inner, { x: 6, y: -60, width: 18, height: 60, rx: 9, fill: skin });
+    const dr = sv('path', inner, { d: 'M -50 -212 Q 0 -226 50 -212 L 74 -52 Q 0 -36 -74 -52 Z', fill: cloth }); parts.cloth.push(dr);
+  } else {
+    sv('rect', inner, { x: -30, y: -112, width: 26, height: 112, rx: 12, fill: pants }); sv('rect', inner, { x: 4, y: -112, width: 26, height: 112, rx: 12, fill: pants });
+    const tor = sv('path', inner, { d: 'M -52 -206 Q 0 -222 52 -206 L 48 -96 Q 0 -86 -48 -96 Z', fill: cloth }); parts.cloth.push(tor);
+  }
+  // bras (groupes pivotant à l'épaule)
+  const mkArm = (side) => { const a = sv('g', inner, { transform: `translate(${side * 50},-200)` }); const r = sv('g', a); sv('rect', r, { x: -13, y: -6, width: 26, height: 116, rx: 13, fill: cloth }); sv('circle', r, { cx: 0, cy: 112, r: 14, fill: skin }); parts.cloth.push(r.firstChild); return r; };
+  parts.armL = mkArm(-1); parts.armR = mkArm(1);
+  sv('rect', inner, { x: -11, y: -232, width: 22, height: 26, fill: skin });
+  sv('circle', inner, { cx: 0, cy: -262, r: 38, fill: skin });
+  if (o.wrap) { const w = sv('path', inner, { d: 'M -44 -270 Q -40 -324 4 -322 Q 52 -320 46 -276 Q 20 -292 -44 -270 Z', fill: o.wrap }); sv('path', inner, { d: 'M 30 -312 Q 62 -330 58 -296 Z', fill: o.wrap }); }
+  else sv('path', inner, { d: 'M -38 -268 Q -40 -304 0 -302 Q 40 -304 38 -268 Q 20 -282 -38 -268 Z', fill: '#2a1a12' });
+  g.setAttribute('transform', `translate(${x},${y}) scale(${s})`);
+  return parts;
+}
+function pose(p, { x = p.x, y = p.y, bob = 0, sway = 0, armL = 8, armR = -8, sc = 1, op = 1 }) {
+  p.g.setAttribute('transform', `translate(${x},${y - bob}) scale(${p.s * sc})`);
+  p.inner.setAttribute('transform', `rotate(${sway})`);
+  p.armL.setAttribute('transform', `rotate(${armL})`); p.armR.setAttribute('transform', `rotate(${armR})`);
+  p.g.setAttribute('opacity', op);
+}
+// flamme (motif)
+function flame(svg) {
+  const g = sv('g', svg); const f = sv('g', g);
+  sv('circle', f, { cx: 0, cy: -10, r: 46, fill: 'rgba(255,190,90,.28)' });
+  sv('path', f, { d: 'M 0 -78 C 26 -44 30 -20 22 -2 C 16 12 -16 12 -22 -2 C -30 -20 -18 -44 0 -78 Z', fill: '#F2A33A' });
+  sv('path', f, { d: 'M 0 -46 C 12 -28 14 -16 10 -6 C 6 2 -6 2 -10 -6 C -14 -16 -10 -28 0 -46 Z', fill: '#FFE9A8' });
+  return { g, f };
+}
+function placeFlame(fl, x, y, s, t, op = 1) {
+  const fk = 1 + 0.08 * Math.sin(t * 17) + 0.05 * Math.sin(t * 29 + 1);
+  fl.g.setAttribute('transform', `translate(${x},${y}) scale(${s})`); fl.f.setAttribute('transform', `scale(${1 / fk * 1.04},${fk}) rotate(${3 * Math.sin(t * 11)})`);
+  fl.g.setAttribute('opacity', op);
+}
+
+// ---------- ambiance : nuages de couleur + poussières de lumière ----------
+function clouds(parent, seed, cols) {
+  const R = mulberry32(seed);
+  return cols.map((c, i) => ({ e: el('div', 'abs', parent, { width: '1400px', height: '1400px', left: 0, top: 0, background: `radial-gradient(circle, ${c} 0%, rgba(255,255,255,0) 62%)` }),
+    x: R() * 1920 - 700, y: R() * 1080 - 700, ax: 160 + R() * 200, ay: 90 + R() * 120, w: 0.12 + R() * 0.18, ph: R() * 6 }));
+}
+const updClouds = (cl, t) => cl.forEach(c => c.e.style.transform = `translate(${c.x + c.ax * Math.sin(t * c.w + c.ph)}px,${c.y + c.ay * Math.cos(t * c.w * 1.3 + c.ph)}px)`);
+function motes(parent, seed, n, area = [1920, 1080], col = '255,236,180') {
+  const R = mulberry32(seed);
+  return Array.from({ length: n }, () => { const r = 3 + R() * 11;
+    return { e: el('div', 'abs', parent, { width: r * 2 + 'px', height: r * 2 + 'px', borderRadius: '50%', background: `radial-gradient(circle, rgba(${col},.95), rgba(${col},0) 70%)` }),
+      x: R() * area[0], y: R() * area[1], v: 12 + R() * 30, ph: R() * 6, tw: 1 + R() * 2 }; });
+}
+const updMotes = (ms, t, H = 1080) => ms.forEach(m => { const y = ((m.y - m.v * t) % (H + 60) + H + 60) % (H + 60) - 30;
+  m.e.style.transform = `translate(${m.x + 20 * Math.sin(t * .5 + m.ph)}px,${y}px)`; m.e.style.opacity = 0.35 + 0.65 * (0.5 + 0.5 * Math.sin(t * m.tw + m.ph)); });
+function rays(parent, cx, cy, size, alpha, col = '232,170,70') {
+  return el('div', 'abs', parent, { left: (cx - size / 2) + 'px', top: (cy - size / 2) + 'px', width: size + 'px', height: size + 'px',
+    background: `repeating-conic-gradient(from 0deg, rgba(${col},0) 0deg 3deg, rgba(${col},${alpha}) 3.6deg 5.4deg, rgba(${col},0) 6deg 10deg)`,
+    WebkitMaskImage: 'radial-gradient(circle, #000 0%, rgba(0,0,0,.7) 18%, transparent 50%)', maskImage: 'radial-gradient(circle, #000 0%, rgba(0,0,0,.7) 18%, transparent 50%)' });
+}
+
+// ============================== SCÈNES ===============================
+const S = {};
+function scene(name, a, b, bg) { const L = el('div', 'L', stage, { background: bg || 'var(--cream)' }); L.dataset.a = a; L.dataset.b = b; S[name] = L; return L; }
+const big = (sz, extra = {}) => Object.assign({ fontFamily: 'Fraunces', fontWeight: 800, fontSize: sz + 'px', color: 'var(--brown)' }, extra);
+const itl = (sz, extra = {}) => Object.assign({ fontFamily: 'Fraunces', fontStyle: 'italic', fontWeight: 600, fontSize: sz + 'px', color: 'var(--brown2)' }, extra);
+
+// ---- 1 · Lever de soleil + salle qui se remplit (0 → 6,75) ----
+{
+  const L = scene('s1', 0, 6.75);
+  const Wd = el('div', 'world', L, { width: '3400px' }); S.s1w = Wd;
+  S.s1cl = clouds(Wd, 3, ['rgba(242,190,110,.55)', 'rgba(208,101,31,.22)', 'rgba(47,125,91,.14)', 'rgba(242,200,120,.45)', 'rgba(208,101,31,.18)']);
+  S.s1cl.forEach((c, i) => { c.x += i * 520; });
+  S.s1pat = el('div', 'pat', Wd, { left: '-200px', top: '-200px', width: '3800px', height: '1500px', background: 'rgba(170,110,40,.07)' });
+  S.s1sun = el('div', 'abs', Wd, { left: '160px', top: '-60px', width: '1000px', height: '1000px', borderRadius: '50%', background: 'radial-gradient(circle, rgba(255,226,150,1) 0%, rgba(250,200,110,.75) 30%, rgba(248,190,100,0) 68%)' });
+  S.s1rays = rays(Wd, 660, 470, 2600, .18);
+  S.s1emb = el('div', 'abs', Wd, { left: '450px', top: '250px', width: '420px', height: '420px' });
+  el('div', 'abs gold-mask', S.s1emb, { inset: '6px', WebkitMaskImage: img('nsoromma_frame.png'), maskImage: img('nsoromma_frame.png'), filter: 'blur(18px)', opacity: .55 });
+  S.s1gold = el('div', 'abs gold-mask', S.s1emb, { inset: 0, WebkitMaskImage: img('nsoromma_frame.png'), maskImage: img('nsoromma_frame.png') });
+  S.s1cross = el('div', 'abs', S.s1emb, { left: '210px', top: '210px', width: 0, height: 0 });
+  const crs = { position: 'absolute', background: '#fffaf0', borderRadius: '5px', boxShadow: '0 0 18px 6px rgba(255,220,150,.95), 0 0 60px 18px rgba(255,190,90,.55)' };
+  el('div', '', S.s1cross, Object.assign({ left: '-11px', top: '-66px', width: '22px', height: '132px' }, crs));
+  el('div', '', S.s1cross, Object.assign({ left: '-44px', top: '-34px', width: '88px', height: '22px' }, crs));
+  const T1 = C['01'];
+  line(Wd, ['Avant', 'de', 'monter', 'au', 'ciel,'], T1.slice(0, 5).map(x => x.t), big(92, { left: '1000px', top: '330px' }));
+  line(Wd, ['Jésus', 'n’a', 'pas', 'demandé'], T1.slice(5, 9).map(x => x.t), itl(70, { left: '1004px', top: '470px' }));
+  line(Wd, ['à', 'ses', 'disciples'], T1.slice(9, 12).map(x => x.t), itl(70, { left: '1004px', top: '565px', color: 'rgba(107,58,28,.75)' }));
+  // salle de chaises
+  const hs = svgLayer(Wd, 3400, 1080); S.chairs = [];
+  const R = mulberry32(21);
+  for (let r = 0; r < 4; r++) for (let c = 0; c < 11; c++) {
+    const x = 2140 + c * 104 + (r % 2) * 20, y = 560 + r * 118, s = 0.86 + r * 0.06;
+    const g = sv('g', hs);
+    sv('rect', g, { x: -30, y: -78, width: 60, height: 54, rx: 9, fill: '#C9A27A' });
+    sv('rect', g, { x: -34, y: -26, width: 68, height: 16, rx: 6, fill: '#B5875C' });
+    sv('rect', g, { x: -30, y: -12, width: 9, height: 40, rx: 4, fill: '#8C6243' }); sv('rect', g, { x: 21, y: -12, width: 9, height: 40, rx: 4, fill: '#8C6243' });
+    S.chairs.push({ g, x, y, s, t0: 4.75 + (r * 11 + c) * 0.026 + R() * 0.05 });
+  }
+  S.s1salles = line(Wd, ['de', 'remplir', 'des', 'salles.'], [T1[12].t, T1[13].t, T1[14].t, T1[15].t], big(104, { left: '2230px', top: '250px' }));
+  S.s1mk = svgLayer(Wd, 3400, 1080);
+  LATE.push(() => { const b = wbox(S.s1salles, 3); marker(S.s1mk, [[b.x - 10, 330], [b.x + b.w * .4, 322], [b.x + b.w + 14, 318]], 5.75, 0.32, 'var(--orange)', 14, 4, 5); });
+}
+
+// ---- 2 · « Faites des DISCIPLES » — le mot est une fenêtre (6,4 → 9,75) ----
+{
+  const L = scene('s2', 6.4, 9.75); S.s2 = L;
+  const Wd = el('div', 'world', L); S.s2w = Wd;
+  S.s2cl = clouds(Wd, 9, ['rgba(242,190,110,.5)', 'rgba(208,101,31,.18)', 'rgba(47,125,91,.12)']);
+  const T2 = C['02'];
+  line(Wd, ['IL', 'A', 'DIT&nbsp;:'], [T2[0].t, T2[1].t, T2[2].t], { left: '960px', top: '250px', fontSize: '30px', color: 'var(--orange)' }, 'caps', null, 'center');
+  line(Wd, ['«&nbsp;Faites', 'des'], [T2[3].t, T2[4].t], itl(96, { left: '960px', top: '320px' }), '', null, 'center');
+  // le mot-fenêtre : texte plein brun, puis l'intérieur des lettres s'ouvre sur la lumière
+  S.s2word = el('div', 'tl ser', Wd, { left: '960px', top: '470px', fontWeight: 900, fontSize: '250px', lineHeight: '1', letterSpacing: '-.01em', transform: 'translateX(-50%)' });
+  S.s2solid = el('span', '', S.s2word, { color: 'var(--brown)', display: 'inline-block' }, 'DISCIPLES');
+  S.s2win = el('span', '', S.s2word, { position: 'absolute', left: 0, top: 0, display: 'inline-block',
+    backgroundImage: `repeating-conic-gradient(from 0deg at 50% 60%, #f6c463 0deg 4deg, #fbe2a0 4deg 8deg), radial-gradient(circle at 50% 60%, #fff4cf, #f0b24c 60%)`,
+    backgroundBlendMode: 'soft-light', WebkitBackgroundClip: 'text', backgroundClip: 'text', color: 'transparent' }, 'DISCIPLES');
+  S.s2kente = el('div', 'kente', Wd, { left: '560px', top: '800px', width: '800px', height: '26px', transformOrigin: '50% 50%' });
+  line(Wd, ['MATTHIEU', '28:19'], [8.4, 8.46], { left: '960px', top: '850px', fontSize: '26px', color: 'rgba(107,58,28,.8)' }, 'caps', null, 'center');
+  S.s2flash = el('div', 'L', L, { background: 'radial-gradient(circle at 50% 50%, #fff9e8, #fbe3a6)', opacity: 0 });
+}
+
+// ---- 3 · Des membres… des disciples — la flamme de relais (9,5 → 14,7) ----
+{
+  const L = scene('s3', 9.5, 14.7); S.s3 = L;
+  const Wd = el('div', 'world', L, { width: '2400px' }); S.s3w = Wd;
+  S.s3cl = clouds(Wd, 15, ['rgba(242,190,110,.4)', 'rgba(208,101,31,.14)', 'rgba(47,125,91,.10)']);
+  el('div', 'pat', Wd, { left: '-200px', top: '-200px', width: '2800px', height: '1500px', background: 'rgba(170,110,40,.06)' });
+  const T3 = C['03'];
+  S.s3l1 = line(Wd, ['Des', 'membres…'], [T3[4].t, T3[5].t], big(100, { left: '200px', top: '120px' }));
+  line(Wd, ['là', 'où', 'le', 'Seigneur', 'attendait'], T3.slice(6, 11).map(x => x.t), { left: '204px', top: '262px', fontSize: '40px', fontWeight: 500, color: 'rgba(59,31,18,.75)' });
+  line(Wd, ['des', 'disciples.'], [T3[11].t, T3[12].t], itl(112, { left: '880px', top: '214px', color: 'var(--orange)' }));
+  S.s3mk = svgLayer(Wd, 2400, 1080);
+  LATE.push(() => { const a = wbox(S.s3l1, 0), b = wbox(S.s3l1, 1); marker(S.s3mk, [[a.x - 12, 196], [(a.x + b.x + b.w) / 2, 188], [b.x + b.w + 12, 192]], 12.05, 0.32, 'var(--orange)', 13, 7, 5); });
+  // foule : trois rangées (parallaxe), tous pareils
+  S.rows = [0, 1, 2].map(r => { const g = el('div', 'abs', Wd, { left: 0, top: 0, width: '2400px', height: '1080px' }); return { g, sv: svgLayer(g, 2400, 1080), depth: [0.75, 0.9, 1.08][r] }; });
+  S.crowd = [];
+  const R = mulberry32(31);
+  [[0, 640, 0.42, 13, 150], [1, 790, 0.5, 11, 176], [2, 980, 0.6, 9, 214]].forEach(([r, y, sc, n, gap]) => {
+    for (let i = 0; i < n; i++) {
+      const x = 1200 - (n - 1) * gap / 2 + i * gap + (R() - .5) * 20;
+      const p = person(S.rows[r].sv, x, y, { scale: sc, skin: SKIN[(i + r) % 5], cloth: '#CDB9A0', pants: '#8f7a66', wrap: (i + r) % 3 === 0 ? '#bfa78c' : null, dress: (i + r) % 3 === 0 });
+      S.crowd.push({ p, r, i, x, y, ph: R() * 6, t0: 9.7 + Math.abs(x - 1200) / 2600 + r * 0.08 });
+    }
+  });
+  // chaîne de relais : personnes de la rangée avant puis du milieu
+  const pick = (r, i) => S.crowd.find(c => c.r === r && c.i === i);
+  S.relay = [pick(2, 4), pick(2, 2), pick(1, 3), pick(1, 7), pick(2, 6), pick(0, 9)];
+  const COLS = ['#D0651F', '#2F7D5B', '#D9A441', '#2F5D8A', '#C0392B', '#8E44AD'];
+  S.relay.forEach((c, k) => { c.k = k; c.col = COLS[k]; c.tLit = 13.0 + k * 0.17; });
+  S.relayLine = svgLayer(S.rows[2].g, 2400, 1080);
+  S.s3flame = flame(svgLayer(S.rows[2].g, 2400, 1080));
+}
+
+// ---- 4 · Une personne… une maison (14,3 → 19,6) ----
+{
+  const L = scene('s4', 14.3, 19.6); S.s4 = L;
+  const Wd = el('div', 'world', L); S.s4w = Wd;
+  S.s4cl = clouds(Wd, 41, ['rgba(242,190,110,.5)', 'rgba(47,125,91,.14)', 'rgba(208,101,31,.16)']);
+  S.s4sun = el('div', 'abs', Wd, { left: '930px', top: '60px', width: '760px', height: '760px', borderRadius: '50%', background: 'radial-gradient(circle, rgba(255,222,140,.95), rgba(255,200,110,0) 66%)' });
+  const ms = svgLayer(Wd);
+  marker(ms, [[760, 900], [1100, 896], [1500, 902], [1840, 897]], 14.4, 0.8, '#C9A27A', 8, 12, 4);
+  const T4 = C['04'];
+  line(Wd, ['Une', 'personne'], [T4[1].t, T4[2].t], big(100, { left: '150px', top: '300px' }), '', 17.25);
+  line(Wd, ['ne', 'grandit', 'jamais', '<span style="color:var(--orange)">seule.</span>'], [T4[3].t, T4[4].t, T4[5].t, T4[6].t], itl(72, { left: '154px', top: '440px' }), '', 17.3);
+  line(Wd, ['Elle', 'grandit'], [T4[7].t, T4[8].t], big(100, { left: '150px', top: '300px' }));
+  S.s4mai = line(Wd, ['dans', 'une', '<span style="color:var(--orange)">maison.</span>'], [T4[9].t, T4[10].t, T4[11].t], itl(84, { left: '154px', top: '440px' }));
+  LATE.push(() => { const b = wbox(S.s4mai, 2); marker(ms, [[b.x, 562], [b.x + b.w * .5, 555], [b.x + b.w - 10, 560]], cue('04', 11) + 0.15, 0.3, 'var(--orange)', 11, 8, 4); });
+  // maison au marqueur
+  S.hx = 1300; S.hy = 900;
+  S.houseFill = el('div', 'abs', Wd, { left: (S.hx - 290) + 'px', top: (S.hy - 420) + 'px', width: '580px', height: '420px', background: 'linear-gradient(180deg, rgba(255,226,160,.55), rgba(255,206,130,.25))', opacity: 0 });
+  S.win = el('div', 'abs', Wd, { left: (S.hx + 130) + 'px', top: (S.hy - 360) + 'px', width: '110px', height: '110px', borderRadius: '8px', background: 'radial-gradient(circle, #fff3c8, #f6be5a)', boxShadow: '0 0 50px 16px rgba(255,200,100,.6)', opacity: 0 });
+  const hs = svgLayer(Wd);
+  marker(hs, [[S.hx - 360, S.hy - 400], [S.hx - 120, S.hy - 590], [S.hx, S.hy - 680], [S.hx + 120, S.hy - 590], [S.hx + 360, S.hy - 400]], 16.95, 0.75, 'var(--brown2)', 14, 41, 8);
+  marker(hs, [[S.hx - 292, S.hy - 450], [S.hx - 296, S.hy - 200], [S.hx - 290, S.hy]], 17.45, 0.35, 'var(--brown2)', 14, 42, 6);
+  marker(hs, [[S.hx + 292, S.hy - 450], [S.hx + 296, S.hy - 200], [S.hx + 290, S.hy]], 17.55, 0.35, 'var(--brown2)', 14, 43, 6);
+  marker(hs, [[S.hx + 130, S.hy - 362], [S.hx + 242, S.hy - 360], [S.hx + 240, S.hy - 250], [S.hx + 128, S.hy - 252], [S.hx + 130, S.hy - 362]], 17.9, 0.4, 'var(--brown2)', 10, 44, 4);
+  S.heart = el('div', 'abs', Wd, { left: (S.hx - 55) + 'px', top: (S.hy - 590) + 'px', width: '110px', height: '110px', backgroundImage: img('heart.png'), backgroundSize: 'contain', backgroundRepeat: 'no-repeat', opacity: 0 });
+  const fs = svgLayer(Wd);
+  S.fam = [
+    { p: person(fs, S.hx - 30, S.hy, { scale: 0.92, skin: SKIN[1], cloth: '#D0651F', pants: '#5b3a24' }), from: S.hx - 30, to: S.hx - 30, t0: 0 },
+    { p: person(fs, S.hx - 200, S.hy, { scale: 0.95, skin: SKIN[2], cloth: '#2F5D8A', pants: '#2a2a3a' }), from: S.hx - 1000, to: S.hx - 190, t0: 16.25 },
+    { p: person(fs, S.hx + 170, S.hy, { scale: 0.9, skin: SKIN[3], cloth: '#2F7D5B', wrap: '#D9A441', dress: true }), from: S.hx + 900, to: S.hx + 160, t0: 16.35 },
+    { p: person(fs, S.hx - 110, S.hy, { scale: 0.56, skin: SKIN[4], cloth: '#D9A441', pants: '#6b3a1c' }), from: S.hx - 900, to: S.hx - 105, t0: 16.5 },
+    { p: person(fs, S.hx + 70, S.hy, { scale: 0.52, skin: SKIN[0], cloth: '#C0392B', wrap: '#2F7D5B', dress: true }), from: S.hx + 860, to: S.hx + 66, t0: 16.6 },
+  ];
+  S.s4flame = flame(fs);
+  S.s4iris = el('div', 'L', L, { background: 'var(--cream)', clipPath: 'circle(0px at 0 0)' });
+}
+
+// ---- 5 · 27 · 31 · 21 — travelling latéral + dolly arrière (19,3 → 28,9) ----
+const PX = [960, 2460, 3960];
+{
+  const L = scene('s5', 19.3, 28.9, 'var(--cream)'); S.s5 = L;
+  const Wd = el('div', 'world', L, { width: '5000px' }); S.s5w = Wd;
+  S.s5cl = clouds(Wd, 51, ['rgba(242,190,110,.45)', 'rgba(208,101,31,.14)', 'rgba(47,125,91,.12)', 'rgba(242,190,110,.4)', 'rgba(47,93,138,.08)', 'rgba(242,190,110,.4)']);
+  S.s5cl.forEach((c, i) => c.x += i * 800);
+  el('div', 'pat', Wd, { left: '-1600px', top: '-1400px', width: '8200px', height: '3900px', background: 'rgba(170,110,40,.07)' });
+  el('div', 'kente', Wd, { left: '-1600px', top: '1000px', width: '8200px', height: '40px' });
+  const ms = svgLayer(Wd, 5000, 1080);
+  S.blocks = [];
+  const T5 = C['05'], T6 = C['06'], T7 = C['07'];
+  const mk = (cx, num, tNum, sym, label, subW, subT, seed) => {
+    const glow = el('div', 'abs', Wd, { left: (cx - 520) + 'px', top: '-40px', width: '1040px', height: '1040px', borderRadius: '50%', background: 'radial-gradient(circle, rgba(250,200,110,.55), rgba(250,200,110,0) 62%)' });
+    const nb = el('div', 'tl ser', Wd, { left: (cx - 170) + 'px', top: '150px', fontWeight: 900, fontSize: '400px', lineHeight: '1', color: 'var(--brown)', letterSpacing: '-.02em', transform: 'translateX(-50%)' });
+    const digs = String(num).split('').map((dg, i) => { const m = el('span', '', nb, { display: 'inline-block', overflow: 'hidden', height: '1.08em', verticalAlign: 'top' });
+      const strip = el('span', '', m, { display: 'block' }); const n = +dg + 10; for (let k = 0; k <= n; k++) el('span', '', strip, { display: 'block', height: '1.08em' }, String(k % 10)); return { strip, n, i }; });
+    const sy = el('div', 'abs', Wd, { left: (cx + 120) + 'px', top: '200px', width: '300px', height: '300px', backgroundImage: img(sym), backgroundSize: 'contain', backgroundRepeat: 'no-repeat' });
+    line(Wd, label.split(' '), label.split(' ').map((_, i) => tNum + 0.3 + i * 0.06), { left: (cx - 400) + 'px', top: '640px', fontSize: '54px', color: 'var(--orange)' }, 'caps');
+    line(Wd, subW, subT, itl(60, { left: (cx - 398) + 'px', top: '740px' }));
+    marker(ms, [[cx - 410, 726], [cx - 200, 720], [cx + 40, 724], [cx + 240, 718]], tNum + 0.55, 0.4, 'var(--gold)', 12, seed, 5);
+    S.blocks.push({ digs, sy, glow, tNum });
+  };
+  mk(PX[0], 27, T5[0].t, 'gye_nyame.png', 'COURS', ['en', 'cinq', 'modules'], [20.9, 20.96, 21.02], 51);
+  mk(PX[1], 31, T6[0].t, 'sankofa.png', 'CAS PRATIQUES', ['souvent', 'dialogués'], [23.45, 23.55], 52);
+  mk(PX[2], 21, T7[0].t, 'dwennimmen.png', 'FICHES', ['pour', 'lire,', 'suivre', 'et', 'évaluer'], [T7[4].t, T7[5].t, T7[6].t, T7[7].t, T7[8].t], 53);
+  // symboles au premier plan (parallaxe 1,4×)
+  S.fg = el('div', 'abs', L, { left: 0, top: 0, width: '1920px', height: '1080px' });
+  S.fgSym = ['aya.png', 'sun.png', 'heart.png', 'diamond.png', 'cross4.png', 'gold_knot.png'].map((f, i) =>
+    ({ e: el('div', 'abs', S.fg, { width: '120px', height: '120px', backgroundImage: img(f), backgroundSize: 'contain', backgroundRepeat: 'no-repeat', opacity: .55 }), x: 300 + i * 900, y: i % 2 ? 860 : 90 }));
+}
+
+// ---- 6 · Le tambour de mots (28,4 → 37,4) ----
+{
+  const L = scene('s6', 28.4, 37.45); S.s6 = L;
+  const Wd = el('div', 'world', L); S.s6w = Wd;
+  S.s6cl = clouds(Wd, 61, ['rgba(242,190,110,.5)', 'rgba(208,101,31,.16)', 'rgba(47,125,91,.12)']);
+  el('div', 'pat', Wd, { left: '-300px', top: '-300px', width: '2520px', height: '1680px', background: 'rgba(170,110,40,.06)' });
+  const T8 = C['08'], T9 = C['09'];
+  line(Wd, ['UN', 'MANUEL', 'POUR'], [T8[0].t, T8[1].t, T8[2].t], { left: '170px', top: '500px', fontSize: '44px', color: 'var(--orange)' }, 'caps', 33.15);
+  S.drumWrap = el('div', 'abs', Wd, { left: '760px', top: '540px', width: 0, height: 0, perspective: '1600px' });
+  S.drum = el('div', 'abs', S.drumWrap, { left: 0, top: 0, width: 0, height: 0, transformStyle: 'preserve-3d' });
+  const words = ['les pasteurs,', 'les anciens,', 'les diacres,', 'les couples…', 'les responsables', 'les serviteurs'];
+  S.drumR = 300; S.drumStep = 360 / words.length;
+  S.faces = words.map((w, i) => el('div', 'abs ser', S.drum, { left: 0, top: '-80px', height: '160px', lineHeight: '160px', fontWeight: 900, fontSize: '120px', whiteSpace: 'nowrap', color: 'var(--brown)',
+    transform: `rotateX(${-i * S.drumStep}deg) translateZ(${S.drumR}px)`, backfaceVisibility: 'hidden' }, w));
+  S.drumCues = [T8[4].t, T8[6].t, T8[8].t, T8[10].t];
+  // une âme · un foyer
+  line(Wd, ['pour', 'tous', 'ceux', 'qui', 'sont', 'appelés'], T9.slice(0, 6).map(x => x.t), { left: '960px', top: '150px', fontSize: '44px', fontWeight: 500, color: 'rgba(59,31,18,.78)' }, '', null, 'center');
+  line(Wd, ['à', 'accompagner'], [T9[6].t, T9[7].t], itl(96, { left: '960px', top: '220px' }), '', null, 'center');
+  const fs = svgLayer(Wd);
+  S.soul = person(fs, 640, 860, { scale: 0.95, skin: SKIN[1], cloth: '#D0651F', pants: '#5b3a24' });
+  S.s6flame = flame(fs);
+  S.s6house = el('div', 'abs', Wd, { left: 0, top: 0, width: '1920px', height: '1080px' });
+  const hs = svgLayer(S.s6house);
+  const hx = 1290, hy = 860;
+  marker(hs, [[hx - 230, hy - 270], [hx, hy - 450], [hx + 230, hy - 270]], T9[12].t - 0.05, 0.4, 'var(--brown2)', 14, 61, 7);
+  marker(hs, [[hx - 180, hy - 300], [hx - 182, hy - 120], [hx - 178, hy], [hx + 180, hy], [hx + 182, hy - 150], [hx + 178, hy - 300]], T9[12].t + 0.15, 0.45, 'var(--brown2)', 14, 62, 6);
+  S.s6win = el('div', 'abs', Wd, { left: (hx - 50) + 'px', top: (hy - 230) + 'px', width: '100px', height: '100px', borderRadius: '8px', background: 'radial-gradient(circle, #fff3c8, #f6be5a)', boxShadow: '0 0 40px 12px rgba(255,200,100,.55)', opacity: 0 });
+  line(Wd, ['une', 'âme,'], [T9[8].t, T9[9].t], big(84, { left: '640px', top: '900px' }), '', null, 'center');
+  line(Wd, ['ou', 'un', '<span style="color:var(--orange)">foyer.</span>'], [T9[10].t, T9[11].t, T9[12].t], big(84, { left: '1290px', top: '900px' }), '', null, 'center');
+  S.s6white = el('div', 'L', L, { background: 'radial-gradient(circle at 50% 50%, #fffaf0, #fbe7b8)', opacity: 0 });
+}
+
+// ---- 7 + 8 · Le livre (37,4 → fin) ----
+{
+  const L = scene('s7', 37.4, DUR + 1, 'radial-gradient(circle at 36% 50%, #FFF1CF 0%, #F9DE9F 34%, #F3C878 62%, #E7AE5A 100%)'); S.s7 = L;
+  const Wd = el('div', 'world', L); S.s7w = Wd;
+  S.s7cl = clouds(Wd, 71, ['rgba(255,255,240,.55)', 'rgba(208,101,31,.20)', 'rgba(255,240,200,.5)']);
+  S.s7pat = el('div', 'pat', Wd, { left: '-400px', top: '-400px', width: '2720px', height: '1880px', background: 'rgba(150,90,30,.09)' });
+  S.s7rays = rays(Wd, 560, 540, 3400, .22, '255,248,225');
+  S.s7motes = motes(Wd, 77, 46, [1920, 1080]);
+  const BW = 470, BH = Math.round(470 * 2837 / 2010), TH = 44;
+  S.bookPos = el('div', 'abs', Wd, { left: '560px', top: '540px', width: 0, height: 0 });
+  S.shadow = el('div', 'abs', S.bookPos, { left: '-260px', top: (BH / 2 + 26) + 'px', width: '520px', height: '70px', borderRadius: '50%', background: 'radial-gradient(ellipse, rgba(90,40,10,.45), rgba(90,40,10,0) 70%)' });
+  const persp = el('div', 'abs', S.bookPos, { left: 0, top: 0, width: 0, height: 0, perspective: '2200px' });
+  S.book = el('div', 'abs', persp, { left: 0, top: 0, width: 0, height: 0, transformStyle: 'preserve-3d' });
+  const face = css => el('div', 'abs', S.book, Object.assign({ backfaceVisibility: 'hidden' }, css));
+  S.front = face({ left: -BW / 2 + 'px', top: -BH / 2 + 'px', width: BW + 'px', height: BH + 'px', backgroundImage: img('cover_1280.jpg'), backgroundSize: '100% 100%', transform: `translateZ(${TH / 2}px)`, borderRadius: '2px 7px 7px 2px', overflow: 'hidden', boxShadow: 'inset 5px 0 8px rgba(0,0,0,.22)' });
+  S.glare = el('div', 'abs', S.front, { left: '-100%', top: 0, width: '300%', height: '100%', background: 'linear-gradient(105deg, rgba(255,255,255,0) 40%, rgba(255,252,236,.6) 49%, rgba(255,255,255,0) 58%)' });
+  face({ left: -TH / 2 + 'px', top: -BH / 2 + 'px', width: TH + 'px', height: BH + 'px', background: 'linear-gradient(90deg,#2a140a,#6b3417 45%,#3a1a0b)', transform: `translateX(${-BW / 2}px) rotateY(-90deg)` });
+  face({ left: -TH / 2 + 'px', top: -BH / 2 + 'px', width: TH + 'px', height: BH + 'px', background: 'repeating-linear-gradient(90deg,#f6eedd 0 2px,#e2d3b6 2px 3px)', transform: `translateX(${BW / 2 - 3}px) rotateY(90deg)` });
+  face({ left: -BW / 2 + 'px', top: -TH / 2 + 'px', width: BW + 'px', height: TH + 'px', background: 'repeating-linear-gradient(0deg,#f6eedd 0 2px,#e2d3b6 2px 3px)', transform: `translateY(${-BH / 2}px) rotateX(90deg)` });
+  face({ left: -BW / 2 + 'px', top: -BH / 2 + 'px', width: BW + 'px', height: BH + 'px', backgroundImage: img('back_1280.jpg'), backgroundSize: '100% 100%', transform: `translateZ(${-TH / 2}px) rotateY(180deg)`, borderRadius: '7px 2px 2px 7px' });
+  S.kente = el('div', 'kente', L, { left: 0, top: '1036px', width: '1920px', height: '44px' });
+  const tx = el('div', 'abs', L, { left: 0, top: 0, width: '1920px', height: '1080px' }); S.s7tx = tx;
+  const T10 = C['10'], T11 = C['11'], T12 = C['12'];
+  const X = 960;
+  line(tx, ['FAIRE', 'DES'], [T10[0].t, T10[1].t], { left: X + 'px', top: '250px', fontSize: '36px', color: 'var(--brown2)' }, 'caps', 41.75);
+  line(tx, ['DISCIPLES'], [T10[2].t], big(140, { left: (X - 6) + 'px', top: '296px', fontWeight: 900 }), '', 41.8);
+  line(tx, ['&amp;', 'des', 'familles'], [T10[3].t, T10[4].t, T10[5].t], itl(104, { left: X + 'px', top: '470px', color: 'var(--orange)' }), '', 41.85);
+  S.s7img = line(tx, ['À', 'L’IMAGE', 'DE', 'CHRIST'], [T10[6].t, T10[7].t, T10[8].t, T10[9].t], { left: X + 'px', top: '630px', fontSize: '40px', color: 'var(--brown)' }, 'caps', 41.9);
+  S.s7mk = svgLayer(tx);
+  LATE.push(() => { const b = wbox(S.s7img, 3); S.s7mkO = marker(S.s7mk, ellipsePts(b.x + b.w / 2 - 8, 662, b.w / 2 + 34, 42), T10[9].t + 0.05, 0.45, 'var(--orange)', 7, 71, 4); });
+  // auteur
+  S.author = el('div', 'abs', tx, { left: X + 'px', top: '330px', width: '230px', height: '230px', borderRadius: '50%', backgroundImage: img('author.png'), backgroundSize: 'cover', boxShadow: '0 0 0 8px #D9A441, 0 18px 40px rgba(90,40,10,.35)' });
+  line(tx, ['PAR'], [T11[0].t], { left: (X + 270) + 'px', top: '360px', fontSize: '30px', color: 'var(--orange)' }, 'caps', 44.1);
+  line(tx, ['Kouadio', 'Koffi'], [T11[1].t, T11[2].t], big(84, { left: (X + 266) + 'px', top: '400px' }), '', 44.12);
+  line(tx, ['Elisée'], [T11[3].t], big(84, { left: (X + 266) + 'px', top: '500px' }), '', 44.14);
+  line(tx, ['Moniteur', 'd’école', 'du', 'dimanche'], [43.3, 43.35, 43.4, 43.45], { left: X + 'px', top: '620px', fontSize: '30px', fontWeight: 500, color: 'var(--brown2)' }, '', 44.16);
+  line(tx, ['Église', 'CMA', 'de', 'Côte', 'd’Ivoire'], [43.5, 43.55, 43.6, 43.65, 43.7], { left: X + 'px', top: '666px', fontSize: '30px', fontWeight: 500, color: 'var(--brown2)' }, '', 44.18);
+  // citation + carton final
+  line(tx, ['«&nbsp;Moi', 'et', 'ma', 'maison,'], [T12[0].t, T12[1].t, T12[2].t, T12[3].t], itl(68, { left: X + 'px', top: '250px', color: 'var(--brown)' }));
+  line(tx, ['nous', 'servirons', '<span style="color:var(--orange)">l’Éternel.&nbsp;»</span>'], [T12[4].t, T12[5].t, T12[6].t], itl(68, { left: X + 'px', top: '340px', color: 'var(--brown)' }));
+  line(tx, ['JOSUÉ', '24:15'], [47.1, 47.16], { left: X + 'px', top: '470px', fontSize: '28px', color: 'var(--orange)' }, 'caps');
+  S.endRule = el('div', 'abs', tx, { left: X + 'px', top: '580px', width: '160px', height: '5px', borderRadius: '3px', background: 'var(--orange)', transformOrigin: '0 50%', transform: 'scaleX(0)' });
+  line(tx, ['MANUEL', 'DE', 'FORMATION', 'DES', 'MENTORS'], [47.75, 47.8, 47.85, 47.9, 47.95], { left: X + 'px', top: '620px', fontSize: '28px', color: 'var(--brown)' }, 'caps');
+  line(tx, ['École', 'des', 'Disciples', '·', 'Première', 'édition', '2026'], [48.15, 48.2, 48.25, 48.3, 48.4, 48.45, 48.5], itl(42, { left: X + 'px', top: '680px', color: 'var(--brown2)' }));
+  S.s7flame = flame(svgLayer(Wd));
+}
+S.flash = el('div', 'L', stage, { background: 'radial-gradient(circle at 50% 50%, #fffcf2, #fbe4ad)', opacity: 0 });
+
+// ============================== SEEK =================================
+const ORDER = ['s1', 's2', 's3', 's4', 's5', 's6', 's7'];
+window.seek = async (t) => {
+  t = clamp(t, 0, DUR);
+  for (const k of ORDER) { const L = S[k]; L.style.visibility = (t >= +L.dataset.a && t < +L.dataset.b) ? 'visible' : 'hidden'; }
+  updWords(t); updMarkers(t);
+
+  // ---- 1 ----
+  if (t < 6.75) {
+    const K = [[0, 1.12, 700, 520, -1], [3.9, 1.0, 960, 540, 0, sio], [4.85, 1.0, 2640, 560, 0, io], [6.2, 1.04, 2700, 560, 0, x => x], [6.75, 1.0, 2700, 560, 0]];
+    applyCam(S.s1w, camAt(K, t));
+    updClouds(S.s1cl, t);
+    const rise = P(t, 0, 3.0, o5);
+    S.s1sun.style.transform = `translateY(${(1 - rise) * 380}px) scale(${0.8 + 0.2 * rise})`;
+    S.s1rays.style.opacity = P(t, 0.4, 2.4, io); S.s1rays.style.transform = `rotate(${t * 4}deg)`;
+    const e = sp(t, 0.35, 'heavy');
+    S.s1emb.style.transform = `translateY(${-8 * Math.sin(t * 1.4)}px) scale(${0.4 + 0.6 * e}) rotate(${(1 - e) * -40 + 2 * Math.sin(t)}deg)`;
+    S.s1emb.style.clipPath = `circle(${P(t, 0.3, 1.5, o5) * 72}% at 50% 50%)`;
+    S.s1emb.style.setProperty('--sh', (lerp(-30, 130, (t * 0.35) % 1)) + '%');
+    const c = sp(t, cue('01', 4), 'pop'); S.s1cross.style.transform = `scale(${c})`; S.s1cross.style.opacity = P(t, cue('01', 4) - .05, cue('01', 4) + .2);
+    S.s1pat.style.transform = `translate(${-t * 14}px,0)`;
+    for (const ch of S.chairs) { const a = sp(t, ch.t0, 'pop'); ch.g.setAttribute('transform', `translate(${ch.x},${ch.y - (1 - a) * 60}) scale(${ch.s * a})`); ch.g.setAttribute('opacity', P(t, ch.t0, ch.t0 + .08)); }
+  }
+
+  // ---- 2 ----
+  if (t >= 6.4 && t < 9.75) {
+    const pk = punch(t, [cue('02', 5)], 0.05, 6);
+    const thr = P(t, 9.05, 9.72, expoIn);           // push-through dans la lettre « I »
+    const z = (1.06 - 0.06 * P(t, 6.4, 7.6, o5)) * (1 + 0.03 * P(t, 7.6, 9.0, x => x)) + pk;
+    applyCam(S.s2w, [z * Math.exp(Math.log(28) * thr), lerp(960, 812, P(t, 9.0, 9.4, io)), lerp(540, 595, P(t, 9.0, 9.4, io)), 0]);
+    updClouds(S.s2cl, t);
+    S.s2.style.opacity = P(t, 6.4, 6.75);
+    const b = spring(t - cue('02', 5), 230, 26);
+    S.s2word.style.transform = `translateX(-50%) scale(${lerp(1.5, 1, b)})`;
+    S.s2word.style.opacity = P(t, cue('02', 5), cue('02', 5) + .1);
+    const win = P(t, 8.35, 8.95, io);
+    S.s2solid.style.opacity = 1 - win; S.s2win.style.opacity = win;
+    S.s2win.style.backgroundPosition = `${t * 40}px 0, 0 0`;
+    S.s2kente.style.transform = `scaleX(${P(t, 8.1, 8.6, o5)})`;
+    S.s2flash.style.opacity = P(t, 9.4, 9.72, inn);
+  }
+
+  // ---- 3 ----
+  if (t >= 9.5 && t < 14.7) {
+    const last = S.relay[S.relay.length - 1];
+    const lx = last.x, ly = last.y - 290 * 0.42;
+    const tr = P(t, 9.5, 13.8, x => x);
+    applyCam(S.s3w, [1.0 + 0.04 * tr, lerp(1320, 1080, sio(tr)), 540, 0]);
+    updClouds(S.s3cl, t);
+    S.s3.style.opacity = 1;
+    S.rows.forEach((r, i) => r.g.style.transform = `translateX(${(1 - r.depth) * lerp(-240, 240, sio(tr))}px)`);
+    S.s3l1.style.opacity = 1 - 0.5 * P(t, 12.1, 12.4);
+    for (const c of S.crowd) {
+      const a = sp(t, c.t0, 'pop');
+      const lit = c.tLit !== undefined ? P(t, c.tLit, c.tLit + .25, out) : 0;
+      if (c.tLit !== undefined) c.p.cloth.forEach(e => e.setAttribute('fill', lit > .5 ? c.col : '#CDB9A0'));
+      pose(c.p, { y: c.y - (1 - a) * 40, bob: 3 * Math.sin(t * 2.2 + c.ph) + lit * 14 * c.p.s, sc: a * (1 + 0.1 * lit), armR: -8 - lit * 150 * (1 - P(t, (c.tLit || 0) + .35, (c.tLit || 0) + .7, io)), armL: 8, op: P(t, c.t0, c.t0 + .1) });
+    }
+    // la flamme saute de main en main (arcs)
+    const relay = S.relay; let fx = relay[0].x, fy = relay[0].y - 330 * relay[0].p.s, fs = 0;
+    if (t >= 12.85) {
+      fs = P(t, 12.85, 13.05, out);
+      for (let k = 0; k < relay.length - 1; k++) {
+        const a = relay[k], b = relay[k + 1], t0 = a.tLit + 0.02, t1 = b.tLit;
+        const ax = a.x + (S.rows[a.r].depth - 1) * 0, ay = a.y - 330 * a.p.s, bx = b.x, by = b.y - 330 * b.p.s;
+        if (t >= t0) { const q = P(t, t0, t1, io); fx = lerp(ax, bx, q); fy = lerp(ay, by, q) - Math.sin(q * Math.PI) * 110; }
+      }
+    }
+    placeFlame(S.s3flame, fx, fy, 0.55 * fs, t, fs);
+    // ligne pointillée de relais
+    const pts = relay.map(c => [c.x, c.y - 330 * c.p.s]);
+    if (!S.relayPath) { let d = `M ${pts[0][0]} ${pts[0][1]}`; for (let i = 1; i < pts.length; i++) { const mx = (pts[i - 1][0] + pts[i][0]) / 2, my = Math.min(pts[i - 1][1], pts[i][1]) - 110; d += ` Q ${mx} ${my} ${pts[i][0]} ${pts[i][1]}`; }
+      S.relayPath = sv('path', S.relayLine, { d, fill: 'none', stroke: '#D9A441', 'stroke-width': 5, 'stroke-dasharray': '2 14', 'stroke-linecap': 'round' }); S.relayLen = S.relayPath.getTotalLength(); }
+    const rk = P(t, 13.0, 13.0 + 0.17 * (relay.length - 1), x => x);
+    S.relayPath.style.clipPath = 'none'; S.relayPath.setAttribute('opacity', rk > 0 ? .9 : 0);
+    S.relayPath.setAttribute('stroke-dasharray', `2 14`); S.relayPath.style.strokeDashoffset = 0;
+    S.relayPath.setAttribute('stroke-dasharray', rk < 1 ? `${S.relayLen * rk} ${S.relayLen}` : '2 14');
+  }
+
+  // ---- 4 ----
+  if (t >= 14.3 && t < 19.6) {
+    // iris focal depuis la flamme (scène 3) : on ouvre un cercle sur la scène 4
+    const ir = P(t, 14.3, 14.75, io);
+    S.s4.style.clipPath = ir < 1 ? `circle(${ir * 2300}px at 1380px 600px)` : 'none';
+    const thr = P(t, 18.95, 19.55, expoIn);          // push-through dans la fenêtre éclairée
+    const base = camAt([[14.3, 1.08, 1000, 560, 0], [18.9, 1.0, 960, 540, 0, sio]], t);
+    const wx = S.hx + 185, wy = S.hy - 305;
+    applyCam(S.s4w, [base[0] * Math.exp(Math.log(22) * thr), lerp(base[1], wx, P(t, 18.9, 19.3, io)), lerp(base[2], wy, P(t, 18.9, 19.3, io)), 0]);
+    updClouds(S.s4cl, t);
+    S.s4sun.style.transform = `scale(${1 + 0.05 * Math.sin(t * 1.2)})`;
+    S.fam.forEach((f, i) => {
+      if (i === 0) { pose(f.p, { bob: 3 * Math.sin(t * 2), armR: -8 - 140 * P(t, 14.6, 15.0, out) * (1 - P(t, 18.2, 18.6, io)), sc: 1 }); return; }
+      const w = P(t, f.t0, f.t0 + 1.1, out);
+      const walking = w > 0 && w < 0.98;
+      pose(f.p, { x: lerp(f.from, f.to, w), bob: walking ? 10 * f.p.s * Math.abs(Math.sin(t * 9 + i)) : 3 * Math.sin(t * 2 + i), sway: walking ? 3 * Math.sin(t * 9 + i) : 0,
+        armL: walking ? 22 * Math.sin(t * 9 + i) : 8, armR: walking ? -22 * Math.sin(t * 9 + i) : -8, op: P(t, f.t0, f.t0 + .2) });
+    });
+    // flamme : dans la main, puis elle monte allumer la fenêtre (motif)
+    const m = cue('04', 11);
+    const hand = [S.hx - 30 + 125 * 0.92, S.hy - 330 * 0.92];
+    const go = P(t, m - 0.45, m, io);
+    const fx = lerp(hand[0], S.hx + 185, go), fy = lerp(hand[1], S.hy - 305, go) - Math.sin(go * Math.PI) * 120;
+    placeFlame(S.s4flame, fx, fy, 0.6 * (1 - 0.4 * go), t, 1 - P(t, m, m + .2));
+    S.win.style.opacity = P(t, m - .05, m + .25, out); S.houseFill.style.opacity = P(t, m, m + .5, out) * 0.9;
+    const h = sp(t, m + 0.05, 'pop'); S.heart.style.opacity = P(t, m, m + .1); S.heart.style.transform = `scale(${h}) rotate(${(1 - h) * -25}deg)`;
+  }
+
+  // ---- 5 ----
+  if (t >= 19.3 && t < 28.9) {
+    const K = [[19.3, 1.6, PX[0] + 160, 540, 0], [20.2, 1.0, PX[0], 540, 0, o5], [22.0, 1.02, PX[0] + 30, 540, 0, x => x], [22.5, 1.0, PX[1], 540, 0, expo],
+      [24.5, 1.02, PX[1] + 30, 540, 0, x => x], [25.0, 1.0, PX[2], 540, 0, expo], [27.3, 1.03, PX[2] + 20, 540, 0, x => x], [28.0, 0.42, PX[1], 540, 0, io], [28.9, 0.40, PX[1] + 40, 540, 0, x => x]];
+    const cam = camAt(K, t); const pk = punch(t, [20.0, 22.5, 25.0], 0.025, 6); cam[0] += pk;
+    applyCam(S.s5w, cam);
+    updClouds(S.s5cl, t);
+    S.s5.style.opacity = 1;
+    S.fg.style.opacity = 1 - P(t, 27.3, 27.8);
+    S.fgSym.forEach((f, i) => { const x = f.x - (cam[1] - PX[0]) * 1.4; f.e.style.transform = `translate(${x}px,${f.y + 14 * Math.sin(t + i)}px) rotate(${t * 20 + i * 40}deg)`; });
+    S.blocks.forEach((b, bi) => {
+      b.digs.forEach(d => { const k = P(t, b.tNum - 0.42 + d.i * 0.08, b.tNum + 0.12 + d.i * 0.08, o5); d.strip.style.transform = `translateY(${-k * d.n * 1.08}em)`; });
+      const s = sp(t, b.tNum + 0.05, 'pop');
+      b.sy.style.transform = `scale(${s}) rotate(${(1 - s) * -160 + 8 * Math.sin(t * 1.3 + bi)}deg)`;
+      b.glow.style.transform = `scale(${0.6 + 0.4 * P(t, b.tNum - .3, b.tNum + .5, out)})`;
+    });
+  }
+
+  // ---- 6 ----
+  if (t >= 28.4 && t < 37.45) {
+    const sl = P(t, 28.4, 28.95, o5);             // travelling parallaxe : la scène entre par la droite
+    applyCam(S.s6w, [1.0 + 0.05 * P(t, 28.9, 33.2, x => x) + 0.07 * P(t, 33.3, 37.0, x => x), 960 - (1 - sl) * 900, 540, 0]);
+    S.s6.style.clipPath = sl < 1 ? `inset(0 0 0 ${(1 - sl) * 100}%)` : 'none';
+    updClouds(S.s6cl, t);
+    let ang = 0; S.drumCues.slice(1).forEach(c => ang += spring(t - c + 0.08, 200, 26));
+    ang -= 1 - P(t, 28.9, 29.6, o5);               // le tambour arrive en tournant
+    const exitD = P(t, 33.1, 33.6, inn);
+    S.drum.style.transform = `rotateX(${ang * S.drumStep - exitD * 100}deg)`;
+    S.drumWrap.style.opacity = (1 - exitD) * P(t, 28.9, 29.3);
+    S.faces.forEach((f, i) => { const rel = ((i - ang) % 6 + 6) % 6; const d = Math.min(rel, 6 - rel); f.style.opacity = clamp(1 - d * 0.55); f.style.color = d < 0.5 ? 'var(--orange)' : 'var(--brown)'; });
+    // une âme · un foyer
+    const T9 = C['09'];
+    const a = sp(t, T9[8].t - 0.1, 'pop');
+    pose(S.soul, { sc: a, bob: 4 * Math.sin(t * 2.3), armR: -8 - 150 * P(t, T9[9].t, T9[9].t + .3, out), op: P(t, T9[8].t - .1, T9[8].t) });
+    placeFlame(S.s6flame, 640 + 125 * 0.95, 860 - 330 * 0.95, 0.55 * P(t, T9[9].t + .1, T9[9].t + .35, out), t, P(t, T9[9].t + .1, T9[9].t + .2));
+    S.s6win.style.opacity = P(t, T9[12].t + .5, T9[12].t + .8, out);
+    S.s6white.style.opacity = P(t, 37.0, 37.42, inn);       // l'écran se vide avant le drop
+  }
+
+  // ---- 7 / 8 ----
+  if (t >= 37.4) {
+    const zd = 1 + punch(t, [DROP], 0.06, 3.5) + 0.04 * P(t, DROP, 52.5, x => x);
+    applyCam(S.s7w, [zd, 960, 540, 0]);
+    updClouds(S.s7cl, t); updMotes(S.s7motes, t);
+    S.s7rays.style.transform = `rotate(${t * 3.5}deg) scale(${0.5 + 0.5 * spring(t - DROP, 120, 22)})`;
+    S.s7pat.style.transform = `translate(${-t * 10}px, ${t * 5}px)`;
+    // le livre arrive en tournant (une volte et demie) et révèle sa quatrième de couverture au passage
+    const a = spring(t - DROP, 70, 17);
+    const ry = lerp(-560, -22, a) + 16 * P(t, DROP + 1, 52.5, sio) + 2 * Math.sin(t * .9);
+    const rx = lerp(20, 5, a) + 1.5 * Math.sin(t * .7);
+    const sc = lerp(0.15, 1, spring(t - DROP, 110, 21));
+    const move = P(t, 44.3, 45.2, io);
+    S.bookPos.style.transform = `translate(${lerp(0, -60, move)}px, ${10 * Math.sin(t * 1.1)}px) scale(${sc * lerp(1, 0.94, move)})`;
+    S.bookPos.style.opacity = P(t, DROP, DROP + .1);
+    S.book.style.transform = `rotateX(${rx}deg) rotateY(${ry}deg)`;
+    S.shadow.style.opacity = a;
+    const g = t < 40.5 ? P(t, 39.0, 39.9, io) : t < 47.4 ? P(t, 40.7, 41.6, io) : P(t, 47.6, 48.6, io);
+    S.glare.style.transform = `translateX(${lerp(-10, 75, g)}%)`; S.glare.style.opacity = g > 0 && g < 1 ? 1 : 0;
+    S.kente.style.clipPath = `inset(0 ${100 - 100 * P(t, DROP + .1, DROP + .9, o5)}% 0 0)`; S.kente.style.backgroundPosition = `${-t * 40}px 0`;
+    const au = sp(t, cue('11', 0) - 0.1, 'pop'), auOut = P(t, 44.1, 44.4, inn);
+    S.author.style.transform = `scale(${au * (1 - auOut)}) rotate(${(1 - au) * -30}deg)`; S.author.style.opacity = P(t, cue('11', 0) - .1, cue('11', 0)) * (1 - auOut);
+    S.endRule.style.transform = `scaleX(${P(t, 47.6, 48.1, o5)})`;
+    S.s7mk.style.opacity = 1 - P(t, 41.85, 42.15);
+    S.s7tx.style.transform = `translateY(${-6 * P(t, 45, 52.5, x => x)}px)`;
+    // la flamme se pose au-dessus du livre pour la citation (motif, 3e apparition)
+    const fl = P(t, 45.0, 45.6, o5);
+    placeFlame(S.s7flame, 500, lerp(170, 140, fl), 0.6 * fl, t, fl);
+  }
+  // flash de passage 1 → 2
+  S.flash.style.opacity = (t > 6.0 && t < 7.2) ? P(t, 6.2, 6.5, inn) * (1 - P(t, 6.5, 7.1, out)) : 0;
+  document.getElementById('tc').textContent = t.toFixed(2);
+};
+
+// ---------- prévisualisation ----------
+let playing = false, t0 = 0, cur = 0, wall = 0;
+const aud = document.getElementById('aud');
+function fit() { const s = Math.min(innerWidth / 1920, innerHeight / 1080); document.getElementById('wrap').style.transform = `scale(${s})`; }
+addEventListener('resize', fit); fit();
+function loop(now) { if (!playing) return; cur = t0 + (now - wall) / 1000; if (cur >= DUR) { playing = false; cur = DUR; } window.seek(cur); requestAnimationFrame(loop); }
+function play(from) { t0 = from; wall = performance.now(); playing = true; try { aud.currentTime = from; aud.play(); } catch (e) { } requestAnimationFrame(loop); }
+addEventListener('keydown', e => {
+  if (e.code === 'Space') { if (playing) { playing = false; aud.pause(); } else play(cur >= DUR ? 0 : cur); e.preventDefault(); }
+  if (e.code === 'ArrowRight') { playing = false; aud.pause(); cur = Math.min(DUR, cur + 1 / FPS); window.seek(cur); }
+  if (e.code === 'ArrowLeft') { playing = false; aud.pause(); cur = Math.max(0, cur - 1 / FPS); window.seek(cur); }
+  if (e.code === 'KeyR') { cur = 0; play(0); }
+});
+Promise.all([document.fonts.ready, ...['cover_1280.jpg', 'back_1280.jpg', 'author.png', 'pattern.png', 'kente.jpg', 'nsoromma_frame.png', 'heart.png', 'gye_nyame.png', 'sankofa.png', 'dwennimmen.png', 'aya.png', 'sun.png', 'diamond.png', 'cross4.png', 'gold_knot.png']
+  .map(f => new Promise(r => { const i = new Image(); i.onload = i.onerror = r; i.src = 'brand/img/' + f; }))])
+  .then(() => Promise.all(['900 100px Fraunces', '800 100px Fraunces', '600 100px Fraunces', 'italic 600 100px Fraunces', '500 20px Poppins', '600 20px Poppins'].map(f => document.fonts.load(f, 'AÉé’«»'))))
+  .then(() => { LATE.forEach(f => f()); window.seek(0); window.ready = true; });
+</script>
+</body>
+</html>
