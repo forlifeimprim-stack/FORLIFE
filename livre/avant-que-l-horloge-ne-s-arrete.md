@@ -109,7 +109,9 @@ Elle était venue chez nous, à Gagnoa, pour accoucher. Un dimanche matin, elle 
 
 Elle n'est jamais rentrée. Elle est décédée après l'accouchement.
 
-**Elle est partie pour donner la vie, et c'est la sienne qu'elle a perdue.** Le jour qui devait être celui de la joie est devenu celui du deuil.
+**Elle est partie pour donner la vie, et c'est la sienne qu'elle a perdue.** Le même jour, une maison a accueilli un berceau et pleuré un cercueil.
+
+Et pourtant, la vie qu'elle a donnée ce jour-là est toujours là. Son enfant a grandi ; il est vivant jusqu'à ce jour. Chaque fois que je pense à lui, je me souviens que l'amour de ma tante n'est pas mort avec elle. Il marche encore parmi nous.
 
 ### Le 10 août 2026, sur la route de la convention
 
@@ -360,7 +362,9 @@ Pour ceux qui sont morts en Christ, la Bible n'emploie pas le mot « fin ». Ell
 >
 > — 2 Corinthiens 5.8
 
-Pensez à ceux qui ont servi Dieu toute leur vie, comme mon beau-père. Ce 10 août, il n'est pas arrivé à la convention. Mais il est arrivé ailleurs : dans une assemblée bien plus grande, devant le Maître qu'il avait servi. Son travail est achevé. Il se repose.
+William aimait le Seigneur. Ma tante Rachelle aussi. Mon beau-père l'a servi toute sa vie. Tous trois étaient chrétiens. C'est pourquoi, quand je pense à eux, je ne pense pas à trois tombes : je pense à trois personnes qui sont auprès du Seigneur.
+
+Pensez à mon beau-père. Ce 10 août, il n'est pas arrivé à la convention. Mais il est arrivé ailleurs : dans une assemblée bien plus grande, devant le Maître qu'il avait servi. Son travail est achevé. Il se repose.
 
 > « Heureux dès à présent les morts qui meurent dans le Seigneur !
 > Oui, dit l'Esprit, afin qu'ils se reposent de leurs travaux,
@@ -604,9 +608,9 @@ Mais pour celui qui appartient à Jésus, ce jour-là ne sera pas une fin. Il ne
 >
 > — Jean 14.1-2
 
-J'ai l'espérance de revoir mon beau-père, le pasteur Koffi François, qui a servi ce Seigneur jusqu'au dernier jour. J'espère de tout mon cœur revoir le sourire de William et le visage de ma tante Rachelle. Et je prie pour que vous aussi, vous puissiez revoir ceux que vous pleurez, dans ce matin où il n'y aura plus de nuit.
+William, Rachelle, Koffi François : tous trois ont mis leur foi en Jésus-Christ. Alors je ne leur ai pas dit adieu. Je reverrai le sourire de William. Je reverrai le visage de ma tante Rachelle, ma seconde maman. Je reverrai mon beau-père, le pasteur Koffi François, qui a servi ce Seigneur jusqu'au dernier jour. Et je prie pour que vous aussi, vous puissiez revoir ceux que vous pleurez, dans ce matin où il n'y aura plus de nuit.
 
-Là-bas, il n'y aura plus de cercueil, plus de veillée, plus de séparation. Plus d'enfant qui part au marché et ne revient pas. Plus de maternité d'où l'on rentre les mains vides. Plus de route qui ne mène pas à destination. Plus de téléphone qui sonne pour annoncer une mauvaise nouvelle.
+Là-bas, il n'y aura plus de cercueil, plus de veillée, plus de séparation. Plus d'enfant qui part au marché et ne revient pas. Plus de maternité d'où une mère ne revient pas. Plus de route qui ne mène pas à destination. Plus de téléphone qui sonne pour annoncer une mauvaise nouvelle.
 
 > « Il essuiera toute larme de leurs yeux, et la mort ne sera plus,
 > et il n'y aura plus ni deuil, ni cri, ni douleur,
