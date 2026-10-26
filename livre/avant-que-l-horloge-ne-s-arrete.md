@@ -7,12 +7,14 @@ lang: fr
 ## En mémoire {.unnumbered .dedicace}
 
 *De William, mon camarade de CE2,
+dont le sourire et l'intelligence me manquent encore,
 parti un samedi soir pour une simple course au marché.*
 
-*De ma tante Rachelle,
+*De ma tante Rachelle, ma grande sœur, ma seconde maman,
 partie un dimanche matin pour donner la vie, et qui n'est jamais revenue.*
 
 *Du pasteur Koffi François, mon beau-père,
+homme calme et responsable, toujours présent pour ses enfants,
 parti le 10 août 2026 sur la route de la pastorale.*
 
 *Et pour toi qui tiens ce livre,
@@ -77,6 +79,8 @@ Mon enfant, je vais maintenant te raconter ce qui s'est passé. Écoute bien, pa
 
 ### Un samedi, 17 heures
 
+William, c'était un sourire. Un sourire qui arrivait avant lui, et une intelligence vive qui faisait de lui l'un des meilleurs d'entre nous. Aujourd'hui encore, des années plus tard, ce sourire et cette intelligence me manquent. Je les pleure comme au premier jour.
+
 C'était un samedi. William et moi rentrions ensemble des cours de renforcement, chez notre maître de maison. Deux enfants sur le chemin du retour, comme tant d'autres samedis. Arrivés chez lui, sa maman l'a envoyé aussitôt au marché acheter des cubes Maggi pour la cuisine du soir. Il était 17 heures. Le ciel était lourd, nuageux, la pluie menaçait. Alors je ne l'ai pas accompagné : j'ai continué mon chemin jusque chez moi.
 
 Je ne savais pas que c'était la dernière fois que je le voyais.
@@ -89,7 +93,9 @@ Moi, j'ai pris le chemin de la maison. Lui, le chemin du marché. Je me suis sou
 
 ### Un dimanche matin, à Gagnoa
 
-Quelques années plus tard, j'étais en 6e-5e. Ma tante Rachelle, l'épouse de mon oncle, était venue chez nous, à Gagnoa, pour accoucher. C'était une joie dans la maison : un enfant allait naître.
+Quelques années plus tard, j'étais en 6e-5e. Ma tante Rachelle était l'épouse de mon oncle. Mais pour moi, elle était bien plus qu'une parente par alliance : elle était ma grande sœur, ma seconde maman. Celle qui veillait sur moi, à qui je pouvais tout dire.
+
+Elle était venue chez nous, à Gagnoa, pour accoucher. C'était une joie dans la maison : un enfant allait naître.
 
 Un dimanche matin, elle est partie pour la maternité. Elle est sortie de la maison comme on sort pour revenir. Elle allait donner la vie.
 
@@ -99,7 +105,9 @@ Mon enfant, comprends-tu ce paradoxe-là ? **Elle est partie pour donner la vie,
 
 ### Le 10 août 2026, sur la route
 
-Et cette année, le 10 août 2026, mon beau-père, le pasteur Koffi François, a pris la route pour se rendre à la pastorale. Il allait retrouver ses frères dans le ministère, prier, servir, se préparer pour l'œuvre de Dieu. Un voyage comme il en avait fait tant d'autres.
+Mon beau-père, le pasteur Koffi François, était un homme calme et responsable. Il ne faisait pas de bruit, mais on pouvait compter sur lui. Il était toujours présent pour ses enfants : présent quand il fallait conseiller, présent quand il fallait soutenir, présent quand il fallait prier.
+
+Le 10 août 2026, il a pris la route pour se rendre à la pastorale. Il allait retrouver ses frères dans le ministère, prier, servir, se préparer pour l'œuvre de Dieu. Un voyage comme il en avait fait tant d'autres.
 
 Il est décédé dans un accident de circulation.
 
@@ -138,7 +146,7 @@ Je partirai. Et tu resteras. Ou c'est toi qui partiras, et moi qui resterai. Mal
 
 C'est un paradoxe cruel : **nous aimons de toutes nos forces, et pourtant notre amour n'a pas la force de vaincre la mort.**
 
-Mon beau-père, le pasteur, aimait sa famille. Il voulait la voir grandir, la protéger encore. Mais un jour, il a dû la laisser. Non parce qu'il l'aimait moins, mais parce que l'homme n'a aucun pouvoir sur le jour de son départ.
+Mon beau-père, le pasteur, aimait sa famille. Lui qui avait toujours été présent pour ses enfants voulait les voir grandir encore, les protéger encore. Mais un jour, il a dû les laisser, et pour la première fois, il n'a pas pu être là. Non parce qu'il l'aimait moins, mais parce que l'homme n'a aucun pouvoir sur le jour de son départ.
 
 > « Il est réservé aux hommes de mourir une seule fois,
 > après quoi vient le jugement. »
