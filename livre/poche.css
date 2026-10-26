@@ -1,0 +1,18 @@
+@page { size: 110mm 178mm; margin: 14mm 11mm 15mm 11mm;
+  @bottom-center { content: counter(page); font: 8pt Georgia, serif; color: #666; } }
+@page :first { @bottom-center { content: none; } }
+html { font-family: Georgia, "Times New Roman", serif; font-size: 9.6pt; line-height: 1.45; color: #1a1a1a; }
+body { margin: 0; text-align: justify; hyphens: auto; }
+header#title-block-header { height: 140mm; display: flex; flex-direction: column; justify-content: center; text-align: center; page-break-after: always; }
+h1.title { font-size: 20pt; font-weight: normal; line-height: 1.25; margin: 0 0 6mm; }
+p.subtitle { font-style: italic; font-size: 10.5pt; color: #444; margin: 0; }
+h2 { font-weight: normal; font-size: 13.5pt; text-align: center; margin: 4mm 0 7mm; page-break-before: always; line-height: 1.3; }
+section.dedicace p { text-align: center; }
+hr:has(+ section), hr:has(+ h2), section > hr:last-child { display: none; }
+p { margin: 0 0 2.6mm; orphans: 2; widows: 2; }
+blockquote { margin: 3.5mm 4mm; font-style: italic; color: #333; text-align: left; page-break-inside: avoid; }
+blockquote p { margin: 0 0 1mm; }
+hr { border: 0; text-align: center; margin: 5mm 0; }
+hr::after { content: "❧"; color: #888; font-size: 11pt; }
+ol { padding-left: 6mm; } li { margin-bottom: 1.5mm; }
+strong { font-weight: bold; }
