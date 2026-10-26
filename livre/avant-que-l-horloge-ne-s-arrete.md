@@ -6,14 +6,14 @@ lang: fr
 
 ## En mémoire {.unnumbered .dedicace}
 
-*De William, mon camarade de CE2, parti trop tôt,
-qui m'a appris, enfant, qu'un banc d'école peut rester vide.*
+*De William, mon camarade de CE2,
+parti un samedi soir pour une simple course au marché.*
 
-*De ma tante Rachelle, partie quand j'étais en 6e-5e,
-qui m'a appris que la mort entre aussi dans les maisons qu'on croyait solides.*
+*De ma tante Rachelle,
+partie un dimanche matin pour donner la vie, et qui n'est jamais revenue.*
 
-*De mon beau-père, Koffi François, parti cette année,
-qui m'a rappelé, une fois encore, que nul n'est trop aimé pour partir.*
+*Du pasteur Koffi François, mon beau-père,
+parti le 10 août 2026 sur la route de la pastorale.*
 
 *Et pour toi qui tiens ce livre,
 le cœur encore lourd de quelqu'un qui n'est plus là.*
@@ -33,9 +33,9 @@ Mon enfant,
 
 Viens. Assieds-toi un instant près de moi. Je ne vais pas te faire un sermon, ni une leçon d'école. Je veux seulement te parler comme un père parle à son enfant quand la nuit est tombée et que la maison est calme. Je veux te dire des choses que la vie m'a apprises à coups de larmes.
 
-J'étais encore un petit garçon, en classe de CE2, quand mon ami William est mort. Je ne comprenais pas. La veille, nous étions ensemble ; le lendemain, sa place était vide. On nous a dit qu'il était parti, et je me demandais *où*. Plus tard, en 6e-5e, ce fut ma tante Rachelle. Là, j'ai commencé à comprendre que la mort n'avait pas d'âge préféré. Et cette année, mon beau-père, Koffi François, nous a quittés. J'étais adulte, cette fois. Je croyais être prêt. On n'est jamais prêt.
+Comme tout homme, j'ai connu plusieurs deuils. Mais il y en a trois qui m'ont marqué pour la vie. Le premier, j'étais un petit garçon en classe de CE2 : mon ami William. Le deuxième, j'étais en 6e-5e : ma tante Rachelle. Le troisième, c'est cette année : mon beau-père, le pasteur Koffi François. Trois départs, à trois âges de ma vie. Et chaque fois, des circonstances si ordinaires… mais hélas.
 
-Trois deuils, à trois âges de ma vie. Et à chaque fois, la même question est revenue frapper à la porte de mon cœur : *Et toi, quand ce sera ton tour, où iras-tu ?*
+Je te raconterai leur histoire dans les pages qui suivent. Depuis, je vis avec la prière du psalmiste sur les lèvres : *« Enseigne-nous à bien compter nos jours. »* Et chaque fois, la même question est revenue frapper à la porte de mon cœur : *Et toi, quand ce sera ton tour, où iras-tu ?*
 
 Ce petit livre n'est pas long. Je l'ai voulu ainsi, pour qu'il tienne dans une poche, dans un sac, sur une table de chevet. Tu peux le lire en une soirée ou une page par jour. Mais je te le demande comme un père : ne le lis pas seulement avec tes yeux. Lis-le avec ton cœur.
 
@@ -60,7 +60,7 @@ Voilà le premier paradoxe, mon enfant : **nous fêtons ce que nous gagnons, alo
 
 Je ne te dis pas cela pour te faire peur. Je te le dis pour que tu deviennes sage. Car celui qui sait que le temps est compté ne le gaspille pas de la même manière. Celui qui sait que l'argent de sa poche va finir le dépense avec sagesse. Pourquoi serions-nous plus prudents avec quelques pièces qu'avec les jours de notre vie ?
 
-William avait à peine huit ou neuf ans sur son compteur. Personne ne le savait, sauf Dieu. Ma tante Rachelle n'avait pas fini de vivre tout ce qu'elle espérait. Mon beau-père avait encore des projets. Leur horloge, pourtant, s'est arrêtée.
+William avait à peine huit ou neuf ans sur son compteur. Personne ne le savait, sauf Dieu. Ma tante Rachelle s'apprêtait à devenir mère. Mon beau-père avait encore un ministère à accomplir et une pastorale où on l'attendait. Leur horloge, pourtant, s'est arrêtée.
 
 Et la tienne ? Combien de jours restent dessus ? Tu ne le sais pas. Moi non plus. C'est justement pour cela qu'il faut être prêt aujourd'hui.
 
@@ -71,7 +71,62 @@ Et la tienne ? Combien de jours restent dessus ? Tu ne le sais pas. Moi non plus
 
 ---
 
-## 2. L'amour qui ne peut pas retenir
+## 2. Des circonstances si ordinaires
+
+Mon enfant, je vais maintenant te raconter ce qui s'est passé. Écoute bien, parce que le plus troublant dans ces histoires, ce n'est pas qu'elles soient extraordinaires. C'est qu'elles sont terriblement ordinaires.
+
+### Un samedi, 17 heures
+
+C'était un samedi. William et moi rentrions ensemble des cours de renforcement, chez notre maître de maison. Deux enfants sur le chemin du retour, comme tant d'autres samedis. Arrivés chez lui, sa maman l'a envoyé aussitôt au marché acheter des cubes Maggi pour la cuisine du soir. Il était 17 heures. Le ciel était lourd, nuageux, la pluie menaçait. Alors je ne l'ai pas accompagné : j'ai continué mon chemin jusque chez moi.
+
+Je ne savais pas que c'était la dernière fois que je le voyais.
+
+Le lendemain, dimanche, vers 13 heures, nous étions chez notre maître de maison. C'est là qu'on nous a annoncé la nouvelle : William avait été renversé par une moto en allant au marché. Il n'avait pas survécu sur le chemin de l'hôpital.
+
+Une course de rien du tout. Quelques cubes pour la sauce. Le genre de commission que des millions d'enfants font chaque jour. Et pourtant, ce soir-là, l'horloge de William est arrivée à zéro.
+
+Moi, j'ai pris le chemin de la maison. Lui, le chemin du marché. Je me suis souvent demandé : *pourquoi lui, et pas moi ?* Je n'ai pas de réponse. Je sais seulement que ce jour-là, sans le savoir, j'ai appris que **personne ne sait quelle sortie sera sa dernière sortie.**
+
+### Un dimanche matin, à Gagnoa
+
+Quelques années plus tard, j'étais en 6e-5e. Ma tante Rachelle, l'épouse de mon oncle, était venue chez nous, à Gagnoa, pour accoucher. C'était une joie dans la maison : un enfant allait naître.
+
+Un dimanche matin, elle est partie pour la maternité. Elle est sortie de la maison comme on sort pour revenir. Elle allait donner la vie.
+
+Elle n'est jamais rentrée. Elle est décédée après l'accouchement.
+
+Mon enfant, comprends-tu ce paradoxe-là ? **Elle est partie pour donner la vie, et c'est la sienne qu'elle a perdue.** Le jour qui devait être le plus beau de sa vie est devenu le dernier. Le même jour, une maison a accueilli un berceau et pleuré un cercueil.
+
+### Le 10 août 2026, sur la route
+
+Et cette année, le 10 août 2026, mon beau-père, le pasteur Koffi François, a pris la route pour se rendre à la pastorale. Il allait retrouver ses frères dans le ministère, prier, servir, se préparer pour l'œuvre de Dieu. Un voyage comme il en avait fait tant d'autres.
+
+Il est décédé dans un accident de circulation.
+
+Un serviteur de Dieu, sur le chemin du service de Dieu. Si quelqu'un pensait que la foi protège de la mort, ce jour-là lui a répondu. **Même les hommes de Dieu meurent.** La différence n'est pas dans la manière de mourir. Elle est dans le lieu où l'on se réveille.
+
+Car celui qui a servi le Seigneur toute sa vie peut dire avec l'apôtre Paul :
+
+> « Car Christ est ma vie, et la mort m'est un gain. »
+>
+> — Philippiens 1.21
+
+### Ce que ces trois départs m'ont appris
+
+Un enfant qui va acheter des cubes. Une femme qui va accoucher. Un pasteur qui va à une réunion. Il n'y avait rien d'exceptionnel dans ces journées-là. Pas de guerre, pas d'épidémie, pas de grande catastrophe. Juste la vie de tous les jours… et soudain, plus rien.
+
+Voilà pourquoi je ne crois plus que la mort prévienne. Elle ne vient pas toujours après une longue maladie, dans un lit d'hôpital, au bout d'une longue vieillesse. Elle peut venir un samedi à 17 heures, un dimanche matin, un 10 août, au milieu d'une course, d'une joie ou d'un service.
+
+> « Ne te vante pas du lendemain,
+> car tu ne sais pas ce qu'un jour peut enfanter. »
+>
+> — Proverbes 27.1
+
+Depuis, mon enfant, je vis avec cette prière du psalmiste dans le cœur : *« Enseigne-nous à bien compter nos jours, afin que nous appliquions notre cœur à la sagesse. »* Et c'est cette prière que je voudrais déposer dans le tien.
+
+---
+
+## 3. L'amour qui ne peut pas retenir
 
 Mon enfant, je t'aime. Tu le sais, n'est-ce pas ?
 
@@ -83,7 +138,7 @@ Je partirai. Et tu resteras. Ou c'est toi qui partiras, et moi qui resterai. Mal
 
 C'est un paradoxe cruel : **nous aimons de toutes nos forces, et pourtant notre amour n'a pas la force de vaincre la mort.**
 
-Mon beau-père aimait sa famille. Il voulait la voir grandir, la protéger encore. Mais un jour, il a dû la laisser. Non parce qu'il l'aimait moins, mais parce que l'homme n'a aucun pouvoir sur le jour de son départ.
+Mon beau-père, le pasteur, aimait sa famille. Il voulait la voir grandir, la protéger encore. Mais un jour, il a dû la laisser. Non parce qu'il l'aimait moins, mais parce que l'homme n'a aucun pouvoir sur le jour de son départ.
 
 > « Il est réservé aux hommes de mourir une seule fois,
 > après quoi vient le jugement. »
@@ -94,7 +149,7 @@ Alors, mon enfant, si mon amour ne peut pas te garder éternellement, il me rest
 
 ---
 
-## 3. La nuit de la veillée
+## 4. La nuit de la veillée
 
 Te souviens-tu d'une veillée funèbre, mon enfant ? Si ce n'est pas encore le cas, tu en connaîtras. Laisse-moi te raconter ce que mes yeux ont vu.
 
@@ -119,7 +174,7 @@ Les beaux discours, les chants, les hommages, les pagnes assortis, les tentes, l
 
 ---
 
-## 4. La dernière séparation
+## 5. La dernière séparation
 
 Puis vient le moment le plus dur. Celui où l'on ferme le cercueil.
 
@@ -139,7 +194,7 @@ As-tu déjà regardé une tombe, mon enfant ? Il y a une date de naissance, une 
 
 ---
 
-## 5. Absent aux obsèques de son propre père
+## 6. Absent aux obsèques de son propre père
 
 Il y a une douleur dont on parle peu.
 
@@ -167,7 +222,7 @@ Alors ne te condamne pas pour une absence que tu n'as pas choisie. Celui qui est
 
 ---
 
-## 6. Les paradoxes de notre vie
+## 7. Les paradoxes de notre vie
 
 Mon enfant, plus j'ai vieilli, plus j'ai remarqué combien notre façon de vivre est étrange quand on la regarde à la lumière de la mort. Laisse-moi t'en citer quelques-uns. Lis-les lentement.
 
@@ -181,12 +236,7 @@ Mon enfant, plus j'ai vieilli, plus j'ai remarqué combien notre façon de vivre
 
 **Nous avons peur de parler de la mort, mais elle n'a pas peur de venir.** On change de sujet, on dit « Dieu nous en garde », on évite le mot. Mais elle vient quand même, à l'heure qu'elle n'annonce pas.
 
-**Nous disons « demain » à Dieu, comme si demain nous appartenait.** « Je m'occuperai de ma vie spirituelle plus tard, quand j'aurai réglé mes affaires, quand je serai plus âgé. » Mais William n'a jamais eu de « plus tard ».
-
-> « Ne te vante pas du lendemain,
-> car tu ne sais pas ce qu'un jour peut enfanter. »
->
-> — Proverbes 27.1
+**Nous disons « demain » à Dieu, comme si demain nous appartenait.** « Je m'occuperai de ma vie spirituelle plus tard, quand j'aurai réglé mes affaires, quand je serai plus âgé. » Mais William n'a jamais eu de « plus tard ». Ce samedi-là, il n'a même pas eu de dimanche.
 
 **Nous soignons le corps qui mourra et négligeons l'âme qui vivra toujours.** On fait du sport, on surveille son alimentation, on achète des crèmes et des parfums. C'est bien. Mais ce corps retournera à la poussière. Ton âme, elle, ne mourra jamais. Elle passera l'éternité quelque part.
 
@@ -205,7 +255,7 @@ Mon enfant, plus j'ai vieilli, plus j'ai remarqué combien notre façon de vivre
 
 ---
 
-## 7. Ce que les larmes ont le droit de dire
+## 8. Ce que les larmes ont le droit de dire
 
 Mon enfant, je ne veux pas que tu croies qu'il ne faut pas pleurer.
 
@@ -237,7 +287,7 @@ Toute la différence entre les deux porte un nom : **Jésus-Christ.**
 
 ---
 
-## 8. Celui qui a vaincu la mort
+## 9. Celui qui a vaincu la mort
 
 Depuis le commencement du monde, tous les hommes sont morts. Les rois et les mendiants, les savants et les ignorants, les saints et les méchants. Les plus grands fondateurs de religions, les plus grands philosophes, les plus grands chefs : tous sont dans leur tombe, et leur tombe est encore occupée.
 
@@ -274,7 +324,7 @@ Le cercueil n'est pas le dernier mot. La tombe n'est pas le dernier mot. Pour ce
 
 ---
 
-## 9. Un seul chemin
+## 10. Un seul chemin
 
 Mon enfant, je dois maintenant te parler avec franchise, comme un père qui aime trop son enfant pour lui mentir.
 
@@ -328,7 +378,7 @@ Ce n'est pas une parole dure, mon enfant. C'est une parole d'amour. Si ta maison
 
 ---
 
-## 10. Aujourd'hui
+## 11. Aujourd'hui
 
 Mon enfant, j'arrive maintenant au moment le plus important de cette lettre.
 
@@ -395,7 +445,7 @@ Tu n'es plus seul. Tu ne seras plus jamais seul, ni dans la vie, ni dans la mort
 
 ---
 
-## 11. Vivre en comptant ses jours
+## 12. Vivre en comptant ses jours
 
 Mon enfant, maintenant que tu sais que l'horloge descend, je voudrais te laisser quelques conseils de père pour le temps qu'il te reste.
 
@@ -437,7 +487,7 @@ Et mon seul désir, mon unique prière de père, c'est que tu m'y rejoignes. Pou
 
 Alors ce jour-là, pleure si tu en as besoin. Mais ne pleure pas comme ceux qui n'ont pas d'espérance. Dis-moi simplement : « Au revoir, papa. » Et vis de telle sorte que, lorsque ton horloge à toi s'arrêtera, nous nous retrouvions, toi et moi, avec William, avec Rachelle, avec Koffi François, et avec tous ceux qui se sont endormis dans le Seigneur, devant le visage de Jésus.
 
-Là-bas, il n'y aura plus de cercueil, plus de veillée, plus de séparation. Plus de chaise vide sur un banc d'école. Plus de téléphone qui sonne pour annoncer une mauvaise nouvelle. Plus de terre jetée sur un être aimé. Seulement la vie. Pour toujours.
+Là-bas, il n'y aura plus de cercueil, plus de veillée, plus de séparation. Plus d'enfant qui part au marché et ne revient pas. Plus de maternité d'où l'on rentre les mains vides. Plus de route qui ne mène pas à destination. Plus de téléphone qui sonne pour annoncer une mauvaise nouvelle. Plus de terre jetée sur un être aimé. Seulement la vie. Pour toujours.
 
 Ton père, qui t'aime.
 
@@ -458,8 +508,6 @@ Ton père, qui t'aime.
 > « Il y a un temps pour tout… un temps pour naître, et un temps pour mourir. » — Ecclésiaste 3.1-2
 
 > « L'herbe sèche, la fleur tombe ; mais la parole de notre Dieu subsiste éternellement. » — Ésaïe 40.8
-
-> « Car Christ est ma vie, et la mort m'est un gain. » — Philippiens 1.21
 
 > « Celui qui a le Fils a la vie ; celui qui n'a pas le Fils de Dieu n'a pas la vie. » — 1 Jean 5.12
 
