@@ -31,3 +31,17 @@ ffmpeg -i voix.m4a -ac 1 -ar 16000 ref_brut16k.wav
 python ressemblance.py sortie.wav sortie_proche.wav --ref ref_brut16k.wav --hauteur
 ```
 (`pip install pyworld scipy "setuptools<81"`). Pour le mastering, ne pas rajouter d'égalisation : seulement compression et loudnorm.
+
+## Version 2 (recommandée) : source Supertonic 3
+Modèles (releases GitHub de k2-fsa/sherpa-onnx, `pip install sherpa-onnx`) :
+- `tts-models/sherpa-onnx-supertonic-3-tts-int8-2026-05-11.tar.bz2` (TTS multilingue, voix 9 = masculine la plus proche)
+- `asr-models/sherpa-onnx-whisper-small.tar.bz2` (contrôle d'intelligibilité)
+- `speaker-recongition-models/3dspeaker_speech_eres2net_large_sv_zh-cn_3dspeaker_16k.onnx` et `wespeaker_en_voxceleb_resnet34.onnx` (similarité de locuteur)
+```bash
+python voixoff2.py texte.txt source.wav --voix 9
+python convertir.py source.wav conv.wav --ms ref16k.wav.voix.pt   # matching set créé par voixoff.py
+python ressemblance.py conv.wav final16k.wav --ref ref_brut16k.wav
+python classement.py final16k.wav   # score de similarité (réf. contre elle-même ≈ 0.92 eres2net)
+```
+Limite mesurée : ≈ 0.70 de similarité (eres2net). Pour aller au-delà (accent, rythme), il faut un modèle de clonage
+zero-shot (XTTS-v2, F5-TTS français, Chatterbox multilingue), hébergé sur Hugging Face.
