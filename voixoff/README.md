@@ -1,47 +1,41 @@
-# Voix off clonée (100 % gratuite, locale)
+# FOR LIFE voix off
 
-Pipeline : texte → **Kokoro** (synthèse française) → ajustement de hauteur vers la voix de référence → **kNN-VC** (conversion vers le timbre de la référence) → mastering ffmpeg.
+Voix off gratuite et locale qui lit n'importe quel texte avec la voix clonée de Kouadio Koffi Elisée.
 
-## Modèles (GitHub releases)
-- https://github.com/thewh1teagle/kokoro-onnx/releases/download/model-files-v1.0/kokoro-v1.0.onnx
-- https://github.com/thewh1teagle/kokoro-onnx/releases/download/model-files-v1.0/voices-v1.0.bin
-- https://github.com/bshall/knn-vc/releases/download/v0.1/WavLM-Large.pt
-- https://github.com/bshall/knn-vc/releases/download/v0.1/prematch_g_02500000.pt
-  (à placer dans `~/.cache/torch/hub/checkpoints/`)
-- Code kNN-VC : `git clone https://github.com/bshall/knn-vc`
-
-## Dépendances
-`pip install torch==2.8.0 torchaudio==2.8.0 kokoro-onnx librosa soundfile`
-
-## Utilisation
 ```bash
-# référence : l'enregistrement de la voix (≈5 min), nettoyé en mono 16 kHz
-ffmpeg -i voix.m4a -ac 1 -ar 16000 -af "highpass=f=70,afftdn=nr=10,loudnorm=I=-18" ref16k.wav
-python voixoff.py texte.txt sortie.wav --ref ref16k.wav --models models --knn knn-vc
-# mastering
-ffmpeg -i sortie.wav -af "volume=-3dB,highpass=f=60,lowpass=f=7000,acompressor=threshold=-22dB:ratio=2:attack=15:release=200,loudnorm=I=-16:TP=-1.5:LRA=9" -ar 44100 -b:a 192k voixoff.mp3
+bash voixoff/forlife_voixoff.sh texte.txt sortie.mp3 [vitesse=1.08]
 ```
-Options : `--vitesse` (débit, défaut 0.92), `--topk` (lissage du timbre, défaut 4), `--decalage` (demi-tons avant conversion ; laisser à 0, un décalage fort crée un souffle).
-L'enregistrement de la voix n'est pas versionné : le renvoyer à chaque nouvelle session.
 
-## Ressemblance avec la voix de référence (recommandé)
-Après `voixoff.py`, recaler la hauteur et l'empreinte spectrale sur l'enregistrement d'origine :
-```bash
-ffmpeg -i voix.m4a -ac 1 -ar 16000 ref_brut16k.wav
-python ressemblance.py sortie.wav sortie_proche.wav --ref ref_brut16k.wav --hauteur
-```
-(`pip install pyworld scipy "setuptools<81"`). Pour le mastering, ne pas rajouter d'égalisation : seulement compression et loudnorm.
+Le script installe ce qui manque (`installer.sh`), crée le profil vocal à partir de l'enregistrement de
+référence, puis enchaîne les 4 étapes ci-dessous. Tout est rangé dans `$FORLIFE_VOIXOFF_HOME`
+(par défaut `~/.forlife-voixoff`).
 
-## Version 2 (recommandée) : source Supertonic 3
-Modèles (releases GitHub de k2-fsa/sherpa-onnx, `pip install sherpa-onnx`) :
-- `tts-models/sherpa-onnx-supertonic-3-tts-int8-2026-05-11.tar.bz2` (TTS multilingue, voix 9 = masculine la plus proche)
-- `asr-models/sherpa-onnx-whisper-small.tar.bz2` (contrôle d'intelligibilité)
-- `speaker-recongition-models/3dspeaker_speech_eres2net_large_sv_zh-cn_3dspeaker_16k.onnx` et `wespeaker_en_voxceleb_resnet34.onnx` (similarité de locuteur)
-```bash
-python voixoff2.py texte.txt source.wav --voix 9
-python convertir.py source.wav conv.wav --ms ref16k.wav.voix.pt   # matching set créé par voixoff.py
-python ressemblance.py conv.wav final16k.wav --ref ref_brut16k.wav
-python classement.py final16k.wav   # score de similarité (réf. contre elle-même ≈ 0.92 eres2net)
-```
-Limite mesurée : ≈ 0.70 de similarité (eres2net). Pour aller au-delà (accent, rythme), il faut un modèle de clonage
-zero-shot (XTTS-v2, F5-TTS français, Chatterbox multilingue), hébergé sur Hugging Face.
+## Enregistrement de référence
+Il n'est pas versionné : ce dépôt est public et l'enregistrement permettrait à n'importe qui de cloner la voix.
+Le fournir via `FORLIFE_VOIX=/chemin/voix.m4a`, ou le déposer dans `voixoff/voix/` d'une copie privée.
+Idéal : 3 à 6 minutes de lecture à voix haute, pièce calme.
+
+## Chaîne (réglages validés le 27/10/2026)
+1. `voixoff2.py` : le texte est lu par **Supertonic 3** (multilingue, `lang=fr`), voix 9 : la voix masculine
+   la plus proche de la référence selon un modèle de reconnaissance du locuteur. Vitesse 1.08, 16 étapes.
+2. `convertir.py` : **kNN-VC** (WavLM-Large + HiFiGAN « prematched ») remplace le timbre par celui de la
+   référence, bloc par bloc entre les silences, topk 4.
+3. `ressemblance.py` : égalisation qui reproduit l'empreinte spectrale de l'enregistrement d'origine.
+   (`--hauteur` recale aussi la hauteur via WORLD, mais ajoute un effet robot : non utilisé.)
+4. Mastering ffmpeg : passe-haut 55 Hz, compression douce, -16 LUFS, MP3 160 kbit/s.
+
+## Outils de contrôle
+- `classement.py fichiers.wav…` : similarité de locuteur avec la référence (modèles de reconnaissance du
+  locuteur des releases `speaker-recongition-models` de k2-fsa/sherpa-onnx). La référence contre elle-même
+  donne ≈ 0.92 (eres2net) ; la voix off validée ≈ 0.67-0.70.
+- `transcrire.py` : transcription Whisper (`asr-models/sherpa-onnx-whisper-small`) pour vérifier
+  l'intelligibilité.
+
+## Modèles (tous téléchargés depuis les releases GitHub)
+- Supertonic 3 : `k2-fsa/sherpa-onnx`, `tts-models/sherpa-onnx-supertonic-3-tts-int8-2026-05-11.tar.bz2`
+- kNN-VC : `bshall/knn-vc`, `v0.1/WavLM-Large.pt` et `v0.1/prematch_g_02500000.pt`
+
+## Historique
+`voixoff.py` est la première version (Kokoro + kNN-VC), remplacée car trop « synthétique ».
+Pour aller plus loin (accent et intonation propres à la voix), il faudrait un modèle de clonage zero-shot
+(XTTS-v2, F5-TTS français, Chatterbox multilingue), hébergé sur Hugging Face.

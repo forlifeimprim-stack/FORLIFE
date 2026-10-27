@@ -1,5 +1,5 @@
 """Rapproche une voix convertie de la référence : hauteur (WORLD) + empreinte spectrale (égalisation LTAS)."""
-import argparse, numpy as np, soundfile as sf, librosa, pyworld as pw
+import argparse, numpy as np, soundfile as sf, librosa
 from scipy import signal
 p = argparse.ArgumentParser()
 p.add_argument("entree"); p.add_argument("sortie"); p.add_argument("--ref", required=True)
@@ -10,11 +10,13 @@ sr = 16000
 y, _ = librosa.load(a.entree, sr=sr); ref, _ = librosa.load(a.ref, sr=sr)
 
 def f0_log(x):
+    import pyworld as pw
     f0, t = pw.dio(x.astype(np.float64), sr, f0_floor=60, f0_ceil=400, frame_period=5)
     f0 = pw.stonemask(x.astype(np.float64), f0, t, sr)
     return f0, t
 
 if a.hauteur:
+    import pyworld as pw  # optionnel : pip install pyworld "setuptools<81"
     fr, _ = f0_log(ref[:sr*180]); lr = np.log(fr[fr > 0])
     x = y.astype(np.float64)
     f0, t = f0_log(y)
