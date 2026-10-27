@@ -10,7 +10,7 @@ bash voixoff/forlife_voixoff.sh texte.txt sortie.mp3        # vitesse par défau
 bash voixoff/forlife_voixoff.sh texte.txt sortie.mp3 0.98   # plus posé (contes, méditations)
 ```
 
-- Première utilisation d'une session : le script installe tout seul (≈ 15 min, ~4 Go via PyPI et les
+- Première utilisation d'une session : le script installe tout seul (≈ 40 min, ~4 Go via PyPI et les
   releases GitHub). Huggingface.co n'est pas nécessaire.
 - L'enregistrement de référence n'est **pas** dans ce dépôt public (c'est la voix d'une personne). Le
   demander à l'utilisateur s'il n'est pas fourni, puis lancer avec `FORLIFE_VOIX=/chemin/voix.m4a`.
