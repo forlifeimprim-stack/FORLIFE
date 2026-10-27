@@ -4,7 +4,7 @@ p = argparse.ArgumentParser()
 p.add_argument("texte"); p.add_argument("sortie")
 p.add_argument("--ref", required=True); p.add_argument("--models", required=True); p.add_argument("--knn", required=True)
 p.add_argument("--vitesse", type=float, default=0.92); p.add_argument("--topk", type=int, default=4)
-p.add_argument("--f0cible", type=float, default=0)
+p.add_argument("--decalage", type=float, default=0, help="décalage de hauteur en demi-tons avant conversion (0 = aucun, recommandé)")
 a = p.parse_args()
 sys.path.insert(0, a.knn)
 from kokoro_onnx import Kokoro
@@ -17,21 +17,19 @@ segs = []
 for para in paras:
     phrases = re.split(r"(?<=[.!?…:;])\s+", para.replace("\n", " "))
     for ph in phrases:
-        if not ph.strip(): continue
+        ph = ph.replace("«", "").replace("»", "").strip()
+        if not re.search(r"\w", ph): continue
         wav, sr = k.create(ph, voice="ff_siwis", speed=a.vitesse, lang="fr-fr")
-        segs.append(("voix", wav)); pause = 0.45 if ph.rstrip()[-1:] in ".!?…" else 0.3
+        segs.append(("voix", wav)); pause = 0.6 if ph.rstrip()[-1:] in ".!?…" else 0.3
         segs.append(("pause", pause))
-    segs.append(("pause", 0.4))
+    segs.append(("pause", 1.0))
+brut = np.concatenate([w if t == "voix" else np.zeros(int(sr*w), dtype=np.float32) for t, w in segs])
+sf.write(a.sortie.replace(".wav", "_synthese_brute.wav"), brut, sr)
 voix = [librosa.resample(w, orig_sr=sr, target_sr=16000) for t, w in segs if t == "voix"]
 
 ref, _ = librosa.load(a.ref, sr=16000)
-def f0med(y):
-    f0, v, _ = librosa.pyin(y[:16000*60], fmin=60, fmax=400, sr=16000)
-    return float(np.nanmedian(f0[v]))
-f_ref = a.f0cible or f0med(ref); f_src = f0med(np.concatenate(voix))
-n = 12*np.log2(f_ref/f_src)
-print(f"F0 référence {f_ref:.0f} Hz, source {f_src:.0f} Hz -> décalage {n:+.1f} demi-tons", flush=True)
-voix = [librosa.effects.pitch_shift(w, sr=16000, n_steps=n) for w in voix]
+if a.decalage:
+    voix = [librosa.effects.pitch_shift(w, sr=16000, n_steps=a.decalage) for w in voix]
 
 import hubconf
 vc = hubconf.knn_vc(pretrained=True, prematched=True, device="cpu", progress=False)
