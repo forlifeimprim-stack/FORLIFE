@@ -1,0 +1,13 @@
+{
+  "id": "P014",
+  "buys": false,
+  "purchases_first_month": 0,
+  "reason_code": "habit",
+  "reason": "Mes affiches, je les fais moi-même sur Canva, je n'ai pas besoin de payer quelqu'un pour la création. Pour la fête qui arrive je vais juste faire imprimer chez mon imprimeur habituel, et un pack avec une affiche que je ne veux pas, ça ne m'intéresse pas.",
+  "objection": "Je ne connais pas cette agence, je n'ai vu aucun avis ni aucun travail qu'ils ont fait. Je ne vais pas mettre 60 000 FCFA pour la fête de la paroisse chez des gens que personne autour de moi ne m'a recommandés.",
+  "would_change_my_mind": "Qu'un membre de la paroisse ou un ami me montre des flyers et une bâche qu'ils ont faits pour lui, de bonne qualité, et qu'ils acceptent d'imprimer seulement mon fichier Canva à un prix moins cher que le pack.",
+  "price_too_cheap": 25000,
+  "price_cheap": 40000,
+  "price_expensive": 60000,
+  "price_too_expensive": 80000
+}

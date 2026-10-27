@@ -1,0 +1,108 @@
+{
+ "n": 20,
+ "seed": 408213,
+ "customer": {
+  "business": "Forlife Com' — agence de communication et imprimerie à Bingerville (division de Forlife Imprim)",
+  "target": "Décideurs d'achat de communication à Bingerville et Abidjan Est : gérants de TPE/commerces, dirigeants de PME, responsables d'écoles privées, et organisateurs d'événements (paroisses, associations, mariages)",
+  "where": "Bingerville et Abidjan Est (Cocody-Riviera, Abatta, Faya), Côte d'Ivoire",
+  "age": [
+   24,
+   58
+  ],
+  "segments": [
+   {
+    "name": "Gérant(e) de TPE / commerce de quartier (salon de coiffure, boutique, maquis, point mobile money)",
+    "share": 0.4,
+    "income": [
+     1200000,
+     6000000
+    ]
+   },
+   {
+    "name": "Fondateur ou responsable d'école privée (directeur, économe, promoteur)",
+    "share": 0.2,
+    "income": [
+     3000000,
+     15000000
+    ]
+   },
+   {
+    "name": "Organisateur d'événement (responsable de paroisse ou d'association, futur marié)",
+    "share": 0.25,
+    "income": [
+     1500000,
+     9000000
+    ]
+   },
+   {
+    "name": "Dirigeant de PME structurée (5 à 50 salariés)",
+    "share": 0.15,
+    "income": [
+     6000000,
+     24000000
+    ]
+   }
+  ],
+  "behaviours": [
+   {
+    "name": "Négociateur",
+    "share": 0.2,
+    "how": "Demande toujours trois devis et négocie le prix avant de payer, en espèces ou par Wave."
+   },
+   {
+    "name": "Fidèle au prestataire du quartier",
+    "share": 0.15,
+    "how": "A déjà son imprimeur ou son graphiste habituel et n'aime pas changer."
+   },
+   {
+    "name": "Achète sur recommandation",
+    "share": 0.15,
+    "how": "Ne commande que si quelqu'un de confiance (ami, groupe WhatsApp, paroisse) lui a recommandé le prestataire."
+   },
+   {
+    "name": "Commande à la dernière minute",
+    "share": 0.15,
+    "how": "S'y prend quelques jours avant l'événement ou l'ouverture et veut que ce soit prêt vite."
+   },
+   {
+    "name": "Fait lui-même",
+    "share": 0.12,
+    "how": "Bricole ses visuels sur Canva ou son téléphone et ne paie que l'impression."
+   },
+   {
+    "name": "Cherche une image premium",
+    "share": 0.1,
+    "how": "Accepte de payer plus si le rendu fait sérieux et valorise son image."
+   },
+   {
+    "name": "Achète en gros à Adjamé ou au Plateau",
+    "share": 0.08,
+    "how": "Se déplace dans les grands marchés pour obtenir les prix les plus bas."
+   },
+   {
+    "name": "Méfiant envers le digital",
+    "share": 0.05,
+    "how": "Pense que les réseaux sociaux et les publicités Facebook ne ramènent pas de vrais clients."
+   }
+  ],
+  "objections": [
+   "C'est sûrement plus cher qu'à Adjamé",
+   "Mon cousin graphiste me fait ça presque gratuitement",
+   "Je ne connais pas cette agence, je n'ai vu aucun avis",
+   "Est-ce qu'ils vont vraiment livrer à temps pour mon événement ?",
+   "Je n'ai pas le budget en ce moment, les affaires sont lentes",
+   "Est-ce que je peux payer en plusieurs fois ?",
+   "Les publicités sur Facebook, ça ne ramène pas de clients",
+   "La qualité de l'impression va-t-elle tenir au soleil et au lavage ?"
+  ],
+  "habits": [
+   "tu passes chaque jour par le carrefour de la mairie de Bingerville",
+   "tu reçois des dizaines de messages par jour dans tes groupes WhatsApp",
+   "tu vas à la messe ou au culte chaque dimanche",
+   "tu fais tes gros achats au marché d'Adjamé une fois par mois",
+   "tu regardes Facebook et TikTok le soir sur ton téléphone",
+   "tu prépares la rentrée scolaire ou une fête dans les prochains mois"
+  ]
+ },
+ "pitch": "Forlife Com', atelier d'impression et de communication à Bingerville (montée de la colline du Collège Saint Cyrille), division de Forlife Imprim. Vous pouvez passer voir et toucher nos réalisations à l'atelier : écussons et médailles d'écoles, bâches de commerces, faire-parts de mariage.\n« Formule Sérénité » : vous recevez et validez la maquette sur WhatsApp gratuitement avant de payer quoi que ce soit, puis vous payez 50 % à la commande et 50 % à la livraison, en espèces ou par Wave, Orange Money ou MTN MoMo.\nGarantie délai écrite : livré à la date convenue, sinon 20 % du montant vous sont remboursés. Option express 48 h (+25 %).\nVous avez déjà votre visuel (Canva ou autre) ? Nous imprimons simplement votre fichier. Offre de référence : « Pack Visibilité » (création d'une affiche + 500 flyers A5 + 1 bâche 2 m × 1 m) à 60 000 FCFA.\nÉcoles et paroisses : forfait annuel rentrée + kermesse + fin d'année (écussons, tee-shirts DTF, bâches, médailles), payable en 3 fois, sur devis.\nDevis sur WhatsApp en moins de 2 h. Ouvert du lundi au vendredi 8h–18h, le samedi 8h–14h."
+}

@@ -1,0 +1,13 @@
+{
+  "id": "P005",
+  "buys": false,
+  "purchases_first_month": 0,
+  "reason_code": "trust",
+  "reason": "L'offre est bien présentée, la maquette gratuite et le 50/50 me rassurent, mais je ne connais personne qui a déjà travaillé avec eux. Pour ma boîte je ne confie pas mes supports à un atelier que personne de confiance ne m'a recommandé.",
+  "objection": "Une pub, tout le monde peut écrire « garantie délai » dessus. Je ne sais pas s'ils tiennent vraiment parole ni si la qualité de la bâche tient au soleil, tant qu'un dirigeant que je connais ne me l'a pas confirmé.",
+  "would_change_my_mind": "Qu'un ami chef d'entreprise ou quelqu'un de mon groupe WhatsApp me dise qu'il a commandé chez eux et qu'il a été livré à temps et bien servi.",
+  "price_too_cheap": 25000,
+  "price_cheap": 40000,
+  "price_expensive": 80000,
+  "price_too_expensive": 110000
+}

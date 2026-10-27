@@ -1,0 +1,13 @@
+{
+  "id": "P017",
+  "buys": false,
+  "purchases_first_month": 0,
+  "reason_code": "habit",
+  "reason": "Moi je fais mes affiches moi-même sur Canva, je ne vais pas payer 60 000 pour une création que je sais déjà faire. Si j'ai besoin d'une bâche pour la paroisse, je cherche juste l'impression la moins chère.",
+  "objection": "Je ne sais pas si leur bâche va tenir au soleil et si les tee-shirts DTF vont résister au lavage, et le pack m'oblige à prendre des choses dont je n'ai pas besoin.",
+  "would_change_my_mind": "Pouvoir envoyer mon propre visuel et payer seulement l'impression de la bâche et des flyers, avec un prix clair sur WhatsApp et un échantillon qui a déjà tenu au soleil.",
+  "price_too_cheap": 15000,
+  "price_cheap": 25000,
+  "price_expensive": 40000,
+  "price_too_expensive": 55000
+}

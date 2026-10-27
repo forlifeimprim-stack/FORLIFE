@@ -1,0 +1,13 @@
+{
+  "id": "P018",
+  "buys": false,
+  "purchases_first_month": 0,
+  "reason_code": "trust",
+  "reason": "Pour l'école je travaille avec des gens qu'on m'a recommandés, je ne vais pas confier les écussons et les bâches de la rentrée à une agence que personne autour de moi ne connaît. La maquette gratuite et le 50/50 c'est bien, mais ça ne remplace pas un nom qu'un collègue directeur m'a donné.",
+  "objection": "Je ne connais pas cette agence, je n'ai vu aucun avis. Si les écussons ou les tee-shirts arrivent mal faits ou en retard le jour de la rentrée, c'est moi qui suis gêné devant les parents, et 20 % remboursés ne rattrapent pas ça.",
+  "would_change_my_mind": "Qu'un directeur d'école voisine ou le curé de la paroisse me dise qu'il a travaillé avec eux et qu'il est satisfait ; là j'irais voir l'atelier et je ferais un premier essai.",
+  "price_too_cheap": 30000,
+  "price_cheap": 45000,
+  "price_expensive": 75000,
+  "price_too_expensive": 100000
+}

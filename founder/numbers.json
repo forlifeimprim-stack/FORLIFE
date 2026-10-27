@@ -1,0 +1,76 @@
+{
+  "business": "Forlife Com' — plan recentré écoles & paroisses (FCFA ; volumes en commandes par mois)",
+  "unit": "commande",
+  "price": 65000,
+  "variable": [
+    {
+      "label": "Consommables (encre et film DTF, poudre, textile, bâche, papier) — estimation, contenu type d'une commande",
+      "cost": 18000
+    },
+    {
+      "label": "Sous-traitance ponctuelle (offset gros tirages, broderie, finitions) — estimation",
+      "cost": 4800
+    },
+    {
+      "label": "Livraison / déplacements (moto, taxi) — estimation",
+      "cost": 1500
+    },
+    {
+      "label": "Frais mobile money marchand (~1 %) — estimation",
+      "cost": 650
+    },
+    {
+      "label": "Électricité de production par commande — estimation",
+      "cost": 1000
+    },
+    {
+      "label": "Garantie délai : 10 % de réclamations × 20 % remboursés — estimation",
+      "cost": 1300
+    },
+    {
+      "label": "Soldes impayés (paiement 50/50) : 5 % × 32 500 — estimation",
+      "cost": 1625
+    }
+  ],
+  "fixed_monthly": [
+    {
+      "label": "Charges fixes déclarées (loyer, salaires, électricité de base, internet, remboursement matériel) — point médian de 300 000–800 000",
+      "cost": 550000
+    }
+  ],
+  "startup": [
+    {
+      "label": "Kits d'échantillons pour démarchage écoles/paroisses (écussons, tee-shirts, médailles) — estimation",
+      "cost": 75000
+    },
+    {
+      "label": "Études de cas : shooting + impression book portfolio — estimation",
+      "cost": 40000
+    },
+    {
+      "label": "Publicité Meta de lancement (ciblage Bingerville / Abidjan Est) — estimation",
+      "cost": 100000
+    },
+    {
+      "label": "Déplacements de prospection (2 mois) — estimation",
+      "cost": 50000
+    }
+  ],
+  "days_per_month": 1,
+  "capacity_per_day": 78,
+  "plan_per_day": 22,
+  "ramp_per_day": [
+    8,
+    9,
+    10,
+    12,
+    14,
+    16,
+    18,
+    19,
+    20,
+    21,
+    22,
+    22
+  ]
+}

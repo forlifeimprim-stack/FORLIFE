@@ -1,0 +1,13 @@
+{
+  "id": "P003",
+  "buys": false,
+  "purchases_first_month": 0,
+  "reason_code": "trust",
+  "reason": "Je ne connais pas Forlife Com' et personne autour de moi ne m'en a parlé. Même avec la maquette gratuite, je ne donne pas 50 % à un atelier que je découvre comme ça, surtout quand c'est pour un événement.",
+  "objection": "Est-ce qu'ils vont vraiment livrer à temps ? Les 20 % remboursés, c'est bien sur le papier, mais si ma bâche n'est pas là le jour J, l'argent ne sauve pas mon événement.",
+  "would_change_my_mind": "Qu'une personne de confiance, une amie commerçante ou quelqu'un de mon groupe WhatsApp, me dise qu'elle a déjà commandé chez eux et qu'ils ont livré à l'heure.",
+  "price_too_cheap": 25000,
+  "price_cheap": 40000,
+  "price_expensive": 70000,
+  "price_too_expensive": 95000
+}

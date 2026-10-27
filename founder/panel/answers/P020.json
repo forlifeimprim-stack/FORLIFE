@@ -1,0 +1,13 @@
+{
+  "id": "P020",
+  "buys": false,
+  "purchases_first_month": 0,
+  "reason_code": "price",
+  "reason": "Les affaires sont lentes en ce moment, je n'ai pas de dépense de communication prévue ce mois-ci. Et quand j'imprime, je vais à Adjamé où je compare plusieurs imprimeurs pour avoir le meilleur prix.",
+  "objection": "60 000 FCFA pour le pack, je ne sais pas si c'est moins cher que mes imprimeurs d'Adjamé. Je ne vais pas changer de fournisseur sans être sûr de gagner sur le prix.",
+  "would_change_my_mind": "Un devis écrit, ligne par ligne, clairement moins cher que mon imprimeur habituel pour une grosse quantité, avec un tarif dégressif pour une entreprise qui commande régulièrement.",
+  "price_too_cheap": 25000,
+  "price_cheap": 40000,
+  "price_expensive": 65000,
+  "price_too_expensive": 85000
+}

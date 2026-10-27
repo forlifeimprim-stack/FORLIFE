@@ -1,0 +1,13 @@
+{
+  "id": "P020",
+  "buys": false,
+  "purchases_first_month": 0,
+  "reason_code": "habit",
+  "reason": "Mes flyers et mes bâches, je les fais faire à Adjamé, je connais les imprimeurs et je négocie les prix en gros. En ce moment les affaires sont lentes, je ne vais pas sortir 60 000 pour un pack dont je n'ai pas besoin tout de suite.",
+  "objection": "À Adjamé j'ai 500 flyers et une bâche pour moins cher si je discute, alors pourquoi payer le prix d'une agence à Bingerville que je ne connais pas encore ?",
+  "would_change_my_mind": "Un devis par WhatsApp qui bat clairement mes prix d'Adjamé sur une grosse commande, avec un échantillon de leur travail pour voir la qualité avant de payer.",
+  "price_too_cheap": 25000,
+  "price_cheap": 40000,
+  "price_expensive": 65000,
+  "price_too_expensive": 85000
+}

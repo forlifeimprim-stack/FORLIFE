@@ -1,0 +1,13 @@
+{
+  "id": "P003",
+  "buys": false,
+  "purchases_first_month": 0,
+  "reason_code": "trust",
+  "reason": "Je ne connais pas Forlife Com' et personne de mon entourage ne m'en a parlé. Je ne donne pas 60 000 FCFA à un prestataire que personne de confiance ne m'a recommandé.",
+  "objection": "Est-ce qu'ils vont vraiment livrer en 5 jours comme ils disent ? Si mes flyers et ma bâche arrivent en retard, mon événement est gâté et mon argent est parti.",
+  "would_change_my_mind": "Qu'une amie ou quelqu'un de mon groupe WhatsApp me dise qu'ils ont bien travaillé pour elle et livré à l'heure, et que je puisse voir leurs vrais travaux.",
+  "price_too_cheap": 25000,
+  "price_cheap": 40000,
+  "price_expensive": 65000,
+  "price_too_expensive": 85000
+}

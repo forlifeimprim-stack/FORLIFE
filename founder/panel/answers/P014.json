@@ -1,0 +1,13 @@
+{
+  "id": "P014",
+  "buys": false,
+  "purchases_first_month": 0,
+  "reason_code": "trust",
+  "reason": "Moi je fais mes visuels moi-même sur Canva, je ne paie que l'impression, et j'ai déjà mon imprimeur. Je ne connais pas Forlife Com', je n'ai vu aucun avis, et ma fête c'est dans quelques mois, donc rien ne presse pour changer maintenant.",
+  "objection": "Personne autour de moi ne m'a parlé de cette agence. La garantie de 20 % c'est bien sur le papier, mais si les bâches sont mal imprimées la veille de la fête, ce n'est pas 20 % qui va me sauver.",
+  "would_change_my_mind": "Qu'un curé ou un responsable d'association que je connais me dise qu'il a imprimé chez eux et que c'était bien, et un prix d'impression seule pour mes flyers et ma bâche moins cher que mon imprimeur habituel.",
+  "price_too_cheap": 20000,
+  "price_cheap": 35000,
+  "price_expensive": 55000,
+  "price_too_expensive": 75000
+}

@@ -1,0 +1,13 @@
+{
+  "id": "P017",
+  "buys": false,
+  "purchases_first_month": 0,
+  "reason_code": "price",
+  "reason": "Moi je fais déjà mes visuels sur Canva, donc le Pack Visibilité à 60 000 FCFA, je paie une création dont je n'ai pas besoin. Ils disent qu'ils impriment mon fichier mais sans prix affiché pour l'impression seule, je reste chez mon imprimeur habituel.",
+  "objection": "Je ne sais pas si la bâche va tenir au soleil et si les tee-shirts DTF ne vont pas craquer après deux lavages, et je ne connais pas le prix de l'impression seule.",
+  "would_change_my_mind": "Une grille de prix claire pour l'impression seule de mon fichier Canva (flyers et bâche) moins chère ou égale à mon imprimeur, et voir à l'atelier une bâche qui a déjà passé des mois dehors.",
+  "price_too_cheap": 10000,
+  "price_cheap": 20000,
+  "price_expensive": 35000,
+  "price_too_expensive": 50000
+}

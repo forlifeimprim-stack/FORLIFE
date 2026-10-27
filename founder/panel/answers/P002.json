@@ -1,0 +1,13 @@
+{
+  "id": "P002",
+  "buys": false,
+  "purchases_first_month": 0,
+  "reason_code": "trust",
+  "reason": "Je ne connais pas cette agence et personne autour de moi ne m'en a parlé. Pour mes flyers et ma bâche je vais à Adjamé, je compare trois imprimeurs et je prends le moins cher ; 60 000 pour le pack, il faut d'abord que je voie ce que ça donne à côté.",
+  "objection": "Aucun avis, aucune cliente que je connais. La garantie de 20 % c'est joli sur le papier, mais si c'est raté pour la fête, mon argent et mon événement sont partis quand même.",
+  "would_change_my_mind": "Qu'une commerçante du quartier que je connais me montre une bâche qu'ils lui ont faite et me dise que c'était bien et à l'heure ; là je demanderais un devis sur WhatsApp pour comparer avec Adjamé.",
+  "price_too_cheap": 20000,
+  "price_cheap": 35000,
+  "price_expensive": 50000,
+  "price_too_expensive": 65000
+}

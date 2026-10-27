@@ -1,0 +1,13 @@
+{
+  "id": "P002",
+  "buys": false,
+  "purchases_first_month": 0,
+  "reason_code": "trust",
+  "reason": "C'est vrai que j'aurai besoin d'affiches et d'une bâche pour la rentrée, mais je ne connais pas cette agence et personne autour de moi ne m'en a parlé. Mes flyers, je les fais tirer à Adjamé où je peux discuter le prix et voir le travail avant de payer.",
+  "objection": "Je n'ai vu aucun avis, aucun travail qu'ils ont déjà fait. Donner 60 000 F d'avance à des gens que je ne connais pas, pour peut-être recevoir une bâche délavée ou en retard, non. Et à Adjamé, 500 flyers et une bâche me reviennent moins cher.",
+  "would_change_my_mind": "Qu'une commerçante du quartier que je connais me montre ce qu'ils lui ont fait, ou qu'ils acceptent que je paie la moitié à la commande et le reste quand je vois le travail fini.",
+  "price_too_cheap": 20000,
+  "price_cheap": 35000,
+  "price_expensive": 50000,
+  "price_too_expensive": 70000
+}

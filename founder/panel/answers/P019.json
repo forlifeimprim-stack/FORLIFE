@@ -1,0 +1,13 @@
+{
+  "id": "P019",
+  "buys": false,
+  "purchases_first_month": 0,
+  "reason_code": "price",
+  "reason": "60 000 FCFA d'un coup pour des flyers et une bâche, c'est lourd pour mon commerce ce mois-ci. Je vais demander leur devis sur WhatsApp, mais je compare avec deux autres imprimeurs d'Adjamé avant de sortir mon argent.",
+  "objection": "À Adjamé je trouve des flyers et des bâches moins chers en négociant, et je ne suis pas sûr que 500 flyers vont vraiment ramener des clients dans ma boutique.",
+  "would_change_my_mind": "Un prix négocié autour de 40 000 FCFA pour le pack, ou une bâche seule pas chère pour tester leur qualité d'abord.",
+  "price_too_cheap": 20000,
+  "price_cheap": 35000,
+  "price_expensive": 50000,
+  "price_too_expensive": 70000
+}

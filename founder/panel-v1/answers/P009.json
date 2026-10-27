@@ -1,0 +1,13 @@
+{
+  "id": "P009",
+  "buys": false,
+  "purchases_first_month": 0,
+  "reason_code": "habit",
+  "reason": "Les flyers et les bâches pour les inscriptions, j'en ai déjà fait pour la rentrée avec mon imprimeur habituel, et la rentrée est passée. Je ne change pas de fournisseur pour quelqu'un que je ne connais pas, surtout s'il me parle de pages Facebook et de publicités Meta.",
+  "objection": "Une agence qui vend aussi des publicités Facebook, ça ne ramène pas de parents d'élèves. Et je n'ai jamais vu leur travail : la qualité de la bâche et le respect des 5 jours, qui me le garantit ?",
+  "would_change_my_mind": "Voir de mes yeux des bâches et des flyers qu'ils ont faits pour une autre école de Bingerville, avec un directeur que je connais qui me dit qu'ils ont livré à temps, juste avant la période des inscriptions.",
+  "price_too_cheap": 25000,
+  "price_cheap": 40000,
+  "price_expensive": 65000,
+  "price_too_expensive": 85000
+}

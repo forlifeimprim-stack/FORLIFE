@@ -1,0 +1,13 @@
+{
+  "id": "P010",
+  "buys": false,
+  "purchases_first_month": 0,
+  "reason_code": "price",
+  "reason": "60 000 d'un coup, c'est presque le quart de ce que je gagne dans le mois, et en ce moment les clientes ne viennent pas beaucoup au salon. 500 flyers et une bâche, je n'en ai pas besoin tout de suite, je vais d'abord demander d'autres devis au quartier.",
+  "objection": "Je ne sais pas si ça va vraiment ramener des clientes, et les imprimeurs à côté font souvent moins cher quand tu négocies. Payer 60 000 sans voir le travail avant, ça me gêne.",
+  "would_change_my_mind": "Un petit pack moins cher autour de 30 000, ou payer la moitié avant et le reste à la livraison par Wave, avec des exemples de salons qu'ils ont déjà faits.",
+  "price_too_cheap": 15000,
+  "price_cheap": 30000,
+  "price_expensive": 45000,
+  "price_too_expensive": 60000
+}

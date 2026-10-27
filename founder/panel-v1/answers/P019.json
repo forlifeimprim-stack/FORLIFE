@@ -1,0 +1,13 @@
+{
+  "id": "P019",
+  "buys": false,
+  "purchases_first_month": 0,
+  "reason_code": "price",
+  "reason": "60 000 FCFA d'un coup pour des flyers et une bâche, c'est lourd pour mon commerce. À Adjamé je trouve des imprimeurs qui me font la bâche et les flyers moins cher si je discute bien.",
+  "objection": "Je ne sais pas si ces flyers vont vraiment ramener des clients au salon, et leur prix est déjà fixé, on ne peut pas négocier. Je vais d'abord demander trois devis ailleurs.",
+  "would_change_my_mind": "Un pack à 40 000 FCFA ou payable en deux fois par Wave, avec des exemples de travaux faits pour d'autres commerces du quartier que je peux voir.",
+  "price_too_cheap": 20000,
+  "price_cheap": 35000,
+  "price_expensive": 50000,
+  "price_too_expensive": 70000
+}

@@ -1,0 +1,13 @@
+{
+  "id": "P009",
+  "buys": false,
+  "purchases_first_month": 0,
+  "reason_code": "habit",
+  "reason": "J'ai déjà mon imprimeur depuis des années pour les écussons et les médailles de l'école, et la rentrée est passée, je n'ai rien à commander maintenant. Je ne change pas de fournisseur parce que j'ai vu une annonce.",
+  "objection": "Tout ça sur WhatsApp, je ne connais pas ces gens. Une garantie écrite c'est bien sur le papier, mais si les médailles de fin d'année arrivent en retard le jour de la cérémonie, les 20 % ne me rendent pas ma réputation devant les parents.",
+  "would_change_my_mind": "Qu'un autre directeur d'école que je connais à Bingerville me dise qu'il a travaillé avec eux et qu'ils ont livré à temps, et que je passe moi-même à l'atelier voir la qualité des écussons avant la kermesse.",
+  "price_too_cheap": 25000,
+  "price_cheap": 45000,
+  "price_expensive": 70000,
+  "price_too_expensive": 95000
+}

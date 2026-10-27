@@ -1,0 +1,222 @@
+[
+ {
+  "id": "P001",
+  "name": "Christelle",
+  "age": 34,
+  "segment": "Organisateur d'événement (responsable de paroisse ou d'association, futur marié)",
+  "income": 5329000,
+  "behaviour": "Commande à la dernière minute",
+  "behaviour_how": "S'y prend quelques jours avant l'événement ou l'ouverture et veut que ce soit prêt vite.",
+  "objection": "Les publicités sur Facebook, ça ne ramène pas de clients",
+  "habit": "tu reçois des dizaines de messages par jour dans tes groupes WhatsApp"
+ },
+ {
+  "id": "P002",
+  "name": "Affoué",
+  "age": 51,
+  "segment": "Gérant(e) de TPE / commerce de quartier (salon de coiffure, boutique, maquis, point mobile money)",
+  "income": 5193000,
+  "behaviour": "Achète en gros à Adjamé ou au Plateau",
+  "behaviour_how": "Se déplace dans les grands marchés pour obtenir les prix les plus bas.",
+  "objection": "Je ne connais pas cette agence, je n'ai vu aucun avis",
+  "habit": "tu prépares la rentrée scolaire ou une fête dans les prochains mois"
+ },
+ {
+  "id": "P003",
+  "name": "Fatou",
+  "age": 40,
+  "segment": "Gérant(e) de TPE / commerce de quartier (salon de coiffure, boutique, maquis, point mobile money)",
+  "income": 3720000,
+  "behaviour": "Achète sur recommandation",
+  "behaviour_how": "Ne commande que si quelqu'un de confiance (ami, groupe WhatsApp, paroisse) lui a recommandé le prestataire.",
+  "objection": "Est-ce qu'ils vont vraiment livrer à temps pour mon événement ?",
+  "habit": "tu passes chaque jour par le carrefour de la mairie de Bingerville"
+ },
+ {
+  "id": "P004",
+  "name": "Grâce",
+  "age": 46,
+  "segment": "Gérant(e) de TPE / commerce de quartier (salon de coiffure, boutique, maquis, point mobile money)",
+  "income": 3669000,
+  "behaviour": "Fidèle au prestataire du quartier",
+  "behaviour_how": "A déjà son imprimeur ou son graphiste habituel et n'aime pas changer.",
+  "objection": "Je n'ai pas le budget en ce moment, les affaires sont lentes",
+  "habit": "tu prépares la rentrée scolaire ou une fête dans les prochains mois"
+ },
+ {
+  "id": "P005",
+  "name": "Nadège",
+  "age": 27,
+  "segment": "Dirigeant de PME structurée (5 à 50 salariés)",
+  "income": 10087000,
+  "behaviour": "Achète sur recommandation",
+  "behaviour_how": "Ne commande que si quelqu'un de confiance (ami, groupe WhatsApp, paroisse) lui a recommandé le prestataire.",
+  "objection": "Est-ce que je peux payer en plusieurs fois ?",
+  "habit": "tu fais tes gros achats au marché d'Adjamé une fois par mois"
+ },
+ {
+  "id": "P006",
+  "name": "Sylvie",
+  "age": 40,
+  "segment": "Fondateur ou responsable d'école privée (directeur, économe, promoteur)",
+  "income": 5630000,
+  "behaviour": "Commande à la dernière minute",
+  "behaviour_how": "S'y prend quelques jours avant l'événement ou l'ouverture et veut que ce soit prêt vite.",
+  "objection": "Je ne connais pas cette agence, je n'ai vu aucun avis",
+  "habit": "tu regardes Facebook et TikTok le soir sur ton téléphone"
+ },
+ {
+  "id": "P007",
+  "name": "Ange",
+  "age": 52,
+  "segment": "Gérant(e) de TPE / commerce de quartier (salon de coiffure, boutique, maquis, point mobile money)",
+  "income": 5949000,
+  "behaviour": "Négociateur",
+  "behaviour_how": "Demande toujours trois devis et négocie le prix avant de payer, en espèces ou par Wave.",
+  "objection": "La qualité de l'impression va-t-elle tenir au soleil et au lavage ?",
+  "habit": "tu vas à la messe ou au culte chaque dimanche"
+ },
+ {
+  "id": "P008",
+  "name": "Wilfried",
+  "age": 48,
+  "segment": "Gérant(e) de TPE / commerce de quartier (salon de coiffure, boutique, maquis, point mobile money)",
+  "income": 1492000,
+  "behaviour": "Fidèle au prestataire du quartier",
+  "behaviour_how": "A déjà son imprimeur ou son graphiste habituel et n'aime pas changer.",
+  "objection": "Est-ce qu'ils vont vraiment livrer à temps pour mon événement ?",
+  "habit": "tu passes chaque jour par le carrefour de la mairie de Bingerville"
+ },
+ {
+  "id": "P009",
+  "name": "Salimata",
+  "age": 57,
+  "segment": "Fondateur ou responsable d'école privée (directeur, économe, promoteur)",
+  "income": 4650000,
+  "behaviour": "Méfiant envers le digital",
+  "behaviour_how": "Pense que les réseaux sociaux et les publicités Facebook ne ramènent pas de vrais clients.",
+  "objection": "Les publicités sur Facebook, ça ne ramène pas de clients",
+  "habit": "tu fais tes gros achats au marché d'Adjamé une fois par mois"
+ },
+ {
+  "id": "P010",
+  "name": "Raïssa",
+  "age": 26,
+  "segment": "Gérant(e) de TPE / commerce de quartier (salon de coiffure, boutique, maquis, point mobile money)",
+  "income": 3435000,
+  "behaviour": "Négociateur",
+  "behaviour_how": "Demande toujours trois devis et négocie le prix avant de payer, en espèces ou par Wave.",
+  "objection": "Je n'ai pas le budget en ce moment, les affaires sont lentes",
+  "habit": "tu passes chaque jour par le carrefour de la mairie de Bingerville"
+ },
+ {
+  "id": "P011",
+  "name": "Kouadio",
+  "age": 26,
+  "segment": "Dirigeant de PME structurée (5 à 50 salariés)",
+  "income": 21369000,
+  "behaviour": "Négociateur",
+  "behaviour_how": "Demande toujours trois devis et négocie le prix avant de payer, en espèces ou par Wave.",
+  "objection": "Les publicités sur Facebook, ça ne ramène pas de clients",
+  "habit": "tu regardes Facebook et TikTok le soir sur ton téléphone"
+ },
+ {
+  "id": "P012",
+  "name": "Cédric",
+  "age": 56,
+  "segment": "Fondateur ou responsable d'école privée (directeur, économe, promoteur)",
+  "income": 8179000,
+  "behaviour": "Fidèle au prestataire du quartier",
+  "behaviour_how": "A déjà son imprimeur ou son graphiste habituel et n'aime pas changer.",
+  "objection": "Je n'ai pas le budget en ce moment, les affaires sont lentes",
+  "habit": "tu vas à la messe ou au culte chaque dimanche"
+ },
+ {
+  "id": "P013",
+  "name": "Awa",
+  "age": 30,
+  "segment": "Gérant(e) de TPE / commerce de quartier (salon de coiffure, boutique, maquis, point mobile money)",
+  "income": 5449000,
+  "behaviour": "Cherche une image premium",
+  "behaviour_how": "Accepte de payer plus si le rendu fait sérieux et valorise son image.",
+  "objection": "Je ne connais pas cette agence, je n'ai vu aucun avis",
+  "habit": "tu passes chaque jour par le carrefour de la mairie de Bingerville"
+ },
+ {
+  "id": "P014",
+  "name": "Yao",
+  "age": 45,
+  "segment": "Organisateur d'événement (responsable de paroisse ou d'association, futur marié)",
+  "income": 8013000,
+  "behaviour": "Fait lui-même",
+  "behaviour_how": "Bricole ses visuels sur Canva ou son téléphone et ne paie que l'impression.",
+  "objection": "Je ne connais pas cette agence, je n'ai vu aucun avis",
+  "habit": "tu prépares la rentrée scolaire ou une fête dans les prochains mois"
+ },
+ {
+  "id": "P015",
+  "name": "Arnaud",
+  "age": 49,
+  "segment": "Organisateur d'événement (responsable de paroisse ou d'association, futur marié)",
+  "income": 2122000,
+  "behaviour": "Commande à la dernière minute",
+  "behaviour_how": "S'y prend quelques jours avant l'événement ou l'ouverture et veut que ce soit prêt vite.",
+  "objection": "Est-ce que je peux payer en plusieurs fois ?",
+  "habit": "tu reçois des dizaines de messages par jour dans tes groupes WhatsApp"
+ },
+ {
+  "id": "P016",
+  "name": "Aya",
+  "age": 48,
+  "segment": "Organisateur d'événement (responsable de paroisse ou d'association, futur marié)",
+  "income": 1999000,
+  "behaviour": "Cherche une image premium",
+  "behaviour_how": "Accepte de payer plus si le rendu fait sérieux et valorise son image.",
+  "objection": "Est-ce que je peux payer en plusieurs fois ?",
+  "habit": "tu fais tes gros achats au marché d'Adjamé une fois par mois"
+ },
+ {
+  "id": "P017",
+  "name": "Rokia",
+  "age": 25,
+  "segment": "Organisateur d'événement (responsable de paroisse ou d'association, futur marié)",
+  "income": 1952000,
+  "behaviour": "Fait lui-même",
+  "behaviour_how": "Bricole ses visuels sur Canva ou son téléphone et ne paie que l'impression.",
+  "objection": "La qualité de l'impression va-t-elle tenir au soleil et au lavage ?",
+  "habit": "tu passes chaque jour par le carrefour de la mairie de Bingerville"
+ },
+ {
+  "id": "P018",
+  "name": "Franck",
+  "age": 47,
+  "segment": "Fondateur ou responsable d'école privée (directeur, économe, promoteur)",
+  "income": 10172000,
+  "behaviour": "Achète sur recommandation",
+  "behaviour_how": "Ne commande que si quelqu'un de confiance (ami, groupe WhatsApp, paroisse) lui a recommandé le prestataire.",
+  "objection": "Je ne connais pas cette agence, je n'ai vu aucun avis",
+  "habit": "tu prépares la rentrée scolaire ou une fête dans les prochains mois"
+ },
+ {
+  "id": "P019",
+  "name": "Brice",
+  "age": 35,
+  "segment": "Gérant(e) de TPE / commerce de quartier (salon de coiffure, boutique, maquis, point mobile money)",
+  "income": 3241000,
+  "behaviour": "Négociateur",
+  "behaviour_how": "Demande toujours trois devis et négocie le prix avant de payer, en espèces ou par Wave.",
+  "objection": "Les publicités sur Facebook, ça ne ramène pas de clients",
+  "habit": "tu fais tes gros achats au marché d'Adjamé une fois par mois"
+ },
+ {
+  "id": "P020",
+  "name": "Patrick",
+  "age": 52,
+  "segment": "Dirigeant de PME structurée (5 à 50 salariés)",
+  "income": 9613000,
+  "behaviour": "Achète en gros à Adjamé ou au Plateau",
+  "behaviour_how": "Se déplace dans les grands marchés pour obtenir les prix les plus bas.",
+  "objection": "Je n'ai pas le budget en ce moment, les affaires sont lentes",
+  "habit": "tu vas à la messe ou au culte chaque dimanche"
+ }
+]

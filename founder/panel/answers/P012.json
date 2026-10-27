@@ -1,0 +1,13 @@
+{
+  "id": "P012",
+  "buys": false,
+  "purchases_first_month": 0,
+  "reason_code": "habit",
+  "reason": "J'ai mon imprimeur depuis des années, il connaît nos écussons et nos médailles, et il me fait crédit quand les parents tardent à payer la scolarité. La rentrée est déjà passée et les caisses sont serrées, je ne vais pas changer maintenant.",
+  "objection": "Mon prestataire habituel ne m'a jamais laissé tomber, et un nouvel atelier, je ne sais pas s'il tiendra la qualité sur 300 écussons ou s'il sera encore là l'année prochaine.",
+  "would_change_my_mind": "Si mon imprimeur me lâche sur un délai avant la kermesse, ou si on me montre un vrai devis du forfait annuel nettement moins cher que ce que je paie, avec un échantillon d'écusson à toucher, je pourrais leur confier une petite commande pour voir.",
+  "price_too_cheap": 30000,
+  "price_cheap": 45000,
+  "price_expensive": 65000,
+  "price_too_expensive": 85000
+}

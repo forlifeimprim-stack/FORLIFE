@@ -1,0 +1,13 @@
+{
+  "id": "P012",
+  "buys": false,
+  "purchases_first_month": 0,
+  "reason_code": "habit",
+  "reason": "J'ai mon imprimeur depuis des années, il me connaît, il me fait crédit quand les parents tardent à payer la scolarité. La rentrée est passée, je n'ai pas besoin de flyers ni de bâche maintenant, et les caisses de l'école sont serrées.",
+  "objection": "Je ne connais pas ces gens. Mon imprimeur habituel me laisse payer en plusieurs fois, eux c'est espèces ou mobile money tout de suite. Et 60 000 FCFA d'un coup en ce moment, ce n'est pas le moment.",
+  "would_change_my_mind": "Qu'ils viennent me voir à l'école avant la campagne d'inscriptions de mai-juin avec un devis moins cher que mon imprimeur, des échantillons de bâches déjà faites pour d'autres écoles de Bingerville, et la possibilité de payer en deux fois.",
+  "price_too_cheap": 25000,
+  "price_cheap": 40000,
+  "price_expensive": 65000,
+  "price_too_expensive": 85000
+}

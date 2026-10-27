@@ -1,0 +1,13 @@
+{
+  "id": "P001",
+  "buys": true,
+  "purchases_first_month": 1,
+  "reason_code": "convenience",
+  "reason": "Moi je m'y prends toujours à la dernière minute, alors un devis sur WhatsApp en 2 h, la maquette à valider avant de payer et l'express 48 h, ça me parle pour la kermesse ou un mariage qui arrive. J'essaie une fois pour voir, avec une petite commande.",
+  "objection": "Le remboursement de 20 % c'est bien, mais si ma bâche n'est pas là le jour de l'événement, c'est trop tard, l'argent ne sauve pas la fête. Et avec les 25 % de l'express, ça devient plus cher que mon imprimeur habituel à Adjamé.",
+  "would_change_my_mind": "",
+  "price_too_cheap": 25000,
+  "price_cheap": 40000,
+  "price_expensive": 75000,
+  "price_too_expensive": 100000
+}

@@ -1,0 +1,13 @@
+{
+  "id": "P018",
+  "buys": false,
+  "purchases_first_month": 0,
+  "reason_code": "trust",
+  "reason": "Pour la rentrée, je ne confie pas l'image de mon école à une agence que personne ne m'a recommandée. J'ai déjà mon imprimeur habituel, et tant qu'un collègue directeur ou quelqu'un de la paroisse ne me dit pas qu'ils livrent bien, je ne bouge pas.",
+  "objection": "Je ne connais pas cette agence, je n'ai vu aucun avis ni aucun travail fait pour une école. Et 5 jours ouvrés, si la bâche arrive en retard ou mal imprimée à la veille de la rentrée, c'est moi qui suis exposé devant les parents.",
+  "would_change_my_mind": "Qu'un autre fondateur d'école ou un ami de confiance me montre des flyers et une bâche qu'ils ont faits pour lui et me dise qu'ils ont respecté le délai.",
+  "price_too_cheap": 30000,
+  "price_cheap": 45000,
+  "price_expensive": 80000,
+  "price_too_expensive": 110000
+}

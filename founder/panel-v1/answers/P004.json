@@ -1,0 +1,13 @@
+{
+  "id": "P004",
+  "buys": false,
+  "purchases_first_month": 0,
+  "reason_code": "habit",
+  "reason": "J'ai déjà mon imprimeur au quartier, il me connaît et il me fait crédit quand ça ne va pas. En ce moment les affaires sont lentes, je ne vais pas sortir 60 000 d'un coup chez quelqu'un que je ne connais pas.",
+  "objection": "60 000 FCFA, c'est lourd pour moi maintenant, et je ne sais pas si leur travail vaut mieux que celui de mon imprimeur habituel. Je ne connais personne qui est passé chez eux.",
+  "would_change_my_mind": "Si on me montre sur WhatsApp des affiches et bâches qu'ils ont faites pour des commerces comme le mien, et qu'ils me font un petit pack moins cher ou payable en deux fois avant la rentrée.",
+  "price_too_cheap": 20000,
+  "price_cheap": 35000,
+  "price_expensive": 50000,
+  "price_too_expensive": 70000
+}

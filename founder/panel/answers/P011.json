@@ -1,0 +1,13 @@
+{
+  "id": "P011",
+  "buys": false,
+  "purchases_first_month": 0,
+  "reason_code": "habit",
+  "reason": "J'ai déjà mon imprimeur à Abidjan et je n'ai pas de besoin d'impression urgent ce mois-ci. Je vais peut-être leur demander un devis sur WhatsApp pour le comparer aux deux autres, mais je ne paie rien sans avoir comparé et négocié.",
+  "objection": "60 000 pour le Pack Visibilité, c'est le prix affiché, mais je veux voir ce que les autres me proposent pour la même chose. Et une garantie écrite, c'est bien sur le papier, mais qui me dit qu'ils remboursent vraiment les 20 % en cas de retard ?",
+  "would_change_my_mind": "Un devis moins cher que mes deux autres devis pour une vraie commande de l'entreprise, avec la maquette validée gratuitement sur WhatsApp avant de payer.",
+  "price_too_cheap": 30000,
+  "price_cheap": 45000,
+  "price_expensive": 65000,
+  "price_too_expensive": 80000
+}

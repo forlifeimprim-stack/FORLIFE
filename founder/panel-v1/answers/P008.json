@@ -1,0 +1,13 @@
+{
+  "id": "P008",
+  "buys": false,
+  "purchases_first_month": 0,
+  "reason_code": "habit",
+  "reason": "J'ai déjà mon imprimeur au quartier, il me connaît, je paie quand je peux et il ne m'a jamais lâché. 60 000 d'un coup pour affiche, flyers et bâche, ce n'est pas une petite somme pour mon commerce, je ne vais pas tenter un nouveau juste parce que c'est écrit « pack ».",
+  "objection": "Cinq jours ouvrés, c'est ce qu'ils disent, mais si ça glisse et que mon événement arrive sans la bâche, qui va me rembourser ? Je ne connais personne qui a déjà travaillé avec eux.",
+  "would_change_my_mind": "Qu'un commerçant que je connais à Bingerville me montre un travail fait chez eux livré à l'heure, et qu'ils acceptent un acompte avec le reste payé à la livraison.",
+  "price_too_cheap": 20000,
+  "price_cheap": 35000,
+  "price_expensive": 55000,
+  "price_too_expensive": 75000
+}

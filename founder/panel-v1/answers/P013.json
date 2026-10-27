@@ -1,0 +1,13 @@
+{
+  "id": "P013",
+  "buys": false,
+  "purchases_first_month": 0,
+  "reason_code": "trust",
+  "reason": "Le pack m'intéresse pour mon salon, mais je ne connais pas Forlife Com' et je n'ai vu aucun travail de leur part. Je ne vais pas mettre 60 000 FCFA sur une affiche qui risque de faire amateur devant ma clientèle.",
+  "objection": "Je n'ai vu ni avis ni réalisations. Si l'affiche et la bâche font bas de gamme, c'est l'image de mon commerce qui prend un coup.",
+  "would_change_my_mind": "Voir de vraies réalisations pour des commerces comme le mien (photos de bâches posées, affiches) et l'avis d'un gérant que je connais à Bingerville, ou pouvoir valider la maquette avant de payer le reste.",
+  "price_too_cheap": 25000,
+  "price_cheap": 45000,
+  "price_expensive": 85000,
+  "price_too_expensive": 130000
+}

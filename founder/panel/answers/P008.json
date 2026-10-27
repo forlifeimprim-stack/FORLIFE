@@ -1,0 +1,13 @@
+{
+  "id": "P008",
+  "buys": false,
+  "purchases_first_month": 0,
+  "reason_code": "habit",
+  "reason": "J'ai déjà mon imprimeur au quartier, ça fait des années qu'il me fait mes bâches et mes flyers, je l'appelle et c'est réglé. Leur garantie délai est intéressante, mais je ne vais pas changer comme ça pour des gens que je ne connais pas encore.",
+  "objection": "Une garantie écrite c'est bien sur papier, mais si mon événement est raté, les 20 % remboursés ne me rendent pas mes clients. Je veux d'abord voir qu'ils livrent vraiment à l'heure.",
+  "would_change_my_mind": "Que mon imprimeur habituel me lâche sur un délai, ou qu'un commerçant que je connais à Bingerville me dise qu'ils l'ont livré à temps plusieurs fois.",
+  "price_too_cheap": 25000,
+  "price_cheap": 40000,
+  "price_expensive": 65000,
+  "price_too_expensive": 85000
+}

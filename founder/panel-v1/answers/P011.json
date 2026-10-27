@@ -1,0 +1,13 @@
+{
+  "id": "P011",
+  "buys": false,
+  "purchases_first_month": 0,
+  "reason_code": "trust",
+  "reason": "Je ne connais pas encore leur travail, et j'ai déjà mon imprimeur habituel. Je peux demander un devis par WhatsApp pour comparer avec deux autres, mais je ne paie pas 60 000 FCFA à une agence que je n'ai jamais vue à l'oeuvre.",
+  "objection": "Je veux voir la qualité réelle des bâches et des flyers avant, et savoir si les 5 jours sont tenus. Pour la gestion Facebook et les pubs Meta, franchement ça ne ramène pas de clients, donc ça ne m'intéresse pas.",
+  "would_change_my_mind": "Voir des réalisations concrètes pour des PME de Bingerville ou une recommandation d'un patron que je connais, et un devis moins cher que mes deux autres après négociation.",
+  "price_too_cheap": 25000,
+  "price_cheap": 40000,
+  "price_expensive": 70000,
+  "price_too_expensive": 95000
+}

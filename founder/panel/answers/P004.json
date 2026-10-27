@@ -1,0 +1,13 @@
+{
+  "id": "P004",
+  "buys": false,
+  "purchases_first_month": 0,
+  "reason_code": "habit",
+  "reason": "J'ai déjà mon imprimeur du quartier, il me connaît, il me fait crédit quand ça ne va pas. Les affaires sont lentes en ce moment, je ne vais pas aller chercher quelqu'un d'autre pour une bâche.",
+  "objection": "60 000 FCFA d'un coup, c'est lourd pour moi en ce moment, et je ne connais pas ces gens-là. Mon imprimeur, si ça ne va pas, je passe le voir directement.",
+  "would_change_my_mind": "Si mon imprimeur habituel me lâche ou me rate une date importante pour la fête, là j'essaierais, surtout pour un petit travail à moins de 30 000 FCFA pour voir.",
+  "price_too_cheap": 20000,
+  "price_cheap": 35000,
+  "price_expensive": 50000,
+  "price_too_expensive": 70000
+}

@@ -1,0 +1,13 @@
+{
+  "id": "P001",
+  "buys": false,
+  "purchases_first_month": 0,
+  "reason_code": "timing",
+  "reason": "Moi je m'y prends toujours trois ou quatre jours avant la fête ou la kermesse, alors « prêt en 5 jours ouvrés », c'est déjà trop tard pour moi. Et le pack parle de pub pour commerce, moi j'ai besoin d'une bâche et de faire-parts, pas de 500 flyers.",
+  "objection": "Le délai : 5 jours ouvrés, avec le samedi qui ferme à 14h, ça veut dire qu'il faut commander plus d'une semaine avant. Si c'est pas prêt le jour J, c'est moi qu'on va accuser devant toute la paroisse.",
+  "would_change_my_mind": "Une option express garantie en 48h (même un peu plus cher) pour la bâche et les faire-parts, confirmée directement sur WhatsApp avec le prix tout de suite.",
+  "price_too_cheap": 25000,
+  "price_cheap": 40000,
+  "price_expensive": 70000,
+  "price_too_expensive": 95000
+}

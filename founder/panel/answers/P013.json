@@ -1,0 +1,13 @@
+{
+  "id": "P013",
+  "buys": false,
+  "purchases_first_month": 0,
+  "reason_code": "trust",
+  "reason": "La maquette gratuite et le paiement en deux fois, c'est rassurant, mais pour l'image de mon commerce je ne confie pas ma bâche à une agence dont je n'ai jamais vu le travail ni entendu parler. Ce mois-ci je n'ai pas d'urgence, donc je garde mon imprimeur habituel.",
+  "objection": "Je ne connais pas cette agence, je n'ai vu aucun avis ni aucun commerce du quartier avec leurs bâches. Si le rendu fait bas de gamme, c'est mon image qui prend, pas la leur.",
+  "would_change_my_mind": "Passer à l'atelier toucher une vraie bâche et des flyers finis, et voir le travail qu'ils ont fait pour un commerce de Bingerville que je connais. Là je testerais avec une petite commande.",
+  "price_too_cheap": 25000,
+  "price_cheap": 45000,
+  "price_expensive": 85000,
+  "price_too_expensive": 120000
+}

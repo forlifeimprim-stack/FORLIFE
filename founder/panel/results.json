@@ -1,0 +1,177 @@
+{
+ "business": "Forlife Com' — agence de communication et imprimerie à Bingerville (division de Forlife Imprim)",
+ "seed": 408213,
+ "dealt": 20,
+ "answered": 20,
+ "skipped": [],
+ "buys": 2,
+ "passes": 18,
+ "buy_rate": 0.1,
+ "by_segment": [
+  [
+   "Organisateur d'événement (responsable de paroisse ou d'association, futur marié)",
+   5,
+   0.4
+  ],
+  [
+   "Gérant(e) de TPE / commerce de quartier (salon de coiffure, boutique, maquis, point mobile money)",
+   8,
+   0.0
+  ],
+  [
+   "Dirigeant de PME structurée (5 à 50 salariés)",
+   3,
+   0.0
+  ],
+  [
+   "Fondateur ou responsable d'école privée (directeur, économe, promoteur)",
+   4,
+   0.0
+  ]
+ ],
+ "by_behaviour": [
+  [
+   "Commande à la dernière minute",
+   3,
+   0.6666666666666666
+  ],
+  [
+   "Achète en gros à Adjamé ou au Plateau",
+   2,
+   0.0
+  ],
+  [
+   "Achète sur recommandation",
+   3,
+   0.0
+  ],
+  [
+   "Fidèle au prestataire du quartier",
+   3,
+   0.0
+  ],
+  [
+   "Négociateur",
+   4,
+   0.0
+  ],
+  [
+   "Méfiant envers le digital",
+   1,
+   0.0
+  ],
+  [
+   "Cherche une image premium",
+   2,
+   0.0
+  ],
+  [
+   "Fait lui-même",
+   2,
+   0.0
+  ]
+ ],
+ "by_income": [
+  [
+   "under 3,669,000 FCFA",
+   6,
+   0.16666666666666666
+  ],
+  [
+   "3,669,000 to 5,949,000 FCFA",
+   7,
+   0.14285714285714285
+  ],
+  [
+   "5,949,000 FCFA and up",
+   7,
+   0.0
+  ]
+ ],
+ "why_not": [
+  [
+   "trust",
+   7,
+   [
+    "Je ne connais pas cette agence et personne autour de moi ne m'en a parlé. Pour mes flyers et ma bâche je vais à Adjamé, je compare trois imprimeurs et je prends le moins cher ; 60 000 pour le pack, il faut d'abord que je voie ce que ça donne à côté.",
+    "Je ne connais pas Forlife Com' et personne autour de moi ne m'en a parlé. Même avec la maquette gratuite, je ne donne pas 50 % à un atelier que je découvre comme ça, surtout quand c'est pour un événement."
+   ],
+   [
+    "P002",
+    "P003"
+   ]
+  ],
+  [
+   "habit",
+   6,
+   [
+    "J'ai déjà mon imprimeur du quartier, il me connaît, il me fait crédit quand ça ne va pas. Les affaires sont lentes en ce moment, je ne vais pas aller chercher quelqu'un d'autre pour une bâche.",
+    "Je vais demander le devis sur WhatsApp, ça ne coûte rien, mais je ne paie pas avant d'avoir comparé avec deux autres imprimeurs et discuté le prix. Ce mois-ci, ma bâche tient encore, donc rien ne presse."
+   ],
+   [
+    "P004",
+    "P007"
+   ]
+  ],
+  [
+   "price",
+   3,
+   [
+    "Moi je fais déjà mes visuels sur Canva, donc le Pack Visibilité à 60 000 FCFA, je paie une création dont je n'ai pas besoin. Ils disent qu'ils impriment mon fichier mais sans prix affiché pour l'impression seule, je reste chez mon imprimeur habituel.",
+    "60 000 FCFA d'un coup pour des flyers et une bâche, c'est lourd pour mon commerce ce mois-ci. Je vais demander leur devis sur WhatsApp, mais je compare avec deux autres imprimeurs d'Adjamé avant de sortir mon argent."
+   ],
+   [
+    "P017",
+    "P019"
+   ]
+  ],
+  [
+   "timing",
+   2,
+   [
+    "Les affaires sont lentes en ce moment, 60 000 FCFA d'un coup pour des flyers et une bâche, ce n'est pas ma priorité ce mois-ci. La maquette gratuite sur WhatsApp et le paiement en deux fois par Wave c'est bien, mais je garde mon argent pour le stock.",
+    "L'offre me plaît, surtout la maquette gratuite et le paiement 50/50, ça répond à ma question. Mais là, ce mois-ci, je n'ai pas d'événement de paroisse ou de mariage à préparer, donc je garde le numéro WhatsApp pour plus tard."
+   ],
+   [
+    "P010",
+    "P016"
+   ]
+  ]
+ ],
+ "why_yes": [
+  [
+   "convenience",
+   2,
+   [
+    "Moi je m'y prends toujours à la dernière minute, alors un devis sur WhatsApp en 2 h, la maquette à valider avant de payer et l'express 48 h, ça me parle pour la kermesse ou un mariage qui arrive. J'essaie une fois pour voir, avec une petite commande.",
+    "Moi je m'y prends toujours à la dernière minute pour la kermesse ou les sorties de l'association, donc le devis en 2 h sur WhatsApp, la maquette validée avant de payer et le 50 % à la livraison, ça me va. Pour le prochain événement je les essaie, mais une seule commande pour voir."
+   ],
+   [
+    "P001",
+    "P015"
+   ]
+  ]
+ ],
+ "flip": [
+  "Qu'une commerçante du quartier que je connais me montre une bâche qu'ils lui ont faite et me dise que c'était bien et à l'heure ; là je demanderais un devis sur WhatsApp pour comparer avec Adjamé.",
+  "Qu'une personne de confiance, une amie commerçante ou quelqu'un de mon groupe WhatsApp, me dise qu'elle a déjà commandé chez eux et qu'ils ont livré à l'heure.",
+  "Si mon imprimeur habituel me lâche ou me rate une date importante pour la fête, là j'essaierais, surtout pour un petit travail à moins de 30 000 FCFA pour voir.",
+  "Qu'un ami chef d'entreprise ou quelqu'un de mon groupe WhatsApp me dise qu'il a commandé chez eux et qu'il a été livré à temps et bien servi.",
+  "Qu'un autre directeur d'école de Bingerville me dise qu'il a travaillé avec eux et qu'ils ont livré à temps, ou voir sur Facebook des photos de vraies écoles du coin avec leurs réalisations, avant la kermesse.",
+  "Voir à l'atelier une bâche posée dehors depuis un an qui n'a pas pâli, et qu'on me fasse le pack à 50 000 en espèces.",
+  "Que mon imprimeur habituel me lâche sur un délai, ou qu'un commerçant que je connais à Bingerville me dise qu'ils l'ont livré à temps plusieurs fois.",
+  "Qu'un autre directeur d'école que je connais à Bingerville me dise qu'il a travaillé avec eux et qu'ils ont livré à temps, et que je passe moi-même à l'atelier voir la qualité des écussons avant la kermesse.",
+  "Un petit pack à moins de 30 000 FCFA, juste la bâche avec la maquette, ou une réduction pour la première commande, quand les ventes reprennent pour les fêtes.",
+  "Un devis moins cher que mes deux autres devis pour une vraie commande de l'entreprise, avec la maquette validée gratuitement sur WhatsApp avant de payer.",
+  "Si mon imprimeur me lâche sur un délai avant la kermesse, ou si on me montre un vrai devis du forfait annuel nettement moins cher que ce que je paie, avec un échantillon d'écusson à toucher, je pourrais leur confier une petite commande pour voir.",
+  "Passer à l'atelier toucher une vraie bâche et des flyers finis, et voir le travail qu'ils ont fait pour un commerce de Bingerville que je connais. Là je testerais avec une petite commande.",
+  "Qu'un curé ou un responsable d'association que je connais me dise qu'il a imprimé chez eux et que c'était bien, et un prix d'impression seule pour mes flyers et ma bâche moins cher que mon imprimeur habituel.",
+  "Une kermesse ou un mariage qui arrive dans les prochaines semaines, et voir de mes yeux à l'atelier un faire-part ou une bâche bien finis.",
+  "Une grille de prix claire pour l'impression seule de mon fichier Canva (flyers et bâche) moins chère ou égale à mon imprimeur, et voir à l'atelier une bâche qui a déjà passé des mois dehors.",
+  "Qu'un directeur d'école voisine ou le curé de la paroisse me dise qu'il a travaillé avec eux et qu'il est satisfait ; là j'irais voir l'atelier et je ferais un premier essai.",
+  "Un prix négocié autour de 40 000 FCFA pour le pack, ou une bâche seule pas chère pour tester leur qualité d'abord.",
+  "Un devis écrit, ligne par ligne, clairement moins cher que mon imprimeur habituel pour une grosse quantité, avec un tarif dégressif pour une entreprise qui commande régulièrement."
+ ],
+ "purchases_first_month_per_buyer": 1.0,
+ "price_answers": 20
+}
