@@ -23,3 +23,11 @@ ffmpeg -i sortie.wav -af "volume=-3dB,highpass=f=60,lowpass=f=7000,acompressor=t
 ```
 Options : `--vitesse` (débit, défaut 0.92), `--topk` (lissage du timbre, défaut 4), `--decalage` (demi-tons avant conversion ; laisser à 0, un décalage fort crée un souffle).
 L'enregistrement de la voix n'est pas versionné : le renvoyer à chaque nouvelle session.
+
+## Ressemblance avec la voix de référence (recommandé)
+Après `voixoff.py`, recaler la hauteur et l'empreinte spectrale sur l'enregistrement d'origine :
+```bash
+ffmpeg -i voix.m4a -ac 1 -ar 16000 ref_brut16k.wav
+python ressemblance.py sortie.wav sortie_proche.wav --ref ref_brut16k.wav --hauteur
+```
+(`pip install pyworld scipy "setuptools<81"`). Pour le mastering, ne pas rajouter d'égalisation : seulement compression et loudnorm.
