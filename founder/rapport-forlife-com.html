@@ -1,0 +1,378 @@
+<title>Rapport Forlife Com'</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout : un rapport d'atelier sur une colonne de lecture, sommaire latéral sur grand écran ; charte Forlife v2 (orange, charbon, crème). */
+:root{
+  --bg:#FBF8F4; --surface:#FFFFFF; --fg:#1E1A17; --muted:#5E554D; --line:#E6DED4;
+  --orange:#EA7822; --orange-ink:#A9520F; --orange-wash:#FDEFE2;
+  --good:#2F7A4B; --good-wash:#E3F2E8; --bad:#B23A2B; --bad-wash:#F8E4E0; --warn:#8A6410; --warn-wash:#F7EED6;
+  --gold:#9C7420;
+  --f-display:'Poppins',system-ui,-apple-system,'Segoe UI',sans-serif;
+  --f-body:'Poppins',system-ui,-apple-system,'Segoe UI',sans-serif;
+  --f-data:'IBM Plex Mono',ui-monospace,'SFMono-Regular',Menlo,monospace;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#141110; --surface:#1D1917; --fg:#F2ECE6; --muted:#B4A99F; --line:#352E29;
+  --orange:#EA7822; --orange-ink:#F5A05A; --orange-wash:#33231A;
+  --good:#6FC48F; --good-wash:#1B2E22; --bad:#F08A7A; --bad-wash:#3A1F1A; --warn:#E3BE62; --warn-wash:#33291A;
+  --gold:#D9AC4E; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#141110; --surface:#1D1917; --fg:#F2ECE6; --muted:#B4A99F; --line:#352E29;
+  --orange:#EA7822; --orange-ink:#F5A05A; --orange-wash:#33231A;
+  --good:#6FC48F; --good-wash:#1B2E22; --bad:#F08A7A; --bad-wash:#3A1F1A; --warn:#E3BE62; --warn-wash:#33291A;
+  --gold:#D9AC4E; color-scheme:dark}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--fg);font-family:var(--f-body);font-size:16px;line-height:1.65}
+.wrap{max-width:1120px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:32px 64px}
+.grid{display:grid;grid-template-columns:1fr;gap:40px}
+@media (min-width:960px){.grid{grid-template-columns:200px minmax(0,1fr)}}
+nav.toc{display:none}
+@media (min-width:960px){nav.toc{display:block;position:sticky;top:calc(env(safe-area-inset-top,0px) + 24px);align-self:start;font-size:13px}
+ nav.toc ol{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:6px;border-left:2px solid var(--line)}
+ nav.toc a{display:block;padding:2px 0 2px 12px;margin-left:-2px;border-left:2px solid transparent;color:var(--muted);text-decoration:none}
+ nav.toc a:hover,nav.toc a:focus-visible{color:var(--orange-ink);border-left-color:var(--orange)}}
+main{min-width:0;max-width:760px}
+h1,h2,h3{font-family:var(--f-display);text-wrap:balance;line-height:1.2;margin:0}
+h1{font-size:clamp(28px,5vw,40px);font-weight:700;letter-spacing:-.01em}
+h2{font-size:24px;font-weight:600;margin-bottom:14px}
+h3{font-size:17px;font-weight:600;margin:22px 0 8px}
+p{margin:0 0 12px}
+a{color:var(--orange-ink)}
+a:focus-visible,button:focus-visible{outline:2px solid var(--orange);outline-offset:2px}
+.eyebrow{font-size:12px;font-weight:600;letter-spacing:.09em;text-transform:uppercase;color:var(--orange-ink)}
+header.top{display:flex;flex-direction:column;gap:14px;padding-bottom:28px;border-bottom:1px solid var(--line);margin-bottom:8px}
+.meta{color:var(--muted);font-size:14px}
+.verdict{display:flex;flex-wrap:wrap;gap:12px 16px;align-items:center;background:var(--surface);border:1px solid var(--line);border-left:6px solid var(--bad);border-radius:10px;padding:16px 18px}
+.pill{display:inline-flex;align-items:center;gap:6px;font-size:13px;font-weight:600;padding:3px 10px;border-radius:999px;white-space:nowrap}
+.pill.bad{background:var(--bad-wash);color:var(--bad)} .pill.good{background:var(--good-wash);color:var(--good)} .pill.warn{background:var(--warn-wash);color:var(--warn)} .pill.neutral{background:var(--orange-wash);color:var(--orange-ink)}
+.verdict strong{font-size:20px;font-family:var(--f-display)}
+.verdict p{margin:0;flex:1 1 320px;min-width:0}
+.figs{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:12px;margin-top:4px}
+.fig{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:14px 16px;display:flex;flex-direction:column;gap:2px}
+.fig b{font-family:var(--f-data);font-size:22px;font-weight:500;font-variant-numeric:tabular-nums}
+.fig span{font-size:13px;color:var(--muted);line-height:1.4}
+.fig.neg b{color:var(--bad)} .fig.pos b{color:var(--good)}
+section{padding-top:40px;scroll-margin-top:16px}
+.checks{list-style:none;padding:0;margin:12px 0;display:flex;flex-direction:column;gap:8px}
+.checks li{display:flex;gap:10px;align-items:baseline}
+.mark{font-weight:700;flex:0 0 auto;width:20px;text-align:center}
+.mark.ok{color:var(--good)} .mark.ko{color:var(--bad)}
+.scroll{overflow-x:auto;margin:12px 0 16px;border:1px solid var(--line);border-radius:10px;background:var(--surface)}
+table{border-collapse:collapse;width:100%;font-size:14px}
+th,td{text-align:left;padding:9px 12px;border-bottom:1px solid var(--line);vertical-align:top}
+th{font-weight:600;font-size:12px;letter-spacing:.05em;text-transform:uppercase;color:var(--muted);background:var(--bg)}
+tr:last-child td{border-bottom:0}
+td.num,th.num{text-align:right;font-family:var(--f-data);font-variant-numeric:tabular-nums;white-space:nowrap}
+tr.hl td{background:var(--orange-wash);font-weight:600}
+.neg{color:var(--bad)} .pos{color:var(--good)}
+blockquote{margin:10px 0;padding:10px 14px;border-left:3px solid var(--orange);background:var(--surface);border-radius:0 8px 8px 0;font-size:15px}
+blockquote cite{display:block;font-style:normal;font-size:12px;color:var(--muted);margin-top:4px}
+.callout{background:var(--orange-wash);border-radius:10px;padding:14px 16px;margin:14px 0}
+.callout p:last-child{margin:0}
+.two{display:grid;grid-template-columns:1fr;gap:12px}
+@media (min-width:640px){.two{grid-template-columns:1fr 1fr}}
+.box{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:14px 16px;min-width:0}
+.box h3{margin-top:0}
+ul.tight{margin:6px 0 12px;padding-left:20px} ul.tight li{margin:3px 0}
+.bars{display:flex;flex-direction:column;gap:8px;margin:12px 0}
+.bar{display:grid;grid-template-columns:110px 1fr 36px;gap:10px;align-items:center;font-size:14px}
+.track{height:12px;background:var(--line);border-radius:6px;overflow:hidden;display:flex}
+.track i{display:block;height:100%}
+.track i.a{background:var(--muted)} .track i.b{background:var(--orange)}
+.legend{display:flex;gap:16px;font-size:13px;color:var(--muted);flex-wrap:wrap}
+.legend span::before{content:"";display:inline-block;width:10px;height:10px;border-radius:2px;margin-right:6px;vertical-align:-1px;background:var(--sw)}
+figure{margin:14px 0}
+figcaption{font-size:13px;color:var(--muted);margin-top:6px}
+.chart svg{display:block;width:100%;height:auto}
+.small{font-size:13px;color:var(--muted)}
+details{border:1px solid var(--line);border-radius:10px;background:var(--surface);padding:10px 14px;margin:10px 0}
+summary{cursor:pointer;font-weight:600}
+.src{font-size:12px;color:var(--muted)}
+footer{margin-top:48px;padding-top:20px;border-top:1px solid var(--line);font-size:13px;color:var(--muted)}
+@media (prefers-reduced-motion:no-preference){html{scroll-behavior:smooth}}
+</style>
+
+<div class="wrap">
+<div class="grid">
+<nav class="toc" aria-label="Sommaire">
+  <ol>
+    <li><a href="#verdict">Verdict</a></li>
+    <li><a href="#chiffres">Les chiffres</a></li>
+    <li><a href="#conseil">Le conseil</a></li>
+    <li><a href="#marche">Marché ivoirien</a></li>
+    <li><a href="#panel">Panel d'acheteurs</a></li>
+    <li><a href="#prix">Prix</a></li>
+    <li><a href="#offre">L'offre</a></li>
+    <li><a href="#marketing">Marketing</a></li>
+    <li><a href="#marque">Marque</a></li>
+    <li><a href="#operations">Opérations</a></li>
+    <li><a href="#lancement">Lancement</a></li>
+    <li><a href="#limites">Limites</a></li>
+  </ol>
+</nav>
+
+<main>
+<header class="top" id="verdict">
+  <span class="eyebrow">Analyse founder · 11 skills · Côte d'Ivoire</span>
+  <h1>Forlife Com', Bingerville</h1>
+  <p class="meta">Rapport du 27 octobre 2026 · Agence de communication et atelier d'impression, division de Forlife Imprim · Montants en FCFA hors taxes</p>
+
+  <div class="verdict">
+    <span class="pill bad">Verdict calculé : pas encore</span>
+    <p><strong>Le plan peut être rentable, la demande n'est pas encore là.</strong> Aujourd'hui, l'atelier traite environ 8 commandes par mois alors que le seuil de rentabilité est à 16. Le frein principal n'est pas le prix, c'est la confiance.</p>
+  </div>
+
+  <div class="figs">
+    <div class="fig neg"><b>≈ −3,6 M</b><span>Résultat sur 12 mois si rien ne change (8 commandes par mois)</span></div>
+    <div class="fig"><b>16 / mois</b><span>Commandes nécessaires pour couvrir les 550 000 FCFA de charges</span></div>
+    <div class="fig pos"><b>+299 875</b><span>Résultat de l'année 1 avec le plan recentré (8 → 22 commandes)</span></div>
+    <div class="fig"><b>2 / 20</b><span>Acheteurs simulés convaincus par la nouvelle offre (0 / 20 avant)</span></div>
+  </div>
+</header>
+
+<section id="essentiel" aria-labelledby="h-essentiel" style="padding-top:28px">
+  <h2 id="h-essentiel">L'essentiel</h2>
+  <ul class="checks">
+    <li><span class="mark ok">✓</span><span>Chaque commande rapporte <b>36 125 FCFA</b> une fois ses propres coûts payés (56 %).</span></li>
+    <li><span class="mark ok">✓</span><span>Le plan recentré finit l'année 1 à <b>+299 875 FCFA</b> d'exploitation.</span></li>
+    <li><span class="mark ok">✓</span><span>Le seuil de 16 commandes par mois tient largement dans la capacité de l'atelier (≈ 78).</span></li>
+    <li><span class="mark ko">✗</span><span>Seulement <b>10 %</b> des acheteurs simulés achètent, pour un seuil fixé à 25 %.</span></li>
+  </ul>
+  <div class="callout">
+    <p><b>À faire d'abord.</b> Gagner la confiance par des <b>recommandations réelles</b> (curés, responsables d'associations, directeurs d'école, commerçants du quartier) et des <b>preuves locales</b> (10 avis Google vérifiables, 3 études de cas, atelier ouvert). Puis tester avec de vrais clients : <b>3 commandes payées sur 10 paroisses ou associations contactées d'ici le 20 novembre 2026</b>.</p>
+  </div>
+  <p><b>Cette semaine :</b> détailler les 550 000 FCFA de charges fixes et calculer la marge réelle de 10 commandes passées. Si les charges sont plutôt à 400 000 FCFA, le seuil tombe à environ 11 commandes par mois.</p>
+</section>
+
+<section id="chiffres" aria-labelledby="h-chiffres">
+  <h2 id="h-chiffres">Les chiffres <span class="small">· founder-cfo</span></h2>
+  <p>Base : panier moyen visé de 65 000 FCFA, charges fixes de 550 000 FCFA par mois (point médian de votre fourchette), coûts variables estimés à 28 875 FCFA par commande (consommables, sous-traitance, livraison, frais mobile money, électricité, garantie délai, impayés).</p>
+
+  <figure class="chart">
+    <div id="profit-chart" role="img" aria-label="Résultat mensuel de l'année 1 : pertes du mois 1 au mois 5, de −261 000 à −44 250 FCFA, puis bénéfices du mois 6 au mois 12, de 28 000 à 244 750 FCFA."></div>
+    <figcaption>Résultat mensuel, année 1 du plan recentré (commandes par mois : 8, 9, 10, 12, 14, 16, 18, 19, 20, 21, 22, 22). Point bas de trésorerie au mois 5 : ≈ 1,1 M FCFA à prévoir.</figcaption>
+  </figure>
+
+  <div class="scroll"><table>
+    <thead><tr><th>Scénario</th><th class="num">Seuil / mois</th><th class="num">Marge au plan</th><th class="num">Année 1</th></tr></thead>
+    <tbody>
+      <tr><td>Statu quo : 8 commandes à 60 000</td><td class="num">18</td><td class="num neg">−63 %</td><td class="num neg">−3 612 000</td></tr>
+      <tr class="hl"><td>Plan recentré, panier de 65 000</td><td class="num">16</td><td class="num">17 %</td><td class="num pos">+299 875</td></tr>
+      <tr><td>Plan, avec 20 % de commandes en moins</td><td class="num">16</td><td class="num">8 %</td><td class="num neg">−1 080 100</td></tr>
+      <tr><td>Plan, avec un panier 10 % plus bas</td><td class="num">19</td><td class="num">8 %</td><td class="num neg">−941 625</td></tr>
+      <tr><td>Plan, avec des coûts unitaires 15 % plus hauts</td><td class="num">18</td><td class="num">10 %</td><td class="num neg">−527 394</td></tr>
+      <tr><td>Plan, avec un panier de 70 000</td><td class="num">14</td><td class="num">23 %</td><td class="num pos">+1 254 875</td></tr>
+    </tbody>
+  </table></div>
+  <p class="small">La marge de sécurité est mince : tout repose sur le passage de 8 à 16 commandes par mois avant le mois 6. Les coûts variables sont des estimations, à remplacer par de vrais devis fournisseurs (<code>founder/cfo-sources.md</code>).</p>
+</section>
+
+<section id="conseil" aria-labelledby="h-conseil">
+  <h2 id="h-conseil">Le conseil d'administration <span class="small">· founder-board</span></h2>
+  <p>Trois membres simulés appliquent chacun un cadre publié (Offre, Monopole, Produit). Aucun auteur ne s'exprime ici.</p>
+  <div class="scroll"><table>
+    <thead><tr><th>Prisme</th><th class="num">Note</th><th>Vote</th><th>Ce qui pourrait tuer l'entreprise</th></tr></thead>
+    <tbody>
+      <tr><td>Offre</td><td class="num">4/10</td><td><span class="pill warn">Sous conditions</span></td><td>Une offre perçue comme un produit standard, vendue au prix le plus bas face à Adjamé</td></tr>
+      <tr><td>Monopole</td><td class="num">3/10</td><td><span class="pill warn">Sous conditions</span></td><td>Rien de défendable : un concurrent achète la même machine DTF</td></tr>
+      <tr><td>Produit</td><td class="num">4/10</td><td><span class="pill warn">Sous conditions</span></td><td>7 métiers pour moins de 10 commandes par mois, une promesse impossible à dire en une phrase</td></tr>
+    </tbody>
+  </table></div>
+  <p><b>Les trois sont d'accord</b> : se concentrer sur les écoles privées et les paroisses de Bingerville, avec une offre phare nommée et un prix affiché, et réunir des preuves avant d'ajouter quoi que ce soit. Ils recommandent de mettre en pause la formation et le hub d'automatisation.</p>
+  <p><b>Ils divergent</b> sur la qualité du marché : accessible et en croissance pour le prisme Offre, guerre des prix pour le prisme Monopole.</p>
+</section>
+
+<section id="marche" aria-labelledby="h-marche">
+  <h2 id="h-marche">Le marché ivoirien et la concurrence <span class="small">· founder-competitors</span></h2>
+  <div class="two">
+    <div class="box">
+      <h3>Contexte</h3>
+      <ul class="tight">
+        <li>Bingerville : 91 319 habitants en 2014, <b>204 656</b> en 2021 (RGPH, <a href="https://citypopulation.de/en/ivorycoast/sub/admin/abidjan/011103__bingerville/">citypopulation.de</a>).</li>
+        <li>≈ <b>8,4 M</b> d'identités actives sur les réseaux sociaux en octobre 2025 (<a href="https://datareportal.com/reports/digital-2026-cote-divoire">DataReportal</a>).</li>
+        <li>Plus de <b>26 M</b> d'abonnements mobile money actifs fin 2024 (ARTCI, relayé par la <a href="https://www.capmad.com/article/uemoa-la-cote-divoire-devient-premier-marche-du-mobile-money-devant-le-senegal">presse</a>).</li>
+        <li>MPME : plus de 90 % des entreprises, ≈ 20 % du PIB (<a href="https://www.fratmat.info/article/224161/economie/pme/economie-le-secteur-prive-a-contribue-pour-758-a-la-croissance-du-pib-de-2016-a-2021-selon-le-ministre-adama-coulibaly">Fratmat</a>).</li>
+      </ul>
+    </div>
+    <div class="box">
+      <h3>Prix publics repérés</h3>
+      <ul class="tight">
+        <li>Tee-shirt DTF : 3 000 – 5 000 FCFA l'unité</li>
+        <li>Bâche : 3 000 – 8 000 FCFA le m² (une seule source, peu fiable)</li>
+        <li>500 flyers : 25 000 – 80 000 FCFA (indicatif)</li>
+        <li>Logo : 6 500 à 300 000 FCFA ; milieu de marché 30 000 – 50 000</li>
+        <li>Community management : 75 000 – 500 000 FCFA par mois</li>
+      </ul>
+    </div>
+  </div>
+  <h3>Le créneau</h3>
+  <p>Aucun acteur repéré à Bingerville ne réunit impression textile DTF, imprimés, visuels, photo/vidéo et forfaits saisonniers (rentrée, kermesse, Noël, mariages). Les agences locales (DEKON, IDesign) ne mentionnent pas de textile ; les imprimeurs de Riviera et d'Angré ne mentionnent ni vidéo ni réseaux sociaux.</p>
+  <p><b>Menace principale :</b> les imprimeurs de Riviera et d'Angré, à 15 – 20 minutes, qui n'auraient qu'à ajouter un community manager freelance.</p>
+  <p class="small">Réserve : les pages web n'ont pas pu être ouvertes en entier pendant la recherche. Les données viennent d'extraits de moteurs de recherche, aucun avis client n'a été trouvé et le créneau repose sur une absence d'information. À vérifier par un client mystère (test C du lancement). Détail et liens : <code>founder/competitors.md</code>.</p>
+</section>
+
+<section id="panel" aria-labelledby="h-panel">
+  <h2 id="h-panel">Le panel d'acheteurs simulés <span class="small">· founder-consumer</span></h2>
+  <p>20 acheteurs simulés, profils de Bingerville et d'Abidjan Est : gérants de TPE (8), organisateurs d'événements (5), responsables d'écoles (4), dirigeants de PME (3). Revenus en FCFA, paiement en espèces ou mobile money. Les mêmes 20 profils ont vu l'offre initiale, puis la Formule Sérénité.</p>
+  <div class="legend"><span style="--sw:var(--muted)">Offre initiale (0 achat)</span><span style="--sw:var(--orange)">Formule Sérénité (2 achats)</span></div>
+  <div class="bars" role="img" aria-label="Raisons de refus. Confiance : 8 puis 7. Habitude : 7 puis 6. Prix : 3 puis 3. Délai : 2 puis 2.">
+    <div class="bar"><span>Confiance</span><div class="track"><i class="a" style="width:40%"></i></div><span class="small">8</span></div>
+    <div class="bar"><span></span><div class="track"><i class="b" style="width:35%"></i></div><span class="small">7</span></div>
+    <div class="bar"><span>Habitude</span><div class="track"><i class="a" style="width:35%"></i></div><span class="small">7</span></div>
+    <div class="bar"><span></span><div class="track"><i class="b" style="width:30%"></i></div><span class="small">6</span></div>
+    <div class="bar"><span>Prix</span><div class="track"><i class="a" style="width:15%"></i></div><span class="small">3</span></div>
+    <div class="bar"><span></span><div class="track"><i class="b" style="width:15%"></i></div><span class="small">3</span></div>
+    <div class="bar"><span>Délai</span><div class="track"><i class="a" style="width:10%"></i></div><span class="small">2</span></div>
+    <div class="bar"><span></span><div class="track"><i class="b" style="width:10%"></i></div><span class="small">2</span></div>
+  </div>
+  <p class="small">Barres : nombre de refus sur 20 acheteurs.</p>
+  <blockquote>« J'ai déjà mon imprimeur au quartier, il me connaît et il me fait crédit quand ça ne va pas. En ce moment les affaires sont lentes, je ne vais pas sortir 60 000 d'un coup chez quelqu'un que je ne connais pas. »<cite>Acheteur simulé P004, gérante de commerce</cite></blockquote>
+  <blockquote>« Moi je m'y prends toujours à la dernière minute, alors un devis sur WhatsApp en 2 h, la maquette à valider avant de payer et l'express 48 h, ça me parle pour la kermesse ou un mariage qui arrive. »<cite>Acheteur simulé P001, organisatrice d'événements (achète)</cite></blockquote>
+  <p><b>Qui achète :</b> uniquement les organisateurs d'événements qui commandent à la dernière minute. <b>Ce qui ferait changer d'avis les autres</b>, presque à chaque fois : qu'une personne de confiance (commerçant, directeur d'école, groupe WhatsApp) confirme une livraison à l'heure, et voir de vraies réalisations.</p>
+</section>
+
+<section id="prix" aria-labelledby="h-prix">
+  <h2 id="h-prix">Les prix <span class="small">· founder-pricing</span></h2>
+  <p>Fourchette acceptable selon le panel (méthode Van Westendorp) : <b>30 000 à 75 000 FCFA</b> pour le Pack Visibilité. Réponses médianes : « bonne affaire » à 40 000, « ça devient cher » à 65 000 – 70 000. <b>Le prix n'est pas le blocage.</b> Baisser à 50 000 FCFA porterait le seuil à 27 commandes par mois.</p>
+  <div class="scroll"><table>
+    <thead><tr><th>Formule</th><th>Pour qui</th><th class="num">Prix</th></tr></thead>
+    <tbody>
+      <tr><td>Impression seule de votre fichier</td><td>Ceux qui font leurs visuels sur Canva</td><td class="num">tarif affiché</td></tr>
+      <tr class="hl"><td>Pack Visibilité (affiche + 500 flyers + bâche 2 m²)</td><td>Commerces</td><td class="num">65 000</td></tr>
+      <tr><td>Pack Événement Express 48 h</td><td>Paroisses, associations, mariages</td><td class="num">+25 %</td></tr>
+      <tr><td>Forfait École / Paroisse (rentrée, kermesse, fin d'année)</td><td>Écoles privées, paroisses</td><td class="num">sur devis, en 3 fois</td></tr>
+    </tbody>
+  </table></div>
+  <p>Offre d'ouverture réelle : pour les 10 premiers forfaits signés avant le 31 janvier 2027, la vidéo drone de la kermesse est offerte.</p>
+</section>
+
+<section id="offre" aria-labelledby="h-offre">
+  <h2 id="h-offre">L'offre : « Formule Sérénité » <span class="small">· founder-offer</span></h2>
+  <p><b>Le cœur :</b> vos supports prêts à la date de votre événement, sans mauvaise surprise.</p>
+  <ul class="tight">
+    <li>Maquette validée sur WhatsApp <b>avant tout paiement</b></li>
+    <li>Paiement <b>50 % à la commande, 50 % à la livraison</b>, par Wave, Orange Money ou MTN MoMo</li>
+    <li>Garantie délai écrite : <b>20 % remboursés en cas de retard</b> (coût estimé à 1 300 FCFA par commande)</li>
+    <li>Express 48 h, impression seule, fichiers archivés pour les commandes suivantes</li>
+    <li>Atelier ouvert : échantillons à toucher, montée de la colline du Collège Saint Cyrille</li>
+  </ul>
+  <p>Re-test : <b>0 → 2 acheteurs sur 20</b>, et un plafond de prix relevé d'environ 5 000 FCFA. Mais plusieurs acheteurs le disent : <i>« les 20 % ne sauvent pas un événement raté »</i>. Une offre ne remplace pas une recommandation.</p>
+</section>
+
+<section id="marketing" aria-labelledby="h-marketing">
+  <h2 id="h-marketing">Marketing <span class="small">· founder-marketing</span></h2>
+  <div class="callout"><p>Pour les paroisses, associations et écoles de Bingerville qui préparent un événement et ne peuvent pas se permettre un retard, Forlife Com' est l'atelier de proximité qui livre à la date promise, maquette validée avant de payer, contrairement à l'imprimeur d'Adjamé, qu'il faut aller voir et relancer.</p></div>
+  <div class="scroll"><table>
+    <thead><tr><th>Canal retenu</th><th>Pourquoi</th><th>Coût</th></tr></thead>
+    <tbody>
+      <tr><td>Parrainage et prescripteurs (curés, directeurs, associations)</td><td>Seul levier qui fait changer d'avis dans le panel</td><td>5 000 FCFA par client recommandé</td></tr>
+      <tr><td>WhatsApp Business et Statuts</td><td>Canal d'achat principal, devis en moins de 2 h</td><td>Gratuit</td></tr>
+      <tr><td>Prospection terrain avec kits d'échantillons</td><td>« Je veux toucher l'écusson »</td><td>125 000 FCFA</td></tr>
+    </tbody>
+  </table></div>
+  <p><b>À ne pas mettre en avant :</b> Meta Ads et le community management. La mention des « pubs Facebook » fait baisser la confiance de plusieurs acheteurs.</p>
+  <p><b>Campagne de 30 jours :</b> du lundi 2 novembre 2026 (J-14) au mercredi 2 décembre ; <b>lancement le lundi 16 novembre</b> avec une journée portes ouvertes. Dépense maximale pour gagner un client : 18 000 FCFA pour un commerce, 36 000 FCFA pour une école ou une paroisse.</p>
+  <details><summary>Les dix accroches</summary>
+    <ol class="tight">
+      <li>Votre bâche prête à la date promise, sinon 20 % remboursés.</li>
+      <li>Vous voyez la maquette avant de payer un seul franc.</li>
+      <li>Vous avez votre visuel Canva ? On l'imprime, tarif affiché.</li>
+      <li>Payez en deux fois par Wave, Orange Money ou MTN MoMo.</li>
+      <li>Express 48 h pour vos kermesses, mariages et fêtes de paroisse.</li>
+      <li>Passez toucher nos écussons et nos bâches à l'atelier.</li>
+      <li>Une bâche posée il y a un an, toujours éclatante : venez la voir (seulement si c'est vrai).</li>
+      <li>Vos écussons et vos logos archivés : la prochaine commande, c'est un message.</li>
+      <li>Recommandé par votre paroisse ? 5 000 FCFA offerts sur votre première commande.</li>
+      <li>Écoles : rentrée, kermesse et fin d'année dans un forfait payable en 3 fois.</li>
+    </ol>
+  </details>
+</section>
+
+<section id="marque" aria-labelledby="h-marque">
+  <h2 id="h-marque">La marque <span class="small">· founder-brand</span></h2>
+  <p><b>Garder le nom</b> et afficher « Forlife Com', l'atelier Forlife Imprim ». Nouvelle promesse : <b>« Prêt à la date promise. Vous validez avant de payer. »</b> Slogan proposé : <b>« Prêt pour votre grand jour. »</b></p>
+  <p><span class="pill bad">À corriger</span> Sur le site, le texte blanc des boutons orange (#EA7822) a un contraste de 2,91:1, sous le minimum WCAG AA. Passer le texte en noir, ou le fond en #A9520F.</p>
+  <p class="small">Marque à vérifier auprès de l'OAPI (classes 16, 25, 35, 40, 41), domaine en .ci auprès de NIC.CI.</p>
+</section>
+
+<section id="operations" aria-labelledby="h-operations">
+  <h2 id="h-operations">Opérations et démarches <span class="small">· founder-ops</span></h2>
+  <div class="two">
+    <div class="box">
+      <h3>À confirmer</h3>
+      <ul class="tight">
+        <li>RCCM et statut de Forlife Com' (marque ou entité à part) : <a href="https://www.cepici.gouv.ci">CEPICI</a></li>
+        <li>Régime fiscal et déclarations : <a href="https://e-impots.gouv.ci">e-impôts</a></li>
+        <li>Salariés à la <a href="https://www.cnps.ci">CNPS</a> ; SMIG à 75 000 FCFA</li>
+        <li>Drone près de l'aéroport : règles de l'<a href="https://www.anac.ci">ANAC</a></li>
+        <li>Accord écrit des parents pour les photos d'élèves</li>
+      </ul>
+    </div>
+    <div class="box">
+      <h3>Risques principaux</h3>
+      <ul class="tight">
+        <li>Pic d'août–septembre qui met la garantie délai en jeu</li>
+        <li>Rupture de film ou d'encre DTF en pleine saison</li>
+        <li>Coupures d'électricité (prévoir un onduleur)</li>
+        <li>Mois creux de novembre à mars, hors fêtes</li>
+        <li>Soldes impayés avec le paiement 50/50</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section id="lancement" aria-labelledby="h-lancement">
+  <h2 id="h-lancement">Le lancement <span class="small">· founder-launch</span></h2>
+  <div class="scroll"><table>
+    <thead><tr><th>Test réel</th><th>Ligne de réussite</th><th>Échéance</th></tr></thead>
+    <tbody>
+      <tr><td>A. Pilotes payants auprès de 10 paroisses ou associations</td><td>≥ 3 commandes payées</td><td>20 nov. 2026</td></tr>
+      <tr><td>B. Forfaits auprès de 8 écoles privées</td><td>≥ 2 forfaits signés avec acompte</td><td>29 janv. 2027</td></tr>
+      <tr><td>C. Client mystère chez 5 concurrents</td><td>Vrai prix du marché pour le pack</td><td>6 nov. 2026</td></tr>
+      <tr><td>D. Pack à 60 000 contre 65 000 FCFA</td><td>Écart de transformation &lt; 5 points</td><td>14 déc. 2026</td></tr>
+    </tbody>
+  </table></div>
+  <p><b>Chiffres à suivre chaque semaine :</b> commandes (objectif 4, alerte sous 2), taux de devis transformés (objectif 30 %), part des commandes recommandées (objectif 30 %), délai de réponse WhatsApp (moins de 2 h), dates tenues (100 %). Revues à J+7, J+14 et J+30 (16 décembre 2026).</p>
+</section>
+
+<section id="limites" aria-labelledby="h-limites">
+  <h2 id="h-limites">Limites de cette analyse</h2>
+  <ul class="tight">
+    <li>Le panel est composé d'<b>acheteurs simulés</b> (20, mode rapide). Il révèle des objections mais surestime les achats. Ses citations ne sont pas des témoignages.</li>
+    <li>Les chiffres reposent sur vos <b>fourchettes déclarées</b> (panier, volume, charges) et sur des <b>coûts estimés</b>. De vrais devis et la marge réelle de vos commandes les remplaceront.</li>
+    <li>La recherche sur la concurrence n'a pas pu ouvrir les pages web en entier : prix indicatifs, aucun avis client trouvé.</li>
+    <li>Ce rapport n'est pas un avis financier, juridique ou fiscal.</li>
+  </ul>
+</section>
+
+<footer>
+  Produit avec le pack founder-skill (MIT). Toutes les sections détaillées se trouvent dans le dossier <code>founder/</code> du dépôt : <code>business-plan.md</code>, <code>one-pager.md</code>, <code>cfo.md</code>, <code>competitors.md</code>, <code>panel/results.md</code>.
+</footer>
+</main>
+</div>
+</div>
+
+<script>
+(function(){
+  var data=[-261000,-224875,-188750,-116500,-44250,28000,100250,136375,172500,208625,244750,244750];
+  var W=640,H=240,padL=64,padR=8,padT=12,padB=28;
+  var max=300000,min=-300000;
+  var y=function(v){return padT+(max-v)/(max-min)*(H-padT-padB)};
+  var bw=(W-padL-padR)/data.length;
+  var s='<svg viewBox="0 0 '+W+' '+H+'" xmlns="http://www.w3.org/2000/svg" font-family="IBM Plex Mono, monospace" font-size="11">';
+  [-300000,-150000,0,150000,300000].forEach(function(t){
+    var yy=y(t).toFixed(1);
+    s+='<line x1="'+padL+'" x2="'+(W-padR)+'" y1="'+yy+'" y2="'+yy+'" stroke="var(--line)" stroke-width="'+(t===0?1.5:1)+'"/>';
+    s+='<text x="'+(padL-8)+'" y="'+yy+'" dy="4" text-anchor="end" fill="var(--muted)">'+(t===0?'0':(t/1000)+' k')+'</text>';
+  });
+  data.forEach(function(v,i){
+    var x=padL+i*bw+bw*0.18, w=bw*0.64, top=y(Math.max(v,0)), h=Math.abs(y(v)-y(0));
+    s+='<rect x="'+x.toFixed(1)+'" y="'+top.toFixed(1)+'" width="'+w.toFixed(1)+'" height="'+Math.max(h,1).toFixed(1)+'" rx="2" fill="'+(v<0?'var(--bad)':'var(--good)')+'"><title>Mois '+(i+1)+' : '+v.toLocaleString('fr-FR')+' FCFA</title></rect>';
+    s+='<text x="'+(x+w/2).toFixed(1)+'" y="'+(H-8)+'" text-anchor="middle" fill="var(--muted)">M'+(i+1)+'</text>';
+  });
+  s+='</svg>';
+  document.getElementById('profit-chart').innerHTML=s;
+})();
+</script>
