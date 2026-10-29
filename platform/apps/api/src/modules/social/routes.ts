@@ -1,4 +1,4 @@
-import type { FastifyInstance } from "fastify";
+import type { FastifyInstance, FastifyRequest } from "fastify";
 import { z } from "zod";
 import { SANDBOX_NETWORKS, TASK_CREDIT_COST, sandboxNetwork } from "@forlife/shared";
 import { loadConfig } from "../../config.js";
@@ -24,7 +24,18 @@ const wsIdParams = z.object({ workspaceId: z.string(), id: z.string() });
  * Le retour OAuth arrive sur l'interface (pas sur l'API) : c'est le navigateur connecté qui termine la liaison,
  * avec sa propre session. Un lien d'autorisation transmis à un tiers ne peut donc rien rattacher.
  */
-const redirectUri = (key: string) => `${loadConfig().APP_URL}/social/callback/${key}`;
+const redirectUri = (key: string, req: FastifyRequest) => `${appBase(req)}/social/callback/${key}`;
+
+/**
+ * Adresse de l'interface depuis laquelle l'utilisateur travaille (domaine officiel ou ancienne adresse web.app) :
+ * le retour OAuth revient au même endroit, avec la même session. Toute autre origine retombe sur APP_URL.
+ */
+export function appBase(req: FastifyRequest): string {
+  const cfg = loadConfig();
+  const origin = typeof req.headers.origin === "string" ? req.headers.origin.replace(/\/$/, "") : null;
+  const allowed = cfg.WEB_ORIGIN.split(",").map((o) => o.trim().replace(/\/$/, ""));
+  return origin && allowed.includes(origin) ? origin : cfg.APP_URL;
+}
 
 export async function socialRoutes(app: FastifyInstance) {
   app.get("/api/workspaces/:workspaceId/social/accounts", { preHandler: authenticate }, async (req) => {
@@ -49,7 +60,7 @@ export async function socialRoutes(app: FastifyInstance) {
     if (!adapter?.isConfigured()) throw badRequest("Ce connecteur n'est pas encore activé sur la plateforme");
     const state = randomToken(24);
     await prisma.oAuthState.create({ data: { stateHash: sha256(state), workspaceId, userId: ctx.userId, provider: connector, expiresAt: new Date(Date.now() + 10 * 60_000) } });
-    return { url: adapter.authorizeUrl(state, redirectUri(connector), { network }) };
+    return { url: adapter.authorizeUrl(state, redirectUri(connector, req), { network }) };
   });
 
   /**
@@ -70,7 +81,7 @@ export async function socialRoutes(app: FastifyInstance) {
     if (!adapter?.isConfigured()) throw badRequest("Connecteur indisponible");
     let accounts: ConnectedAccount[];
     try {
-      accounts = await adapter.exchange(body.code, redirectUri(body.connector));
+      accounts = await adapter.exchange(body.code, redirectUri(body.connector, req));
     } catch (e) {
       throw badRequest(e instanceof SocialError ? e.message : "La connexion a échoué");
     }

@@ -19,7 +19,7 @@ les comptes ajoutés comme testeurs peuvent se connecter.
 | 2 | Conditions d'utilisation | ✅ en ligne | `/conditions` |
 | 3 | Page d'instructions de suppression des données | ✅ en ligne | `/suppression-des-donnees` (FR + EN), aussi `/data-deletion` |
 | 4 | Icône de l'application | ✅ prête | [`assets/icone-1024.png`](assets/icone-1024.png), 512 et 192 px |
-| 5 | Domaine personnalisé actif | ⏳ en attente | `forlifecomai.ci` (statut « Pending » chez WiniHost) |
+| 5 | Domaine personnalisé actif | ✅ connecté | `forlifecomai.ci`, relié au site Firebase le 29/10 |
 | 6 | Adresse email professionnelle de contact | ⏳ à créer | ex. `contact@forlifecomai.ci` (après activation du domaine) |
 | 7 | Documents de l'entreprise | ⏳ à rassembler | RCCM, DFE / attestation fiscale, justificatif d'adresse au nom de Forlife Com |
 | 8 | Compte de démonstration pour les examinateurs | ⏳ à créer | voir § 3 |
@@ -31,21 +31,22 @@ appartient. Google exige même de prouver la propriété du domaine dans la Sear
 
 Une fois le domaine actif, je bascule l'application dessus et je mets à jour les adresses ci-dessous.
 
-## 2. Adresses à déclarer (valeurs actuelles)
+## 2. Adresses à déclarer (domaine officiel)
 
 | Usage | Adresse |
 |---|---|
-| Site / page d'accueil | `https://ai-growth-et-creative-os.web.app` |
-| Politique de confidentialité | `https://ai-growth-et-creative-os.web.app/confidentialite` |
-| Conditions d'utilisation | `https://ai-growth-et-creative-os.web.app/conditions` |
-| Instructions de suppression des données | `https://ai-growth-et-creative-os.web.app/suppression-des-donnees` |
-| Retour OAuth Meta | `https://ai-growth-et-creative-os.web.app/social/callback/meta` |
-| Retour OAuth TikTok | `https://ai-growth-et-creative-os.web.app/social/callback/tiktok` |
-| Retour OAuth Google | `https://ai-growth-et-creative-os.web.app/social/callback/youtube` |
-| Retour OAuth LinkedIn | `https://ai-growth-et-creative-os.web.app/social/callback/linkedin` |
+| Site / page d'accueil | `https://forlifecomai.ci` |
+| Politique de confidentialité | `https://forlifecomai.ci/confidentialite` |
+| Conditions d'utilisation | `https://forlifecomai.ci/conditions` |
+| Instructions de suppression des données | `https://forlifecomai.ci/suppression-des-donnees` |
+| Retour OAuth Meta | `https://forlifecomai.ci/social/callback/meta` |
+| Retour OAuth TikTok | `https://forlifecomai.ci/social/callback/tiktok` |
+| Retour OAuth Google | `https://forlifecomai.ci/social/callback/youtube` |
+| Retour OAuth LinkedIn | `https://forlifecomai.ci/social/callback/linkedin` |
 
-Après la bascule vers le domaine personnalisé, remplacez le début par `https://forlifecomai.ci`. Gardez aussi
-les anciennes adresses de retour quelques semaines, pour que les connexions déjà ouvertes aboutissent.
+L'ancienne adresse `https://ai-growth-et-creative-os.web.app` reste en service. Gardez aussi ses adresses de retour
+(`…web.app/social/callback/…`) déclarées chez chaque plateforme : un utilisateur qui passe par l'ancienne adresse
+revient sur l'ancienne.
 
 ## 3. Compte de démonstration pour les examinateurs
 

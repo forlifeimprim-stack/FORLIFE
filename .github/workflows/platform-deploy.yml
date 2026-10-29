@@ -111,7 +111,10 @@ jobs:
           SITE="${FIREBASE_SITE:-$GCP_PROJECT_ID}"
           {
             echo "PROJECT=$GCP_PROJECT_ID"; echo "REGION=$REGION"; echo "SITE=$SITE"
-            echo "APP_URL=https://$SITE.web.app"
+            # Domaine officiel s'il est défini ; l'adresse web.app reste une origine acceptée (anciens liens).
+            echo "APP_URL=https://${PUBLIC_DOMAIN:-$SITE.web.app}"
+            echo "WEB_ORIGINS=https://${PUBLIC_DOMAIN:-$SITE.web.app}${PUBLIC_DOMAIN:+,https://$SITE.web.app}"
+            echo "HEALTH_URL=https://$SITE.web.app"
             echo "IMAGE=$REGION-docker.pkg.dev/$GCP_PROJECT_ID/forlife/forlife-api:${GITHUB_SHA::12}"
             echo "WIF=projects/$GCP_PROJECT_NUMBER/locations/global/workloadIdentityPools/github/providers/github-actions"
             echo "DEPLOY_SA=github-deploy@$GCP_PROJECT_ID.iam.gserviceaccount.com"
@@ -168,7 +171,7 @@ jobs:
           if [ -n "$OPTIONAL_SECRETS" ]; then
             for pair in ${OPTIONAL_SECRETS//,/ }; do SECRETS="$SECRETS,${pair%%=*}=${pair#*=}:latest"; done
           fi
-          ENVV="^|^NODE_ENV=production|STORAGE_DRIVER=gcs|GCS_BUCKET=$GCS_BUCKET|APP_URL=$APP_URL|API_PUBLIC_URL=$APP_URL|WEB_ORIGIN=$APP_URL|AI_PROVIDERS=$AI_PROVIDERS|EMAIL_DRIVER=$EMAIL_DRIVER|EMAIL_FROM=$EMAIL_FROM|PAYMENT_SANDBOX_ENABLED=$PAYMENT_SANDBOX_ENABLED|SOCIAL_SANDBOX_ENABLED=$SOCIAL_SANDBOX_ENABLED|RUN_WORKER_INLINE=true"
+          ENVV="^|^NODE_ENV=production|STORAGE_DRIVER=gcs|GCS_BUCKET=$GCS_BUCKET|APP_URL=$APP_URL|API_PUBLIC_URL=$APP_URL|WEB_ORIGIN=$WEB_ORIGINS|AI_PROVIDERS=$AI_PROVIDERS|EMAIL_DRIVER=$EMAIL_DRIVER|EMAIL_FROM=$EMAIL_FROM|PAYMENT_SANDBOX_ENABLED=$PAYMENT_SANDBOX_ENABLED|SOCIAL_SANDBOX_ENABLED=$SOCIAL_SANDBOX_ENABLED|RUN_WORKER_INLINE=true"
           [ -n "$EXTRA_ENV" ] && ENVV="$ENVV|$EXTRA_ENV"
           if ! gcloud run deploy forlife-api --project "$PROJECT" --region "$REGION" --image "$IMAGE" --platform managed \
             --service-account "$API_SA" --allow-unauthenticated \
@@ -196,7 +199,7 @@ jobs:
       - name: Contrôle de santé
         run: |
           for i in $(seq 1 10); do
-            if curl -fsS "$APP_URL/api/health" | grep -q '"status":"ok"'; then echo "✅ $APP_URL en ligne (base de données connectée)"; exit 0; fi
+            if curl -fsS "$HEALTH_URL/api/health" | grep -q '"status":"ok"'; then echo "✅ $APP_URL en ligne (base de données connectée)"; exit 0; fi
             sleep 6
           done
-          echo "::error::$APP_URL/api/health ne répond pas"; exit 1
+          echo "::error::$HEALTH_URL/api/health ne répond pas"; exit 1

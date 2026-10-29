@@ -12,9 +12,9 @@ compte, et les vidéos validées arrivent dans ses brouillons TikTok.
 | App icon | [`assets/icone-1024.png`](assets/icone-1024.png) (TikTok demande au moins 512 × 512 : [`icone-512.png`](assets/icone-512.png)) |
 | Category | Business / Marketing |
 | Description | texte ci-dessous |
-| Terms of Service URL | `https://ai-growth-et-creative-os.web.app/conditions` |
-| Privacy Policy URL | `https://ai-growth-et-creative-os.web.app/confidentialite` |
-| Platforms | Web — URL : `https://ai-growth-et-creative-os.web.app` |
+| Terms of Service URL | `https://forlifecomai.ci/conditions` |
+| Privacy Policy URL | `https://forlifecomai.ci/confidentialite` |
+| Platforms | Web — URL : `https://forlifecomai.ci` |
 
 **Description (120 caractères max, en anglais)** :
 > Forlife Com helps small businesses plan, create, approve and publish marketing videos and posts, and track results.
@@ -23,7 +23,7 @@ compte, et les vidéos validées arrivent dans ses brouillons TikTok.
 
 | Produit | Réglage |
 |---|---|
-| **Login Kit** (Web) | Redirect URI : `https://ai-growth-et-creative-os.web.app/social/callback/tiktok` |
+| **Login Kit** (Web) | Redirect URI : `https://forlifecomai.ci/social/callback/tiktok` |
 | **Content Posting API** | Activer **« Upload »** (envoi vers les brouillons, `video.upload`). Laisser « Direct Post » **désactivé** : notre application envoie les vidéos dans la boîte de réception TikTok, l'utilisateur les publie lui-même. |
 
 Autorisations (onglet « Scopes ») : `user.info.basic`, `video.upload`, `video.list`.

@@ -24,16 +24,16 @@ App → **Paramètres → Général** :
 | Champ | Valeur |
 |---|---|
 | Nom d'affichage | Forlife Com |
-| Domaines de l'app | `ai-growth-et-creative-os.web.app` (puis `forlifecomai.ci`) |
+| Domaines de l'app | `forlifecomai.ci` et `ai-growth-et-creative-os.web.app` |
 | Email de contact | votre email professionnel |
-| URL de la politique de confidentialité | `https://ai-growth-et-creative-os.web.app/confidentialite` |
-| URL des conditions de service | `https://ai-growth-et-creative-os.web.app/conditions` |
-| Suppression des données utilisateur | **URL des instructions** : `https://ai-growth-et-creative-os.web.app/suppression-des-donnees` |
+| URL de la politique de confidentialité | `https://forlifecomai.ci/confidentialite` |
+| URL des conditions de service | `https://forlifecomai.ci/conditions` |
+| Suppression des données utilisateur | **URL des instructions** : `https://forlifecomai.ci/suppression-des-donnees` |
 | Icône (1024 × 1024) | [`assets/icone-1024.png`](assets/icone-1024.png) |
 | Catégorie | Business and Pages (Entreprise et Pages) |
 
 **Facebook Login → Paramètres** :
-- URI de redirection OAuth valides : `https://ai-growth-et-creative-os.web.app/social/callback/meta`
+- URI de redirection OAuth valides : `https://forlifecomai.ci/social/callback/meta`
 - Connexion OAuth Web : Oui · Connexion OAuth cliente : Oui · Mode strict pour les URI : Oui.
 
 > Si le tableau de bord vous impose « Facebook Login for Business » avec un **ID de configuration**
@@ -116,7 +116,7 @@ l'attente au montage.
 
 ## Étape 5 — Instructions de test pour l'examinateur (champ « Test instructions »)
 
-> 1. Go to https://ai-growth-et-creative-os.web.app and log in with the test account provided below.
+> 1. Go to https://forlifecomai.ci and log in with the test account provided below.
 > 2. Open "Social Hub" in the left menu and click "Connecter" on the Facebook / Instagram tile. Log in with a
 >    Facebook test user that manages a test Page linked to an Instagram professional account.
 > 3. Select the Page and Instagram account, then click "Connecter".

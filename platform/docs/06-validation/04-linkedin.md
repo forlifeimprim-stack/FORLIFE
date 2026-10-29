@@ -9,7 +9,7 @@ service : tout membre LinkedIn peut déjà connecter son profil et y publier dep
 n'est nécessaire.
 
 À vérifier dans l'onglet **Auth** :
-- Redirect URL : `https://ai-growth-et-creative-os.web.app/social/callback/linkedin`
+- Redirect URL : `https://forlifecomai.ci/social/callback/linkedin`
 - Scopes affichés : `openid`, `profile`, `w_member_social`.
 
 Dans l'onglet **Settings** : logo ([`assets/icone-512.png`](assets/icone-512.png)), URL de la politique de

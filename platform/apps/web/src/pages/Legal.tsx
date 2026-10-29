@@ -2,7 +2,7 @@ import type { ReactNode } from "react";
 import { Link } from "react-router-dom";
 import { LogoMark } from "../components/ui";
 
-const UPDATED = "17 octobre 2026";
+const UPDATED = "29 octobre 2026";
 const CONTACT = "WhatsApp et appels : +225 07 79 59 05 62 · +225 05 85 80 18 56";
 
 function LegalLayout({ title, children }: { title: string; children: ReactNode }) {
@@ -31,7 +31,7 @@ export function PrivacyPage() {
   return (
     <LegalLayout title="Politique de confidentialité">
       <p>
-        Forlife Com (« nous ») édite la plateforme <b>Forlife Com — AI Growth &amp; Creative OS</b>, accessible sur ai-growth-et-creative-os.web.app, qui aide les PME à
+        Forlife Com (« nous ») édite la plateforme <b>Forlife Com — AI Growth &amp; Creative OS</b>, accessible sur forlifecomai.ci (et ai-growth-et-creative-os.web.app), qui aide les PME à
         planifier, créer, publier et mesurer leurs contenus marketing et à suivre leurs prospects. Forlife Com est basée à Bingerville, Côte d'Ivoire. Cette politique explique
         quelles données nous traitons, pourquoi, et comment exercer vos droits.
       </p>
@@ -164,7 +164,7 @@ export function TermsPage() {
   return (
     <LegalLayout title="Conditions d'utilisation">
       <p>
-        Ces conditions régissent l'utilisation de la plateforme <b>Forlife Com — AI Growth &amp; Creative OS</b> (ai-growth-et-creative-os.web.app), éditée par Forlife Com,
+        Ces conditions régissent l'utilisation de la plateforme <b>Forlife Com — AI Growth &amp; Creative OS</b> (forlifecomai.ci), éditée par Forlife Com,
         Bingerville, Côte d'Ivoire. En créant un compte, vous les acceptez.
       </p>
 

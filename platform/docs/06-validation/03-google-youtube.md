@@ -31,9 +31,9 @@ Le compte Google qui vérifie le domaine doit être **propriétaire ou éditeur 
 | App name | Forlife Com |
 | User support email | votre email professionnel |
 | App logo | [`assets/icone-1024.png`](assets/icone-1024.png) (Google demande 120 × 120 : [`icone-192.png`](assets/icone-192.png) est accepté et réduit) |
-| Application home page | `https://ai-growth-et-creative-os.web.app` |
-| Privacy policy | `https://ai-growth-et-creative-os.web.app/confidentialite` |
-| Terms of service | `https://ai-growth-et-creative-os.web.app/conditions` |
+| Application home page | `https://forlifecomai.ci` |
+| Privacy policy | `https://forlifecomai.ci/confidentialite` |
+| Terms of service | `https://forlifecomai.ci/conditions` |
 | Authorized domains | `web.app` n'est pas accepté seul : utilisez `forlifecomai.ci` dès qu'il est actif |
 | Developer contact | votre email professionnel |
 | Scopes | `.../auth/youtube.upload`, `.../auth/youtube.readonly` |
