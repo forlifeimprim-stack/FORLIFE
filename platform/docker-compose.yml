@@ -1,0 +1,14 @@
+# Services d'infrastructure pour le développement local.
+services:
+  postgres:
+    image: postgres:16
+    environment:
+      POSTGRES_USER: forlife
+      POSTGRES_PASSWORD: forlife
+      POSTGRES_DB: forlife_com
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+volumes:
+  pgdata:

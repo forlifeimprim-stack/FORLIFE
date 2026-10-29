@@ -1,0 +1,205 @@
+name: Déploiement plateforme (Cloud Run + Firebase Hosting)
+
+# Déploiement automatique à chaque envoi sur main ou sur la branche de développement, dès que
+# platform/deploy/production.env est renseigné (GCP_PROJECT_ID). Aucune clé GCP stockée dans GitHub :
+# authentification par Workload Identity Federation, limitée à ce dépôt et à ces branches.
+on:
+  push:
+    branches: [main, claude/app-development-sbl2ff]
+    paths: ["platform/**", ".github/workflows/platform-deploy.yml"]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: platform-deploy
+  cancel-in-progress: false
+
+jobs:
+  config:
+    runs-on: ubuntu-latest
+    outputs:
+      enabled: ${{ steps.cfg.outputs.enabled }}
+    steps:
+      - uses: actions/checkout@v4
+      - id: cfg
+        run: |
+          set -a; . platform/deploy/production.env; set +a
+          if [ -n "$GCP_PROJECT_ID" ]; then echo "enabled=true" >> "$GITHUB_OUTPUT"; else echo "enabled=false" >> "$GITHUB_OUTPUT"; echo "::notice::Déploiement inactif : platform/deploy/production.env n'est pas encore renseigné."; fi
+
+  # Tests complets avant toute mise en ligne (même suite que la CI).
+  test:
+    needs: config
+    if: needs.config.outputs.enabled == 'true'
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: platform
+    services:
+      postgres:
+        image: postgres:16
+        env:
+          POSTGRES_USER: forlife
+          POSTGRES_PASSWORD: forlife
+          POSTGRES_DB: forlife_com_test
+        ports: ["5432:5432"]
+        options: >-
+          --health-cmd "pg_isready -U forlife -d forlife_com_test"
+          --health-interval 5s --health-timeout 5s --health-retries 10
+    env:
+      TEST_DATABASE_URL: postgresql://forlife:forlife@localhost:5432/forlife_com_test
+      DATABASE_URL: postgresql://forlife:forlife@localhost:5432/forlife_com_test
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: npm
+          cache-dependency-path: platform/package-lock.json
+      - run: sudo apt-get update -qq && sudo apt-get install -y -qq ffmpeg
+      - run: npm ci
+      - run: npm run typecheck
+      - run: npm test
+
+  # Construction SANS aucun identifiant cloud (les scripts d'installation npm n'ont accès à rien).
+  build:
+    needs: test
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: npm
+          cache-dependency-path: platform/package-lock.json
+      - name: Interface web
+        working-directory: platform
+        run: npm ci && npm run build:shared && npm run build -w @forlife/web
+      - uses: actions/upload-artifact@v4
+        with:
+          name: web-dist
+          path: platform/apps/web/dist
+          retention-days: 3
+      - name: Image Docker de l'API
+        run: docker build -t forlife-api:${{ github.sha }} platform && docker save forlife-api:${{ github.sha }} | gzip > api-image.tar.gz
+      - uses: actions/upload-artifact@v4
+        with:
+          name: api-image
+          path: api-image.tar.gz
+          retention-days: 3
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment: production
+    permissions:
+      contents: read
+      id-token: write
+    steps:
+      - uses: actions/checkout@v4
+      - name: Configuration
+        run: |
+          # Une valeur contenant « | » sans guillemets serait lue comme un tube par le shell (variable perdue).
+          if grep -nE '^[A-Z_]+=[^"'"'"'].*\|' platform/deploy/production.env; then
+            echo "::error::Valeur contenant « | » sans guillemets dans platform/deploy/production.env"; exit 1
+          fi
+          set -a; . platform/deploy/production.env; set +a
+          for v in GCP_PROJECT_ID GCP_PROJECT_NUMBER REGION CLOUDSQL_INSTANCE GCS_BUCKET; do
+            [ -n "${!v}" ] || { echo "::error::$v manquant dans platform/deploy/production.env"; exit 1; }
+          done
+          SITE="${FIREBASE_SITE:-$GCP_PROJECT_ID}"
+          {
+            echo "PROJECT=$GCP_PROJECT_ID"; echo "REGION=$REGION"; echo "SITE=$SITE"
+            # Domaine officiel s'il est défini ; l'adresse web.app reste une origine acceptée (anciens liens).
+            echo "APP_URL=https://${PUBLIC_DOMAIN:-$SITE.web.app}"
+            echo "WEB_ORIGINS=https://${PUBLIC_DOMAIN:-$SITE.web.app}${PUBLIC_DOMAIN:+,https://$SITE.web.app}"
+            echo "HEALTH_URL=https://$SITE.web.app"
+            echo "IMAGE=$REGION-docker.pkg.dev/$GCP_PROJECT_ID/forlife/forlife-api:${GITHUB_SHA::12}"
+            echo "WIF=projects/$GCP_PROJECT_NUMBER/locations/global/workloadIdentityPools/github/providers/github-actions"
+            echo "DEPLOY_SA=github-deploy@$GCP_PROJECT_ID.iam.gserviceaccount.com"
+            echo "API_SA=forlife-api@$GCP_PROJECT_ID.iam.gserviceaccount.com"
+            echo "MIGRATE_SA=forlife-migrate@$GCP_PROJECT_ID.iam.gserviceaccount.com"
+          } >> "$GITHUB_ENV"
+
+      - uses: actions/download-artifact@v4
+        with:
+          name: api-image
+      - uses: actions/download-artifact@v4
+        with:
+          name: web-dist
+          path: platform/apps/web/dist
+
+      # Identifiants éphémères (1 h), uniquement pour ce job et à partir d'ici.
+      - name: Authentification Google Cloud (sans clé)
+        uses: google-github-actions/auth@v2
+        with:
+          workload_identity_provider: ${{ env.WIF }}
+          service_account: ${{ env.DEPLOY_SA }}
+      - uses: google-github-actions/setup-gcloud@v2
+
+      - name: Publication de l'image
+        run: |
+          gcloud auth configure-docker "$REGION-docker.pkg.dev" --quiet
+          docker load < api-image.tar.gz
+          docker tag "forlife-api:$GITHUB_SHA" "$IMAGE"
+          docker push "$IMAGE"
+
+      # Compte de service dédié (seul à lire les identifiants du propriétaire) : migrations, puis création ou
+      # mise en conformité du compte applicatif « forlife_app » et de ses droits restreints (src/ops/db-release.ts).
+      - name: Migrations (compte propriétaire, job séparé)
+        run: |
+          set -a; . platform/deploy/production.env; set +a
+          gcloud run jobs deploy forlife-migrate --project "$PROJECT" --region "$REGION" --image "$IMAGE" \
+            --service-account "$MIGRATE_SA" --set-cloudsql-instances "$CLOUDSQL_INSTANCE" \
+            --set-secrets DATABASE_URL=forlife-database-migrator-url:latest,APP_DATABASE_URL=forlife-database-url:latest \
+            --set-env-vars CHECKPOINT_DISABLE=1 \
+            --command sh --args="-c,npx prisma migrate deploy && node dist/ops/db-release.js" \
+            --max-retries 0 --task-timeout 600 --quiet
+          if ! gcloud run jobs execute forlife-migrate --project "$PROJECT" --region "$REGION" --wait; then
+            echo "::group::Journal du job de migration"
+            gcloud logging read 'resource.type="cloud_run_job" AND resource.labels.job_name="forlife-migrate"' \
+              --project "$PROJECT" --freshness 30m --limit 60 --format 'value(textPayload)' | tac || true
+            echo "::endgroup::"
+            echo "::error::Le job de migration a échoué (journal ci-dessus)"; exit 1
+          fi
+
+      - name: Déploiement Cloud Run (compte applicatif restreint)
+        run: |
+          set -a; . platform/deploy/production.env; set +a
+          SECRETS="DATABASE_URL=forlife-database-url:latest,JWT_SECRET=forlife-jwt-secret:latest,ENCRYPTION_KEY=forlife-encryption-key:latest,PLATFORM_ADMIN_EMAILS=forlife-admin-emails:latest,ADMIN_BOOTSTRAP_TOKEN=forlife-admin-bootstrap:latest"
+          if [ -n "$OPTIONAL_SECRETS" ]; then
+            for pair in ${OPTIONAL_SECRETS//,/ }; do SECRETS="$SECRETS,${pair%%=*}=${pair#*=}:latest"; done
+          fi
+          ENVV="^|^NODE_ENV=production|STORAGE_DRIVER=gcs|GCS_BUCKET=$GCS_BUCKET|APP_URL=$APP_URL|API_PUBLIC_URL=$APP_URL|WEB_ORIGIN=$WEB_ORIGINS|AI_PROVIDERS=$AI_PROVIDERS|EMAIL_DRIVER=$EMAIL_DRIVER|EMAIL_FROM=$EMAIL_FROM|PAYMENT_SANDBOX_ENABLED=$PAYMENT_SANDBOX_ENABLED|SOCIAL_SANDBOX_ENABLED=$SOCIAL_SANDBOX_ENABLED|RUN_WORKER_INLINE=true"
+          [ -n "$EXTRA_ENV" ] && ENVV="$ENVV|$EXTRA_ENV"
+          if ! gcloud run deploy forlife-api --project "$PROJECT" --region "$REGION" --image "$IMAGE" --platform managed \
+            --service-account "$API_SA" --allow-unauthenticated \
+            --cpu 2 --memory 2Gi --timeout 300 --concurrency 40 \
+            --min-instances 1 --max-instances 4 --no-cpu-throttling \
+            --add-cloudsql-instances "$CLOUDSQL_INSTANCE" \
+            --set-env-vars "$ENVV" --set-secrets "$SECRETS" --quiet; then
+            # Journal du démarrage de la nouvelle révision uniquement (aucun trafic utilisateur).
+            REV="$(gcloud run services describe forlife-api --project "$PROJECT" --region "$REGION" --format 'value(status.latestCreatedRevisionName)' 2>/dev/null || true)"
+            if [ -n "$REV" ]; then
+              echo "::group::Démarrage de la révision $REV"
+              gcloud logging read "resource.type=\"cloud_run_revision\" AND resource.labels.revision_name=\"$REV\"" \
+                --project "$PROJECT" --freshness 30m --limit 40 --format 'value(textPayload,jsonPayload.msg,jsonPayload.err.message)' | tac || true
+              echo "::endgroup::"
+            fi
+            echo "::error::Le déploiement Cloud Run a échoué"; exit 1
+          fi
+
+      - name: Firebase Hosting
+        working-directory: platform
+        run: |
+          printf '{"projects":{"default":"%s"},"targets":{"%s":{"hosting":{"app":["%s"]}}}}' "$PROJECT" "$PROJECT" "$SITE" > .firebaserc
+          npx --yes firebase-tools@13.35.1 deploy --only hosting:app --project "$PROJECT" --non-interactive
+
+      - name: Contrôle de santé
+        run: |
+          for i in $(seq 1 10); do
+            if curl -fsS "$HEALTH_URL/api/health" | grep -q '"status":"ok"'; then echo "✅ $APP_URL en ligne (base de données connectée)"; exit 0; fi
+            sleep 6
+          done
+          echo "::error::$HEALTH_URL/api/health ne répond pas"; exit 1
