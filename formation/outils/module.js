@@ -96,7 +96,7 @@ function construireModule(m) {
   if (m.quiz) {
     contenu.push(titre2('📝  Mini-quiz : ai-je bien compris ?'));
     contenu.push(...etapes(m.quiz));
-    contenu.push(p('*Les corrigés de tous les exercices et des mini-quiz sont en annexe A, à la fin du livre.*', { run: { color: C.gris, size: 20 } }));
+    contenu.push(p('*Vérifiez vos réponses avec votre formateur : les corrigés figurent dans le manuel du formateur.*', { run: { color: C.gris, size: 20 } }));
   }
   return {
     num: m.num, titre: m.titre, contenu,

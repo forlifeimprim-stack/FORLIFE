@@ -198,6 +198,22 @@ def composer(tome):
 
     niv = police('GeistMono-Bold.ttf', 40)
     d.text((MARGE * SS, 420 * SS), ' '.join(tome['niveau']).replace('   ', '     '), font=niv, fill=ORANGE)
+    if tome.get('edition'):
+        ed = police('GeistMono-Bold.ttf', 32)
+        texte_ed = tome['edition']
+        w_ed = d.textlength(texte_ed, font=ed)
+        px, py = 30 * SS, 18 * SS
+        x1 = (L - MARGE) * SS
+        x0 = x1 - w_ed - 2 * px
+        y0 = 404 * SS
+        y1 = y0 + 32 * SS + 2 * py
+        formateur = 'FORMATEUR' in texte_ed
+        if formateur:
+            d.rounded_rectangle([x0, y0, x1, y1], radius=(y1 - y0) // 2, fill=VERT if tome['n'] != 2 else OR)
+            d.text((x0 + px, y0 + py - 4 * SS), texte_ed, font=ed, fill=(255, 255, 255) if tome['n'] != 2 else INDIGO)
+        else:
+            d.rounded_rectangle([x0, y0, x1, y1], radius=(y1 - y0) // 2, outline=encre, width=3 * SS)
+            d.text((x0 + px, y0 + py - 4 * SS), texte_ed, font=ed, fill=encre)
     grand = police('BricolageGrotesque-Bold.ttf', 236)
     y = 500
     for ligne in tome['titre']:
@@ -212,7 +228,7 @@ def composer(tome):
     auteur = police('InstrumentSans-Bold.ttf', 50)
     d.text((MARGE * SS, (pied + 46) * SS), 'Kouadio Koffi Elisée', font=auteur, fill=encre)
     petit = police('GeistMono-Regular.ttf', 28)
-    d.text((MARGE * SS, (pied + 118) * SS), 'Manuel de formation  ·  situations de vie, exercices, cas pratiques', font=petit, fill=encre)
+    d.text((MARGE * SS, (pied + 118) * SS), 'Fiches pédagogiques  ·  déroulés minutés  ·  corrigés' if 'FORMATEUR' in tome.get('edition', '') else 'Situations de vie  ·  exercices  ·  cas pratiques', font=petit, fill=encre)
     marque = police('BricolageGrotesque-Bold.ttf', 64)
     w = d.textlength('FOR LIFE', font=marque)
     d.text(((L - MARGE) * SS - w, (pied + 40) * SS), 'FOR LIFE', font=marque, fill=ORANGE)
@@ -222,11 +238,10 @@ def composer(tome):
 
 
 if __name__ == '__main__':
-    pages = []
+    # Deux éditions par tome : le manuel de l'apprenant et le manuel du formateur.
     for tome in TOMES:
-        im = composer(tome)
-        chemin = ICI / f'Couverture_Tome{tome["n"]}.png'
-        im.save(chemin, dpi=(300, 300))
-        im.convert('RGB').save(ICI / f'Couverture_Tome{tome["n"]}.pdf', resolution=300)
-        pages.append(im)
-        print('Écrit :', chemin)
+        for edition, mention in (('Apprenant', 'MANUEL DE L\'APPRENANT'), ('Formateur', 'MANUEL DU FORMATEUR')):
+            im = composer(dict(tome, edition=mention))
+            chemin = ICI / f'Couverture_Tome{tome["n"]}_{edition}.png'
+            im.save(chemin, dpi=(300, 300))
+            print('Écrit :', chemin)

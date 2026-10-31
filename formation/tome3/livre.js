@@ -60,7 +60,9 @@ const annexeD = [
 ];
 
 assembler({
-  num: 3, dossier: __dirname, titrePreface: 'du lecteur à l\'auteur',
+  num: 3, dossier: __dirname, titreTome: 'Créer avec l\'IA', sousTitreTome: 'Le vibe coding, de l\'idée à l\'application en ligne', niveau: 'Niveau expert',
+  public: 'Personnes à l\'aise avec l\'outil informatique qui veulent créer leurs propres applications web avec l\'intelligence artificielle, pour leur activité ou pour en faire un métier.',
+  prerequisTome: 'Les acquis des Tomes 1 et 2, en particulier la sécurité des comptes, le travail en ligne et l\'usage raisonné de l\'IA. Un compte e-mail dédié et une carte ou un moyen de paiement pour certains services.', titrePreface: 'du lecteur à l\'auteur',
   enTete: 'FOR LIFE · Tome 3 — Créer avec l\'IA',
   couverture: path.join(__dirname, '..', 'couvertures', 'Couverture_Tome3.png'),
   liminaires: require('./liminaires'), projet: require('./projet_final'),

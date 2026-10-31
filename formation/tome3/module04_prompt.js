@@ -73,7 +73,7 @@ module.exports = {
       ['Revenir en arrière', '« Annule la dernière modification et reviens à la version où [ce qui marchait]. »'],
     ], [1.4, 3.6]] },
     { h2: 'Étape 4 : tenir sa bibliothèque de prompts' },
-    'Dans votre journal de bord, gardez les prompts qui ont **bien marché**, classés par usage (premier prompt, retouche visuelle, ajout de données, correction d\'erreur, sécurité). Vous les adapterez d\'un projet à l\'autre. L\'annexe C de ce livre vous en offre une première série.',
+    'Dans votre journal de bord, gardez les prompts qui ont **bien marché**, classés par usage (premier prompt, retouche visuelle, ajout de données, correction d\'erreur, sécurité). Vous les adapterez d\'un projet à l\'autre. L\'annexe « La bibliothèque de prompts », à la fin de ce livre, vous en offre une première série.',
     { h2: 'Étape 5 : les instructions permanentes du projet' },
     'Beaucoup d\'outils permettent d\'enregistrer des **instructions de projet** (appelées « connaissances », « règles » ou « instructions personnalisées ») que l\'IA relit à chaque demande. Mettez-y ce qui ne change pas :',
     { encadre: { style: 'bleu', contenu: [

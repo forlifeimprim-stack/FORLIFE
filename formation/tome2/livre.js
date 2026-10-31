@@ -73,7 +73,9 @@ const annexeD = [
 ];
 
 assembler({
-  num: 2, dossier: __dirname, titrePreface: 'de l\'usager au professionnel',
+  num: 2, dossier: __dirname, titreTome: 'Maîtriser l\'outil', sousTitreTome: 'L\'informatique au service de mon travail', niveau: 'Niveau intermédiaire',
+  public: 'Personnes qui utilisent déjà un ordinateur au quotidien : étudiants, secrétaires, agents administratifs, entrepreneurs, responsables d\'associations.',
+  prerequisTome: 'Les acquis du Tome 1 : fichiers et dossiers, Word et Excel de base, Internet, e-mail, sécurité de base. Vérifiez-les avec le test de positionnement.', titrePreface: 'de l\'usager au professionnel',
   enTete: 'FOR LIFE · Tome 2 — Maîtriser l\'outil',
   couverture: path.join(__dirname, '..', 'couvertures', 'Couverture_Tome2.png'),
   liminaires: require('./liminaires'), projet: require('./projet_final'),

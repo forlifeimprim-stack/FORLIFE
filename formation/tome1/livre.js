@@ -62,7 +62,9 @@ const annexeD = [
 ];
 
 assembler({
-  num: 1, dossier: __dirname, titrePreface: 'le nouvel alphabet',
+  num: 1, dossier: __dirname, titreTome: 'Apprivoiser l\'ordinateur', sousTitreTome: 'Mes premiers pas sans peur', niveau: 'Niveau débutant',
+  public: 'Adultes et jeunes qui n\'ont jamais, ou presque, utilisé un ordinateur : commerçants, parents, retraités, artisans, élèves. Aucun niveau scolaire minimum, mais savoir lire des phrases simples aide beaucoup.',
+  prerequisTome: 'Aucun prérequis informatique. Un téléphone portable suffit comme point de départ.', titrePreface: 'le nouvel alphabet',
   enTete: 'FOR LIFE · Tome 1 — Apprivoiser l\'ordinateur',
   couverture: path.join(__dirname, '..', 'couvertures', 'Couverture_Tome1.png'),
   liminaires: require('./liminaires'), projet: require('./projet_final'),

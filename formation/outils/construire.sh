@@ -1,36 +1,39 @@
 #!/usr/bin/env bash
-# Construit un tome en deux passes (la seconde remplit les numéros de page du sommaire), puis le PDF.
-# Usage : bash formation/outils/construire.sh 1
+# Construit les deux PDF d'un tome : le manuel de l'apprenant et le manuel du formateur.
+# Deux passes par édition : la seconde remplit les numéros de page du sommaire.
+# Le Word n'est qu'un intermédiaire temporaire : seuls les PDF sont livrés.
+# Usage : bash formation/outils/construire.sh 1   (ou 2, ou 3 ; plusieurs numéros possibles)
 set -euo pipefail
 cd "$(dirname "$0")/.."
-T="$1"
-TMP=$(mktemp -d)
-node "tome$T/livre.js" "$TMP/pages.json" >/dev/null
-NOM=$(ls livrables | grep "^FOR_LIFE_Tome${T}_.*\.docx$" | head -1)
-soffice --headless --convert-to pdf --outdir livrables "livrables/$NOM" >/dev/null 2>&1
-python3 - "livrables/${NOM%.docx}.pdf" "$TMP/pages.json" <<'PY'
+declare -A NOMS=([1]="Apprivoiser_l_ordinateur" [2]="Maitriser_l_outil" [3]="Creer_avec_l_IA")
+mkdir -p livrables
+for T in "$@"; do
+  for EDITION in apprenant formateur; do
+    TMP=$(mktemp -d)
+    SUFFIXE=$([ "$EDITION" = apprenant ] && echo "Apprenant" || echo "Formateur")
+    BASE="FOR_LIFE_Tome${T}_${NOMS[$T]}_${SUFFIXE}"
+    DOCX="$TMP/$BASE.docx"
+    node "tome$T/livre.js" "$TMP/pages.json" "$EDITION" "$DOCX" >/dev/null
+    soffice --headless --convert-to pdf --outdir "$TMP" "$DOCX" >/dev/null 2>&1
+    python3 - "$TMP/$BASE.pdf" "$TMP/pages.json" <<'PY'
 import json, re, subprocess, sys
 pdf, sortie = sys.argv[1], sys.argv[2]
-texte = subprocess.run(['pdftotext', '-layout', pdf, '-'], capture_output=True, text=True).stdout
-pages = {}
-feuilles = texte.split('\f')
+motifs = json.load(open(sortie + '.motifs.json'))
+feuilles = subprocess.run(['pdftotext', '-layout', pdf, '-'], capture_output=True, text=True).stdout.split('\f')
 som = next((i for i, f in enumerate(feuilles, 1) if re.search(r'^\s*Sommaire\s*$', f, re.M)), 0)
-motifs = {
-    'preface': r'Préface :', 'mode': r'Comment utiliser ce livre',
-    'test': r'Test de positionnement : par où', 'projet': r'PROJET FINAL',
-    'annexeA': r'Annexe A\s+·\s+Corrigés', 'annexeB': r'Annexe B\s+·\s+Glossaire',
-    'annexeC': r'Annexe C\s+·', 'annexeD': r'Annexe D\s+·\s+Pour aller',
-}
+pages = {}
 for i, f in enumerate(feuilles, 1):
-    for cle, motif in motifs.items():
-        if cle not in pages and re.search(motif, f) and (cle == 'preface' or i > som):
+    for cle, m in motifs.items():
+        if cle not in pages and re.search(m['motif'], f, re.M) and (m['avant'] or i > som):
             pages[cle] = i
-    for n in re.findall(r'^\s*MODULE (\d+)\s*$', f, re.M):
-        pages.setdefault(f'm{n}', i)
 json.dump(pages, open(sortie, 'w'))
-print('Repères trouvés :', len(pages))
+manquants = [c for c in motifs if c not in pages]
+if manquants: print('Repères introuvables :', manquants)
 PY
-node "tome$T/livre.js" "$TMP/pages.json" >/dev/null
-soffice --headless --convert-to pdf --outdir livrables "livrables/$NOM" >/dev/null 2>&1
-echo "Pages : $(pdfinfo "livrables/${NOM%.docx}.pdf" | awk '/^Pages/{print $2}')  →  livrables/${NOM%.docx}.pdf"
-rm -rf "$TMP"
+    node "tome$T/livre.js" "$TMP/pages.json" "$EDITION" "$DOCX" >/dev/null
+    soffice --headless --convert-to pdf --outdir "$TMP" "$DOCX" >/dev/null 2>&1
+    cp "$TMP/$BASE.pdf" "livrables/$BASE.pdf"
+    echo "$(pdfinfo "livrables/$BASE.pdf" | awk '/^Pages/{print $2}') pages  →  livrables/$BASE.pdf"
+    rm -rf "$TMP"
+  done
+done
