@@ -16,3 +16,11 @@ const { chromium } = require('playwright');
   await b.close();
 })();"
 rm livre.html livre.tmp.md
+
+# Livre complet : 1re de couverture + intérieur + 4e de couverture
+python3 couverture/generer_couverture.py
+node couverture/rendre_couverture.js
+pdfseparate -f 1 -l 1 couverture/couverture.pdf couv-1.tmp.pdf
+pdfseparate -f 2 -l 2 couverture/couverture.pdf couv-4.tmp.pdf
+pdfunite couv-1.tmp.pdf avant-que-l-horloge-ne-s-arrete.pdf couv-4.tmp.pdf livre-complet-avant-que-l-horloge-ne-s-arrete.pdf
+rm couv-1.tmp.pdf couv-4.tmp.pdf
