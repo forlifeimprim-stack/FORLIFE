@@ -4,7 +4,7 @@ const fs = require('fs');
 const {
   Document, Packer, Paragraph, TextRun, Table, TableRow, TableCell, WidthType, ShadingType,
   BorderStyle, AlignmentType, HeadingLevel, LevelFormat, Header, Footer, PageNumber, PageBreak,
-  TabStopType, TabStopPosition, VerticalAlign,
+  TabStopType, TabStopPosition, VerticalAlign, ImageRun,
 } = require('docx');
 
 const C = {
@@ -19,16 +19,18 @@ const LARGEUR = 9638; // A4 (11906) moins 2 × 2 cm de marges
 // Texte avec **gras** et *italique*.
 function runs(texte, opts = {}) {
   const out = [];
+  texte = texte.replace(/\\\*/g, '\u0001');
+  const brut = (t) => t.replace(/\u0001/g, '*');
   const re = /(\*\*[^*]+\*\*|\*[^*]+\*)/g;
   let last = 0, m;
   while ((m = re.exec(texte))) {
-    if (m.index > last) out.push(new TextRun({ text: texte.slice(last, m.index), ...opts }));
+    if (m.index > last) out.push(new TextRun({ text: brut(texte.slice(last, m.index)), ...opts }));
     const t = m[0];
-    if (t.startsWith('**')) out.push(new TextRun({ text: t.slice(2, -2), bold: true, ...opts }));
-    else out.push(new TextRun({ text: t.slice(1, -1), italics: true, ...opts }));
+    if (t.startsWith('**')) out.push(new TextRun({ text: brut(t.slice(2, -2)), bold: true, ...opts }));
+    else out.push(new TextRun({ text: brut(t.slice(1, -1)), italics: true, ...opts }));
     last = m.index + t.length;
   }
-  if (last < texte.length) out.push(new TextRun({ text: texte.slice(last), ...opts }));
+  if (last < texte.length) out.push(new TextRun({ text: brut(texte.slice(last)), ...opts }));
   return out;
 }
 
@@ -175,13 +177,20 @@ function documentLivre({ enTete, sections }) {
         { level: 0, format: LevelFormat.DECIMAL, text: '%1.', alignment: AlignmentType.LEFT,
           style: { paragraph: { indent: { left: 600, hanging: 360 } }, run: { bold: true, color: C.orange } } } ] },
     ] },
-    sections: sections.map((s) => ({
+    sections: sections.map((s) => s.couverture ? ({
+      properties: { page: { size: { width: 11906, height: 16838 }, margin: { top: 0, bottom: 0, left: 0, right: 0, header: 0, footer: 0 } } },
+      headers: { default: new Header({ children: [] }) }, footers: { default: new Footer({ children: [] }) },
+      children: [new Paragraph({ spacing: { before: 0, after: 0 }, children: [new ImageRun({
+        type: 'png', data: fs.readFileSync(s.couverture), transformation: { width: 794, height: 1123 },
+        floating: { horizontalPosition: { relative: 'page', offset: 0 }, verticalPosition: { relative: 'page', offset: 0 },
+          behindDocument: true, allowOverlap: true } })] })],
+    }) : ({
       properties: { page: { size: { width: 11906, height: 16838 },
         margin: { top: 1300, bottom: 1200, left: 1134, right: 1134, header: 600, footer: 600 } },
         titlePage: s.sansEnTetePremierePage },
       headers: { default: new Header({ children: [new Paragraph({
         alignment: AlignmentType.RIGHT, border: { bottom: bord(C.bordure, 4) },
-        children: [new TextRun({ text: enTete, size: 17, color: C.grisClair })] })] }),
+        children: [new TextRun({ text: s.enTete || enTete, size: 17, color: C.grisClair })] })] }),
         first: new Header({ children: [] }) },
       footers: { default: new Footer({ children: [new Paragraph({ alignment: AlignmentType.CENTER,
         children: [new TextRun({ text: '— ', color: C.orange, size: 18 }), new TextRun({ children: [PageNumber.CURRENT], size: 18, color: C.gris }), new TextRun({ text: ' —', color: C.orange, size: 18 })] })] }),

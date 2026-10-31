@@ -122,4 +122,12 @@ au module 6), Excel expert et VBA, cybersécurité avancée (remplacée par le m
 - **Volume** : environ **120 pages** par tome.
 - **Décor** : **ivoirien** (marché, maquis, gbaka, woro-woro, Mobile Money, tontine…).
 - **Tome 2** : le module grand public « Comprendre Internet et le Wi-Fi » est conservé.
-- **Étape suivante** : un chapitre témoin pour valider le ton, puis l'écriture intégrale tome par tome.
+- **Tome 1** : écrit et mis en page (111 pages, Word et PDF) dans `livrables/`.
+- **Étape suivante** : Tomes 2 et 3, avec la même méthode.
+
+## 7. Fabrication des livres
+
+- Contenu : un fichier par module dans `tome1/` (`module00_…js` à `module11_…js`), plus `liminaires.js` et `projet_final.js`.
+- Mise en page : `outils/livre.js` (styles, encadrés, tableaux) et `outils/module.js` (gabarit des 8 étapes).
+- Construction : `bash formation/outils/construire.sh 1` produit le Word et le PDF, avec le sommaire numéroté.
+- Couvertures : `python3 formation/couvertures/generer_couvertures.py` (philosophie dans `couvertures/PHILOSOPHIE.md`).

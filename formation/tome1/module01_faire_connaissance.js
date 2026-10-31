@@ -5,32 +5,7 @@ const { C, p, vide, saut, titre1, titre2, titre3, puces, etapes, cases, encadre,
   tableau, bandeau, dialogue, ligneAEcrire } = L;
 const { Paragraph, TextRun, AlignmentType, ShadingType } = L.docx;
 
-const ouverture = [
-  vide(1400),
-  new Paragraph({ alignment: AlignmentType.LEFT, spacing: { after: 120 }, children: [
-    new TextRun({ text: 'TOME 1 · DÉBUTANT', bold: true, color: C.orange, size: 26 })] }),
-  new Paragraph({ spacing: { after: 80 }, children: [
-    new TextRun({ text: 'MODULE 1', bold: true, color: C.grisClair, size: 30 })] }),
-  new Paragraph({ spacing: { after: 240 }, border: { bottom: { style: 'single', size: 18, color: C.orange } }, children: [
-    new TextRun({ text: 'Faire connaissance avec l\'ordinateur', bold: true, size: 64, color: C.texte })] }),
-  new Paragraph({ spacing: { after: 600 }, children: [
-    new TextRun({ text: 'Ou comment la cuisine de Tantie Akissi m\'a tout expliqué', italics: true, size: 30, color: C.gris })] }),
-  encadre({ titre: '🎯  À la fin de ce module, je saurai…', contenu: puces([
-    'nommer les éléments d\'un ordinateur et dire à quoi sert chacun ;',
-    'expliquer avec des mots simples le rôle du **processeur**, de la **mémoire vive** et du **stockage** ;',
-    'lire la fiche d\'un ordinateur dans une boutique sans me faire avoir ;',
-    '**allumer**, **mettre en veille**, **redémarrer** et **éteindre** correctement ;',
-    'garder mon calme quand l\'ordinateur « ne répond plus ».',
-  ]) }),
-  vide(200),
-  tableau(['Durée conseillée', 'Matériel', 'Prérequis'], [[
-    'Trois heures, en deux séances', 'Un ordinateur sous Windows 11 (portable ou de bureau)', 'Aucun. Juste l\'envie d\'apprendre.',
-  ]], [1, 1.4, 1.2]),
-  saut(),
-];
-
 const situation = [
-  bandeau('📖', 'La situation'),
   titre2('Le carton qui faisait peur'),
   p('Samedi matin, marché d\'Adjamé. Entre deux clientes, **Tantie Akissi**, cinquante-deux ans, vendeuse de pagnes depuis trente ans, soupire. Il y a trois semaines, sa fille Aya, étudiante à Bouaké, lui a fait livrer un ordinateur portable. « Maman, avec ça, tu pourras faire tes comptes, envoyer tes factures, voir tes clientes en vidéo. »'),
   p('L\'ordinateur est toujours dans son carton, sous le lit. Bien emballé. Intact.'),
@@ -47,7 +22,6 @@ const situation = [
 ];
 
 const declic = [
-  bandeau('💡', 'Le déclic'),
   titre2('Un ordinateur, c\'est une cuisine'),
   p('Imaginez la cuisine de Tantie Akissi un jour de grande cérémonie. Il y a une **cuisinière** qui travaille, une **table** sur laquelle elle pose ce dont elle a besoin, un **magasin** où sont rangés les sacs de riz et les bidons d\'huile, des **recettes**, et quelqu\'un qui **organise** tout ce monde. Un ordinateur fonctionne exactement de la même manière.'),
   illustration('Une cuisine ivoirienne en coupe. La cuisinière (processeur) au centre, la table de travail (mémoire vive) devant elle, le magasin (stockage) au fond, la gérante (Windows) qui donne les consignes, le cahier de recettes (logiciels), la porte d\'entrée des commandes (clavier, souris) et le passe-plat (écran, imprimante). Une étiquette relie chaque élément à son nom en informatique.'),
@@ -118,7 +92,6 @@ const declic = [
 ];
 
 const pasAPas = [
-  bandeau('🖱️', 'Pas à pas'),
   titre2('Étape 1 : bien installer son ordinateur'),
   p('Avant même d\'allumer, trois gestes protègent votre ordinateur pour des années.'),
   ...etapes([
@@ -170,7 +143,6 @@ const pasAPas = [
 ];
 
 const pieges = [
-  bandeau('⚠️', 'Les pièges à éviter', C.rouge),
   tableau(['Le piège', 'Pourquoi c\'est dangereux', 'Le bon réflexe'], [
     ['🧃 Boire ou manger au-dessus du clavier', 'Un verre de bissap renversé peut tuer un ordinateur en quelques secondes. Le sucre colle les touches.', 'Les boissons restent à un bras de distance. Si un liquide est renversé : éteindre, débrancher, retourner l\'ordinateur et le confier à un technicien.'],
     ['🛏️ Travailler sur le lit ou sur un pagne', 'Les grilles d\'aération sont bouchées. L\'ordinateur chauffe, ralentit, et s\'abîme.', 'Une table, toujours. Au besoin, un support en bois ou un plateau rigide.'],
@@ -195,7 +167,6 @@ const pieges = [
 ];
 
 const exercices = [
-  bandeau('✍️', 'Exercices', C.bleu),
   titre2('🟢  Je m\'échauffe'),
   titre3('Exercice 1 : chacun à sa place dans la cuisine'),
   p('Reliez chaque élément de l\'ordinateur à son équivalent dans la cuisine, en écrivant la bonne lettre.'),
@@ -261,7 +232,6 @@ const exercices = [
 ];
 
 const cas = [
-  bandeau('🧩', 'Cas pratique', C.violet),
   titre2('Le bon ordinateur pour le secrétariat de Koffi'),
   p('**Koffi** vient d\'ouvrir un petit secrétariat public à Yopougon : saisie de documents, impression, mise en page de CV, recherches sur Internet. Il dispose de **350 000 F CFA**. Dans une boutique du Plateau, le vendeur lui présente trois ordinateurs.'),
   tableau(['', 'Ordinateur A', 'Ordinateur B', 'Ordinateur C (reconditionné)'], [
@@ -290,9 +260,22 @@ const cas = [
   ]) }),
 ];
 
-const memo = [
-  bandeau('📌', 'Ce que je retiens', C.vert),
-  encadre({ couleur: C.vert, fond: C.vertClair, contenu: puces([
+module.exports = {
+  num: 1,
+  titre: 'Faire connaissance avec l\'ordinateur',
+  sousTitre: 'Ou comment la cuisine de Tantie Akissi m\'a tout expliqué',
+  objectifs: [
+    'nommer les éléments d\'un ordinateur et dire à quoi sert chacun ;',
+    'expliquer avec des mots simples le rôle du **processeur**, de la **mémoire vive** et du **stockage** ;',
+    'lire la fiche d\'un ordinateur dans une boutique sans me faire avoir ;',
+    '**allumer**, **mettre en veille**, **redémarrer** et **éteindre** correctement ;',
+    'garder mon calme quand l\'ordinateur « ne répond plus ».',
+  ],
+  duree: 'Trois heures, en deux séances',
+  materiel: 'Un ordinateur sous Windows 11 (portable ou de bureau)',
+  prerequis: 'Le module 0. Juste l\'envie d\'apprendre.',
+  situation, declic, pasAPas, pieges, exercices, cas,
+  retiens: [
     'Un ordinateur, c\'est une cuisine : le **processeur** travaille, la **mémoire vive** est la table, le **stockage** est le magasin, **Windows** organise, les **logiciels** sont les recettes, les **fichiers** sont les plats.',
     'La mémoire vive **s\'efface** quand on éteint ; le stockage **garde tout**. D\'où l\'importance d\'**enregistrer**.',
     'Les tailles se mesurent en **Mo**, **Go** et **To**, comme dans mon forfait internet.',
@@ -301,57 +284,37 @@ const memo = [
     'J\'éteins toujours par **Démarrer → Marche/Arrêt → Arrêter**. En cas de souci, je **redémarre**.',
     'S\'il est bloqué : **j\'attends**, puis **Ctrl + Alt + Suppr**, et l\'appui long de dix secondes seulement en dernier recours.',
     'Je ne casserai rien en cliquant.',
-  ]) }),
-  bandeau('🏆', 'Mon défi de la semaine', C.orangeFonce),
-  p('Pendant sept jours, allumez votre ordinateur, faites quelque chose avec (même cinq minutes), puis éteignez-le correctement. Cochez chaque jour réussi.'),
-  tableau(['Lundi', 'Mardi', 'Mercredi', 'Jeudi', 'Vendredi', 'Samedi', 'Dimanche'], [
-    ['☐', '☐', '☐', '☐', '☐', '☐', '☐'],
-  ], [1, 1, 1, 1, 1, 1, 1], C.orangeFonce),
-  vide(),
-  p('**Bonus** : expliquez la cuisine de l\'ordinateur à un membre de votre famille. Si vous arrivez à l\'expliquer, c\'est que vous l\'avez compris.'),
-  encadre({ titre: '💬  Le mot de la fin', couleur: C.orangeFonce, fond: C.orangeClair, contenu: [
-    'Le samedi suivant, Tantie Akissi arrive à la formation sans carton. L\'ordinateur est dans une sacoche, et il a déjà été allumé sept fois. « M. Kouassi, j\'ai expliqué la cuisine à mon mari. Maintenant, c\'est lui qui a peur de l\'ordinateur ! » Prochaine étape : apprivoiser la souris et le clavier.',
-  ] }),
-];
-
-const quiz = [
-  saut(),
-  titre2('📝  Mini-quiz : ai-je bien compris ?'),
-  ...etapes([
+  ],
+  defi: [
+    'Pendant sept jours, allumez votre ordinateur, faites quelque chose avec (même cinq minutes), puis éteignez-le correctement. Cochez chaque jour réussi.',
+    { tableau: [['Lundi', 'Mardi', 'Mercredi', 'Jeudi', 'Vendredi', 'Samedi', 'Dimanche'], [['☐', '☐', '☐', '☐', '☐', '☐', '☐']], [1, 1, 1, 1, 1, 1, 1], C.orangeFonce] },
+    '**Bonus** : expliquez la cuisine de l\'ordinateur à un membre de votre famille. Si vous arrivez à l\'expliquer, c\'est que vous l\'avez compris.',
+  ],
+  motDeLaFin: 'Le samedi suivant, Tantie Akissi arrive à la formation sans carton. L\'ordinateur est dans une sacoche, et il a déjà été allumé sept fois. « M. Kouassi, j\'ai expliqué la cuisine à mon mari. Maintenant, c\'est lui qui a peur de l\'ordinateur ! » Prochaine étape : apprivoiser la souris et le clavier.',
+  quiz: [
     'Quand j\'éteins l\'ordinateur sans enregistrer ma lettre, elle est perdue parce que… **a)** le processeur l\'a effacée · **b)** elle était seulement dans la mémoire vive · **c)** Windows l\'a supprimée.',
     'Un ordinateur avec 4 Go de mémoire vive et 64 Go de stockage, c\'est… **a)** une grande cuisine · **b)** une petite table et un petit magasin · **c)** une cuisinière très rapide.',
     'Pour éteindre, je… **a)** débranche le chargeur · **b)** appuie dix secondes sur le bouton · **c)** passe par Démarrer → Marche/Arrêt → Arrêter.',
     'Une photo de téléphone pèse environ… **a)** trois Ko · **b)** trois Mo · **c)** trois Go.',
     'Mon ordinateur est lent depuis ce matin. Mon premier réflexe est de… **a)** le redémarrer · **b)** l\'apporter au réparateur · **c)** le secouer.',
-  ]),
-  titre2('✅  Corrigés'),
-  p('*Dans le manuel complet, les corrigés sont regroupés en annexe.*', { run: { color: C.gris } }),
-  tableau(['Exercice', 'Corrigé'], [
-    ['**Exercice 1**', '1-C · 2-E · 3-A · 4-F · 5-B · 6-D'],
-    ['**Exercice 2**', '**Entrée** : clavier, souris, micro, webcam, scanner.\n**Sortie** : écran, imprimante, haut-parleurs, écouteurs.'],
-    ['**Cas pratique**', '**1.** A : cuisinière rapide, table correcte, grand magasin. B : cuisinière lente, table minuscule, magasin minuscule. C : cuisinière rapide, très grande table, magasin correct.\n**2.** On écarte le **B** : avec 4 Go, la table est trop petite pour ouvrir plusieurs logiciels à la fois, et Windows occupe déjà une grande partie des 64 Go. Il deviendra vite lent et plein.\n**3.** Le **A** et le **C** sont de bons choix. Le **A** offre plus de stockage et un an de garantie, avec un grand écran confortable pour la saisie. Le **C** offre une très grande mémoire vive pour 80 000 F de moins, mais une garantie plus courte et une batterie à vérifier. Pour un usage professionnel quotidien, le **A** est le choix le plus sûr ; le **C** est un excellent choix si la boutique est sérieuse.\n**4.** Voir l\'encadré « Les quatre questions à poser avant d\'acheter ».'],
-    ['**Mini-quiz**', '1-b · 2-b · 3-c · 4-b · 5-a'],
-  ], [1, 4], C.vert),
-  vide(),
-  titre2('📖  Les mots du module'),
-  tableau(['Mot', 'En mots simples'], [
-    ['**Processeur (CPU)**', 'Le « cerveau » qui fait tous les calculs. La cuisinière.'],
-    ['**Mémoire vive (RAM)**', 'L\'espace de travail temporaire, effacé à l\'extinction. La table.'],
-    ['**Stockage (disque dur, SSD)**', 'L\'endroit où tout est rangé durablement. Le magasin. Un SSD est un magasin moderne, beaucoup plus rapide.'],
-    ['**Système d\'exploitation**', 'Le logiciel principal qui organise tout l\'ordinateur. Sur nos ordinateurs : Windows.'],
-    ['**Logiciel**', 'Un programme qui sert à une tâche précise. Une recette.'],
-    ['**Fichier**', 'Un document, une photo, une musique : ce qu\'on fabrique et qu\'on garde.'],
-    ['**Périphérique**', 'Tout appareil branché à l\'ordinateur : clavier, souris, imprimante…'],
-    ['**Port**', 'Une prise sur l\'ordinateur pour brancher un câble ou un appareil.'],
-    ['**Onduleur**', 'Un boîtier avec batterie qui protège l\'ordinateur des coupures et des surtensions.'],
-    ['**Veille**', 'Une pause de l\'ordinateur : tout reste prêt, le réveil est rapide.'],
-  ], [1.3, 3], C.orange),
-];
-
-const doc = L.documentLivre({
-  enTete: 'FOR LIFE · Tome 1 — Apprivoiser l\'ordinateur · Module 1',
-  sections: [{ sansEnTetePremierePage: true,
-    contenu: [...ouverture, ...situation, ...declic, ...pasAPas, ...pieges, ...exercices, ...cas, ...memo, ...quiz] }],
-});
-
-L.ecrire(doc, path.join(__dirname, '..', 'livrables', 'Tome1_Module01_Faire_connaissance_avec_l_ordinateur.docx'));
+  ],
+  corriges: [
+    ['Exercice 1', '1-C · 2-E · 3-A · 4-F · 5-B · 6-D'],
+    ['Exercice 2', '**Entrée** : clavier, souris, micro, webcam, scanner.\n**Sortie** : écran, imprimante, haut-parleurs, écouteurs.'],
+    ['Cas pratique', '**1.** A : cuisinière rapide, table correcte, grand magasin. B : cuisinière lente, table minuscule, magasin minuscule. C : cuisinière rapide, très grande table, magasin correct.\n**2.** On écarte le **B** : avec 4 Go, la table est trop petite pour ouvrir plusieurs logiciels à la fois, et Windows occupe déjà une grande partie des 64 Go.\n**3.** Le **A** et le **C** sont de bons choix. Le **A** offre plus de stockage, un an de garantie et un grand écran confortable. Le **C** offre une très grande mémoire vive pour 80 000 F de moins, mais une garantie plus courte et une batterie à vérifier. Pour un usage professionnel quotidien, le **A** est le plus sûr ; le **C** est excellent si la boutique est sérieuse.\n**4.** Voir l\'encadré « Les quatre questions à poser avant d\'acheter ».'],
+    ['Mini-quiz', '1-b · 2-b · 3-c · 4-b · 5-a'],
+  ],
+  glossaire: [
+    ['Processeur (CPU)', 'Le « cerveau » qui fait tous les calculs. La cuisinière.'],
+    ['Mémoire vive (RAM)', 'L\'espace de travail temporaire, effacé à l\'extinction. La table.'],
+    ['Stockage (disque dur, SSD)', 'L\'endroit où tout est rangé durablement. Le magasin. Un SSD est un magasin moderne, beaucoup plus rapide.'],
+    ['Système d\'exploitation', 'Le logiciel principal qui organise tout l\'ordinateur. Sur nos ordinateurs : Windows.'],
+    ['Logiciel', 'Un programme qui sert à une tâche précise. Une recette.'],
+    ['Fichier', 'Un document, une photo, une musique : ce qu\'on fabrique et qu\'on garde.'],
+    ['Périphérique', 'Tout appareil branché à l\'ordinateur : clavier, souris, imprimante…'],
+    ['Port', 'Une prise sur l\'ordinateur pour brancher un câble ou un appareil.'],
+    ['Onduleur', 'Un boîtier avec batterie qui protège l\'ordinateur des coupures et des surtensions.'],
+    ['Veille', 'Une pause de l\'ordinateur : tout reste prêt, le réveil est rapide.'],
+    ['Go (giga-octet)', 'Unité de taille : environ mille Mo. La même que dans les forfaits internet.'],
+  ],
+};
