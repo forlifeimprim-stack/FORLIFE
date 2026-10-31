@@ -18,52 +18,113 @@ homme calme et responsable, toujours présent pour ses enfants,
 parti le 10 août 2026 sur la route de la convention nationale
 des Églises CMA de Côte d'Ivoire.*
 
-*Et en mémoire de celui ou celle que vous pleurez :*
+*Et en mémoire de celui ou celle que tu pleures :*
 
 *…………………………………………………*
 
----
+## Au lever du jour {.unnumbered .poeme}
+
+Regarde.\
+L'aube écarte doucement la nuit,\
+comme une main qui ouvre un rideau.\
+Sur les toits, sur les champs, sur les visages endormis,\
+la lumière revient, fidèle,\
+sans rien demander à personne.
+
+C'est encore un jour que le Seigneur a fait.\
+Un matin neuf, que personne n'a encore vécu,\
+où ses bontés ne sont pas épuisées,\
+où ses compassions, comme la rosée,\
+se sont renouvelées pendant que tu dormais.
+
+Écoute.\
+Les oiseaux chantent avant de savoir\
+ce que la journée leur réserve.\
+Ils ne sèment ni ne moissonnent,\
+et pourtant, quelqu'un les nourrit.\
+Celui qui veille sur eux\
+connaît aussi ton nom.
+
+La vie est belle, tu sais.\
+Belle comme le premier cri d'un enfant,\
+comme le rire d'un ami sur le chemin de l'école,\
+comme le pain partagé, la main tenue,\
+l'odeur de la terre après la pluie.\
+Dieu fait toute chose belle en son temps,\
+et il a mis l'éternité dans ton cœur.
+
+Tu as été tissé avec soin\
+dans le secret du sein de ta mère ;\
+tu es une merveille, et ton âme le sait.\
+Avant même ton premier jour,\
+tes jours étaient écrits dans son livre,\
+et pas un seul n'y a été écrit sans amour.
+
+Peut-être que ce matin, tes yeux sont lourds.\
+Peut-être que la nuit a été longue,\
+et que les larmes ont mouillé l'oreiller.\
+Alors souviens-toi :\
+le soir viennent les pleurs,\
+mais le matin, l'allégresse.\
+Celui qui fait lever ce soleil\
+sait aussi faire lever la joie.
+
+Car il est un autre Soleil,\
+le Soleil de justice,\
+qui se lève avec la guérison sous ses ailes.\
+Sa lumière ne se couche pas.\
+Elle traverse les vallées de l'ombre,\
+elle entre dans les maisons en deuil,\
+elle a même roulé la pierre d'un tombeau,\
+un matin, au premier jour de la semaine.
+
+Alors respire.\
+Inspire la lumière, expire la peur.\
+Sa Parole est une lampe à tes pieds,\
+une lumière sur ton sentier.\
+Tu ne marches pas seul sur la route.
+
+Respire encore.\
+Et tourne la page,\
+non pas vers la nuit,\
+mais vers Celui qui fait lever le jour.
+
+## {.unnumbered .epigraphe}
 
 > « Enseigne-nous à bien compter nos jours,
 > afin que nous appliquions notre cœur à la sagesse. »
 >
 > — Psaume 90.12
 
----
-
 ## Avant de commencer {.unnumbered}
 
-Si vous tenez ce petit livre entre vos mains, c'est peut-être que quelqu'un vous a quitté.
+Si tu tiens ce petit livre entre tes mains, c'est peut-être que quelqu'un t'a quitté.
 
-Peut-être que le téléphone a sonné à une heure inhabituelle. Peut-être qu'une voix tremblante vous a dit : « Il faut que tu sois fort… » Peut-être que, depuis, la maison est trop silencieuse, la chaise trop vide, les nuits trop longues. Peut-être que vous vous réveillez encore le matin en oubliant, pendant une seconde, que c'est arrivé. Et puis la mémoire revient, et la douleur avec elle.
+Peut-être que le téléphone a sonné à une heure inhabituelle. Peut-être qu'une voix tremblante t'a dit : « Il faut que tu sois fort… » Peut-être que, depuis, la maison est trop silencieuse, la chaise trop vide, les nuits trop longues. Peut-être que tu te réveilles encore le matin en oubliant, pendant une seconde, que c'est arrivé. Et puis la mémoire revient, et la douleur avec elle.
 
-Je ne vous connais pas. Mais je connais cette douleur.
+Je ne te connais pas. Mais je connais cette douleur.
 
 Comme tout homme, j'ai traversé plusieurs deuils. Trois d'entre eux m'ont marqué pour la vie : mon ami William, quand j'étais en CE2 ; ma tante Rachelle, quand j'étais en 6e-5e ; et cette année, mon beau-père, le pasteur Koffi François. Trois départs, à trois âges de ma vie. Et chaque fois, des circonstances si ordinaires… mais hélas.
 
-Ce livre est né de ces larmes-là. Il n'a pas la prétention d'expliquer la mort. Il veut seulement faire trois choses avec vous :
+Ce livre est né de ces larmes-là. Il n'a pas la prétention d'expliquer la mort. Il veut seulement faire trois choses avec toi :
 
 - **regarder la vie en face**, telle qu'elle est : courte, fragile, précieuse ;
-- **vous consoler**, avec la seule consolation qui tienne debout devant une tombe ;
-- **vous montrer le chemin**, celui qui transforme un « adieu » en « au revoir ».
+- **te consoler**, avec la seule consolation qui tienne debout devant une tombe ;
+- **te montrer le chemin**, celui qui transforme un « adieu » en « au revoir ».
 
-Il est court, pour tenir dans une poche, un sac, sur une table de chevet. Lisez-le d'un trait ou une page par jour. Mais lisez-le avec le cœur. Il parle de ceux que nous avons perdus. Il parle aussi de vous.
-
----
+Il est court, pour tenir dans une poche, un sac, sur une table de chevet. Lis-le d'un trait ou une page par jour. Mais lis-le avec le cœur. Il parle de ceux que nous avons perdus. Il parle aussi de toi.
 
 # Première partie {.unnumbered .partie}
 
 ## La vie n'est qu'un souffle {.unnumbered .partie-titre}
 
----
-
 ## 1. L'horloge à rebours
 
-Avez-vous remarqué comment nous comptons nos années ?
+As-tu remarqué comment nous comptons nos années ?
 
 Le jour de notre naissance, on dit : « Il a zéro an. » Puis un an, deux ans, dix ans, trente ans… À chaque anniversaire, on ajoute une bougie sur le gâteau. On chante, on applaudit : « Il a pris de l'âge. » Les hommes comptent en montant, comme si la vie était une échelle sans fin.
 
-Mais Dieu n'a pas fait une horloge qui monte. Le jour où vous êtes né, une horloge s'est mise en marche, et elle *descend*. Dieu seul connaît le nombre exact de vos jours. Chaque matin où vous vous levez, il ne vous en reste pas un de plus : il vous en reste un de moins. Et quand le compteur arrive à zéro, l'horloge s'arrête, et le souffle s'arrête avec elle.
+Mais Dieu n'a pas fait une horloge qui monte. Le jour où tu es né, une horloge s'est mise en marche, et elle *descend*. Dieu seul connaît le nombre exact de tes jours. Chaque matin où tu te lèves, il ne t'en reste pas un de plus : il t'en reste un de moins. Et quand le compteur arrive à zéro, l'horloge s'arrête, et le souffle s'arrête avec elle.
 
 > « Sur ton livre étaient tous inscrits les jours qui m'étaient destinés,
 > avant qu'aucun d'eux existât. »
@@ -72,22 +133,20 @@ Mais Dieu n'a pas fait une horloge qui monte. Le jour où vous êtes né, une ho
 
 Voilà le premier paradoxe : **nous fêtons ce que nous croyons gagner, alors que nous sommes en train de perdre.** Chaque bougie ajoutée sur le gâteau est un grain de sable de moins dans le sablier.
 
-Ce n'est pas pour faire peur. C'est pour rendre sage. Celui qui sait que l'argent de sa poche va finir le dépense avec prudence. Pourquoi serions-nous plus prudents avec quelques pièces qu'avec les jours de notre vie ?
+Ce n'est pas pour te faire peur. C'est pour te rendre sage. Celui qui sait que l'argent de sa poche va finir le dépense avec prudence. Pourquoi serions-nous plus prudents avec quelques pièces qu'avec les jours de notre vie ?
 
 William avait à peine huit ou neuf ans sur son compteur. Ma tante Rachelle s'apprêtait à devenir mère. Mon beau-père avait encore un ministère à accomplir et une convention où on l'attendait. Personne ne savait, sauf Dieu. Leur horloge, pourtant, s'est arrêtée.
 
-Et la vôtre ? Combien de jours restent dessus ? Vous ne le savez pas. Moi non plus.
+Et la tienne ? Combien de jours restent dessus ? Tu ne le sais pas. Moi non plus.
 
 > « Qu'est-ce que votre vie ? Vous êtes une vapeur qui paraît pour un peu de temps,
 > et qui ensuite disparaît. »
 >
 > — Jacques 4.14
 
----
-
 ## 2. Des circonstances si ordinaires
 
-Laissez-moi vous raconter ce qui s'est passé. Le plus troublant dans ces histoires, ce n'est pas qu'elles soient extraordinaires. C'est qu'elles sont terriblement ordinaires.
+Laisse-moi te raconter ce qui s'est passé. Le plus troublant dans ces histoires, ce n'est pas qu'elles soient extraordinaires. C'est qu'elles sont terriblement ordinaires.
 
 ### Un samedi, 17 heures
 
@@ -134,13 +193,11 @@ La mort ne vient pas toujours au bout d'une longue vieillesse. Elle peut venir u
 >
 > — Proverbes 27.1
 
-Depuis, je vis avec cette prière du psalmiste dans le cœur : *« Enseigne-nous à bien compter nos jours. »* C'est elle que je voudrais déposer dans le vôtre.
-
----
+Depuis, je vis avec cette prière du psalmiste dans le cœur : *« Enseigne-nous à bien compter nos jours. »* C'est elle que je voudrais déposer dans le tien.
 
 ## 3. L'amour qui ne peut pas retenir
 
-Pensez à ceux que vous aimez. Vos enfants, votre époux ou votre épouse, vos parents, vos amis.
+Pense à ceux que tu aimes. Tes enfants, ton époux ou ton épouse, tes parents, tes amis.
 
 Pour eux, on se lève tôt, on travaille dur, on s'inquiète, on prie, on fait des projets. On se promet : « Je serai toujours là pour toi. » Et on le pense de tout son cœur.
 
@@ -152,15 +209,13 @@ Mon beau-père aimait sa famille. Lui qui avait toujours été présent pour ses
 
 C'est un paradoxe cruel : **nous aimons de toutes nos forces, et pourtant notre amour n'a pas la force de vaincre la mort.**
 
-Mais écoutez bien, car c'est ici que commence la consolation : si notre amour ne peut pas retenir, il existe un Amour qui, lui, ne lâche jamais. Un Amour que la mort elle-même ne peut pas briser.
+Mais écoute bien, car c'est ici que commence la consolation : si notre amour ne peut pas retenir, il existe un Amour qui, lui, ne lâche jamais. Un Amour que la mort elle-même ne peut pas briser.
 
 > « Ni la mort ni la vie… ni aucune autre créature
 > ne pourra nous séparer de l'amour de Dieu
 > manifesté en Jésus-Christ notre Seigneur. »
 >
 > — Romains 8.38-39
-
----
 
 ## 4. La nuit de la veillée
 
@@ -184,8 +239,6 @@ Mais voici une vérité qui console : **le corps qui est dans le cercueil n'est 
 >
 > — 2 Corinthiens 5.1
 
----
-
 ## 5. La dernière séparation
 
 Puis vient le moment le plus dur : celui où l'on ferme le cercueil.
@@ -198,13 +251,11 @@ Les chaises sont rangées, les bâches démontées. On reprend le travail, l'éc
 
 **Il a fallu des années pour construire une vie, et quelques heures suffisent pour la mettre en terre.** Sur la tombe, il y a deux dates et, entre les deux, un petit trait. Toute une vie tient dans ce tiret.
 
-Si vous êtes de ceux qui sont rentrés chez eux ce jour-là, le cœur arraché, sachez ceci : vous n'êtes pas rentré seul. Celui qui a promis d'être avec nous « tous les jours » est rentré avec vous. Il était là au bord de la tombe. Il est là dans la maison vide.
+Si tu es de ceux qui sont rentrés chez eux ce jour-là, le cœur arraché, sache ceci : tu n'es pas rentré seul. Celui qui a promis d'être avec nous « tous les jours » est rentré avec toi. Il était là au bord de la tombe. Il est là dans la maison vide.
 
 > « Je ne te délaisserai point, et je ne t'abandonnerai point. »
 >
 > — Hébreux 13.5
-
----
 
 ## 6. Absent aux obsèques
 
@@ -214,7 +265,7 @@ Parfois, à cause de la distance, du travail, de la maladie, des papiers ou de l
 
 On apprend la nouvelle au téléphone, loin. On pleure seul dans une chambre. On suit la cérémonie en vidéo. Et une petite voix accuse : « Tu n'étais pas là. »
 
-Si c'est votre histoire, recevez ceci : **ce n'est pas de l'indifférence. C'est la réalité de notre condition humaine.** Celui qui est parti n'a plus besoin de votre présence au cimetière. Ce qui comptait, c'était l'amour que vous lui avez donné de son vivant, et cela, la distance ne l'efface pas.
+Si c'est ton histoire, reçois ceci : **ce n'est pas de l'indifférence. C'est la réalité de notre condition humaine.** Celui qui est parti n'a plus besoin de ta présence au cimetière. Ce qui comptait, c'était l'amour que tu lui as donné de son vivant, et cela, la distance ne l'efface pas.
 
 Job, qui avait tout perdu en un seul jour, s'est prosterné et a dit :
 
@@ -223,13 +274,11 @@ Job, qui avait tout perdu en un seul jour, s'est prosterné et a dit :
 >
 > — Job 1.21
 
-Nous arrivons seuls, et nous repartons seuls. Même ceux qui se tiennent au bord de la fosse ne descendent pas avec nous. Alors déposez cette culpabilité aux pieds de Dieu. Il connaît votre cœur mieux que quiconque.
-
----
+Nous arrivons seuls, et nous repartons seuls. Même ceux qui se tiennent au bord de la fosse ne descendent pas avec nous. Alors dépose cette culpabilité aux pieds de Dieu. Il connaît ton cœur mieux que quiconque.
 
 ## 7. Les paradoxes de notre vie
 
-Regardée à la lumière de la mort, notre façon de vivre est bien étrange. Lisez lentement.
+Regardée à la lumière de la mort, notre façon de vivre est bien étrange. Lis lentement.
 
 **Nous préparons tout, sauf l'essentiel.** Nos examens, nos mariages, nos voyages, notre retraite, parfois même nos funérailles. Mais combien préparent leur éternité ?
 
@@ -256,17 +305,13 @@ Regardée à la lumière de la mort, notre façon de vivre est bien étrange. Li
 >
 > — Marc 8.36
 
----
-
 # Deuxième partie {.unnumbered .partie}
 
 ## Le Dieu de toute consolation {.unnumbered .partie-titre}
 
----
+## 8. Tu as le droit de pleurer
 
-## 8. Vous avez le droit de pleurer
-
-On dit souvent aux endeuillés : « Ne pleure pas, il faut être fort. » Ce livre vous dit le contraire : pleurez. Pleurez autant que votre cœur en a besoin. Les larmes ne sont pas un manque de foi. Elles sont le prix de l'amour. On ne pleure si fort que ceux qu'on a beaucoup aimés.
+On dit souvent aux endeuillés : « Ne pleure pas, il faut être fort. » Ce livre te dit le contraire : pleure. Pleure autant que ton cœur en a besoin. Les larmes ne sont pas un manque de foi. Elles sont le prix de l'amour. On ne pleure si fort que ceux qu'on a beaucoup aimés.
 
 Devant le tombeau de son ami Lazare, Jésus savait qu'il allait le ressusciter quelques minutes plus tard. Et pourtant, la Bible dit, en deux mots seulement :
 
@@ -274,33 +319,31 @@ Devant le tombeau de son ami Lazare, Jésus savait qu'il allait le ressusciter q
 >
 > — Jean 11.35
 
-Le Fils de Dieu a pleuré devant la tombe d'un ami. Vous n'êtes donc pas seul à pleurer : Dieu pleure avec vous. Il ne regarde pas votre chagrin de loin. Il s'approche.
+Le Fils de Dieu a pleuré devant la tombe d'un ami. Tu n'es donc pas seul à pleurer : Dieu pleure avec toi. Il ne regarde pas ton chagrin de loin. Il s'approche.
 
 > « L'Éternel est près de ceux qui ont le cœur brisé,
 > et il sauve ceux qui ont l'esprit dans l'abattement. »
 >
 > — Psaume 34.19
 
-Et aucune de vos larmes n'est perdue. Pas une seule. Celles que vous versez la nuit, en cachette, celles que personne ne voit, Dieu les recueille.
+Et aucune de tes larmes n'est perdue. Pas une seule. Celles que tu verses la nuit, en cachette, celles que personne ne voit, Dieu les recueille.
 
 > « Recueille mes larmes dans ton outre :
 > ne sont-elles pas inscrites dans ton livre ? »
 >
 > — Psaume 56.9
 
-Le deuil n'est pas une ligne droite. Il y aura des jours meilleurs et des jours où tout reviendra d'un coup : un anniversaire, une chanson, une odeur, une place vide à table. Ce n'est pas un recul. C'est l'amour qui se souvient. Soyez patient avec vous-même. Dieu l'est.
+Le deuil n'est pas une ligne droite. Il y aura des jours meilleurs et des jours où tout reviendra d'un coup : un anniversaire, une chanson, une odeur, une place vide à table. Ce n'est pas un recul. C'est l'amour qui se souvient. Sois patient avec toi-même. Dieu l'est.
 
 > « Le soir arrivent les pleurs, et le matin l'allégresse. »
 >
 > — Psaume 30.6
 
----
-
 ## 9. Quand le « pourquoi » reste sans réponse
 
 Pourquoi William, et pas un autre ? Pourquoi un jour d'accouchement ? Pourquoi un serviteur de Dieu sur la route du service ?
 
-Je ne vais pas vous donner de réponses faciles. Je n'en ai pas. Et méfiez-vous de ceux qui en ont trop vite.
+Je ne vais pas te donner de réponses faciles. Je n'en ai pas. Et méfie-toi de ceux qui en ont trop vite.
 
 Job, lui non plus, n'a jamais reçu d'explication. Mais au bout de sa nuit, il a reçu quelque chose de plus grand qu'une explication : il a rencontré Dieu. Il a compris que le Dieu qui avait suspendu les étoiles savait aussi ce qu'il faisait de sa vie, même quand lui ne le comprenait pas.
 
@@ -311,7 +354,7 @@ Job, lui non plus, n'a jamais reçu d'explication. Mais au bout de sa nuit, il a
 
 Il y a des « pourquoi » qui ne trouveront leur réponse que de l'autre côté. En attendant, Dieu ne nous demande pas de tout comprendre. Il nous demande de lui faire confiance, comme un enfant qui ne comprend pas tout ce que fait son père, mais qui sait que son père l'aime.
 
-Et s'il y a un « pourquoi » qui vous ronge, un « si seulement » (*si seulement je l'avais accompagné, si seulement j'avais appelé, si seulement on était allé à un autre hôpital*), déposez-le devant Dieu. Moi aussi, j'ai longtemps porté ce samedi à 17 heures où j'ai continué mon chemin. Vous n'êtes pas le maître des horloges. Dieu seul l'est. Et ce que vous ne pouviez pas savoir, il ne vous le reproche pas.
+Et s'il y a un « pourquoi » qui te ronge, un « si seulement » (*si seulement je l'avais accompagné, si seulement j'avais appelé, si seulement on était allé à un autre hôpital*), dépose-le devant Dieu. Moi aussi, j'ai longtemps porté ce samedi à 17 heures où j'ai continué mon chemin. Tu n'es pas le maître des horloges. Dieu seul l'est. Et ce que tu ne pouvais pas savoir, il ne te le reproche pas.
 
 > « Les choses cachées sont à l'Éternel, notre Dieu. »
 >
@@ -321,8 +364,6 @@ Et s'il y a un « pourquoi » qui vous ronge, un « si seulement » (*si seuleme
 > elles se renouvellent chaque matin. »
 >
 > — Lamentations 3.22-23
-
----
 
 ## 10. Celui qui a vaincu la mort
 
@@ -349,8 +390,6 @@ Pour celui qui appartient à Jésus, la mort n'est plus un mur : elle est une po
 >
 > — 1 Corinthiens 15.55
 
----
-
 ## 11. Ils ne sont pas perdus
 
 « Nous l'avons perdu. » C'est ce qu'on dit. Mais on ne perd pas ce dont on sait où il se trouve.
@@ -364,7 +403,7 @@ Pour ceux qui sont morts en Christ, la Bible n'emploie pas le mot « fin ». Ell
 
 William aimait le Seigneur. Ma tante Rachelle aussi. Mon beau-père l'a servi toute sa vie. Tous trois étaient chrétiens. C'est pourquoi, quand je pense à eux, je ne pense pas à trois tombes : je pense à trois personnes qui sont auprès du Seigneur.
 
-Pensez à mon beau-père. Ce 10 août, il n'est pas arrivé à la convention. Mais il est arrivé ailleurs : dans une assemblée bien plus grande, devant le Maître qu'il avait servi. Son travail est achevé. Il se repose.
+Pense à mon beau-père. Ce 10 août, il n'est pas arrivé à la convention. Mais il est arrivé ailleurs : dans une assemblée bien plus grande, devant le Maître qu'il avait servi. Son travail est achevé. Il se repose.
 
 > « Heureux dès à présent les morts qui meurent dans le Seigneur !
 > Oui, dit l'Esprit, afin qu'ils se reposent de leurs travaux,
@@ -379,7 +418,7 @@ Pensez à mon beau-père. Ce 10 août, il n'est pas arrivé à la convention. Ma
 
 Et pour ceux qui croient, ce n'est pas un adieu. C'est un rendez-vous. Le roi David, quand son petit enfant est mort, a dit : « J'irai vers lui, mais il ne reviendra pas vers moi » (2 Samuel 12.23). Nous ne pouvons pas les faire revenir. Mais nous pouvons aller vers eux.
 
-Écoutez la promesse que l'apôtre Paul a écrite précisément pour des chrétiens en deuil :
+Écoute la promesse que l'apôtre Paul a écrite précisément pour des chrétiens en deuil :
 
 > « Nous ne voulons pas, frères, que vous soyez dans l'ignorance au sujet de ceux qui dorment,
 > afin que vous ne vous affligiez pas comme les autres qui n'ont point d'espérance.
@@ -394,11 +433,9 @@ Et il termine par ces mots :
 >
 > — 1 Thessaloniciens 4.18
 
-Remarquez : Paul ne dit pas « ne vous affligez pas ». Il dit « ne vous affligez pas *comme ceux qui n'ont point d'espérance* ». Il y a deux sortes de larmes au bord d'une tombe : les larmes sans espoir, qui disent « adieu », et les larmes pleines d'espérance, qui disent « au revoir ».
+Remarque : Paul ne dit pas « ne vous affligez pas ». Il dit « ne vous affligez pas *comme ceux qui n'ont point d'espérance* ». Il y a deux sortes de larmes au bord d'une tombe : les larmes sans espoir, qui disent « adieu », et les larmes pleines d'espérance, qui disent « au revoir ».
 
 Toute la différence entre les deux porte un nom : **Jésus-Christ.**
-
----
 
 ## 12. Vivre avec l'absence
 
@@ -406,7 +443,7 @@ Le plus dur, souvent, ne vient pas le jour des obsèques. Il vient après. Quand
 
 Voici quelques paroles pour ces jours-là.
 
-**Vous n'êtes pas orphelin devant Dieu.** Si vous avez perdu un père, une mère, une seconde maman, Dieu se présente lui-même comme le Père de ceux qui n'en ont plus.
+**Tu n'es pas orphelin devant Dieu.** Si tu as perdu un père, une mère, une seconde maman, Dieu se présente lui-même comme le Père de ceux qui n'en ont plus.
 
 > « Le père des orphelins, le défenseur des veuves,
 > c'est Dieu dans sa demeure sainte. »
@@ -418,13 +455,13 @@ Voici quelques paroles pour ces jours-là.
 >
 > — Psaume 27.10
 
-**Gardez le souvenir, mais ne vivez pas dans la tombe.** Parlez d'eux. Racontez leurs histoires à vos enfants. Le sourire de William, je le porte encore. Le souvenir n'est pas une blessure qu'il faut fermer ; c'est un trésor qu'il faut garder. Mais levez aussi les yeux : votre vie n'est pas finie, et Dieu a encore des projets pour vous.
+**Garde le souvenir, mais ne vis pas dans la tombe.** Parle d'eux. Raconte leurs histoires à tes enfants. Le sourire de William, je le porte encore. Le souvenir n'est pas une blessure qu'il faut fermer ; c'est un trésor qu'il faut garder. Mais lève aussi les yeux : ta vie n'est pas finie, et Dieu a encore des projets pour toi.
 
-**Honorez-les en vivant bien.** La plus belle façon d'honorer un homme calme et responsable, c'est de devenir à votre tour calme et responsable. La plus belle façon d'honorer une seconde maman, c'est d'aimer à votre tour comme elle a aimé.
+**Honore-les en vivant bien.** La plus belle façon d'honorer un homme calme et responsable, c'est de devenir à ton tour calme et responsable. La plus belle façon d'honorer une seconde maman, c'est d'aimer à ton tour comme elle a aimé.
 
-**Laissez-vous entourer.** Ne restez pas seul avec votre chagrin. Acceptez la visite, le repas apporté, la prière d'un frère ou d'une sœur. L'Église est une famille ; laissez-la vous porter.
+**Laisse-toi entourer.** Ne reste pas seul avec ton chagrin. Accepte la visite, le repas apporté, la prière d'un frère ou d'une sœur. L'Église est une famille ; laisse-la te porter.
 
-**Votre douleur deviendra un jour une consolation pour d'autres.** C'est peut-être le plus mystérieux : les larmes que vous versez aujourd'hui vous permettront demain de comprendre quelqu'un d'autre, mieux que personne.
+**Ta douleur deviendra un jour une consolation pour d'autres.** C'est peut-être le plus mystérieux : les larmes que tu verses aujourd'hui te permettront demain de comprendre quelqu'un d'autre, mieux que personne.
 
 > « Béni soit Dieu, le Père de notre Seigneur Jésus-Christ,
 > le Père des miséricordes et le Dieu de toute consolation,
@@ -437,13 +474,9 @@ Voici quelques paroles pour ces jours-là.
 >
 > — Matthieu 5.4
 
----
-
 # Troisième partie {.unnumbered .partie}
 
 ## Le bon choix {.unnumbered .partie-titre}
-
----
 
 ## 13. Un seul chemin
 
@@ -486,7 +519,7 @@ Et ce don n'a qu'une seule porte. Jésus ne s'est pas présenté comme *un* chem
 
 Ni la tradition, ni la religion de nos parents, ni les sacrifices, ni les protections que l'on achète ne peuvent sauver une âme. **Jésus-Christ seul.**
 
-Ce n'est pas une parole dure. C'est une parole d'amour. Si une maison brûlait et qu'il n'y avait qu'une seule porte de sortie, l'amour ne dirait pas : « Choisissez la sortie que vous préférez. » L'amour crierait : « Par ici ! Il n'y a que cette porte ! »
+Ce n'est pas une parole dure. C'est une parole d'amour. Si ta maison brûlait et qu'il n'y avait qu'une seule porte de sortie, l'amour ne te dirait pas : « Choisis la sortie que tu préfères. » L'amour te crierait : « Par ici ! Il n'y a que cette porte ! »
 
 > « Car Dieu a tant aimé le monde qu'il a donné son Fils unique,
 > afin que quiconque croit en lui ne périsse point,
@@ -494,17 +527,15 @@ Ce n'est pas une parole dure. C'est une parole d'amour. Si une maison brûlait e
 >
 > — Jean 3.16
 
----
-
 ## 14. Aujourd'hui
 
-Tout ce que vous avez lu jusqu'ici conduit à ce carrefour.
+Tout ce que tu as lu jusqu'ici conduit à ce carrefour.
 
-Vous ne choisissez pas le jour de votre mort. William ne l'a pas choisi, ni tante Rachelle, ni mon beau-père. Mais vous pouvez choisir, aujourd'hui, où vous passerez l'éternité.
+Tu ne choisis pas le jour de ta mort. William ne l'a pas choisi, ni tante Rachelle, ni mon beau-père. Mais tu peux choisir, aujourd'hui, où tu passeras l'éternité.
 
 **Celui qui meurt sans Christ perd tout. Celui qui meurt en Christ ne perd rien et gagne tout.**
 
-Ne remettez pas ce choix à demain. Le plus grand piège n'est pas de dire « non » à Dieu. C'est de lui dire « plus tard ».
+Ne remets pas ce choix à demain. Le plus grand piège n'est pas de dire « non » à Dieu. C'est de lui dire « plus tard ».
 
 > « Voici maintenant le temps favorable, voici maintenant le jour du salut. »
 >
@@ -518,19 +549,17 @@ Comment recevoir ce salut ? Dieu n'a pas caché la porte :
 >
 > — Romains 10.9
 
-1. **Reconnaissez** que vous êtes pécheur et que vous ne pouvez pas vous sauver vous-même.
-2. **Croyez** que Jésus est mort à votre place sur la croix et qu'il est ressuscité.
-3. **Recevez-le** dans votre vie comme votre Sauveur et votre Seigneur.
-4. **Suivez-le** chaque jour, par la prière, la lecture de sa Parole et la communion avec d'autres croyants.
+1. **Reconnais** que tu es pécheur et que tu ne peux pas te sauver toi-même.
+2. **Crois** que Jésus est mort à ta place sur la croix et qu'il est ressuscité.
+3. **Reçois-le** dans ta vie comme ton Sauveur et ton Seigneur.
+4. **Suis-le** chaque jour, par la prière, la lecture de sa Parole et la communion avec d'autres croyants.
 
 > « Voici, je me tiens à la porte, et je frappe.
 > Si quelqu'un entend ma voix et ouvre la porte, j'entrerai chez lui. »
 >
 > — Apocalypse 3.20
 
-Si votre cœur est touché, ne laissez pas passer ce moment. Vous pouvez prier là où vous êtes, avec vos propres mots ou avec ceux-ci :
-
----
+Si ton cœur est touché, ne laisse pas passer ce moment. Tu peux prier là où tu es, avec tes propres mots ou avec ceux-ci :
 
 > *Seigneur Jésus,*
 >
@@ -544,18 +573,14 @@ Si votre cœur est touché, ne laissez pas passer ce moment. Vous pouvez prier l
 >
 > *Au nom de Jésus. Amen.*
 
----
-
-Si vous avez fait cette prière sincèrement, voici ce que Dieu dit de vous désormais :
+Si tu as fait cette prière sincèrement, voici ce que Dieu dit de toi désormais :
 
 > « Mais à tous ceux qui l'ont reçue, à ceux qui croient en son nom,
 > elle a donné le pouvoir de devenir enfants de Dieu. »
 >
 > — Jean 1.12
 
-Vous n'êtes plus seul. Vous ne le serez plus jamais, ni dans la vie, ni dans la mort, ni au-delà. Rejoignez une église qui annonce fidèlement l'Évangile, procurez-vous une Bible, commencez par l'Évangile de Jean, et parlez à Dieu chaque jour comme on parle à un Père.
-
----
+Tu n'es plus seul. Tu ne le seras plus jamais, ni dans la vie, ni dans la mort, ni au-delà. Rejoins une église qui annonce fidèlement l'Évangile, procure-toi une Bible, commence par l'Évangile de Jean, et parle à Dieu chaque jour comme on parle à un Père.
 
 ## 15. Voyageurs sur la terre
 
@@ -574,28 +599,26 @@ Nous sommes des voyageurs. La terre n'est pas notre maison ; elle est notre rout
 
 Un voyageur ne s'attache pas trop à la chambre où il passe la nuit. Il en prend soin, il y vit, il en est reconnaissant, mais il sait qu'il repartira. Il voyage léger. Il garde les yeux sur sa destination.
 
-Voici ce que cela change, concrètement, pour les jours qui vous restent :
+Voici ce que cela change, concrètement, pour les jours qui te restent :
 
-**Dites « je t'aime » aux vivants.** N'attendez pas de le dire devant un cercueil. Les fleurs les plus précieuses sont celles qu'on offre à ceux qui peuvent encore les sentir.
+**Dis « je t'aime » aux vivants.** N'attends pas de le dire devant un cercueil. Les fleurs les plus précieuses sont celles qu'on offre à ceux qui peuvent encore les sentir.
 
-**Pardonnez vite.** La rancune est un bagage trop lourd pour un voyage si court.
+**Pardonne vite.** La rancune est un bagage trop lourd pour un voyage si court.
 
-**Investissez dans ce qui dure.** Les maisons et les comptes en banque resteront ici. Une âme conduite à Christ, un enfant élevé dans la foi, un pauvre secouru au nom de Jésus : cela, vous le retrouverez dans l'éternité.
+**Investis dans ce qui dure.** Les maisons et les comptes en banque resteront ici. Une âme conduite à Christ, un enfant élevé dans la foi, un pauvre secouru au nom de Jésus : cela, tu le retrouveras dans l'éternité.
 
-**Parlez de Jésus à ceux que vous aimez.** Le plus grand héritage que vous puissiez laisser n'est ni une terre ni un compte en banque, c'est la foi.
+**Parle de Jésus à ceux que tu aimes.** Le plus grand héritage que tu puisses laisser n'est ni une terre ni un compte en banque, c'est la foi.
 
-**Tenez-vous prêt, mais sans angoisse.** Que vos relations soient en paix, et votre âme en règle avec Dieu. Alors, que l'horloge s'arrête un samedi à 17 heures ou dans cinquante ans, vous serez prêt.
+**Tiens-toi prêt, mais sans angoisse.** Que tes relations soient en paix, et ton âme en règle avec Dieu. Alors, que l'horloge s'arrête un samedi à 17 heures ou dans cinquante ans, tu seras prêt.
 
 > « Mais notre cité à nous est dans les cieux,
 > d'où nous attendons aussi comme Sauveur le Seigneur Jésus-Christ. »
 >
 > — Philippiens 3.20
 
----
-
 ## Au revoir, et non adieu {.unnumbered}
 
-Un jour, ce sera mon tour. Un jour, ce sera le vôtre.
+Un jour, ce sera mon tour. Un jour, ce sera le tien.
 
 On nous couchera dans un cercueil, avec un habit que nous n'aurons pas choisi. On veillera sous un chapiteau. Les vivants auront faim, et ils mangeront ; ils auront sommeil, et ils dormiront. Puis on nous mettra en terre, et chacun rentrera chez soi. C'est ainsi. Il n'y a rien de honteux à cela.
 
@@ -608,7 +631,7 @@ Mais pour celui qui appartient à Jésus, ce jour-là ne sera pas une fin. Il ne
 >
 > — Jean 14.1-2
 
-William, Rachelle, Koffi François : tous trois ont mis leur foi en Jésus-Christ. Alors je ne leur ai pas dit adieu. Je reverrai le sourire de William. Je reverrai le visage de ma tante Rachelle, ma seconde maman. Je reverrai mon beau-père, le pasteur Koffi François, qui a servi ce Seigneur jusqu'au dernier jour. Et je prie pour que vous aussi, vous puissiez revoir ceux que vous pleurez, dans ce matin où il n'y aura plus de nuit.
+William, Rachelle, Koffi François : tous trois ont mis leur foi en Jésus-Christ. Alors je ne leur ai pas dit adieu. Je reverrai le sourire de William. Je reverrai le visage de ma tante Rachelle, ma seconde maman. Je reverrai mon beau-père, le pasteur Koffi François, qui a servi ce Seigneur jusqu'au dernier jour. Et je prie pour que toi aussi, tu puisses revoir ceux que tu pleures, dans ce matin où il n'y aura plus de nuit.
 
 Là-bas, il n'y aura plus de cercueil, plus de veillée, plus de séparation. Plus d'enfant qui part au marché et ne revient pas. Plus de maternité d'où une mère ne revient pas. Plus de route qui ne mène pas à destination. Plus de téléphone qui sonne pour annoncer une mauvaise nouvelle.
 
@@ -618,11 +641,9 @@ Là-bas, il n'y aura plus de cercueil, plus de veillée, plus de séparation. Pl
 >
 > — Apocalypse 21.4
 
-Alors, pleurez si vous en avez besoin. Mais pleurez avec espérance. Et vivez de telle sorte que, lorsque votre horloge s'arrêtera, ce ne soit pas un adieu.
+Alors, pleure si tu en as besoin. Mais pleure avec espérance. Et vis de telle sorte que, lorsque ton horloge s'arrêtera, ce ne soit pas un adieu.
 
 Seulement un au revoir.
-
----
 
 ## Pour les jours de larmes {.unnumbered}
 
@@ -643,8 +664,6 @@ Seulement un au revoir.
 > « Celui qui a le Fils a la vie ; celui qui n'a pas le Fils de Dieu n'a pas la vie. » — 1 Jean 5.12
 
 > « Je te le dis en vérité, aujourd'hui tu seras avec moi dans le paradis. » — Luc 23.43
-
----
 
 ## Prière pour ceux qui pleurent {.unnumbered}
 
