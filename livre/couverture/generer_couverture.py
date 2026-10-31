@@ -163,7 +163,7 @@ def quatrieme():
 <p class="pour-toi">Pour toi qui as perdu un être cher.<br>Pour toi qui veux apprendre à compter tes jours.</p>
 </div>
 <div class="bio"><div class="bio-titre">L’auteur</div>
-<p><strong>Kouadio Koffi Élisée</strong> est moniteur d’école du dimanche et responsable de la prière de l’école du dimanche à l’Église CMA. Entrepreneur, il est cofondateur de Forlife Com, entreprise de communication intégrée basée à Bingerville. Il est marié à Koffi Assena Grâce Emmanuelle, épouse Kouadio.</p></div>
+<p><strong>Kouadio Koffi Élisée</strong> est moniteur d’école du dimanche à l’Église CMA et responsable de prière de l’école du dimanche. Entrepreneur, il est cofondateur de Forlife Com, entreprise de communication intégrée basée à Bingerville. Il est marié à Koffi Assena Grâce Emmanuelle, épouse Kouadio.</p></div>
 <div class="isbn">ISBN<br>code-barres</div>
 </section>'''
 

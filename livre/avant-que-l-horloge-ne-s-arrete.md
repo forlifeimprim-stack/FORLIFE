@@ -686,13 +686,11 @@ Seulement un au revoir.
 
 ## À propos de l'auteur {.unnumbered}
 
-**Kouadio Koffi Élisée** est moniteur d'école du dimanche à l'Église CMA, où il est également responsable de la prière de l'école du dimanche.
+**Kouadio Koffi Élisée** est moniteur d'école du dimanche à l'Église CMA et responsable de prière de l'école du dimanche.
 
 Entrepreneur, il est cofondateur de **Forlife Com**, entreprise de communication intégrée basée à Bingerville.
 
 Il est marié à Koffi Assena Grâce Emmanuelle, épouse Kouadio.
-
-Marqué par trois deuils qui ont traversé sa vie, de l'enfance à l'âge adulte, il a écrit ce livre pour tendre la main à ceux qui pleurent et leur montrer le chemin de l'espérance en Jésus-Christ.
 
 ---
 
