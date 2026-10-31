@@ -13,7 +13,7 @@
 |---|---|---|---|
 | **Tome 1 — Débutant** | *Apprivoiser l'ordinateur : mes premiers pas sans peur* | Ceux qui n'ont jamais (ou presque) touché un ordinateur : commerçants, parents, retraités, élèves, artisans | utiliser seul un ordinateur, écrire une lettre, faire un petit tableau de comptes, chercher sur Internet, envoyer un e-mail avec pièce jointe et se protéger des arnaques |
 | **Tome 2 — Intermédiaire** | *Maîtriser l'outil : l'informatique au service de mon travail* | Ceux qui « se débrouillent » : étudiants, secrétaires, agents administratifs, entrepreneurs | produire des documents professionnels, gérer une activité avec Excel, présenter un projet, travailler en ligne en équipe, se dépanner et utiliser l'IA intelligemment |
-| **Tome 3 — Expert** | *Devenir acteur du numérique : comprendre, créer, automatiser* | Ceux qui veulent aller au fond des choses ou en faire un métier | comprendre ce qui se passe « sous le capot », programmer, gérer des données, créer un site, sécuriser un réseau, automatiser et vendre ses compétences |
+| **Tome 3 — Expert** | *Créer avec l'IA : le vibe coding, de l'idée à l'application en ligne* | Ceux qui veulent créer leurs propres outils numériques ou en faire un métier, sans devenir programmeurs | décrire une idée à l'IA, lui faire construire une application web, la corriger, la sauvegarder, la mettre en ligne, la sécuriser et la vendre |
 
 ---
 
@@ -84,22 +84,32 @@ finale, un glossaire en mots simples, les corrigés en annexe et un mémo des ra
 
 ---
 
-## 5. Tome 3 — Expert : *Devenir acteur du numérique*
+## 5. Tome 3 — Expert : *Créer avec l'IA, le vibe coding de l'idée à l'application en ligne*
+
+**Principe** : l'apprenant n'écrit pas le code, il le **fait écrire par l'IA**. Il devient le *maître d'ouvrage*
+qui sait ce qu'il veut, l'IA est le *maçon* qui construit. Le livre enseigne une **méthode** (décrire, construire,
+vérifier, corriger, publier) qui reste valable quand les outils changent. Outils du moment présentés à titre
+d'exemples : Lovable, Bolt, Replit, Google AI Studio, Cursor, Claude Code ; GitHub ; Vercel, Netlify, Firebase.
 
 | N° | Module | La situation de vie qui sert de fil | Contenu principal |
 |---|---|---|---|
-| 1 | **Sous le capot : architecture et systèmes** | Comprendre un moteur pour devenir mécanicien, pas seulement chauffeur | Processeur, mémoire, binaire, systèmes d'exploitation, Linux et ligne de commande, monter et diagnostiquer un PC |
-| 2 | **Les réseaux en profondeur** | Le système d'adresses d'une ville : quartiers, rues, numéros, facteur | Modèle TCP/IP, adresses IP et sous-réseaux, DNS, routeur, commutateur, monter le réseau d'une petite entreprise |
-| 3 | **Penser comme un programmeur (algorithmique)** | La recette de l'attiéké-poisson écrite pour quelqu'un qui n'a jamais cuisiné | Séquences, conditions, boucles, variables, fonctions, découper un problème |
-| 4 | **Programmer en Python** | Koffi refait chaque soir les mêmes calculs à la main | Bases du langage, fichiers, automatiser des tâches répétitives, petits programmes utiles |
-| 5 | **Les données et les bases de données (SQL)** | Le registre d'état civil de la mairie : chercher un acte en une seconde | Tables, relations, requêtes SQL, concevoir une base pour une école ou un commerce |
-| 6 | **Créer un site web** | Donner une vitrine ouverte 24 h/24 à la coopérative | HTML, CSS, notions de JavaScript, nom de domaine, hébergement, publier son site |
-| 7 | **Excel expert et analyse de données** | Le directeur veut un tableau de bord des ventes de toutes les agences | Power Query, tableaux de bord, macros et VBA, nettoyer et analyser des données, initiation à Power BI |
-| 8 | **Cybersécurité avancée** | Une PME d'Abidjan victime d'un rançongiciel | Panorama des menaces, sécuriser postes et réseaux, sauvegardes, réponse aux incidents, cadre légal ivoirien (protection des données personnelles, cybercriminalité, ARTCI) |
-| 9 | **Cloud, virtualisation et administration** | Gérer les 20 ordinateurs d'une école sans courir partout | Machines virtuelles, services cloud, gestion d'un parc informatique, sauvegardes serveur |
-| 10 | **Automatisation et IA avancée** | Faire travailler les outils entre eux pendant qu'on dort | API expliquées simplement, outils sans code (Make, Zapier), formulation avancée pour l'IA, agents et automatisation |
-| 11 | **Faire de l'informatique un métier** | Yao, devenu compétent, veut vivre de ses compétences | Métiers du numérique, gestion de projet, freelance, chiffrer une prestation, certifications reconnues, portfolio |
-| ★ | **Projet final** : *Solution numérique complète pour une coopérative* | — | Site web + base de données + automatisation + plan de sécurité, présentés comme à un vrai client |
+| 1 | **Le vibe coding, c'est quoi ?** | Koffi a une idée d'application mais pas deux millions pour payer un développeur | Le maître d'ouvrage et le maçon ; ce que l'IA sait faire et ne sait pas faire ; panorama des outils ; créer ses comptes |
+| 2 | **Penser comme un programmeur, sans coder** | La recette de l'attiéké-poisson écrite pour quelqu'un qui n'a jamais cuisiné | Découper une idée en étapes, logique « si… alors… », répétitions ; écrire un petit cahier des charges : pour qui, quels écrans, quelles actions |
+| 3 | **Comprendre ce que l'IA fabrique** | Le magasin : la vitrine, l'arrière-boutique, le cahier de stock, l'adresse, le bailleur | Une application web expliquée simplement : l'interface, le serveur, les données, le nom de domaine, l'hébergement ; savoir reconnaître et lire ce que l'IA produit, sans l'écrire |
+| 4 | **L'art de parler à l'IA pour coder (prompt)** | Commander une tenue chez le couturier : plus on est précis, moins on retouche | Contexte, objectif, contraintes, exemples ; le premier prompt ; avancer par petites touches ; modèles de prompts prêts à l'emploi |
+| 5 | **Ma première application de A à Z** | La vitrine en ligne des pagnes de Tantie Akissi, avec un bouton de commande WhatsApp | Projet guidé : du prompt à la page qui fonctionne, ajuster le design, l'adapter au téléphone |
+| 6 | **Une vraie application avec comptes et données** | La tontine de Mariam : chaque membre se connecte et voit ses cotisations | Inscription et connexion, enregistrer et afficher des données ; laisser l'IA brancher la base de données (expliquée avec le cahier de la tontine, sans code) |
+| 7 | **Quand ça ne marche pas : réparer avec l'IA** | Chez le médecin : bien décrire ses symptômes pour un bon diagnostic | Lire et transmettre un message d'erreur, décrire le problème, revenir en arrière, sortir de la boucle « corrige, ça casse ailleurs » |
+| 8 | **Sauvegarder chaque étape avec GitHub** | L'album photo de la construction de la maison, étage par étage | GitHub sans peur : dépôt, historique, revenir à une version qui marchait, travailler à plusieurs |
+| 9 | **Mettre son application en ligne** | Ouvrir la boutique au public : l'adresse, l'enseigne, les clés | Déployer (Vercel, Netlify, Firebase), nom de domaine en .ci ou .com, cadenas HTTPS, publier une mise à jour |
+| 10 | **Une application sûre et de qualité** | La boutique bien fermée le soir, et propre pour les clients | Garder ses clés secrètes, protéger les données des utilisateurs, tester sur téléphone, vitesse ; la protection des données personnelles en mots simples |
+| 11 | **Brancher son application au monde** | Faire travailler les outils entre eux pendant qu'on dort | Paiement par Mobile Money, envoi d'e-mails et de messages WhatsApp, ajouter de l'IA dans son application, automatisations sans code (Make, Zapier) |
+| 12 | **Vivre du vibe coding** | Yao, devenu compétent, veut vivre de ses créations | Trouver des clients, chiffrer une prestation, contrat et maintenance, portfolio, vendre des applications et des modèles en ligne |
+| ★ | **Projet final** : *Une application complète pour un vrai client* | — | Une coopérative, une école, une église ou une association : cahier des charges, construction avec l'IA, mise en ligne, présentation comme à un client |
+
+**Retiré de la première version** (hors du champ du vibe coding et de l'expertise du formateur) : architecture et
+Linux, réseaux en profondeur, programmation Python, bases de données et SQL (gardées seulement comme explication
+au module 6), Excel expert et VBA, cybersécurité avancée (remplacée par le module 10), virtualisation et gestion de parc.
 
 ---
 
