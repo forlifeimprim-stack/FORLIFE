@@ -103,8 +103,9 @@ d'exemples : Lovable, Bolt, Replit, Google AI Studio, Cursor, Claude Code ; GitH
 | 8 | **Sauvegarder chaque étape avec GitHub** | L'album photo de la construction de la maison, étage par étage | GitHub sans peur : dépôt, historique, revenir à une version qui marchait, travailler à plusieurs |
 | 9 | **Mettre son application en ligne** | Ouvrir la boutique au public : l'adresse, l'enseigne, les clés | Déployer (Vercel, Netlify, Firebase), nom de domaine en .ci ou .com, cadenas HTTPS, publier une mise à jour |
 | 10 | **Une application sûre et de qualité** | La boutique bien fermée le soir, et propre pour les clients | Garder ses clés secrètes, protéger les données des utilisateurs, tester sur téléphone, vitesse ; la protection des données personnelles en mots simples |
-| 11 | **Brancher son application au monde** | Faire travailler les outils entre eux pendant qu'on dort | Paiement par Mobile Money, envoi d'e-mails et de messages WhatsApp, ajouter de l'IA dans son application, automatisations sans code (Make, Zapier) |
-| 12 | **Vivre du vibe coding** | Yao, devenu compétent, veut vivre de ses créations | Trouver des clients, chiffrer une prestation, contrat et maintenance, portfolio, vendre des applications et des modèles en ligne |
+| 11 | **Brancher son application au monde** | Le maquis qui accepte Wave, Orange Money et MTN MoMo | Paiement par Mobile Money, envoi d'e-mails et de messages WhatsApp, ajouter de l'IA dans son application |
+| 12 | **Automatisation et IA avancée : API, Make, Zapier, agents** | Le gérant qui a enfin un employé qui ne dort jamais : commande reçue, stock mis à jour, client prévenu | Les API expliquées comme le serveur du maquis qui transmet la commande à la cuisine ; scénarios Make et Zapier (déclencheur, actions, filtres) ; agents d'IA qui enchaînent des tâches seuls ; garder le contrôle et vérifier |
+| 13 | **Vivre du vibe coding** | Yao, devenu compétent, veut vivre de ses créations | Trouver des clients, chiffrer une prestation, contrat et maintenance, portfolio, vendre des applications et des modèles en ligne |
 | ★ | **Projet final** : *Une application complète pour un vrai client* | — | Une coopérative, une école, une église ou une association : cahier des charges, construction avec l'IA, mise en ligne, présentation comme à un client |
 
 **Retiré de la première version** (hors du champ du vibe coding et de l'expertise du formateur) : architecture et
@@ -113,14 +114,12 @@ au module 6), Excel expert et VBA, cybersécurité avancée (remplacée par le m
 
 ---
 
-## 6. Points à valider avant l'écriture
+## 6. Décisions validées (31/10/2026)
 
-1. **Les modules** : en ajouter, en retirer, en fusionner ?
-2. **Le format de sortie** : Word (.docx) modifiable, PDF prêt à imprimer ou à vendre, ou les deux.
-3. **Les logiciels de référence** : Microsoft Office (Word, Excel, PowerPoint) ou aussi les équivalents
-   gratuits (LibreOffice, Google Docs) ; Windows 11 comme système de référence.
-4. **Le volume** : environ 120 à 150 pages par tome (rythme d'une formation de 30 à 40 heures par niveau).
-5. **Les personnages et le décor** : contexte ivoirien assumé (marché, maquis, Mobile Money, gbaka…)
-   ou un décor plus largement africain francophone.
-6. **Les compléments** : version audio avec la voix « FOR LIFE voix off », guide du formateur, fiches à
-   imprimer, quiz en ligne.
+- **Modules** : validés ; Tome 3 recentré sur le vibe coding, avec un module dédié à l'automatisation et à l'IA avancée.
+- **Livrables** : chaque tome en **Word (.docx)** et en **PDF**.
+- **Logiciels de référence** : **Microsoft Office** (Word, Excel, PowerPoint) sous Windows 11.
+- **Volume** : environ **120 pages** par tome.
+- **Décor** : **ivoirien** (marché, maquis, gbaka, woro-woro, Mobile Money, tontine…).
+- **Tome 2** : le module grand public « Comprendre Internet et le Wi-Fi » est conservé.
+- **Étape suivante** : un chapitre témoin pour valider le ton, puis l'écriture intégrale tome par tome.
