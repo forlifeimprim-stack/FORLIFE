@@ -16,10 +16,10 @@ pages = {}
 feuilles = texte.split('\f')
 som = next((i for i, f in enumerate(feuilles, 1) if re.search(r'^\s*Sommaire\s*$', f, re.M)), 0)
 motifs = {
-    'preface': r'Préface : le nouvel alphabet', 'mode': r'Comment utiliser ce livre',
+    'preface': r'Préface :', 'mode': r'Comment utiliser ce livre',
     'test': r'Test de positionnement : par où', 'projet': r'PROJET FINAL',
     'annexeA': r'Annexe A\s+·\s+Corrigés', 'annexeB': r'Annexe B\s+·\s+Glossaire',
-    'annexeC': r'Annexe C\s+·\s+Les raccourcis', 'annexeD': r'Annexe D\s+·\s+Pour aller',
+    'annexeC': r'Annexe C\s+·', 'annexeD': r'Annexe D\s+·\s+Pour aller',
 }
 for i, f in enumerate(feuilles, 1):
     for cle, motif in motifs.items():
