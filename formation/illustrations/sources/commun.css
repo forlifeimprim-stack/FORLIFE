@@ -1,0 +1,15 @@
+@font-face { font-family: 'Bricolage'; src: url('../../couvertures/polices/BricolageGrotesque-Bold.ttf'); font-weight: 700; }
+@font-face { font-family: 'Geist Mono'; src: url('../../couvertures/polices/GeistMono-Regular.ttf'); }
+@font-face { font-family: 'Geist Mono'; src: url('../../couvertures/polices/GeistMono-Bold.ttf'); font-weight: 700; }
+@font-face { font-family: 'Instrument Sans'; src: url('../../couvertures/polices/InstrumentSans-Regular.ttf'); }
+@font-face { font-family: 'Instrument Sans'; src: url('../../couvertures/polices/InstrumentSans-Bold.ttf'); font-weight: 700; }
+@font-face { font-family: 'Instrument Serif'; src: url('../../couvertures/polices/InstrumentSerif-Italic.ttf'); font-style: italic; }
+:root { --orange:#EA7822; --or:#E2AC48; --vert:#187A52; --creme:#F6EFE6; --indigo:#18162A; --brique:#A03E20; --gris:#6B6560; }
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { width: 1600px; background: var(--creme); font-family: 'Instrument Sans', sans-serif; color: var(--indigo); }
+.planche { width: 1600px; padding: 56px 64px 0; position: relative; }
+.etiquette { font-family: 'Geist Mono'; font-size: 20px; letter-spacing: 4px; color: var(--orange); font-weight: 700; }
+h1 { font-family: 'Bricolage'; font-size: 58px; line-height: 1.05; margin: 10px 0 6px; }
+.sous { font-family: 'Instrument Serif'; font-style: italic; font-size: 30px; color: var(--gris); }
+.kita { height: 26px; margin-top: 40px;
+  background: repeating-linear-gradient(90deg, var(--orange) 0 52px, var(--indigo) 52px 56px, var(--or) 56px 108px, var(--indigo) 108px 112px, var(--vert) 112px 164px, var(--indigo) 164px 168px, var(--brique) 168px 220px, var(--indigo) 220px 224px); }

@@ -1,0 +1,60 @@
+<!doctype html><html lang="fr"><head><meta charset="utf-8"><link rel="stylesheet" href="commun.css">
+<style>
+.cadre { display: grid; grid-template-columns: 1080px 1fr; gap: 40px; margin-top: 34px; align-items: start; }
+.ecran { position: relative; width: 1080px; height: 640px; border-radius: 16px; border: 14px solid var(--indigo); overflow: hidden;
+  background: radial-gradient(ellipse at 70% 30%, #2C7A8C 0%, #174A63 45%, #10263E 100%); }
+.icones { position: absolute; left: 18px; top: 16px; display: flex; flex-direction: column; gap: 18px; }
+.ic { width: 74px; text-align: center; color: #fff; font-size: 13px; }
+.ic i { display: block; width: 46px; height: 40px; margin: 0 auto 4px; border-radius: 6px; }
+.fen { position: absolute; left: 230px; top: 70px; width: 560px; height: 340px; background: #fff; border-radius: 10px; box-shadow: 0 20px 50px rgba(0,0,0,.35); overflow: hidden; }
+.fen .titre { height: 38px; background: #F3F3F3; display: flex; align-items: center; padding-left: 16px; font-size: 15px; color: #333; }
+.fen .btns { margin-left: auto; display: flex; height: 100%; }
+.fen .btns span { width: 52px; display: flex; align-items: center; justify-content: center; font-size: 18px; color: #333; }
+.fen .btns span:last-child { background: #E81123; color: #fff; }
+.fen .texte { padding: 22px 26px; font-size: 17px; line-height: 1.7; color: #222; }
+.barre { position: absolute; left: 0; right: 0; bottom: 0; height: 56px; background: rgba(240,243,248,.92); display: flex; align-items: center; justify-content: center; gap: 12px; }
+.barre .b { width: 38px; height: 38px; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-weight: 700; color: #fff; font-size: 17px; position: relative; }
+.barre .b.ouvert::after { content: ''; position: absolute; bottom: -7px; left: 13px; width: 12px; height: 3px; border-radius: 2px; background: #1E6FD9; }
+.dem { background: none !important; display: grid !important; grid-template-columns: 15px 15px; gap: 3px; width: 38px; height: 38px; padding: 4px; }
+.dem i { width: 15px; height: 15px; background: #1E6FD9; border-radius: 2px; }
+.rech { width: 190px; height: 34px; border-radius: 17px; background: #fff; border: 1px solid #ccc; display: flex; align-items: center; padding-left: 14px; color: #666; font-size: 14px; }
+.notif { position: absolute; right: 14px; bottom: 0; height: 56px; display: flex; align-items: center; gap: 14px; font-size: 13px; color: #222; text-align: right; }
+.pastille { position: absolute; width: 40px; height: 40px; border-radius: 50%; background: var(--orange); color: #fff; font-family: 'Bricolage'; font-size: 22px; display: flex; align-items: center; justify-content: center; border: 3px solid #fff; box-shadow: 0 3px 8px rgba(0,0,0,.3); z-index: 5; }
+.legende { display: flex; flex-direction: column; gap: 14px; }
+.legende > div { display: grid; grid-template-columns: 44px 1fr; align-items: center; gap: 12px; font-size: 21px; }
+.legende b { font-family: 'Bricolage'; }
+.legende span.l { width: 40px; height: 40px; border-radius: 50%; background: var(--orange); color: #fff; font-family: 'Bricolage'; font-size: 22px; display: flex; align-items: center; justify-content: center; }
+.legende small { display: block; font-size: 16px; color: var(--gris); }
+</style></head><body><div class="planche">
+<div class="etiquette">MODULE 3 · LE DÉCLIC</div>
+<h1>Windows, c'est un bureau</h1>
+<div class="sous">Repérez chaque élément sur votre propre écran</div>
+<div class="cadre"><div class="ecran">
+  <div class="icones">
+    <div class="ic"><i style="background:#9DB4C8"></i>Corbeille</div>
+    <div class="ic"><i style="background:#F2C04C"></i>Documents</div>
+    <div class="ic"><i style="background:#2B579A"></i>Lettre</div>
+  </div>
+  <div class="fen"><div class="titre">Sans titre – Bloc-notes<div class="btns"><span>—</span><span>☐</span><span>✕</span></div></div>
+    <div class="texte">Je m'appelle Akissi.<br>Je suis à Abidjan.<br>Je bois mon café|</div></div>
+  <div class="barre"><div class="b dem"><i></i><i></i><i></i><i></i></div><div class="rech">🔍 Rechercher</div>
+    <div class="b ouvert" style="background:#F2C04C;color:#18162A">▤</div><div class="b" style="background:#0C7ABF">e</div><div class="b" style="background:#2B579A">W</div><div class="b" style="background:#217346">X</div><div class="b ouvert" style="background:#6B6B6B">✎</div></div>
+  <div class="notif">📶 🔊 🔋<div>14:32<br>31/10/2026</div></div>
+  <div class="pastille" style="left:840px;top:200px">A</div>
+  <div class="pastille" style="left:96px;top:20px">B</div>
+  <div class="pastille" style="left:620px;top:30px">E</div>
+  <div class="pastille" style="left:150px;top:500px">C</div>
+  <div class="pastille" style="left:310px;top:500px">D</div>
+  <div class="pastille" style="left:960px;top:500px">G</div>
+  <div class="pastille" style="left:640px;top:500px">F</div>
+</div>
+<div class="legende">
+  <div><span class="l">A</span><div><b>Le Bureau</b><small>le plateau de la table</small></div></div>
+  <div><span class="l">B</span><div><b>Les icônes</b><small>un double-clic les ouvre</small></div></div>
+  <div><span class="l">C</span><div><b>La barre des tâches</b><small>le tableau d'affichage</small></div></div>
+  <div><span class="l">D</span><div><b>Le bouton Démarrer</b><small>le grand tiroir</small></div></div>
+  <div><span class="l">E</span><div><b>Une fenêtre</b><small>— réduire · ☐ agrandir · ✕ fermer</small></div></div>
+  <div><span class="l">F</span><div><b>Les programmes épinglés</b><small>un trait dessous : ouvert</small></div></div>
+  <div><span class="l">G</span><div><b>La zone de notification</b><small>heure, réseau, son, batterie</small></div></div>
+</div></div>
+<div class="kita"></div></div></body></html>
