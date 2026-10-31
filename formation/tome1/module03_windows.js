@@ -25,7 +25,7 @@ module.exports = {
   declic: [
     { h2: 'Windows, c\'est un bureau' },
     'Quand l\'ordinateur a fini de s\'allumer, ce que vous voyez s\'appelle justement le **Bureau**. Windows l\'a pensé comme le bureau d\'un secrétariat.',
-    { illus: 'Capture d\'écran annotée du Bureau de Windows 11 : le fond d\'écran (A), des icônes (B), la barre des tâches en bas (C), le bouton Démarrer au centre (D), la zone de recherche (E), des programmes épinglés (F), la zone de notification à droite avec l\'heure, le son, le Wi-Fi et la batterie (G).' },
+    { img: 'bureau_windows', illus: 'Capture d\'écran annotée du Bureau de Windows 11 : le fond d\'écran (A), des icônes (B), la barre des tâches en bas (C), le bouton Démarrer au centre (D), la zone de recherche (E), des programmes épinglés (F), la zone de notification à droite avec l\'heure, le son, le Wi-Fi et la batterie (G).' },
     { tableau: [['À l\'écran', 'Dans le bureau de Mariam…', 'À quoi ça sert'], [
       ['Le **Bureau**', 'Le plateau de la table', 'L\'espace de travail. On y pose ce qu\'on utilise souvent, sans l\'encombrer.'],
       ['Les **icônes**', 'Les objets posés sur la table', 'De petites images qui représentent un programme, un dossier ou un fichier. Un double-clic les ouvre.'],
@@ -62,7 +62,7 @@ module.exports = {
       '**Mettre deux fenêtres côte à côte** : glissez une fenêtre par sa barre de titre contre le **bord gauche** de l\'écran et relâchez : elle occupe la moitié gauche. Windows vous propose alors de choisir la fenêtre qui ira à droite : cliquez dessus.',
       '**Voir le Bureau d\'un coup** : appuyez sur **Windows + D**. Recommencez pour retrouver vos fenêtres.',
     ] },
-    { illus: 'Capture d\'écran : la Calculatrice à gauche et le Bloc-notes à droite, partageant l\'écran en deux moitiés égales.' },
+    { img: 'cote_a_cote', illus: 'Capture d\'écran : la Calculatrice à gauche et le Bloc-notes à droite, partageant l\'écran en deux moitiés égales.' },
     { h2: 'Étape 3 : épingler ses programmes préférés' },
     { etapes: [
       'Ouvrez le menu **Démarrer** et trouvez le programme (par exemple Word).',

@@ -58,7 +58,7 @@ module.exports = {
       'Acceptez les conditions. Votre boîte est prête : elle s\'ouvre sur **gmail.com**.',
     ] },
     { h2: 'Étape 2 : écrire et envoyer un e-mail' },
-    { illus: 'Capture d\'écran de Gmail annotée : le bouton « Nouveau message », la boîte de réception, la fenêtre de rédaction avec les champs À, Objet, le corps du message, le trombone pour joindre un fichier et le bouton bleu « Envoyer ».' },
+    { img: 'gmail', illus: 'Capture d\'écran de Gmail annotée : le bouton « Nouveau message », la boîte de réception, la fenêtre de rédaction avec les champs À, Objet, le corps du message, le trombone pour joindre un fichier et le bouton bleu « Envoyer ».' },
     { etapes: [
       'Cliquez sur **Nouveau message** (en haut à gauche, avec un crayon).',
       'Dans **À**, tapez l\'adresse du destinataire.',

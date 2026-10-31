@@ -54,7 +54,7 @@ module.exports = {
   pasAPas: [
     { h2: 'Étape 1 : ouvrir l\'armoire (l\'Explorateur de fichiers)' },
     'Cliquez sur l\'icône du **dossier jaune** dans la barre des tâches, ou appuyez sur **Windows + E**.',
-    { illus: 'Capture d\'écran annotée de l\'Explorateur de fichiers de Windows 11 : le volet de gauche (Accueil, Bureau, Téléchargements, Documents, Images, Ce PC), la barre d\'adresse qui montre le chemin, le bouton « + Nouveau », la barre de recherche en haut à droite et le contenu au centre.' },
+    { img: 'explorateur', illus: 'Capture d\'écran annotée de l\'Explorateur de fichiers de Windows 11 : le volet de gauche (Accueil, Bureau, Téléchargements, Documents, Images, Ce PC), la barre d\'adresse qui montre le chemin, le bouton « + Nouveau », la barre de recherche en haut à droite et le contenu au centre.' },
     { puces: [
       'À **gauche**, les grands rangements : **Bureau**, **Documents**, **Images**, **Téléchargements** (où arrive tout ce que vous téléchargez sur Internet), et **Ce PC** (les lecteurs et clés USB).',
       'En **haut**, la **barre d\'adresse** montre le chemin du dossier ouvert.',
@@ -99,7 +99,7 @@ module.exports = {
         '**Le Bureau n\'est pas un placard** : on y pose les fichiers en cours de la journée, puis on les range le soir.',
       ] },
     ] } },
-    { illus: 'Schéma en arbre : Documents → Famille (Actes de naissance, Bulletins des enfants), Travail (Courriers, Rapports), Boutique (Factures, Stock), Administratif (CIE-SODECI, Impôts), Formation (Tome 1).' },
+    { img: 'arbre', illus: 'Schéma en arbre : Documents → Famille (Actes de naissance, Bulletins des enfants), Travail (Courriers, Rapports), Boutique (Factures, Stock), Administratif (CIE-SODECI, Impôts), Formation (Tome 1).' },
   ],
 
   pieges: {

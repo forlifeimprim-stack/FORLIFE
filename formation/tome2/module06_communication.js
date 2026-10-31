@@ -66,7 +66,7 @@ module.exports = {
       'Dans la description, collez l\'**ordre du jour**. Joignez les documents depuis Drive ou OneDrive.',
       'Ajoutez une **notification** (rappel) trente minutes avant, puis **Enregistrer** → **Envoyer** les invitations.',
     ] },
-    { illus: 'Capture d\'écran de Google Agenda : la fenêtre d\'un nouvel événement avec le titre, l\'horaire, les invités, le bouton « Rejoindre avec Google Meet » et l\'ordre du jour dans la description.' },
+    { img: 'agenda', illus: 'Capture d\'écran de Google Agenda : la fenêtre d\'un nouvel événement avec le titre, l\'horaire, les invités, le bouton « Rejoindre avec Google Meet » et l\'ordre du jour dans la description.' },
     { h2: 'Étape 3 : la visioconférence' },
     { tableau: [['Je veux…', 'Je fais… (les icônes sont similaires dans Meet, Teams et Zoom)'], [
       ['Rejoindre', 'Je clique sur le lien de l\'invitation, je vérifie micro et caméra dans l\'écran d\'attente, puis **Participer**.'],

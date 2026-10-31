@@ -200,6 +200,19 @@ function documentLivre({ enTete, sections }) {
   });
 }
 
+// Illustration : PNG de formation/illustrations, à la largeur du texte. Renvoie null si l'image n'existe pas.
+function image(nom) {
+  if (!nom) return null;
+  const chemin = require('path').join(__dirname, '..', 'illustrations', nom + '.png');
+  if (!fs.existsSync(chemin)) return null;
+  const data = fs.readFileSync(chemin);
+  const w = data.readUInt32BE(16), h = data.readUInt32BE(20);
+  let largeur = 640, hauteur = Math.round((h * largeur) / w);
+  if (hauteur > 820) { largeur = Math.round((largeur * 820) / hauteur); hauteur = 820; }
+  return new Paragraph({ alignment: AlignmentType.CENTER, keepLines: true, spacing: { before: 120, after: 60 },
+    children: [new ImageRun({ type: 'png', data, transformation: { width: largeur, height: hauteur } })] });
+}
+
 async function ecrire(doc, chemin) {
   fs.writeFileSync(chemin, await Packer.toBuffer(doc));
   console.log('Écrit :', chemin);
@@ -207,6 +220,6 @@ async function ecrire(doc, chemin) {
 
 module.exports = {
   C, LARGEUR, runs, p, vide, saut, titre1, titre2, titre3, puces, etapes, cases, encadre, illustration,
-  tableau, bandeau, dialogue, ligneAEcrire, documentLivre, ecrire,
+  tableau, bandeau, dialogue, ligneAEcrire, documentLivre, ecrire, image,
   docx: require('docx'),
 };

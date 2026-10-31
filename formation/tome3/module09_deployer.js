@@ -59,7 +59,7 @@ module.exports = {
       'Cliquez sur **Deploy**. Après une ou deux minutes, une adresse s\'affiche.',
       'Désormais, chaque commit sur la branche **main** déclenche un nouveau déploiement ; chaque branche d\'essai reçoit sa propre adresse d\'aperçu, sans toucher à la production.',
     ] },
-    { illus: 'Capture d\'écran d\'un tableau de bord d\'hébergeur : le projet « koffi-rendez-vous », le dernier déploiement réussi en vert, l\'adresse de production, l\'onglet Environment Variables et l\'onglet Domains.' },
+    { img: 'hebergeur', illus: 'Capture d\'écran d\'un tableau de bord d\'hébergeur : le projet « koffi-rendez-vous », le dernier déploiement réussi en vert, l\'adresse de production, l\'onglet Environment Variables et l\'onglet Domains.' },
     { h2: 'Étape commune : relier le nom de domaine' },
     { etapes: [
       'Achetez le nom de domaine auprès d\'un bureau d\'enregistrement (pour le .ci, un bureau accrédité).',

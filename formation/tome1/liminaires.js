@@ -66,6 +66,7 @@ const modeEmploi = [
     ['**Koffi**, 28 ans', 'Il vient d\'ouvrir un secrétariat public à Yopougon. Ambitieux, parfois trop confiant.'],
     ['**M. Kouassi**', 'Le formateur. Patient, plein d\'humour, il répond à toutes les questions, même celles qu\'on n\'ose pas poser.'],
   ], [1.3, 3.4]] },
+  { img: 'personnages', illus: 'Les personnages' },
   { encadre: { titre: '📚  Les logiciels utilisés', style: 'bleu', contenu: [
     'Ce livre utilise **Windows 11** et **Microsoft 365** (Word et Excel) en français. Si votre ordinateur a une autre version (Windows 10, Office 2019 ou 2021), la plupart des gestes sont identiques ; seuls quelques boutons peuvent changer de place.',
   ] } },

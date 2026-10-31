@@ -49,7 +49,7 @@ module.exports = {
       'Dans l\'Explorateur, ouvrez **Ce PC** → **Apple iPhone** → **Internal Storage** → **DCIM** : vos photos sont rangées dans des dossiers par date.',
       'Copiez-les vers l\'ordinateur comme avec Android.',
     ] },
-    { illus: 'Capture d\'écran : l\'Explorateur de fichiers ouvert sur Ce PC > Galaxy A15 > Stockage interne > DCIM > Camera, avec des miniatures de photos ; à côté, l\'écran d\'un téléphone Android montrant le choix « Transfert de fichiers ».' },
+    { img: 'dcim', illus: 'Capture d\'écran : l\'Explorateur de fichiers ouvert sur Ce PC > Galaxy A15 > Stockage interne > DCIM > Camera, avec des miniatures de photos ; à côté, l\'écran d\'un téléphone Android montrant le choix « Transfert de fichiers ».' },
     { h2: 'Route 2 : WhatsApp Web' },
     { etapes: [
       'Sur l\'ordinateur, ouvrez le navigateur et allez sur **web.whatsapp.com**. Un grand carré noir et blanc apparaît : un **QR code**.',

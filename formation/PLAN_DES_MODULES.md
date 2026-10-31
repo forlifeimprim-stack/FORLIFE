@@ -122,15 +122,15 @@ au module 6), Excel expert et VBA, cybersécurité avancée (remplacée par le m
 - **Volume** : environ **120 pages** par tome.
 - **Décor** : **ivoirien** (marché, maquis, gbaka, woro-woro, Mobile Money, tontine…).
 - **Tome 2** : le module grand public « Comprendre Internet et le Wi-Fi » est conservé.
-- **Tome 1** : écrit et mis en page (111 pages, Word et PDF) dans `livrables/`.
-- **Tome 2** : écrit et mis en page (94 pages, Word et PDF).
-- **Tome 3** : écrit et mis en page (109 pages, Word et PDF), avec une bibliothèque de 20 prompts en annexe.
-- **Illustrations** : trois styles proposés dans `illustrations/` (schéma, maquette d'écran, portraits), en attente de choix.
+- **Éditions** : chaque tome existe en deux PDF, le **manuel de l'apprenant** et le **manuel du formateur** (méthode, organisation, évaluation, fiche pédagogique par module avec déroulé minuté, conseils, erreurs fréquentes, corrigés). Plus de fichiers Word.
+- **Illustrations** : 38 schémas et maquettes d'écran annotées, plus la planche des personnages, intégrés dans les trois tomes.
 
 ## 7. Fabrication des livres
 
 - Contenu : un fichier par module dans `tome1/` (`module00_…js` à `module11_…js`), plus `liminaires.js` et `projet_final.js`.
 - Mise en page : `outils/livre.js` (styles, encadrés, tableaux) et `outils/module.js` (gabarit des 8 étapes).
-- Construction : `bash formation/outils/construire.sh 1` (ou 2, ou 3) produit le Word et le PDF, avec le sommaire numéroté.
+- Construction : `bash formation/outils/construire.sh 1 2 3` produit les PDF apprenant et formateur, avec le sommaire numéroté.
+- Notes du formateur : `tomeN/formateur.js` ; pages communes du formateur : `outils/formateur.js`.
+- Illustrations : `node formation/illustrations/rendre.js` (planches dans `illustrations/planches_*.js`).
 - Assemblage commun : `outils/assembler.js` ; pages de début des Tomes 2 et 3 : `outils/liminaires.js`.
 - Couvertures : `python3 formation/couvertures/generer_couvertures.py` (philosophie dans `couvertures/PHILOSOPHIE.md`).

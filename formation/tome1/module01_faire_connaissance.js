@@ -24,7 +24,7 @@ const situation = [
 const declic = [
   titre2('Un ordinateur, c\'est une cuisine'),
   p('Imaginez la cuisine de Tantie Akissi un jour de grande cérémonie. Il y a une **cuisinière** qui travaille, une **table** sur laquelle elle pose ce dont elle a besoin, un **magasin** où sont rangés les sacs de riz et les bidons d\'huile, des **recettes**, et quelqu\'un qui **organise** tout ce monde. Un ordinateur fonctionne exactement de la même manière.'),
-  illustration('Une cuisine ivoirienne en coupe. La cuisinière (processeur) au centre, la table de travail (mémoire vive) devant elle, le magasin (stockage) au fond, la gérante (Windows) qui donne les consignes, le cahier de recettes (logiciels), la porte d\'entrée des commandes (clavier, souris) et le passe-plat (écran, imprimante). Une étiquette relie chaque élément à son nom en informatique.'),
+  { img: 'cuisine', illus: 'Une cuisine ivoirienne en coupe. La cuisinière (processeur) au centre, la table de travail (mémoire vive) devant elle, le magasin (stockage) au fond, la gérante (Windows) qui donne les consignes, le cahier de recettes (logiciels), la porte d\'entrée des commandes (clavier, souris) et le passe-plat (écran, imprimante). Une étiquette relie chaque élément à son nom en informatique.' },
   vide(),
   tableau(['Dans la cuisine…', '…dans l\'ordinateur', 'Son rôle en une phrase'], [
     ['👩🏾‍🍳 La **cuisinière**', 'Le **processeur**\n(on dit aussi CPU)', 'C\'est lui qui fait tout le travail : calculer, exécuter, transformer. Plus il est rapide, plus le « repas » est vite prêt.'],
@@ -78,7 +78,7 @@ const declic = [
   vide(),
   titre2('Faire le tour de son ordinateur portable'),
   p('Sur les côtés de votre ordinateur, il y a des trous de formes différentes : ce sont les **ports** (on dit aussi « prises » ou « connecteurs »). Chaque forme a son usage, comme chaque marmite a son couvercle. Impossible de se tromper : une prise ne rentre que dans le port qui lui correspond.'),
-  illustration('Vue de profil gauche et droite d\'un ordinateur portable, chaque port numéroté et légendé : chargeur, USB-A, USB-C, HDMI, prise casque, lecteur de carte mémoire, grilles d\'aération.'),
+  { img: 'ports', illus: 'Vue de profil gauche et droite d\'un ordinateur portable, chaque port numéroté et légendé : chargeur, USB-A, USB-C, HDMI, prise casque, lecteur de carte mémoire, grilles d\'aération.' },
   vide(),
   tableau(['Port', 'Comment le reconnaître', 'À quoi il sert'], [
     ['**Prise du chargeur**', 'Ronde, ou en forme de petit ovale (USB-C) sur les modèles récents. Souvent marquée d\'un éclair.', 'Recharger la batterie.'],
@@ -109,7 +109,7 @@ const pasAPas = [
     'Tapez votre **code PIN** ou votre **mot de passe**, puis appuyez sur la touche **Entrée**.',
     'Vous voilà sur le **Bureau** de Windows. Bravo, la cuisine est ouverte !',
   ]),
-  illustration('Capture d\'écran : l\'écran de verrouillage de Windows 11, puis le Bureau avec la barre des tâches en bas et le bouton Démarrer au centre.'),
+  { img: 'verrouillage', illus: 'Capture d\'écran : l\'écran de verrouillage de Windows 11, puis le Bureau avec la barre des tâches en bas et le bouton Démarrer au centre.' },
   vide(),
   encadre({ titre: '🆕  La toute première fois', couleur: C.bleu, fond: C.bleuClair, contenu: [
     'Au tout premier allumage d\'un ordinateur neuf, Windows pose quelques questions : la langue, le pays, le réseau Wi-Fi, un compte Microsoft. Prenez votre temps et lisez chaque écran. Si vous hésitez, demandez de l\'aide à votre formateur : cette installation ne se fait qu\'une fois.',
@@ -121,7 +121,7 @@ const pasAPas = [
     'En bas à droite du menu qui s\'ouvre, cliquez sur l\'icône **Marche/Arrêt** (⏻).',
     'Choisissez **Arrêter**, **Mettre en veille** ou **Redémarrer**.',
   ]),
-  illustration('Capture d\'écran : le menu Démarrer de Windows 11 ouvert, l\'icône Marche/Arrêt entourée en orange et ses trois choix : Mettre en veille, Arrêter, Redémarrer.'),
+  { img: 'menu_demarrer', illus: 'Capture d\'écran : le menu Démarrer de Windows 11 ouvert, l\'icône Marche/Arrêt entourée en orange et ses trois choix : Mettre en veille, Arrêter, Redémarrer.' },
   vide(),
   p('Mais lequel choisir ? Retournons à la cuisine.'),
   tableau(['Je choisis…', 'Dans la cuisine, c\'est…', 'Je l\'utilise quand…'], [
@@ -196,7 +196,7 @@ const exercices = [
     'Lisez les lignes **Processeur** et **Mémoire RAM installée**.',
     'Revenez dans **Système** et cliquez sur **Stockage** pour voir la taille du magasin et la place encore libre.',
   ]),
-  illustration('Capture d\'écran : la page Paramètres > Système > Informations système de Windows 11, avec les lignes Processeur et Mémoire RAM installée surlignées en orange.'),
+  { img: 'infos_systeme', illus: 'Capture d\'écran : la page Paramètres > Système > Informations système de Windows 11, avec les lignes Processeur et Mémoire RAM installée surlignées en orange.' },
   vide(),
   encadre({ titre: '🪪  Carte d\'identité de mon ordinateur', contenu: [
     ligneAEcrire('Marque et modèle : '),

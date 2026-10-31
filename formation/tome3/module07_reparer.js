@@ -74,7 +74,7 @@ module.exports = {
       ['12/11', 'Ma situation : page blanche', 'Semaine sans versement : montant indéfini', 'Afficher 0 F si aucun versement', '« Gère le cas où… »'],
       ['', '', '', '', ''],
     ], [0.6, 1.3, 1.4, 1.3, 1.4], C.vert] },
-    { illus: 'Capture d\'écran : la console du navigateur avec une erreur rouge « TypeError: Cannot read properties of undefined », la ligne concernée surlignée, et à côté la fenêtre de l\'outil de vibe coding avec le prompt de diagnostic SAVE.' },
+    { img: 'console_save', illus: 'Capture d\'écran : la console du navigateur avec une erreur rouge « TypeError: Cannot read properties of undefined », la ligne concernée surlignée, et à côté la fenêtre de l\'outil de vibe coding avec le prompt de diagnostic SAVE.' },
   ],
 
   pieges: {

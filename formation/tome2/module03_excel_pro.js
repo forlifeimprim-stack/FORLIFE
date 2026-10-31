@@ -71,7 +71,7 @@ module.exports = {
       'Recommencez avec **À jour** et un remplissage vert.',
       'Ajoutez en dessous du tableau : **Nombre en retard** et **=NB.SI(E:E;"En retard")**.',
     ] },
-    { illus: 'Capture d\'écran : la feuille Membres de la tontine, avec la colonne Situation colorée en vert et rouge, les flèches de filtre sur les en-têtes et la formule SI visible dans la barre de formule.' },
+    { img: 'tontine_excel', illus: 'Capture d\'écran : la feuille Membres de la tontine, avec la colonne Situation colorée en vert et rouge, les flèches de filtre sur les en-têtes et la formule SI visible dans la barre de formule.' },
     { h3: 'Étape 5 : trier, filtrer, retrouver' },
     { puces: [
       '**Trier** : flèche de l\'en-tête **Total versé** → **Trier du plus grand au plus petit**.',

@@ -48,7 +48,7 @@ module.exports = {
       'Ouvrez **Affichage** → cochez **Volet de navigation** : le plan de votre document apparaît à gauche. Cliquez sur un titre pour y aller, glissez-le pour déplacer toute la partie.',
       'Pour modifier un style : clic droit sur **Titre 1** dans la galerie → **Modifier** → choisissez police, taille, couleur, espacement → **OK**. Tous les Titres 1 changent.',
     ] },
-    { illus: 'Capture d\'écran de Word : la galerie des styles (Normal, Titre 1, Titre 2) dans l\'onglet Accueil, et le volet de navigation à gauche montrant le plan du rapport de stage.' },
+    { img: 'styles', illus: 'Capture d\'écran de Word : la galerie des styles (Normal, Titre 1, Titre 2) dans l\'onglet Accueil, et le volet de navigation à gauche montrant le plan du rapport de stage.' },
     { h2: 'Étape 2 : la table des matières automatique' },
     { etapes: [
       'Placez le curseur là où la table doit apparaître (après la page de garde), puis insérez un **saut de page** après elle (**Ctrl + Entrée**).',

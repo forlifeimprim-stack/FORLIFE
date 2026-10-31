@@ -56,7 +56,7 @@ module.exports = {
       'Ajoutez un message (« Voici le budget officiel, merci de ne plus utiliser les versions WhatsApp »), puis **Envoyer**.',
       'Pour partager par lien : dans **Accès général**, choisissez **Limité** (seules les personnes ajoutées) pour un document sensible. **Tous les utilisateurs disposant du lien** seulement pour des documents publics.',
     ] },
-    { illus: 'Capture d\'écran de la fenêtre « Partager » de Google Drive : les personnes ajoutées avec leur rôle (Éditeur, Commentateur), le menu des rôles ouvert, et la section Accès général réglée sur « Limité ».' },
+    { img: 'partager', illus: 'Capture d\'écran de la fenêtre « Partager » de Google Drive : les personnes ajoutées avec leur rôle (Éditeur, Commentateur), le menu des rôles ouvert, et la section Accès général réglée sur « Limité ».' },
     { h2: 'Étape 3 : travailler ensemble, en même temps' },
     { puces: [
       'Ouvrez le tableau à plusieurs : chacun voit le **curseur coloré** des autres en temps réel. Plus de versions multiples : il n\'y a qu\'**un** fichier.',

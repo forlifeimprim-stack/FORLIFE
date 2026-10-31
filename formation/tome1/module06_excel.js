@@ -26,7 +26,7 @@ module.exports = {
     '**Excel** est un **tableur** : un immense cahier quadrillé, avec des milliers de cases, qui sait calculer. Un fichier Excel s\'appelle un **classeur** ; il contient une ou plusieurs **feuilles**, comme les pages du cahier.',
     { h3: 'Chaque case a son adresse, comme au marché' },
     'Au marché, pour retrouver une vendeuse, on dit : « allée **B**, place **3** ». Dans Excel, c\'est pareil. Les **colonnes** sont désignées par des **lettres** (A, B, C…) et les **lignes** par des **chiffres** (1, 2, 3…). Chaque case s\'appelle une **cellule**, et son adresse combine les deux : **B3**, c\'est la cellule de la colonne B, ligne 3.',
-    { illus: 'Capture d\'écran d\'Excel annotée : les lettres des colonnes, les numéros des lignes, la cellule B3 encadrée en vert, la zone Nom qui affiche « B3 », la barre de formule, le bouton Somme automatique Σ, les onglets de feuilles en bas.' },
+    { img: 'excel', illus: 'Capture d\'écran d\'Excel annotée : les lettres des colonnes, les numéros des lignes, la cellule B3 encadrée en vert, la zone Nom qui affiche « B3 », la barre de formule, le bouton Somme automatique Σ, les onglets de feuilles en bas.' },
     { h3: 'Le signe = : « Excel, calcule ! »' },
     'Quand on écrit dans une cellule un texte commençant par le signe **=**, Excel comprend que c\'est un ordre de calcul : une **formule**. Il affiche le **résultat** dans la cellule, et la formule reste visible dans la **barre de formule**, en haut.',
     { tableau: [['Opération', 'Signe', 'Exemple', 'Résultat'], [
@@ -87,7 +87,7 @@ module.exports = {
       ['Des en-têtes visibles', 'A3:E3 → **Gras** et une **couleur de remplissage** (le pot de peinture).'],
       ['Un titre mis en valeur', 'A1 → **Gras**, taille **16**.'],
     ], [1.6, 3.4]] },
-    { illus: 'Capture d\'écran : le tableau « Ventes de novembre 2026 » terminé, en-têtes colorés, bordures, montants avec séparateur de milliers et total en gras.' },
+    { img: 'ventes', illus: 'Capture d\'écran : le tableau « Ventes de novembre 2026 » terminé, en-têtes colorés, bordures, montants avec séparateur de milliers et total en gras.' },
     { encadre: { titre: '💡  Les fonctions de base', style: 'bleu', contenu: [
       { puces: [
         '**=SOMME(E4:E9)** : additionne.',

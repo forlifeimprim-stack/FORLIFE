@@ -24,7 +24,7 @@ module.exports = {
   declic: [
     { h2: 'La souris, c\'est votre doigt qui montre' },
     'Au marché, quand vous voulez un pagne précis, vous le montrez du doigt : « Celui-là ! » La **souris** fait exactement cela sur l\'écran. Quand vous la déplacez sur la table, une petite flèche, le **pointeur**, se déplace à l\'écran. Elle montre ce que vous voulez.',
-    { illus: 'Une main posée sur une souris : l\'index sur le bouton gauche, le majeur sur le bouton droit, la molette entre les deux, la paume posée sans serrer.' },
+    { img: 'souris', illus: 'Une main posée sur une souris : l\'index sur le bouton gauche, le majeur sur le bouton droit, la molette entre les deux, la paume posée sans serrer.' },
     { tableau: [['Le geste', 'Comment faire', 'Comme dans la vie…', 'À quoi ça sert'], [
       ['**Clic** (gauche)', 'Appuyer une fois sur le bouton gauche, puis relâcher', 'Toquer une fois à la porte pour dire « je suis là »', 'Choisir, sélectionner, appuyer sur un bouton'],
       ['**Double-clic**', 'Deux clics gauches **rapides**, sans bouger la souris', '« Toc-toc », et on vous ouvre', 'Ouvrir un fichier, un dossier, un programme'],
@@ -44,7 +44,7 @@ module.exports = {
     ] } },
     { h2: 'Le clavier, c\'est votre voix' },
     'Le clavier sert à **écrire** et à **donner des ordres**. En Côte d\'Ivoire, comme en France, nos claviers sont en **AZERTY** : ce sont les six premières lettres de la ligne du haut. Le clavier se divise en quartiers, comme une ville.',
-    { illus: 'Un clavier AZERTY vu de dessus, avec ses zones colorées : lettres (orange), chiffres (or), touches de commande (vert), flèches (bleu), pavé numérique (violet). Les touches Entrée, Retour arrière, Suppr, Maj, Verr Maj, Alt Gr, Espace, Échap et la touche Windows sont légendées.' },
+    { img: 'clavier', illus: 'Un clavier AZERTY vu de dessus, avec ses zones colorées : lettres (orange), chiffres (or), touches de commande (vert), flèches (bleu), pavé numérique (violet). Les touches Entrée, Retour arrière, Suppr, Maj, Verr Maj, Alt Gr, Espace, Échap et la touche Windows sont légendées.' },
     { tableau: [['Touche', 'Où la trouver', 'Ce qu\'elle fait'], [
       ['**Espace**', 'La longue barre en bas', 'Fait un espace entre deux mots'],
       ['**Entrée** ↵', 'Grande touche à droite des lettres', 'Va à la ligne ; valide un choix (comme dire « oui »)'],
@@ -102,7 +102,7 @@ module.exports = {
       'Appuyez sur **Entrée** pour aller à la ligne, puis écrivez : « Je suis à Abidjan. »',
       'Placez le curseur au milieu d\'un mot en cliquant dedans, puis essayez **Retour arrière** et **Suppr** pour voir la différence.',
     ] },
-    { illus: 'Capture d\'écran : le Bloc-notes de Windows 11 ouvert, avec deux lignes écrites et le curseur qui clignote, légendé « le curseur ».' },
+    { img: 'blocnotes', illus: 'Capture d\'écran : le Bloc-notes de Windows 11 ouvert, avec deux lignes écrites et le curseur qui clignote, légendé « le curseur ».' },
     { encadre: { titre: '💡  Le conseil de M. Kouassi', style: 'vert', contenu: [
       '« Au début, regardez vos doigts, c\'est normal. Après quelques semaines, essayez de regarder l\'écran. La vitesse viendra toute seule. Et n\'oubliez pas : **Ctrl + Z** annule votre dernière action. C\'est la gomme magique de l\'informaticien. »',
     ] } },

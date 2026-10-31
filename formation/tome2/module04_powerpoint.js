@@ -62,7 +62,7 @@ module.exports = {
       ['Un schéma (étapes, cycle, organigramme)', '**Insertion** → **SmartArt**.'],
       ['Une transition sobre entre les diapositives', '**Transitions** → **Fondu**, puis **Appliquer partout**.'],
     ], [1.8, 3.2]] },
-    { illus: 'Avant / après : à gauche, une diapositive surchargée de texte en taille 12 ; à droite, la même idée avec un titre court, un grand chiffre « 3 200 clients par mois » et une photo du secrétariat.' },
+    { img: 'avant_apres', illus: 'Avant / après : à gauche, une diapositive surchargée de texte en taille 12 ; à droite, la même idée avec un titre court, un grand chiffre « 3 200 clients par mois » et une photo du secrétariat.' },
     { h2: 'Étape 3 : les notes du présentateur' },
     { etapes: [
       'Sous chaque diapositive, la zone **Cliquez pour ajouter des notes** reçoit ce que vous voulez **dire**. Si elle est cachée : **Affichage** → **Notes**.',

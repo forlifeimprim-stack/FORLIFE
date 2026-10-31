@@ -72,7 +72,7 @@ module.exports = {
       'Reliez les écrans par des flèches : « je clique ici, j\'arrive là ».',
       'Montrez les dessins au client. C\'est beaucoup moins cher de corriger un dessin que du code.',
     ] },
-    { illus: 'Croquis à la main de trois écrans de téléphone reliés par des flèches : « Connexion » → « Tableau de bord » (total collecté, liste des retards en rouge, bouton « + Versement ») → « Saisie d\'un versement » (membre, montant, date, bouton Enregistrer).' },
+    { img: 'croquis', illus: 'Croquis à la main de trois écrans de téléphone reliés par des flèches : « Connexion » → « Tableau de bord » (total collecté, liste des retards en rouge, bouton « + Versement ») → « Saisie d\'un versement » (membre, montant, date, bouton Enregistrer).' },
     { h2: 'Étape 4 : vérifier avec les cas particuliers' },
     'C\'est là que se cachent les vraies difficultés. Posez-vous la question « et si… ? » :',
     { puces: [

@@ -53,7 +53,7 @@ module.exports = {
       'Onglet **Applications de démarrage** : la liste des programmes qui se lancent tout seuls. La colonne **Impact** indique leur poids.',
       'Pour un programme inutile au démarrage (lecteur de musique, messagerie que vous ouvrez rarement…) : clic droit → **Désactiver**. Il n\'est pas supprimé, il ne démarre simplement plus tout seul.',
     ] },
-    { illus: 'Capture d\'écran du Gestionnaire des tâches de Windows 11, onglet Applications de démarrage, avec la colonne Impact au démarrage et le bouton Désactiver entouré en orange.' },
+    { img: 'gestionnaire', illus: 'Capture d\'écran du Gestionnaire des tâches de Windows 11, onglet Applications de démarrage, avec la colonne Impact au démarrage et le bouton Désactiver entouré en orange.' },
     { encadre: { titre: '🔑  Ce qu\'il ne faut pas désactiver', style: 'vert', contenu: [
       'Gardez actifs l\'**antivirus** (Sécurité Windows), **OneDrive** si vous l\'utilisez pour vos sauvegardes, et les programmes du **fabricant** liés au son, au pavé tactile ou à la batterie. Dans le doute, cherchez le nom du programme sur Internet avant de le désactiver.',
     ] } },

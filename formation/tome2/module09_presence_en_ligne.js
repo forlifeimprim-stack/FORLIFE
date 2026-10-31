@@ -47,7 +47,7 @@ module.exports = {
       'Créez des **réponses rapides** pour les questions fréquentes : tapez **/livraison** et le texte complet s\'insère.',
       'Classez vos clientes avec les **étiquettes** : Nouvelle cliente, Commande en cours, Payée, Livrée.',
     ] },
-    { illus: 'Captures d\'écran de WhatsApp Business : le profil d\'entreprise avec horaires, le catalogue avec photos de pagnes et prix, et le menu des étiquettes.' },
+    { img: 'whatsapp_business', illus: 'Captures d\'écran de WhatsApp Business : le profil d\'entreprise avec horaires, le catalogue avec photos de pagnes et prix, et le menu des étiquettes.' },
     { h2: 'Étape 2 : des photos qui font vendre' },
     { tableau: [['Règle', 'Comment faire avec un téléphone'], [
       ['**La lumière du jour**', 'Près d\'une fenêtre, ou dehors à l\'ombre, le matin. Jamais sous un néon, jamais avec le flash.'],

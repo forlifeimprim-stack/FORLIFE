@@ -24,7 +24,7 @@ module.exports = {
   declic: [
     { h2: 'La connexion, c\'est l\'eau qui arrive au robinet' },
     'Quand l\'eau ne coule plus au robinet, le plombier ne commence pas par appeler la SODECI. Il regarde d\'abord le robinet, puis le tuyau de la maison, puis le compteur, et seulement ensuite le réseau de la rue. Internet arrive chez vous de la même manière, par une chaîne de maillons.',
-    { illus: 'Schéma en chaîne, de gauche à droite : l\'ordinateur (le robinet) → le Wi-Fi (le tuyau de la maison) → la box ou le téléphone en partage de connexion (le compteur) → l\'opérateur (le réseau de la rue) → Internet (le château d\'eau). Sous chaque maillon, la question à poser pour le vérifier.' },
+    { img: 'chaine_reseau', illus: 'Schéma en chaîne, de gauche à droite : l\'ordinateur (le robinet) → le Wi-Fi (le tuyau de la maison) → la box ou le téléphone en partage de connexion (le compteur) → l\'opérateur (le réseau de la rue) → Internet (le château d\'eau). Sous chaque maillon, la question à poser pour le vérifier.' },
     { tableau: [['Maillon', 'Ce que c\'est', 'Comme pour l\'eau…'], [
       ['**L\'ordinateur**', 'Sa carte Wi-Fi, ses réglages', 'Le robinet'],
       ['**Le Wi-Fi**', 'La liaison sans fil entre l\'appareil et la box', 'Le tuyau de la maison'],

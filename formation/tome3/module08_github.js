@@ -57,7 +57,7 @@ module.exports = {
       'Chaque ligne est une étape : message, auteur, date. Cliquez sur une ligne pour voir **ce qui a changé** : en vert les lignes ajoutées, en rouge les lignes supprimées.',
       'Si les messages sont vagues (« update », « changes »), demandez à votre outil ou à l\'IA d\'écrire des messages clairs : « Ajout du calendrier des passages », « Correction du décalage horaire des rendez-vous ».',
     ] },
-    { illus: 'Capture d\'écran de GitHub : la liste des commits d\'un dépôt « tontine-allee-b » avec des messages clairs, et à côté le détail d\'un commit montrant des lignes ajoutées en vert et supprimées en rouge.' },
+    { img: 'github', illus: 'Capture d\'écran de GitHub : la liste des commits d\'un dépôt « tontine-allee-b » avec des messages clairs, et à côté le détail d\'un commit montrant des lignes ajoutées en vert et supprimées en rouge.' },
     { h2: 'Étape 3 : revenir en arrière' },
     { puces: [
       '**Le plus simple** : utiliser l\'historique de votre outil de vibe coding pour restaurer une version, qui sera ensuite enregistrée dans GitHub.',

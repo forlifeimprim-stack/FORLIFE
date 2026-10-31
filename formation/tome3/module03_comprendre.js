@@ -23,7 +23,7 @@ module.exports = {
 
   declic: [
     { h2: 'Une application web, c\'est une boutique' },
-    { illus: 'Schéma d\'une boutique en coupe : la vitrine côté rue (interface), l\'arrière-boutique avec le gérant (serveur), le cahier de stock dans le tiroir (base de données), le coursier qui fait les liaisons avec la banque et le transporteur (API), l\'enseigne avec l\'adresse (nom de domaine), et le bailleur qui loue le local (hébergeur).' },
+    { img: 'boutique', illus: 'Schéma d\'une boutique en coupe : la vitrine côté rue (interface), l\'arrière-boutique avec le gérant (serveur), le cahier de stock dans le tiroir (base de données), le coursier qui fait les liaisons avec la banque et le transporteur (API), l\'enseigne avec l\'adresse (nom de domaine), et le bailleur qui loue le local (hébergeur).' },
     { tableau: [['Dans la boutique…', 'Dans l\'application', 'Le mot technique'], [
       ['La **vitrine** et le comptoir : ce que voit le client', 'Les pages, les boutons, les formulaires', '**Interface** ou **front-end**'],
       ['L\'**arrière-boutique** et le gérant : il reçoit les demandes, vérifie, décide', 'Le programme qui traite les demandes et applique les règles', '**Serveur** ou **back-end**'],
@@ -76,7 +76,7 @@ module.exports = {
       'Onglet **Console** : c\'est là que s\'affichent les **messages d\'erreur** en rouge. Vous en aurez besoin au module 7.',
       'Cliquez sur l\'icône **téléphone et tablette** (mode appareil) pour voir la page comme sur un téléphone, et choisissez un modèle dans la liste.',
     ] },
-    { illus: 'Capture d\'écran : une page web avec les outils de développement ouverts à droite, l\'onglet Éléments montrant le HTML, le mode appareil réglé sur un téléphone, et l\'onglet Console avec un message d\'erreur en rouge.' },
+    { img: 'devtools', illus: 'Capture d\'écran : une page web avec les outils de développement ouverts à droite, l\'onglet Éléments montrant le HTML, le mode appareil réglé sur un téléphone, et l\'onglet Console avec un message d\'erreur en rouge.' },
     { encadre: { titre: '💡  Le conseil de M. Kouassi', style: 'vert', contenu: [
       '« Vous n\'avez pas besoin de comprendre chaque ligne. Vous devez savoir **où** regarder, **quoi** demander, et **quand** vous méfier. C\'est exactement ce que fait un bon chef de chantier. »',
     ] } },

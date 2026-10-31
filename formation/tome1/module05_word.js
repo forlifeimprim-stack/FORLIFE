@@ -26,7 +26,7 @@ module.exports = {
     'Avec un cahier et un stylo, une faute oblige à raturer ou à tout recopier. **Word** est un cahier où l\'on peut gommer, déplacer, agrandir, embellir à l\'infini, sans jamais salir la page. Et quand tout est parfait, on imprime autant de copies qu\'on veut.',
     { h3: 'Le ruban : les rayons de la boutique' },
     'En haut de Word, une large bande contient tous les outils : c\'est le **ruban**. Il est rangé en **onglets**, comme les rayons d\'une boutique.',
-    { illus: 'Capture d\'écran de Word annotée : la barre de titre avec le nom du document, les onglets du ruban (Fichier, Accueil, Insertion, Mise en page, Révision), les boutons Gras, Italique, Souligné, la police et la taille, les alignements, la page blanche avec le curseur, et la barre d\'état en bas avec le nombre de mots et le zoom.' },
+    { img: 'word', illus: 'Capture d\'écran de Word annotée : la barre de titre avec le nom du document, les onglets du ruban (Fichier, Accueil, Insertion, Mise en page, Révision), les boutons Gras, Italique, Souligné, la police et la taille, les alignements, la page blanche avec le curseur, et la barre d\'état en bas avec le nombre de mots et le zoom.' },
     { tableau: [['Onglet', 'Le rayon…', 'On y trouve'], [
       ['**Fichier**', 'Le bureau du gérant', 'Enregistrer, ouvrir, imprimer, exporter en PDF'],
       ['**Accueil**', 'Le comptoir, ce qu\'on demande le plus', 'Police, taille, gras, couleurs, alignements, listes'],
@@ -73,7 +73,7 @@ module.exports = {
     ], [1.8, 2.6, 0.9]] },
     { h2: 'Étape 4 : la lettre formelle' },
     'Une lettre administrative suit toujours le même plan. Le voici, prêt à recopier :',
-    { illus: 'Modèle de lettre formelle annoté : expéditeur en haut à gauche, destinataire à droite, lieu et date, objet en gras, formule d\'appel, trois paragraphes, formule de politesse, signature.' },
+    { img: 'lettre', illus: 'Modèle de lettre formelle annoté : expéditeur en haut à gauche, destinataire à droite, lieu et date, objet en gras, formule d\'appel, trois paragraphes, formule de politesse, signature.' },
     { encadre: { titre: '✉️  Le plan de la lettre', style: 'violet', contenu: [
       { etapes: [
         '**Vos coordonnées**, en haut à gauche : nom, adresse, téléphone, e-mail.',

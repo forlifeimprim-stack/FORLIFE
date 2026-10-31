@@ -75,7 +75,7 @@ module.exports = {
       'Déconnectée, je ne vois aucune donnée.',
       'Une membre désactivée ne peut plus se connecter.',
     ] },
-    { illus: 'Deux téléphones côte à côte : à gauche, le tableau de bord de la trésorière (total collecté, liste des membres avec badges verts et rouges, bouton « + Versement ») ; à droite, l\'écran « Ma situation » de Bintou (total versé, prochaine échéance, date de passage).' },
+    { img: 'tontine_app', illus: 'Deux téléphones côte à côte : à gauche, le tableau de bord de la trésorière (total collecté, liste des membres avec badges verts et rouges, bouton « + Versement ») ; à droite, l\'écran « Ma situation » de Bintou (total versé, prochaine échéance, date de passage).' },
     { h2: 'Étape 5 : simple et rapide pour la vraie vie' },
     { puces: [
       'Saisie d\'un versement en **trois touches** : choisir la membre (recherche par nom), montant prérempli à 10 000, Enregistrer.',

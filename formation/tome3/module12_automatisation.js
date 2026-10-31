@@ -62,7 +62,7 @@ module.exports = {
       'Cliquez sur **Run once** et remplissez le formulaire avec une fausse demande : suivez les bulles qui s\'allument. Vérifiez la ligne ajoutée et l\'e-mail reçu.',
       'Activez le scénario (**ON**) et choisissez sa fréquence.',
     ] },
-    { illus: 'Capture d\'écran d\'un scénario Make : une bulle Google Forms reliée à Google Sheets (Add a Row), puis à Gmail (Send an Email), puis un filtre « Montant > 500 000 » vers une bulle « Prévenir le directeur ».' },
+    { img: 'make', illus: 'Capture d\'écran d\'un scénario Make : une bulle Google Forms reliée à Google Sheets (Add a Row), puis à Gmail (Send an Email), puis un filtre « Montant > 500 000 » vers une bulle « Prévenir le directeur ».' },
     { h2: 'Étape 3 : ajouter l\'IA au scénario' },
     { etapes: [
       'Entre le déclencheur et l\'enregistrement, ajoutez une bulle d\'IA (module OpenAI, Anthropic Claude ou Google Gemini, selon ceux proposés, avec votre clé).',

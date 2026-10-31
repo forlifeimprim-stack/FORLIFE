@@ -91,7 +91,7 @@ module.exports = {
       ['Une partie de l\'écran', '**Windows + Maj + S**, je sélectionne la zone, puis je colle l\'image dans un document ou je l\'enregistre.'],
       ['Le reçu envoyé par e-mail', 'Je le garde dans ma boîte, avec un libellé « Démarches », et j\'enregistre la pièce jointe dans le dossier.'],
     ], [1.6, 3.4]] },
-    { illus: 'Capture d\'écran : la fenêtre d\'impression du navigateur avec l\'imprimante « Microsoft Print to PDF » sélectionnée, l\'aperçu d\'un accusé de réception à droite et le bouton Imprimer.' },
+    { img: 'print_pdf', illus: 'Capture d\'écran : la fenêtre d\'impression du navigateur avec l\'imprimante « Microsoft Print to PDF » sélectionnée, l\'aperçu d\'un accusé de réception à droite et le bouton Imprimer.' },
   ],
 
   pieges: {

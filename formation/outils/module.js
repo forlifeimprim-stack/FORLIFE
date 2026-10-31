@@ -28,7 +28,7 @@ function rendre(blocs) {
     else if (b.cases) out.push(...cases(b.cases));
     else if (b.lignes) out.push(...b.lignes.map((t) => ligneAEcrire(t)));
     else if (b.d) out.push(dialogue(b.d[0], b.d[1], COULEURS_PERSOS[b.d[0]] || C.gris));
-    else if (b.illus) { out.push(illustration(b.illus)); out.push(vide(100)); }
+    else if (b.illus) { const im = L.image(b.img); if (im) out.push(im, vide(120)); }
     else if (b.note) out.push(p(`*${b.note}*`, { run: { color: C.gris, size: 20 } }));
     else if (b.centre) out.push(p(b.centre, { align: AlignmentType.CENTER }));
     else if (b.vide) out.push(vide(b.vide));

@@ -74,7 +74,7 @@ module.exports = {
       'Aucun texte d\'exemple oublié (« Lorem ipsum », « Votre titre ici »).',
       'Trois personnes qui ne connaissent pas le projet ont réussi à passer une « commande » sans aide.',
     ] },
-    { illus: 'Trois captures côte à côte de la vitrine Pagnes Akissi : l\'accueil sur ordinateur, le catalogue sur téléphone (une carte par ligne), et la discussion WhatsApp ouverte avec le message prérempli.' },
+    { img: 'vitrine', illus: 'Trois captures côte à côte de la vitrine Pagnes Akissi : l\'accueil sur ordinateur, le catalogue sur téléphone (une carte par ligne), et la discussion WhatsApp ouverte avec le message prérempli.' },
   ],
 
   pieges: {

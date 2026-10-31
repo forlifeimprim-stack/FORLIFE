@@ -62,7 +62,7 @@ module.exports = {
       'Cliquez dans la **barre d\'adresse**, tout en haut. Tapez **servicepublic.gouv.ci**, puis **Entrée**.',
       'Cliquez sur un lien de la page. Pour revenir en arrière, cliquez sur la **flèche ←** en haut à gauche.',
     ] },
-    { illus: 'Capture d\'écran de Microsoft Edge annotée : les flèches précédent et suivant, le bouton actualiser, la barre d\'adresse avec le cadenas, l\'étoile des favoris, les onglets en haut avec le « + » pour en ouvrir un nouveau.' },
+    { img: 'edge', illus: 'Capture d\'écran de Microsoft Edge annotée : les flèches précédent et suivant, le bouton actualiser, la barre d\'adresse avec le cadenas, l\'étoile des favoris, les onglets en haut avec le « + » pour en ouvrir un nouveau.' },
     { h2: 'Étape 2 : chercher avec des mots-clés' },
     'Le moteur de recherche n\'est pas une personne : inutile de lui écrire une phrase polie. Donnez-lui les **mots importants**, comme on donne une liste de courses.',
     { tableau: [['Au lieu de…', 'J\'écris…'], [

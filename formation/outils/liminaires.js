@@ -41,6 +41,7 @@ function liminairesCommuns(t) {
     ], [1.3, 3.4]] },
     { h3: 'Les personnages, ' + t.quand },
     { tableau: [['Qui ?', 'Où en est-il ?'], t.personnages, [1.3, 3.4]] },
+    { img: 'personnages', illus: 'Les personnages' },
     { encadre: { titre: '📚  Les logiciels et services utilisés', style: 'bleu', contenu: [t.logicielsDetail] } },
   ];
   const attestation = [
