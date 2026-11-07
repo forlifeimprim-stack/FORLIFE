@@ -26,3 +26,6 @@ video-agent/.env
 # Secrets
 .env
 *.key
+
+# Dépendances installées localement (npm install) — seules celles déjà versionnées restent suivies
+node_modules/

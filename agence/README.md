@@ -80,6 +80,28 @@ projets/<client>/<projet>/   brief, stratégie, concept, sources, livrables (non
 `clients/` et `projets/` sont exclus de git (`.gitignore`) : ce dépôt est public et ces dossiers contiennent des
 données personnelles. Les sauvegarder ailleurs (Google Drive, disque, dépôt privé).
 
+## Installer sur votre ordinateur
+
+Les agents marchent dès que le dépôt est ouvert dans Claude Code (application de bureau ou terminal), **sur la branche
+qui contient l'agence** (tant qu'elle n'est pas fusionnée dans `main`, choisir la branche `ccr-d9bb34d6-fsdhrs`).
+Les moteurs de production ont besoin de quelques outils sur la machine :
+
+**Windows 10/11** — PowerShell, dans le dossier du dépôt :
+```powershell
+powershell -ExecutionPolicy Bypass -File agence\installer-windows.ps1            # Git, Node.js, FFmpeg, Playwright
+powershell -ExecutionPolicy Bypass -File agence\installer-windows.ps1 -Montage   # + moteur de montage vidéo
+```
+
+**Mac / Linux** :
+```bash
+bash agence/installer-mac-linux.sh             # + --montage pour le moteur de montage vidéo
+```
+
+**Vérifier à tout moment** ce qui est prêt et ce qui manque : `npm run verifier` (ou `node agence/verifier.mjs`).
+
+Voix off FOR LIFE : le pipeline tourne sous Linux. Sous Windows, passer par WSL (`wsl --install`) ou une session
+claude.ai/code ; sur Mac, par une session claude.ai/code.
+
 ## À faire une fois pour rendre le système encore plus juste
 
 1. **Tarifs** : copier `agence/contexte/tarifs.exemple.md` en `agence/contexte/tarifs.md` et le remplir (reste privé).
@@ -87,7 +109,7 @@ données personnelles. Les sauvegarder ailleurs (Google Drive, disque, dépôt p
 2. **Matériel** : compléter `agence/contexte/materiel.md` (optiques, lumières, micros, logiciels).
 3. **Équipe** : compléter la ligne « Équipe humaine » de `agence/contexte/brand-profile.md` (qui valide quoi).
 4. **Vos clients réguliers** : demander « crée le profil client de … » (skill `brief-creatif`).
-5. **Montage vidéo** : `bash agence/installer-extras.sh montage` puis `/studio-setup` (≈ 15 min, une fois par machine).
+5. **Montage vidéo** : installateur avec l'option montage (ci-dessus), puis `/studio-setup` dans Claude Code.
 6. **Optionnel** : skills Remotion (`bash agence/installer-extras.sh remotion`).
 
 ## Connecteurs utiles (claude.ai)
