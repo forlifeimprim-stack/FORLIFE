@@ -5,8 +5,8 @@
 | D01 | Zana | Architecture, coûts, performance, risques | terminé |
 | D02 | Aya | UX/UI, parcours, accessibilité | terminé |
 | D03 | Grâce | Front-end | terminé |
-| D04 | José | Back-end, données, API | en cours |
-| D05 | Princesse | Mobile (PWA, Android, usage réseau faible) | à faire |
+| D04 | José | Back-end, données, API | terminé |
+| D05 | Princesse | Mobile (PWA, Android, usage réseau faible) | en cours |
 | D06 | Caporal | Sécurité (lecture seule) | à faire |
 | D07 | Franck | Tests et qualité | à faire |
 | D08 | Soraya | SEO et partage | à faire |
