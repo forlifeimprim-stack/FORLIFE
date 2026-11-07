@@ -32,7 +32,7 @@ Mettre à jour : `bash agence/mettre-a-jour-bibliotheque.sh`, puis relire le dif
 | [remotion-dev/skills](https://github.com/remotion-dev/skills) (officiel Remotion) | Pas de fichier de licence dans le dépôt : installable à part avec `bash agence/installer-extras.sh remotion` |
 | [contains-studio/agents](https://github.com/contains-studio/agents) | Pas de licence : non redistribuable (idées reprises librement dans nos propres fiches) |
 | [wshobson/agents](https://github.com/wshobson/agents), [VoltAgent/awesome-claude-code-subagents](https://github.com/VoltAgent/awesome-claude-code-subagents) | Surtout orientés développement logiciel |
-| [cloveric/claude-drawing-skill](https://github.com/cloveric/claude-drawing-skill) (MIT) | 278 Mo, consignes de 600 Ko en chinois : trop lourd pour le contexte ; l'agent `illustrateur` dessine en SVG |
+| [cloveric/claude-drawing-skill](https://github.com/cloveric/claude-drawing-skill) (MIT) | 278 Mo, consignes de 600 Ko en chinois : trop lourd pour le contexte ; l'agent `gnaore-illustrateur` dessine en SVG |
 | [howseen-ai/claude-motion-design](https://github.com/howseen-ai/claude-motion-design) (MIT) | Pipeline personnel d'un créateur ; remplacé par notre `motion-studio` |
 | [calesthio/OpenMontage](https://github.com/calesthio/OpenMontage), [Vincentwei1021/video-shotcraft](https://github.com/Vincentwei1021/video-shotcraft) | Systèmes vidéo complets très lourds ; à évaluer si besoin de films IA à grande échelle |
 | [alirezarezvani/claude-skills](https://github.com/alirezarezvani/claude-skills), [hyperfx-ai/marketing-skills](https://github.com/hyperfx-ai/marketing-skills), [irinabuht12-oss/marketing-skills](https://github.com/irinabuht12-oss/marketing-skills) | Recouvrent les guides déjà installés |

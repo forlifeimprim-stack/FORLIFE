@@ -18,7 +18,7 @@ node $S anim.html anim.mp4 --format paysage --duree 30 --fps 25
 
 ## Méthode
 
-1. **Script d'abord** (agent `concepteur-redacteur`) : une phrase par scène, durée par scène, texte à l'écran ≤ 7 mots.
+1. **Script d'abord** (agent `zadi-concepteur-redacteur`) : une phrase par scène, durée par scène, texte à l'écran ≤ 7 mots.
 2. **Storyboard** : tableau scène / durée / texte / mouvement / son (modèle `agence/modeles/storyboard.md`).
 3. **Partir de `modeles/promo-12s.html`** : 4 scènes (accroche 0–3 s, bénéfices, offre, signature logo + WhatsApp).
    Chaque `.scene` a `--debut` / `--fin` ; chaque élément animé a une classe (`monte`, `zoom`, `trait`) et un `--d` (délai).
@@ -48,7 +48,7 @@ node $S anim.html anim.mp4 --format paysage --duree 30 --fps 25
 
 ## Pour aller plus loin
 
-- Montage de rushs (interview, face caméra, événements) : agent `monteur-video` + skill `short-editing`.
+- Montage de rushs (interview, face caméra, événements) : agent `brou-monteur-video` + skill `short-editing`.
 - Films commerciaux plus ambitieux (images IA + motion + boucle critique) : lire
   `agence/bibliotheque/motion-video/business-motion-film/SKILL.md`.
 - Remotion (vidéo en React) : optionnel, voir `agence/installer-extras.sh`.

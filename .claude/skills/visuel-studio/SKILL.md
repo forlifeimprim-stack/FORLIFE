@@ -54,7 +54,7 @@ node .claude/skills/visuel-studio/scripts/rendre.mjs page.html sortie.png --tail
 
 ## Aller plus loin
 
-- Illustrations vectorielles : SVG directement dans le HTML (voir agent `illustrateur`).
-- Images générées par IA : agent `prompt-engineer-visuel` ; intégrer ensuite l'image comme fond ou détourage.
+- Illustrations vectorielles : SVG directement dans le HTML (voir agent `gnaore-illustrateur`).
+- Images générées par IA : agent `kady-prompt-engineer-visuel` ; intégrer ensuite l'image comme fond ou détourage.
 - Maquettes dans Figma : outils MCP Figma (`use_figma`, `generate_image`) si l'utilisateur travaille dans Figma.
 - Animation de ce visuel : skill `motion-studio` (même HTML + keyframes).

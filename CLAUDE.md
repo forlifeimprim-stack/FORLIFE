@@ -25,7 +25,8 @@ bash voixoff/forlife_voixoff.sh texte.txt sortie.mp3 0.98   # plus posé (contes
 Ce dépôt contient l'agence d'agents de Forlife Com' (guide : `agence/README.md`).
 
 - Demande de communication qui touche plusieurs métiers, ou agent à choisir : suivre le skill `agence-forlife`
-  (22 agents dans `.claude/agents/`, lancés avec l'outil Agent, en parallèle quand c'est possible).
+  (22 agents dans `.claude/agents/`, chacun avec un prénom ivoirien — « Awa », « Aya », « Bintou »… — lancés avec
+  l'outil Agent, en parallèle quand c'est possible). Un prénom cité par l'utilisateur désigne l'agent correspondant.
 - Nouveau projet ou client : skill `brief-creatif` d'abord. Marque Forlife : `agence/contexte/brand-profile.md`.
 - Marché ivoirien (FCFA, WhatsApp, Mobile Money, calendrier, ARTCI) : skill `contexte-ivoirien`. Les guides de
   `agence/bibliotheque/` sont écrits pour la France ou les États-Unis : toujours les adapter.
@@ -33,4 +34,4 @@ Ce dépôt contient l'agence d'agents de Forlife Com' (guide : `agence/README.md
 - Ne jamais inventer de prix (`agence/contexte/tarifs.md`, sinon « [à chiffrer] »), de chiffres ou de témoignages.
 - Ne rien publier, envoyer ni dépenser (publicité) sans accord explicite de l'utilisateur.
 - `clients/` et `projets/` ne sont pas versionnés (dépôt public, données personnelles) : ne pas forcer leur ajout.
-- Dernière étape de tout livrable : agent `brand-guardian`.
+- Dernière étape de tout livrable : agent `bintou-brand-guardian`.

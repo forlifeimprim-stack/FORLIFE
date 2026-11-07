@@ -11,59 +11,62 @@ Lancer en parallèle (un seul message, plusieurs appels Agent) tout ce qui ne d�
 
 ## L'équipe
 
+Chaque agent a un prénom ivoirien : l'utilisateur peut dire « demande à Awa », « Aya, fais le flyer » —
+retrouver l'agent par le prénom (début de l'identifiant).
+
 | Pôle | Agent | Appeler pour |
 |---|---|---|
-| Direction | `directeur-creation` | Grande idée, concept de campagne, arbitrage créatif, validation finale |
-| | `chef-de-projet` | Brief, planning, devis, suivi client, comptes rendus, relances |
-| | `business-developer` | Prospection, propositions commerciales, offres packagées |
-| Stratégie | `strategiste-marketing` | Plan marketing, positionnement, personas, plan de campagne 360° |
-| | `media-buyer` | Meta Ads / TikTok Ads : structure, ciblage, budget FCFA, tests, optimisation |
-| | `analyste-performance` | Rapports mensuels, KPIs, audits de comptes, recommandations |
-| | `redacteur-seo` | Articles de blog, SEO local, fiches Google Business, visibilité IA |
-| Contenu | `community-manager` | Ligne éditoriale, calendrier, posts, réponses, modération, crise |
-| | `concepteur-redacteur` | Accroches, slogans, textes d'affiche, scripts vidéo/radio, légendes |
-| | `relations-presse-evenementiel` | Communiqués, plan de com d'événement, scénographie, discours |
-| | `formateur` | Ateliers (réseaux sociaux, Canva, Meta Ads), supports, exercices |
-| Création | `directeur-artistique` | Pistes graphiques, moodboards, direction photo/vidéo, cohérence visuelle |
-| | `designer-identite` | Logos, chartes graphiques, déclinaisons, brand books |
-| | `graphiste` | Affiches, flyers, posts, carrousels, bâches, roll-up, faire-parts, DTF (fichiers finis) |
-| | `designer-web-ui` | Landing pages, sites, maquettes, pages du site Forlife |
-| | `illustrateur` | Illustrations, mascottes, icônes, BD, dessins vectoriels |
-| | `prompt-engineer-visuel` | Images et vidéos générées par IA (prompts, cohérence, représentation juste) |
-| Audiovisuel | `realisateur-photo-video` | Préproduction : concept de film, storyboard, liste de plans, plan de tournage, drone, shooting |
-| | `monteur-video` | Montage, sous-titres, reels/shorts depuis des rushs, étalonnage, export |
-| | `motion-designer` | Animations, logos animés, typographie animée, promos graphiques MP4 |
-| | `sound-designer-voix-off` | Voix off (voix FOR LIFE), spots radio, musique et sons, mixage |
-| Qualité | `brand-guardian` | Relecture finale : charte, orthographe, cohérence, specs techniques, droits, légal |
+| Direction | `yao-directeur-creation` | Grande idée, concept de campagne, arbitrage créatif, validation finale |
+| | `adjoua-chef-de-projet` | Brief, planning, devis, suivi client, comptes rendus, relances |
+| | `souleymane-business-developer` | Prospection, propositions commerciales, offres packagées |
+| Stratégie | `gnamien-strategiste-marketing` | Plan marketing, positionnement, personas, plan de campagne 360° |
+| | `lacina-media-buyer` | Meta Ads / TikTok Ads : structure, ciblage, budget FCFA, tests, optimisation |
+| | `affoue-analyste-performance` | Rapports mensuels, KPIs, audits de comptes, recommandations |
+| | `ahou-redacteur-seo` | Articles de blog, SEO local, fiches Google Business, visibilité IA |
+| Contenu | `awa-community-manager` | Ligne éditoriale, calendrier, posts, réponses, modération, crise |
+| | `zadi-concepteur-redacteur` | Accroches, slogans, textes d'affiche, scripts vidéo/radio, légendes |
+| | `akissi-relations-presse-evenementiel` | Communiqués, plan de com d'événement, scénographie, discours |
+| | `tanoh-formateur` | Ateliers (réseaux sociaux, Canva, Meta Ads), supports, exercices |
+| Création | `amenan-directeur-artistique` | Pistes graphiques, moodboards, direction photo/vidéo, cohérence visuelle |
+| | `kouame-designer-identite` | Logos, chartes graphiques, déclinaisons, brand books |
+| | `aya-graphiste` | Affiches, flyers, posts, carrousels, bâches, roll-up, faire-parts, DTF (fichiers finis) |
+| | `mariam-designer-web-ui` | Landing pages, sites, maquettes, pages du site Forlife |
+| | `gnaore-illustrateur` | Illustrations, mascottes, icônes, BD, dessins vectoriels |
+| | `kady-prompt-engineer-visuel` | Images et vidéos générées par IA (prompts, cohérence, représentation juste) |
+| Audiovisuel | `tiemoko-realisateur-photo-video` | Préproduction : concept de film, storyboard, liste de plans, plan de tournage, drone, shooting |
+| | `brou-monteur-video` | Montage, sous-titres, reels/shorts depuis des rushs, étalonnage, export |
+| | `djeneba-motion-designer` | Animations, logos animés, typographie animée, promos graphiques MP4 |
+| | `sery-sound-designer-voix-off` | Voix off (voix FOR LIFE), spots radio, musique et sons, mixage |
+| Qualité | `bintou-brand-guardian` | Relecture finale : charte, orthographe, cohérence, specs techniques, droits, légal |
 
 ## Circuits types (ordre et parallélisme)
 
-**Nouveau projet** : `brief-creatif` (skill) → `chef-de-projet` (planning) → circuit ci-dessous → `brand-guardian` → livraison.
+**Nouveau projet** : `brief-creatif` (skill) → `adjoua-chef-de-projet` (planning) → circuit ci-dessous → `bintou-brand-guardian` → livraison.
 
 1. **Campagne 360°** (lancement, rentrée, événement) :
-   `strategiste-marketing` → `directeur-creation` (concept) → en parallèle {`concepteur-redacteur`, `directeur-artistique`}
-   → en parallèle {`graphiste`, `motion-designer`, `community-manager` (calendrier), `media-buyer` (plan média)}
-   → `brand-guardian`.
-2. **Mois de community management** : `community-manager` (calendrier + textes) → en parallèle {`graphiste` (visuels),
-   `motion-designer` ou `monteur-video` (reels)} → `brand-guardian` → validation client → programmation.
-3. **Identité visuelle** : `strategiste-marketing` (positionnement court) → `designer-identite` (3 pistes) →
-   choix client → `designer-identite` (charte) → `graphiste` (papeterie, déclinaisons) → `brand-guardian`.
-4. **Vidéo tournée** : `concepteur-redacteur` (script) → `realisateur-photo-video` (storyboard, plan de tournage) →
-   tournage humain → `monteur-video` (+ `motion-designer` habillage, `sound-designer-voix-off`) → `brand-guardian`.
-5. **Vidéo sans tournage** : `concepteur-redacteur` → `sound-designer-voix-off` (voix) → `motion-designer` → `brand-guardian`.
-6. **Événement (école, église, entreprise)** : `relations-presse-evenementiel` (plan + rétroplanning) → `graphiste`
-   (invitations, affiches, banderoles, tee-shirts DTF) + `community-manager` (annonces) + `realisateur-photo-video` (couverture)
-   → après l'événement `monteur-video` (aftermovie) + `community-manager` (remerciements).
-7. **Publicité Meta** : `media-buyer` (structure + audiences) + `concepteur-redacteur` (3 angles × 3 textes) +
-   `graphiste`/`motion-designer` (créas 4:5 et 9:16) → `brand-guardian` → validation budget par l'utilisateur.
-8. **Offre commerciale / prospection** : `business-developer` → `graphiste` (mise en page PDF) → `brand-guardian`.
+   `gnamien-strategiste-marketing` → `yao-directeur-creation` (concept) → en parallèle {`zadi-concepteur-redacteur`, `amenan-directeur-artistique`}
+   → en parallèle {`aya-graphiste`, `djeneba-motion-designer`, `awa-community-manager` (calendrier), `lacina-media-buyer` (plan média)}
+   → `bintou-brand-guardian`.
+2. **Mois de community management** : `awa-community-manager` (calendrier + textes) → en parallèle {`aya-graphiste` (visuels),
+   `djeneba-motion-designer` ou `brou-monteur-video` (reels)} → `bintou-brand-guardian` → validation client → programmation.
+3. **Identité visuelle** : `gnamien-strategiste-marketing` (positionnement court) → `kouame-designer-identite` (3 pistes) →
+   choix client → `kouame-designer-identite` (charte) → `aya-graphiste` (papeterie, déclinaisons) → `bintou-brand-guardian`.
+4. **Vidéo tournée** : `zadi-concepteur-redacteur` (script) → `tiemoko-realisateur-photo-video` (storyboard, plan de tournage) →
+   tournage humain → `brou-monteur-video` (+ `djeneba-motion-designer` habillage, `sery-sound-designer-voix-off`) → `bintou-brand-guardian`.
+5. **Vidéo sans tournage** : `zadi-concepteur-redacteur` → `sery-sound-designer-voix-off` (voix) → `djeneba-motion-designer` → `bintou-brand-guardian`.
+6. **Événement (école, église, entreprise)** : `akissi-relations-presse-evenementiel` (plan + rétroplanning) → `aya-graphiste`
+   (invitations, affiches, banderoles, tee-shirts DTF) + `awa-community-manager` (annonces) + `tiemoko-realisateur-photo-video` (couverture)
+   → après l'événement `brou-monteur-video` (aftermovie) + `awa-community-manager` (remerciements).
+7. **Publicité Meta** : `lacina-media-buyer` (structure + audiences) + `zadi-concepteur-redacteur` (3 angles × 3 textes) +
+   `aya-graphiste`/`djeneba-motion-designer` (créas 4:5 et 9:16) → `bintou-brand-guardian` → validation budget par l'utilisateur.
+8. **Offre commerciale / prospection** : `souleymane-business-developer` → `aya-graphiste` (mise en page PDF) → `bintou-brand-guardian`.
 
 ## Règles d'orchestration
 
 - Donner à chaque agent : le chemin du brief, le chemin de la charte, ce qu'il doit livrer, où l'écrire, et l'échéance.
   Les agents ne voient pas la conversation : leur prompt doit se suffire à lui-même.
-- Un agent = un livrable clair. Pour 12 visuels, lancer plusieurs `graphiste` en parallèle (4 visuels chacun).
-- Regarder les livrables visuels (Read sur les PNG) avant de les présenter. Toujours finir par `brand-guardian`.
+- Un agent = un livrable clair. Pour 12 visuels, lancer plusieurs `aya-graphiste` en parallèle (4 visuels chacun).
+- Regarder les livrables visuels (Read sur les PNG) avant de les présenter. Toujours finir par `bintou-brand-guardian`.
 - Ne rien publier, envoyer au client, ni dépenser de budget publicitaire sans « oui » explicite de l'utilisateur.
 - Long travail (vidéo longue, voix off longue) : produire d'abord un extrait court et le faire valider.
 - Résumer à l'utilisateur : ce qui a été produit (chemins), ce qui attend sa validation, les questions ouvertes.

@@ -11,24 +11,41 @@ Ouvrir Claude Code à la racine du dépôt et demander simplement, en français 
 > « Prépare la campagne rentrée de l'école Les Flamboyants : affiche A3, 50 tee-shirts DTF, 8 posts et une pub Meta. »
 
 Claude applique le skill `agence-forlife` : brief → stratégie → concept → production en parallèle → contrôle qualité,
-en lançant les bons agents. On peut aussi appeler un agent précis :
+en lançant les bons agents. On peut aussi s'adresser directement à un membre de l'équipe, par son prénom :
 
-> « Utilise l'agent graphiste pour faire un flyer A5 de l'offre Ouverture Commerce. »
-> « Agent community-manager : calendrier de décembre pour la page Forlife. »
-> « Agent motion-designer : logo animé de 3 secondes pour Forlife. »
+> « Aya, fais-moi un flyer A5 pour l'offre Ouverture Commerce. »
+> « Awa, prépare le calendrier de décembre de la page Forlife. »
+> « Djénéba, un logo animé de 3 secondes pour Forlife. »
+> « Bintou, relis les visuels de la rentrée avant que je les envoie. »
 
 Rien n'est publié, envoyé au client ni payé (publicité) sans votre accord explicite.
 
 ## L'équipe
 
-| Pôle | Agents |
-|---|---|
-| Direction & commercial | `directeur-creation` · `chef-de-projet` · `business-developer` |
-| Stratégie & performance | `strategiste-marketing` · `media-buyer` (Meta/TikTok Ads) · `analyste-performance` · `redacteur-seo` |
-| Contenu | `community-manager` · `concepteur-redacteur` · `relations-presse-evenementiel` · `formateur` |
-| Création visuelle | `directeur-artistique` · `designer-identite` · `graphiste` · `designer-web-ui` · `illustrateur` · `prompt-engineer-visuel` |
-| Audiovisuel | `realisateur-photo-video` · `monteur-video` · `motion-designer` · `sound-designer-voix-off` |
-| Qualité | `brand-guardian` (passe en dernier sur chaque livrable) |
+| Pôle | Prénom | Métier | Identifiant de l'agent |
+|---|---|---|---|
+| Direction & commercial | **Yao** | Directeur de création | `yao-directeur-creation` |
+| | **Adjoua** | Cheffe de projet | `adjoua-chef-de-projet` |
+| | **Souleymane** | Business developer | `souleymane-business-developer` |
+| Stratégie & performance | **Gnamien** | Stratège marketing | `gnamien-strategiste-marketing` |
+| | **Lacina** | Media buyer (Meta / TikTok Ads) | `lacina-media-buyer` |
+| | **Affoué** | Analyste performance | `affoue-analyste-performance` |
+| | **Ahou** | Rédactrice SEO | `ahou-redacteur-seo` |
+| Contenu | **Awa** | Community manager | `awa-community-manager` |
+| | **Zadi** | Concepteur-rédacteur | `zadi-concepteur-redacteur` |
+| | **Akissi** | Événementiel & relations presse | `akissi-relations-presse-evenementiel` |
+| | **Tanoh** | Formateur | `tanoh-formateur` |
+| Création visuelle | **Amenan** | Directrice artistique | `amenan-directeur-artistique` |
+| | **Kouamé** | Designer d'identité visuelle (logos, chartes) | `kouame-designer-identite` |
+| | **Aya** | Graphiste | `aya-graphiste` |
+| | **Mariam** | Designer web / UI | `mariam-designer-web-ui` |
+| | **Gnaoré** | Illustrateur / dessinateur | `gnaore-illustrateur` |
+| | **Kady** | Prompt engineer visuelle (images et vidéos IA) | `kady-prompt-engineer-visuel` |
+| Audiovisuel | **Tiémoko** | Réalisateur photo / vidéo | `tiemoko-realisateur-photo-video` |
+| | **Brou** | Monteur vidéo | `brou-monteur-video` |
+| | **Djénéba** | Motion designer | `djeneba-motion-designer` |
+| | **Séry** | Sound designer & voix off | `sery-sound-designer-voix-off` |
+| Qualité | **Bintou** | Gardienne de la marque, contrôle qualité (passe en dernier) | `bintou-brand-guardian` |
 
 Fiches complètes : `.claude/agents/<nom>.md` (modifiables : ce sont vos « employés », ajustez leurs consignes).
 
