@@ -21,7 +21,7 @@
 //      pour enchaîner les scènes. Ne pas utiliser "infinite" sans le vouloir.
 //   2. GSAP : si window.gsap existe, sa timeline globale est placée au temps exact.
 //   3. window.rendu = (t) => { ... }  : fonction appelée à chaque image avec t en secondes (canvas, compteurs…).
-// La police Poppins est injectée automatiquement (comme visuel-studio).
+// La police Poppins et le logo officiel (<img data-forlife-logo="horizontal">) sont injectés comme dans visuel-studio.
 
 import { createRequire } from 'node:module';
 import { spawn, spawnSync } from 'node:child_process';
@@ -29,6 +29,7 @@ import { existsSync, mkdirSync, rmSync } from 'node:fs';
 import { dirname, resolve, join } from 'node:path';
 import { fileURLToPath, pathToFileURL } from 'node:url';
 import { tmpdir } from 'node:os';
+import { injecterLogos } from '../../visuel-studio/scripts/logo.mjs';
 
 const ICI = dirname(fileURLToPath(import.meta.url));
 const POLICES = resolve(ICI, '..', '..', 'visuel-studio', 'polices');
@@ -64,6 +65,8 @@ const page = await navigateur.newPage({ viewport: { width: L, height: H }, devic
 await page.goto(pathToFileURL(resolve(entree)).href, { waitUntil: 'networkidle' });
 await page.addStyleTag({ content: css });
 await page.evaluate(async () => { await document.fonts.ready; await Promise.all([...document.images].map(i => i.complete ? 0 : new Promise(r => { i.onload = i.onerror = r; }))); });
+for (const a of await injecterLogos(page)) console.log('⚠ ' + a);
+await page.evaluate(() => document.fonts.ready);
 
 const duree = +(o.duree ?? await page.evaluate(() => document.querySelector('meta[name=duree]')?.content) ?? 10);
 const total = Math.round(duree * fps);

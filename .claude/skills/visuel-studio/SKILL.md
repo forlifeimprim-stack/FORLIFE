@@ -13,7 +13,18 @@ node .claude/skills/visuel-studio/scripts/rendre.mjs page.html sortie.png --form
 node .claude/skills/visuel-studio/scripts/rendre.mjs page.html sortie.pdf --format a5              # PDF + 3 mm de fond perdu
 node .claude/skills/visuel-studio/scripts/rendre.mjs page.html sortie.png --format affiche-a3 --dpi 300
 node .claude/skills/visuel-studio/scripts/rendre.mjs page.html sortie.png --taille 1200x628        # taille libre
+node .claude/skills/visuel-studio/scripts/rendre.mjs flyer.html apercu.jpg --format a5 --dpi 150 --rogner  # aperçu au format fini
 ```
+
+- **PDF impression** : format exact au millimètre, fond perdu 3 mm, **traits de coupe et ligne de repère** ajoutés
+  automatiquement autour (`--sans-traits` pour un PDF nu).
+- **Logo officiel Forlife** : écrire `<img data-forlife-logo="horizontal" style="height:60px">` (ou `vertical`, `symbole`) ;
+  le moteur insère le SVG de `assets/logo/` tel quel. Options : `data-texte="#1A1A1A"` (nom en charbon sur fond clair),
+  `data-sans-slogan` (sans la phrase d'accroche, pour les petites tailles). Ne jamais redessiner le logo.
+- **Contraste** : jamais de texte blanc sur l'orange `#EA7822` (2,9:1) ni d'orange sur crème pour du texte (2,7:1) ;
+  texte charbon `#1A1A1A` sur orange (6:1).
+- **Typographie française** : `&nbsp;` avant « : ; ? ! », dans les numéros (`05&nbsp;85&nbsp;80&nbsp;18&nbsp;56`) et entre
+  nombre et unité (`24&nbsp;h`, `15&nbsp;000&nbsp;FCFA`) ; apostrophe typographique ’ dans les textes.
 
 ## Méthode
 

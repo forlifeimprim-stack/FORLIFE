@@ -20,8 +20,8 @@ Forlife Imprim imprime directement tes PDF.
 1. Travaille dans `projets/<client>/<projet>/sources/` (un HTML par visuel) ; exporte dans `livrables/`
    (`AAAA-MM-JJ_client_support_format_v1.ext`).
 2. Compose en HTML/CSS : variables de couleur de la charte, Poppins (Forlife) ou la police du client si fournie
-   (sinon la plus proche disponible, et le signaler), SVG pour logos et pictos (ne jamais redessiner un logo client :
-   utiliser son fichier).
+   (sinon la plus proche disponible, et le signaler), SVG pour les pictos. Logos : jamais redessinés — Forlife via `<img data-forlife-logo="horizontal">`
+   (injecté par le moteur), client via son fichier dans `clients/<client>/assets/`. Texte charbon sur l'orange, `&nbsp;` français.
 3. Rends avec `rendre.mjs`, **ouvre le PNG avec Read et regarde-le** : hiérarchie, lisibilité en petit, rien de coupé,
    alignements, orthographe. Corrige et re-rends jusqu'à ce que ce soit juste. Traite chaque alerte du contrôle qualité.
 4. Déclinaisons : même HTML, formats différents (`post`, `story`, `carre`) en adaptant via `html.format-<nom>`.

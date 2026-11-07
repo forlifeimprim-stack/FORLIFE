@@ -4,50 +4,59 @@
 <meta charset="utf-8">
 <title>Flyer A5 — modèle Forlife</title>
 <!--
-  MODÈLE « flyer A5 recto » 148×210 mm + 3 mm de fond perdu (le script l'ajoute).
-  Rendu imprimeur : node .claude/skills/visuel-studio/scripts/rendre.mjs flyer.html flyer.pdf --format a5
-  Aperçu réseaux  : node .claude/skills/visuel-studio/scripts/rendre.mjs flyer.html flyer.png --format a5 --dpi 150
-  Règles impression : travailler en mm ; le fond (couleurs, images) va jusqu'au bord de la page (fond perdu) ;
-  textes et logos à l'intérieur de la « zone sûre » = bord de coupe + 5 mm (classe .sur ci-dessous).
+  MODÈLE « flyer A5 recto » 148×210 mm + 3 mm de fond perdu (ajouté par le script).
+  PDF atelier (traits de coupe auto) : node .claude/skills/visuel-studio/scripts/rendre.mjs flyer.html flyer.pdf --format a5
+  Aperçu réseaux (format fini)       : node .claude/skills/visuel-studio/scripts/rendre.mjs flyer.html flyer.jpg --format a5 --dpi 150 --rogner
+  Règles impression : travailler en mm ; fonds jusqu'au bord de page (fond perdu) ; textes et logos dans la zone sûre
+  (.sur = coupe + 5 mm). Rendu en RVB : caler l'orange à l'atelier sur BAT (≈ C0 M60 J95 N0, à vérifier).
+  Contraste : texte charbon sur crème ; l'orange sert aux filets et aplats, pas aux petits textes.
 -->
 <style>
-  :root { --accent: #EA7822; --or: #D9AC4E; --fond: #1A1A1A; --clair: #F9F6F2; }
+  :root { --accent: #EA7822; --fond: #1A1A1A; --clair: #F9F6F2; }
   body { font-family: 'Poppins', sans-serif; }
   .page { position: relative; width: var(--page-l); height: var(--page-h); overflow: hidden; background: var(--clair); color: var(--fond); }
-  /* Zone sûre : fond perdu (3 mm) + marge de sécurité (5 mm) */
   .sur { position: absolute; inset: calc(var(--fond-perdu) + 8mm); display: flex; flex-direction: column; }
-  .haut { position: absolute; left: 0; right: 0; top: 0; height: calc(var(--fond-perdu) + 92mm); background: var(--fond); }
-  .haut::after { content: ''; position: absolute; right: -20mm; bottom: 14mm; width: 95mm; height: 18mm; border-radius: 99mm; background: var(--accent); }
-  .surtitre { color: var(--accent); font-weight: 700; font-size: 9pt; letter-spacing: .15em; text-transform: uppercase; }
-  h1 { color: #fff; font-weight: 800; font-size: 30pt; line-height: 1.02; margin: 4mm 0 0; max-width: 105mm; }
-  .services { margin-top: 62mm; display: grid; grid-template-columns: 1fr 1fr; gap: 3.5mm 6mm; font-size: 10pt; }
+  .haut { position: absolute; left: 0; right: 0; top: 0; height: calc(var(--fond-perdu) + 78mm); background: var(--fond); }
+  .haut::after { content: ''; position: absolute; right: -20mm; bottom: -5mm; width: 70mm; height: 10mm; border-radius: 99mm; background: var(--accent); }
+  .logo { height: 17mm; align-self: flex-start; margin-left: -1mm; }
+  .surtitre { margin-top: 8mm; color: var(--accent); font-weight: 700; font-size: 8.5pt; letter-spacing: .15em; text-transform: uppercase; }
+  h1 { color: #fff; font-weight: 800; font-size: 28pt; line-height: 1.02; margin: 3mm 0 0; max-width: 105mm; }
+  .services { margin-top: auto; padding-top: 6mm; display: grid; grid-template-columns: 1fr 1fr; gap: 3.5mm 6mm; font-size: 10pt; }
   .services div { border-left: 1.2mm solid var(--accent); padding-left: 3mm; font-weight: 600; }
   .services small { display: block; font-weight: 400; color: #555; font-size: 8pt; }
-  .promesse { margin: auto 0; background: #fff; border: .5mm solid var(--accent); border-radius: 4mm; padding: 5mm 6mm; }
-  .promesse strong { display: block; font-weight: 800; font-size: 15pt; line-height: 1.15; }
-  .promesse span { display: block; margin-top: 1.5mm; font-size: 9pt; line-height: 1.4; color: #555; }
-  .bas { display: flex; justify-content: space-between; align-items: flex-end; }
-  .contact { font-size: 9.5pt; line-height: 1.5; }
-  .contact strong { color: var(--accent); font-size: 13pt; }
-  .slogan { font-style: italic; font-size: 8pt; color: #7a6a5c; max-width: 45mm; text-align: right; }
+  .promesse { margin: 7mm 0; background: #fff; border: .5mm solid var(--accent); border-radius: 4mm; padding: 4.5mm 6mm; }
+  .promesse strong { display: block; font-weight: 800; font-size: 14pt; line-height: 1.15; }
+  .promesse span { display: block; margin-top: 1.5mm; font-size: 8.5pt; line-height: 1.4; color: #555; }
+  .bas { margin-top: auto; display: flex; justify-content: space-between; align-items: flex-end; gap: 4mm; }
+  .contact { font-size: 8.5pt; line-height: 1.5; }
+  .contact strong { display: inline-block; font-size: 13pt; font-weight: 800; border-bottom: .8mm solid var(--accent); margin-bottom: 1mm; }
+  .slogan { font-style: italic; font-size: 7.5pt; color: #5c4d40; max-width: 40mm; text-align: right; }
 </style>
 </head>
 <body>
 <div class="page">
   <div class="haut"></div>
   <div class="sur">
+    <!-- Logo officiel injecté par le moteur (assets/logo/logo-horizontal.svg) -->
+    <img class="logo" data-forlife-logo="horizontal" data-sans-slogan alt="Forlife Com'">
     <span class="surtitre">Agence de communication · Bingerville</span>
-    <h1>Votre image mérite le meilleur.</h1>
+    <h1>Votre image mérite le&nbsp;meilleur.</h1>
     <div class="services">
       <div>Impression &amp; DTF<small>Bâches, flyers, tee-shirts</small></div>
       <div>Design graphique<small>Logos, chartes, affiches</small></div>
       <div>Photo &amp; vidéo<small>Sony FX30, drone</small></div>
       <div>Réseaux sociaux<small>Animation, Meta Ads</small></div>
     </div>
-    <div class="promesse"><strong>Devis gratuit, réponse sous 24 h.</strong><span>Un seul interlocuteur, de l'idée à l'impression — atelier sur place à Bingerville.</span></div>
+    <div class="promesse"><strong>Demandez votre devis gratuit.</strong><span>Un seul interlocuteur, de l’idée à l’impression — atelier sur place à&nbsp;Bingerville. Réponse sous 24&nbsp;h.</span></div>
     <div class="bas">
-      <div class="contact"><strong>05 85 80 18 56</strong><br>WhatsApp &amp; appel<br>forlifeimprim@gmail.com</div>
-      <div class="slogan">L'ami des PME, TPE, Écoles et Communautés</div>
+      <div class="contact">
+        <strong>+225 05&nbsp;85&nbsp;80&nbsp;18&nbsp;56</strong><br>
+        WhatsApp &amp; appel · +225 07&nbsp;49&nbsp;56&nbsp;70&nbsp;82<br>
+        forlifeimprim@gmail.com<br>
+        Montée du Collège Saint&nbsp;Cyrille, Bingerville<br>
+        Lun–ven 8&nbsp;h–18&nbsp;h · sam 8&nbsp;h–14&nbsp;h
+      </div>
+      <div class="slogan">L’ami des PME, TPE, Écoles et Communautés</div>
     </div>
   </div>
 </div>

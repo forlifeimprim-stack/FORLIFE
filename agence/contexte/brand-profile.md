@@ -92,7 +92,7 @@ proposer une fourchette uniquement si l'utilisateur l'a validée, sinon laisser 
 
 | Canal | Rôle | Remarques |
 |---|---|---|
-| WhatsApp (Business, Statuts, Chaînes) | Conversion n°1, relation client | Réponse < 1 h en heures ouvrées |
+| WhatsApp (Business, Statuts, Chaînes) | Conversion n°1, relation client | Contact sous 24 h (engagement des e-mails automatiques du site) |
 | Facebook (page + groupes locaux) | Audience 25–55 ans, PME, écoles, communautés | Groupes de quartier/commune très efficaces |
 | Instagram | Vitrine portfolio, reels, 18–35 ans | Carrousels avant/après, coulisses atelier |
 | TikTok | Notoriété jeune, coulisses, tendances | Ton plus libre |

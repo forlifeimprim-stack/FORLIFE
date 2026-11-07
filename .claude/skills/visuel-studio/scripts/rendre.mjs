@@ -11,6 +11,11 @@
 //   --fond-perdu <mm>     ajoute un fond perdu (défaut 3 mm pour l'impression, 0 pour l'écran)
 //   --echelle <n>         facteur de pixels pour l'écran (défaut 1 = taille exacte demandée par la plateforme)
 //   --qualite <n>         qualité JPG (défaut 92)
+//   --sans-traits         PDF impression sans traits de coupe (par défaut : traits de coupe + repères hors format)
+//   --rogner              PNG/JPG d'un format impression rogné au format fini (aperçu réseaux, sans fond perdu)
+//
+// Logo officiel : <img data-forlife-logo="horizontal|vertical|symbole" [data-texte="#1A1A1A"] [data-sans-slogan]>
+// est remplacé par le SVG de assets/logo/ (voir logo.mjs).
 //
 // La page reçoit automatiquement :
 //   - la police Poppins (locale, 400 à 900) ;
@@ -22,6 +27,7 @@ import { createRequire } from 'node:module';
 import { existsSync, mkdirSync } from 'node:fs';
 import { dirname, resolve, extname, join } from 'node:path';
 import { fileURLToPath, pathToFileURL } from 'node:url';
+import { injecterLogos } from './logo.mjs';
 
 const ICI = dirname(fileURLToPath(import.meta.url));
 let chromium;
@@ -127,6 +133,8 @@ try {
   await page.addStyleTag({ content: css });
   await page.evaluate(n => document.documentElement.classList.add('format-' + n), nom);
   await page.evaluate(async () => { await document.fonts.ready; await Promise.all([...document.images].map(i => i.complete ? 0 : new Promise(r => { i.onload = i.onerror = r; }))); });
+  const alertesLogo = await injecterLogos(page);
+  await page.evaluate(() => document.fonts.ready);
 
   // Contrôle qualité : débordements
   const alertes = await page.evaluate(({ l, h }) => {
@@ -145,21 +153,48 @@ try {
     }
     return [...new Set(out)].slice(0, 15);
   }, { l: lCss, h: hCss });
+  alertes.push(...alertesLogo);
 
   mkdirSync(dirname(resolve(sortie)), { recursive: true });
   if (ext === '.pdf') {
-    await page.pdf({ path: sortie, width: `${lCss}px`, height: `${hCss}px`, printBackground: true, pageRanges: '1' });
+    const traits = impression && fp > 0 && !o['sans-traits'];
+    const M = traits ? 10 : 0; // marge autour du fond perdu pour les traits de coupe (mm)
+    if (traits) {
+      // La page grandit de 10 mm de chaque côté ; le visuel (fond perdu compris) est posé au centre,
+      // les traits de coupe marquent le format fini, une ligne de repère indique fichier, format et date.
+      await page.addStyleTag({ content: `html{width:${lCss + 2 * M * MM}px;height:${hCss + 2 * M * MM}px;background:#fff;position:relative}
+        body{position:absolute;left:${M}mm;top:${M}mm;width:${lCss}px;height:${hCss}px;overflow:hidden}` });
+      await page.evaluate(({ M, fp, l, h, info }) => {
+        const c = document.createElement('div');
+        c.style.cssText = 'position:absolute;inset:0;pointer-events:none;z-index:2147483647';
+        const t = 0.1, g = 1; // mm : épaisseur des traits, écart avec le fond perdu
+        const xs = [M + fp, M + l - fp], ys = [M + fp, M + h - fp];
+        const trait = (x, y, w, hh) => { const s = document.createElement('div'); s.style.cssText = `position:absolute;left:${x}mm;top:${y}mm;width:${w}mm;height:${hh}mm;background:#000`; c.appendChild(s); };
+        for (const x of xs) { trait(x - t / 2, 0, t, M - g); trait(x - t / 2, M + h + g, t, M - g); }
+        for (const y of ys) { trait(0, y - t / 2, M - g, t); trait(M + l + g, y - t / 2, M - g, t); }
+        const r = document.createElement('div');
+        r.textContent = info;
+        r.style.cssText = `position:absolute;left:${M + fp}mm;top:${M + h + 2.5}mm;font:5.5pt Poppins,sans-serif;color:#000;white-space:nowrap`;
+        c.appendChild(r);
+        document.documentElement.appendChild(c);
+      }, { M, fp, l: fmt.l + 2 * fp, h: fmt.h + 2 * fp, info: `${sortie.split(/[\\/]/).pop()} · format fini ${fmt.l}×${fmt.h} mm · fond perdu ${fp} mm · RVB · ${new Date().toLocaleDateString('fr-FR')} · Forlife Com'` });
+    }
+    // Tailles en mm (pas en px) : le PDF fait exactement le format demandé
+    await page.pdf({ path: sortie, width: `${fmt.l + 2 * fp + 2 * M}mm`, height: `${fmt.h + 2 * fp + 2 * M}mm`, printBackground: true, pageRanges: '1' });
   } else if (ext === '.png' || ext === '.jpg' || ext === '.jpeg') {
     const transparent = await page.evaluate(() => getComputedStyle(document.body).backgroundColor === 'rgba(0, 0, 0, 0)' && getComputedStyle(document.documentElement).backgroundColor === 'rgba(0, 0, 0, 0)');
-    await page.screenshot({ path: sortie, type: ext === '.png' ? 'png' : 'jpeg', quality: ext === '.png' ? undefined : +(o.qualite ?? 92), omitBackground: ext === '.png' && transparent, clip: { x: 0, y: 0, width: lCss, height: hCss } });
+    const r = impression && o.rogner ? fp * MM : 0;
+    await page.screenshot({ path: sortie, type: ext === '.png' ? 'png' : 'jpeg', quality: ext === '.png' ? undefined : +(o.qualite ?? 92), omitBackground: ext === '.png' && transparent, clip: { x: r, y: r, width: lCss - 2 * r, height: hCss - 2 * r } });
   } else {
     console.error('Extension de sortie : .png, .jpg ou .pdf'); process.exit(1);
   }
 
-  const pxL = Math.round(lCss * echelle), pxH = Math.round(hCss * echelle);
+  const rog = impression && o.rogner && ext !== '.pdf' ? 2 * fp * MM : 0;
+  const pxL = Math.round((lCss - rog) * echelle), pxH = Math.round((hCss - rog) * echelle);
   console.log(`✔ ${sortie}`);
   const px = ext === '.pdf' || (!impression && echelle === 1) ? '' : ` — ${pxL}×${pxH} px${impression ? ` à ${dpi} dpi` : ''}`;
-  console.log(`  format ${nom} — ${fmt.l}×${fmt.h} ${fmt.u}${impression ? ` + fond perdu ${fp} mm` : ''}${px}`);
+  console.log(`  format ${nom} — ${fmt.l}×${fmt.h} ${fmt.u}${impression && !rog ? ` + fond perdu ${fp} mm` : rog ? ' (rogné au format fini)' : ''}${px}`);
+  if (ext === '.pdf' && impression && fp > 0 && !o['sans-traits']) console.log('  traits de coupe et repères ajoutés (10 mm autour du fond perdu) ; --sans-traits pour les retirer.');
   if (impression && ext !== '.pdf') console.log('  conseil : pour l\'imprimeur, exporter aussi en .pdf (texte vectoriel net).');
   if (impression) console.log('  rappel : rendu en RVB ; garder textes et éléments importants à 5 mm minimum du bord de coupe.');
   if (alertes.length) { console.log('⚠ Contrôle qualité :'); for (const a of alertes) console.log('  - ' + a); }
