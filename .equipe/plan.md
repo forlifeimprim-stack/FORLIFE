@@ -3,8 +3,8 @@
 | Tâche | Agent | Sujet | Statut |
 |---|---|---|---|
 | D01 | Zana | Architecture, coûts, performance, risques | terminé |
-| D02 | Aya | UX/UI, parcours, accessibilité | en cours |
-| D03 | Grâce | Front-end | à faire |
+| D02 | Aya | UX/UI, parcours, accessibilité | terminé |
+| D03 | Grâce | Front-end | en cours |
 | D04 | José | Back-end, données, API | à faire |
 | D05 | Princesse | Mobile (PWA, Android, usage réseau faible) | à faire |
 | D06 | Caporal | Sécurité (lecture seule) | à faire |
