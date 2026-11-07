@@ -1,6 +1,6 @@
 # Agence d'agents Forlife Com'
 
-Un studio de création complet dans Claude Code : **22 agents spécialisés**, **6 skills maison** (dont deux moteurs de
+Un studio de création complet dans Claude Code : **22 agents spécialisés**, **7 skills maison** (dont deux moteurs de
 production qui fabriquent de vrais fichiers), **13 skills de montage vidéo** et **une bibliothèque de 85 guides
 d'experts** importés de GitHub — le tout adapté à Forlife Com', au marché ivoirien et à la charte orange/charbon.
 
@@ -19,6 +19,16 @@ en lançant les bons agents. On peut aussi s'adresser directement à un membre d
 > « Bintou, relis les visuels de la rentrée avant que je les envoie. »
 
 Rien n'est publié, envoyé au client ni payé (publicité) sans votre accord explicite.
+
+## Pour vos clients… et nourrie de vos affiches
+
+L'agence produit d'abord pour **vos clients** : chaque projet part du brief et de la charte du client
+(`clients/<client>/`), l'identité Forlife étant réservée à votre propre communication.
+
+L'équipe création a une **mémoire visuelle** : envoyez des affiches (vos réalisations, celles de vos clients, des
+références vues ailleurs) en disant « étudiez ces affiches ». Chaque visuel est analysé dans une fiche
+(`agence/inspiration/fiches/`), puis les enseignements sont réunis dans `agence/inspiration/grammaire-visuelle.md`,
+que les agents lisent avant chaque création. Détails : `agence/inspiration/README.md`.
 
 ## L'équipe
 

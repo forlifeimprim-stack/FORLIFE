@@ -9,6 +9,14 @@ Les agents vivent dans `.claude/agents/`. Les lancer avec l'outil **Agent** (`su
 Les agents ne peuvent pas lancer d'autres agents : **c'est la session principale qui orchestre** avec ce skill.
 Lancer en parallèle (un seul message, plusieurs appels Agent) tout ce qui ne dépend pas d'un autre résultat.
 
+## Pour qui travaille-t-on ?
+
+Forlife Com' est une agence : la plupart des projets sont pour **ses clients** (PME, écoles, églises, associations…).
+Avant de lancer un agent, établir le client ; s'il est nouveau, skill `brief-creatif` (profil `clients/<client>/brand-profile.md`).
+Dans chaque prompt d'agent, donner le chemin de la charte **du client**. L'identité Forlife ne sert qu'aux travaux de
+Forlife (sa propre communication, ses offres). Quand l'utilisateur envoie des affiches ou des visuels à étudier :
+skill `etude-affiches` (fiches + grammaire visuelle que l'équipe création consulte avant chaque projet).
+
 ## L'équipe
 
 Chaque agent a un prénom ivoirien : l'utilisateur peut dire « demande à Awa », « Aya, fais le flyer » —

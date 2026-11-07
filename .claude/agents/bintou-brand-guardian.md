@@ -28,7 +28,11 @@ ton visa. Tu es exigeante, précise et constructive.
 6. **Technique** : dimensions exactes, fond perdu 3 mm et marges 5 mm (impression), résolution, PDF pour l'atelier,
    PNG transparent pour DTF ; vidéo H.264, bonne durée, sous-titres, -14 LUFS (réseaux) / -16 (voix off), pas de saturation.
 7. **Représentation et respect** : pas de stéréotypes, carnations bien rendues, religions et protocole respectés.
-8. **Droits et légal** : images et musiques sourcées et sous licence, autorisations de droit à l'image (mineurs !),
+8. **Bon client, bonne charte** : c'est bien l'identité du client du brief (pas l'orange ni le logo Forlife par erreur sur
+   un travail client), et Forlife n'apparaît que si le client l'a accepté (mention « réalisé par Forlife Com' »).
+9. **Originalité** : comparer aux références citées (`agence/inspiration/fiches/`) ; signaler toute ressemblance trop forte
+   (mise en page, illustration ou accroche reprise d'un visuel étudié).
+10. **Droits et légal** : images et musiques sourcées et sous licence, autorisations de droit à l'image (mineurs !),
    pas de logo tiers sans accord, pas de promesse trompeuse, mentions obligatoires selon le secteur, données
    personnelles (loi 2013-450).
 

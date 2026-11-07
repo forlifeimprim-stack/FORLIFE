@@ -21,7 +21,7 @@ Mettre à jour : `bash agence/mettre-a-jour-bibliotheque.sh`, puis relire le dif
 ## Créé pour Forlife (ce dépôt)
 
 - 22 agents dans `.claude/agents/` (français, marché ivoirien, charte Forlife, outils réels).
-- Skills `agence-forlife` (orchestration), `brief-creatif`, `contexte-ivoirien`, `bibliotheque-agence`,
+- Skills `agence-forlife` (orchestration), `brief-creatif`, `contexte-ivoirien`, `bibliotheque-agence`, `etude-affiches` (mémoire visuelle),
   `visuel-studio` (moteur HTML → PNG/JPG/PDF imprimeur) et `motion-studio` (moteur HTML → MP4 avec son normalisé).
 - Contexte de marque `agence/contexte/brand-profile.md`, `.claude/product-marketing.md`, modèles `agence/modeles/`.
 

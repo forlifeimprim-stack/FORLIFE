@@ -6,6 +6,11 @@ clients/
 projets/
 agence/contexte/tarifs.md
 
+# Affiches étudiées : images non versionnées (droits d'auteur, travaux clients) ; les fiches le sont
+agence/inspiration/a-etudier/
+agence/inspiration/affiches/
+agence/inspiration/planches/
+
 # Montage vidéo (skills short-editing & co) : vidéos lourdes et clés API
 video-agent/takes/
 video-agent/edits/**/*.mp4

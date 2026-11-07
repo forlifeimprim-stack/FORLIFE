@@ -66,9 +66,9 @@ const invalides = agents.filter(f => {
 ligne(agents.length === 22 && !invalides.length ? 'ok' : 'manque', `${agents.length} agents dans .claude/agents/${invalides.length ? ` (${invalides.length} mal formés : ${invalides.join(', ')})` : ''}`,
   'Récupérer la branche de l\'agence (git pull) ; les agents doivent être sur la branche ouverte dans Claude Code');
 const skills = existsSync(p('.claude/skills')) ? readdirSync(p('.claude/skills')).filter(d => existsSync(p('.claude/skills', d, 'SKILL.md'))) : [];
-const maison = ['agence-forlife', 'brief-creatif', 'contexte-ivoirien', 'bibliotheque-agence', 'visuel-studio', 'motion-studio'];
+const maison = ['agence-forlife', 'brief-creatif', 'contexte-ivoirien', 'bibliotheque-agence', 'visuel-studio', 'motion-studio', 'etude-affiches'];
 const manquants = maison.filter(s => !skills.includes(s));
-ligne(!manquants.length ? 'ok' : 'manque', `${skills.length} skills (dont les 6 maison${manquants.length ? ` — manque : ${manquants.join(', ')}` : ''})`, 'git pull');
+ligne(!manquants.length ? 'ok' : 'manque', `${skills.length} skills (dont les 7 maison${manquants.length ? ` — manque : ${manquants.join(', ')}` : ''})`, 'git pull');
 let guides = 0;
 for (const d of ['marketing-fr', 'reseaux-sociaux', 'motion-video', 'design-graphique'])
   if (existsSync(p('agence/bibliotheque', d))) guides += readdirSync(p('agence/bibliotheque', d)).filter(x => existsSync(p('agence/bibliotheque', d, x, 'SKILL.md'))).length;

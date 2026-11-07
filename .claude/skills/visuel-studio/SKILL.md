@@ -44,6 +44,15 @@ node .claude/skills/visuel-studio/scripts/rendre.mjs flyer.html apercu.jpg --for
 6. **Livrer** dans `projets/<client>/<projet>/livrables/` avec un nom clair :
    `AAAA-MM-JJ_client_support_format_v1.png`.
 
+## Travailler pour un client (cas le plus fréquent)
+
+Les modèles sont aux couleurs de Forlife : pour un client, **remplacer tout l'habillage** —
+variables `:root` par ses couleurs, logo par son fichier (`<img src="clients/<client>/assets/logo.svg">` en chemin relatif
+depuis le HTML, ou copie du logo dans `sources/`), police par la sienne :
+`@font-face{font-family:'Client';src:url(polices/MaPolice.woff2)}` (fichier fourni par le client, sous licence) ou une
+Google Font via `<link>`. Retirer les formes « pilules » propres à Forlife si elles ne vont pas avec la marque du client.
+Avant de composer : `agence/inspiration/grammaire-visuelle.md` et 3 à 5 fiches du même secteur ou support.
+
 ## Règles impression (Forlife Imprim imprime sur place)
 
 - Le PDF est le fichier de référence pour l'atelier ; PNG 300 dpi pour les petits formats, 100–150 dpi pour bâches/roll-up

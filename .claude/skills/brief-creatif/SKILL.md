@@ -18,6 +18,9 @@ projets/<client-slug>/<AAAA-MM>-<projet>/
 `<client-slug>` en minuscules sans accents (`ecole-les-flamboyants`). Pour Forlife lui-même : `clients/forlife/` pointe vers
 `agence/contexte/brand-profile.md`.
 
+Le client par défaut n'est **jamais** Forlife : sauf si la demande concerne la communication de Forlife elle-même,
+le projet est celui d'un client et se fait avec **sa** charte.
+
 ## 2. Extraire, puis questionner seulement ce qui manque
 
 Lire la demande telle quelle, remplir ce qui est déjà dit, puis poser **au plus 5 questions** groupées (format WhatsApp :
