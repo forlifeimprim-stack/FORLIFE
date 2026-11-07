@@ -1,0 +1,28 @@
+# ── Système d'agents Forlife ─────────────────────────────────────────────
+# Ce dépôt est PUBLIC. Les dossiers clients et projets contiennent des données
+# personnelles et commerciales (contacts, devis, photos d'élèves…) : ils restent
+# en local ou dans un dépôt privé (loi ivoirienne 2013-450, ARTCI).
+clients/
+projets/
+agence/contexte/tarifs.md
+
+# Montage vidéo (skills short-editing & co) : vidéos lourdes et clés API
+video-agent/takes/
+video-agent/edits/**/*.mp4
+video-agent/edits/**/assets/
+video-agent/edits/**/stills/
+video-agent/.tmp/
+video-agent/.env
+.claude/skills/short-editing/.runtime/
+.claude/skills/short-editing/engine/node_modules/
+
+# Fichiers lourds de production
+*.mov
+*.MOV
+*.MP4
+*.braw
+*.wav
+
+# Secrets
+.env
+*.key

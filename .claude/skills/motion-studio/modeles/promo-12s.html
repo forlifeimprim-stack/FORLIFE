@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="duree" content="12">
+<title>Promo 12 s — modèle motion Forlife</title>
+<!--
+  MODÈLE motion « promo 12 s » 1080×1920 (reel / TikTok / statut WhatsApp), 4 scènes en CSS pur.
+  Rendu : node .claude/skills/motion-studio/scripts/animer.mjs promo.html promo.mp4 --format story --planche
+  Aperçu d'une image : ... --apercu 4.5
+  Structure (à garder pour toute promo courte) :
+    0–3 s   ACCROCHE : problème ou promesse, mouvement dès l'image 0 (pas d'écran fixe au début)
+    3–7 s   PREUVE / BÉNÉFICES : 3 points qui arrivent un par un
+    7–10 s  OFFRE : chiffre ou avantage concret
+    10–12 s SIGNATURE : logo + appel à l'action WhatsApp (au moins 2 s lisible)
+  Chaque scène = un .scene avec --debut et --fin (secondes). Les éléments utilisent animation-delay
+  calculé depuis --debut. Easing de marque : cubic-bezier(.2,.8,.2,1) (sortie douce, dynamique).
+-->
+<style>
+  :root { --accent: #EA7822; --or: #D9AC4E; --fond: #0D0D0D; --brun: #2D1C14; --clair: #F9F6F2; --ease: cubic-bezier(.2,.8,.2,1); }
+  body { font-family: 'Poppins', sans-serif; background: var(--fond); color: var(--clair); }
+  .page { position: relative; width: 1080px; height: 1920px; overflow: hidden; background: radial-gradient(90% 60% at 50% 30%, #3a2416 0%, var(--fond) 70%); }
+
+  /* Fond vivant : deux pilules orange qui dérivent pendant toute la vidéo */
+  .pilule { position: absolute; height: 140px; border-radius: 999px; background: var(--accent); animation: derive 12s linear both; }
+  .p1 { width: 700px; left: -200px; top: 230px; opacity: .9; }
+  .p2 { width: 420px; right: -160px; top: 1540px; opacity: .35; animation-direction: reverse; }
+  @keyframes derive { from { transform: translateX(-60px); } to { transform: translateX(120px); } }
+
+  /* Mécanique des scènes : visible entre --debut et --fin */
+  .scene { position: absolute; inset: 0; display: flex; flex-direction: column; justify-content: center; padding: 0 100px;
+           opacity: 0; animation: scene-in .01s linear calc(var(--debut) * 1s) both, scene-out .35s var(--ease) calc((var(--fin) - .35) * 1s) forwards; }
+  .scene.derniere { animation: scene-in .01s linear calc(var(--debut) * 1s) both; }
+  @keyframes scene-in { to { opacity: 1; } }
+  @keyframes scene-out { to { opacity: 0; transform: scale(1.04); } }
+
+  .monte { opacity: 0; animation: monte .7s var(--ease) calc((var(--debut) + var(--d, 0)) * 1s) both; }
+  @keyframes monte { from { opacity: 0; transform: translateY(80px); } to { opacity: 1; transform: none; } }
+  .zoom { opacity: 0; animation: zoom .6s var(--ease) calc((var(--debut) + var(--d, 0)) * 1s) both; }
+  @keyframes zoom { from { opacity: 0; transform: scale(.6); } to { opacity: 1; transform: none; } }
+  .trait { height: 14px; background: var(--accent); border-radius: 99px; transform-origin: left; animation: trait .6s var(--ease) calc((var(--debut) + var(--d, 0)) * 1s) both; }
+  @keyframes trait { from { transform: scaleX(0); } to { transform: scaleX(1); } }
+
+  h1 { font-weight: 800; font-size: 130px; line-height: 1; letter-spacing: -.02em; margin: 0; }
+  h1 em { font-style: normal; color: var(--accent); }
+  .liste div { font-weight: 700; font-size: 78px; line-height: 1.1; margin: 28px 0; display: flex; gap: 30px; align-items: center; }
+  .liste div::before { content: ''; flex: none; width: 34px; height: 34px; border-radius: 50%; background: var(--accent); }
+  .petit { font-size: 46px; font-weight: 500; color: #e9e1d8; margin-top: 30px; line-height: 1.3; }
+  .gros { font-weight: 900; font-size: 260px; line-height: .9; color: var(--accent); letter-spacing: -.04em; }
+  .logo { display: flex; align-items: center; gap: 34px; font-weight: 600; font-size: 96px; color: #fff; }
+  .logo svg { height: 190px; width: auto; }
+  .cta { margin-top: 90px; align-self: flex-start; background: var(--accent); color: #fff; font-weight: 700; font-size: 56px; border-radius: 999px; padding: 30px 60px; }
+  .signature { margin-top: 40px; font-size: 40px; color: var(--or); font-weight: 600; }
+</style>
+</head>
+<body>
+<div class="page">
+  <div class="pilule p1"></div><div class="pilule p2"></div>
+
+  <!-- Scène 1 — Accroche (0 → 3 s) -->
+  <section class="scene" style="--debut:0; --fin:3">
+    <h1 class="monte" style="--d:0">Votre logo</h1>
+    <h1 class="monte" style="--d:.25">fait <em>fuir</em></h1>
+    <h1 class="monte" style="--d:.5">vos clients ?</h1>
+  </section>
+
+  <!-- Scène 2 — Bénéfices (3 → 7 s) -->
+  <section class="scene" style="--debut:3; --fin:7">
+    <div class="trait" style="width:260px; --d:0"></div>
+    <div class="liste">
+      <div class="monte" style="--d:.2">Logo sur-mesure</div>
+      <div class="monte" style="--d:.9">Charte graphique</div>
+      <div class="monte" style="--d:1.6">Prêt à imprimer</div>
+    </div>
+  </section>
+
+  <!-- Scène 3 — Offre (7 → 10 s) -->
+  <section class="scene" style="--debut:7; --fin:10">
+    <div class="petit monte" style="--d:0">Votre devis gratuit</div>
+    <div class="gros zoom" style="--d:.3">24 h</div>
+    <div class="petit monte" style="--d:.8">réponse sur WhatsApp, sans engagement.</div>
+  </section>
+
+  <!-- Scène 4 — Signature (10 → 12 s) -->
+  <section class="scene derniere" style="--debut:10; --fin:12">
+    <div class="logo zoom" style="--d:0">
+      <svg viewBox="20 50 175 190" aria-hidden="true"><g fill="#EA7822"><circle cx="59.24" cy="209.06" r="25.45"/><path d="m59.23,55.5h112.07c9.44,0,17.09,7.65,17.09,17.09h0c0,16.06-13.02,29.08-29.08,29.08H47.23c-9.44,0-17.09-7.64-17.1-17.08h0c0-16.06,13.02-29.08,29.08-29.08Z"/><path d="m56.23,121.44h62.72c7.29,0,13.2,5.91,13.2,13.2v8.65c0,12.41-10.06,22.47-22.47,22.47h-62.69c-7.29,0-13.2-5.91-13.2-13.2v-8.65c0-12.4,10.04-22.45,22.44-22.47Z"/></g></svg>
+      Forlife Com'
+    </div>
+    <div class="cta monte" style="--d:.35">WhatsApp 05 85 80 18 56</div>
+    <div class="signature monte" style="--d:.6">Donner du sens. Créer l'impact.</div>
+  </section>
+</div>
+</body>
+</html>
