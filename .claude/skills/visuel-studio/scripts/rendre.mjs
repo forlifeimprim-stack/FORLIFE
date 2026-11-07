@@ -119,7 +119,7 @@ const css = `
 ${[400, 500, 600, 700, 800, 900].map(w => `
 @font-face{font-family:'Poppins';font-style:normal;font-weight:${w};font-display:block;src:url(${pathToFileURL(join(POLICES, `poppins-latin-${w}-normal.woff2`))}) format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
 @font-face{font-family:'Poppins';font-style:normal;font-weight:${w};font-display:block;src:url(${pathToFileURL(join(POLICES, `poppins-latin-ext-${w}-normal.woff2`))}) format('woff2');unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF}`).join('')}
-${[400, 700].map(w => `@font-face{font-family:'Poppins';font-style:italic;font-weight:${w};font-display:block;src:url(${pathToFileURL(join(POLICES, `poppins-latin-${w}-italic.woff2`))}) format('woff2')}`).join('\n')}
+${[400, 500, 700].map(w => `@font-face{font-family:'Poppins';font-style:italic;font-weight:${w};font-display:block;src:url(${pathToFileURL(join(POLICES, `poppins-latin-${w}-italic.woff2`))}) format('woff2')}`).join('\n')}
 :root{--page-l:${lCss}px;--page-h:${hCss}px;--fond-perdu:${fp}mm}
 html,body{margin:0;padding:0;width:${lCss}px;height:${hCss}px;overflow:hidden}
 @page{size:${lCss}px ${hCss}px;margin:0}
