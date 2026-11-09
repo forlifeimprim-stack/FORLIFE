@@ -56,7 +56,7 @@ Risque à signaler à l'auteur : ce livre-ci vise aussi des responsables d'égli
 
 Français courant, soigné, sans recherche d'effet. Le vocabulaire est celui de la Louis Segond pour les réalités bibliques, afin que le lecteur retrouve dans le livre les mots de sa Bible : « sacrificateur » (et non « prêtre »), « l'Éternel », « les Chaldéens », « la cour de la prison ». Un mot ancien est expliqué une fois, à sa première apparition, par une apposition ou une parenthèse (« les ceps, une pièce de bois qui immobilisait les pieds du prisonnier »).
 
-Noms propres : orthographe de la Louis Segond 1910 (Nebucadnetsar, Carkemisch, Jochanan, Hulda, Ebed-Mélec), sous réserve du lexique d'Amenan (`charte/lexique.txt`). À la première apparition d'un nom que le lecteur connaît sous une autre forme, on donne cette forme une fois : « Nebucadnetsar (Nabuchodonosor dans d'autres traductions) ».
+Noms propres : graphies du lexique d'Amenan (`charte/lexique.txt`), c'est-à-dire celles de la Louis Segond 1910 avec l'accent rétabli sur la capitale initiale (Nebucadnetsar, Carkemisch, Jochanan, Hulda, Ébed-Mélec, Éternel, Égypte). Le lexique exclut « Nabuchodonosor » ; si l'auteur veut signaler une fois cette forme, que beaucoup de lecteurs connaissent, la décision revient à Amenan.
 
 Pas de mots savants sans nécessité. « Oracle », « exil », « alliance » sont gardés et expliqués. Les termes d'école (« deutéronomiste », « péricope ») ne sont pas employés. L'habitude d'enseignant de l'auteur justifie une image concrète par idée difficile, tirée du texte biblique de préférence.
 

@@ -234,6 +234,7 @@ h3 {
   hyphens: manual;
 }
 .epigraphe p + p { text-indent: 0; }
+.epigraphe .reference p { font-style: normal; text-align: right; }
 
 /* ---------- Citation biblique longue (> dans le manuscrit) ---------- */
 

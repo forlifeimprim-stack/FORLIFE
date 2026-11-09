@@ -209,6 +209,12 @@ def fleuron(classe):
     return f'<div class="{classe}"><span class="losange"></span></div>'
 
 
+def lier_titre(titre):
+    """Évite un mot seul en dernière ligne d'un titre et un petit mot (du, le, à...) en fin de ligne."""
+    titre = re.sub(r"(?<![\w’'])(\w{1,3}) (?=[^<]*$|[^<>]*<)", "\\1\u00a0", titre)
+    return re.sub(r" (\S+)$", "\u00a0\\1", titre)
+
+
 def sans_balises(fragment):
     return html.unescape(re.sub(r"<[^>]+>", "", fragment)).strip()
 
@@ -233,7 +239,7 @@ def ouvrir_les_chapitres(corps):
         attributs = re.sub(r'\s*data-court="[^"]*"', "", attributs)
         return (f'<section id="{ident}" class="level1{classes}"{attributs} '
                 f'data-court="{html.escape(court)}">\n<header class="ouverture">{etiquette}'
-                f'<h1>{titre}</h1>{fleuron("fleuron")}</header>')
+                f'<h1>{lier_titre(titre)}</h1>{fleuron("fleuron")}</header>')
 
     corps = re.sub(r'<section id="([^"]*)" class="level1([^"]*)"([^>]*)>\s*<h1([^>]*)>(.*?)</h1>',
                    ouverture, corps, flags=re.S)
@@ -256,11 +262,11 @@ def pages_liminaires(livre):
     editeur = livre["editeur"]
     sous_titre = f'<p class="sous-titre">{e(livre["sous_titre"])}</p>' if livre.get("sous_titre") else ""
     return f'''
-<div class="liminaire faux-titre"><p>{e(livre["titre"])}</p></div>
+<div class="liminaire faux-titre"><p>{lier_titre(e(livre["titre"]))}</p></div>
 {du_meme_auteur(livre)}
 <div class="liminaire page-titre">
   <p class="auteur">{e(livre["auteur"])}</p>
-  <p class="titre">{e(livre["titre"])}</p>
+  <p class="titre">{lier_titre(e(livre["titre"]))}</p>
   {sous_titre}
   {fleuron("fleuron")}
   <p class="editeur"><strong>{e(editeur["nom"])}</strong><br>{e(editeur["ville"])}</p>
