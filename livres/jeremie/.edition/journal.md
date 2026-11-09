@@ -31,3 +31,4 @@
   6. « Forlife Com » reste sans apostrophe dans la biographie (texte validé repris mot pour mot). Formule de copyright d'Affoué acceptée.
 - Vers 13 h 55 UTC : limite d'utilisation atteinte une deuxième fois, pendant la rédaction (lots 1 à 3) et la couverture. Huit fichiers de chapitres et les pistes de couverture étaient écrits. Agents relancés à 18 h 35 UTC depuis leur point d'arrêt. (Akissi)
 - 18 h 35 UTC : pause demandée par l'utilisateur. Konan (lots 1 à 3) et Affoué (couverture) arrêtés ; reprise sur ordre de l'utilisateur, depuis les fichiers présents dans manuscrit/ et couverture/. (Akissi)
+- Le 9 novembre vers 23 h 50 UTC : reprise ordonnée par l'utilisateur, un agent à la fois. Ordre retenu : Konan lot 1, lot 2, lot 3, puis Affoué (fin de T16), puis la suite du cycle. (Akissi)
