@@ -298,8 +298,7 @@ blockquote .reference p { margin-top: 4pt; }
   line-height: 15pt;
   margin-bottom: 6pt;
 }
-.lecons ul { list-style: none; padding-left: 1.1em; }
-.lecons ul li::marker { content: "•  "; font-family: "Alegreya Sans"; }
+.lecons ul { list-style: disc outside; padding-left: 1.1em; }
 .lecons .bloc-titre + p { text-indent: 0; }
 
 /* ---------- Pour méditer ---------- */
@@ -497,4 +496,48 @@ nav.table-matieres a::after {
   font-family: "Alegreya Sans", sans-serif;
   font-weight: 500;
   font-size: 10pt;
+}
+
+/* Page 2, verso du faux-titre : « Du même auteur » */
+.du-meme-auteur {
+  page: liminaire;
+  break-before: left;
+  padding-top: 48mm;
+}
+.du-meme-auteur p {
+  text-align: center;
+  text-indent: 0;
+  hyphens: manual;
+  font-size: 10.5pt;
+  line-height: 15pt;
+}
+.du-meme-auteur .du-meme-auteur-titre {
+  font-family: "Alegreya Sans", sans-serif;
+  font-weight: 500;
+  font-size: 8.5pt;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  margin-bottom: 9pt;
+}
+
+/* ---------- Fin d'ouvrage : « À propos de l'auteur » ---------- */
+
+.a-propos-auteur {
+  page: fin;
+  break-before: right;
+  padding-top: 24mm;
+}
+.a-propos-titre {
+  font-family: "Alegreya Sans", sans-serif;
+  font-weight: 500;
+  font-size: 14pt;
+  line-height: 18pt;
+  text-align: center !important;
+  bookmark-level: 1;
+  bookmark-label: content();
+}
+.a-propos-auteur .fleuron { margin: 10pt 0 18pt; }
+
+@page fin {
+  @top-center { content: none; }
 }

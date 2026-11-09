@@ -6,7 +6,7 @@ Le texte n'existe pas encore. Le calendrier repose sur trois hypothèses : l'aut
 
 ## Tableau à rebours
 
-Colonne « CC » : X pour les étapes du chemin critique. Les dates sont incluses. « Auteur » désigne Kouadio Koffi Elisée.
+Colonne « CC » : X pour les étapes du chemin critique. Les dates sont incluses. « Auteur » désigne Kouadio Koffi Élisée.
 
 | ID | Étape | Début | Fin | Responsable | Dépend de | CC |
 |---|---|---|---|---|---|---|
@@ -27,7 +27,7 @@ Colonne « CC » : X pour les étapes du chemin critique. Les dates sont incluse
 | E26 | Gabarit complet de couverture (dos selon la pagination, code-barres ISBN) | mer 10/02/2027 | ven 12/02/2027 | Affoué | E23, E25, A03 | |
 | N02 | Extrait audio court soumis à l'auteur pour validation | mer 10/02/2027 | ven 12/02/2027 | Désiré | E21, R02 | |
 | E27 | Épreuves, premier tour (Amenan et l'auteur en parallèle) | mer 10/02/2027 | mar 16/02/2027 | Amenan, auteur | E23 | X |
-| E23 | Composition finale : lot 3, annexes, index des passages, pages liminaires avec ISBN | mer 03/02/2027 | mar 09/02/2027 | Affoué | E21, E22, A03 | X |
+| E23 | Composition finale : lot 3, annexes, index des passages, pages liminaires avec ISBN et page « Du même auteur » | mer 03/02/2027 | mar 09/02/2027 | Affoué | E21, E22, A03, R03 | X |
 | E22 | Précomposition des lots 1 et 2 dans la maquette type (T07) | mer 27/01/2027 | mar 02/02/2027 | Affoué | E14, E20 | |
 | E21 | Validation des corrections du lot 3 par l'auteur | mer 27/01/2027 | mar 02/02/2027 | auteur | E19 | X |
 | E19 | Correction du lot 3 et des annexes (T15), vérification de chaque verset | mer 20/01/2027 | mar 26/01/2027 | Amenan | E18, E17 | X |
@@ -44,7 +44,7 @@ Colonne « CC » : X pour les étapes du chemin critique. Les dates sont incluse
 | A04 | Catalogue annuel 2026 déposé avant le 31/12 (si Forlife Imprim est déclarée éditeur) | lun 14/12/2026 | mer 23/12/2026 | Mariam, auteur | A01 | |
 | E10 | Correction du lot 1 (T14), vérification de chaque verset | mer 16/12/2026 | mer 23/12/2026 | Amenan | E09 | |
 | A09 | Contrat d'édition : signature | lun 14/12/2026 | ven 18/12/2026 | auteur, signataire pour l'éditeur | A09a, A01, R01 | |
-| E25 | Choix de la piste de couverture par l'auteur | lun 14/12/2026 | ven 18/12/2026 | auteur | E24, R03 | |
+| E25 | Choix de la piste de couverture par l'auteur | lun 14/12/2026 | ven 18/12/2026 | auteur | E24 | |
 | A05 | BURIDA : adhésion de l'auteur s'il n'est pas déjà membre | lun 23/11/2026 | ven 18/12/2026 | auteur, Mariam | A01 | |
 | E09 | Lecture éditoriale du lot 1 (T13, première partie) | lun 14/12/2026 | mar 15/12/2026 | Akissi | E07 | |
 | E08 | Rédaction du lot 2 : chapitres 5 à 8 | lun 07/12/2026 | ven 18/12/2026 | Konan | E06 | X |
@@ -53,7 +53,7 @@ Colonne « CC » : X pour les étapes du chemin critique. Les dates sont incluse
 | E24 | Couverture : deux pistes (T16) | lun 30/11/2026 | ven 11/12/2026 | Affoué | E01 | |
 | A02 | Déclaration d'activité d'éditeur (décret n° 2021-631), si Forlife Imprim n'est pas déclarée | lun 23/11/2026 | ven 04/12/2026 | auteur, Mariam | A01 | |
 | R02 | Enregistrement de référence de la voix de l'auteur pour le livre audio | mar 10/11/2026 | ven 27/11/2026 | auteur | | |
-| R03 | Biographie et photo de l'auteur | mar 10/11/2026 | ven 27/11/2026 | auteur | | |
+| R03 | Vérification des titres exacts et des dates de parution de « Stop, écoute ton enfant » et « Avant que l'horloge ne s'arrête » (page « Du même auteur ») | mar 10/11/2026 | ven 27/11/2026 | Mariam, auteur | | |
 | E06 | Rédaction du lot 1 : introduction, chapitres 1 à 4 | lun 23/11/2026 | ven 04/12/2026 | Konan | E05, R01, R04 | X |
 | E05 | Plan validé par l'auteur | mer 18/11/2026 | ven 20/11/2026 | auteur | E04 | X |
 | R04 | Positions doctrinales de l'auteur (avant le début de la rédaction) | mar 10/11/2026 | ven 20/11/2026 | auteur | | |
@@ -63,7 +63,7 @@ Colonne « CC » : X pour les étapes du chemin critique. Les dates sont incluse
 | E02 | Plan détaillé du livre (T03), lancé à l'issue de la réunion du 09/11 | lun 09/11/2026 | ven 13/11/2026 | Konan | | X |
 | E01 | Réunion de lancement, fiche projet, plan (T01) | lun 09/11/2026 | lun 09/11/2026 | Akissi | | X |
 
-Les lignes R01 à R04 sont les demandes adressées à l'auteur ; elles commencent le 10/11 sous réserve de l'accord d'envoi du message de cadrage. R02 (enregistrement de référence de sa voix) n'est nécessaire qu'à N02, le 10/02/2027, et R03 (biographie et photo) au choix de couverture E25 et à la quatrième, mais les deux sont demandées dès maintenant. Le suivi est dans `relances.md`.
+Les lignes R01 à R04 sont les demandes adressées à l'auteur ; elles commencent le 10/11 sous réserve de l'accord d'envoi du message de cadrage. R02 (enregistrement de référence de sa voix) n'est nécessaire qu'à N02, le 10/02/2027, et R03 (titres et dates des livres précédents) à la page « Du même auteur » composée en E23, mais les deux sont demandées dès maintenant. La biographie de l'auteur est réglée par l'utilisateur (texte validé dans `fiche-projet.md` et `livre.yaml`) et la quatrième se passe de photo : plus rien à demander à l'auteur sur ce point. Le suivi est dans `relances.md`.
 
 ## Chemin critique
 

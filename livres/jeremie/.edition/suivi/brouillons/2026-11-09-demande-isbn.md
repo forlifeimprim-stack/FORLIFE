@@ -13,7 +13,7 @@ Forlife Imprim, établie à Bingerville, prépare la publication d'une biographi
 Voici les éléments connus à ce jour :
 
 - Titre : La vie et le ministère prophétique du prophète Jérémie (titre de travail), sous-titre envisagé : Biographie
-- Auteur : Kouadio Koffi Elisée
+- Auteur : Kouadio Koffi Élisée
 - Éditeur : Forlife Imprim, montée de la colline du Collège Saint Cyrille, Bingerville, Côte d'Ivoire, [À COMPLÉTER PAR L'AUTEUR : RCCM et numéro de déclaration d'éditeur]
 - Langue : français
 - Parution prévue : mars 2027

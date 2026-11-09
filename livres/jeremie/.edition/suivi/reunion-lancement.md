@@ -1,6 +1,6 @@
 # Réunion de lancement du 9 novembre 2026
 
-Compte rendu rédigé par Mariam à partir de `journal.md`, `fiche-projet.md` et `plan.md` du 9 novembre 2026. Projet : « La vie et le ministère prophétique du prophète Jérémie », de Kouadio Koffi Elisée.
+Compte rendu rédigé par Mariam à partir de `journal.md`, `fiche-projet.md` et `plan.md` du 9 novembre 2026. Projet : « La vie et le ministère prophétique du prophète Jérémie », de Kouadio Koffi Élisée.
 
 Présents (d'après la répartition de `plan.md`, le journal ne donne pas de liste) : Akissi (direction éditoriale, animation), Mariam (compte rendu), Konan, Amenan, Yao, Kouamé, Affoué, Salif, Désiré, Awa. Absent : l'auteur, à qui aucune question n'est posée pendant ce test.
 
@@ -27,6 +27,8 @@ Les outils communs sont installés une fois pour toute l'équipe : WeasyPrint, p
 
 Le titre est conservé tel que l'auteur l'a donné. Deux pistes lui seront proposées s'il veut éviter la répétition « prophétique / prophète » : « Jérémie, la vie et le ministère d'un prophète » et « Jérémie, prophète des nations : sa vie et son ministère ».
 
+Décision de l'utilisateur, notée au journal le même jour : la biographie de l'auteur est reprise mot pour mot de son livre « Avant que l'horloge ne s'arrête », sans photo, avec la graphie imprimée « Kouadio Koffi Élisée ». Aucune question biographique n'est plus posée à l'auteur.
+
 ## Actions
 
 | N° | Action | Responsable | Échéance | Statut au 09/11 |
@@ -42,7 +44,7 @@ Le titre est conservé tel que l'auteur l'a donné. Deux pistes lui seront propo
 | 9 | Validation du plan détaillé (T09) | Akissi | mar 17/11/2026 | À faire |
 | 10 | Décider de la lecture éditoriale lot par lot (proposition du rétroplanning) | Akissi | ven 13/11/2026 | À faire |
 | 11 | Validation du plan par l'auteur, réponses de cadrage, positions doctrinales, statut de Forlife Imprim | auteur | ven 20/11/2026 | Non demandé (attente d'accord) |
-| 12 | Enregistrement de référence de la voix, biographie et photo | auteur | ven 27/11/2026 | Non demandé (attente d'accord) |
+| 12 | Enregistrement de référence de la voix ; titres et dates des livres précédents (page « Du même auteur ») | auteur, Mariam | ven 27/11/2026 | Non demandé (attente d'accord) |
 | 13 | Dépôt du dossier ISBN | Mariam | lun 23/11/2026 | Brouillon prêt |
 | 14 | Début de la rédaction du lot 1 | Konan | lun 23/11/2026 | À faire |
 

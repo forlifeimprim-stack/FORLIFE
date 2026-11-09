@@ -6,7 +6,7 @@
 
 ### Cas particulier : l'auteur dirige la maison d'édition
 
-Kouadio Koffi Elisée est à la fois l'auteur et le dirigeant de Forlife Imprim. Qui signe pour l'éditeur : [À COMPLÉTER : nom, fonction et pouvoir de signature]. La réponse dépend de la forme juridique de Forlife Imprim [À COMPLÉTER PAR L'AUTEUR], demandée le 9 novembre 2026 (relance R05).
+Kouadio Koffi Élisée est à la fois l'auteur et le dirigeant de Forlife Imprim. Qui signe pour l'éditeur : [À COMPLÉTER : nom, fonction et pouvoir de signature]. La réponse dépend de la forme juridique de Forlife Imprim [À COMPLÉTER PAR L'AUTEUR], demandée le 9 novembre 2026 (relance R05).
 
 - Si Forlife Imprim est une société dotée de la personnalité morale (SARL, SAS ou autre), le contrat est une convention entre la société et son dirigeant. Le droit OHADA des sociétés commerciales encadre ces conventions (autorisation ou approbation par les associés selon la forme sociale) [À VÉRIFIER par le juriste]. Le signataire pour l'éditeur peut être un autre dirigeant, un associé mandaté, ou l'auteur lui-même une fois la procédure respectée [À VÉRIFIER].
 - Si Forlife Imprim est une entreprise individuelle sans personnalité morale distincte, l'auteur ne peut pas contracter avec lui-même. Le contrat d'édition n'a alors pas d'objet : l'ouvrage est une autoédition, et une simple note signée de l'auteur suffit à fixer l'usage des droits et l'usage de sa voix [À VÉRIFIER par le juriste].
@@ -21,7 +21,7 @@ Taux de droits, à-valoir, durée, territoires, nombre d'exemplaires d'auteur, d
 
 ## Entre les soussignés
 
-Kouadio Koffi Elisée, [À COMPLÉTER PAR L'AUTEUR : date et lieu de naissance, nationalité, adresse, numéro de pièce d'identité], ci-après « l'Auteur »,
+Kouadio Koffi Élisée, [À COMPLÉTER PAR L'AUTEUR : éléments d'identification que le juriste jugera nécessaires ; ils restent dans le contrat et ne sont jamais imprimés dans le livre], ci-après « l'Auteur »,
 
 et
 
@@ -103,7 +103,7 @@ L'Éditeur s'engage à :
 
 ## Article 9. Garanties de l'Auteur
 
-L'Auteur garantit à l'Éditeur la jouissance paisible des droits cédés, sous réserve de l'article 2. Les citations bibliques proviennent de la version Louis Segond 1910, du domaine public. Les images, cartes et illustrations sont fournies par l'Éditeur, qui en acquiert les droits et en tient le registre ; l'Auteur ne les garantit pas. La photo de l'Auteur est fournie par lui avec le nom du photographe et l'autorisation de publication [À COMPLÉTER PAR L'AUTEUR].
+L'Auteur garantit à l'Éditeur la jouissance paisible des droits cédés, sous réserve de l'article 2. Les citations bibliques proviennent de la version Louis Segond 1910, du domaine public. Les images, cartes et illustrations sont fournies par l'Éditeur, qui en acquiert les droits et en tient le registre ; l'Auteur ne les garantit pas. La biographie de l'Auteur imprimée dans l'Œuvre est celle qu'il a validée ; aucune photo de l'Auteur n'est publiée.
 
 [À VÉRIFIER par le juriste : étendue de la garantie compte tenu de la part rédigée par IA.]
 
@@ -125,5 +125,5 @@ Fait à Bingerville, le [À COMPLÉTER], en [À COMPLÉTER : nombre] exemplaires
 
 | L'Auteur | Pour l'Éditeur |
 |---|---|
-| Kouadio Koffi Elisée | [À COMPLÉTER : nom et fonction du signataire] |
+| Kouadio Koffi Élisée | [À COMPLÉTER : nom et fonction du signataire] |
 | Signature précédée de « lu et approuvé » | Signature et cachet |

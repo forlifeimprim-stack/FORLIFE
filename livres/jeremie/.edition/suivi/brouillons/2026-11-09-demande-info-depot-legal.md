@@ -8,7 +8,7 @@ Objet : Dépôt légal d'un ouvrage à paraître en mars 2027 : demande d'inform
 
 Madame, Monsieur,
 
-Forlife Imprim, à Bingerville, publiera en mars 2027 une biographie biblique de Kouadio Koffi Elisée, « La vie et le ministère prophétique du prophète Jérémie » (titre de travail), en version imprimée (14 × 21 cm), en livre numérique (EPUB et PDF) et en livre audio.
+Forlife Imprim, à Bingerville, publiera en mars 2027 une biographie biblique de Kouadio Koffi Élisée, « La vie et le ministère prophétique du prophète Jérémie » (titre de travail), en version imprimée (14 × 21 cm), en livre numérique (EPUB et PDF) et en livre audio.
 
 Afin de respecter la loi n° 2015-540 du 20 juillet 2015 relative à l'industrie du livre, nous souhaitons connaître :
 

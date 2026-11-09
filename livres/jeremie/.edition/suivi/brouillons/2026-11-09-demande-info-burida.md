@@ -8,7 +8,7 @@ Objet : Enregistrement d'une œuvre littéraire et adhésion d'un auteur : deman
 
 Madame, Monsieur,
 
-Forlife Imprim, à Bingerville, prépare la publication en mars 2027 d'une biographie biblique, « La vie et le ministère prophétique du prophète Jérémie » (titre de travail), dont l'auteur est Kouadio Koffi Elisée. L'ouvrage paraîtra en version imprimée, en livre numérique et en livre audio.
+Forlife Imprim, à Bingerville, prépare la publication en mars 2027 d'une biographie biblique, « La vie et le ministère prophétique du prophète Jérémie » (titre de travail), dont l'auteur est Kouadio Koffi Élisée. L'ouvrage paraîtra en version imprimée, en livre numérique et en livre audio.
 
 Pour nous conformer à l'article 27 de la loi n° 2015-540 du 20 juillet 2015, nous souhaitons savoir :
 

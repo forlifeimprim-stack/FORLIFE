@@ -1,6 +1,6 @@
 BROUILLON, NE PAS ENVOYER SANS ACCORD
 
-Préparé par Mariam le 9 novembre 2026 pour Akissi. Le journal du 9 novembre indique qu'aucune question n'est posée à l'auteur pour ce test : ce message est prêt pour le jour où l'utilisateur donnera son accord. Il regroupe les demandes R01 à R05 de `relances.md`.
+Préparé par Mariam le 9 novembre 2026 pour Akissi. Le journal du 9 novembre indique qu'aucune question n'est posée à l'auteur pour ce test : ce message est prêt pour le jour où l'utilisateur donnera son accord. Il regroupe les demandes R01 à R05 de `relances.md`. La biographie de l'auteur est réglée par l'utilisateur et n'y figure plus (décision du 9 novembre 2026).
 
 À : [À COMPLÉTER PAR L'AUTEUR : adresse personnelle], à défaut forlifeimprim@gmail.com
 Objet : Votre livre sur Jérémie : cinq questions avant de commencer la rédaction
@@ -17,7 +17,7 @@ L'équipe a ouvert le projet de votre biographie de Jérémie le 9 novembre 2026
 
 4. Édition, contrat et formats. Le livre paraît chez Forlife Imprim, en papier (14 × 21 cm), en EPUB, en PDF et en livre audio lu avec votre voix « FOR LIFE voix off ». Pour les démarches et le contrat, il nous faut la forme juridique de Forlife Imprim, son numéro RCCM, savoir si elle est déclarée comme éditeur, et le nom de la personne qui signera pour l'éditeur, puisque vous dirigez l'entreprise. Pour le livre audio, pouvez-vous nous transmettre l'enregistrement de référence de votre voix d'ici le 27 novembre ?
 
-5. Présentation et disponibilités. Pour la quatrième de couverture, merci de nous envoyer d'ici le 27 novembre une courte biographie (parcours, église, ministère, formation, autres ouvrages) et une photo en haute définition avec le nom du photographe. Pouvez-vous aussi réserver ces semaines de relecture : du 18 au 20 novembre (plan), du 7 au 11 décembre (lot 1), du 4 au 8 janvier (lot 2 et corrections du lot 1), du 11 au 15 janvier (lot 3), du 27 janvier au 2 février (corrections), et le 1er mars pour le bon à tirer ?
+5. Livres précédents et disponibilités. Pour la page « Du même auteur », pouvez-vous nous confirmer d'ici le 27 novembre les titres exacts et les années de parution de « Stop, écoute ton enfant » et de « Avant que l'horloge ne s'arrête » ? Pouvez-vous aussi réserver ces semaines de relecture : du 18 au 20 novembre (plan), du 7 au 11 décembre (lot 1), du 4 au 8 janvier (lot 2 et corrections du lot 1), du 11 au 15 janvier (lot 3), du 27 janvier au 2 février (corrections), et le 1er mars pour le bon à tirer ?
 
 Le calendrier complet est disponible sur demande. Nous vous relancerons le mercredi 18 novembre si nous n'avons pas de nouvelles.
 

@@ -390,7 +390,7 @@ def frise():
                f'fill="#000000"/>')
     svg.append(f'<line x1="{fmt(x(586))}" y1="{fmt(y_min + 1.1)}" x2="{fmt(x_max)}" y2="{fmt(y_min + 1.1)}" '
                f'stroke="#000000" stroke-width="1.0" stroke-dasharray="1,0.8"/>')
-    svg.append(texte(x(627), y_min - 1.4, "Ministère de Jérémie, vers 627, jusqu\u2019après 586 en Égypte",
+    svg.append(texte(x(627), y_min - 1.4, "Ministère de Jérémie (vers 627 jusqu\u2019après 586, en Égypte)",
                      7, ancre="start", graisse=500))
     svg.append(texte(x_min, H - 2.0, "Toutes les dates sont avant Jésus-Christ et approximatives (chronologie usuelle).",
                      6.5, couleur="#3A3A3A", style="italic"))
@@ -437,16 +437,17 @@ def rameau(controles, largeur_base, largeur_bout, pas=60):
     return "M" + " L".join(f"{fmt(px)},{fmt(py)}" for px, py in contour) + " Z"
 
 
-def petale(r):
-    return (f"M0,{fmt(-0.12 * r)} C{fmt(-0.48 * r)},{fmt(-0.22 * r)} {fmt(-0.56 * r)},{fmt(-0.92 * r)} "
-            f"{fmt(-0.13 * r)},{fmt(-r)} Q0,{fmt(-0.95 * r)} {fmt(0.13 * r)},{fmt(-r)} "
-            f"C{fmt(0.56 * r)},{fmt(-0.92 * r)} {fmt(0.48 * r)},{fmt(-0.22 * r)} 0,{fmt(-0.12 * r)} Z")
+def petale(r, largeur=1.0):
+    w = r * largeur
+    return (f"M0,{fmt(-0.12 * r)} C{fmt(-0.48 * w)},{fmt(-0.22 * r)} {fmt(-0.56 * w)},{fmt(-0.92 * r)} "
+            f"{fmt(-0.13 * w)},{fmt(-r)} Q0,{fmt(-0.95 * r)} {fmt(0.13 * w)},{fmt(-r)} "
+            f"C{fmt(0.56 * w)},{fmt(-0.92 * r)} {fmt(0.48 * w)},{fmt(-0.22 * r)} 0,{fmt(-0.12 * r)} Z")
 
 
-def fleur(x, y, r, rotation, couleurs, trait=0.3):
+def fleur(x, y, r, rotation, couleurs, trait=0.3, largeur_petale=1.0):
     morceaux = [f'<g transform="translate({fmt(x)},{fmt(y)}) rotate({fmt(rotation)})">']
     for i in range(5):
-        morceaux.append(f'<path d="{petale(r)}" transform="rotate({i * 72})" fill="{couleurs["petale"]}" '
+        morceaux.append(f'<path d="{petale(r, largeur_petale)}" transform="rotate({i * 72})" fill="{couleurs["petale"]}" '
                         f'stroke="{couleurs["trait"]}" stroke-width="{fmt(trait)}" stroke-linejoin="round"/>')
     morceaux.append(f'<circle r="{fmt(0.24 * r)}" fill="{couleurs["coeur"]}"/>')
     for i in range(10):
@@ -555,24 +556,24 @@ def couverture_sans_remparts():
 
 def fleuron():
     """Ornement de chapitre, noir seul, 30 mm de large : rameau horizontal, une fleur ouverte au centre."""
-    L, H = 30.0, 10.0
+    L, H = 30.0, 9.0
     noir = "#000000"
     couleurs = {"petale": noir, "trait": noir, "coeur": "#FFFFFF", "etamine": noir,
                 "bouton": noir, "calice": noir}
     svg = [entete_svg(L, H, "Fleuron : rameau d'amandier",
                       "Ornement de chapitre monochrome noir, 30 mm de large.")]
-    gauche = ((15, 5.6), (10.5, 6.8), (5.5, 6.6), (0.6, 4.6))
-    droite = ((15, 5.6), (19.5, 6.8), (24.5, 6.6), (29.4, 4.6))
+    gauche = ((15, 5.6), (10.5, 6.8), (6.0, 6.6), (2.2, 4.9))
+    droite = ((15, 5.6), (19.5, 6.8), (24.0, 6.6), (27.8, 4.9))
     for courbe in (gauche, droite):
         svg.append(f'<path d="{rameau(courbe, 0.9, 0.25)}" fill="{noir}"/>')
     for courbe, signe in ((gauche, -1), (droite, 1)):
         bx, by = bezier(*courbe, 1.0)
         svg.append(bouton(bx - signe * 0.3, by + 0.2, 2.2, -90 + signe * 62, couleurs, trait=0.1))
         fx, fy = bezier(*courbe, 0.55)
-        svg.append(fleur(fx, fy - 1.9, 1.75, signe * 14, couleurs, trait=0.08))
+        svg.append(fleur(fx, fy - 1.9, 1.75, signe * 14, couleurs, trait=0, largeur_petale=0.74))
         bx, by = bezier(*courbe, 0.3)
         svg.append(bouton(bx, by + 0.3, 1.6, 90 - signe * 50, couleurs, trait=0.08))
-    svg.append(fleur(15, 4.4, 3.0, 0, {**couleurs, "coeur": "#FFFFFF", "etamine": noir}, trait=0.1))
+    svg.append(fleur(15, 4.4, 3.0, 0, couleurs, trait=0, largeur_petale=0.74))
     svg.append("</svg>\n")
     return "".join(svg), (L, H)
 
@@ -585,29 +586,40 @@ def ecrire(nom, contenu):
     return chemin
 
 
-def png_300ppp(chemin_svg, largeur_mm, hauteur_mm, fond=None, ppp=300):
+def png(chemin_svg, largeur_mm, hauteur_mm, fond=None, mode="RGB", ppp=300, grand_cote_px=None, suffixe=""):
+    """PNG à 300 ppp pour l'impression, ou à un grand côté donné en pixels pour l'écran (EPUB, PDF écran)."""
     import cairosvg
     from PIL import Image
+    if grand_cote_px:
+        echelle = grand_cote_px / max(largeur_mm, hauteur_mm)
+        ppp = echelle * 25.4
     largeur_px = math.ceil(largeur_mm / 25.4 * ppp)
     hauteur_px = math.ceil(hauteur_mm / 25.4 * ppp)
-    sortie = chemin_svg.with_suffix(".png")
+    sortie = chemin_svg.with_name(chemin_svg.stem + suffixe + ".png")
     cairosvg.svg2png(url=str(chemin_svg), write_to=str(sortie), output_width=largeur_px,
                      output_height=hauteur_px, background_color=fond)
-    image = Image.open(sortie)
-    image.save(sortie, dpi=(ppp, ppp))
+    image = Image.open(sortie).convert(mode)
+    image.save(sortie, dpi=(round(ppp), round(ppp)))
     return sortie, image.size
 
 
 def main():
-    productions = [("carte-monde-jeremie.svg", carte, "#FFFFFF"), ("frise-rois-juda.svg", frise, "#FFFFFF"),
-                   ("couverture-amandier.svg", couverture, None),
-                   ("couverture-amandier-sans-remparts.svg", couverture_sans_remparts, None),
-                   ("fleuron-amandier.svg", fleuron, None)]
-    for nom, fabrique, fond in productions:
+    # (fichier, fabrique, fond, mode du PNG, version écran)
+    productions = [
+        ("carte-monde-jeremie.svg", carte, "#FFFFFF", "L", True),
+        ("frise-rois-juda.svg", frise, "#FFFFFF", "L", True),
+        ("couverture-amandier.svg", couverture, None, "RGB", False),
+        ("couverture-amandier-sans-remparts.svg", couverture_sans_remparts, None, "RGB", False),
+        ("fleuron-amandier.svg", fleuron, None, "RGBA", False),
+    ]
+    for nom, fabrique, fond, mode, ecran in productions:
         contenu, (largeur, hauteur) = fabrique()
         chemin = ecrire(nom, contenu)
-        sortie, taille = png_300ppp(chemin, largeur, hauteur, fond)
-        print(f"{nom} -> {sortie.name} {taille[0]}x{taille[1]} px")
+        sortie, taille = png(chemin, largeur, hauteur, fond, mode)
+        print(f"{nom} -> {sortie.name} {taille[0]}x{taille[1]} px, {mode}, 300 ppp")
+        if ecran:
+            sortie, taille = png(chemin, largeur, hauteur, fond, mode, grand_cote_px=2400, suffixe="-ecran")
+            print(f"{nom} -> {sortie.name} {taille[0]}x{taille[1]} px, {mode}, écran")
 
 
 if __name__ == "__main__":

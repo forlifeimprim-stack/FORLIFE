@@ -19,6 +19,7 @@ import sys
 import tempfile
 from pathlib import Path
 
+import pikepdf
 import yaml
 from fontTools.ttLib import TTFont
 from weasyprint import CSS, HTML
@@ -28,6 +29,9 @@ EDITION = Path(__file__).resolve().parent.parent
 POLICES = EDITION / "outils" / "ressources" / "polices"
 FEUILLE_DE_STYLE = EDITION / "charte" / "interieur.css"
 FLEURON = EDITION / "images" / "fleuron-amandier.svg"
+
+sys.path.insert(0, str(EDITION / "fabrication"))
+from noir_seul import convertir_flux, convertir_formulaires  # noqa: E402  (script de Salif, T08)
 
 FAMILLES = {
     "EB Garamond": ("eb-garamond", "eb-garamond-latin-{graisse}-{style}.woff2",
@@ -253,6 +257,7 @@ def pages_liminaires(livre):
     sous_titre = f'<p class="sous-titre">{e(livre["sous_titre"])}</p>' if livre.get("sous_titre") else ""
     return f'''
 <div class="liminaire faux-titre"><p>{e(livre["titre"])}</p></div>
+{du_meme_auteur(livre)}
 <div class="liminaire page-titre">
   <p class="auteur">{e(livre["auteur"])}</p>
   <p class="titre">{e(livre["titre"])}</p>
@@ -275,8 +280,29 @@ def pages_liminaires(livre):
 '''
 
 
+def du_meme_auteur(livre):
+    titres = livre.get("du_meme_auteur") or []
+    if not titres:
+        return ""
+    lignes = "".join(f"<p><em>{html.escape(t)}</em></p>" for t in titres)
+    return f'<div class="du-meme-auteur"><p class="du-meme-auteur-titre">Du même auteur</p>{lignes}</div>'
+
+
+def a_propos_de_l_auteur(livre, entrees):
+    # Texte validé par l'auteur : repris mot pour mot, lignes réunies en un paragraphe.
+    biographie = " ".join((livre.get("biographie_auteur") or "").split())
+    if not biographie:
+        return ""
+    entrees.append(("a-propos-auteur", None, "À propos de l’auteur"))
+    return ('<section id="a-propos-auteur" class="a-propos-auteur">'
+            '<p class="a-propos-titre">À propos de l’auteur</p>'
+            f'{fleuron("fleuron")}<p>{html.escape(biographie)}</p></section>')
+
+
 def document_complet(livre, corps, entrees):
     e = html.escape
+    a_propos = a_propos_de_l_auteur(livre, entrees)
+    table = table_des_matieres(entrees)
     return f'''<!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -287,8 +313,9 @@ def document_complet(livre, corps, entrees):
 </head>
 <body data-titre="{e(livre["titre"])}">
 {pages_liminaires(livre)}
-{table_des_matieres(entrees)}
+{table}
 {corps}
+{a_propos}
 </body>
 </html>'''
 
@@ -312,6 +339,23 @@ def polices_corrigees(dossier_travail):
             regles.append(f'@font-face {{ font-family: "{famille}"; font-weight: {graisse}; '
                           f'font-style: {style}; src: url("{cible.as_uri()}"); }}')
     return "\n".join(regles)
+
+
+# ---------- Noir seul ----------
+
+def noir_seul(fichier_pdf):
+    """Passe en DeviceGray les gris neutres restés en RVB (SVG de Kouamé : WeasyPrint ignore
+    device-cmyk dans un SVG). Le texte, déjà en device-cmyk par la CSS, n'est pas concerné."""
+    couleurs_restantes, deja_vus = set(), set()
+    with pikepdf.open(fichier_pdf, allow_overwriting_input=True) as pdf:
+        for page in pdf.pages:
+            page.contents_coalesce()
+            convertir_flux(page.obj.Contents, couleurs_restantes)
+            convertir_formulaires(page.obj.get("/Resources"), couleurs_restantes, deja_vus)
+        pdf.save(fichier_pdf)
+    if couleurs_restantes:
+        print("Attention : couleurs non neutres dans l'intérieur, à corriger à la source : "
+              + ", ".join(sorted(couleurs_restantes)), file=sys.stderr)
 
 
 # ---------- Contrôles ----------
@@ -352,6 +396,8 @@ def main():
             cible = arguments.sortie / f"{nom}.pdf"
             rendu = page.render(stylesheets=feuilles, font_config=configuration)
             rendu.write_pdf(cible)
+            if nom == arguments.nom:
+                noir_seul(cible)
             print(f"{cible.relative_to(EDITION) if cible.is_relative_to(EDITION) else cible} : "
                   f"{len(rendu.pages)} pages")
 
