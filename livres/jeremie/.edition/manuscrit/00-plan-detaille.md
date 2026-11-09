@@ -85,7 +85,7 @@ Déroulé :
 6. La ville natale devenue hostile : le complot des gens d'Anathoth (Jérémie 11:21-23) et la trahison des frères (Jérémie 12:6).
 7. Anathoth jusqu'au bout : « Jérémie d'Anathoth » (Jérémie 29:27), le champ de Hanameel (Jérémie 32:7-9), et les cent vingt-huit hommes d'Anathoth revenus d'exil (Esdras 2:23 ; Néhémie 7:27).
 
-Encadré « Contexte historique » : « Les villes des sacrificateurs » (Josué 21). Localisation : [À VÉRIFIER : Anathoth généralement située à quelques kilomètres au nord-est de Jérusalem, près du village actuel d'Anata ; à confirmer avec une source imprimée].
+Encadré « Contexte historique » intitulé « Les villes des sacrificateurs », d'après Josué 21. Localisation : [À VÉRIFIER : Anathoth généralement située à quelques kilomètres au nord-est de Jérusalem, près du village actuel d'Anata ; à confirmer avec une source imprimée].
 
 Versets clés en bloc : 1 Rois 2:26-27 ; Jérémie 11:21-23.
 
@@ -224,7 +224,7 @@ Déroulé :
 1. Un prophète qui pleure : « Oh! si ma tête était remplie d'eau » (Jérémie 8:18-22 ; Jérémie 9:1-2). Le mot « confessions » vient des commentateurs, pas du texte ; le chapitre l'explique.
 2. L'agneau qu'on mène à la boucherie : le complot d'Anathoth (Jérémie 11:18-23).
 3. « Pourquoi la voie des méchants est-elle prospère? » et la réponse déroutante de Dieu sur les piétons et les chevaux (Jérémie 12:1-6).
-4. « Malheur à moi, ma mère » ; les paroles dévorées ; Dieu reprend son serviteur : « Si tu te rattaches à moi... » (Jérémie 15:10-21).
+4. « Malheur à moi, ma mère » ; les paroles dévorées ; Dieu reprend son serviteur : « Si tu te rattaches à moi » (Jérémie 15:10-21).
 5. Une vie devenue message : ni femme ni enfants, ni maison de deuil, ni maison de festin (Jérémie 16:1-9). Rapprochement culturel possible avec les funérailles (`charte/voix.md`).
 6. « Guéris-moi, Eternel » et les prières contre les persécuteurs (Jérémie 17:14-18 ; Jérémie 18:18-23).
 7. Le vase brisé dans la vallée de Ben-Hinnom, puis la nuit dans les ceps de Paschhur (Jérémie 19:1-15 ; Jérémie 20:1-6).
@@ -239,7 +239,7 @@ Leçons pour aujourd'hui (pistes) : la plainte honnête devant Dieu a sa place d
 Pour méditer :
 
 1. Oses-tu dire à Dieu ce que tu ressens vraiment, comme Jérémie, ou caches-tu tes plaintes ?
-2. Quelle parole de Dieu as-tu « dévorée » (Jérémie 15:16) au point qu'elle te soutient encore aujourd'hui ?
+2. Jérémie a dévoré les paroles de Dieu (Jérémie 15:16). Quelle parole as-tu reçue ainsi, au point qu'elle te soutient encore aujourd'hui ?
 3. Dieu dit à Jérémie : « C'est à eux de revenir à toi » (Jérémie 15:19). Dans quelle situation es-tu tenté de baisser le message pour être accepté ?
 
 Longueur cible : 3 300 mots.
@@ -324,7 +324,7 @@ Positions de l'auteur requises :
 
 ## Chapitre 8. Une lettre pour Babylone
 
-Période et rois : fin du règne de Jojakim, trois mois de Jojakin et déportation de Jojakin (vers 597 av. J.-C.), début du règne de Sédécias. Ce n'est pas la première déportation : Daniel 1:1-3 en rapporte une sous Jojakim (voir chapitre 6). Rois : Jojakim, Jojakin (Jeconia), Sédécias ; Nebucadnetsar.
+Période et rois : fin du règne de Jojakim, trois mois de Jojakin et déportation de Jojakin (vers 597 av. J.-C.), début du règne de Sédécias. Une déportation l'a précédée sous Jojakim, rapportée en Daniel 1:1-3 (voir chapitre 6). Rois : Jojakim, Jojakin (Jeconia), Sédécias ; Nebucadnetsar.
 
 Passages couverts : 2 Rois 24:1-17 ; 2 Chroniques 36:6-7 ; Jérémie 22:18-19 ; Jérémie 22:24-30 ; Jérémie 24:1-10 ; Jérémie 29:1-32 ; Jérémie 52:28 ; Daniel 9:2 ; 2 Chroniques 36:21-22 ; Esdras 1:1 ; Ézéchiel 1:1-3.
 
@@ -347,7 +347,7 @@ Leçons pour aujourd'hui (pistes) : chercher le bien de la ville où l'on vit (J
 
 Pour méditer :
 
-1. Dans la ville ou le quartier où tu vis, comment peux-tu en « rechercher le bien » et prier pour lui ?
+1. Dans la ville ou le quartier où tu vis, comment peux-tu rechercher son bien et prier pour lui, comme Jérémie 29:7 le demande aux exilés ?
 2. Que change pour toi de lire Jérémie 29:11 avec les dix versets qui le précèdent ?
 3. Y a-t-il un « exil » dans ta vie présente où Dieu te demande de bâtir au lieu d'attendre ?
 
@@ -551,12 +551,12 @@ Le total dépasse un peu les 40 000 mots de la fiche projet ; il reste dans la f
 Lots recommandés :
 
 - Lot 1 (T10) : avant-propos, introduction, chapitres 1 à 4, soit environ 14 700 mots. Commencer par le chapitre 2 et l'envoyer seul à l'auteur comme échantillon de voix ; ne poursuivre le lot qu'après son retour, ou après l'accord d'Akissi si le test continue sans l'auteur. Ce lot pose le cadre historique dont les suivants dépendent.
-- Lot 2 (T11) : chapitres 5 à 8, soit environ 12 700 mots. Moins de mots, mais la matière la plus dense : confessions, gestes prophétiques, faux prophètes, onze positions de l'auteur à recueillir. L'effort est comparable aux deux autres lots.
+- Lot 2 (T11) : chapitres 5 à 8, soit environ 12 700 mots. Moins de mots, mais la matière la plus dense : confessions, gestes prophétiques, faux prophètes, neuf positions de l'auteur à recueillir. L'effort est comparable aux deux autres lots.
 - Lot 3 (T12) : chapitres 9 à 12, conclusion, annexes, soit environ 14 900 mots. La conclusion et la chronologie ne s'écrivent qu'une fois tous les chapitres rédigés.
 
 ## Positions de l'auteur à recueillir avant la rédaction
 
-Vingt-sept points marqués [À COMPLÉTER PAR L'AUTEUR] figurent dans ce plan. Les plus structurants, à obtenir avant le lot concerné :
+Trente-deux points marqués [À COMPLÉTER PAR L'AUTEUR] figurent dans ce plan. Les plus structurants, à obtenir avant le lot concerné :
 
 1. Lot 1 : lecture de Jérémie 1:5 et place du ministère de prophète aujourd'hui (chapitre 2) ; malédictions familiales ou générationnelles (chapitre 1).
 2. Lot 2 : discernement des prophéties et gestes prophétiques (chapitre 7) ; prières contre les ennemis et découragement du serviteur (chapitre 5).

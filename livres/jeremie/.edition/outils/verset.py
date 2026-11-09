@@ -38,9 +38,28 @@ def sans_accents(texte):
     return "".join(c for c in texte if unicodedata.category(c) != "Mn").strip()
 
 
+# Défauts de la source numérique LSG relevés le 9 novembre 2026 : la préposition « à » est tombée en
+# tête de certains versets (Jérémie 35:19, Jérémie 44:3, 1 Rois 15:30...) et le nom du livre suivant
+# est collé à la fin du dernier verset de deux livres (Exode 11:10, Deutéronome 18:22).
+A_PERDU = re.compile(r"^(cause |travers |moins que )")
+NOM_PARASITE = re.compile(r"\s+(Exode|Deutéronome)\s*$")
+
+
+def reparer_lsg(texte):
+    texte = NOM_PARASITE.sub("", texte)
+    if A_PERDU.match(texte):
+        texte = "à " + texte
+    return texte
+
+
 def charger(version):
     fichier = SOURCES / ("lsg1910/lsg.json" if version == "lsg" else "kjv.json")
     livres = json.load(open(fichier, encoding="utf-8"))["books"]
+    if version == "lsg":
+        for livre in livres:
+            for chapitre in livre["chapters"]:
+                for v in chapitre["verses"]:
+                    v["text"] = reparer_lsg(v["text"])
     return {livre["bookId"]: livre for livre in livres}
 
 

@@ -210,7 +210,9 @@ h3 {
   bookmark-level: none;
 }
 
-/* ---------- Références bibliques ([Jérémie 1:5]{.ref}) ---------- */
+/* ---------- Référence d'une citation en bloc : « (Jérémie 1:5) » en dernière ligne ---------- */
+
+.reference { break-before: avoid; }
 
 .reference p {
   font-family: "Alegreya Sans", sans-serif;

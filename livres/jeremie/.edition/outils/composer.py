@@ -30,6 +30,7 @@ POLICES = EDITION / "outils" / "ressources" / "polices"
 FEUILLE_DE_STYLE = EDITION / "charte" / "interieur.css"
 FLEURON = EDITION / "images" / "fleuron-amandier.svg"
 
+sys.dont_write_bytecode = True  # ne rien écrire dans fabrication/, dossier de Salif
 sys.path.insert(0, str(EDITION / "fabrication"))
 from noir_seul import convertir_flux, convertir_formulaires  # noqa: E402  (script de Salif, T08)
 
@@ -133,18 +134,18 @@ def markdown_vers_html(fichiers, dossier_travail):
 
 # ---------- Typographie française ----------
 
-ESPACES = "[   ]*"
-APRES_PONCTUATION = r"(?=[\s  »)\]’”.,…;:!?]|$)"
-AVANT_PONCTUATION = r"(?<=[^\s  ;:!?(\[«])"
+ESPACES = "[ \u00a0\u202f]*"
+APRES_PONCTUATION = r"(?=[\s\u00a0\u202f»)\]’”.,…;:!?]|$)"
+AVANT_PONCTUATION = r"(?<=[^\s\u00a0\u202f;:!?(\[«])"
 LIVRES_NUMEROTES = "Samuel|Rois|Chroniques|Corinthiens|Thessaloniciens|Timothée|Pierre|Jean"
 REGLES = [
     (re.compile(r"(?<![\w:])([1-3]) (?=(?:" + LIVRES_NUMEROTES + r")\b)"), "\\1\u00a0"),
     (re.compile(r"(\d) av\. ?J\.-C\."), "\\1\u00a0av.\u00a0J.-C."),
     (re.compile(r"(?<![\d:,.])(\d{1,3}) (\d{3})(?!\d)"), "\\1\u202f\\2"),
-    (re.compile(AVANT_PONCTUATION + ESPACES + r"([;!?])" + APRES_PONCTUATION), " \\1"),
-    (re.compile(AVANT_PONCTUATION + ESPACES + r":" + APRES_PONCTUATION), " :"),
-    (re.compile("«" + ESPACES), "« "),
-    (re.compile(ESPACES + "»"), " »"),
+    (re.compile(AVANT_PONCTUATION + ESPACES + r"([;!?])" + APRES_PONCTUATION), "\u202f\\1"),
+    (re.compile(AVANT_PONCTUATION + ESPACES + r":" + APRES_PONCTUATION), "\u00a0:"),
+    (re.compile("«" + ESPACES), "«\u202f"),
+    (re.compile(ESPACES + "»"), "\u202f»"),
 ]
 
 
@@ -223,8 +224,14 @@ def fleuron(classe):
 
 def lier_titre(titre):
     """Évite un mot seul en dernière ligne d'un titre et un petit mot (du, le, à...) en fin de ligne."""
-    titre = re.sub(r"(?<![\w’'])(\w{1,3}) (?=[^<]*$|[^<>]*<)", "\\1\u00a0", titre)
-    return re.sub(r" (\S+)$", "\u00a0\\1", titre)
+    morceaux = re.split(r"(<[^>]+>)", titre)
+    textes = [i for i, m in enumerate(morceaux) if m and not m.startswith("<")]
+    for i in textes:
+        morceaux[i] = re.sub(r"(?<![\w’'])(\w{1,3}) ", "\\1\u00a0", morceaux[i])
+    if textes:
+        dernier = textes[-1]
+        morceaux[dernier] = re.sub(r" (\S+)$", "\u00a0\\1", morceaux[dernier])
+    return "".join(morceaux)
 
 
 def sans_balises(fragment):
@@ -325,6 +332,11 @@ def document_complet(livre, corps, entrees):
     e = html.escape
     a_propos = a_propos_de_l_auteur(livre, entrees)
     table = table_des_matieres(entrees)
+    # La dédicace, écrite en tête du premier fichier, se place avant la table des matières.
+    dedicace = re.search(r'<div class="dedicace">.*?</div>', corps, flags=re.S)
+    if dedicace:
+        corps = corps.replace(dedicace.group(0), "", 1)
+        table = dedicace.group(0) + table
     return f'''<!DOCTYPE html>
 <html lang="fr">
 <head>

@@ -4,7 +4,7 @@ Rédigée par Konan (plume) le 9 novembre 2026, tâche T03. Révisée le même j
 
 Statut : HYPOTHÈSE À VALIDER PAR L'AUTEUR. Kouadio Koffi Élisée n'a fourni pour ce livre ni notes, ni prédication, ni enregistrement. Un seul indice de sa voix écrite est disponible (voir ci-dessous). Les choix qui suivent sont des propositions raisonnées, fondées sur cet indice, sur le public visé (`fiche-projet.md`) et sur le genre. Dès qu'un texte de lui sera disponible (prédication transcrite, leçon d'école du dimanche, message vocal), cette charte sera revue et les chapitres déjà rédigés repris.
 
-En attendant `charte/style.md` (Amenan, en cours), les citations suivent la Louis Segond 1910 telle que la donne `outils/verset.py`. La typographie fine (espaces insécables, accents sur les capitales dans les citations, forme des références) sera alignée sur la feuille de style dès sa parution.
+Les citations suivent la Louis Segond 1910 telle que la donne `outils/verset.py`, avec la seule normalisation fixée par Amenan dans `charte/style.md` (section 4 : Éternel, ligatures, apostrophe typographique, espaces françaises, capitales de vers ramenées en minuscule dans le texte courant). La forme des références est celle de `charte/style.md` (section 3).
 
 ## Ce que l'on sait de l'auteur
 
@@ -26,7 +26,7 @@ Traits relevés :
 - Prières écrites à la première personne du singulier, pour que le lecteur les fasse siennes ; Dieu tutoyé ; clôtures « Au nom de Jésus. Amen. » et « par Jésus-Christ, mon Sauveur. Amen. ».
 - Une invitation explicite à recevoir Jésus-Christ comme Sauveur, avec une prière proposée.
 
-Deux usages de ce livre ne sont pas repris ici parce qu'ils contredisent les règles de l'équipe : le tiret cadratin devant les références des citations en bloc, et le gras fréquent. La forme des références (« Psaume 139.16 » avec un point, contre « Jérémie 1:5 » avec deux points ici) est à trancher par Amenan dans `charte/style.md`.
+Deux usages de ce livre ne sont pas repris ici parce qu'ils contredisent les règles de l'équipe : le tiret cadratin devant les références des citations en bloc, et le gras fréquent. La forme des références diffère aussi (« Psaume 139.16 » avec un point) : `charte/style.md` a retenu « Jérémie 1:5 », avec deux-points.
 
 ## Ce que l'auteur doit trancher en premier
 
@@ -68,7 +68,7 @@ Le livre sera beaucoup lu sur téléphone. Phrases de quinze à vingt mots en mo
 
 Version : Louis Segond 1910, citée mot pour mot d'après `outils/verset.py`. Toute citation est vérifiée avec l'outil au moment de la rédaction ; aucune citation de mémoire.
 
-Citation courte (une phrase, ou moins de quarante mots environ) : dans le texte, entre guillemets « », suivie de la référence entre parenthèses : « Tu as bien vu; car je veille sur ma parole, pour l'exécuter » (Jérémie 1:12). Forme définitive des références : selon `charte/style.md`.
+Citation courte (une phrase, ou moins de quarante mots environ) : dans le texte, entre guillemets « », suivie de la référence entre parenthèses : « Tu as bien vu ; car je veille sur ma parole, pour l’exécuter » (Jérémie 1:12). Normalisation et balisage pour le contrôle : `charte/style.md`, sections 4 à 6 ; chaque chapitre passe `outils/controle_versets.py` avant d’être rendu.
 
 Citation longue (deux versets ou plus, ou plus de quarante mots) : en bloc, sans guillemets, référence en fin de bloc entre parenthèses (pas de tiret). Deux à trois blocs par chapitre au plus ; ils sont signalés dans le plan détaillé comme « versets clés ». Au-delà, on résume le passage en donnant la référence, pour que le lecteur aille le lire dans sa Bible.
 
@@ -111,7 +111,7 @@ Les « Leçons pour aujourd'hui » parlent d'abord au croyant ordinaire, puis, q
 
 Proposition : une seule prière, en fin de conclusion, sans prière en fin de chapitre (la structure validée par Akissi s'achève sur « Pour méditer »). Si l'auteur, responsable de prière, souhaite une prière par chapitre, elle suit les mêmes règles et la plume la rédige comme proposition.
 
-Comme dans le livre précédent, la prière est écrite à la première personne du singulier, pour que le lecteur la fasse sienne, et Dieu est tutoyé, comme dans la Louis Segond et dans la prière de Jérémie lui-même (« Ah! Seigneur Eternel, Voici, tu as fait les cieux et la terre », Jérémie 32:17). Elle est courte (quatre à huit lignes), reprend les mots du chapitre plutôt que des formules toutes faites, demande sans exiger, et se termine par « Au nom de Jésus. Amen. » sous réserve de confirmation. Toute prière rédigée par la plume est signalée à l'auteur, qui peut la remplacer par la sienne.
+Comme dans le livre précédent, la prière est écrite à la première personne du singulier, pour que le lecteur la fasse sienne, et Dieu est tutoyé, comme dans la Louis Segond et dans la prière de Jérémie lui-même (« Ah ! Seigneur Éternel, voici, tu as fait les cieux et la terre », Jérémie 32:17). Elle est courte (quatre à huit lignes), reprend les mots du chapitre plutôt que des formules toutes faites, demande sans exiger, et se termine par « Au nom de Jésus. Amen. » sous réserve de confirmation. Toute prière rédigée par la plume est signalée à l'auteur, qui peut la remplacer par la sienne.
 
 ## Ce que la plume s'interdit
 
@@ -119,8 +119,8 @@ Aucun témoignage personnel de l'auteur inventé : l'avant-propos et toute anecd
 
 ## Paragraphe d'exemple
 
-Le paragraphe suivant, d'environ dix lignes, montre la voix proposée : récit, supposition signalée, deux citations courtes et application au tutoiement. Les citations sont reproduites telles que les donne la source LSG 1910 (« Eternel » sans accent) ; leur typographie sera alignée sur `charte/style.md`.
+Le paragraphe suivant, d'environ dix lignes, montre la voix proposée : récit, supposition signalée, deux citations courtes et application au tutoiement. Les citations y sont normalisées selon `charte/style.md` (Éternel, apostrophe typographique, espace avant la ponctuation haute ; Amenan posera les espaces insécables).
 
-> Le texte ne dit pas quel âge avait Jérémie lorsque la parole de l'Éternel vint à lui, la treizième année du roi Josias. Il rapporte seulement la réponse du jeune homme : « Ah! Seigneur Eternel! voici, je ne sais point parler, car je suis un enfant » (Jérémie 1:6). On peut imaginer le fils d'un sacrificateur d'Anathoth, habitué à se taire quand parlent les aînés, appelé tout à coup à parler devant des rois. Dieu ne discute pas avec lui de son âge. Il lui donne un ordre, puis une promesse : « Ne les crains point, car je suis avec toi pour te délivrer » (Jérémie 1:8). Près de quarante ans plus tard, dans la boue d'une citerne, cette promesse sera encore la sienne. Toi aussi, peut-être, tu as reçu une tâche qui te paraît trop lourde, une classe d'enfants à l'école du dimanche ou une responsabilité dans ton église. La parole adressée au jeune homme d'Anathoth te rejoint là. Celui qui envoie marche avec celui qu'il envoie.
+> Le texte ne dit pas quel âge avait Jérémie lorsque la parole de l’Éternel vint à lui, la treizième année du roi Josias. Il rapporte seulement la réponse du jeune homme : « Ah ! Seigneur Éternel ! voici, je ne sais point parler, car je suis un enfant » (Jérémie 1:6). On peut imaginer le fils d’un sacrificateur d’Anathoth, habitué à se taire quand parlent les aînés, appelé tout à coup à parler devant des rois. Dieu ne discute pas avec lui de son âge. Il lui donne un ordre, puis une promesse : « Ne les crains point, car je suis avec toi pour te délivrer » (Jérémie 1:8). Près de quarante ans plus tard, dans la boue d’une citerne, cette promesse sera encore la sienne. Toi aussi, peut-être, tu as reçu une tâche qui te paraît trop lourde, une classe d’enfants à l’école du dimanche ou une responsabilité dans ton église. La parole adressée au jeune homme d’Anathoth te rejoint là. Celui qui envoie marche avec celui qu’il envoie.
 
 Vérification des citations de cette charte : `python3 outils/verset.py "Jérémie 1:6" "Jérémie 1:8" "Jérémie 1:12" "Jérémie 32:17"` (textes conformes à la source).
