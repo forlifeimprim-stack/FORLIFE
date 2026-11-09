@@ -1,0 +1,10 @@
+**/node_modules
+**/dist
+**/.env
+**/.env.*
+apps/api/storage
+apps/api/storage-test
+apps/web/*
+!apps/web/package.json
+docs
+**/*.log

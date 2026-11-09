@@ -1,0 +1,6 @@
+{
+  "projects": { "default": "ai-growth-et-creative-os" },
+  "targets": {
+    "ai-growth-et-creative-os": { "hosting": { "app": ["ai-growth-et-creative-os"] } }
+  }
+}

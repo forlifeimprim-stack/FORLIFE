@@ -1,0 +1,21 @@
+{
+  "name": "forlife-ad",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "studio": "remotion studio src/index.ts",
+    "render:vertical": "remotion render src/index.ts AdVertical out/forlife-pub-vertical.mp4",
+    "render:landscape": "remotion render src/index.ts AdLandscape out/forlife-pub-paysage.mp4"
+  },
+  "dependencies": {
+    "@remotion/cli": "4.0.535",
+    "@remotion/google-fonts": "4.0.535",
+    "react": "19.1.1",
+    "react-dom": "19.1.1",
+    "remotion": "4.0.535"
+  },
+  "devDependencies": {
+    "@types/react": "19.1.12",
+    "typescript": "5.9.3"
+  }
+}

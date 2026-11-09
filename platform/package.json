@@ -1,0 +1,25 @@
+{
+  "name": "forlife-com-platform",
+  "private": true,
+  "version": "0.1.0",
+  "description": "Forlife Com — AI Growth & Creative OS (modular monolith)",
+  "type": "module",
+  "workspaces": [
+    "packages/*",
+    "apps/*"
+  ],
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "build:shared": "npm run build -w @forlife/shared",
+    "build": "npm run build:shared && npm run build -w @forlife/api && npm run build -w @forlife/web",
+    "typecheck": "npm run build:shared && npm run typecheck -w @forlife/api && npm run typecheck -w @forlife/web",
+    "test": "npm run build:shared && npm run test -w @forlife/shared && npm run test -w @forlife/api",
+    "dev:api": "npm run build:shared && npm run dev -w @forlife/api",
+    "dev:web": "npm run dev -w @forlife/web",
+    "worker": "npm run worker -w @forlife/api",
+    "db:migrate": "npm run db:migrate -w @forlife/api",
+    "db:deploy": "npm run db:deploy -w @forlife/api"
+  }
+}
