@@ -6,17 +6,26 @@ Ouverte le 9 novembre 2026 par Akissi (direction éditoriale). Projet test deman
 
 - Titre : La vie et le ministère prophétique du prophète Jérémie
 - Sous-titre : [HYPOTHÈSE] « Biographie » (mention de genre en couverture). Remarque éditoriale à soumettre à l'auteur : le titre répète « prophétique » et « prophète » ; il reste tel quel tant que l'auteur ne décide pas autrement (pistes notées dans `journal.md`).
-- Auteur : Kouadio Koffi Elisée
+- Auteur : Kouadio Koffi Élisée
 - Genre : biographie biblique (récit de vie fondé sur le livre de Jérémie, les Lamentations et les livres historiques : 2 Rois, 2 Chroniques)
 - Langue : français
 
-## Ce que l'on sait de l'auteur (informations disponibles, à conserver)
+## Biographie de l'auteur (décision de l'utilisateur du 9 novembre 2026)
 
-- Kouadio Koffi Elisée dirige Forlife Imprim (imprimerie) et sa division communication Forlife Com', à Bingerville, Côte d'Ivoire, à la montée de la colline du Collège Saint Cyrille.
-- Contacts publics de l'entreprise : forlifeimprim@gmail.com, +225 05 85 80 18 56, +225 07 49 56 70 82.
-- Sa voix a été clonée pour la « FOR LIFE voix off », validée par lui le 27 octobre 2026 : elle servira au livre audio.
-- Tout le reste de la biographie (parcours, église, ministère, formation, autres ouvrages, photo) : [À COMPLÉTER PAR L'AUTEUR].
-- L'adresse électronique personnelle de l'auteur n'est pas imprimée dans le livre sans son accord.
+L'utilisateur a demandé de reprendre les informations de l'auteur de son livre « Stop, écoute ton enfant » et a précisé que cela suffit. Ce livre n'a été trouvé ni dans le dépôt, ni dans Google Drive, ni dans Gmail. Le texte ci-dessous est la biographie que l'auteur a fournie et validée pour son livre « Avant que l'horloge ne s'arrête » (dépôt Forlife, commit 5e23f53 du 31 octobre 2026, « biographie de l'auteur reprise telle que fournie »). Il est repris mot pour mot, sans ajout :
+
+> **Kouadio Koffi Élisée** est moniteur d'école du dimanche à l'Église CMA et responsable de prière de l'école du dimanche.
+>
+> Entrepreneur, il est cofondateur de **Forlife Com**, entreprise de communication intégrée basée à Bingerville.
+>
+> Il est marié à Koffi Assena Grâce Emmanuelle, épouse Kouadio.
+
+- Graphie du nom imprimé : « Kouadio Koffi Élisée » (capitale accentuée, comme dans le livre précédent).
+- Page « Du même auteur » : « Stop, écoute ton enfant » et « Avant que l'horloge ne s'arrête » [À VÉRIFIER : titres exacts et dates de parution].
+- Éditeur et coordonnées imprimées : Forlife Imprim, Bingerville (montée de la colline du Collège Saint Cyrille), forlifeimprim@gmail.com, +225 05 85 80 18 56, +225 07 49 56 70 82.
+- Aucune autre information personnelle (date de naissance, études, documents d'identité) n'est utilisée. L'adresse électronique personnelle de l'auteur n'est pas imprimée.
+- Voix du livre audio : « FOR LIFE voix off », voix clonée de l'auteur validée le 27 octobre 2026.
+- Photo de l'auteur : non fournie, la quatrième s'en passe.
 
 ## Public et promesse
 

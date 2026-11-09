@@ -1,0 +1,500 @@
+/* Intérieur : La vie et le ministère prophétique du prophète Jérémie
+   Charte graphique : charte/graphique.md (Affoué, T07, 9 novembre 2026).
+   Composée par outils/composer.py avec WeasyPrint. Les @font-face sont ajoutés par composer.py,
+   qui corrige les polices (espace fine insécable) avant de les déclarer.
+
+   Intérieur imprimé en noir seul : toutes les couleurs sont en device-cmyk sur la seule plaque K,
+   pour que l'imprimeur ne reçoive ni noir en quadrichromie ni RVB. */
+
+:root {
+  --noir: device-cmyk(0 0 0 1);
+  --gris-trait: device-cmyk(0 0 0 0.6);
+  --gris-fond: device-cmyk(0 0 0 0.08);
+}
+
+/* ---------- Pages ---------- */
+
+@page {
+  size: 140mm 210mm;
+  bleed: 3mm;
+  margin: 15mm 15mm 18mm 20mm;
+
+  @footnote {
+    margin-top: 4mm;
+    padding-top: 2mm;
+    border-top: 0.4pt solid var(--gris-trait);
+  }
+}
+
+/* Recto : petit fond (intérieur) à gauche. Verso : à droite. */
+@page :right {
+  margin: 15mm 15mm 18mm 20mm;
+  @top-center {
+    content: string(chapitre);
+    font: italic 9pt/1 "EB Garamond";
+    color: var(--noir);
+    vertical-align: bottom;
+    padding-bottom: 4mm;
+  }
+  @bottom-center {
+    content: counter(page);
+    font: 9.5pt/1 "EB Garamond";
+    color: var(--noir);
+    vertical-align: top;
+    padding-top: 6mm;
+  }
+}
+
+@page :left {
+  margin: 15mm 20mm 18mm 15mm;
+  @top-center {
+    content: string(livre);
+    font: italic 9pt/1 "EB Garamond";
+    color: var(--noir);
+    vertical-align: bottom;
+    padding-bottom: 4mm;
+  }
+  @bottom-center {
+    content: counter(page);
+    font: 9.5pt/1 "EB Garamond";
+    color: var(--noir);
+    vertical-align: top;
+    padding-top: 6mm;
+  }
+}
+
+/* Ouverture de chapitre : pas de titre courant, folio conservé. */
+@page :nth(1 of chapitre) {
+  @top-center { content: none; }
+}
+
+/* Pages blanches et pages liminaires : ni titre courant ni folio. */
+@page :blank {
+  @top-center { content: none; }
+  @bottom-center { content: none; }
+}
+
+@page liminaire {
+  @top-center { content: none; }
+  @bottom-center { content: none; }
+}
+
+/* ---------- Texte courant ---------- */
+
+html {
+  font-family: "EB Garamond", serif;
+  font-size: 11pt;
+  line-height: 15pt;
+  color: var(--noir);
+}
+
+body {
+  margin: 0;
+  string-set: livre attr(data-titre);
+}
+
+p {
+  margin: 0;
+  text-align: justify;
+  hyphens: auto;
+  hyphenate-character: "-";
+  hyphenate-limit-chars: 6 3 3;
+  orphans: 2;
+  widows: 2;
+}
+
+p + p { text-indent: 1.2em; }
+
+em { font-style: italic; }
+strong { font-weight: 600; }
+
+/* Numéros de versets (^4^ dans le manuscrit) */
+sup {
+  font-family: "Alegreya Sans", sans-serif;
+  font-weight: 500;
+  font-size: 6.5pt;
+  line-height: 0;
+  vertical-align: 0.45em;
+  padding-right: 0.15em;
+}
+
+a { color: inherit; text-decoration: none; }
+
+ul, ol { margin: 7.5pt 0; padding-left: 1.4em; }
+li { text-align: justify; hyphens: auto; hyphenate-character: "-"; }
+li + li { margin-top: 3pt; }
+
+/* ---------- Chapitres ---------- */
+
+section.level1 {
+  page: chapitre;
+  break-before: right;
+  string-set: chapitre attr(data-court);
+  counter-reset: footnote;
+}
+
+header.ouverture {
+  padding-top: 24mm;
+  margin-bottom: 15pt;
+  text-align: center;
+}
+
+.chapitre-numero {
+  font-family: "Alegreya Sans", sans-serif;
+  font-weight: 500;
+  font-size: 9.5pt;
+  line-height: 15pt;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  text-align: center;
+  margin-bottom: 7.5pt;
+}
+
+h1 {
+  font-family: "Alegreya Sans", sans-serif;
+  font-weight: 500;
+  font-size: 20pt;
+  line-height: 24pt;
+  text-align: center;
+  hyphens: manual;
+  margin: 0 6mm;
+}
+
+.fleuron {
+  text-align: center;
+  margin: 12pt 0 0;
+  line-height: 0;
+}
+.fleuron img { height: 6mm; }
+
+.fleuron-pause {
+  text-align: center;
+  margin: 13pt 0 14pt;
+  line-height: 0;
+  break-after: avoid;
+}
+.fleuron-pause img { height: 4mm; }
+
+/* Losange d'attente tant que images/fleuron-amandier.svg (Kouamé) n'existe pas */
+.losange {
+  display: inline-block;
+  width: 2.2mm;
+  height: 2.2mm;
+  border: 0.6pt solid var(--noir);
+  transform: rotate(45deg);
+}
+
+h2 {
+  font-family: "Alegreya Sans", sans-serif;
+  font-weight: 700;
+  font-size: 12pt;
+  line-height: 15pt;
+  text-align: left;
+  hyphens: manual;
+  margin: 22.5pt 0 7.5pt;
+  break-after: avoid;
+  bookmark-level: 2;
+}
+
+h3 {
+  font-family: "EB Garamond", serif;
+  font-style: italic;
+  font-weight: 400;
+  font-size: 11pt;
+  line-height: 15pt;
+  margin: 15pt 0 0;
+  break-after: avoid;
+  bookmark-level: none;
+}
+
+/* ---------- Références bibliques ([Jérémie 1:5]{.ref}) ---------- */
+
+.reference p {
+  font-family: "Alegreya Sans", sans-serif;
+  font-size: 8.5pt;
+  line-height: 12pt;
+  letter-spacing: 0.03em;
+  text-align: right;
+  text-indent: 0;
+  hyphens: manual;
+  margin-top: 3pt;
+}
+
+/* ---------- Épigraphe ---------- */
+
+.epigraphe {
+  margin: 0 0 22.5pt 32%;
+  break-inside: avoid;
+}
+.epigraphe p {
+  font-style: italic;
+  font-size: 10.5pt;
+  line-height: 14pt;
+  text-align: left;
+  hyphens: manual;
+}
+.epigraphe p + p { text-indent: 0; }
+
+/* ---------- Citation biblique longue (> dans le manuscrit) ---------- */
+
+blockquote {
+  margin: 10pt 0 12pt 0;
+  padding-left: 4.5mm;
+  border-left: 0.6pt solid var(--gris-trait);
+}
+blockquote p {
+  font-size: 10.5pt;
+  line-height: 14pt;
+  text-indent: 0;
+}
+blockquote p + p { text-indent: 0; margin-top: 3pt; }
+blockquote .reference p { margin-top: 4pt; }
+
+/* ---------- Titres des blocs (ajoutés par composer.py) ---------- */
+
+.bloc-titre p {
+  font-family: "Alegreya Sans", sans-serif;
+  text-align: left;
+  text-indent: 0;
+  hyphens: manual;
+  break-after: avoid;
+}
+
+/* ---------- Encadré « Contexte historique » ---------- */
+
+.encadre {
+  background: var(--gris-fond);
+  padding: 3.5mm 4mm 4mm;
+  margin: 15pt 0;
+  box-decoration-break: clone;
+}
+.encadre .bloc-titre p {
+  font-weight: 800;
+  font-size: 8.5pt;
+  line-height: 12pt;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin-bottom: 4pt;
+}
+.encadre p {
+  font-size: 10pt;
+  line-height: 13.5pt;
+}
+.encadre .bloc-titre + p { text-indent: 0; }
+.encadre blockquote { margin: 6pt 0; border-left-color: var(--noir); }
+.encadre blockquote p { font-size: 9.5pt; line-height: 13pt; }
+
+/* ---------- Leçons pour aujourd'hui ---------- */
+
+.lecons {
+  margin-top: 22.5pt;
+  padding-top: 9pt;
+  border-top: 0.6pt solid var(--noir);
+}
+.lecons .bloc-titre p,
+.questions .bloc-titre p {
+  font-weight: 700;
+  font-size: 12pt;
+  line-height: 15pt;
+  margin-bottom: 6pt;
+}
+.lecons ul { list-style: none; padding-left: 1.1em; }
+.lecons ul li::marker { content: "•  "; font-family: "Alegreya Sans"; }
+.lecons .bloc-titre + p { text-indent: 0; }
+
+/* ---------- Pour méditer ---------- */
+
+.questions {
+  margin-top: 15pt;
+  break-inside: avoid;
+}
+.questions ol { padding-left: 1.5em; }
+.questions ol li::marker {
+  font-family: "Alegreya Sans", sans-serif;
+  font-weight: 700;
+  font-size: 10pt;
+}
+
+/* ---------- Prière ---------- */
+
+.priere {
+  margin: 18pt 7% 0;
+  break-inside: avoid;
+}
+.priere .bloc-titre p {
+  font-weight: 500;
+  font-size: 8.5pt;
+  line-height: 12pt;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  text-align: center;
+  margin-bottom: 6pt;
+}
+.priere p {
+  font-style: italic;
+}
+.priere .bloc-titre + p { text-indent: 0; }
+.priere p + p { text-indent: 1.2em; }
+
+/* ---------- Dédicace ---------- */
+
+.dedicace {
+  page: liminaire;
+  break-before: right;
+  break-after: page;
+  padding-top: 45mm;
+  margin: 0 12mm;
+}
+.dedicace p { font-style: italic; text-align: right; hyphens: manual; }
+
+/* ---------- Notes de bas de page ---------- */
+
+.note {
+  float: footnote;
+  font-size: 8.5pt;
+  line-height: 11pt;
+  font-style: normal;
+  font-weight: 400;
+  text-align: justify;
+  text-indent: 0;
+  hyphens: auto;
+}
+::footnote-call {
+  content: counter(footnote);
+  font-size: 6.5pt;
+  line-height: 0;
+  vertical-align: 0.5em;
+  padding-left: 0.05em;
+}
+::footnote-marker {
+  content: counter(footnote) ". ";
+  font-family: "Alegreya Sans", sans-serif;
+  font-weight: 500;
+}
+
+/* ---------- Figures (carte, frise) ---------- */
+
+figure {
+  margin: 12pt 0;
+  break-inside: avoid;
+  text-align: center;
+}
+figure img { max-width: 100%; }
+figcaption {
+  font-family: "Alegreya Sans", sans-serif;
+  font-size: 8.5pt;
+  line-height: 12pt;
+  margin-top: 4pt;
+  text-align: center;
+  hyphens: manual;
+}
+.pleine-page {
+  break-before: page;
+  break-after: page;
+}
+.pleine-page img { max-height: 165mm; }
+
+/* ---------- Pages liminaires ---------- */
+
+.liminaire {
+  page: liminaire;
+  break-before: right;
+}
+.liminaire p { text-align: center; text-indent: 0; hyphens: manual; }
+
+.faux-titre { padding-top: 48mm; }
+.faux-titre p {
+  font-family: "Alegreya Sans", sans-serif;
+  font-weight: 500;
+  font-size: 13pt;
+  line-height: 17pt;
+  margin: 0 10mm;
+}
+
+.page-titre {
+  position: relative;
+  height: 176mm;
+}
+.page-titre .auteur {
+  font-family: "Alegreya Sans", sans-serif;
+  font-weight: 500;
+  font-size: 10pt;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  padding-top: 14mm;
+}
+.page-titre .titre {
+  font-family: "Alegreya Sans", sans-serif;
+  font-weight: 700;
+  font-size: 21pt;
+  line-height: 26pt;
+  margin: 30mm 4mm 0;
+}
+.page-titre .sous-titre {
+  font-style: italic;
+  font-size: 13pt;
+  line-height: 17pt;
+  margin-top: 9pt;
+}
+.page-titre .fleuron { margin-top: 14mm; }
+.page-titre .fleuron img { height: 9mm; }
+.page-titre .editeur {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  font-family: "Alegreya Sans", sans-serif;
+  font-size: 9pt;
+  line-height: 12pt;
+  letter-spacing: 0.08em;
+}
+.page-titre .editeur strong { font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; }
+
+.mentions {
+  break-before: left;
+  position: relative;
+  height: 176mm;
+}
+.mentions .bloc {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+}
+.mentions p {
+  font-size: 8.5pt;
+  line-height: 11.5pt;
+  text-align: left;
+  margin-top: 5pt;
+}
+.mentions p + p { text-indent: 0; }
+.mentions .mentions-titre { font-style: italic; }
+
+nav.table-matieres { padding-top: 10mm; }
+.table-titre {
+  font-family: "Alegreya Sans", sans-serif;
+  font-weight: 500;
+  font-size: 14pt;
+  line-height: 18pt;
+  margin-bottom: 15pt;
+  text-align: left !important;
+}
+nav.table-matieres ol { list-style: none; padding: 0; margin: 0; }
+nav.table-matieres li { margin: 0 0 4pt; text-align: left; }
+nav.table-matieres a {
+  display: block;
+  padding-left: 7mm;
+  text-indent: -7mm;
+  hyphens: manual;
+}
+nav.table-matieres a::after {
+  content: leader(". ") target-counter(attr(href url), page);
+}
+.table-num {
+  display: inline-block;
+  width: 7mm;
+  text-indent: 0;
+  font-family: "Alegreya Sans", sans-serif;
+  font-weight: 500;
+  font-size: 10pt;
+}

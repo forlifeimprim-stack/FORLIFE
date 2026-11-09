@@ -11,7 +11,7 @@ Tenu par Akissi. Statuts : À FAIRE, EN COURS, TERMINÉ, PARTIEL, BLOQUÉ.
 | T05 | Recherche iconographique, registre des droits, page des crédits | yao | T01 | `droits/images.md` | TERMINÉ |
 | T06 | Bible visuelle, carte, frise des rois, illustration de couverture | kouame | T01 | SVG dans `images/`, `charte/illustration.md` | EN COURS |
 | T07 | Charte graphique, CSS intérieur, maquette type | affoue | T01 | `charte/graphique.md`, `charte/interieur.css`, pages test rendues | EN COURS |
-| T08 | Fiche de fabrication préliminaire, demandes de devis en brouillon | salif | T01 | `fabrication/fiche-fabrication.md` | EN COURS |
+| T08 | Fiche de fabrication préliminaire, demandes de devis en brouillon | salif | T01 | `fabrication/fiche-fabrication.md` | TERMINÉ |
 | T09 | Validation du plan détaillé | akissi | T03 | décision au journal | À FAIRE |
 | T10-T12 | Rédaction des chapitres (trois lots) | konan | T09, T04 | chapitres dans `manuscrit/` | À FAIRE |
 | T13 | Lecture éditoriale du manuscrit complet | akissi | T10-T12 | notes au journal | À FAIRE |

@@ -1,0 +1,184 @@
+# Lexique des noms propres et des termes du livre
+# Établi par Amenan le 9 novembre 2026 (tâche T04). Référence : Louis Segond 1910, fichier sources/lsg1910/lsg.json.
+#
+# Une entrée par ligne, cinq champs séparés par « | » :
+#   graphie du livre | graphie du texte LSG numérique | catégorie | référence vérifiée | remarque
+# La graphie du livre est celle de la LSG, avec la seule normalisation fixée dans charte/style.md
+# (accent sur la capitale initiale quand la syllabe est ouverte : Eternel devient Éternel, Egypte devient Égypte).
+# Chaque graphie LSG a été cherchée avec « outils/verset.py --chercher » puis contrôlée dans le verset cité par :
+#   python3 outils/controle_versets.py --lexique charte/lexique.txt
+# Le nom de l'auteur, Kouadio Koffi Elisée, s'écrit comme il le signe, sans accent : il n'entre pas dans ce lexique.
+#
+# Personnes : famille et entourage de Jérémie
+Jérémie | Jérémie | personne | Jérémie 1:1 | le prophète, fils de Hilkija ; homonyme : Jérémie de Libna, père de Hamuthal (Jérémie 52:1)
+Hilkija | Hilkija | personne | Jérémie 1:1 | père de Jérémie, sacrificateur d'Anathoth ; homonyme : Hilkija, souverain sacrificateur sous Josias (2 Rois 22:8)
+Hanameel | Hanameel | personne | Jérémie 32:7 | cousin de Jérémie, fils de son oncle Schallum
+Schallum | Schallum | personne | Jérémie 32:7 | oncle de Jérémie ; homonyme : Schallum, fils de Josias (Jérémie 22:11)
+Baruc | Baruc | personne | Jérémie 36:4 | secrétaire de Jérémie ; jamais « Baruch »
+Nérija | Nérija | personne | Jérémie 32:12 | père de Baruc et de Seraja
+Machséja | Machséja | personne | Jérémie 32:12 | grand-père de Baruc
+Seraja | Seraja | personne | Jérémie 51:59 | frère de Baruc, premier chambellan ; homonymes : Seraja, souverain sacrificateur (Jérémie 52:24), Seraja, fils d'Azriel (Jérémie 36:26)
+Ébed-Mélec | Ebed-Mélec | personne | Jérémie 38:7 | eunuque qui tire Jérémie de la citerne
+Éthiopien | Ethiopien | peuple | Jérémie 38:7 | « Ebed-Mélec, l'Ethiopien » dans le texte numérique
+# Rois de Juda et leur entourage
+Ézéchias | Ezéchias | roi | Jérémie 26:18 |
+Manassé | Manassé | roi | Jérémie 15:4 |
+Amon | Amon | roi | Jérémie 1:2 | père de Josias ; homonyme : Amon, dieu de No (Jérémie 46:25)
+Josias | Josias | roi | Jérémie 1:2 | appel de Jérémie la treizième année de son règne
+Joachaz | Joachaz | roi | 2 Rois 23:30 | absent du livre de Jérémie, qui le nomme Schallum (Jérémie 22:11) ; graphie du livre : Joachaz, avec « appelé Schallum par Jérémie » à la première mention
+Schallum | Schallum | roi | Jérémie 22:11 | nom de Joachaz dans Jérémie
+Éliakim | Eliakim | roi | 2 Rois 23:34 | nom de naissance de Jojakim
+Jojakim | Jojakim | roi | Jérémie 1:3 | fils de Josias
+Jojakin | Jojakin | roi | Jérémie 52:31 | graphie du livre pour le récit ; autres noms ci-dessous
+Jeconia | Jeconia | roi | Jérémie 24:1 | nom de Jojakin dans Jérémie 22:24, 24:1, 27:20 ; ne pas écrire « Jéchonias »
+Jéconias | Jéconias | roi | 1 Chroniques 3:16 | forme des Chroniques, à ne citer qu'en citation
+Nehuschtha | Nehuschtha | personne | 2 Rois 24:8 | mère de Jojakin
+Sédécias | Sédécias | roi | Jérémie 1:3 | dernier roi de Juda ; homonymes : Sédécias, fils de Maaséja, faux prophète (Jérémie 29:21), Sédécias, fils de Hanania (Jérémie 36:12)
+Matthania | Matthania | roi | 2 Rois 24:17 | nom de naissance de Sédécias
+Hamuthal | Hamuthal | personne | Jérémie 52:1 | mère de Sédécias
+Jehudi | Jehudi | personne | Jérémie 36:14 | lit le rouleau devant Jojakim
+Elnathan | Elnathan | personne | Jérémie 36:12 | fils d'Acbor ; syllabe fermée, pas d'accent
+Acbor | Acbor | personne | Jérémie 36:12 | ne pas écrire « Achbor »
+Délaja | Delaja | personne | Jérémie 36:12 | voir la remarque de style.md sur les capitales : ici minuscule « e » dans la LSG, donc graphie du livre Delaja
+Élischama | Elischama | personne | Jérémie 36:12 | secrétaire du roi
+Guemaria | Guemaria | personne | Jérémie 36:10 | fils de Schaphan
+Michée | Michée | personne | Jérémie 36:11 | fils de Guemaria ; homonyme : Michée de Moréscheth, le prophète (Jérémie 26:18)
+Jerachmeel | Jerachmeel | personne | Jérémie 36:26 |
+Schélémia | Schélémia | personne | Jérémie 36:26 |
+Jireija | Jireija | personne | Jérémie 37:13 | commandant de la garde qui arrête Jérémie
+Schaphan | Schaphan | personne | Jérémie 26:24 | secrétaire sous Josias (2 Rois 22:3)
+Achikam | Achikam | personne | Jérémie 26:24 | protecteur de Jérémie ; ne pas écrire « Ahikam »
+Guedalia | Guedalia | personne | Jérémie 40:5 | gouverneur, fils d'Achikam ; homonyme : Guedalia, fils de Paschhur (Jérémie 38:1)
+Hulda | Hulda | personne | 2 Rois 22:14 | prophétesse consultée sous Josias
+# Prophètes, prêtres et opposants
+Hanania | Hanania | personne | Jérémie 28:1 | faux prophète de Gabaon ; homonymes : grand-père de Jireija (Jérémie 37:13), compagnon de Daniel (Daniel 1:6)
+Azzur | Azzur | personne | Jérémie 28:1 | père de Hanania
+Paschhur | Paschhur | personne | Jérémie 20:1 | fils d'Immer, qui fait battre Jérémie ; homonyme : Paschhur, fils de Malkija (Jérémie 21:1)
+Immer | Immer | personne | Jérémie 20:1 |
+Malkija | Malkija | personne | Jérémie 21:1 |
+Sophonie | Sophonie | personne | Jérémie 21:1 | sacrificateur, fils de Maaséja ; ne pas confondre avec le prophète Sophonie
+Maaséja | Maaséja | personne | Jérémie 21:1 |
+Urie | Urie | personne | Jérémie 26:20 | prophète exécuté par Jojakim ; homonyme : Urie le Héthien
+Schemaeja | Schemaeja | personne | Jérémie 26:20 | père d'Urie ; homonyme : Schemaeja, Néchélamite (Jérémie 29:24)
+Néchélamite | Néchélamite | personne | Jérémie 29:24 |
+Achab | Achab | personne | Jérémie 29:21 | faux prophète, fils de Kolaja ; homonyme : le roi Achab d'Israël
+Kolaja | Kolaja | personne | Jérémie 29:21 |
+Jonadab | Jonadab | personne | Jérémie 35:6 | ancêtre des Récabites
+Récab | Récab | personne | Jérémie 35:6 |
+Jaazania | Jaazania | personne | Jérémie 35:3 |
+Hanan | Hanan | personne | Jérémie 35:4 |
+Moïse | Moïse | personne | Jérémie 15:1 |
+Samuel | Samuel | personne | Jérémie 15:1 |
+Rachel | Rachel | personne | Jérémie 31:15 |
+David | David | personne | Jérémie 33:17 |
+Daniel | Daniel | personne | Daniel 1:6 | contemporain de Jérémie
+Ézéchiel | Ezéchiel | personne | Ézéchiel 1:3 | contemporain de Jérémie
+# Après la chute de Jérusalem
+Ismaël | Ismaël | personne | Jérémie 40:8 | assassin de Guedalia
+Nethania | Nethania | personne | Jérémie 40:8 | père d'Ismaël
+Jochanan | Jochanan | personne | Jérémie 40:8 | fils de Karéach
+Karéach | Karéach | personne | Jérémie 40:8 |
+Jezania | Jezania | personne | Jérémie 42:1 | fils d'Hosée
+# Souverains et officiers étrangers
+Pharaon | Pharaon | titre | Jérémie 37:5 | sans article devant le nom propre : Pharaon Néco, Pharaon Hophra
+Néco | Néco | roi | 2 Rois 23:29 | graphie du livre ; Jérémie 46:2 porte « Neco », conservé tel quel en citation
+Neco | Neco | roi | Jérémie 46:2 | seule occurrence ; ne pas l'employer hors citation
+Hophra | Hophra | roi | Jérémie 44:30 |
+Nebucadnetsar | Nebucadnetsar | roi | Jérémie 21:2 | jamais « Nabuchodonosor » (absent de la LSG 1910)
+Évil-Merodac | Evil-Merodac | roi | Jérémie 52:31 | libère Jojakin
+Nebuzaradan | Nebuzaradan | personne | Jérémie 39:9 | chef des gardes
+Nergal-Scharetser | Nergal-Scharetser | personne | Jérémie 39:3 |
+Samgar-Nebu | Samgar-Nebu | personne | Jérémie 39:3 |
+Sarsekim | Sarsekim | personne | Jérémie 39:3 |
+# Lieux
+Anathoth | Anathoth | lieu | Jérémie 1:1 | village natal de Jérémie
+Benjamin | Benjamin | lieu | Jérémie 1:1 | pays de Benjamin ; aussi « la porte de Benjamin » (Jérémie 37:13)
+Juda | Juda | lieu | Jérémie 1:2 |
+Jérusalem | Jérusalem | lieu | Jérémie 1:3 |
+Israël | Israël | lieu | Jérémie 2:3 |
+Sion | Sion | lieu | Jérémie 3:14 |
+Silo | Silo | lieu | Jérémie 7:12 |
+Topheth | Topheth | lieu | Jérémie 7:31 |
+Ben-Hinnom | Ben-Hinnom | lieu | Jérémie 7:31 | « la vallée de Ben-Hinnom » ; 2 Rois 23:10 dit « la vallée des fils de Hinnom »
+Hinnom | Hinnom | lieu | 2 Rois 23:10 | forme des livres historiques
+Égypte | Egypte | lieu | Jérémie 2:6 |
+Assyrie | Assyrie | lieu | Jérémie 2:18 |
+Euphrate | Euphrate | lieu | Jérémie 13:4 | « eu » initial : pas d'accent
+Babylone | Babylone | lieu | Jérémie 20:4 | jamais « Babel » pour la ville de Nebucadnetsar
+Schéschac | Schéschac | lieu | Jérémie 25:26 | nom chiffré de Babylone
+Carkemisch | Carkemisch | lieu | Jérémie 46:2 | ne pas écrire « Karkemisch »
+Meguiddo | Meguiddo | lieu | 2 Rois 23:29 | mort de Josias ; absent du livre de Jérémie
+Ribla | Ribla | lieu | Jérémie 39:5 |
+Hamath | Hamath | lieu | Jérémie 39:5 |
+Jéricho | Jéricho | lieu | Jérémie 39:5 |
+Lakis | Lakis | lieu | Jérémie 34:7 |
+Azéka | Azéka | lieu | Jérémie 34:7 |
+Libna | Libna | lieu | Jérémie 52:1 |
+Gabaon | Gabaon | lieu | Jérémie 28:1 |
+Kirjath-Jearim | Kirjath-Jearim | lieu | Jérémie 26:20 |
+Moréscheth | Moréscheth | lieu | Jérémie 26:18 |
+Rama | Rama | lieu | Jérémie 40:1 | aussi Jérémie 31:15
+Mitspa | Mitspa | lieu | Jérémie 40:6 |
+Sichem | Sichem | lieu | Jérémie 41:5 |
+Samarie | Samarie | lieu | Jérémie 41:5 |
+Kimham | Kimham | lieu | Jérémie 41:17 | « l'hôtellerie de Kimham près de Bethléhem »
+Bethléhem | Bethléhem | lieu | Jérémie 41:17 |
+Tachpanès | Tachpanès | lieu | Jérémie 43:7 | ne pas écrire « Taphnès »
+Migdol | Migdol | lieu | Jérémie 44:1 |
+Noph | Noph | lieu | Jérémie 44:1 |
+Pathros | Pathros | lieu | Jérémie 44:1 |
+Galaad | Galaad | lieu | Jérémie 8:22 |
+Moab | Moab | lieu | Jérémie 40:11 |
+Ammon | Ammon | lieu | Jérémie 49:1 |
+Édom | Edom | lieu | Jérémie 49:7 |
+Théman | Théman | lieu | Jérémie 49:7 |
+Damas | Damas | lieu | Jérémie 49:23 |
+Kédar | Kédar | lieu | Jérémie 49:28 |
+Hatsor | Hatsor | lieu | Jérémie 49:28 |
+Élam | Elam | lieu | Jérémie 49:34 |
+Tyr | Tyr | lieu | Jérémie 47:4 |
+Sidon | Sidon | lieu | Jérémie 47:4 |
+Gaza | Gaza | lieu | Jérémie 47:1 |
+Uphaz | Uphaz | lieu | Jérémie 10:9 |
+Ararat | Ararat | lieu | Jérémie 51:27 |
+Ninive | Ninive | lieu | 2 Rois 19:36 | absent du livre de Jérémie
+# Peuples et groupes
+Chaldéens | Chaldéens | peuple | Jérémie 21:4 | nom employé par Jérémie pour les Babyloniens
+Juifs | Juifs | peuple | Jérémie 40:11 |
+Ammonites | Ammonites | peuple | Jérémie 40:11 |
+Philistins | Philistins | peuple | Jérémie 47:1 |
+Récabites | Récabites | peuple | Jérémie 35:2 | ne pas écrire « Réchabites »
+Lévites | Lévites | peuple | Jérémie 33:18 |
+Hébreu | Hébreu | peuple | Jérémie 34:9 |
+Égyptiens | Egyptiens | peuple | Genèse 12:12 | absent du livre de Jérémie
+Assyriens | Assyriens | peuple | 2 Rois 19:35 | absent du livre de Jérémie
+# Noms divins et termes cultuels
+Éternel | Eternel | divin | Jérémie 1:2 | toujours avec l'article : l'Éternel
+Éternel des armées | Eternel des armées | divin | Jérémie 2:19 |
+Seigneur | Seigneur | divin | Jérémie 1:6 | « Seigneur Eternel » dans le texte numérique
+Dieu | Dieu | divin | Jérémie 2:17 |
+Tsadok | Tsadok | personne | 2 Samuel 8:17 | absent du livre de Jérémie ; « Sadok » n'existe qu'en Matthieu 1:14 et désigne un autre homme
+Baal | Baal | culte | Jérémie 2:8 |
+Moloc | Moloc | culte | Jérémie 32:35 |
+reine du ciel | reine du ciel | culte | Jérémie 7:18 | minuscules, comme la LSG
+hauts lieux | hauts lieux | culte | Jérémie 7:31 |
+arche de l'alliance | arche de l'alliance | culte | Jérémie 3:16 |
+alliance nouvelle | alliance nouvelle | culte | Jérémie 31:31 | forme de Jérémie ; « la nouvelle alliance » admise dans le récit (Luc 22:20)
+maison de l'Éternel | maison de l'Eternel | culte | Jérémie 7:2 |
+temple de l'Éternel | temple de l'Eternel | culte | Jérémie 7:4 | temple en minuscule
+parvis | parvis | culte | Jérémie 19:14 |
+sacrificateur | sacrificateur | culte | Jérémie 20:1 | terme de la LSG, employé aussi dans le récit à la place de « prêtre »
+sacrificateurs | sacrificateurs | culte | Jérémie 1:1 |
+souverain sacrificateur | souverain sacrificateur | culte | Jérémie 52:24 |
+prophète des nations | prophète des nations | culte | Jérémie 1:5 |
+sabbat | sabbat | culte | Jérémie 17:21 | minuscule
+Pâque | Pâque | culte | 2 Rois 23:21 | la Pâque de Josias
+holocaustes | holocaustes | culte | Jérémie 7:21 |
+encens | encens | culte | Jérémie 1:16 |
+joug | joug | culte | Jérémie 27:8 | les liens et les jougs de Jérémie 27:2
+circoncis | circoncis | culte | Jérémie 9:25 |
+livre | livre | culte | Jérémie 36:2 | la LSG dit « livre » pour le rouleau dicté à Baruc ; « rouleau » admis dans le récit, jamais dans une citation
+livre de la loi | livre de la loi | culte | 2 Rois 22:8 | minuscule à « loi », comme la LSG
+cour de la prison | cour de la prison | lieu | Jérémie 32:2 |
+porte de Benjamin | porte de Benjamin | lieu | Jérémie 37:13 |
+cœur | coeur | mot courant | Jérémie 17:9 | ligature rétablie, voir style.md
