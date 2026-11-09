@@ -7,7 +7,7 @@
 # (accent sur la capitale initiale quand la syllabe est ouverte : Eternel devient Éternel, Egypte devient Égypte).
 # Chaque graphie LSG a été cherchée avec « outils/verset.py --chercher » puis contrôlée dans le verset cité par :
 #   python3 outils/controle_versets.py --lexique charte/lexique.txt
-# Le nom de l'auteur, Kouadio Koffi Elisée, s'écrit comme il le signe, sans accent : il n'entre pas dans ce lexique.
+# Le nom de l'auteur s'imprime « Kouadio Koffi Élisée » (consigne d'Akissi du 9 novembre 2026) : il n'entre pas dans ce lexique.
 #
 # Personnes : famille et entourage de Jérémie
 Jérémie | Jérémie | personne | Jérémie 1:1 | le prophète, fils de Hilkija ; homonyme : Jérémie de Libna, père de Hamuthal (Jérémie 52:1)
@@ -39,7 +39,7 @@ Hamuthal | Hamuthal | personne | Jérémie 52:1 | mère de Sédécias
 Jehudi | Jehudi | personne | Jérémie 36:14 | lit le rouleau devant Jojakim
 Elnathan | Elnathan | personne | Jérémie 36:12 | fils d'Acbor ; syllabe fermée, pas d'accent
 Acbor | Acbor | personne | Jérémie 36:12 | ne pas écrire « Achbor »
-Délaja | Delaja | personne | Jérémie 36:12 | voir la remarque de style.md sur les capitales : ici minuscule « e » dans la LSG, donc graphie du livre Delaja
+Delaja | Delaja | personne | Jérémie 36:12 | la règle d'accent ne vise que le E capital initial : pas d'accent
 Élischama | Elischama | personne | Jérémie 36:12 | secrétaire du roi
 Guemaria | Guemaria | personne | Jérémie 36:10 | fils de Schaphan
 Michée | Michée | personne | Jérémie 36:11 | fils de Guemaria ; homonyme : Michée de Moréscheth, le prophète (Jérémie 26:18)

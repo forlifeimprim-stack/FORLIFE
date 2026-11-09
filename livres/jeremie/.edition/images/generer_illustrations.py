@@ -439,7 +439,7 @@ def rameau(controles, largeur_base, largeur_bout, pas=60):
 
 def petale(r):
     return (f"M0,{fmt(-0.12 * r)} C{fmt(-0.48 * r)},{fmt(-0.22 * r)} {fmt(-0.56 * r)},{fmt(-0.92 * r)} "
-            f"{fmt(-0.13 * r)},{fmt(-r)} Q0,{fmt(-0.9 * r)} {fmt(0.13 * r)},{fmt(-r)} "
+            f"{fmt(-0.13 * r)},{fmt(-r)} Q0,{fmt(-0.95 * r)} {fmt(0.13 * r)},{fmt(-r)} "
             f"C{fmt(0.56 * r)},{fmt(-0.92 * r)} {fmt(0.48 * r)},{fmt(-0.22 * r)} 0,{fmt(-0.12 * r)} Z")
 
 
@@ -517,7 +517,7 @@ def couverture(avec_remparts=True):
                 "bouton": c["carmin"], "calice": c["ecorce"]}
     tige = ((152, 158), (112, 152), (74, 128), (24, 99))
     rameau_haut = (bezier(*tige, 0.38), (100, 128), (98, 112), (90, 99))
-    rameau_bas = (bezier(*tige, 0.62), (62, 128), (50, 140), (36, 146))
+    rameau_bas = (bezier(*tige, 0.62), (57, 133), (47, 141), (36, 146))
     rameau_court = (bezier(*tige, 0.18), (124, 140), (128, 128), (133, 120))
     svg.append(f'<g fill="{c["ecorce"]}">')
     svg.append(f'<path d="{rameau(tige, 7.5, 1.0)}"/>')
