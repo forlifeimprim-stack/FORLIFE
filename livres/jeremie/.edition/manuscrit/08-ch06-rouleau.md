@@ -12,7 +12,7 @@ La quatrième année du roi Jojakim, la carte du monde change. L’Égypte, qui 
 
 Le livre de Jérémie date avec soin ce tournant. Il parle de « l’armée de Pharaon Neco, roi d’Égypte, qui était près du fleuve de l’Euphrate, à Carkemisch, et qui fut battue par Nebucadnetsar, roi de Babylone, la quatrième année de Jojakim » (Jérémie 46:2). Un autre passage précise que cette quatrième année de Jojakim « était la première année de Nebucadnetsar » (Jérémie 25:1). Le roi de Babylone qui va dominer toute la suite de la vie de Jérémie entre ainsi dans le récit.
 
-Le livre des Rois résume les conséquences pour Juda : Jojakim fut assujetti à Nebucadnetsar pendant trois ans, puis il se révolta (2 Rois 24:1). Le livre de Daniel rapporte qu’au temps de Jojakim, Nebucadnetsar assiégea Jérusalem, emporta une partie des ustensiles de la maison de Dieu et fit emmener à Babylone des jeunes gens « de race royale ou de famille noble » (Daniel 1:3). Daniel était parmi eux (Daniel 1:6). C’est une première déportation, bien avant la chute de la ville.
+Le livre des Rois résume les conséquences pour Juda : Jojakim fut assujetti à Nebucadnetsar pendant trois ans, puis il se révolta (2 Rois 24:1). Le livre de Daniel rapporte qu’au temps de Jojakim, Nebucadnetsar assiégea Jérusalem et emporta une partie des ustensiles de la maison de Dieu. Il fit aussi emmener à Babylone des jeunes gens « de race royale ou de famille noble » (Daniel 1:3). Daniel était parmi eux (Daniel 1:6). C’est une première déportation, bien avant la chute de la ville.
 
 Daniel 1:1 parle de la troisième année de Jojakim, alors que Jérémie situe Carkemisch la quatrième. Le texte ne dit pas comment ces deux indications s’accordent, et nous les laissons telles qu’elles sont. Une chose est sûre : sous Jojakim, des fils de Juda partirent déjà pour Babylone.
 
@@ -54,6 +54,8 @@ Leur réaction est immédiate : « ils se regardèrent avec effroi les uns les a
 
 Ces hommes connaissent leur roi. Ils savent ce qu’il a fait au prophète Urie, ramené d’Égypte pour être mis à mort (Jérémie 26:23). Avant d’aller au palais, ils donnent donc un conseil à Baruc : « Va, cache-toi, ainsi que Jérémie, et que personne ne sache où vous êtes » (Jérémie 36:19). La peur de Dieu les pousse à porter la parole jusqu’au roi. La peur du roi les pousse à protéger ceux qui l’ont écrite.
 
+Leur question sur la manière dont le livre a été écrit mérite qu’on s’y arrête. Le texte ne dit pas pourquoi ils la posent. On peut penser qu’avant de rapporter au roi des paroles aussi graves, ils voulaient être sûrs qu’elles venaient bien de Jérémie et non de Baruc. La réponse du secrétaire est nette : il n’a rien ajouté, il a écrit ce que le prophète lui dictait. Rien ne dit que ces chefs étaient des proches de Jérémie : ils siègent au conseil d’un roi hostile. Pourtant, ce jour-là, ils prennent la parole au sérieux, et ils prennent aussi un risque pour ceux qui la portent.
+
 ## La maison d’hiver
 
 Les chefs laissent le livre dans la chambre d’Élischama et vont faire leur rapport au roi. Jojakim envoie Jehudi chercher le livre, et Jehudi le lit devant le roi et devant tous les chefs (Jérémie 36:20-21). Le texte décrit alors la scène avec une précision rare.
@@ -74,7 +76,7 @@ Le roi ordonne d’arrêter Baruc et Jérémie. Le récit s’arrête sur une ph
 
 Le livre a brûlé, mais la parole demeure. Dieu donne à Jérémie un ordre très simple : écrire à nouveau toutes les paroles du premier livre (Jérémie 36:28). Il ajoute une parole sur Jojakim : aucun des siens ne sera assis sur le trône de David, et « son cadavre sera exposé à la chaleur pendant le jour et au froid pendant la nuit » (Jérémie 36:30). Jérémie avait déjà annoncé au même roi « la sépulture d’un âne » (Jérémie 22:19). Nous verrons plus loin, avec la lettre pour Babylone, ce que le texte dit, et ne dit pas, de la fin de ce roi.
 
-Le dernier verset du chapitre raconte la réécriture : « Jérémie prit un autre livre, et le donna à Baruc, fils de Nérija, le secrétaire » (Jérémie 36:32). Baruc écrit tout ce qui était dans le livre brûlé, et le texte ajoute : « Beaucoup d’autres paroles semblables y furent encore ajoutées » (Jérémie 36:32). Le second livre est plus long que le premier. Le canif du roi n’a rien retranché à la parole. Le livre de Jérémie laisse ainsi entrevoir quelque chose de sa propre histoire : des paroles prononcées, dictées, lues, brûlées, écrites de nouveau, puis complétées.
+Le dernier verset du chapitre raconte la réécriture : « Jérémie prit un autre livre, et le donna à Baruc, fils de Nérija, le secrétaire » (Jérémie 36:32). Baruc écrit tout ce qui était dans le livre brûlé, et le texte ajoute : « Beaucoup d’autres paroles semblables y furent encore ajoutées » (Jérémie 36:32). Le second livre est plus long que le premier. Le canif du roi n’a rien retranché à la parole. Le livre de Jérémie laisse ainsi entrevoir quelque chose de sa propre histoire. Des paroles prononcées pendant vingt-trois ans ont été dictées, lues, brûlées, puis écrites de nouveau et complétées. Le texte rapporte ces étapes sans les commenter, et nous nous en tenons à ce qu’il dit.
 
 ::: encadre
 **Contexte historique : écrire un livre au temps de Jérémie**
@@ -99,6 +101,8 @@ Baruc, lui aussi, s’est plaint. Le texte rapporte ses mots : « Malheur à moi
 Le texte ne dit pas quelles grandes choses Baruc espérait. Dieu ne répond pas directement à sa plainte. Il remet les choses à leur place : quand tout le pays va être arraché, le moment n’est pas aux ambitions personnelles. Il lui promet une seule chose, mais elle est sûre : sa vie sera sauve, partout où il ira.
 
 Qui était Baruc ? Le livre le présente comme « Baruc, fils de Nérija, fils de Machséja » (Jérémie 32:12). Il gardera le contrat du champ d’Anathoth, et il restera auprès de Jérémie jusqu’à l’Égypte (Jérémie 43:6). Un autre homme porte exactement la même filiation : « Seraja, fils de Nérija, fils de Machséja », premier chambellan du roi Sédécias (Jérémie 51:59). On en déduit d’ordinaire que Seraja était le frère de Baruc. Le texte ne le dit pas, mais cette filiation identique le rend probable.
+
+Ce Seraja reçoit lui aussi, des années plus tard, un livre écrit par Jérémie. Il doit le lire à Babylone, puis y attacher une pierre et le jeter dans l’Euphrate, en disant : « Ainsi Babylone sera submergée, elle ne se relèvera pas » (Jérémie 51:64). Le livre brûlé par Jojakim et le livre jeté dans le fleuve se répondent. Dans les deux cas, l’écrit disparaît, et la parole qu’il portait s’accomplit quand même.
 
 ::: lecons
 **La parole ne brûle pas.** Jojakim a pu réduire en cendres un livre. Il n’a pas pu faire taire celui qui l’avait donné. Dieu a simplement dit : « Prends de nouveau un autre livre » (Jérémie 36:28). La parole que Dieu a fait réécrire ce jour-là est encore entre tes mains aujourd’hui. Cela ne veut pas dire que le serviteur de Dieu est à l’abri : Urie a été tué (Jérémie 26:23), Baruc et Jérémie ont dû se cacher. Mais ce que Dieu a dit demeure, et cela doit te donner du courage quand on se moque de la Bible autour de toi.

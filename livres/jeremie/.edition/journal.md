@@ -30,3 +30,4 @@
   5. Corps de texte gardé à 11 / 15 pt ; pagination attendue de 150 à 160 pages, Salif recalculera le dos sur la pagination réelle.
   6. « Forlife Com » reste sans apostrophe dans la biographie (texte validé repris mot pour mot). Formule de copyright d'Affoué acceptée.
 - Vers 13 h 55 UTC : limite d'utilisation atteinte une deuxième fois, pendant la rédaction (lots 1 à 3) et la couverture. Huit fichiers de chapitres et les pistes de couverture étaient écrits. Agents relancés à 18 h 35 UTC depuis leur point d'arrêt. (Akissi)
+- 18 h 35 UTC : pause demandée par l'utilisateur. Konan (lots 1 à 3) et Affoué (couverture) arrêtés ; reprise sur ordre de l'utilisateur, depuis les fichiers présents dans manuscrit/ et couverture/. (Akissi)

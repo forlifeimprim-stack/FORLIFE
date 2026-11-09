@@ -92,9 +92,13 @@ Nous reviendrons sur ces passages au chapitre 5, avec la prière de Jérémie lu
 
 Malgré tout, Jérémie resta « d’Anathoth ». Des années plus tard, un homme écrivit de Babylone pour se plaindre de lui et le désigna ainsi : « Jérémie d’Anathoth, qui prophétise parmi vous » (Jérémie 29:27). Le nom de sa ville restait attaché à son nom.
 
+Le pays de Benjamin resta aussi le sien. Pendant le siège de Jérusalem, quand l’armée des Chaldéens s’éloigna un moment de la ville, « Jérémie voulut sortir de Jérusalem, pour aller dans le pays de Benjamin et s’échapper du milieu du peuple » (Jérémie 37:12). Le texte ne dit pas qu’il se rendait à Anathoth, ni ce qu’il comptait y faire. Il rapporte seulement qu’il fut arrêté à la porte de Benjamin par un commandant de la garde, qui l’accusa de passer à l’ennemi (Jérémie 37:13). Jérémie protesta : « C’est faux ! je ne passe pas aux Chaldéens » (Jérémie 37:14). Il ne fut pas écouté, et cette sortie manquée le conduisit en prison.
+
 Et Anathoth revint dans sa vie au moment le plus sombre. Pendant le siège de Jérusalem, alors que Jérémie était enfermé dans la cour de la prison, son cousin Hanameel vint le trouver. Dieu l’avait averti : Hanameel, « fils de ton oncle Schallum », allait lui dire : « Achète mon champ qui est à Anathoth, car tu as le droit de rachat pour l’acquérir » (Jérémie 32:7). Le droit de rachat permettait au plus proche parent de garder une terre dans la famille (Lévitique 25:25).
 
-Jérémie acheta le champ. « J’achetai de Hanameel, fils de mon oncle, le champ qui est à Anathoth, et je lui pesai l’argent, dix-sept sicles d’argent » (Jérémie 32:9). L’achat semblait absurde : le pays allait tomber aux mains des Chaldéens. Mais Dieu en fit un signe d’espérance : « On achètera encore des maisons, des champs et des vignes, dans ce pays » (Jérémie 32:15). La ville qui avait voulu le tuer devint le lieu d’une promesse. Le chapitre 9 racontera cette scène en détail.
+Jérémie acheta le champ. « J’achetai de Hanameel, fils de mon oncle, le champ qui est à Anathoth, et je lui pesai l’argent, dix-sept sicles d’argent » (Jérémie 32:9). L’achat semblait absurde : le pays allait tomber aux mains des Chaldéens. Mais Dieu en fit un signe d’espérance : « On achètera encore des maisons, des champs et des vignes, dans ce pays » (Jérémie 32:15). La ville qui avait voulu le tuer devint le lieu d’une promesse.
+
+Le prophète fit les choses selon les règles. « J’écrivis un contrat, que je cachetai, je pris des témoins, et je pesai l’argent dans une balance » (Jérémie 32:10). Puis il fit placer les deux exemplaires du contrat « dans un vase de terre, afin qu’ils se conservent longtemps » (Jérémie 32:14). Un acte de propriété pour un champ que l’ennemi allait occuper : le geste disait que la vie reprendrait un jour à Anathoth. Le chapitre 9 racontera cette scène en détail.
 
 Beaucoup de lecteurs reconnaîtront dans cet épisode le poids de la terre familiale, ce champ qui ne doit pas sortir de la famille et pour lequel on fait appel au parent qui peut le racheter. Jérémie, rejeté par les siens, répondit pourtant à la demande de son cousin.
 
@@ -106,6 +110,8 @@ L’appel de Dieu s’inscrit dans une histoire familiale, mais il n’en dépen
 Être fidèle à Dieu peut coûter l’accueil des siens. « Tes frères eux-mêmes et la maison de ton père te trahissent » (Jérémie 12:6). Jérémie a été rejeté parce qu’il parlait au nom de l’Éternel (Jérémie 11:21), et le texte ne lui reproche aucun tort envers les siens. Si tu es incompris ou mis à l’écart par des proches à cause de ta foi, tu n’es pas le premier. Dieu prévient Jérémie pour qu’il ne soit pas surpris, et lui demande de ne pas se fier à leurs paroles amicales. Il ne lui demande pas de les haïr. Plus tard, Jérémie rachètera le champ de son cousin, dans cette même ville d’Anathoth.
 
 Dieu garde la mémoire des petits lieux. Anathoth n’était qu’un bourg parmi d’autres. Pourtant elle apparaît dans les débuts de la monarchie, dans le livre de Jérémie, et encore dans les listes du retour d’exil (Esdras 2:23). Dieu n’oublie pas les lieux ni les gens que l’histoire néglige. Le village ou le quartier où tu as grandi, l’église modeste où tu sers, ne sont pas trop petits pour lui.
+
+Enfin, une promesse de Dieu peut s’enraciner là où tu as été blessé. Anathoth avait voulu faire taire Jérémie (Jérémie 11:21). C’est pourtant un champ d’Anathoth que Dieu choisit pour annoncer le retour de son peuple (Jérémie 32:15). Nous aimerions parfois effacer de notre histoire les lieux où nous avons souffert. Dieu, lui, peut en faire des signes de sa fidélité. La blessure n’en devient pas bonne pour autant, et tu n’as pas à l’oublier ; mais elle n’a pas le dernier mot.
 :::
 
 ::: questions

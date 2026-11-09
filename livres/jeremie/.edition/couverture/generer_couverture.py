@@ -335,7 +335,7 @@ def plat4_et_dos(piste, dos, impression, livre, quatrieme, paysage):
                     f'EAN-13 à {EAN_GRANDISSEMENT * 100:.0f}&nbsp;%</div></div>')
     elements.append(f'<div class="bloc mention" style="left:{gauche}mm; top:{bas_utile - 8.5:.2f}mm; '
                     f'width:{cart_x - gauche - 6:.2f}mm; color:{c["texte"]}">'
-                    f'<span style="color:{c["titre"]}; font-weight:700; letter-spacing:0.18em">'
+                    f'<span style="color:{c["titre"]}; font-weight:700; letter-spacing:0.18em; margin-right:-0.18em">'
                     f'{echapper(mentions["Éditeur"].split(",")[0]).upper()}</span>'
                     f'{echapper(insecables("," + mentions["Éditeur"].split(",", 1)[1]))}<br>'
                     f'{echapper(insecables("Prix : " + mentions["Prix"]))}</div>')
@@ -505,13 +505,14 @@ def main():
         paysage = svg_paysage_arriere(travail, dos)
         x_plat1 = FONDS_PERDUS + FORMAT_L + dos - FONDS_PERDUS
         for impression in (True, False):
-            elements = plat4_et_dos(args.piste, dos, impression, livre, quatrieme, paysage)
-            # Le plat 1 est rogné à son pli : ses 3 mm de fonds perdus côté dos ne recouvrent pas le dos.
+            # Le plat 1 est posé d'abord, ses 3 mm de fonds perdus glissés sous le dos ; le dos et la
+            # quatrième le recouvrent jusqu'au pli, sans découpe au pli qui laisserait un filet clair.
             plat = plat1(args.piste, 0, impression, livre, illustrations[args.piste])
-            elements.append(f'<div class="bloc" style="left:{x_plat1 + FONDS_PERDUS:.3f}mm; top:0; '
-                            f'width:{FORMAT_L + FONDS_PERDUS}mm; height:216mm; overflow:hidden">'
-                            f'<div class="bloc" style="left:-{FONDS_PERDUS}mm; top:0; width:146mm; height:216mm">'
-                            f'{"".join(plat)}</div></div>')
+            elements = [f'<div class="bloc" style="left:{x_plat1:.3f}mm; top:0; width:146mm; height:216mm">'
+                        f'{"".join(plat[:1 if args.piste == "A" else 2])}</div>']
+            elements += plat4_et_dos(args.piste, dos, impression, livre, quatrieme, paysage)
+            elements.append(f'<div class="bloc" style="left:{x_plat1:.3f}mm; top:0; width:146mm; height:216mm">'
+                            f'{"".join(plat[1 if args.piste == "A" else 2:])}</div>')
             html = document(largeur_totale, elements, polices)
             cible = COUVERTURE / "couverture-gabarit.pdf" if impression else travail / "gabarit-rvb.pdf"
             composer(html, cible, configuration, impression, 2 * FORMAT_L + dos)
