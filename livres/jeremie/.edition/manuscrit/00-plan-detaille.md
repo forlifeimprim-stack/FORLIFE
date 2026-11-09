@@ -26,7 +26,7 @@ La structure de travail est conservée (avant-propos, introduction, douze chapit
 1. Jérémie 19:1 à 20:6 (le vase brisé, puis Paschhur et les ceps) passe du chapitre 7 au chapitre 5. La confession la plus forte du livre (Jérémie 20:7-18) suit immédiatement la nuit dans les ceps ; les séparer obligerait à raconter la réaction avant l'événement. Le chapitre 7 rappelle le vase brisé en une phrase.
 2. Jérémie 43:8 à 44:30 (les pierres de Tachpanès, la reine du ciel) passe du chapitre 11 au chapitre 12, qui est le chapitre de l'Égypte. Le chapitre 11 s'arrête à l'arrivée à Tachpanès (Jérémie 43:7).
 3. La lecture de la nouvelle alliance dans le Nouveau Testament (Luc 22:20, Hébreux 8:8-13, 2 Corinthiens 3:6) est développée au chapitre 9, où l'alliance nouvelle est annoncée, au lieu d'être coupée entre deux chapitres. Le chapitre 12, déjà chargé (Égypte, six chapitres d'oracles, héritage), n'y fait qu'un renvoi.
-4. Trois textes absents de la liste sont intégrés parce qu'ils jalonnent la vie de Jérémie : Jérémie 25 (vingt-trois ans de ministère, soixante-dix ans annoncés) au chapitre 6, Jérémie 35 (les Récabites) au chapitre 7, Jérémie 24 et Jérémie 22:24-30 (Jojakin et la première déportation) au chapitre 8.
+4. Trois textes absents de la liste sont intégrés parce qu'ils jalonnent la vie de Jérémie : Jérémie 25 (vingt-trois ans de ministère, soixante-dix ans annoncés) au chapitre 6, Jérémie 35 (les Récabites) au chapitre 7, Jérémie 24 et Jérémie 22:24-30 (Jojakin et la déportation de vers 597 av. J.-C.) au chapitre 8. Daniel 1:1-3 et 2 Chroniques 36:6-7 entrent au chapitre 6, parce qu'ils rapportent une déportation antérieure, sous Jojakim.
 
 Une annexe facultative « Qui est qui » est aussi proposée (voir la fin du plan), parce que les homonymes sont nombreux (deux Hilkija, deux Paschhur, deux Schallum, plusieurs Sédécias).
 
@@ -144,14 +144,14 @@ Positions de l'auteur requises :
 
 Période et rois : de la treizième à la trente et unième année de Josias (vers 627 à vers 609 av. J.-C.), puis les trois mois de Joachaz, appelé Schallum par Jérémie. Rois : Josias, Joachaz. Pharaon Néco.
 
-Passages couverts : Jérémie 2:1-13 ; Jérémie 3:6-14 ; Jérémie 4:1-4 ; Jérémie 4:19-22 ; Jérémie 5:1 ; Jérémie 6:14 ; Jérémie 6:16 ; Jérémie 11:1-8 ; Jérémie 22:10-12 ; Jérémie 22:15-16 ; 2 Rois 22:3-20 ; 2 Rois 23:1-25 ; 2 Rois 23:29-34 ; 2 Chroniques 34:3-7 ; 2 Chroniques 35:20-25 ; Sophonie 1:1.
+Passages couverts : Jérémie 2:1-13 ; Jérémie 3:6-14 ; Jérémie 4:1-4 ; Jérémie 4:19-22 ; Jérémie 5:1 ; Jérémie 6:14 ; Jérémie 6:16 ; Jérémie 11:1-8 ; Jérémie 22:10-12 ; Jérémie 22:15-16 ; 2 Rois 22:3-20 ; 2 Rois 23:1-25 ; 2 Rois 23:29-34 ; 2 Chroniques 34:3-8 ; 2 Chroniques 35:20-25 ; Sophonie 1:1.
 
 Déroulé :
 
 1. Le premier message : l'amour des fiançailles et les citernes crevassées (Jérémie 2:1-13).
 2. « Au temps du roi Josias » : Israël l'infidèle et Juda la perfide, et l'appel au retour (Jérémie 3:6-14 ; Jérémie 4:1-4).
 3. Le livre de la loi trouvé dans le temple, le roi qui déchire ses vêtements, la consultation de la prophétesse Hulda (2 Rois 22:3-20). Le texte ne dit pas pourquoi Jérémie ne fut pas consulté ; Sophonie prophétise à la même époque (Sophonie 1:1).
-4. La réforme : alliance renouvelée, purification du pays, Pâque (2 Rois 23:1-25 ; 2 Chroniques 34:3-7). Certains rattachent Jérémie 11:1-8 (« les paroles de cette alliance ») à ce moment ; le texte ne le précise pas.
+4. La réforme, étape par étape, d'après les années de règne que donne le texte, sans date ferme : la huitième année, Josias « commença à rechercher le Dieu de David », et la douzième, « à purifier Juda et Jérusalem » (2 Chroniques 34:3-7) ; la dix-huitième année, la réparation du temple et la découverte du livre (2 Chroniques 34:8 ; 2 Rois 22:3) ; puis l'alliance renouvelée, la purification du pays et la Pâque (2 Rois 23:1-25). Les deux livres ne racontent pas les étapes dans le même ordre ; le chapitre suit leurs indications d'années et le signale. L'appel de Jérémie, la treizième année (Jérémie 1:2), tombe donc entre le début de la purification et la découverte du livre. Certains rattachent Jérémie 11:1-8 (« les paroles de cette alliance ») à ce moment ; le texte ne le précise pas.
 5. Une réforme qui ne touche pas les cœurs : Juda revenue « avec fausseté » (Jérémie 3:10), personne qui pratique la justice (Jérémie 5:1), « Paix! paix! » (Jérémie 6:14), les anciens sentiers refusés (Jérémie 6:16).
 6. La douleur du prophète qui entend la trompette (Jérémie 4:19-22).
 7. Meguiddo : Josias tué par Pharaon Néco (2 Rois 23:29-30 ; 2 Chroniques 35:20-24), la complainte de Jérémie (2 Chroniques 35:25), et l'éloge de Josias par Jérémie (Jérémie 22:15-16).
@@ -254,11 +254,11 @@ Positions de l'auteur requises :
 
 Période et rois : quatrième et cinquième années de Jojakim (vers 605 av. J.-C. pour la quatrième). Rois : Jojakim ; Nebucadnetsar, roi de Babylone.
 
-Passages couverts : Jérémie 46:2 ; Jérémie 25:1-14 ; Jérémie 36:1-32 ; Jérémie 45:1-5 ; Jérémie 26:22 ; Jérémie 32:12 ; Jérémie 51:59 ; 2 Rois 22:11 ; 2 Rois 24:1 ; Jérémie 22:18-19.
+Passages couverts : Jérémie 46:2 ; Daniel 1:1-3 ; Daniel 1:6 ; Jérémie 25:1-14 ; Jérémie 36:1-32 ; Jérémie 45:1-5 ; Jérémie 26:22 ; Jérémie 32:12 ; Jérémie 51:59 ; 2 Rois 22:11 ; 2 Rois 24:1 ; Jérémie 22:18-19.
 
 Déroulé :
 
-1. L'année de Carkemisch : Néco battu par Nebucadnetsar (Jérémie 46:2), « la première année de Nebucadnetsar » (Jérémie 25:1).
+1. L'année de Carkemisch : Néco battu par Nebucadnetsar (Jérémie 46:2), « la première année de Nebucadnetsar » (Jérémie 25:1). À la même époque, Daniel 1:1-3 rapporte un siège de Jérusalem et le départ pour Babylone de jeunes gens de race royale ou de famille noble, parmi lesquels Daniel (Daniel 1:6) : une première déportation, sous Jojakim. Daniel 1:1 dit « la troisième année » de Jojakim, Jérémie 46:2 « la quatrième » pour Carkemisch [À VÉRIFIER : façon de compter les années de règne ; ne rien affirmer sans source imprimée].
 2. Vingt-trois ans de paroles et soixante-dix ans annoncés (Jérémie 25:1-14).
 3. « Prends un livre » : la dictée à Baruc ; Jérémie « retenu », sans que le texte dise pourquoi (Jérémie 36:1-8).
 4. Le jour du jeûne, la lecture dans la chambre de Guemaria (Jérémie 36:9-10).
@@ -324,14 +324,14 @@ Positions de l'auteur requises :
 
 ## Chapitre 8. Une lettre pour Babylone
 
-Période et rois : fin du règne de Jojakim, trois mois de Jojakin et première déportation (vers 597 av. J.-C.), début du règne de Sédécias. Rois : Jojakim, Jojakin (Jeconia), Sédécias ; Nebucadnetsar.
+Période et rois : fin du règne de Jojakim, trois mois de Jojakin et déportation de Jojakin (vers 597 av. J.-C.), début du règne de Sédécias. Ce n'est pas la première déportation : Daniel 1:1-3 en rapporte une sous Jojakim (voir chapitre 6). Rois : Jojakim, Jojakin (Jeconia), Sédécias ; Nebucadnetsar.
 
-Passages couverts : 2 Rois 24:1-17 ; Jérémie 22:18-19 ; Jérémie 22:24-30 ; Jérémie 24:1-10 ; Jérémie 29:1-32 ; Jérémie 52:28 ; Daniel 9:2 ; 2 Chroniques 36:21-22 ; Esdras 1:1 ; Ézéchiel 1:1-3.
+Passages couverts : 2 Rois 24:1-17 ; 2 Chroniques 36:6-7 ; Jérémie 22:18-19 ; Jérémie 22:24-30 ; Jérémie 24:1-10 ; Jérémie 29:1-32 ; Jérémie 52:28 ; Daniel 9:2 ; 2 Chroniques 36:21-22 ; Esdras 1:1 ; Ézéchiel 1:1-3.
 
 Déroulé :
 
-1. La révolte et la mort de Jojakim (2 Rois 24:1-6). Le livre des Rois dit qu'il « se coucha avec ses pères » ; Jérémie avait annoncé la sépulture d'un âne (Jérémie 22:18-19). Le texte ne raconte pas comment cette parole s'accomplit, et le chapitre le dit.
-2. Jojakin, trois mois, et la première déportation (2 Rois 24:8-17) ; l'anneau arraché de la main de Dieu (Jérémie 22:24-30).
+1. La révolte et la mort de Jojakim (2 Rois 24:1-6). Les Chroniques disent que Nebucadnetsar le lia de chaînes « pour le conduire à Babylone » (2 Chroniques 36:6-7) ; le texte ne dit pas s'il y fut emmené. Le livre des Rois dit qu'il « se coucha avec ses pères » ; Jérémie avait annoncé la sépulture d'un âne (Jérémie 22:18-19). Le texte ne raconte pas comment cette parole s'accomplit, et le chapitre le dit.
+2. Jojakin, trois mois, et la déportation de vers 597 av. J.-C. (2 Rois 24:8-17) ; l'anneau arraché de la main de Dieu (Jérémie 22:24-30).
 3. Deux paniers de figues devant le temple : les exilés ne sont pas les rejetés (Jérémie 24:1-10).
 4. La lettre : bâtissez, plantez, mariez-vous, recherchez le bien de la ville (Jérémie 29:1-7).
 5. Ne vous laissez pas tromper : les faux prophètes de l'exil (Jérémie 29:8-9 ; Jérémie 29:21-23).
@@ -516,7 +516,7 @@ Positions de l'auteur requises :
 
 Longueur cible : 700 mots de texte, hors index.
 
-A. Chronologie. Tableau des rois avec les durées bibliques (Josias trente et un ans, 2 Rois 22:1 ; Joachaz trois mois, 2 Rois 23:31 ; Jojakim onze ans, 2 Rois 23:36 ; Jojakin trois mois, 2 Rois 24:8 ; Sédécias onze ans, 2 Rois 24:18) et les événements de la vie de Jérémie. Repères usuels : appel vers 627 ; mort de Josias à Meguiddo vers 609 ; Carkemisch vers 605 ; déportation de Jojakin vers 597 ; chute de Jérusalem en 587 ou 586 av. J.-C. Repères à vérifier avant impression : livre de la loi trouvé [À VÉRIFIER : vers 622] ; chute de Ninive [À VÉRIFIER : vers 612] ; quatrième année de Sédécias [À VÉRIFIER : vers 594 ou 593] ; début du siège [À VÉRIFIER : vers 588] ; libération de Jojakin [À VÉRIFIER : vers 561 ou 560] ; première année de Cyrus [À VÉRIFIER : vers 539 ou 538].
+A. Chronologie. Tableau des rois avec les durées bibliques (Josias trente et un ans, 2 Rois 22:1 ; Joachaz trois mois, 2 Rois 23:31 ; Jojakim onze ans, 2 Rois 23:36 ; Jojakin trois mois, 2 Rois 24:8 ; Sédécias onze ans, 2 Rois 24:18) et les événements de la vie de Jérémie. Repères usuels : appel vers 627 ; mort de Josias à Meguiddo vers 609 ; Carkemisch vers 605 ; déportation de Jojakin vers 597 ; chute de Jérusalem en 587 ou 586 av. J.-C. Étapes de Josias d'après le texte, sans date ferme : huitième, douzième et dix-huitième années de règne (2 Chroniques 34:3 ; 2 Rois 22:3). Déportations : sous Jojakim (Daniel 1:1-3), sous Jojakin (2 Rois 24:10-16), après la chute (2 Rois 25:11), avec les chiffres de Jérémie 52:28-30 donnés tels quels. Repères à vérifier avant impression : livre de la loi trouvé [À VÉRIFIER : vers 622] ; chute de Ninive [À VÉRIFIER : vers 612] ; quatrième année de Sédécias [À VÉRIFIER : vers 594 ou 593] ; début du siège [À VÉRIFIER : vers 588] ; libération de Jojakin [À VÉRIFIER : vers 561 ou 560] ; première année de Cyrus [À VÉRIFIER : vers 539 ou 538].
 
 B. Carte (avec Kouamé, T06). Lieux cités : Anathoth, Jérusalem, Rama, Mitspa, Gabaon, Silo, Kirjath-Jearim, Moréscheth, Lakis, Azéka, Jéricho, Meguiddo, Ribla, Hamath, Carkemisch, l'Euphrate, Babylone, Tachpanès, Migdol, Noph, Pathros ; Moab, Ammon, Édom, les Philistins, Damas, Kédar, Élam pour les oracles.
 

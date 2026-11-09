@@ -416,9 +416,13 @@ figcaption {
 /* Carte de Kouamé (120 × 170 mm) : plus large que le rectangle de texte (105 mm), elle déborde
    de 7,5 mm à gauche et reste à 7,5 mm au moins de la coupe sur une page paire comme impaire. */
 figure.pleine-page {
+  page: figure;
   break-before: page;
   break-after: page;
   margin: 0;
+}
+@page figure {
+  @top-center { content: none; }
 }
 .pleine-page img {
   width: 120mm;
