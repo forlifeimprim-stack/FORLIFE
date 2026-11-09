@@ -9,7 +9,7 @@ Tenu par Akissi. Statuts : À FAIRE, EN COURS, TERMINÉ, PARTIEL, BLOQUÉ.
 | T03 | Charte de voix et plan détaillé du livre | konan | T01 | `charte/voix.md`, `manuscrit/00-plan-detaille.md` | EN COURS |
 | T04 | Feuille de style et lexique des noms propres | amenan | T01 | `charte/style.md`, `charte/lexique.txt` | EN COURS |
 | T05 | Recherche iconographique, registre des droits, page des crédits | yao | T01 | `droits/images.md` | TERMINÉ |
-| T06 | Bible visuelle, carte, frise des rois, illustration de couverture | kouame | T01 | SVG dans `images/`, `charte/illustration.md` | EN COURS |
+| T06 | Bible visuelle, carte, frise des rois, illustration de couverture | kouame | T01 | SVG dans `images/`, `charte/illustration.md` | TERMINÉ |
 | T07 | Charte graphique, CSS intérieur, maquette type | affoue | T01 | `charte/graphique.md`, `charte/interieur.css`, pages test rendues | EN COURS |
 | T08 | Fiche de fabrication préliminaire, demandes de devis en brouillon | salif | T01 | `fabrication/fiche-fabrication.md` | TERMINÉ |
 | T09 | Validation du plan détaillé | akissi | T03 | décision au journal | À FAIRE |

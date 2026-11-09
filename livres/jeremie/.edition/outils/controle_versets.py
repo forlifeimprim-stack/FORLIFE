@@ -8,7 +8,7 @@ Convention de balisage (détaillée dans charte/style.md, section « Balisage de
   - citation dans le texte : « texte cité » (Jérémie 1:5)
   - citation en bloc : lignes commençant par « > », la dernière ligne du bloc étant « > (Jérémie 20:9) »
   - coupure : […] ou [...]
-Les références seules entre parenthèses, sans citation, sont vérifiées aussi (existence du passage).
+Les renvois sans citation (« Jérémie 36 », « voir Jérémie 1:5, 9 ; 20:9 ») sont vérifiés aussi : le passage doit exister.
 
 Relevé : CONFORME, ÉCART (détail mot à mot) ou RÉFÉRENCE INTROUVABLE. Code de sortie 1 s'il reste
 un écart ou une référence introuvable.

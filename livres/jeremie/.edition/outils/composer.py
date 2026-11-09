@@ -48,8 +48,10 @@ CORRESPONDANCES = {0x202F: 0x2009, 0x2010: 0x2D, 0x2011: 0x2D}
 TITRE_COURANT_MAX = 55
 
 FILTRE_LUA = r'''
+-- Titres par défaut ; une première ligne entièrement en gras les remplace (charte/style.md, § 14).
 local TITRES = {
-  encadre = "Contexte historique",
+  encadre = false,
+  application = false,
   lecons = "Leçons pour aujourd’hui",
   questions = "Pour méditer",
   priere = "Prière",
@@ -59,27 +61,33 @@ function Note(n)
   return pandoc.Span(pandoc.utils.blocks_to_inlines(n.content), {class = "note"})
 end
 
--- Un paragraphe qui ne contient que [Référence]{.ref} devient la ligne de référence du bloc.
-function Para(p)
-  local reference = nil
-  for _, el in ipairs(p.content) do
-    if el.t == "Span" and el.classes:includes("ref") and reference == nil then
-      reference = el
-    elseif el.t ~= "Space" and el.t ~= "SoftBreak" then
-      return nil
+-- Dernière ligne d'un bloc « > » : la référence seule entre parenthèses, « (Jérémie 1:4-10) ».
+function BlockQuote(b)
+  local dernier = b.content[#b.content]
+  if dernier and dernier.t == "Para" then
+    local texte = pandoc.utils.stringify(dernier)
+    if texte:match("^%(.*%d.*%)$") then
+      b.content[#b.content] = pandoc.Div({dernier}, {class = "reference"})
+      return b
     end
   end
-  if reference then
-    return pandoc.Div({pandoc.Para(reference.content)}, {class = "reference"})
+end
+
+local function titre_en_gras(d)
+  local premier = d.content[1]
+  if premier and premier.t == "Para" and #premier.content == 1 and premier.content[1].t == "Strong" then
+    table.remove(d.content, 1)
+    return premier.content[1].content
   end
 end
 
 function Div(d)
-  for classe, titre in pairs(TITRES) do
+  for classe, defaut in pairs(TITRES) do
     if d.classes:includes(classe) then
-      local texte = (d.attributes.titre or titre):gsub("'", "’")
-      d.attributes.titre = nil
-      table.insert(d.content, 1, pandoc.Div({pandoc.Para({pandoc.Str(texte)})}, {class = "bloc-titre"}))
+      local titre = titre_en_gras(d) or (defaut and {pandoc.Str(defaut)})
+      if titre then
+        table.insert(d.content, 1, pandoc.Div({pandoc.Para(titre)}, {class = "bloc-titre"}))
+      end
       return d
     end
   end
@@ -128,7 +136,11 @@ def markdown_vers_html(fichiers, dossier_travail):
 ESPACES = "[   ]*"
 APRES_PONCTUATION = r"(?=[\s  »)\]’”.,…;:!?]|$)"
 AVANT_PONCTUATION = r"(?<=[^\s  ;:!?(\[«])"
+LIVRES_NUMEROTES = "Samuel|Rois|Chroniques|Corinthiens|Thessaloniciens|Timothée|Pierre|Jean"
 REGLES = [
+    (re.compile(r"(?<![\w:])([1-3]) (?=(?:" + LIVRES_NUMEROTES + r")\b)"), "\\1\u00a0"),
+    (re.compile(r"(\d) av\. ?J\.-C\."), "\\1\u00a0av.\u00a0J.-C."),
+    (re.compile(r"(?<![\d:,.])(\d{1,3}) (\d{3})(?!\d)"), "\\1\u202f\\2"),
     (re.compile(AVANT_PONCTUATION + ESPACES + r"([;!?])" + APRES_PONCTUATION), " \\1"),
     (re.compile(AVANT_PONCTUATION + ESPACES + r":" + APRES_PONCTUATION), " :"),
     (re.compile("«" + ESPACES), "« "),
@@ -244,6 +256,10 @@ def ouvrir_les_chapitres(corps):
     corps = re.sub(r'<section id="([^"]*)" class="level1([^"]*)"([^>]*)>\s*<h1([^>]*)>(.*?)</h1>',
                    ouverture, corps, flags=re.S)
     corps = corps.replace("<hr />", fleuron("fleuron-pause"))
+    # Pandoc pose la classe {.pleine-page} sur l'image : la mise en page en a besoin sur la figure.
+    corps = re.sub(r'<figure>(\s*<img [^>]*class="pleine-page")', r'<figure class="pleine-page">\1', corps)
+    # Siècles (VII^e^) : la police n'a pas de petites capitales, on réduit les capitales romaines.
+    corps = re.sub(r"\b([IVXLC]+)(<sup>(?:e|er|re)</sup>)", r'<span class="siecle">\1</span>\2', corps)
     return corps, entrees
 
 

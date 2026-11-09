@@ -17,3 +17,4 @@
 - Question ouverte pour l'utilisateur : qui signe pour l'éditeur Forlife Imprim (l'auteur en est cofondateur) ; positions doctrinales attendues pour le 20 novembre. (Akissi)
 - T06 Kouamé TERMINÉ (une correction demandée) : carte, frise, deux couvertures à l'amandier, fleuron, bible visuelle. Contrôle Akissi : couverture regardée (zone calme du titre en haut, conforme), carte regardée, graphies « Carkemisch » et « Tachpanès » confirmées dans la LSG (« Taphnès » n'y figure pas). Défaut renvoyé à Kouamé : Jérusalem trop proche de la côte sur la grande carte. Fond de carte dessiné par Kouamé, sans source tierce. (Akissi)
 - Outil verset.py : sortie interrompue par « head » sans trace d'erreur. (Akissi)
+- T06 : Kouamé a mesuré 51 à 56 km entre Jérusalem et la côte sur la carte, conformes à la réalité ; l'impression de proximité venait de l'échelle et du cadre de l'encart. Mesure acceptée, carte gardée telle quelle. T06 TERMINÉ. (Akissi)

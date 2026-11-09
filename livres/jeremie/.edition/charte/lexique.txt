@@ -106,7 +106,7 @@ Assyrie | Assyrie | lieu | Jérémie 2:18 |
 Euphrate | Euphrate | lieu | Jérémie 13:4 | « eu » initial : pas d'accent
 Babylone | Babylone | lieu | Jérémie 20:4 | jamais « Babel » pour la ville de Nebucadnetsar
 Schéschac | Schéschac | lieu | Jérémie 25:26 | nom chiffré de Babylone
-Carkemisch | Carkemisch | lieu | Jérémie 46:2 | ne pas écrire « Karkemisch »
+Carkemisch | Carkemisch | lieu | Jérémie 46:2 | ne pas écrire « Karkemisch » ; aussi 2 Chroniques 35:20 et Ésaïe 10:9 (graphie confirmée par Kouamé pour la carte)
 Meguiddo | Meguiddo | lieu | 2 Rois 23:29 | mort de Josias ; absent du livre de Jérémie
 Ribla | Ribla | lieu | Jérémie 39:5 |
 Hamath | Hamath | lieu | Jérémie 39:5 |
@@ -123,7 +123,7 @@ Sichem | Sichem | lieu | Jérémie 41:5 |
 Samarie | Samarie | lieu | Jérémie 41:5 |
 Kimham | Kimham | lieu | Jérémie 41:17 | « l'hôtellerie de Kimham près de Bethléhem »
 Bethléhem | Bethléhem | lieu | Jérémie 41:17 |
-Tachpanès | Tachpanès | lieu | Jérémie 43:7 | ne pas écrire « Taphnès »
+Tachpanès | Tachpanès | lieu | Jérémie 43:7 | ne pas écrire « Taphnès », absent de la LSG ; aussi Jérémie 2:16 (graphie confirmée par Kouamé pour la carte)
 Migdol | Migdol | lieu | Jérémie 44:1 |
 Noph | Noph | lieu | Jérémie 44:1 |
 Pathros | Pathros | lieu | Jérémie 44:1 |
@@ -141,6 +141,8 @@ Sidon | Sidon | lieu | Jérémie 47:4 |
 Gaza | Gaza | lieu | Jérémie 47:1 |
 Uphaz | Uphaz | lieu | Jérémie 10:9 |
 Ararat | Ararat | lieu | Jérémie 51:27 |
+Hiddékel | Hiddékel | lieu | Genèse 2:14 | le Tigre ; « Tigre » est absent de la LSG ; aussi Daniel 10:4 ; graphie de la carte de Kouamé
+grande mer | grande mer | lieu | Nombres 34:6 | la Méditerranée ; minuscules dans la LSG et dans le récit (« la grande mer ») ; « Grande mer » sur la carte, où l'étiquette commence par une capitale
 Ninive | Ninive | lieu | 2 Rois 19:36 | absent du livre de Jérémie
 # Peuples et groupes
 Chaldéens | Chaldéens | peuple | Jérémie 21:4 | nom employé par Jérémie pour les Babyloniens

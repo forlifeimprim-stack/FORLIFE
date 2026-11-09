@@ -108,14 +108,17 @@ p + p { text-indent: 1.2em; }
 em { font-style: italic; }
 strong { font-weight: 600; }
 
-/* Numéros de versets (^4^ dans le manuscrit) */
+/* Exposants (VII^e^ siècle, I^er^). Les citations bibliques n'ont pas de numéros de versets. */
 sup {
-  font-family: "Alegreya Sans", sans-serif;
-  font-weight: 500;
-  font-size: 6.5pt;
+  font-size: 0.65em;
   line-height: 0;
-  vertical-align: 0.45em;
-  padding-right: 0.15em;
+  vertical-align: 0.4em;
+}
+
+/* Siècles en chiffres romains : petites capitales simulées (la police n'en a pas) */
+.siecle {
+  font-size: 0.8em;
+  letter-spacing: 0.05em;
 }
 
 a { color: inherit; text-decoration: none; }
@@ -226,6 +229,11 @@ h3 {
   margin: 0 0 22.5pt 32%;
   break-inside: avoid;
 }
+.epigraphe blockquote {
+  margin: 0;
+  padding: 0;
+  border: none;
+}
 .epigraphe p {
   font-style: italic;
   font-size: 10.5pt;
@@ -234,7 +242,7 @@ h3 {
   hyphens: manual;
 }
 .epigraphe p + p { text-indent: 0; }
-.epigraphe .reference p { font-style: normal; text-align: right; }
+.epigraphe .reference p { font-style: normal; text-align: right; margin-top: 3pt; }
 
 /* ---------- Citation biblique longue (> dans le manuscrit) ---------- */
 
@@ -284,6 +292,23 @@ blockquote .reference p { margin-top: 4pt; }
 .encadre .bloc-titre + p { text-indent: 0; }
 .encadre blockquote { margin: 6pt 0; border-left-color: var(--noir); }
 .encadre blockquote p { font-size: 9.5pt; line-height: 13pt; }
+
+/* ---------- Encadré « application » (pistes pour aujourd'hui) ---------- */
+
+.application {
+  border: 0.6pt solid var(--noir);
+  padding: 3.5mm 4mm 4mm;
+  margin: 15pt 0;
+  box-decoration-break: clone;
+}
+.application .bloc-titre p {
+  font-weight: 700;
+  font-size: 10pt;
+  line-height: 13.5pt;
+  margin-bottom: 4pt;
+}
+.application p { font-size: 10pt; line-height: 13.5pt; }
+.application .bloc-titre + p { text-indent: 0; }
 
 /* ---------- Leçons pour aujourd'hui ---------- */
 
@@ -388,11 +413,19 @@ figcaption {
   text-align: center;
   hyphens: manual;
 }
-.pleine-page {
+/* Carte de Kouamé (120 × 170 mm) : plus large que le rectangle de texte (105 mm), elle déborde
+   de 7,5 mm à gauche et reste à 7,5 mm au moins de la coupe sur une page paire comme impaire. */
+figure.pleine-page {
   break-before: page;
   break-after: page;
+  margin: 0;
 }
-.pleine-page img { max-height: 165mm; }
+.pleine-page img {
+  width: 120mm;
+  max-width: none;
+  max-height: 170mm;
+  margin-left: -7.5mm;
+}
 
 /* ---------- Pages liminaires ---------- */
 

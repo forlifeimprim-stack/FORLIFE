@@ -117,7 +117,7 @@ Règles du balisage :
 - la coupure s'écrit […] ; les morceaux doivent se suivre dans l'ordre du texte ;
 - les guillemets « » ne servent dans le texte courant qu'aux citations et aux paroles rapportées ; une citation non biblique ne porte pas de référence biblique entre parenthèses juste après elle ;
 - un bloc « > » qui n'est pas une citation biblique (rare) doit être signalé à Amenan ; l'outil le marque NON CONTRÔLÉ ;
-- les renvois sans citation (voir Jérémie 36 ; 52:31) sont lus aussi : l'outil vérifie que le passage existe.
+- les renvois sans citation (voir Jérémie 36 ; 52:31), entre parenthèses ou dans la phrase, sont lus aussi : l'outil vérifie que le passage existe, à condition que le nom du livre soit écrit exactement comme au paragraphe 3.
 
 Lancer le contrôle depuis `.edition/` :
 
