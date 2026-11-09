@@ -1,0 +1,29 @@
+titre: "La vie et le ministère prophétique du prophète Jérémie"
+sous_titre: "Biographie"            # hypothèse, à valider par l'auteur
+auteur: "Kouadio Koffi Elisée"
+editeur:
+  nom: "Forlife Imprim"             # hypothèse : autoédition par l'entreprise de l'auteur
+  ville: "Bingerville"
+  adresse: "Montée de la colline du Collège Saint Cyrille, Bingerville, Côte d'Ivoire"
+  courriel: "forlifeimprim@gmail.com"
+  telephones: ["+225 05 85 80 18 56", "+225 07 49 56 70 82"]
+langue: fr
+genre: "Biographie biblique"
+version_biblique: "Louis Segond 1910 (domaine public)"
+mentions_legales:                   # loi n° 2015-540, art. 26
+  copyright: "© 2027 Kouadio Koffi Elisée"   # année à confirmer
+  isbn_papier: "[À COMPLÉTER : ISBN papier à obtenir]"
+  isbn_epub: "[À COMPLÉTER : ISBN numérique à obtenir]"
+  depot_legal: "[À COMPLÉTER : numéro de dépôt légal]"
+  impression: "[À COMPLÉTER : imprimeur, lieu et date d'impression]"
+  traducteur: null
+format:
+  largeur_mm: 140
+  hauteur_mm: 210
+  fonds_perdus_mm: 3
+  reliure: "dos carré collé"
+marges_mm: {interieur: 20, exterieur: 15, haut: 15, bas: 18}
+polices:
+  texte: "EB Garamond"
+  titres: "à choisir par Affoué (police libre)"
+parution_visee: "2027-03-28"        # date de travail

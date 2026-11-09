@@ -1,0 +1,5 @@
+# Ressources tierces téléchargées à l'installation (Bible LSG 1910, KJV, EPUBCheck, dictionnaire, polices)
+.edition/sources/*.json
+.edition/sources/lsg1910/
+.edition/outils/ressources/
+__pycache__/
