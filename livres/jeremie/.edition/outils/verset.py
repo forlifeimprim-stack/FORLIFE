@@ -11,6 +11,7 @@ les apostrophes (''), on les ramène à une seule.
 """
 import json
 import re
+import signal
 import sys
 import unicodedata
 from pathlib import Path
@@ -103,6 +104,8 @@ def chercher(expression, livres, version, filtre_livre=None):
 
 
 def main():
+    # Sortie coupée par « head » : se taire au lieu d'afficher une trace.
+    signal.signal(signal.SIGPIPE, signal.SIG_DFL)
     args = sys.argv[1:]
     version = "lsg"
     if "--kjv" in args:

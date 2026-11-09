@@ -52,7 +52,18 @@ def normaliser(texte):
 
 
 def jetons(texte):
-    return [j for j in JETON.findall(normaliser(texte)) if j not in INCISES]
+    """Mots et ponctuation ; les marques d'incise et la virgule qui les touche sont ignorées
+    (« mois, -c'était » de la source devient « mois (c’était » dans le livre)."""
+    bruts = JETON.findall(normaliser(texte))
+    gardes = []
+    for i, j in enumerate(bruts):
+        if j in INCISES:
+            continue
+        voisin_incise = (i > 0 and bruts[i - 1] in INCISES) or (i + 1 < len(bruts) and bruts[i + 1] in INCISES)
+        if j == "," and voisin_incise:
+            continue
+        gardes.append(j)
+    return gardes
 
 
 def est_mot(jeton):
@@ -134,19 +145,27 @@ def cle(jeton):
 
 
 def meilleure_fenetre(segment, source, depart):
-    """Cherche dans la source la zone la plus proche du segment, pour expliquer l'écart mot à mot."""
+    """Cherche dans la source la zone la plus proche du segment, pour expliquer l'écart mot à mot.
+
+    Les bornes candidates sont les endroits où la source reprend l'un des premiers ou des derniers mots
+    de la citation : une omission de plusieurs mots au milieu reste ainsi lisible comme une omission."""
     cles_seg = [cle(j) for j in segment]
-    meilleur = (0.0, depart, min(len(source), depart + len(segment)))
-    for debut in range(depart, len(source)):
-        for longueur in range(max(1, len(segment) - 3), len(segment) + 4):
-            fin = debut + longueur
-            if fin > len(source):
-                break
-            ratio = difflib.SequenceMatcher(None, cles_seg, [cle(j) for j, _ in source[debut:fin]],
-                                            autojunk=False).ratio()
-            if ratio > meilleur[0]:
-                meilleur = (ratio, debut, fin)
-    return meilleur
+    cles_src = [cle(j) for j, _ in source]
+    tete, queue = set(cles_seg[:3]), set(cles_seg[-3:])
+    debuts = [k for k in range(depart, len(source)) if cles_src[k] in tete] or list(range(depart, len(source)))
+    fins = [k + 1 for k in range(depart, len(source)) if cles_src[k] in queue] or list(range(depart + 1, len(source) + 1))
+    meilleur = (-1.0, 0.0, depart, min(len(source), depart + len(segment)))
+    for debut in debuts:
+        for fin in fins:
+            if fin <= debut or fin - debut > 2 * len(segment) + 5:
+                continue
+            comparaison = difflib.SequenceMatcher(None, cles_seg, cles_src[debut:fin], autojunk=False)
+            communs = sum(b.size for b in comparaison.get_matching_blocks())
+            # Chaque mot de source non retrouvé coûte un peu : on préfère la zone la plus serrée.
+            score = communs - 0.3 * (fin - debut - communs)
+            if score > meilleur[0]:
+                meilleur = (score, comparaison.ratio(), debut, fin)
+    return meilleur[1:]
 
 
 def situer(segment, verset_cite):
@@ -252,34 +271,36 @@ def citations(texte):
         if ressemble_a_reference(m[2]):
             trouvees.append(("texte", reste.count("\n", 0, m.start()) + 1, m[2].strip(), m[1]))
             occupees.append(m.span(2))
-    for m in re.finditer(r"\(([^()]+)\)", reste):
-        if any(a <= m.start(1) < b for a, b in occupees):
+    for m in RENVOI.finditer(reste):
+        if any(a <= m.start() < b for a, b in occupees):
             continue
-        for ref in references_seules(m[1]):
+        for ref in references_seules(m[0]):
             trouvees.append(("référence seule", reste.count("\n", 0, m.start()) + 1, ref, None))
     return sorted(trouvees, key=lambda t: t[1])
 
 
-def references_seules(contenu):
-    """« voir Jérémie 1:5, 9 ; 20:9 » donne Jérémie 1:5, Jérémie 1:9, Jérémie 20:9."""
-    contenu = re.sub(r"^\s*voir\s+", "", contenu)
-    refs, livre, chapitre = [], None, None
-    for morceau in re.split(r"\s*;\s*", contenu):
-        for partie in re.split(r"\s*,\s*", morceau):
-            partie = partie.strip()
-            if ressemble_a_reference(partie):
-                m = REF_MOTIF.match(partie)
-                livre, chapitre = m["livre"].strip(), m["chap"]
-                refs.append(partie)
-            elif livre and re.fullmatch(r"\d+:\d+(?:-\d+)?", partie):
-                refs.append(f"{livre} {partie}")
-                chapitre = partie.split(":")[0]
-            elif livre and chapitre and re.fullmatch(r"\d+(?:-\d+)?", partie):
-                refs.append(f"{livre} {chapitre}:{partie}")
-            elif refs or not partie:
-                continue
-            else:
-                return []
+# Renvoi dans le texte courant : nom exact d'un livre, puis chapitre, versets, suites « , 9 » ou « ; 20:9 ».
+NUMERO = r"\d+(?::\d+(?:-\d+)?)?"
+RENVOI = re.compile(r"(?<![\w-])(?:" + "|".join(re.escape(n).replace(r"\ ", r"[ \u00a0\u202f]")
+                                               for n in sorted(NOMS_FR, key=len, reverse=True))
+                    + r")[ \u00a0\u202f]+" + NUMERO + r"(?:\s*[,;]\s*" + NUMERO + r"(?![\w]))*")
+
+
+def references_seules(renvoi):
+    """« Jérémie 1:5, 9 ; 20:9 » donne Jérémie 1:5, Jérémie 1:9, Jérémie 20:9."""
+    tete = re.match(r"(.+?)[ \u00a0\u202f]+(\d+(?::\d+(?:-\d+)?)?)", renvoi)
+    livre, premier = tete[1], tete[2]
+    refs = [f"{livre} {premier}"]
+    chapitre = premier.split(":")[0] if ":" in premier else None
+    for separateur, numero in re.findall(r"\s*([,;])\s*(" + NUMERO + ")", renvoi[tete.end():]):
+        if ":" in numero:
+            chapitre = numero.split(":")[0]
+            refs.append(f"{livre} {numero}")
+        elif separateur == "," and chapitre:
+            refs.append(f"{livre} {chapitre}:{numero}")
+        else:
+            chapitre = None
+            refs.append(f"{livre} {numero}")
     return refs
 
 

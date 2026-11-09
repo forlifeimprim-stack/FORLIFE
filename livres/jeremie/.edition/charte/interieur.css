@@ -542,3 +542,10 @@ nav.table-matieres a::after {
 @page fin {
   @top-center { content: none; }
 }
+
+/* Page blanche ajoutée par composer.py quand le compte de pages est impair */
+.verso-final {
+  page: liminaire;
+  break-before: left;
+  height: 1pt;
+}

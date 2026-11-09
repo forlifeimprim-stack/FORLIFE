@@ -368,7 +368,7 @@ def noir_seul(fichier_pdf):
 
 def controler(document):
     texte = sans_balises(re.sub(r"<(style|script)\b.*?</\1>", "", document, flags=re.S))
-    for tiret in ("—", "–"):
+    for tiret in ("\u2014", "\u2013"):
         for m in re.finditer(tiret, texte):
             print(f"Attention : tiret {'cadratin' if tiret == chr(0x2014) else 'demi-cadratin'} "
                   f"dans « …{texte[max(0, m.start() - 30):m.end() + 30]}… »", file=sys.stderr)
@@ -396,11 +396,16 @@ def main():
         charte = CSS(filename=str(FEUILLE_DE_STYLE), font_config=configuration)
         sans_fonds_perdus = CSS(string="@page { bleed: 0 }", font_config=configuration)
         page = HTML(string=document, base_url=str(EDITION) + "/")
+        page_paire = HTML(string=document.replace("</body>", '<div class="verso-final"></div>\n</body>'),
+                          base_url=str(EDITION) + "/")
 
         for nom, feuilles in ((arguments.nom, [polices, charte]),
                               (arguments.nom + "-ecran", [polices, charte, sans_fonds_perdus])):
             cible = arguments.sortie / f"{nom}.pdf"
             rendu = page.render(stylesheets=feuilles, font_config=configuration)
+            if len(rendu.pages) % 2:
+                # Un livre se termine sur un verso : une page blanche finale rend le compte pair.
+                rendu = page_paire.render(stylesheets=feuilles, font_config=configuration)
             rendu.write_pdf(cible)
             if nom == arguments.nom:
                 noir_seul(cible)
