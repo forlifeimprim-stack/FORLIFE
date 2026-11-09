@@ -69,7 +69,7 @@ La Bible date le siège avec précision, en années du règne de Sédécias. Neb
 
 Selon la chronologie la plus répandue, la prise de Jérusalem eut lieu en 587 ou 586 av. J.-C. ; les spécialistes hésitent entre ces deux années selon la manière de compter les règnes.
 
-Le siège ne touchait pas seulement la capitale. Le roi de Babylone attaquait aussi les autres villes de Juda, et Jérémie 34:7 précise que Lakis et Azéka étaient alors les dernières villes fortes à tenir.
+Pendant ce temps, le roi de Babylone attaquait aussi les autres villes de Juda : Jérémie 34:7 précise que Lakis et Azéka étaient alors les dernières villes fortes à tenir.
 :::
 
 ## Au fond de la citerne

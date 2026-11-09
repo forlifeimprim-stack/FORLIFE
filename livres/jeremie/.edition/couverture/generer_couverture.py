@@ -223,11 +223,11 @@ body { position: relative; font-family: "Alegreya Sans"; hyphens: none; }
 .vers { font-family: "EB Garamond"; font-style: italic; font-size: 13.5pt; line-height: 1.3; }
 .reference { font-size: 8.5pt; line-height: 1; margin-top: 2mm; }
 .presentation p { font-family: "EB Garamond"; font-size: 10.5pt; line-height: 13.6pt; margin: 0;
-                  text-align: justify; hyphens: auto; text-indent: 1.2em; }
+                  text-align: justify; hyphens: manual; text-indent: 1.2em; }
 .presentation p:first-child { text-indent: 0; }
 .presentation p.envoi { text-indent: 0; margin-top: 2.2mm; font-style: italic; text-align: left; }
-.bio-titre { font-weight: 700; font-size: 7.5pt; letter-spacing: 0.24em; line-height: 1; margin-bottom: 1.6mm; }
-.bio { font-family: "EB Garamond"; font-size: 9pt; line-height: 11.4pt; text-align: left; }
+.bio-titre { font-family: "Alegreya Sans"; font-weight: 700; font-size: 7.5pt; letter-spacing: 0.24em; }
+.bio { font-family: "EB Garamond"; font-size: 9.5pt; line-height: 12pt; text-align: justify; hyphens: manual; }
 .mention { font-size: 7.5pt; line-height: 10pt; }
 .cartouche { position: absolute; }
 .cartouche .cadre { position: absolute; border: 0.4pt dashed; box-sizing: border-box; }
@@ -308,18 +308,23 @@ def plat4_et_dos(piste, dos, impression, livre, quatrieme, paysage):
     elements.append(f'<div class="bloc presentation" lang="fr" style="left:{gauche}mm; top:33mm; '
                     f'width:{largeur}mm; color:{c["texte"]}">{corps}</div>')
 
-    # Bas du plat 4 : biographie à gauche, cartouche du code-barres à droite, près du dos.
+    # Version biblique sous la présentation, sur l'indigo du ciel.
     mentions = quatrieme["mentions"]
+    elements.append(f'<div class="bloc mention" style="left:{gauche}mm; top:92mm; width:{largeur}mm; '
+                    f'color:{c["texte"]}; font-style:italic">{echapper(insecables(mentions["Version biblique"]))}</div>')
+
+    # Biographie dans la bande mauve (104 à 128 mm sur toute la largeur) : amande sur mauve, contraste 6 : 1.
     bio = " ".join(ligne.strip() for ligne in livre["biographie_auteur"].strip().splitlines())
-    haut_bas = 178.5
-    largeur_bio = 72
-    elements.append(f'<div class="bloc" style="left:{gauche}mm; top:{haut_bas}mm; width:{largeur_bio}mm">'
-                    f'<div class="bio-titre" style="color:{c["titre"]}">L’AUTEUR</div>'
-                    f'<div class="bio" style="color:{c["texte"]}">{echapper(insecables(bio))}</div></div>')
+    elements.append(f'<div class="bloc bio" style="left:{gauche}mm; top:108mm; width:{largeur}mm; '
+                    f'color:{c["texte"]}"><span class="bio-titre" style="color:{c["titre"]}">L’AUTEUR</span>'
+                    f'&#8195;{echapper(insecables(bio))}</div>')
+
+    # Bas du plat 4, sur l'indigo des collines : éditeur et prix à gauche, cartouche du code-barres à droite.
     ean_l, ean_h = EAN_L * EAN_GRANDISSEMENT, EAN_H * EAN_GRANDISSEMENT
     cart_l, cart_h = ean_l + 3, ean_h + 3
-    cart_x = FONDS_PERDUS + FORMAT_L - 8 - cart_l
-    cart_y = FONDS_PERDUS + FORMAT_H - SECURITE - 1 - cart_h
+    cart_x = FONDS_PERDUS + FORMAT_L - 12 - cart_l
+    bas_utile = FONDS_PERDUS + FORMAT_H - SECURITE - 1
+    cart_y = bas_utile - cart_h
     elements.append(f'<div class="cartouche" style="left:{cart_x:.2f}mm; top:{cart_y:.2f}mm; width:{cart_l:.2f}mm; '
                     f'height:{cart_h:.2f}mm; background:{blanc}">'
                     f'<div class="cadre" style="left:1.5mm; top:1.5mm; width:{ean_l:.2f}mm; height:{ean_h:.2f}mm; '
@@ -328,13 +333,12 @@ def plat4_et_dos(piste, dos, impression, livre, quatrieme, paysage):
                     f'{echapper(mentions["ISBN"])}</div>'
                     f'<div class="isbn" style="top:{cart_h / 2 + 0.8:.2f}mm; font-size:6pt; color:{noir}">'
                     f'EAN-13 à {EAN_GRANDISSEMENT * 100:.0f}&nbsp;%</div></div>')
-    elements.append(f'<div class="bloc mention" style="left:{cart_x:.2f}mm; top:{cart_y - 11.5:.2f}mm; '
-                    f'width:{cart_l:.2f}mm; color:{c["texte"]}">'
-                    f'{echapper(insecables(mentions["Éditeur"]))}<br>'
+    elements.append(f'<div class="bloc mention" style="left:{gauche}mm; top:{bas_utile - 8.5:.2f}mm; '
+                    f'width:{cart_x - gauche - 6:.2f}mm; color:{c["texte"]}">'
+                    f'<span style="color:{c["titre"]}; font-weight:700; letter-spacing:0.18em">'
+                    f'{echapper(mentions["Éditeur"].split(",")[0]).upper()}</span>'
+                    f'{echapper(insecables("," + mentions["Éditeur"].split(",", 1)[1]))}<br>'
                     f'{echapper(insecables("Prix : " + mentions["Prix"]))}</div>')
-    elements.append(f'<div class="bloc mention" style="left:{gauche}mm; top:{haut_bas - 7:.2f}mm; '
-                    f'width:{largeur}mm; color:{c["texte"]}; font-style:italic">'
-                    f'{echapper(insecables(mentions["Version biblique"]))}</div>')
 
     # Dos, lu de bas en haut. Piste A : titre sur l'indigo du ciel, auteur sur l'indigo des collines.
     if dos >= DOS_MIN_TEXTE:
