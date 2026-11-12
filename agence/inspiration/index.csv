@@ -107,24 +107,24 @@ ref-0105,ref-0105.jpg,105-visuel.jpg,externe,2048,2048,carré 1:1,commerce (impr
 ref-0106,ref-0106.jpg,106-visuel.jpg,forlife,1600,1600,carré 1:1,commerce (imprimerie),post,imprimerie ; bâche ; promo ; prix au m² ; rouge ; orange ; dégradé radial ; titre justifié ; traceur ; date limite ; WhatsApp,4.2,analysee
 ref-0107,ref-0107.jpg,107-visuel.jpg,forlife,1600,1200,A paysage,entreprise (BTP · logistique),agenda (couverture),agenda ; couverture ; BTP ; Kenam Services ; vert et jaune ; mosaïque photo ; QR code ; vœux 2026 ; mockup ; faute d'accord,3.8,analysee
 ref-0108,ref-0108.jpg,108-visuel.jpg,forlife,1600,1200,A paysage,entreprise (BTP · logistique),agenda (page intérieure),agenda ; planner ; papeterie ; vert pâle ; Kenam Services ; cases à cocher ; humeur ; mockup ; coquille,3.2,analysee
-ref-0109,ref-0109.jpg,109-visuel.jpg,a-classer,1600,1200,A paysage,,,,,a-analyser
-ref-0110,ref-0110.jpg,110-visuel.jpg,a-classer,1600,1066,A paysage,,,,,a-analyser
-ref-0111,ref-0111.jpg,111-visuel.jpg,a-classer,736,737,carré 1:1,,,,,a-analyser
-ref-0112,ref-0112.jpg,112-visuel.jpg,a-classer,1289,1600,post 4:5,,,,,a-analyser
-ref-0113,ref-0113.jpg,113-visuel.jpg,a-classer,1600,1200,A paysage,,,,,a-analyser
-ref-0114,ref-0114.jpg,114-visuel.jpg,a-classer,1600,1200,A paysage,,,,,a-analyser
-ref-0115,ref-0115.jpg,115-visuel.jpg,a-classer,1080,940,carré 1:1,,,,,a-analyser
-ref-0116,ref-0116.jpg,116-visuel.jpg,a-classer,1280,1218,carré 1:1,,,,,a-analyser
-ref-0117,ref-0117.jpg,117-visuel.jpg,a-classer,960,840,carré 1:1,,,,,a-analyser
-ref-0118,ref-0118.jpg,118-visuel.jpg,a-classer,636,900,A (A4/A3/A2) portrait,,,,,a-analyser
-ref-0119,ref-0119.jpg,119-visuel.jpg,a-classer,720,720,carré 1:1,,,,,a-analyser
-ref-0120,ref-0120.jpg,120-visuel.jpg,a-classer,720,613,carré 1:1,,,,,a-analyser
-ref-0121,ref-0121.jpg,121-visuel.jpg,a-classer,720,612,carré 1:1,,,,,a-analyser
-ref-0122,ref-0122.jpg,122-visuel.jpg,a-classer,720,613,carré 1:1,,,,,a-analyser
-ref-0123,ref-0123.jpg,123-visuel.jpg,a-classer,720,612,carré 1:1,,,,,a-analyser
-ref-0124,ref-0124.jpg,124-visuel.jpg,a-classer,720,602,A paysage,,,,,a-analyser
-ref-0125,ref-0125.jpg,125-visuel.jpg,a-classer,720,613,carré 1:1,,,,,a-analyser
-ref-0126,ref-0126.png,126-visuel.png,a-classer,3508,3610,carré 1:1,,,,,a-analyser
+ref-0109,ref-0109.jpg,109-visuel.jpg,forlife,1600,1200,A paysage,entreprise,cahier,entreprise; BTP; quincaillerie; goodies; cahier; papeterie; vert; photo stock; médaillon logo; maquette,3.2,analysee
+ref-0110,ref-0110.jpg,110-visuel.jpg,forlife,1600,1066,A paysage,entreprise,casquette,entreprise; BTP; casquette; goodies; textile; QR code; vert; logo; maquette; faute d'orthographe,3.2,analysee
+ref-0111,ref-0111.jpg,111-visuel.jpg,forlife,736,737,carré 1:1,entreprise,calendrier,entreprise; BTP; calendrier; 2026; chevalet; photos réelles; vert; jaune; détourage; fin d'année,3.8,analysee
+ref-0112,ref-0112.jpg,112-visuel.jpg,forlife,1289,1600,post 4:5,église/religieux,post,église; CMA; enseignement; post; violet; orateur détouré; citation; pastille biblique; titre 3D sticker; récurrent,4.0,analysee
+ref-0113,ref-0113.jpg,113-visuel.jpg,forlife,1600,1200,A paysage,institution,sac,institution; alumni; afterwork; sac; goodies; bleu; minimaliste; script + capitales; formes organiques; maquette,3.4,analysee
+ref-0114,ref-0114.jpg,114-visuel.jpg,forlife,1600,1200,A paysage,institution,stylo,institution; alumni; afterwork; stylo; goodies; bleu; déclinaison; maquette; zone d'impression,2.4,analysee
+ref-0115,ref-0115.jpg,115-visuel.jpg,forlife,1080,940,carré 1:1,événement privé,tee-shirt DTF,fêtes; Noël; tee-shirt; DTF; enfant; licence Disney; rouge; or; filigrane; à éviter,2.6,analysee
+ref-0116,ref-0116.jpg,116-visuel.jpg,forlife,1280,1218,carré 1:1,événement privé,tee-shirt DTF,fêtes; Noël; tee-shirt; DTF; personnalisation; photo enfant; rouge; monogramme; mannequin; accents,3.2,analysee
+ref-0117,ref-0117.jpg,117-visuel.jpg,forlife,960,840,carré 1:1,école,polo DTF,école; Noël; polo; DTF; maquette; gabarit; rouge; vert; Père Noël; faute d'orthographe,3.2,analysee
+ref-0118,ref-0118.jpg,118-visuel.jpg,externe,636,900,A (A4/A3/A2) portrait,entreprise,calendrier,modèle générique; calendrier; 2026; entreprise; vert; jaune; photo stock; anglais; surcharge; faute d'orthographe,2.2,analysee
+ref-0119,ref-0119.jpg,119-visuel.jpg,forlife,720,720,carré 1:1,église/religieux,post,église; culte prophétique; affiche; bordeaux; or; médaille; serif + sans grasse; surlignage; crème; réussite,3.8,analysee
+ref-0120,ref-0120.jpg,120-visuel.jpg,externe,720,613,carré 1:1,commerce,mug,externe; Symbolik; mug; fête des pères; cadeau; or; mandala; présentation produit; sublimation,3.2,analysee
+ref-0121,ref-0121.jpg,121-visuel.jpg,externe,720,612,carré 1:1,commerce,mug,externe; Symbolik; mug; fête des pères; personnalisation; prénom; motif pagne; bleu canard; cartouche,3.4,analysee
+ref-0122,ref-0122.jpg,122-visuel.jpg,externe,720,613,carré 1:1,commerce,mug,externe; Symbolik; mug; fête des pères; badge; texte en arc; nœud papillon; orange; turquoise; mandala,3.4,analysee
+ref-0123,ref-0123.jpg,123-visuel.jpg,externe,720,612,carré 1:1,commerce,mug,externe; African Touch; mug; fête des pères; wax; personnification; bretelles; nœud papillon; bordeaux; faute d'orthographe,4.2,analysee
+ref-0124,ref-0124.jpg,124-visuel.jpg,externe,720,602,A paysage,commerce,mug,externe; African Touch; mug; fête des pères; kente; camaïeu bleu; veste; nœud papillon; élégant,4.0,analysee
+ref-0125,ref-0125.jpg,125-visuel.jpg,externe,720,613,carré 1:1,commerce,mug,externe; African Touch; mug; fête des pères; kente; marine; or; cravate filigrane; personnalisation; ruban,3.8,analysee
+ref-0126,ref-0126.png,126-visuel.png,forlife,3508,3610,carré 1:1,église/religieux,tee-shirt,église; jeunesse; formation; tee-shirt; bicolore; violet; orange; recto-verso; inversion de couleurs; maquette,3.6,analysee
 ref-0127,ref-0127.jpg,127-visuel.jpg,a-classer,1080,1080,carré 1:1,,,,,a-analyser
 ref-0128,ref-0128.jpg,128-visuel.jpg,a-classer,1080,1080,carré 1:1,,,,,a-analyser
 ref-0129,ref-0129.jpg,129-visuel.jpg,a-classer,1080,1080,carré 1:1,,,,,a-analyser
