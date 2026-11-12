@@ -1,22 +1,22 @@
 id,fichier,nom_origine,source,largeur,hauteur,format_probable,secteur,type_support,tags,note_sur_5,statut
-ref-0001,ref-0001.jpg,01-affiche-toussaint-ministere.jpg,externe,1534,2048,A (A4/A3/A2) portrait,,,,,a-analyser
-ref-0002,ref-0002.jpg,02-carte-visite-agriculture.jpg,externe,736,736,carré 1:1,,,,,a-analyser
-ref-0003,ref-0003.jpg,03-carte-visite-hotel.jpg,externe,736,736,carré 1:1,,,,,a-analyser
-ref-0004,ref-0004.jpg,04-carte-visite-ferme.jpg,externe,736,552,A paysage,,,,,a-analyser
-ref-0005,ref-0005.jpg,07-tshirt-empiecement-bogolan.jpg,externe,570,761,A (A4/A3/A2) portrait,,,,,a-analyser
-ref-0006,ref-0006.jpg,13-livre-waiting-without-breaking.jpg,externe,736,736,carré 1:1,,,,,a-analyser
-ref-0007,ref-0007.jpg,14-livre-myth-of-discipleship.jpg,externe,735,695,carré 1:1,,,,,a-analyser
-ref-0008,ref-0008.jpg,15-livre-beauty-for-my-battles.jpg,externe,735,588,A paysage,,,,,a-analyser
-ref-0009,ref-0009.jpg,16-livre-power-of-waiting.jpg,externe,735,736,carré 1:1,,,,,a-analyser
-ref-0010,ref-0010.jpg,17-livre-anchored.jpg,externe,736,736,carré 1:1,,,,,a-analyser
-ref-0011,ref-0011.jpg,18-livre-pathway-to-relevance.jpg,externe,736,736,carré 1:1,,,,,a-analyser
-ref-0012,ref-0012.jpg,08-post-citation-forlife.jpg,forlife,1080,1080,carré 1:1,,,,,a-analyser
-ref-0013,ref-0013.jpg,12-post-saviez-vous-forlife.jpg,forlife,1080,1080,carré 1:1,,,,,a-analyser
-ref-0014,ref-0014.jpg,19-post-quiz-forlife.jpg,forlife,1342,1600,post 4:5,,,,,a-analyser
-ref-0015,ref-0015.png,05-tshirt-pagne-maquette.png,origine-a-confirmer,1536,1024,A paysage,,,,,a-analyser
-ref-0016,ref-0016.png,06-tshirt-pagne-convention-eglise.png,origine-a-confirmer,1536,1024,A paysage,,,,,a-analyser
-ref-0017,ref-0017.jpg,09-livre-baobab-5-8-ans.jpg,origine-a-confirmer,1200,1200,carré 1:1,,,,,a-analyser
-ref-0018,ref-0018.jpg,10-livre-baobab-1-4-ans.jpg,origine-a-confirmer,1200,1200,carré 1:1,,,,,a-analyser
+ref-0001,ref-0001.jpg,01-affiche-toussaint-ministere.jpg,forlife,1534,2048,A (A4/A3/A2) portrait,institution,affiche / post,institution;fête;toussaint;métaphore visuelle;jeu de mots;objet technologique;beige;rouille;typo condensée XXL;sobriété,4.6,analysee
+ref-0002,ref-0002.jpg,02-carte-visite-agriculture.jpg,externe,736,736,carré 1:1,entreprise · agriculture,carte de visite,carte de visite;agriculture;vert;blanc;épis de blé;maquette 3D;coins arrondis;filigrane logo;papeterie,3.0,analysee
+ref-0003,ref-0003.jpg,03-carte-visite-hotel.jpg,externe,736,736,carré 1:1,hôtellerie,carte de visite,carte de visite;hôtel;vert sapin;or;blanc;texture;drapeau;maquette;publicité d'agence;papeterie,3.6,analysee
+ref-0004,ref-0004.jpg,04-carte-visite-ferme.jpg,externe,736,552,A paysage,entreprise · agriculture,carte de visite,carte de visite;agriculture;ferme;vert;orange;frise géométrique;motif africain;maquette;papeterie,3.6,analysee
+ref-0005,ref-0005.jpg,07-tshirt-empiecement-bogolan.jpg,externe,570,761,A (A4/A3/A2) portrait,mode / textile,tee-shirt (empiècement tissu),tee-shirt;mode;bogolan;kente;empiècement;blanc;noir;orange;textile africain;photo portée,4.0,analysee
+ref-0006,ref-0006.jpg,13-livre-waiting-without-breaking.jpg,externe,736,736,carré 1:1,église/religieux · édition,couverture de livre,couverture de livre;édition;religieux;développement personnel;photo atmosphérique;brume;vert canard;serif;maquette;4e de couverture,3.6,analysee
+ref-0007,ref-0007.jpg,14-livre-myth-of-discipleship.jpg,externe,735,695,carré 1:1,église/religieux · édition,couverture de livre,couverture de livre;édition;religieux;contre-jour;script et serif;beige;brun;bordeaux;maquette;publicité de graphiste,3.0,analysee
+ref-0008,ref-0008.jpg,15-livre-beauty-for-my-battles.jpg,externe,735,588,A paysage,église/religieux · édition,couverture de livre,couverture de livre;édition;témoignage;papillon;vert;grunge;arc-en-ciel;maquette;4e de couverture,3.4,analysee
+ref-0009,ref-0009.jpg,16-livre-power-of-waiting.jpg,externe,735,736,carré 1:1,église/religieux · édition,couverture de livre,couverture de livre;édition;religieux;chronomètre;objet symbole;orange;or;brun;sans grasse;dégradé;4e de couverture,3.6,analysee
+ref-0010,ref-0010.jpg,17-livre-anchored.jpg,externe,736,736,carré 1:1,église/religieux · édition,couverture de livre,couverture de livre;édition;religieux;ancre;lumière;or;brun;blanc;titre condensé;photomontage;maquette,3.6,analysee
+ref-0011,ref-0011.jpg,18-livre-pathway-to-relevance.jpg,externe,736,736,carré 1:1,édition · développement personnel,couverture de livre,couverture de livre;édition;développement personnel;portrait;disque jaune;rouge;blanc;doodles;sans condensée;maquette,4.2,analysee
+ref-0012,ref-0012.jpg,08-post-citation-forlife.jpg,forlife,1080,1080,carré 1:1,entreprise · agence de communication,post réseaux sociaux (carré),post;citation;forlife;orange;blanc;motif géométrique;bulle arrondie;portrait;personnalité africaine;bandeau contact,3.6,analysee
+ref-0013,ref-0013.jpg,12-post-saviez-vous-forlife.jpg,forlife,1080,1080,carré 1:1,entreprise · agence de communication,post réseaux sociaux (carré),post;le saviez-vous;conseil;forlife;orange;crème;punaise;note épinglée;éducatif;série,3.2,analysee
+ref-0014,ref-0014.jpg,19-post-quiz-forlife.jpg,forlife,1342,1600,post 4:5,entreprise · agence de communication,post réseaux sociaux (4:5),post;quiz;interaction;forlife;orange;pêche;sphères floues;pilules;QCM;engagement,4.0,analysee
+ref-0015,ref-0015.png,05-tshirt-pagne-maquette.png,forlife,1536,1024,A paysage,église/religieux · textile,tee-shirt (maquette de confection),tee-shirt;maquette;pagne;wax;bleu roi;crème;diagonale;face et dos;image générée;confection,3.6,analysee
+ref-0016,ref-0016.png,06-tshirt-pagne-convention-eglise.png,forlife,1536,1024,A paysage,église/religieux,tee-shirt (maquette de confection),tee-shirt;église;convention;pagne;wax;bleu roi;crème;logo d'église;deux coloris;image générée;confection,3.6,analysee
+ref-0017,ref-0017.jpg,09-livre-baobab-5-8-ans.jpg,forlife,1200,1200,carré 1:1,édition · jeunesse · religieux,post réseaux sociaux (carré),post;livre jeunesse;conte;baobab;grand-mère conteuse;illustration;turquoise;pastille d'âge;frise kente;série;image générée,4.6,analysee
+ref-0018,ref-0018.jpg,10-livre-baobab-1-4-ans.jpg,forlife,1200,1200,carré 1:1,édition · jeunesse · religieux,post réseaux sociaux (carré),post;livre jeunesse;conte;baobab;illustration;jaune d'or;pastille d'âge;frise kente;série;déclinaison;image générée,4.6,analysee
 ref-0019,ref-0019.jpg,11-livre-baobab-9-12-ans.jpg,origine-a-confirmer,1200,1200,carré 1:1,,,,,a-analyser
 ref-0020,ref-0020.jpg,20-logo-ua25.jpg,origine-a-confirmer,1600,900,16:9 paysage,,,,,a-analyser
 ref-0021,ref-0021.jpg,21-carrousel-studio-01-boutique.jpg,externe,1280,1280,carré 1:1,,,,,a-analyser
