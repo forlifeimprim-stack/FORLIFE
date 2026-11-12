@@ -89,24 +89,24 @@ ref-0087,ref-0087.jpg,87-calendrier-chevalet.jpg,externe,736,736,carré 1:1,impr
 ref-0088,ref-0088.jpg,88-calendrier-mural-eglise.jpg,externe,736,920,post 4:5,église/religieux,calendrier mural,église ; calendrier mural ; mockup ; thème de l'année ; bordeaux ; doré ; programme des cultes,3.8,analysee
 ref-0089,ref-0089.jpg,89-calendrier-mariage.jpg,externe,636,900,A (A4/A3/A2) portrait,événement privé,calendrier mural,mariage ; calendrier photo ; personnalisé ; médaillons ; script ; bleu ; jaune ; faute d'orthographe,2.8,analysee
 ref-0090,ref-0090.jpg,90-medailles-academie-football.jpg,externe,736,981,A (A4/A3/A2) portrait,sport,médailles personnalisées,sport ; football ; académie ; médailles ; macaron ; objet personnalisé ; photo produit ; or,3.6,analysee
-ref-0091,ref-0091.jpg,91-trophee-bois-verre.jpg,externe,736,736,carré 1:1,,,,,a-analyser
-ref-0092,ref-0092.jpg,92-trophee-noir-or.jpg,externe,736,736,carré 1:1,,,,,a-analyser
-ref-0093,ref-0093.jpg,93-trophee-acrylique-ecole.jpg,externe,735,1103,A (A4/A3/A2) portrait,,,,,a-analyser
-ref-0094,ref-0094.jpg,94-affiche-anniversaire-enfant.jpg,externe,735,872,post 4:5,,,,,a-analyser
-ref-0095,ref-0095.jpg,95-post-offre-flyers-imprimerie.jpg,externe,1028,1028,carré 1:1,,,,,a-analyser
-ref-0096,ref-0096.jpg,96-post-offre-supports-imprimerie.jpg,externe,2047,2048,carré 1:1,,,,,a-analyser
-ref-0097,ref-0097.jpg,97-banniere-campagne-consultation-eglise.jpg,origine-a-confirmer,1280,728,16:9 paysage,,,,,a-analyser
-ref-0098,ref-0098.jpg,98-bache-boutique-vetements.jpg,origine-a-confirmer,1600,562,bâche / bannière,,,,,a-analyser
-ref-0099,ref-0099.jpg,099-visuel.jpg,a-classer,2048,2048,carré 1:1,,,,,a-analyser
-ref-0100,ref-0100.jpg,100-visuel.jpg,a-classer,736,736,carré 1:1,,,,,a-analyser
-ref-0101,ref-0101.jpg,101-visuel.jpg,a-classer,736,920,post 4:5,,,,,a-analyser
-ref-0102,ref-0102.jpg,102-visuel.jpg,a-classer,736,736,carré 1:1,,,,,a-analyser
-ref-0103,ref-0103.jpg,103-visuel.jpg,a-classer,736,749,carré 1:1,,,,,a-analyser
-ref-0104,ref-0104.jpg,104-visuel.jpg,a-classer,2048,2048,carré 1:1,,,,,a-analyser
-ref-0105,ref-0105.jpg,105-visuel.jpg,a-classer,2048,2048,carré 1:1,,,,,a-analyser
-ref-0106,ref-0106.jpg,106-visuel.jpg,a-classer,1600,1600,carré 1:1,,,,,a-analyser
-ref-0107,ref-0107.jpg,107-visuel.jpg,a-classer,1600,1200,A paysage,,,,,a-analyser
-ref-0108,ref-0108.jpg,108-visuel.jpg,a-classer,1600,1200,A paysage,,,,,a-analyser
+ref-0091,ref-0091.jpg,91-trophee-bois-verre.jpg,externe,736,736,carré 1:1,entreprise · institution,trophée (photo produit),trophée ; plaque gravée ; bois ; verre noir ; script ; serif ; lauriers ; prestige ; photo produit,3.8,analysee
+ref-0092,ref-0092.jpg,92-trophee-noir-or.jpg,externe,736,736,carré 1:1,entreprise,trophée (photo produit),trophée ; acrylique ; noir et or ; luxe ; étoiles ; gala ; awards ; sculpture,4.0,analysee
+ref-0093,ref-0093.jpg,93-trophee-acrylique-ecole.jpg,externe,735,1103,A (A4/A3/A2) portrait,école · institution,trophée (maquette cotée),trophée ; plaque acrylique ; école ; distinction ; bleu marine ; orange ; blackletter ; bandeau ; maquette cotée,3.2,analysee
+ref-0094,ref-0094.jpg,94-affiche-anniversaire-enfant.jpg,externe,735,872,post 4:5,événement privé · religieux,post,anniversaire ; enfant ; verset biblique ; rouge ; lettrage composé ; script ; noir et blanc ; profondeur,3.8,analysee
+ref-0095,ref-0095.jpg,95-post-offre-flyers-imprimerie.jpg,externe,1028,1028,carré 1:1,commerce (imprimerie),post,imprimerie ; tarifs ; flyers ; FCFA ; grille de prix ; pastilles ; bleu ; jaune ; condensée ; mockup,3.4,analysee
+ref-0096,ref-0096.jpg,96-post-offre-supports-imprimerie.jpg,externe,2047,2048,carré 1:1,commerce (imprimerie),post,imprimerie ; promo ; poisson d'avril ; bleu et jaune ; couleur sélective ; noir et blanc ; roll-up ; script ; humour,4.0,analysee
+ref-0097,ref-0097.jpg,97-banniere-campagne-consultation-eglise.jpg,forlife,1280,728,16:9 paysage,église/religieux · santé,bannière web,église ; CMA ; santé ; consultation gratuite ; paysage ; orange ; bleu ; tampon ; stéthoscope ; script ; faute d'orthographe,3.8,analysee
+ref-0098,ref-0098.jpg,98-bache-boutique-vetements.jpg,forlife,1600,562,bâche / bannière,commerce (mode),bâche,bâche ; boutique ; mode ; vêtements ; chaussures ; Bingerville ; serif display ; ocre ; crème ; vignettes ; surcharge,3.4,analysee
+ref-0099,ref-0099.jpg,099-visuel.jpg,forlife,2048,2048,carré 1:1,association · institution,trophée (maquette IA),trophée ; plaque ; bois ; verre ; maquette IA ; texte illisible ; association ; ruban rouge ; défaut,2.2,analysee
+ref-0100,ref-0100.jpg,100-visuel.jpg,externe,736,736,carré 1:1,entreprise (agence de communication),post,agence ; bon mois ; mars ; violet ; smartphone ; mockup ; portfolio ; pilule ; CTA,4.0,analysee
+ref-0101,ref-0101.jpg,101-visuel.jpg,externe,736,920,post 4:5,entreprise (agence de communication),post,agence ; début de semaine ; lundi ; bleu ; monochrome ; diagonale ; plongée ; poignée de mains ; sans étendue ; WhatsApp,4.2,analysee
+ref-0102,ref-0102.jpg,102-visuel.jpg,externe,736,736,carré 1:1,entreprise (agence graphique),post,vœux ; mois de mars ; bénédiction ; bleu marine ; titre géant ; pilule ; photo banque d'images,3.6,analysee
+ref-0103,ref-0103.jpg,103-visuel.jpg,externe,736,749,carré 1:1,entreprise (agence de communication),post,agence ; services ; design graphique ; vert ; turquoise ; jaune ; flèche pointillés ; liste à puces ; photo banque d'images ; faute,3.0,analysee
+ref-0104,ref-0104.jpg,104-visuel.jpg,externe,2048,2048,carré 1:1,commerce (imprimerie),post,imprimerie ; kakémono ; roll-up ; prix ; FCFA ; cartouche jaune ; flèche ; mockup ; crème,3.8,analysee
+ref-0105,ref-0105.jpg,105-visuel.jpg,externe,2048,2048,carré 1:1,commerce (imprimerie),post,imprimerie ; bloc-notes ; objet publicitaire ; prix ; FCFA ; vert ; mockup ; cyrillique ; quantité minimum,3.0,analysee
+ref-0106,ref-0106.jpg,106-visuel.jpg,forlife,1600,1600,carré 1:1,commerce (imprimerie),post,imprimerie ; bâche ; promo ; prix au m² ; rouge ; orange ; dégradé radial ; titre justifié ; traceur ; date limite ; WhatsApp,4.2,analysee
+ref-0107,ref-0107.jpg,107-visuel.jpg,forlife,1600,1200,A paysage,entreprise (BTP · logistique),agenda (couverture),agenda ; couverture ; BTP ; Kenam Services ; vert et jaune ; mosaïque photo ; QR code ; vœux 2026 ; mockup ; faute d'accord,3.8,analysee
+ref-0108,ref-0108.jpg,108-visuel.jpg,forlife,1600,1200,A paysage,entreprise (BTP · logistique),agenda (page intérieure),agenda ; planner ; papeterie ; vert pâle ; Kenam Services ; cases à cocher ; humeur ; mockup ; coquille,3.2,analysee
 ref-0109,ref-0109.jpg,109-visuel.jpg,a-classer,1600,1200,A paysage,,,,,a-analyser
 ref-0110,ref-0110.jpg,110-visuel.jpg,a-classer,1600,1066,A paysage,,,,,a-analyser
 ref-0111,ref-0111.jpg,111-visuel.jpg,a-classer,736,737,carré 1:1,,,,,a-analyser
