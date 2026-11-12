@@ -125,24 +125,24 @@ ref-0123,ref-0123.jpg,123-visuel.jpg,externe,720,612,carré 1:1,commerce,mug,ext
 ref-0124,ref-0124.jpg,124-visuel.jpg,externe,720,602,A paysage,commerce,mug,externe; African Touch; mug; fête des pères; kente; camaïeu bleu; veste; nœud papillon; élégant,4.0,analysee
 ref-0125,ref-0125.jpg,125-visuel.jpg,externe,720,613,carré 1:1,commerce,mug,externe; African Touch; mug; fête des pères; kente; marine; or; cravate filigrane; personnalisation; ruban,3.8,analysee
 ref-0126,ref-0126.png,126-visuel.png,forlife,3508,3610,carré 1:1,église/religieux,tee-shirt,église; jeunesse; formation; tee-shirt; bicolore; violet; orange; recto-verso; inversion de couleurs; maquette,3.6,analysee
-ref-0127,ref-0127.jpg,127-visuel.jpg,a-classer,1080,1080,carré 1:1,,,,,a-analyser
-ref-0128,ref-0128.jpg,128-visuel.jpg,a-classer,1080,1080,carré 1:1,,,,,a-analyser
-ref-0129,ref-0129.jpg,129-visuel.jpg,a-classer,1080,1080,carré 1:1,,,,,a-analyser
-ref-0130,ref-0130.jpg,130-visuel.jpg,a-classer,1080,1080,carré 1:1,,,,,a-analyser
-ref-0131,ref-0131.jpg,131-visuel.jpg,a-classer,720,630,carré 1:1,,,,,a-analyser
-ref-0132,ref-0132.png,132-visuel.png,a-classer,1754,1241,A paysage,,,,,a-analyser
-ref-0133,ref-0133.png,133-visuel.png,a-classer,1754,1241,A paysage,,,,,a-analyser
-ref-0134,ref-0134.png,134-visuel.png,a-classer,1754,1241,A paysage,,,,,a-analyser
-ref-0135,ref-0135.png,135-visuel.png,a-classer,1790,1276,A paysage,,,,,a-analyser
-ref-0136,ref-0136.png,136-visuel.png,a-classer,1754,1241,A paysage,,,,,a-analyser
-ref-0137,ref-0137.jpg,137-visuel.jpg,a-classer,480,640,A (A4/A3/A2) portrait,,,,,a-analyser
-ref-0138,ref-0138.jpg,138-visuel.jpg,a-classer,480,642,A (A4/A3/A2) portrait,,,,,a-analyser
-ref-0139,ref-0139.jpg,139-visuel.jpg,a-classer,1332,920,A paysage,,,,,a-analyser
-ref-0140,ref-0140.jpg,140-visuel.jpg,a-classer,736,980,A (A4/A3/A2) portrait,,,,,a-analyser
-ref-0141,ref-0141.jpg,141-visuel.jpg,a-classer,636,900,A (A4/A3/A2) portrait,,,,,a-analyser
-ref-0142,ref-0142.jpg,142-visuel.jpg,a-classer,1200,1200,carré 1:1,,,,,a-analyser
-ref-0143,ref-0143.jpg,143-visuel.jpg,a-classer,1552,1600,carré 1:1,,,,,a-analyser
-ref-0144,ref-0144.jpg,144-visuel.jpg,a-classer,736,736,carré 1:1,,,,,a-analyser
+ref-0127,ref-0127.jpg,127-visuel.jpg,externe,1080,1080,carré 1:1,église/religieux,post,église;verset biblique;post réseaux;série;violet;rose poudré;clair-obscur;objet métaphore;sobriété;externe,3.8,analysee
+ref-0128,ref-0128.jpg,128-visuel.jpg,externe,1080,1080,carré 1:1,église/religieux,post,église;verset biblique;post réseaux;série;noir;orange flamme;bougie;clair-obscur;texte sur photo;externe,3.8,analysee
+ref-0129,ref-0129.jpg,129-visuel.jpg,externe,1080,1080,carré 1:1,église/religieux,post,église;verset biblique;post réseaux;série;aubergine;dégradé orange rose;mains;colombe;aquarelle;forme en négatif;externe,4.0,analysee
+ref-0130,ref-0130.jpg,130-visuel.jpg,externe,1080,1080,carré 1:1,église/religieux,post,église;verset biblique;post réseaux;série;duotone;bleu électrique;magenta;guerriers;halftone;externe,3.4,analysee
+ref-0131,ref-0131.jpg,131-visuel.jpg,forlife,720,630,carré 1:1,beauté,chasuble / gilet promotionnel,beauté;cosmétique;chasuble;gilet;textile promotionnel;maquette BAT;bleu roi;blanc;animation commerciale;sujet sensible,2.2,analysee
+ref-0132,ref-0132.png,132-visuel.png,forlife,1754,1241,A paysage,église/religieux,diplôme,église;CMA;diplôme;distinction;ruban;médaille;cadre doré;filigrane logo;vert;or;Bingerville,3.2,analysee
+ref-0133,ref-0133.png,133-visuel.png,forlife,1754,1241,A paysage,église/religieux,diplôme,église;CMA;diplôme;prix d'excellence;toque;colombe;arabesques;or;blanc;Bingerville,3.2,analysee
+ref-0134,ref-0134.png,134-visuel.png,forlife,1754,1241,A paysage,église/religieux,diplôme,église;CMA;diplôme;low poly;triangles;rouge;gris;moderne;faute d'orthographe;Bingerville,3.0,analysee
+ref-0135,ref-0135.png,135-visuel.png,forlife,1790,1276,A paysage,église/religieux,diplôme,église;CMA;diplôme;prix d'excellence;enfant;primaire;crayons de couleur;motif géométrique;orange;jaune;Bingerville,3.0,analysee
+ref-0136,ref-0136.png,136-visuel.png,forlife,1754,1241,A paysage,église/religieux,diplôme,église;CMA;diplôme;prix d'excellence;secondaire;cadre orange;colombe;volutes;déclinaison;Bingerville,3.2,analysee
+ref-0137,ref-0137.jpg,137-visuel.jpg,forlife,480,640,A (A4/A3/A2) portrait,événement privé,tee-shirt DTF,anniversaire;tee-shirt;DTF;textile personnalisé;marine;or;script brossé;cœur drip;enfant,3.6,analysee
+ref-0138,ref-0138.jpg,138-visuel.jpg,forlife,480,642,A (A4/A3/A2) portrait,événement privé,tee-shirt DTF + casquette,anniversaire;enfant;tee-shirt;casquette;DTF;kit personnalisé;bleu roi;or;script;personnage sous licence,3.6,analysee
+ref-0139,ref-0139.jpg,139-visuel.jpg,forlife,1332,920,A paysage,loisirs · réalité virtuelle,casquette (maquette),loisirs;réalité virtuelle;casquette;broderie;maquette;mockup IA;marine;bleu;orange;faute d'orthographe,3.0,analysee
+ref-0140,ref-0140.jpg,140-visuel.jpg,externe,736,980,A (A4/A3/A2) portrait,commerce · mode,tee-shirt,noël;tee-shirt;textile;flat-lay;lettrage bubble;tartan;rouge;vert;noir;externe,3.6,analysee
+ref-0141,ref-0141.jpg,141-visuel.jpg,externe,636,900,A (A4/A3/A2) portrait,église/religieux,calendrier,calendrier;2026;modèle;grille mensuelle;marine;rouge;photos de stock;anglais;externe,2.6,analysee
+ref-0142,ref-0142.jpg,142-visuel.jpg,forlife,1200,1200,carré 1:1,entreprise · imprimerie,flyer / post,imprimerie;4life Imprim;flyer;services;mockups 3D;orange;blanc;liste de services;faute d'orthographe;marque tierce,2.8,analysee
+ref-0143,ref-0143.jpg,143-visuel.jpg,forlife,1552,1600,carré 1:1,entreprise · imprimerie,flyer / post,imprimerie;4life Imprim;flyer;grand format;traceur;rouge;blanc;montage produits;marque tierce;accroche bénéfice,3.2,analysee
+ref-0144,ref-0144.jpg,144-visuel.jpg,externe,736,736,carré 1:1,commerce · fournitures scolaires,post,rentrée scolaire;fournitures;enfant;post réseaux;violet;jaune;confettis;packshots;WhatsApp;externe,3.4,analysee
 ref-0145,ref-0145.jpg,145-visuel.jpg,a-classer,736,736,carré 1:1,,,,,a-analyser
 ref-0146,ref-0146.jpg,146-visuel.jpg,a-classer,736,736,carré 1:1,,,,,a-analyser
 ref-0147,ref-0147.jpg,147-visuel.jpg,a-classer,2560,2560,carré 1:1,,,,,a-analyser
