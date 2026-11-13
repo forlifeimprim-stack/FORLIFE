@@ -48,3 +48,8 @@
 - T20 Désiré TERMINÉ : EPUB de 546 Ko, script audio du chapitre 2, lexique de prononciation (106 entrées), fiches plateformes avec déclaration IA. Contrôle Akissi : EPUBCheck relancé, 0 erreur, 0 avertissement. Aucune synthèse vocale lancée (enregistrement de référence de l'auteur non fourni). (Akissi)
 - T21 Awa TERMINÉ (traduction interne d'évaluation) : quatrième et chapitre 2 en anglais, 40 citations KJV conformes, glossaire, 15 écarts LSG/KJV consignés (dont Jérémie 1:12, « veiller » contre « hasten »). Contrôle Akissi : en-tête « Internal evaluation translation » présent, 0 tiret. Fiche projet corrigée : chapitre 2, pas chapitre 1. (Akissi)
 - Fin du cycle de test le 13 novembre 2026. Restent à l'utilisateur et à l'auteur : validation du texte, des prières et des 33 questions doctrinales, témoignage et remerciements, choix de couverture, prix, tirage, ISBN et dépôt légal, devis, enregistrement de voix pour l'audio, second tour d'épreuves complet, BAT. (Akissi)
+
+## 13 novembre 2026, nouvelle orientation donnée par l'utilisateur
+
+- L'auteur veut un livre d'étude profonde, plus qu'une biographie narrative.
+- Raison d'écrire, dans ses mots : « Non seulement un ministère rattaché selon Jérémie 1:10 pour mieux cerner le mien, et surtout que par plus de six fois le Seigneur m'a emmené à lire et relire le livre ainsi que celui d'Ézéchiel. » Cette matière alimente l'avant-propos (témoignage) et le fil du livre (Jérémie 1:10 : arracher, abattre, ruiner, détruire, bâtir, planter). (Akissi)
