@@ -22,3 +22,8 @@ Tenu par Akissi. Statuts : À FAIRE, EN COURS, TERMINÉ, PARTIEL, BLOQUÉ.
 | T19 | Fabrication : contrôle des fichiers, préparation du BAT | salif | T17, T16 | rapport de contrôle | PARTIEL |
 | T20 | EPUB, PDF écran, script audio, fiches plateformes | desire | T14-T15, T16 | `numerique/` | TERMINÉ |
 | T21 | Traduction anglaise d'évaluation (quatrième et chapitre 1) | awa | T14 | `numerique/traduction-en/` | TERMINÉ |
+| T22 | Étude approfondie, chapitres 1 à 6, et témoignage de l'avant-propos | konan | décisions du 13/11 | sections ajoutées, versets contrôlés | EN COURS |
+| T23 | Étude approfondie, chapitres 7 à 12 | konan | T22 | sections ajoutées, versets contrôlés | À FAIRE |
+| T24 | Relecture des sections d'étude | amenan | T23 | relevé, 0 écart | À FAIRE |
+| T25 | Recomposition, couverture recalculée | affoue | T24 | interieur.pdf | À FAIRE |
+| T26 | EPUB refait | desire | T24 | EPUBCheck 0 erreur | À FAIRE |
