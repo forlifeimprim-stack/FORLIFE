@@ -564,7 +564,7 @@ nav.table-matieres a::after {
 
 .a-propos-auteur {
   page: fin;
-  break-before: right;
+  break-before: page;
   padding-top: 24mm;
 }
 .a-propos-titre {
@@ -588,3 +588,38 @@ nav.table-matieres a::after {
   break-before: left;
   height: 1pt;
 }
+
+/* ---------- Tableaux (annexes) ---------- */
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 9pt 0 12pt;
+  font-size: 9pt;
+  line-height: 12pt;
+}
+thead { display: table-header-group; }
+tr { break-inside: avoid; }
+th {
+  font-family: "Alegreya Sans", sans-serif;
+  font-weight: 700;
+  font-size: 8.5pt;
+  text-align: left;
+  border-bottom: 0.6pt solid var(--noir);
+  padding: 0 4pt 3pt 0;
+}
+td {
+  text-align: left;
+  hyphens: auto;
+  hyphenate-character: "-";
+  vertical-align: top;
+  padding: 3pt 4pt 3pt 0;
+  border-bottom: 0.3pt solid var(--gris-trait);
+}
+td:first-child { font-weight: 600; }
+/* Pandoc impose des colonnes égales : nom ou date, description, référence. */
+table { table-layout: fixed; }
+table col { width: auto !important; }
+th:nth-child(1), td:nth-child(1) { width: 21%; }
+th:nth-child(2), td:nth-child(2) { width: 55%; }
+th:nth-child(3), td:nth-child(3) { width: 24%; }

@@ -75,6 +75,8 @@ Prière (`.priere`) : titre « Prière » en Alegreya Sans 8,5 pt capitales espa
 
 Pause dans le récit (`***`) : fleuron de Kouamé de 4 mm de haut, centré.
 
+Tableaux des annexes (chronologie, « Qui est qui ») : EB Garamond 9 / 12 pt, en-tête en Alegreya Sans gras 8,5 pt sous un filet noir, filets gris de 0,3 pt entre les lignes, colonnes de 21 %, 55 % et 24 % (Pandoc imposait trois tiers). Une ligne de tableau ne se coupe jamais entre deux pages, et l'en-tête se répète en haut de la page suivante (T17).
+
 ## Folios et titres courants
 
 Folio en pied de page, centré, sur toutes les pages de texte, ouvertures de chapitre comprises. Pas de folio sur les pages liminaires ni sur les pages blanches ; la numérotation compte pourtant toutes les pages depuis le faux-titre (la première page de texte est la page 7).
@@ -92,7 +94,7 @@ Titre courant en haut de page, centré, en italique : titre du livre sur les pag
 | 5 | table des matières (titres de chapitres, numéros, points de conduite, pages) ; s'il y a une dédicace, elle prend la page 5 et la table passe en page 7 |
 | 6 | blanche |
 | 7 et suivantes | introduction, chapitres, conclusion, annexes, chacun sur une page impaire |
-| fin | « À propos de l'auteur » (texte de `livre.yaml`, `biographie_auteur`, repris mot pour mot), sur une page impaire, puis une page blanche si le nombre de pages est impair |
+| fin | « À propos de l'auteur » (texte de `livre.yaml`, `biographie_auteur`, repris mot pour mot), sur la page qui suit les annexes (paire ou impaire, pour ne pas ajouter de blanc), puis une page blanche si le nombre de pages est impair |
 
 Le nombre total de pages est toujours pair. L'arrondi au cahier de 16 pages (fiche de Salif) se règle à la composition finale (T17) : d'abord par les blancs et les annexes, ensuite seulement par des pages blanches en fin de livre.
 
