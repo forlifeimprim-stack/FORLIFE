@@ -12,12 +12,12 @@
 |---|---|
 | Nom | **Forlife Com'** — agence de communication et de publicité |
 | Maison mère | **Forlife Imprim** (imprimerie, Forlife Com' en est la division communication) |
-| Lieu | Bingerville, à la montée de la colline du Collège Saint Cyrille, Côte d'Ivoire 🇨🇮 |
+| Lieu | Bingerville, derrière l'école Glory Morning School, Côte d'Ivoire 🇨🇮 (adresse validée par le dirigeant le 13/11/2026 ; anciennes mentions : « montée de la colline du Collège Saint Cyrille », « derrière Socofrais ») |
 | Zone servie | Bingerville, Abidjan Est (Cocody, Riviera, Faya, Akouai-Santai…), tout Abidjan, et au-delà à distance |
 | Slogan | « L'ami des PME, TPE, Écoles et Communautés » |
 | Signatures | « Donner du sens. Créer l'impact. » · « Ensemble pour la vie ! » · « Imprimer l'avenir, valoriser les marques. » |
 | Horaires | Lun–Ven 8h–18h · Sam 8h–14h |
-| Contacts | WhatsApp & appel +225 05 85 80 18 56 · Appel +225 07 49 56 70 82 · forlifeimprim@gmail.com |
+| Contacts | WhatsApp et appel : 07 79 59 05 62 (nouveau numéro de Forlife Com') · WhatsApp uniquement : 05 85 80 18 56 · forlifeimprim@gmail.com — validés par le dirigeant le 13/11/2026. L'ancien numéro d'appel 07 49 56 70 82 (anciens visuels) : savoir s'il reste actif, à confirmer avant de le réutiliser |
 | Réseaux | Instagram [@forlife_imprim](https://www.instagram.com/forlife_imprim) · Facebook « Forlife Imprim & Com » |
 | Site | Ce dépôt (site statique déployé sur Firebase Hosting) |
 | Équipe humaine | à compléter (noms, rôles, qui valide quoi) |
@@ -84,7 +84,7 @@ proposer une fourchette uniquement si l'utilisateur l'a validée, sinon laisser 
 - Proche, fier du local, optimiste, concret : on parle résultat (« plus de clients », « une image qui inspire confiance »).
 - Expressions ivoiriennes **avec dosage** et seulement si la cible s'y prête (ex. « C'est validé ! », « On est ensemble »).
   Le nouchi s'utilise à petite dose, sur TikTok/Instagram jeune, jamais pour une école, une église ou un document officiel.
-- Toujours un **appel à l'action** concret : WhatsApp (lien `https://wa.me/2250585801856`), appel, passage à l'atelier.
+- Toujours un **appel à l'action** concret : WhatsApp (liens `https://wa.me/2250779590562` WhatsApp et appel, `https://wa.me/2250585801856` WhatsApp uniquement), appel au 07 79 59 05 62, passage à l'atelier.
 - Interdits : promesses chiffrées non prouvées, dénigrement nominatif de concurrents, clichés « Afrique » exotisants,
   fautes d'orthographe (relecture systématique).
 
