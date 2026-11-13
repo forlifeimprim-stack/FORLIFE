@@ -49,6 +49,11 @@ def reparer_lsg(texte):
     texte = NOM_PARASITE.sub("", texte)
     if A_PERDU.match(texte):
         texte = "à " + texte
+    # Même perte pour un « É » ou « é » initial (Jérémie 44:26, Romains 1:29...).
+    if texte.startswith("coutez "):
+        texte = "É" + texte
+    elif texte.startswith("tant "):
+        texte = "é" + texte
     return texte
 
 

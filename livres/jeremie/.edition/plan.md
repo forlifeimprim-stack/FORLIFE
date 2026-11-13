@@ -13,7 +13,7 @@ Tenu par Akissi. Statuts : À FAIRE, EN COURS, TERMINÉ, PARTIEL, BLOQUÉ.
 | T07 | Charte graphique, CSS intérieur, maquette type | affoue | T01 | `charte/graphique.md`, `charte/interieur.css`, pages test rendues | TERMINÉ |
 | T08 | Fiche de fabrication préliminaire, demandes de devis en brouillon | salif | T01 | `fabrication/fiche-fabrication.md` | TERMINÉ |
 | T09 | Validation du plan détaillé | akissi | T03 | décision au journal | TERMINÉ |
-| T10-T12 | Rédaction des chapitres (trois lots) | konan | T09, T04 | chapitres dans `manuscrit/` | EN COURS |
+| T10-T12 | Rédaction des chapitres (trois lots) | konan | T09, T04 | chapitres dans `manuscrit/` | TERMINÉ |
 | T13 | Lecture éditoriale, lot par lot (décision du 9/11 sur proposition de Mariam) | akissi | T10-T12 | notes au journal | À FAIRE |
 | T14-T15 | Correction (deux lots), vérification de chaque verset | amenan | T13 | copies `-corrige.md`, relevés | À FAIRE |
 | T16 | Couverture : deux pistes, puis gabarit complet | affoue | T06, T08 | `couverture/` | EN COURS |
