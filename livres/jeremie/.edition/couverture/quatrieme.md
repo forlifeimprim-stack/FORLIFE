@@ -15,7 +15,7 @@ Le script `couverture/generer_couverture.py` lit ce fichier : l'accroche, la pr�
 
 Appelé tout jeune, la treizième année du roi Josias, Jérémie a porté la parole de Dieu pendant une quarantaine d’années. Il a dicté à Baruc un rouleau que le roi Jojakim a brûlé, écrit aux exilés de Babylone, connu la citerne pendant le siège. Après la chute de Jérusalem, il est resté parmi le peuple, puis a été emmené en Égypte par ceux qui avaient refusé son message.
 
-Ce livre suit sa vie règne après règne, d’Anathoth à Tachpanès. Chaque chapitre éclaire le contexte historique, cite les versets clés et propose une étude approfondie du texte autour de la mission de Jérémie 1:10 : arracher et abattre, bâtir et planter. Leçons pour aujourd’hui et questions pour l’étude en groupe accompagnent chaque étape. Une chronologie et une carte accompagnent la lecture.
+Ce livre suit sa vie règne après règne, d’Anathoth à Tachpanès. Chaque chapitre éclaire le contexte historique, cite les versets clés et propose une étude approfondie du texte autour de la mission de Jérémie 1:10 : arracher et abattre, bâtir et planter. Leçons pour aujourd’hui et questions pour l’étude en groupe concluent chaque chapitre. Une chronologie et une carte accompagnent la lecture.
 
 Pour le croyant qui lit sa Bible et pour le serviteur de Dieu qui cherche à rester fidèle quand la parole dérange.
 
