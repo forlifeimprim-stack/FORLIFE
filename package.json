@@ -4,7 +4,11 @@
   "description": "Bienvenue dans le dépôt du site internet officiel et du hub d'automatisation marketing de **Forlife Com'**, l'agence de communication et de publicité (division de **Forlife Imprim**), basée à Bingerville, Côte d'Ivoire.",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "verifier": "node agence/verifier.mjs",
+    "visuel": "node .claude/skills/visuel-studio/scripts/rendre.mjs",
+    "motion": "node .claude/skills/motion-studio/scripts/animer.mjs",
+    "installer:navigateur": "playwright install chromium"
   },
   "keywords": [],
   "author": "",
@@ -12,5 +16,8 @@
   "type": "commonjs",
   "dependencies": {
     "@google/generative-ai": "^0.24.1"
+  },
+  "devDependencies": {
+    "playwright": "^1.63.0"
   }
 }

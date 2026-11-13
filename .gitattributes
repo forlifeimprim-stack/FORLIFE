@@ -1,0 +1,8 @@
+# Scripts shell : toujours en fin de ligne Unix (sinon ils cassent sous Windows / Git Bash / WSL)
+*.sh text eol=lf
+# Fichiers binaires
+*.woff2 binary
+*.png binary
+*.jpg binary
+*.mp4 binary
+*.pdf binary

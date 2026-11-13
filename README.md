@@ -123,6 +123,15 @@ Le site est 100% statique et ultra-rapide. Il peut être déployé en 1 clic sur
 
 ---
 
+## 🤖 Agence d'agents créatifs (Claude Code)
+
+Le dépôt embarque une équipe de **22 agents IA** (direction de création, stratégie, community management, rédaction,
+direction artistique, graphisme, identité visuelle, illustration, web, photo/vidéo, montage, motion design, son et voix off,
+Meta Ads, SEO, événementiel, formation, contrôle qualité), des moteurs de production (visuels PNG/PDF imprimeur,
+animations MP4) et 85 guides d'experts importés de GitHub. Mode d'emploi : [`agence/README.md`](agence/README.md).
+
+---
+
 ## 📞 Coordonnées Officieuses & Support
 
 - **WhatsApp & Appel principal** : `+225 05 85 80 18 56`
