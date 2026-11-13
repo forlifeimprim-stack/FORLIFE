@@ -1,6 +1,6 @@
 # Quatrième de couverture
 
-Statut : RELU ET CORRIGÉ par Amenan le 13 novembre 2026 (T15) ; relevé des changements dans `corrections/releve-lot-B.md`. Pour l'appliquer, Affoué remplace `quatrieme.md` par ce fichier et relance le script. Rédigé par Affoué le 9 novembre 2026, tâche T16, d'après `manuscrit/00-plan-detaille.md` (version validée par Akissi en T09). L'accroche et la présentation sont un texte généré par IA, à faire valider par l'auteur. La biographie est reprise mot pour mot de `livre.yaml` (`biographie_auteur`) et ne se corrige que là.
+Statut : présentation modifiée par Akissi le 13 novembre 2026 (orientation « étude », phrase sur Jérémie 1:10), à relire par Amenan en T24. Version précédente : RELU ET CORRIGÉ par Amenan le 13 novembre 2026 (T15) ; relevé des changements dans `corrections/releve-lot-B.md`. Pour l'appliquer, Affoué remplace `quatrieme.md` par ce fichier et relance le script. Rédigé par Affoué le 9 novembre 2026, tâche T16, d'après `manuscrit/00-plan-detaille.md` (version validée par Akissi en T09). L'accroche et la présentation sont un texte généré par IA, à faire valider par l'auteur. La biographie est reprise mot pour mot de `livre.yaml` (`biographie_auteur`) et ne se corrige que là.
 
 Le script `couverture/generer_couverture.py` lit ce fichier : l'accroche, la présentation et les mentions imprimées sur la quatrième viennent des trois sections ci-dessous. Toute correction se fait ici, puis on relance le script ; jamais dans le PDF.
 
@@ -15,7 +15,7 @@ Le script `couverture/generer_couverture.py` lit ce fichier : l'accroche, la pr�
 
 Appelé tout jeune, la treizième année du roi Josias, Jérémie a porté la parole de Dieu pendant une quarantaine d’années. Il a dicté à Baruc un rouleau que le roi Jojakim a brûlé, écrit aux exilés de Babylone, connu la citerne pendant le siège. Après la chute de Jérusalem, il est resté parmi le peuple, puis a été emmené en Égypte par ceux qui avaient refusé son message.
 
-Ce livre suit sa vie règne après règne, d’Anathoth à Tachpanès. Chaque chapitre éclaire le contexte historique, cite les versets clés et se termine par des leçons pour aujourd’hui et des questions pour méditer, seul ou en groupe. Une chronologie et une carte accompagnent la lecture.
+Ce livre suit sa vie règne après règne, d’Anathoth à Tachpanès. Chaque chapitre éclaire le contexte historique, cite les versets clés et propose une étude approfondie du texte autour de la mission de Jérémie 1:10 : arracher et abattre, bâtir et planter. Leçons pour aujourd’hui et questions pour l’étude en groupe accompagnent chaque étape. Une chronologie et une carte accompagnent la lecture.
 
 Pour le croyant qui lit sa Bible et pour le serviteur de Dieu qui cherche à rester fidèle quand la parole dérange.
 
