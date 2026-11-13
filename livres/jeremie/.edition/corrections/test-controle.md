@@ -15,3 +15,7 @@ Cas 3, référence fausse, le chapitre 29 n'ayant que trente-deux versets : « C
 Cas 4, renvoi vers un verset qui existe mais ne contient pas la citation : « Ne les crains point, car je suis avec toi pour te délivrer » (Jérémie 1:7).
 
 Cas 5, citation non biblique, sans référence, ignorée : un proverbe dit « la parole est d’argent ». Référence seule à contrôler (voir Jérémie 36:4 ; 52:31).
+
+Cas 6 (ajouté en T14), capitales de vers élidées ou accentuées ramenées en minuscule dans le texte courant, toutes admises par style.md § 4.7 : « parcourez les rues de Jérusalem, regardez, informez-vous, cherchez dans les places, s’il s’y trouve un homme » (Jérémie 5:1) ; « Je t’aime d’un amour éternel ; c’est pourquoi je te conserve ma bonté » (Jérémie 31:3) ; « terre, terre, terre, écoute la parole de l’Éternel ! » (Jérémie 22:29) ; « pour tous les royaumes de la terre, à cause de Manassé » (Jérémie 15:4) ; « n’élève pour eux ni supplications ni prières » (Jérémie 7:16).
+
+Cas 7 (ajouté en T14), trois abaissements interdits, à signaler : une capitale après deux-points, « ainsi parle l’Éternel : n’entre pas dans une maison de deuil » (Jérémie 16:5) ; un accent oublié, « terre, terre, terre, ecoute la parole de l’Éternel ! » (Jérémie 22:29) ; un nom divin, « De loin l’éternel se montre à moi » (Jérémie 31:3).

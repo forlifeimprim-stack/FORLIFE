@@ -75,11 +75,32 @@ MINUSCULES_LSG = {j.lower() for livre in LIVRES.values() for c in livre["chapter
                   for j in jetons(texte_verset(v["text"])) if est_mot(j) and j[0].islower()}
 
 
+ACCENTS_POSSIBLES = {"e": "eéèê", "a": "aàâ", "o": "oô", "i": "iîï", "u": "uùû", "c": "cç"}
+
+
+def minuscules_permises(jeton):
+    """Formes en minuscule d'un mot de la LSG à capitale : la capitale du texte numérique a perdu son accent
+    (« A » pour « À », « Ecoute »), on admet donc chaque accent possible, à condition que la forme existe
+    en minuscule dans la LSG (« s’ », « n’ », « à », « écoute »)."""
+    reste = jeton[1:]
+    return {lettre + reste for lettre in ACCENTS_POSSIBLES.get(jeton[0].lower(), jeton[0].lower())
+            if lettre + reste in MINUSCULES_LSG}
+
+
 def casse_libre(jeton, precedent):
     """Vrai si la capitale de ce mot de la LSG est une capitale de vers, que le livre peut abaisser."""
-    cle = jeton.lower().rstrip("'")
     return (jeton[0].isupper() and precedent not in FINS_DE_PHRASE
-            and cle in MINUSCULES_LSG and cle not in NOMS_DIVINS)
+            and jeton.lower().rstrip("'") not in NOMS_DIVINS and bool(minuscules_permises(jeton)))
+
+
+def casse_admise(mot, mot_lsg, libre, tete):
+    """Le mot cité ne diffère de la LSG que par une capitale permise par style.md § 4.7."""
+    if mot_lsg.lower().rstrip("'") in NOMS_DIVINS:
+        return False
+    if (libre or tete) and mot_lsg[0].isupper() and mot in minuscules_permises(mot_lsg):
+        return True
+    # Citation qui commence par une capitale là où la LSG continue une phrase en minuscule.
+    return tete and mot_lsg[0].islower() and mot == mot_lsg[0].upper().translate(CAPITALES) + mot_lsg[1:]
 
 
 def lire_reference(texte):
@@ -141,7 +162,10 @@ def rogner(segment):
 
 
 def cle(jeton):
-    return jeton.lower()
+    """Clé d'alignement : l'accent de la première lettre ne compte pas ici (capitale sans accent de la source) ;
+    la différence est jugée ensuite par casse_admise."""
+    bas = jeton.lower()
+    return unicodedata.normalize("NFD", bas[0])[0] + bas[1:]
 
 
 def meilleure_fenetre(segment, source, depart):
@@ -216,12 +240,9 @@ def comparer(citation, versets, en_bloc):
                     tete = i1 + n == 0
                     if libre and mot[0].isupper() and not en_bloc and not tete:
                         remarques.append(f"capitale de vers à abaisser dans le texte courant : « {mot} »")
-                    if mot == mot_lsg:
+                    if mot == mot_lsg or casse_admise(mot, mot_lsg, libre, tete):
                         continue
-                    nom_divin = mot_lsg.lower().rstrip("'") in NOMS_DIVINS
-                    if (libre or tete) and not nom_divin:
-                        continue
-                    ecarts.append(f"casse : LSG « {mot_lsg} », citation « {mot} »")
+                    ecarts.append(f"casse ou accent : LSG « {mot_lsg} », citation « {mot} »")
         curseur = fin
     remarques.extend(remarques_typographiques(citation))
     return ecarts, remarques

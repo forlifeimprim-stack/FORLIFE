@@ -1,0 +1,62 @@
+# Relevé des corrections, lot A (fichiers 01 à 08)
+
+Établi par Amenan le 13 novembre 2026 (T14). Généré par `corrections/corriger_lot_a.py` : les numéros de ligne sont ceux de l'original de Konan. Les copies corrigées sont `manuscrit/NN-x-corrige.md` ; les originaux sont intacts.
+
+11 corrections relevées à la lecture, 801 lignes touchées par la passe d'espaces insécables (regroupées par fichier et par règle).
+
+| Fichier | Ligne | Avant | Après | Règle |
+|---|---|---|---|---|
+| 01-avant-propos.md | 3, 17 | espace ordinaire ou absente | espace insécable (2 ligne(s)) | espace fine insécable avant ; ! ? (style.md § 4.4) |
+| 01-avant-propos.md | 3, 15, 23, 27 | espace ordinaire ou absente | espace insécable (4 ligne(s)) | espace insécable avant les deux-points (style.md § 4.4) |
+| 01-avant-propos.md | 17, 19, 23 | espace ordinaire ou absente | espace insécable (3 ligne(s)) | espace insécable après « (style.md § 10) |
+| 01-avant-propos.md | 17, 19, 23 | espace ordinaire ou absente | espace insécable (3 ligne(s)) | espace insécable avant » (style.md § 10) |
+| 02-introduction.md | 1, 13, 19, 21, 31, 33, 39, 51, 53, 57, 65, 71, 73, 80, 96, 105, 115 | espace ordinaire ou absente | espace insécable (17 ligne(s)) | espace insécable avant les deux-points (style.md § 4.4) |
+| 02-introduction.md | 6, 27, 29, 31, 33, 37, 39, 41, 47, 49, 51, 57, 59, 65, 67, 71, 75, 82, 84, 107, 108, 109, 110, 111 | espace ordinaire ou absente | espace insécable (24 ligne(s)) | espace insécable entre le chiffre et le nom d'un livre numéroté (style.md § 3) |
+| 02-introduction.md | 27, 31, 33, 37, 39, 41, 47, 49, 51, 57, 59, 65, 67, 71, 84, 96, 98 | espace ordinaire ou absente | espace insécable (17 ligne(s)) | espace insécable après « (style.md § 10) |
+| 02-introduction.md | 27, 31, 33, 37, 39, 41, 47, 49, 51, 57, 59, 65, 67, 71, 84, 96, 98 | espace ordinaire ou absente | espace insécable (17 ligne(s)) | espace insécable avant » (style.md § 10) |
+| 02-introduction.md | 31, 65, 67, 107, 108, 109, 110 | espace ordinaire ou absente | espace insécable (7 ligne(s)) | espace fine insécable avant ; ! ? (style.md § 4.4) |
+| 02-introduction.md | 82 | espace ordinaire ou absente | espace insécable (1 ligne(s)) | espaces insécables dans « av. J.-C. » (style.md § 8) |
+| 03-ch01-anathoth.md | 9, 17, 21, 23, 25, 28, 30, 39, 41, 45, 47, 53, 55, 57, 61, 71, 74, 76, 87, 93, 95, 97, 99, 101, 105 | espace ordinaire ou absente | espace insécable (25 ligne(s)) | espace insécable avant les deux-points (style.md § 4.4) |
+| 03-ch01-anathoth.md | 13, 21, 23, 25, 30, 45, 55, 57, 61, 85, 87, 93, 95, 97, 99, 101, 105, 110 | espace ordinaire ou absente | espace insécable (18 ligne(s)) | espace insécable après « (style.md § 10) |
+| 03-ch01-anathoth.md | 13, 21, 23, 25, 30, 45, 55, 57, 61, 85, 87, 93, 95, 97, 99, 101, 105, 110 | espace ordinaire ou absente | espace insécable (18 ligne(s)) | espace insécable avant » (style.md § 10) |
+| 03-ch01-anathoth.md | 25, 34, 41, 63, 65, 75, 76, 79, 95, 105, 114, 118, 119, 120 | espace ordinaire ou absente | espace insécable (14 ligne(s)) | espace fine insécable avant ; ! ? (style.md § 4.4) |
+| 03-ch01-anathoth.md | 39, 43, 45, 47, 55, 57, 108 | espace ordinaire ou absente | espace insécable (7 ligne(s)) | espace insécable entre le chiffre et le nom d'un livre numéroté (style.md § 3) |
+| 04-ch02-appel.md | 1, 13, 15, 17, 19, 23, 27, 35, 38, 40, 42, 49, 51, 53, 57, 59, 61, 67, 71, 73, 75, 79, 81, 83, 85, 87, 89, 93, 99, 101, 103, 107, 113, 115, 120, 122, 126 | espace ordinaire ou absente | espace insécable (37 ligne(s)) | espace insécable avant les deux-points (style.md § 4.4) |
+| 04-ch02-appel.md | 9, 40 | espace ordinaire ou absente | espace insécable (2 ligne(s)) | espaces insécables dans « av. J.-C. » (style.md § 8) |
+| 04-ch02-appel.md | 13, 15, 27, 31, 35, 40, 42, 44, 47, 49, 51, 53, 57, 59, 61, 67, 71, 73, 75, 79, 83, 85, 87, 89, 99, 101, 107, 113, 115, 122, 124, 130, 131 | espace ordinaire ou absente | espace insécable (33 ligne(s)) | espace insécable après « (style.md § 10) |
+| 04-ch02-appel.md | 13, 15, 27, 31, 35, 40, 42, 44, 47, 49, 51, 53, 57, 59, 61, 67, 71, 73, 75, 79, 83, 85, 87, 89, 99, 101, 107, 113, 115, 122, 124, 130, 131 | espace ordinaire ou absente | espace insécable (33 ligne(s)) | espace insécable avant » (style.md § 10) |
+| 04-ch02-appel.md | 19, 44, 49, 51, 53, 67, 79, 83, 95, 103, 107, 113, 130, 131, 132 | espace ordinaire ou absente | espace insécable (15 ligne(s)) | espace fine insécable avant ; ! ? (style.md § 4.4) |
+| 04-ch02-appel.md | 40, 99 | espace ordinaire ou absente | espace insécable (2 ligne(s)) | espace insécable entre le chiffre et le nom d'un livre numéroté (style.md § 3) |
+| 05-ch03-josias.md | 4 | > Placez-vous sur les chemins, regardez, Et demandez quels sont les anciens sentiers, Quelle est la bonne voie ; marchez-y, Et vous trouverez le repos de vos âmes ! | > Placez-vous sur les chemins, regardez,\ ⏎ > Et demandez quels sont les anciens sentiers,\ ⏎ > Quelle est la bonne voie ; marchez-y,\ ⏎ > Et vous trouverez le repos de vos âmes ! | style.md § 4.7 : en bloc, un vers par ligne avec sa capitale |
+| 05-ch03-josias.md | 57 | devant l’Éternel [...] moi aussi | devant l’Éternel […] moi aussi | style.md § 5 : coupure […] en un seul caractère |
+| 05-ch03-josias.md | 64 | cette année correspond à 622 av. J.-C. environ ; | cette année se situe vers 622 av. J.-C. ; | style.md § 8 : date reconstruite précédée de « vers », une seule forme |
+| 05-ch03-josias.md | 148 | a changé au dehors sans avoir encore changé au dedans | a changé au-dehors sans avoir encore changé au-dedans | orthographe : locutions adverbiales « au-dehors », « au-dedans » (trait d'union) |
+| 05-ch03-josias.md | 1, 14, 16, 18, 20, 22, 29, 36, 40, 42, 44, 52, 54, 56, 60, 63, 78, 80, 86, 88, 90, 94, 96, 104, 110, 125, 136, 141, 147 | espace ordinaire ou absente | espace insécable (29 ligne(s)) | espace insécable avant les deux-points (style.md § 4.4) |
+| 05-ch03-josias.md | 6, 7, 18, 20, 25, 26, 27, 28, 40, 42, 44, 58, 67, 74, 78, 80, 88, 90, 94, 104, 108, 112, 113, 115, 118, 134, 136, 151, 152, 153 | espace ordinaire ou absente | espace insécable (30 ligne(s)) | espace fine insécable avant ; ! ? (style.md § 4.4) |
+| 05-ch03-josias.md | 16, 18, 20, 40, 42, 44, 46, 48, 52, 54, 56, 58, 60, 65, 67, 74, 76, 78, 80, 84, 86, 88, 90, 94, 96, 102, 104, 106, 108, 127, 134, 136, 141, 143, 147, 152 | espace ordinaire ou absente | espace insécable (36 ligne(s)) | espace insécable après « (style.md § 10) |
+| 05-ch03-josias.md | 16, 18, 20, 40, 42, 44, 46, 48, 52, 54, 56, 58, 60, 65, 67, 74, 76, 78, 80, 84, 86, 88, 90, 94, 96, 102, 104, 106, 108, 127, 134, 136, 141, 143, 147, 152 | espace ordinaire ou absente | espace insécable (36 ligne(s)) | espace insécable avant » (style.md § 10) |
+| 05-ch03-josias.md | 52, 54, 56, 60, 65, 67, 69, 74, 76, 102, 104, 106, 108, 127, 134, 138, 145, 153 | espace ordinaire ou absente | espace insécable (18 ligne(s)) | espace insécable entre le chiffre et le nom d'un livre numéroté (style.md § 3) |
+| 05-ch03-josias.md | 67, 125, 129 | espace ordinaire ou absente | espace insécable (3 ligne(s)) | espaces insécables dans « av. J.-C. » (style.md § 8) |
+| 06-ch04-temple.md | 4, 15, 29, 36, 50, 52, 55, 57, 62, 86, 90, 94, 98, 100, 104, 112, 114, 116, 122, 124, 141, 142, 143, 147 | espace ordinaire ou absente | espace insécable (24 ligne(s)) | espace fine insécable avant ; ! ? (style.md § 4.4) |
+| 06-ch04-temple.md | 9, 15, 29, 40, 42, 62, 66, 70, 72, 74, 79, 81, 86, 88, 90, 94, 96, 98, 100, 102, 108, 112, 114, 116, 120, 124, 126, 131, 133, 137, 142 | espace ordinaire ou absente | espace insécable (31 ligne(s)) | espace insécable après « (style.md § 10) |
+| 06-ch04-temple.md | 9, 15, 29, 40, 42, 62, 66, 70, 72, 74, 79, 81, 86, 88, 90, 94, 96, 98, 100, 102, 108, 112, 114, 116, 120, 124, 126, 131, 133, 137, 142 | espace ordinaire ou absente | espace insécable (31 ligne(s)) | espace insécable avant » (style.md § 10) |
+| 06-ch04-temple.md | 13, 15, 22, 24, 72, 79, 81, 120 | espace ordinaire ou absente | espace insécable (8 ligne(s)) | espace insécable entre le chiffre et le nom d'un livre numéroté (style.md § 3) |
+| 06-ch04-temple.md | 15, 20, 24, 29, 31, 33, 35, 40, 42, 48, 55, 62, 66, 70, 72, 74, 77, 81, 86, 88, 90, 94, 98, 100, 102, 112, 114, 120, 124, 126, 131, 133, 141 | espace ordinaire ou absente | espace insécable (33 ligne(s)) | espace insécable avant les deux-points (style.md § 4.4) |
+| 07-ch05-solitude.md | 133 | **La plainte honnête a sa place devant Dieu.** | La plainte honnête a sa place devant Dieu. | harmonisation des lots : pas de phrase en gras en tête des leçons (décision d'Akissi, T11) |
+| 07-ch05-solitude.md | 135 | **Le serviteur aussi est appelé à revenir.** | Le serviteur aussi est appelé à revenir. | harmonisation des lots : pas de phrase en gras en tête des leçons (décision d'Akissi, T11) |
+| 07-ch05-solitude.md | 137 | **La solitude du service, et ses limites.** | La solitude du service, et ses limites. | harmonisation des lots : pas de phrase en gras en tête des leçons (décision d'Akissi, T11) |
+| 07-ch05-solitude.md | 1, 10, 14, 18, 20, 24, 26, 28, 30, 32, 36, 50, 58, 60, 62, 66, 68, 70, 76, 78, 80, 82, 86, 90, 93, 97, 114, 124, 126, 128, 133, 135, 137, 143 | espace ordinaire ou absente | espace insécable (34 ligne(s)) | espace insécable avant les deux-points (style.md § 4.4) |
+| 07-ch05-solitude.md | 14, 18, 20, 24, 26, 28, 30, 32, 36, 58, 62, 66, 68, 70, 76, 78, 80, 86, 88, 90, 95, 97, 124, 126, 128, 135, 143 | espace ordinaire ou absente | espace insécable (27 ligne(s)) | espace insécable après « (style.md § 10) |
+| 07-ch05-solitude.md | 14, 18, 20, 24, 26, 28, 30, 32, 36, 58, 62, 66, 68, 70, 76, 78, 80, 86, 88, 90, 95, 97, 124, 126, 128, 135, 143 | espace ordinaire ou absente | espace insécable (27 ligne(s)) | espace insécable avant » (style.md § 10) |
+| 07-ch05-solitude.md | 16, 18, 20, 24, 26, 30, 32, 36, 40, 41, 42, 43, 46, 47, 49, 51, 60, 62, 76, 80, 106, 111, 122, 124, 126, 141, 142, 143 | espace ordinaire ou absente | espace insécable (28 ligne(s)) | espace fine insécable avant ; ! ? (style.md § 4.4) |
+| 07-ch05-solitude.md | 128 | espace ordinaire ou absente | espace insécable (1 ligne(s)) | espace insécable entre le chiffre et le nom d'un livre numéroté (style.md § 3) |
+| 08-ch06-rouleau.md | 108 | **La parole ne brûle pas.** | La parole ne brûle pas. | harmonisation des lots : pas de phrase en gras en tête des leçons (décision d'Akissi, T11) |
+| 08-ch06-rouleau.md | 110 | **Deux réactions à la même lecture.** | Deux réactions à la même lecture. | harmonisation des lots : pas de phrase en gras en tête des leçons (décision d'Akissi, T11) |
+| 08-ch06-rouleau.md | 112 | **Le collaborateur qui sert dans l’ombre.** | Le collaborateur qui sert dans l’ombre. | harmonisation des lots : pas de phrase en gras en tête des leçons (décision d'Akissi, T11) |
+| 08-ch06-rouleau.md | 114 | **L’ambition dans le service.** | L’ambition dans le service. | harmonisation des lots : pas de phrase en gras en tête des leçons (décision d'Akissi, T11) |
+| 08-ch06-rouleau.md | 13, 15, 22, 24, 26, 31, 33, 35, 39, 41, 45, 47, 53, 55, 69, 71, 73, 77, 79, 84, 86, 88, 93, 95, 103, 105, 108, 110, 114, 120 | espace ordinaire ou absente | espace insécable (30 ligne(s)) | espace insécable après « (style.md § 10) |
+| 08-ch06-rouleau.md | 13, 15, 22, 24, 26, 31, 33, 35, 39, 41, 45, 47, 53, 55, 69, 71, 73, 77, 79, 84, 86, 88, 93, 95, 103, 105, 108, 110, 114, 120 | espace ordinaire ou absente | espace insécable (30 ligne(s)) | espace insécable avant » (style.md § 10) |
+| 08-ch06-rouleau.md | 15, 22, 26, 69, 88 | espace ordinaire ou absente | espace insécable (5 ligne(s)) | espace insécable entre le chiffre et le nom d'un livre numéroté (style.md § 3) |
+| 08-ch06-rouleau.md | 15, 17, 20, 24, 26, 31, 33, 39, 41, 45, 51, 53, 55, 57, 67, 69, 73, 77, 79, 82, 95, 97, 101, 103, 105, 108, 110, 112 | espace ordinaire ou absente | espace insécable (28 ligne(s)) | espace insécable avant les deux-points (style.md § 4.4) |
+| 08-ch06-rouleau.md | 20, 24 | espace ordinaire ou absente | espace insécable (2 ligne(s)) | espaces insécables dans « av. J.-C. » (style.md § 8) |
+| 08-ch06-rouleau.md | 31, 39, 91, 95, 97, 103, 114, 118, 119, 120, 124 | espace ordinaire ou absente | espace insécable (11 ligne(s)) | espace fine insécable avant ; ! ? (style.md § 4.4) |

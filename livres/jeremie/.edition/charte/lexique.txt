@@ -15,9 +15,9 @@ Hilkija | Hilkija | personne | Jérémie 1:1 | père de Jérémie, sacrificateur
 Hanameel | Hanameel | personne | Jérémie 32:7 | cousin de Jérémie, fils de son oncle Schallum
 Schallum | Schallum | personne | Jérémie 32:7 | oncle de Jérémie ; homonyme : Schallum, fils de Josias (Jérémie 22:11)
 Baruc | Baruc | personne | Jérémie 36:4 | secrétaire de Jérémie ; jamais « Baruch »
-Nérija | Nérija | personne | Jérémie 32:12 | père de Baruc et de Seraja
+Nérija | Nérija | personne | Jérémie 32:12 | père de Baruc (Jérémie 32:12) et de Seraja (Jérémie 51:59)
 Machséja | Machséja | personne | Jérémie 32:12 | grand-père de Baruc
-Seraja | Seraja | personne | Jérémie 51:59 | frère de Baruc, premier chambellan ; homonymes : Seraja, souverain sacrificateur (Jérémie 52:24), Seraja, fils d'Azriel (Jérémie 36:26)
+Seraja | Seraja | personne | Jérémie 51:59 | « fils de Nérija, fils de Machséja », premier chambellan ; même ascendance que Baruc (Jérémie 32:12) : la fraternité est une déduction, à présenter comme telle (décision T09) ; homonymes : Seraja, souverain sacrificateur (Jérémie 52:24), Seraja, fils d'Azriel (Jérémie 36:26)
 Ébed-Mélec | Ebed-Mélec | personne | Jérémie 38:7 | eunuque qui tire Jérémie de la citerne
 Éthiopien | Ethiopien | peuple | Jérémie 38:7 | « Ebed-Mélec, l'Ethiopien » dans le texte numérique
 # Rois de Juda et leur entourage
