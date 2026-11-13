@@ -1,0 +1,46 @@
+/* EPUB recomposable : la liseuse garde la main sur la police, le corps et les marges.
+   On ne fixe que la hiérarchie et le rendu des blocs du manuscrit (charte/graphique.md). */
+
+body { margin: 0 4%; line-height: 1.45; }
+p { margin: 0; text-indent: 1.2em; text-align: left; }
+h1 + p, h2 + p, h3 + p, blockquote + p, div + p, figure + p, ul + p, ol + p { text-indent: 0; }
+
+h1 { font-size: 1.5em; line-height: 1.25; margin: 2.5em 0 1.2em; text-align: center; font-weight: normal; }
+h2 { font-size: 1.15em; margin: 1.6em 0 0.6em; }
+h3 { font-size: 1em; font-style: italic; font-weight: normal; margin: 1.2em 0 0.4em; }
+
+blockquote { margin: 0.9em 0 0.9em 1.2em; padding-left: 0.8em; border-left: 2px solid #999; }
+blockquote p { text-indent: 0; }
+.reference p { text-align: right; font-size: 0.9em; margin-top: 0.3em; }
+
+.epigraphe { margin: 0 8% 2em; }
+.epigraphe blockquote { border: none; margin: 0; padding: 0; }
+.epigraphe p { font-style: italic; text-align: center; }
+.epigraphe .reference p { font-style: normal; text-align: center; }
+
+.bloc-titre p { text-indent: 0; font-weight: bold; margin-bottom: 0.5em; }
+
+.encadre, .application {
+  margin: 1.4em 0; padding: 0.8em 1em;
+  border: 1px solid #999; background-color: #f2efe8;
+}
+.encadre p, .application p { text-indent: 0; margin-bottom: 0.5em; }
+
+.lecons, .questions, .priere { margin: 1.6em 0 0; padding-top: 0.6em; border-top: 1px solid #999; }
+.lecons p, .questions p { text-indent: 0; margin-bottom: 0.5em; }
+.lecons li, .questions li { margin-bottom: 0.4em; }
+.priere p { font-style: italic; text-indent: 0; margin-bottom: 0.4em; }
+
+figure { margin: 1.5em 0; text-align: center; }
+figure img { max-width: 100%; }
+figcaption { font-size: 0.9em; font-style: italic; margin-top: 0.5em; }
+
+table { border-collapse: collapse; width: 100%; font-size: 0.9em; margin: 1em 0; }
+th, td { border-bottom: 1px solid #bbb; padding: 0.3em; text-align: left; vertical-align: top; }
+
+.mentions p, .du-meme-auteur p { text-indent: 0; margin-bottom: 0.6em; font-size: 0.9em; }
+.du-meme-auteur { margin-top: 2em; }
+
+@media (prefers-color-scheme: dark) {
+  .encadre, .application { background-color: transparent; }
+}
