@@ -1,7 +1,8 @@
 #!/usr/bin/env python3
-"""Correction du lot A (manuscrit/01 à 08) sur copie : produit les NN-x-corrige.md, le relevé et la page de comparaison.
+"""Correction d'un lot du manuscrit sur copie : produit les NN-x-corrige.md, le relevé et la page de comparaison.
 
-  python3 corrections/corriger_lot_a.py        (depuis .edition/)
+  python3 corrections/corriger_lot.py A        (fichiers 01 à 08, T14)
+  python3 corrections/corriger_lot.py B        (fichiers 09 à 16, T15)
 
 Les originaux de manuscrit/ ne sont jamais réécrits. Deux passes :
   1. corrections relevées à la lecture (orthographe, cohérence, harmonisation), listées ci-dessous ;
@@ -11,15 +12,23 @@ Les originaux de manuscrit/ ne sont jamais réécrits. Deux passes :
 import difflib
 import html
 import re
+import sys
 from pathlib import Path
 
 EDITION = Path(__file__).resolve().parent.parent
 MANUSCRIT = EDITION / "manuscrit"
 CORRECTIONS = EDITION / "corrections"
-FICHIERS = ["01-avant-propos", "02-introduction", "03-ch01-anathoth", "04-ch02-appel",
-            "05-ch03-josias", "06-ch04-temple", "07-ch05-solitude", "08-ch06-rouleau"]
+LOTS = {
+    "A": {"fichiers": ["01-avant-propos", "02-introduction", "03-ch01-anathoth", "04-ch02-appel",
+                       "05-ch03-josias", "06-ch04-temple", "07-ch05-solitude", "08-ch06-rouleau"],
+          "tache": "T14", "date": "13 novembre 2026"},
+    "B": {"fichiers": ["09-ch07-gestes", "10-ch08-lettre", "11-ch09-consolation", "12-ch10-citerne",
+                       "13-ch11-ruines", "14-ch12-egypte", "15-conclusion", "16-annexes"],
+          "tache": "T15", "date": "13 novembre 2026"},
+}
 
 HARMONISATION_LECONS = "harmonisation des lots : pas de phrase en gras en tête des leçons (décision d'Akissi, T11)"
+PRISON = "cohérence avec Jérémie 20:2 : la LSG dit « la prison », pas « les ceps » (voir chapitre 5 et questions-auteur-lot2, n° 5)"
 
 # (fichier, texte fautif, texte corrigé, règle). Chaque texte fautif doit apparaître une seule fois.
 CORRECTIONS_LUES = [
@@ -40,6 +49,29 @@ CORRECTIONS_LUES = [
     ("08-ch06-rouleau", "**Deux réactions à la même lecture.**", "Deux réactions à la même lecture.", HARMONISATION_LECONS),
     ("08-ch06-rouleau", "**Le collaborateur qui sert dans l’ombre.**", "Le collaborateur qui sert dans l’ombre.", HARMONISATION_LECONS),
     ("08-ch06-rouleau", "**L’ambition dans le service.**", "L’ambition dans le service.", HARMONISATION_LECONS),
+    # Lot B
+    ("09-ch07-gestes", "**L’obéissance qui fait honte.**", "L’obéissance qui fait honte.", HARMONISATION_LECONS),
+    ("09-ch07-gestes", "**L’humilité devant la contradiction.**", "L’humilité devant la contradiction.", HARMONISATION_LECONS),
+    ("09-ch07-gestes", "**Discerner à la lumière de ce que Dieu a dit.**", "Discerner à la lumière de ce que Dieu a dit.", HARMONISATION_LECONS),
+    ("09-ch07-gestes", "**Un message agréable n’est pas une preuve.**", "Un message agréable n’est pas une preuve.", HARMONISATION_LECONS),
+    ("10-ch08-lettre", "**Rechercher le bien de la ville où tu vis.**", "Rechercher le bien de la ville où tu vis.", HARMONISATION_LECONS),
+    ("10-ch08-lettre", "**Dieu n’est pas enfermé dans un lieu.**", "Dieu n’est pas enfermé dans un lieu.", HARMONISATION_LECONS),
+    ("10-ch08-lettre", "**Lire Jérémie 29:11 avec ses voisins.**", "Lire Jérémie 29:11 avec ses voisins.", HARMONISATION_LECONS),
+    ("10-ch08-lettre", "**Se méfier des promesses de délivrance rapide.**", "Se méfier des promesses de délivrance rapide.", HARMONISATION_LECONS),
+    ("10-ch08-lettre", "On date habituellement cette déportation de vers 597 av. J.-C.",
+     "On situe habituellement cette déportation vers 597 av. J.-C.",
+     "syntaxe : « dater de vers » est fautif ; même tournure que les autres dates (style.md § 8)"),
+    ("11-ch09-consolation", "La loi au dedans et le pardon.", "La loi au-dedans et le pardon.",
+     "orthographe : locution adverbiale « au-dedans » (hors citation ; la LSG garde « au dedans »)"),
+    ("11-ch09-consolation", "d’écrire sa loi au dedans, et", "d’écrire sa loi au-dedans, et",
+     "orthographe : locution adverbiale « au-dedans » (hors citation ; la LSG garde « au dedans »)"),
+    ("12-ch10-citerne", "celui qui avait mis Jérémie aux ceps", "celui qui avait mis Jérémie en prison", PRISON),
+    ("12-ch10-citerne", "(Jérémie 21:9 ; 38:2 ; 38:17)", "(Jérémie 21:9 ; 38:2, 17)",
+     "style.md § 3 : versets du même chapitre séparés par une virgule"),
+    ("14-ch12-egypte", "(Jérémie 49:6 ; 49:39)", "(Jérémie 49:6, 39)",
+     "style.md § 3 : versets du même chapitre séparés par une virgule"),
+    ("15-conclusion", "prisonnier dans les ceps, dans les cachots", "prisonnier à la porte de Benjamin, dans les cachots", PRISON),
+    ("16-annexes", "qui met Jérémie aux ceps", "qui met Jérémie en prison", PRISON),
 ]
 
 # Copie des règles de outils/composer.py (« Typographie française »), appliquées au Markdown.
@@ -126,7 +158,7 @@ def comparaison_html(nom, original, corrige):
 PAGE = """<!doctype html>
 <html lang="fr"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Comparaison lot A</title>
+<title>Comparaison lot {lot}</title>
 <style>
 :root {{ --fond: #fdfcf8; --texte: #222; --supprime: #f6d5d2; --ajoute: #d4ecd6; --discret: #666; }}
 @media (prefers-color-scheme: dark) {{ :root {{ --fond: #1d1c1a; --texte: #e8e6e1; --supprime: #5a2622; --ajoute: #22472a; --discret: #aaa; }} }}
@@ -138,21 +170,40 @@ ins {{ background: var(--ajoute); text-decoration: none; }}
 .texte {{ overflow-wrap: anywhere; }}
 nav a {{ margin-right: .8em; }}
 </style></head><body>
-<h1>Correction du lot A : comparaison mot à mot</h1>
-<p>Texte de l'original retiré : <del>barré</del>. Texte de la version corrigée : <ins>surligné</ins>. Les espaces insécables posées partout devant « : ; ! ? » et dans les guillemets sont invisibles et ne sont pas marquées ; elles sont comptées dans le relevé. Page générée par <code>corrections/corriger_lot_a.py</code> le 13 novembre 2026.</p>
+<h1>Correction du lot {lot} : comparaison mot à mot</h1>
+<p>Texte de l'original retiré : <del>barré</del>. Texte de la version corrigée : <ins>surligné</ins>. Les espaces insécables posées partout devant « : ; ! ? » et dans les guillemets sont invisibles et ne sont pas marquées ; elles sont comptées dans le relevé. Page générée par <code>corrections/corriger_lot.py {lot}</code> le {date}.</p>
 <nav>{nav}</nav>
 {sections}
 </body></html>
 """
 
 
+def releve_quatrieme():
+    """Lot B : la quatrième de couverture est corrigée à la main (couverture/quatrieme-corrige.md) ; on relève ses lignes changées."""
+    avant = (EDITION / "couverture" / "quatrieme.md").read_text(encoding="utf-8").split("\n")
+    apres = (EDITION / "couverture" / "quatrieme-corrige.md").read_text(encoding="utf-8").split("\n")
+    lignes = []
+    for code, i1, i2, j1, j2 in difflib.SequenceMatcher(None, avant, apres, autojunk=False).get_opcodes():
+        if code == "replace":
+            for n, (a, b) in enumerate(zip(avant[i1:i2], apres[j1:j2])):
+                regle = ("statut de relecture" if a.startswith("Statut") else
+                         "style.md § 3 : versets du même chapitre séparés par une virgule" if "Jérémie" in a else
+                         "apostrophe typographique ’")
+                lignes.append((i1 + n + 1, a, b, regle))
+    return lignes
+
+
 def main():
+    lot = sys.argv[1] if len(sys.argv) > 1 else ""
+    if lot not in LOTS:
+        sys.exit(__doc__)
+    fichiers, tache, date = LOTS[lot]["fichiers"], LOTS[lot]["tache"], LOTS[lot]["date"]
+    cellule = lambda t: t.replace("|", "\\|").replace("\n", " ⏎ ")
     sections, releve_md, total_lus, total_typo = [], [], 0, 0
-    for nom in FICHIERS:
+    for nom in fichiers:
         original, corrige, releve, typo = corriger(nom)
         sections.append(comparaison_html(nom, original, corrige))
         for ligne, avant, apres, regle in releve:
-            cellule = lambda t: t.replace("|", "\\|").replace("\n", " ⏎ ")
             releve_md.append(f"| {nom}.md | {ligne} | {cellule(avant)} | {cellule(apres)} | {regle} |")
             total_lus += 1
         for regle, numeros in typo.items():
@@ -160,18 +211,23 @@ def main():
             lignes = ", ".join(str(n) for n in sorted(set(numeros)))
             releve_md.append(f"| {nom}.md | {lignes} | espace ordinaire ou absente | espace insécable "
                              f"({len(numeros)} ligne(s)) | {regle} |")
-    nav = " ".join(f'<a href="#{n}">{n[:2]}</a>' for n in FICHIERS)
-    (CORRECTIONS / "comparaison-lot-A.html").write_text(PAGE.format(nav=nav, sections="\n".join(sections)),
-                                                         encoding="utf-8")
-    entete = ["# Relevé des corrections, lot A (fichiers 01 à 08)", "",
-              "Établi par Amenan le 13 novembre 2026 (T14). Généré par `corrections/corriger_lot_a.py` : "
-              "les numéros de ligne sont ceux de l'original de Konan. Les copies corrigées sont "
-              "`manuscrit/NN-x-corrige.md` ; les originaux sont intacts.", "",
+    if lot == "B":
+        for ligne, avant, apres, regle in releve_quatrieme():
+            releve_md.append(f"| couverture/quatrieme.md | {ligne} | {cellule(avant)} | {cellule(apres)} | {regle} |")
+            total_lus += 1
+    nav = " ".join(f'<a href="#{n}">{n[:2]}</a>' for n in fichiers)
+    (CORRECTIONS / f"comparaison-lot-{lot}.html").write_text(
+        PAGE.format(nav=nav, sections="\n".join(sections), lot=lot, date=date), encoding="utf-8")
+    entete = [f"# Relevé des corrections, lot {lot} (fichiers {fichiers[0][:2]} à {fichiers[-1][:2]})", "",
+              f"Établi par Amenan le {date} ({tache}). Généré par `corrections/corriger_lot.py {lot}`. "
+              "Pour les corrections lues, les numéros de ligne sont ceux de l'original de Konan ; pour la "
+              "typographie, ceux de la copie corrigée (ils ne diffèrent qu'après une ligne coupée en vers). "
+              "Les copies corrigées sont `manuscrit/NN-x-corrige.md` ; les originaux sont intacts.", "",
               f"{total_lus} corrections relevées à la lecture, {total_typo} lignes touchées par la passe "
               "d'espaces insécables (regroupées par fichier et par règle).", "",
               "| Fichier | Ligne | Avant | Après | Règle |", "|---|---|---|---|---|"]
-    (CORRECTIONS / "releve-lot-A.md").write_text("\n".join(entete + releve_md) + "\n", encoding="utf-8")
-    print(f"{len(FICHIERS)} copies corrigées, {total_lus} corrections lues, {total_typo} lignes de typographie")
+    (CORRECTIONS / f"releve-lot-{lot}.md").write_text("\n".join(entete + releve_md) + "\n", encoding="utf-8")
+    print(f"Lot {lot} : {len(fichiers)} copies corrigées, {total_lus} corrections lues, {total_typo} lignes de typographie")
 
 
 if __name__ == "__main__":

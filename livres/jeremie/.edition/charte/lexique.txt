@@ -184,3 +184,42 @@ livre de la loi | livre de la loi | culte | 2 Rois 22:8 | minuscule à « loi »
 cour de la prison | cour de la prison | lieu | Jérémie 32:2 |
 porte de Benjamin | porte de Benjamin | lieu | Jérémie 37:13 |
 cœur | coeur | mot courant | Jérémie 17:9 | ligature rétablie, voir style.md
+# Ajouts du 13 novembre 2026 (T14 et T15) : noms employés dans le manuscrit, signalés par Konan ou relevés à la correction
+Abiathar | Abiathar | personne | 1 Samuel 22:20 | sacrificateur renvoyé à Anathoth (1 Rois 2:26)
+Achimélec | Achimélec | personne | 1 Samuel 22:20 | père d'Abiathar
+Achithub | Achithub | personne | 1 Samuel 14:3 |
+Adonija | Adonija | personne | 1 Rois 1:5 |
+Éli | Eli | personne | 1 Samuel 1:9 | sacrificateur de Silo ; accent selon style.md § 2
+Hophni | Hophni | personne | 1 Samuel 4:11 | fils d'Éli
+Phinées | Phinées | personne | 1 Samuel 4:11 | fils d'Éli
+Élie | Elie | personne | 1 Rois 17:1 |
+Jézabel | Jézabel | personne | 1 Rois 18:4 |
+Jéhu | Jéhu | roi | 2 Rois 10:15 |
+Asa | Asa | roi | Jérémie 41:9 | bâtisseur de la citerne de Mitspa
+Azaria | Azaria | personne | Jérémie 43:2 | fils d'Hosée, parmi les « hommes orgueilleux »
+Baalis | Baalis | roi | Jérémie 40:14 | roi des Ammonites
+Thanhumeth | Thanhumeth | personne | Jérémie 40:8 | père d'un autre Seraja
+Jonathan | Jonathan | personne | Jérémie 37:15 | le secrétaire dont la maison servait de prison
+Azriel | Azriel | personne | Jérémie 36:26 |
+Boaz | Boaz | personne | Ruth 2:1 |
+Naomi | Naomi | personne | Ruth 1:2 |
+Ruth | Ruth | personne | Ruth 1:4 |
+Joseph | Joseph | personne | Genèse 30:24 | fils de Rachel
+Cyrus | Cyrus | roi | 2 Chroniques 36:22 | roi de Perse
+Hérode | Hérode | roi | Matthieu 2:1 |
+Jean-Baptiste | Jean-Baptiste | personne | Matthieu 11:11 |
+Judas | Judas | personne | Matthieu 26:14 |
+Zacharie | Zacharie | personne | Zacharie 1:1 | le prophète
+Magor-Missabib | Magor-Missabib | personne | Jérémie 20:3 | nom donné à Paschhur
+Guéba | Guéba | lieu | Josué 21:17 |
+Almon | Almon | lieu | Josué 21:18 |
+Béthel | Béthel | lieu | Jérémie 48:13 |
+Sinaï | Sinaï | lieu | Exode 19:1 |
+Syène | Syène | lieu | Ézéchiel 29:10 |
+Éphrata | Ephrata | lieu | Genèse 35:19 |
+Kebar | Kebar | lieu | Ézéchiel 1:1 | le fleuve du Kebar
+Éthiopie | Ethiopie | lieu | Jérémie 46:9 |
+mer Salée | mer Salée | lieu | Genèse 14:3 | la mer Morte ; « Mer Salée » sur la carte, où l'étiquette commence par une capitale
+Astarté | Astarté | culte | Jérémie 17:2 |
+Baals | Baals | culte | Jérémie 2:23 |
+prison | prison | lieu | Jérémie 20:2 | Paschhur met Jérémie « dans la prison », jamais « aux ceps » (mot absent de ce verset)

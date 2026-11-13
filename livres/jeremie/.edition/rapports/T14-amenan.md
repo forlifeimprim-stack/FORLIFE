@@ -28,7 +28,7 @@ L'outil `controle_versets.py` accepte désormais la capitale de vers élidée ou
 - `charte/lexique.txt` : l'entrée Seraja dit « fils de Nérija, fils de Machséja » et présente la fraternité avec Baruc comme une déduction ; l'entrée Nérija cite les deux versets.
 - `charte/style.md` : § 2, « la Parole » prend la majuscule quand elle est employée seule pour l'Écriture (usage des trois lots) ; § 4.7, exemples explicites pour les mots élidés ou accentués.
 - `manuscrit/01-avant-propos-corrige.md` à `manuscrit/08-ch06-rouleau-corrige.md` : les huit copies corrigées.
-- `corrections/corriger_lot_a.py` : script qui refait toute la correction depuis les originaux (corrections lues, typographie, relevé, page de comparaison).
+- `corrections/corriger_lot.py` (lot A ; renommé en T15 pour servir aux deux lots) : script qui refait toute la correction depuis les originaux (corrections lues, typographie, relevé, page de comparaison).
 - `corrections/releve-lot-A.md` : relevé (fichier, ligne, avant, après, règle). Les onze corrections lues y sont détaillées une par une ; la typographie est regroupée par fichier et par règle, avec les numéros de ligne.
 - `corrections/comparaison-lot-A.html` : comparaison mot à mot générée par difflib, avec le texte retiré barré et le texte ajouté surligné, un fichier par section, en thème clair ou sombre. Les insécables y sont invisibles, ce que la page signale.
 - `corrections/suggestions-lot-A.md` : suggestions et deux questions pour l'auteur.
@@ -59,7 +59,7 @@ L'outil `controle_versets.py` accepte désormais la capitale de vers élidée ou
 - Pour l'auteur : faut-il développer « l'Église CMA » ? La note sur la version doit-elle mentionner aussi l'apostrophe courbe et les capitales de vers abaissées ?
 - Pour Affoué : les copies contiennent déjà les insécables. `composer.py` les laisse telles quelles, ce que l'essai a vérifié.
 - L'outil abaisse « A » en « à » ou en « a » sans pouvoir trancher : la LSG numérique a perdu l'accent, et les deux formes existent en minuscule. Une confusion entre « à » et « a » dans une citation abaissée ne serait donc pas signalée. Le cas est rare et la lecture humaine le couvre.
-- Le relevé et la comparaison sont produits par script : si une suggestion est retenue, il faut l'ajouter à `CORRECTIONS_LUES` dans `corriger_lot_a.py` et relancer le script, et ne pas modifier la copie à la main.
+- Le relevé et la comparaison sont produits par script : si une suggestion est retenue, il faut l'ajouter à `CORRECTIONS_LUES` dans `corriger_lot.py` et relancer le script, et ne pas modifier la copie à la main.
 - Hors périmètre, non touchés : les fichiers 09 à 16 (T15), la couverture et la charte graphique.
 
 ## Part générée par IA

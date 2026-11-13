@@ -1,6 +1,6 @@
 # Relevé des corrections, lot A (fichiers 01 à 08)
 
-Établi par Amenan le 13 novembre 2026 (T14). Généré par `corrections/corriger_lot_a.py` : les numéros de ligne sont ceux de l'original de Konan. Les copies corrigées sont `manuscrit/NN-x-corrige.md` ; les originaux sont intacts.
+Établi par Amenan le 13 novembre 2026 (T14). Généré par `corrections/corriger_lot.py A`. Pour les corrections lues, les numéros de ligne sont ceux de l'original de Konan ; pour la typographie, ceux de la copie corrigée (ils ne diffèrent qu'après une ligne coupée en vers). Les copies corrigées sont `manuscrit/NN-x-corrige.md` ; les originaux sont intacts.
 
 11 corrections relevées à la lecture, 801 lignes touchées par la passe d'espaces insécables (regroupées par fichier et par règle).
 

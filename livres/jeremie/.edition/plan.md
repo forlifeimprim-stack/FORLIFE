@@ -15,7 +15,7 @@ Tenu par Akissi. Statuts : À FAIRE, EN COURS, TERMINÉ, PARTIEL, BLOQUÉ.
 | T09 | Validation du plan détaillé | akissi | T03 | décision au journal | TERMINÉ |
 | T10-T12 | Rédaction des chapitres (trois lots) | konan | T09, T04 | chapitres dans `manuscrit/` | TERMINÉ |
 | T13 | Lecture éditoriale, lot par lot (décision du 9/11 sur proposition de Mariam) | akissi | T10-T12 | notes au journal | TERMINÉ |
-| T14-T15 | Correction (deux lots), vérification de chaque verset | amenan | T13 | copies `-corrige.md`, relevés | EN COURS |
+| T14-T15 | Correction (deux lots), vérification de chaque verset | amenan | T13 | copies `-corrige.md`, relevés | TERMINÉ |
 | T16 | Couverture : deux pistes, puis gabarit complet | affoue | T06, T08 | `couverture/` | TERMINÉ |
 | T17 | Composition de l'intérieur | affoue | T14-T15, T07 | `sortie/interieur.pdf` | À FAIRE |
 | T18 | Épreuves, premier tour | amenan | T17 | relevé par page | À FAIRE |
