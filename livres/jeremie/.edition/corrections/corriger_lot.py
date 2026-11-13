@@ -12,6 +12,7 @@ Les originaux de manuscrit/ ne sont jamais réécrits. Deux passes :
 import difflib
 import html
 import re
+import subprocess
 import sys
 from pathlib import Path
 
@@ -72,6 +73,15 @@ CORRECTIONS_LUES = [
      "style.md § 3 : versets du même chapitre séparés par une virgule"),
     ("15-conclusion", "prisonnier dans les ceps, dans les cachots", "prisonnier à la porte de Benjamin, dans les cachots", PRISON),
     ("16-annexes", "qui met Jérémie aux ceps", "qui met Jérémie en prison", PRISON),
+    # Retouches d'Akissi faites directement dans les copies après T15, reportées ici pour qu'une relance ne les perde pas
+    ("14-ch12-egypte", "emmené en captivité à dix-huit ans,", "emmené en captivité après trois mois de règne (2 Rois 24:8),",
+     "décision d'Akissi après T15 : l'âge diffère entre 2 Rois 24:8 et 2 Chroniques 36:9"),
+    ("15-conclusion", "L’un était un haut fonctionnaire, l’autre un secrétaire, le troisième un serviteur étranger.",
+     "Il y avait parmi eux de hauts fonctionnaires, un secrétaire et un serviteur étranger.",
+     "décision d'Akissi après T15 : le paragraphe nomme quatre soutiens"),
+    # Épreuves, premier tour (T18)
+    ("16-annexes", "La carte de la page suivante situe", "La carte qui suit situe",
+     "épreuves T18 : la carte n'est pas sur la page suivante (texte page 155, carte page 157)"),
 ]
 
 # Copie des règles de outils/composer.py (« Typographie française »), appliquées au Markdown.
@@ -180,7 +190,12 @@ nav a {{ margin-right: .8em; }}
 
 def releve_quatrieme():
     """Lot B : la quatrième de couverture est corrigée à la main (couverture/quatrieme-corrige.md) ; on relève ses lignes changées."""
-    avant = (EDITION / "couverture" / "quatrieme.md").read_text(encoding="utf-8").split("\n")
+    # Affoué a copié la version corrigée sur quatrieme.md en T17 : l'original de T16 se lit alors dans git.
+    texte_avant = (EDITION / "couverture" / "quatrieme.md").read_text(encoding="utf-8")
+    if texte_avant == (EDITION / "couverture" / "quatrieme-corrige.md").read_text(encoding="utf-8"):
+        texte_avant = subprocess.run(["git", "show", "bbb4bb1:livres/jeremie/.edition/couverture/quatrieme.md"],
+                                     cwd=EDITION, capture_output=True, text=True, check=True).stdout
+    avant = texte_avant.split("\n")
     apres = (EDITION / "couverture" / "quatrieme-corrige.md").read_text(encoding="utf-8").split("\n")
     lignes = []
     for code, i1, i2, j1, j2 in difflib.SequenceMatcher(None, avant, apres, autojunk=False).get_opcodes():

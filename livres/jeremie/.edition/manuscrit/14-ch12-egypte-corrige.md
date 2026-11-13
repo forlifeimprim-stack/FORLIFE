@@ -84,7 +84,7 @@ Ce geste est le dernier acte prophétique que le livre rapporte, même s’il ne
 
 Le livre ne s’arrête pourtant pas là. Un dernier chapitre, le cinquante-deuxième, raconte de nouveau la chute de Jérusalem, comme pour montrer que tout ce que Jérémie avait dit est arrivé. Puis il ajoute une scène qui se passe bien des années plus tard, à Babylone.
 
-Le roi Jojakin, emmené en captivité après trois mois de règne (2 Rois 24:8), y était toujours prisonnier. « La trente-septième année de la captivité de Jojakin », un nouveau roi de Babylone, Évil-Merodac, le fit sortir de prison (Jérémie 52:31). Le texte poursuit : « Il lui parla avec bonté, et il mit son trône au-dessus du trône des rois qui étaient avec lui à Babylone » (Jérémie 52:32). Jojakin quitta ses vêtements de prisonnier et mangea à la table du roi jusqu’à la fin de sa vie (Jérémie 52:33-34). Le deuxième livre des Rois se termine par le même récit (2 Rois 25:27-30).
+Le roi Jojakin, emmené en captivité après trois mois de règne (2 Rois 24:8), y était toujours prisonnier. « La trente-septième année de la captivité de Jojakin », un nouveau roi de Babylone, Évil-Merodac, le fit sortir de prison (Jérémie 52:31). Le texte poursuit : « Il lui parla avec bonté, et il mit son trône au-dessus du trône des rois qui étaient avec lui à Babylone » (Jérémie 52:32). Jojakin quitta ses vêtements de prisonnier et mangea à la table du roi jusqu’à la fin de sa vie (Jérémie 52:33-34). Le deuxième livre des Rois se termine par le même récit (2 Rois 25:27-30).
 
 Le retour n’a pas encore eu lieu, mais un signe modeste est donné : le descendant de David est vivant, et il est traité avec honneur. Le livre de Jérémie, rempli de larmes, s’achève sur un homme qui sort de prison et s’assied à table.
 

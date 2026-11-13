@@ -2,7 +2,7 @@
 
 Établi par Amenan le 13 novembre 2026 (T15). Généré par `corrections/corriger_lot.py B`. Pour les corrections lues, les numéros de ligne sont ceux de l'original de Konan ; pour la typographie, ceux de la copie corrigée (ils ne diffèrent qu'après une ligne coupée en vers). Les copies corrigées sont `manuscrit/NN-x-corrige.md` ; les originaux sont intacts.
 
-22 corrections relevées à la lecture, 748 lignes touchées par la passe d'espaces insécables (regroupées par fichier et par règle).
+25 corrections relevées à la lecture, 748 lignes touchées par la passe d'espaces insécables (regroupées par fichier et par règle).
 
 | Fichier | Ligne | Avant | Après | Règle |
 |---|---|---|---|---|
@@ -47,6 +47,7 @@
 | 13-ch11-ruines.md | 13, 17, 21, 23, 25, 33, 35, 43, 45, 50, 52, 54, 59, 63, 67, 71, 77, 83, 85, 87, 93, 100, 122, 124, 127, 129, 131, 136 | espace ordinaire ou absente | espace insécable (28 ligne(s)) | espace insécable après « (style.md § 10) |
 | 13-ch11-ruines.md | 13, 17, 21, 23, 25, 33, 35, 43, 45, 50, 52, 54, 59, 63, 67, 71, 77, 83, 85, 87, 93, 100, 122, 124, 127, 129, 131, 136 | espace ordinaire ou absente | espace insécable (28 ligne(s)) | espace insécable avant » (style.md § 10) |
 | 14-ch12-egypte.md | 65 | (Jérémie 49:6 ; 49:39) | (Jérémie 49:6, 39) | style.md § 3 : versets du même chapitre séparés par une virgule |
+| 14-ch12-egypte.md | 87 | emmené en captivité à dix-huit ans, | emmené en captivité après trois mois de règne (2 Rois 24:8), | décision d'Akissi après T15 : l'âge diffère entre 2 Rois 24:8 et 2 Chroniques 36:9 |
 | 14-ch12-egypte.md | 1, 9, 15, 21, 23, 26, 28, 32, 35, 43, 45, 51, 53, 59, 61, 65, 67, 69, 75, 77, 87, 89, 92, 96, 103, 105, 107, 109, 126, 131, 133, 137 | espace ordinaire ou absente | espace insécable (32 ligne(s)) | espace insécable avant les deux-points (style.md § 4.4) |
 | 14-ch12-egypte.md | 15, 17, 21, 23, 32, 45, 49, 51, 53, 59, 61, 65, 69, 73, 75, 81, 87, 94, 96, 103, 118, 126, 131 | espace ordinaire ou absente | espace insécable (23 ligne(s)) | espace insécable après « (style.md § 10) |
 | 14-ch12-egypte.md | 15, 17, 21, 23, 32, 45, 49, 51, 53, 59, 61, 65, 69, 73, 75, 81, 87, 94, 96, 103, 118, 126, 131 | espace ordinaire ou absente | espace insécable (23 ligne(s)) | espace insécable avant » (style.md § 10) |
@@ -54,11 +55,13 @@
 | 14-ch12-egypte.md | 28, 87, 94, 96, 126 | espace ordinaire ou absente | espace insécable (5 ligne(s)) | espace insécable entre le chiffre et le nom d'un livre numéroté (style.md § 3) |
 | 14-ch12-egypte.md | 94 | espace ordinaire ou absente | espace insécable (1 ligne(s)) | espaces insécables dans « av. J.-C. » (style.md § 8) |
 | 15-conclusion.md | 3 | prisonnier dans les ceps, dans les cachots | prisonnier à la porte de Benjamin, dans les cachots | cohérence avec Jérémie 20:2 : la LSG dit « la prison », pas « les ceps » (voir chapitre 5 et questions-auteur-lot2, n° 5) |
+| 15-conclusion.md | 35 | L’un était un haut fonctionnaire, l’autre un secrétaire, le troisième un serviteur étranger. | Il y avait parmi eux de hauts fonctionnaires, un secrétaire et un serviteur étranger. | décision d'Akissi après T15 : le paragraphe nomme quatre soutiens |
 | 15-conclusion.md | 1, 5, 7, 13, 15, 19, 23, 27, 33, 35, 39, 41, 47 | espace ordinaire ou absente | espace insécable (13 ligne(s)) | espace insécable avant les deux-points (style.md § 4.4) |
 | 15-conclusion.md | 5, 7, 13, 19, 23, 27, 33, 39, 47 | espace ordinaire ou absente | espace insécable (9 ligne(s)) | espace insécable après « (style.md § 10) |
 | 15-conclusion.md | 5, 7, 13, 19, 23, 27, 33, 39, 47 | espace ordinaire ou absente | espace insécable (9 ligne(s)) | espace insécable avant » (style.md § 10) |
 | 15-conclusion.md | 7, 23, 29, 39, 50 | espace ordinaire ou absente | espace insécable (5 ligne(s)) | espace fine insécable avant ; ! ? (style.md § 4.4) |
 | 16-annexes.md | 67 | qui met Jérémie aux ceps | qui met Jérémie en prison | cohérence avec Jérémie 20:2 : la LSG dit « la prison », pas « les ceps » (voir chapitre 5 et questions-auteur-lot2, n° 5) |
+| 16-annexes.md | 38 | La carte de la page suivante situe | La carte qui suit situe | épreuves T18 : la carte n'est pas sur la page suivante (texte page 155, carte page 157) |
 | 16-annexes.md | 5, 9, 10, 13, 14, 16, 21, 22, 25, 26, 27, 28, 30, 32, 38, 51, 62, 63, 68, 74, 78 | espace ordinaire ou absente | espace insécable (21 ligne(s)) | espace fine insécable avant ; ! ? (style.md § 4.4) |
 | 16-annexes.md | 5, 22, 23, 24, 25, 32, 38 | espace ordinaire ou absente | espace insécable (7 ligne(s)) | espace insécable avant les deux-points (style.md § 4.4) |
 | 16-annexes.md | 5, 32, 34, 38 | espace ordinaire ou absente | espace insécable (4 ligne(s)) | espace insécable après « (style.md § 10) |

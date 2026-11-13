@@ -4,7 +4,7 @@ auteur: "Kouadio Koffi Élisée"
 editeur:
   nom: "Forlife Imprim"             # hypothèse : autoédition par l'entreprise de l'auteur
   ville: "Bingerville"
-  adresse: "Montée de la colline du Collège Saint Cyrille, Bingerville, Côte d'Ivoire"
+  adresse: "Montée de la colline du Collège Saint Cyrille, Bingerville, Côte d’Ivoire"
   courriel: "forlifeimprim@gmail.com"
   telephones: ["+225 05 85 80 18 56", "+225 07 49 56 70 82"]
 langue: fr
@@ -15,7 +15,7 @@ mentions_legales:                   # loi n° 2015-540, art. 26
   isbn_papier: "[À COMPLÉTER : ISBN papier à obtenir]"
   isbn_epub: "[À COMPLÉTER : ISBN numérique à obtenir]"
   depot_legal: "[À COMPLÉTER : numéro de dépôt légal]"
-  impression: "[À COMPLÉTER : imprimeur, lieu et date d'impression]"
+  impression: "[À COMPLÉTER : imprimeur, lieu et date d’impression]"
   traducteur: null
 format:
   largeur_mm: 140
@@ -28,9 +28,9 @@ polices:
   titres: "à choisir par Affoué (police libre)"
 parution_visee: "2027-03-28"        # date de travail
 biographie_auteur: |
-  Kouadio Koffi Élisée est moniteur d'école du dimanche à l'Église CMA et responsable de prière de l'école du dimanche.
+  Kouadio Koffi Élisée est moniteur d’école du dimanche à l’Église CMA et responsable de prière de l’école du dimanche.
   Entrepreneur, il est cofondateur de Forlife Com, entreprise de communication intégrée basée à Bingerville.
   Il est marié à Koffi Assena Grâce Emmanuelle, épouse Kouadio.
 du_meme_auteur:                     # titres et dates à vérifier
   - "Stop, écoute ton enfant"
-  - "Avant que l'horloge ne s'arrête"
+  - "Avant que l’horloge ne s’arrête"

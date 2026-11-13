@@ -35,7 +35,7 @@ Les déportations sont rapportées par plusieurs textes, avec des chiffres qui n
 
 ## Carte
 
-La carte de la page suivante situe les principaux lieux du livre. Elle est schématique, et les positions y sont approximatives. En haut, le monde de Jérémie, de l’Égypte à Babylone ; en bas, les environs de Jérusalem, où se trouvent Anathoth, Rama et Mitspa. Les noms suivent la Louis Segond 1910 : la « Grande mer » est la Méditerranée, la « Mer Salée » la mer Morte, et le Tigre porte aussi son nom biblique de Hiddékel.
+La carte qui suit situe les principaux lieux du livre. Elle est schématique, et les positions y sont approximatives. En haut, le monde de Jérémie, de l’Égypte à Babylone ; en bas, les environs de Jérusalem, où se trouvent Anathoth, Rama et Mitspa. Les noms suivent la Louis Segond 1910 : la « Grande mer » est la Méditerranée, la « Mer Salée » la mer Morte, et le Tigre porte aussi son nom biblique de Hiddékel.
 
 ![Le monde de Jérémie (carte schématique).](images/carte-monde-jeremie.svg){.pleine-page}
 
