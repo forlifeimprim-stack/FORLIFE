@@ -46,7 +46,7 @@ Les fichiers Fontsource n'ont ni l'espace fine insécable (U+202F) ni le trait d
 
 Le corps de 11 pt est dans la fourchette de la fiche de rôle (10,5 à 11,5 pt), avec un interligne de 1,36. Si l'équipe veut un texte plus grand pour des lecteurs âgés, le passage à 11,5 / 15,5 pt ne demande que deux valeurs dans `html` (CSS) et ajoute environ 8 % de pages.
 
-Coupures : au moins 6 lettres dans le mot, 3 avant et 3 après la coupure. Veuves et orphelines : 2 lignes au moins en haut et en bas de page. Les titres ne sont jamais coupés.
+Coupures : au moins 6 lettres dans le mot, 3 avant et 3 après la coupure. Aucun mot à majuscule (noms propres, livres bibliques, l'Éternel) n'est coupé ; un composé ne se coupe qu'à son trait d'union, et pas du tout s'il porte une majuscule ou finit par deux lettres (Ben-Hinnom, Qu'est-ce). Le nom d'un livre biblique est lié au chapitre par une insécable (Jérémie 1:5). Aucune coupure en dernière ligne d'une page impaire : la composition repère ces mots et les recompose sans césure. Veuves et orphelines : 2 lignes au moins en haut et en bas de page, 3 sous un intertitre. Les titres ne sont jamais coupés. La table des matières affiche le titre court d'un chapitre dont le titre dépasse 52 signes.
 
 ## Hiérarchie des titres
 
@@ -55,7 +55,7 @@ Coupures : au moins 6 lettres dans le mot, 3 avant et 3 après la coupure. Veuve
 3. Intertitre (`##`) : Alegreya Sans 700, 12 / 15 pt, au fer à gauche, 22,5 pt avant, 7,5 pt après, toujours suivi d'au moins deux lignes sur la même page.
 4. Sous-intertitre (`###`, rare) : EB Garamond italique 11 / 15 pt, 15 pt avant.
 
-Ouverture de chapitre : toujours sur une page impaire (une page paire blanche s'intercale si besoin), blanc de 24 mm au-dessus de l'étiquette, puis titre, fleuron de Kouamé (6 mm de haut), épigraphe, texte. Pas de titre courant sur la page d'ouverture ; le folio est conservé.
+Ouverture de chapitre : toujours sur une page impaire (une page paire blanche s'intercale si besoin), blanc de 18 mm au-dessus de l'étiquette (24 mm en T07, réduit en T17 bis pour tenir 160 pages), puis titre, fleuron de Kouamé (6 mm de haut), épigraphe, texte. Pas de titre courant sur la page d'ouverture ; le folio est conservé.
 
 ## Blocs
 

@@ -137,7 +137,7 @@ section.level1 {
 }
 
 header.ouverture {
-  padding-top: 24mm;
+  padding-top: 18mm;
   margin-bottom: 15pt;
   text-align: center;
 }
@@ -623,3 +623,35 @@ table col { width: auto !important; }
 th:nth-child(1), td:nth-child(1) { width: 21%; }
 th:nth-child(2), td:nth-child(2) { width: 55%; }
 th:nth-child(3), td:nth-child(3) { width: 24%; }
+
+/* ---------- Corrections du premier tour d'épreuves (T17 bis) ---------- */
+
+/* Noms propres et mots composés : jamais de césure (un composé se coupe seulement à son trait d'union) */
+.sans-cesure { hyphens: manual; }
+/* Composé à ne jamais couper, même au trait d'union (Ben-Hinnom, Qu'est-ce, Prends-le) */
+.insecable { hyphens: manual; white-space: nowrap; }
+
+html { hyphenate-limit-chars: 6 3 3; }
+
+/* Au moins trois lignes sous un intertitre ou un titre de bloc */
+h2 + p, h3 + p, .bloc-titre + p, .bloc-titre + ul, .bloc-titre + ol { orphans: 3; }
+h2 + ul, h2 + ol { orphans: 3; }
+
+/* Pas de césure dans la colonne des références */
+td:nth-child(3) { hyphens: manual; }
+
+/* Table : espace avant les points de conduite */
+nav.table-matieres a::after {
+  content: leader(" . ") target-counter(attr(href url), page);
+}
+
+/* Page de titre : le nom du prophète seul sur sa ligne, comme en couverture */
+.page-titre .titre-nom {
+  display: block;
+  font-size: 30pt;
+  line-height: 36pt;
+  margin-top: 2pt;
+}
+/* Paragraphe entre un intertitre et une citation en bloc : il reste avec le début de la citation,
+   pour qu'un intertitre ne finisse pas une page avec deux lignes seulement (page 104 du tour 1) */
+p.avant-citation { break-after: avoid; }

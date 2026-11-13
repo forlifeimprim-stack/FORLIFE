@@ -19,6 +19,6 @@ Tenu par Akissi. Statuts : À FAIRE, EN COURS, TERMINÉ, PARTIEL, BLOQUÉ.
 | T16 | Couverture : deux pistes, puis gabarit complet | affoue | T06, T08 | `couverture/` | TERMINÉ |
 | T17 | Composition de l'intérieur | affoue | T14-T15, T07 | `sortie/interieur.pdf` | TERMINÉ |
 | T18 | Épreuves, premier tour | amenan | T17 | relevé par page | TERMINÉ |
-| T19 | Fabrication : contrôle des fichiers, préparation du BAT | salif | T17, T16 | rapport de contrôle | À FAIRE |
+| T19 | Fabrication : contrôle des fichiers, préparation du BAT | salif | T17, T16 | rapport de contrôle | EN COURS |
 | T20 | EPUB, PDF écran, script audio, fiches plateformes | desire | T14-T15, T16 | `numerique/` | À FAIRE |
 | T21 | Traduction anglaise d'évaluation (quatrième et chapitre 1) | awa | T14 | `numerique/traduction-en/` | À FAIRE |

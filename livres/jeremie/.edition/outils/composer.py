@@ -33,6 +33,8 @@ FLEURON = EDITION / "images" / "fleuron-amandier.svg"
 sys.dont_write_bytecode = True  # ne rien écrire dans fabrication/, dossier de Salif
 sys.path.insert(0, str(EDITION / "fabrication"))
 from noir_seul import convertir_flux, convertir_formulaires  # noqa: E402  (script de Salif, T08)
+sys.path.insert(0, str(EDITION / "outils"))
+from verset import NOMS_FR  # noqa: E402
 
 FAMILLES = {
     "EB Garamond": ("eb-garamond", "eb-garamond-latin-{graisse}-{style}.woff2",
@@ -47,6 +49,7 @@ FAMILLES = {
 CORRESPONDANCES = {0x202F: 0x2009, 0x2010: 0x2D, 0x2011: 0x2D}
 
 TITRE_COURANT_MAX = 55
+TITRE_TABLE_MAX = 52
 
 FILTRE_LUA = r'''
 -- Titres par défaut ; une première ligne entièrement en gras les remplace (charte/style.md, § 14).
@@ -140,6 +143,9 @@ AVANT_PONCTUATION = r"(?<=[^\s\u00a0\u202f;:!?(\[«])"
 LIVRES_NUMEROTES = "Samuel|Rois|Chroniques|Corinthiens|Thessaloniciens|Timothée|Pierre|Jean"
 REGLES = [
     (re.compile(r"(?<![\w:])([1-3]) (?=(?:" + LIVRES_NUMEROTES + r")\b)"), "\\1\u00a0"),
+    (re.compile(r"(?<!\w)(" + "|".join(re.escape(nom).replace(r"\ ", "[ \u00a0]")
+                                     for nom in sorted(NOMS_FR, key=len, reverse=True))
+                + r") (?=\d)"), "\\1\u00a0"),
     (re.compile(r"(\d) av\. ?J\.-C\."), "\\1\u00a0av.\u00a0J.-C."),
     (re.compile(r"(?<![\d:,.])(\d{1,3}) (\d{3})(?!\d)"), "\\1\u202f\\2"),
     (re.compile(AVANT_PONCTUATION + ESPACES + r"([;!?])" + APRES_PONCTUATION), "\u202f\\1"),
@@ -214,6 +220,61 @@ def espaces_francaises(document):
     return "".join(morceaux)
 
 
+# ---------- Césure ----------
+
+# Pas de césure dans un mot à majuscule (noms propres, livres bibliques, l'Éternel), ni dans un mot
+# composé ailleurs qu'à son trait d'union (« dix-hui-tième »).
+MOT_PROTEGE = re.compile(r"(?<![\w-])(?:[A-ZÀ-ÖØ-Þ][\w’']*(?:-[\w’']+)*|\w+(?:-\w+)+)(?![\w-])")
+
+
+def proteger_mots(document, mots_en_fin_de_page):
+    """Enveloppe les mots à ne pas couper dans <span class="sans-cesure"> : noms propres, composés,
+    et mots qui tombaient coupés en fin de page impaire (lus après avoir tourné la page).
+    Les composés indivisibles (Ben-Hinnom, Qu'est-ce) vont dans <span class="insecable">."""
+    tete, corps = document.split("<body", 1)
+    morceaux = re.split(r"(<[^>]+>)", "<body" + corps)
+    dans_code = False
+    for i, morceau in enumerate(morceaux):
+        if morceau.startswith("<"):
+            dans_code = bool(re.match(r"<(code|pre)\b", morceau)) or (dans_code and not re.match(r"</(code|pre)>", morceau))
+            continue
+        if not morceau or dans_code:
+            continue
+
+        def envelopper(m):
+            mot = m.group(0)
+            # Ben-Hinnom, Qu’est-ce, Prends-le : ne se coupent pas même au trait d’union.
+            compose_indivisible = "-" in mot and (mot[0].isupper() or len(mot.rsplit("-", 1)[1]) <= 2)
+            classe = "insecable" if compose_indivisible else "sans-cesure"
+            return f'<span class="{classe}">{mot}</span>'
+
+        morceaux[i] = MOT_PROTEGE.sub(envelopper, morceau)
+        if mots_en_fin_de_page:
+            motif = r"(?<![\w>-])(" + "|".join(map(re.escape, mots_en_fin_de_page)) + r")(?![\w-])"
+            morceaux[i] = re.sub(motif, r'<span class="sans-cesure">\1</span>', morceaux[i])
+    return tete + "".join(morceaux)
+
+
+def coupures_en_fin_de_page_impaire(fichier_pdf):
+    """Mots coupés à la dernière ligne d'une page impaire (texte extrait par pdftotext)."""
+    pages = subprocess.run(["pdftotext", "-layout", str(fichier_pdf), "-"],
+                           capture_output=True, text=True, check=True).stdout.split("\f")
+    mots = set()
+    for numero in range(1, len(pages) - 1, 2):
+        lignes = [l.strip() for l in pages[numero - 1].splitlines() if l.strip()]
+        if len(lignes) < 3 or not lignes[-1].isdigit():
+            continue
+        fin = lignes[-2]
+        suite = [l.strip() for l in pages[numero].splitlines() if l.strip()]
+        if not re.search(r"\w-$", fin) or len(suite) < 2:
+            continue
+        debut = fin.split()[-1][:-1].lstrip("(«“")
+        reste = re.match(r"[\w’'-]+", suite[1])
+        if reste:
+            mots.add(debut + reste.group(0))
+    return mots
+
+
 # ---------- Chapitres, fleurons, table ----------
 
 def fleuron(classe):
@@ -232,6 +293,12 @@ def lier_titre(titre):
         dernier = textes[-1]
         morceaux[dernier] = re.sub(r" (\S+)$", "\u00a0\\1", morceaux[dernier])
     return "".join(morceaux)
+
+
+def titre_de_couverture(titre):
+    """Page de titre : le dernier mot (le nom du prophète) seul sur sa ligne, en grand, comme en couverture."""
+    debut, nom = titre.rsplit(" ", 1)
+    return f'{lier_titre(html.escape(debut))}<br><span class="titre-nom">{html.escape(nom)}</span>'
 
 
 def sans_balises(fragment):
@@ -254,7 +321,8 @@ def ouvrir_les_chapitres(corps):
         if "unnumbered" not in classes.split():
             numero += 1
             etiquette = f'<p class="chapitre-numero">Chapitre {numero}</p>'
-        entrees.append((ident, numero if etiquette else None, titre))
+        titre_table = html.escape(court) if len(sans_balises(titre)) > TITRE_TABLE_MAX else titre
+        entrees.append((ident, numero if etiquette else None, titre_table))
         attributs = re.sub(r'\s*data-court="[^"]*"', "", attributs)
         return (f'<section id="{ident}" class="level1{classes}"{attributs} '
                 f'data-court="{html.escape(court)}">\n<header class="ouverture">{etiquette}'
@@ -265,6 +333,8 @@ def ouvrir_les_chapitres(corps):
     corps = corps.replace("<hr />", fleuron("fleuron-pause"))
     # Pandoc pose la classe {.pleine-page} sur l'image : la mise en page en a besoin sur la figure.
     corps = re.sub(r'<figure>(\s*<img [^>]*class="pleine-page")', r'<figure class="pleine-page">\1', corps)
+    corps = re.sub(r"(</h[23]>\s*)<p>((?:(?!</p>).)*</p>\s*<blockquote)", r'\1<p class="avant-citation">\2',
+                   corps, flags=re.S)
     # Siècles (VII^e^) : la police n'a pas de petites capitales, on réduit les capitales romaines.
     corps = re.sub(r"\b([IVXLC]+)(<sup>(?:e|er|re)</sup>)", r'<span class="siecle">\1</span>\2', corps)
     return corps, entrees
@@ -289,7 +359,7 @@ def pages_liminaires(livre):
 {du_meme_auteur(livre)}
 <div class="liminaire page-titre">
   <p class="auteur">{e(livre["auteur"])}</p>
-  <p class="titre">{lier_titre(e(livre["titre"]))}</p>
+  <p class="titre">{titre_de_couverture(livre["titre"])}</p>
   {sous_titre}
   {fleuron("fleuron")}
   <p class="editeur"><strong>{e(editeur["nom"])}</strong><br>{e(editeur["ville"])}</p>
@@ -416,14 +486,28 @@ def main():
         dossier_travail = Path(dossier)
         corps = markdown_vers_html(fichiers, dossier_travail)
         corps, entrees = ouvrir_les_chapitres(corps)
-        document = espaces_francaises(document_complet(livre, corps, entrees))
-        controler(document)
+        document_type = espaces_francaises(document_complet(livre, corps, entrees))
+        controler(document_type)
 
         configuration = FontConfiguration()
         polices = CSS(string=polices_corrigees(dossier_travail), font_config=configuration)
         charte = CSS(filename=str(FEUILLE_DE_STYLE), font_config=configuration)
         sans_fonds_perdus = CSS(string="@page { bleed: 0 }", font_config=configuration)
-        page = HTML(string=document, base_url=str(EDITION) + "/")
+        # Une coupure en fin de page impaire se lit après avoir tourné la page : on interdit la
+        # césure des mots concernés et on recompose, trois fois au plus (chaque reprise déplace le texte).
+        mots_en_fin_de_page = set()
+        essai = dossier_travail / "essai.pdf"
+        for _ in range(4):
+            document = proteger_mots(document_type, mots_en_fin_de_page)
+            page = HTML(string=document, base_url=str(EDITION) + "/")
+            page.render(stylesheets=[polices, charte], font_config=configuration).write_pdf(essai)
+            nouveaux = coupures_en_fin_de_page_impaire(essai) - mots_en_fin_de_page
+            if not nouveaux:
+                break
+            mots_en_fin_de_page |= nouveaux
+        else:
+            print("Attention : coupures restantes en fin de page impaire : " + ", ".join(sorted(nouveaux)),
+                  file=sys.stderr)
         page_paire = HTML(string=document.replace("</body>", '<div class="verso-final"></div>\n</body>'),
                           base_url=str(EDITION) + "/")
 

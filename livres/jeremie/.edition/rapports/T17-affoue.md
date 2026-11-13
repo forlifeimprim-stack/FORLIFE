@@ -72,3 +72,48 @@ Rien de nouveau dans cette tâche. La composition reprend le texte de Konan corr
 1. Amenan : premier tour d'épreuves (T18) sur `sortie/interieur.pdf`, avec un relevé par page.
 2. Salif : contrôle de fabrication (T19) sur les deux PDF, avec 160 pages et un dos de 9,00 mm à confirmer par l'imprimeur retenu.
 3. Désiré : EPUB et PDF écran (T20), à partir de `sortie/interieur-ecran.pdf` et de `couverture/plat1-epub.jpg`.
+
+## Corrections du premier tour
+
+Ajouté le 13 novembre 2026, d'après `lecture/epreuves-tour-1.md` et `rapports/T18-amenan.md`. STATUT : TERMINÉ. Toutes les corrections portent sur `charte/interieur.css` et `outils/composer.py`. Le texte du manuscrit n'a pas été touché.
+
+### Ce qui a été corrigé
+
+- Noms propres. Tout mot qui commence par une majuscule est protégé de la césure : noms du lexique, Jérémie, livres bibliques, l'Éternel. C'est plus large que le lexique et couvre aussi les noms qui n'y figurent pas (Philistins, Récabites, Samarie, l'Écriture).
+- Mots composés. Ils ne se coupent qu'à leur trait d'union, ce qui règle « dix-hui-tième » (page 106 du tour 1). Ils ne se coupent pas du tout s'ils portent une majuscule ou finissent par deux lettres (Ben-Hinnom, Magor-Missabib, Qu'est-ce, Prends-le).
+- Références. Le nom du livre est lié au chapitre par une espace insécable, y compris pour les livres numérotés (« 2 Rois 22:20 »). La colonne « Référence » des tableaux n'a plus de césure.
+- Fins de page impaire. `composer.py` compose le livre, repère les mots coupés en dernière ligne d'une page impaire, leur interdit la césure, puis recompose. Il s'arrête au plus tard après trois reprises : ici, une seule a suffi.
+- Intertitres. Il y a désormais au moins trois lignes sous un intertitre ou un titre de bloc (`orphans: 3`). Un paragraphe placé entre un intertitre et une citation en bloc reste avec le début de la citation : c'est le cas de « L'alliance nouvelle », qui passe en page 105 avec son passage.
+- Table des matières (page 5). Une espace sépare le titre des points de conduite. Un titre de plus de 52 signes s'affiche sous sa forme courte (« Parmi les ruines », « Conclusion »), comme dans le titre courant.
+- Page de titre (page 3). Le titre se lit « La vie et le ministère / prophétique du prophète / Jérémie », avec « Jérémie » seul en 30 pt, comme en couverture.
+- Pagination. Avec ces règles, le livre passait à 164 pages. Selon la règle de Salif (ajuster les blancs avant d'ajouter des pages), le blanc au-dessus des titres de chapitre passe de 24 à 18 mm. Le livre revient à 160 pages. Le nombre de pages ne change donc pas, le dos reste de 9,00 mm et la couverture n'a pas été régénérée.
+- Charte. `charte/graphique.md` décrit ces règles.
+
+### Comptes avant et après
+
+Les comptes ont été faits avec `pdftotext -layout` sur `sortie/interieur.pdf`, par un script du dossier de travail. Le dernier rendu est celui de la version livrée.
+
+| Mesure | Avant (T17) | Après |
+|---|---|---|
+| Lignes terminées par une coupure | 405 | 284 |
+| Noms propres coupés | 118 | 0 |
+| Références coupées entre le livre et le chapitre | 84 | 0 |
+| Coupures en dernière ligne de page impaire | 7 | 0 |
+| Coupures en dernière ligne de page paire | 4 | 3 |
+| Suites de trois lignes coupées | 5 | 1 |
+| « dix-hui-tième » | 1 | 0 |
+| Intertitres suivis de deux lignes en bas de page | 6 | 1 (« Remerciements », page 8 : la section entière fait deux lignes) |
+| Pages | 160 | 160 |
+
+### Contrôles réels
+
+- `python3 fabrication/controle_pdf.py interieur sortie/interieur.pdf --cahier 16` : 160 pages ; boîtes conformes (coupe 140 × 210 mm, fonds perdus 3 mm) ; 9 polices incorporées ; 0 échec, 1 point à voir (les gris de la carte et de la frise, comme avant). SHA-256 1113ffbdfd771462c54fb2cc00c18519268a9ca4a8fcc276cb2b9720a9b3a507.
+- `pdffonts` : 9 lignes, `emb` à `yes` dans les deux PDF.
+- `pdftotext` : 6 marques « À COMPLÉTER », les mêmes qu'avant (ISBN imprimé et numérique, dépôt légal, impression, témoignage et remerciements de l'avant-propos). Aucun tiret cadratin ni demi-cadratin.
+- Pages regardées à 55 ppp : 3, 5, 8, 17, 19, 41, 104, 105, 113 et 135.
+
+### Risque restant
+
+Sans césure dans les noms, certaines lignes justifiées s'espacent fort quand un nom long ou une citation entre guillemets tombe en fin de ligne. C'est visible pages 41 et 104 (« Levez-vous, montons à Sion… », « enterrée « sur le chemin d'Éphrata, qui est »). Le relevé compte 77 lignes avec un blanc de quatre espaces ou plus dans le texte extrait, sur environ 5 000 lignes. Je n'ai pas de compte avant pour cette mesure, que j'ai introduite ici. Amenan peut juger ces lignes au second tour. La seule reprise possible sans toucher au texte serait d'autoriser de nouveau la césure de certains noms, ce qui contredit la demande.
+
+Les apostrophes typographiques de `livre.yaml` sont reprises telles quelles dans les mentions légales et la page sur l'auteur. Le renvoi corrigé par Amenan dans les annexes (« La carte qui suit situe ») est composé.
