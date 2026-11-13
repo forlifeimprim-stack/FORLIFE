@@ -1,7 +1,8 @@
 # Fiche de fabrication préliminaire
 
 Livre : « La vie et le ministère prophétique du prophète Jérémie », Kouadio Koffi Elisée. Version papier.
-Établie le 9 novembre 2026 par Salif (fabrication), tâche T08. Statut : préliminaire. Toutes les valeurs
+Établie le 9 novembre 2026 par Salif (fabrication), tâche T08, mise à jour le 13 novembre 2026 (T19)
+avec la pagination réelle : 160 pages. Statut : préliminaire. Toutes les valeurs
 techniques marquées « indicatif » seront remplacées par celles de l'imprimeur retenu, et aucun prix ne
 figure ici tant qu'aucun devis n'est reçu.
 
@@ -11,10 +12,10 @@ figure ici tant qu'aucun devis n'est reçu.
 |---|---|---|
 | Format fini (coupé) | 140 × 210 mm, à la française | fixé par la fiche projet |
 | Fonds perdus | 3 mm sur chaque bord, intérieur et couverture | à confirmer par l'imprimeur |
-| Pagination | 176 ou 192 pages, multiple de 16 | estimation, à recaler sur les pages test |
+| Pagination | 160 pages, soit 10 cahiers de 16 | réelle, `sortie/interieur.pdf` du 13 novembre 2026 |
 | Papier intérieur recommandé | offset blanc 90 g | à confirmer par devis |
-| Dos de travail | 9,9 mm (176 p.) ou 10,8 mm (192 p.) en offset 90 g | indicatif, remplacé par la valeur de l'imprimeur |
-| Gabarit de couverture | 2 × 140 + dos + 2 × 3 mm de large, 216 mm de haut | voir le tableau du dos |
+| Dos de travail | 9,00 mm (160 p., offset 90 g, main 1,25) | indicatif, remplacé par la valeur de l'imprimeur |
+| Gabarit de couverture | 2 × 140 + 9 + 2 × 3 = 295,00 mm de large, 216 mm de haut | `couverture/couverture-gabarit.pdf`, piste A |
 | Couverture | quadrichromie recto, 300 g, pelliculage mat recto | recommandation |
 | Façonnage | dos carré collé PUR | recommandation |
 
@@ -23,7 +24,26 @@ la pagination finale et l'épaisseur annoncée par l'imprimeur (idéalement mesu
 blanc). Le texte du dos se cale au centre avec une marge de sécurité d'au moins 1,5 mm de chaque côté
 (usage courant, à confirmer), et les textes des plats restent à 5 mm au moins du trait de coupe.
 
-## Format et pagination
+## Pagination réelle (13 novembre 2026)
+
+La composition d'Affoué (T17) donne 160 pages, soit 10 cahiers de 16 pages sans page blanche ajoutée
+(160 ÷ 16 = 10 ; 160 ÷ 32 = 5, donc aussi compatible avec des cahiers de 32). L'estimation de T08 (176 à
+185 pages) était trop haute : le texte final est plus dense que l'hypothèse de 280 à 300 mots par page.
+Les hypothèses 176 et 192 pages ci-dessous restent pour mémoire ; les demandes de devis devront être
+corrigées à 160 pages avant envoi (voir `bat/bloquants.md`).
+
+| Papier | Calcul (80 feuilles) | Dos | Largeur coupée | Largeur avec fonds perdus |
+|---|---|---|---|---|
+| offset 80 g, main 1,25 | 80 × 0,100 | 8,00 mm | 288,00 mm | 294,00 mm |
+| offset 90 g, main 1,25 (retenu) | 80 × 0,1125 | 9,00 mm | 289,00 mm | 295,00 mm |
+| bouffant 80 g, main 1,8 | 80 × 0,144 | 11,52 mm | 291,52 mm | 297,52 mm |
+
+Formule : dos = 160 ÷ 2 × grammage × main ÷ 1 000 ; largeur = 2 × 140 + dos + 2 × 3. Hauteur 216 mm.
+Le gabarit de la piste A (295 × 216 mm, dos 9,00 mm) correspond à l'offset 90 g. Si l'imprimeur annonce
+un autre dos, Affoué relance `generer_couverture.py` avec cette valeur et le contrôle se refait avec
+`--dos`.
+
+## Format et pagination (estimation de T08, pour mémoire)
 
 Format fini : 140 × 210 mm, broché, dos carré collé. Fichier intérieur : pages de 146 × 216 mm avec fonds
 perdus (TrimBox 140 × 210 mm).
