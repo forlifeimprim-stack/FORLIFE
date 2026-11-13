@@ -40,7 +40,7 @@ L'utilisateur a demandé de reprendre les informations de l'auteur de son livre 
 - Matière de l'auteur : aucune (ni notes, ni prédications). Le texte sera donc rédigé par Konan à partir de la Bible : part générée par IA élevée, à déclarer et à faire valider par l'auteur, chapitre par chapitre.
 - Longueur visée : 12 chapitres de 2 800 à 3 300 mots, plus introduction, conclusion, annexes (chronologie, carte, index des passages) : environ 40 000 mots, 160 à 190 pages en 14 × 21 cm.
 - Éditeur : Forlife Imprim, Bingerville (autoédition par l'entreprise de l'auteur).
-- Versions : papier (14 × 21 cm, dos carré collé), EPUB recomposable, PDF écran, livre audio avec la « FOR LIFE voix off », traduction anglaise d'évaluation de la quatrième de couverture et du chapitre 1 (test d'Awa).
+- Versions : papier (14 × 21 cm, dos carré collé), EPUB recomposable, PDF écran, livre audio avec la « FOR LIFE voix off », traduction anglaise d'évaluation de la quatrième de couverture et du chapitre 2 (test d’Awa).
 - Tirage : à décider (comparaison numérique et offset de 300 à 1 000 exemplaires par Salif).
 - Parution visée : Pâques 2027 (28 mars 2027), date de travail pour le rétroplanning.
 - Budget : non communiqué.
