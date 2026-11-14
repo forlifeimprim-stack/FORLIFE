@@ -1,12 +1,12 @@
 # Avant-propos {#avant-propos .unnumbered}
 
-<!-- témoignage à valider par l'auteur -->
+<!-- témoignage validé par l'auteur le 14 novembre 2026 -->
 
 Ce livre est né d’une parole. Jérémie 1:10 est la parole que Dieu m’a donnée pour mon ministère : « Regarde, je t’établis aujourd’hui sur les nations et sur les royaumes, pour que tu arraches et que tu abattes, pour que tu ruines et que tu détruises, pour que tu bâtisses et que tu plantes » (Jérémie 1:10).
 
 Le Seigneur m’a conduit à lire et à relire le livre de Jérémie plus de six fois, et celui d’Ézéchiel près de trois fois. En écrivant ces pages, je cherche à comprendre ce que je dois réellement faire, c’est-à-dire ce que Dieu attend de moi.
 
-<!-- témoignage à valider par l'auteur -->
+<!-- témoignage validé par l'auteur le 14 novembre 2026 -->
 
 Je suis moniteur d’école du dimanche à l’Église CMA et responsable de prière de l’école du dimanche.
 

@@ -6,6 +6,7 @@ gabarit complet (plat 4, dos, plat 1) et image de couverture pour l'EPUB.
   python3 couverture/generer_couverture.py --pages 176 --main 1.3   # recalcul du dos sur la pagination réelle
   python3 couverture/generer_couverture.py --dos 10.4               # dos mesuré par l'imprimeur (prime sur le calcul)
   python3 couverture/generer_couverture.py --piste B                # gabarit et EPUB de la piste B
+  python3 couverture/generer_couverture.py --pages 176 --piste C    # piste C « Arracher et planter » (retenue)
 
 Lancer depuis n'importe où ; les chemins partent de `.edition/`. Sorties dans `couverture/` :
 piste-A.pdf, piste-B.pdf (plat 1 seul, CMJN, 146 × 216 mm), piste-*.png (rendu RVB),
@@ -41,7 +42,16 @@ POLICES = EDITION / "outils" / "ressources" / "polices"
 
 sys.dont_write_bytecode = True  # ne rien écrire dans outils/, dossier partagé
 sys.path.insert(0, str(EDITION / "outils"))
-from composer import polices_corrigees  # noqa: E402  (même correction des polices que l'intérieur, T07)
+from composer import FAMILLES, polices_corrigees  # noqa: E402  (même correction des polices que l'intérieur)
+
+# Piste C (Figma, Akissi, 14 novembre 2026) : Barlow Condensed et Fraunces, polices libres (OFL), Fontsource 5.3.0.
+FAMILLES_COUVERTURE = {
+    **FAMILLES,
+    "Barlow Condensed": ("barlow-condensed", "barlow-condensed-{sous_ensemble}-{graisse}-{style}.woff2", ("latin",),
+                         [(500, "normal"), (600, "normal"), (700, "normal"), (900, "normal")]),
+    "Fraunces": ("fraunces", "fraunces-{sous_ensemble}-{graisse}-{style}.woff2", ("latin", "latin-ext"),
+                 [(400, "normal"), (400, "italic"), (600, "normal")]),
+}
 
 FORMAT_L, FORMAT_H = 140.0, 210.0
 FONDS_PERDUS = 3.0
@@ -60,6 +70,15 @@ PALETTE = {
     "amande": ("#FAF0EA", (0, 5, 6, 0)),
     "carmin": ("#B4475C", (20, 80, 50, 8)),
     "blanc": ("#FFFFFF", (0, 0, 0, 0)),
+    # Piste C, relevées sur couverture/figma-piste-C-apercu.png ; CMJN estimé, à confirmer sur épreuve.
+    "encre": ("#16202E", (85, 70, 45, 55)),
+    "creme": ("#EFE3C8", (5, 10, 25, 0)),
+    "or": ("#E2B85C", (10, 28, 75, 0)),
+    "ardoise": ("#676A68", (55, 42, 45, 25)),
+    "rouille": ("#9C4A33", (20, 75, 80, 15)),
+    "rouille-fonce": ("#7A4031", (30, 75, 80, 35)),
+    "petale": ("#F7E9E3", (2, 8, 8, 0)),
+    "rameau": ("#8A5A44", (35, 60, 70, 25)),
     "noir": ("#000000", (0, 0, 0, 100)),
 }
 
@@ -204,6 +223,229 @@ def svg_paysage_arriere(dossier, dos):
     cible = dossier / "paysage-arriere.svg"
     cible.write_text(svg, encoding="utf-8")
     return cible, hauteur_a(mauve, FONDS_PERDUS), hauteur_a(indigo, FONDS_PERDUS)
+
+
+# ---------- Piste C : « Arracher et planter » ----------
+
+VERBES = [("ARRACHER", "nâthash"), ("ABATTRE", "nâthats"), ("RUINER", "ʼâbad"), ("DÉTRUIRE", "hâraç"),
+          ("BÂTIR", "bânâh"), ("PLANTER", "nâṭaʻ")]   # Jérémie 1:10, mots hébreux vérifiés avec outils/hebreu.py
+BARLOW = POLICES / "barlow-condensed"
+
+
+def svg_frise(dossier, largeur):
+    """Frise inspirée du bogolan, en pied de toute la couverture : zigzag crème et points sur fond rouille."""
+    haut, bas = 206.0, 216.0
+    pas, milieu, ampl = 6.0, 210.6, 1.4
+    zigzag = " ".join(f"L{x:.2f},{milieu + (ampl if i % 2 else -ampl):.2f}"
+                      for i, x in enumerate([k * pas / 2 for k in range(int(largeur / pas * 2) + 3)]))
+    points = "".join(f'<circle cx="{k * pas + pas / 2:.2f}" cy="{milieu + 0.4:.2f}" r="0.42" fill="#EFE3C8"/>'
+                     for k in range(int(largeur / pas) + 1))
+    svg = (f'<svg xmlns="http://www.w3.org/2000/svg" width="{largeur}mm" height="216mm" viewBox="0 0 {largeur} 216">'
+           f'<rect x="0" y="{haut}" width="{largeur}" height="{bas - haut}" fill="#9C4A33"/>'
+           f'<rect x="0" y="{haut}" width="{largeur}" height="0.5" fill="#7A4031"/>'
+           f'<rect x="0" y="{haut + 1.1}" width="{largeur}" height="0.35" fill="#EFE3C8"/>'
+           f'<rect x="0" y="{bas - 2.3}" width="{largeur}" height="0.35" fill="#EFE3C8"/>'
+           f'<path d="M0,{milieu - ampl} {zigzag}" fill="none" stroke="#EFE3C8" stroke-width="0.45" '
+           f'stroke-linejoin="miter"/>{points}</svg>')
+    cible = dossier / f"frise-{largeur:.1f}.svg"
+    cible.write_text(svg, encoding="utf-8")
+    return cible
+
+
+def fleur(cx, cy, r, angle):
+    """Fleur d'amandier : cinq pétales échancrés, cœur carmin, étamines or (charte/illustration.md)."""
+    import math
+    petales = []
+    for k in range(5):
+        a = math.radians(angle + k * 72)
+        px, py = cx + r * 0.62 * math.cos(a), cy + r * 0.62 * math.sin(a)
+        deg = math.degrees(a) + 90
+        petales.append(f'<g transform="translate({px:.2f},{py:.2f}) rotate({deg:.1f})">'
+                       f'<path d="M0,{r * 0.55:.2f} C{-r * 0.62:.2f},{r * 0.3:.2f} {-r * 0.6:.2f},{-r * 0.55:.2f} '
+                       f'{-r * 0.16:.2f},{-r * 0.6:.2f} L0,{-r * 0.42:.2f} L{r * 0.16:.2f},{-r * 0.6:.2f} '
+                       f'C{r * 0.6:.2f},{-r * 0.55:.2f} {r * 0.62:.2f},{r * 0.3:.2f} 0,{r * 0.55:.2f} Z" '
+                       f'fill="#F7E9E3" stroke="#8A5A44" stroke-width="0.18"/></g>')
+    etamines = "".join(f'<circle cx="{cx + r * 0.3 * math.cos(math.radians(a)):.2f}" '
+                       f'cy="{cy + r * 0.3 * math.sin(math.radians(a)):.2f}" r="{r * 0.05:.2f}" fill="#E2B85C"/>'
+                       for a in range(0, 360, 36))
+    return "".join(petales) + f'<circle cx="{cx}" cy="{cy}" r="{r * 0.2:.2f}" fill="#B4475C"/>' + etamines
+
+
+def bouton(cx, cy, angle):
+    return (f'<g transform="translate({cx},{cy}) rotate({angle})">'
+            f'<ellipse cx="0" cy="-0.9" rx="0.85" ry="1.35" fill="#B4475C"/>'
+            f'<path d="M-0.8,0 Q0,0.9 0.8,0 L0.5,-0.5 L-0.5,-0.5 Z" fill="#8A5A44"/></g>')
+
+
+def svg_branche_c(dossier, depart):
+    """Branche d'amandier (Jérémie 1:11-12) qui pousse depuis « PLANTER » vers le coin haut droit.
+    Tout reste au-dessus de 108 mm : l'amorce du titre commence à 124 mm (défaut de l'aperçu Figma corrigé)."""
+    x0, y0 = depart
+    tronc = f"M{x0},{y0} C{x0 + 22},{y0 - 4} {x0 + 36},{y0 - 26} {x0 + 48},{y0 - 44} S{x0 + 70},{y0 - 70} {x0 + 84},{y0 - 80}"
+    rameaux = [f"M{x0 + 40},{y0 - 32} C{x0 + 50},{y0 - 30} {x0 + 58},{y0 - 24} {x0 + 66},{y0 - 21}",
+               f"M{x0 + 56},{y0 - 58} C{x0 + 52},{y0 - 66} {x0 + 47},{y0 - 72} {x0 + 44},{y0 - 78}",
+               f"M{x0 + 18},{y0 - 8} C{x0 + 24},{y0 - 2} {x0 + 28},{y0 + 2} {x0 + 33},{y0 + 4}"]
+    traits = (f'<path d="{tronc}" fill="none" stroke="#8A5A44" stroke-width="1.5" stroke-linecap="round"/>'
+              + "".join(f'<path d="{r}" fill="none" stroke="#8A5A44" stroke-width="0.8" stroke-linecap="round"/>'
+                        for r in rameaux))
+    fleurs = [(x0 + 13, y0 - 6, 4.2, 10), (x0 + 33, y0 + 3, 3.6, 40), (x0 + 30, y0 - 24, 4.8, -20),
+              (x0 + 66, y0 - 21, 5.2, 15), (x0 + 47, y0 - 46, 4.4, 30), (x0 + 44, y0 - 79, 4.6, -10),
+              (x0 + 66, y0 - 66, 5.0, 5), (x0 + 83, y0 - 80, 4.4, 20)]
+    boutons = [(x0 + 6, y0 - 1, 70), (x0 + 24, y0 - 15, -30), (x0 + 55, y0 - 36, 40), (x0 + 58, y0 - 56, -50),
+               (x0 + 76, y0 - 75, 30), (x0 + 52, y0 - 64, -20)]
+    corps = traits + "".join(bouton(*b) for b in boutons) + "".join(fleur(*f) for f in fleurs)
+    svg = (f'<svg xmlns="http://www.w3.org/2000/svg" width="146mm" height="216mm" viewBox="0 0 146 216">{corps}</svg>')
+    cible = dossier / "branche-c.svg"
+    cible.write_text(svg, encoding="utf-8")
+    return cible
+
+
+CSS_C = """
+.c-auteur { font-family: "Barlow Condensed"; font-weight: 600; font-size: 9.5pt; letter-spacing: 0.3em; line-height: 1; }
+.c-pastille { position: absolute; font-family: "Barlow Condensed"; font-weight: 600; font-size: 7.5pt; letter-spacing: 0.14em;
+              line-height: 1; border: 0.6pt solid; border-radius: 3mm; box-sizing: border-box; text-align: center; }
+.c-verbe { position: absolute; font-family: "Barlow Condensed"; line-height: 1; white-space: nowrap; }
+.c-hebreu { position: absolute; font-family: "Fraunces"; font-style: italic; font-size: 7pt; line-height: 1; white-space: nowrap; }
+.c-barre { position: absolute; height: 0; border-top: 1.1pt solid; }
+.c-amorce { font-family: "Fraunces"; font-style: italic; font-size: 13.5pt; line-height: 1; white-space: nowrap; }
+.c-nom { font-family: "Barlow Condensed"; font-weight: 900; line-height: 1; white-space: nowrap; }
+.c-genre { font-family: "Barlow Condensed"; font-weight: 600; font-size: 9.5pt; letter-spacing: 0.3em; line-height: 1; }
+.c-editeur { font-family: "Barlow Condensed"; font-weight: 500; font-size: 8pt; letter-spacing: 0.32em; line-height: 1; }
+.c-vers { font-family: "Fraunces"; font-style: italic; font-size: 13pt; line-height: 16.5pt; }
+.c-ref { font-family: "Barlow Condensed"; font-weight: 600; font-size: 8pt; letter-spacing: 0.24em; line-height: 1; }
+.c-presentation p { font-family: "EB Garamond Livre"; font-size: 10.5pt; line-height: 13.8pt; margin: 0;
+                    text-align: justify; hyphens: manual; text-indent: 0; }
+.c-presentation p + p { margin-top: 3.2mm; }
+.c-presentation .lettrine { float: left; font-family: "Fraunces"; font-weight: 600; font-size: 36pt; line-height: 30pt;
+                            margin: 1.2pt 1.6mm 0 0; }
+.c-presentation p.envoi { font-style: italic; text-align: left; }
+.c-filet { position: absolute; height: 0; border-top: 0.6pt solid; }
+.c-bio-titre { font-family: "Barlow Condensed"; font-weight: 600; font-size: 8pt; letter-spacing: 0.3em; line-height: 1; }
+.c-bio { font-family: "EB Garamond Livre"; font-size: 9.5pt; line-height: 12.4pt; text-align: justify; hyphens: manual; }
+.c-mention { font-family: "Barlow Condensed"; font-weight: 500; font-size: 7.5pt; letter-spacing: 0.06em; line-height: 10pt; }
+"""
+
+
+def largeur_police_mm(texte, famille_fichier, corps_pt, interlettrage_em=0.0):
+    return largeur_texte_mm(texte, famille_fichier, corps_pt, interlettrage_em)
+
+
+def plat1_c(x0, impression, livre, dossier):
+    c = {nom: couleur(nom, impression) for nom in ("encre", "creme", "or", "ardoise")}
+    elements = [f'<div class="bloc" style="left:{x0}mm; top:0; width:146mm; height:216mm; background:{c["encre"]}"></div>']
+    gauche, utile = x0 + 8, 130
+    elements.append(f'<div class="bloc centre c-auteur" style="left:{gauche}mm; top:15mm; width:{utile}mm; '
+                    f'color:{c["creme"]}">{echapper(livre["auteur"]).upper()}</div>')
+    elements.append(f'<div class="c-pastille" style="left:{x0 + 14}mm; top:25.5mm; width:25mm; height:5.4mm; '
+                    f'padding-top:1.45mm; color:{c["or"]}; border-color:{c["or"]}">JÉRÉMIE 1:10</div>')
+    # Les six verbes de Jérémie 1:10 : quatre barrés en ardoise, « bâtir » et « planter » en or.
+    haut, x_verbe, depart_branche = 35.0, x0 + 14, None
+    for rang, (verbe, hebreu) in enumerate(VERBES):
+        construit = rang >= 4
+        corps, graisse = (33, 700) if construit else (24, 600)
+        fichier = BARLOW / f"barlow-condensed-latin-{graisse}-normal.woff2"
+        largeur = largeur_texte_mm(verbe, fichier, corps)
+        teinte = c["or"] if construit else c["ardoise"]
+        hauteur_ligne = corps / MM
+        elements.append(f'<div class="c-verbe" style="left:{x_verbe}mm; top:{haut:.2f}mm; font-size:{corps}pt; '
+                        f'font-weight:{graisse}; color:{teinte}">{verbe}</div>')
+        if not construit:
+            elements.append(f'<div class="c-barre" style="left:{x_verbe - 0.6:.2f}mm; top:{haut + hauteur_ligne * 0.47:.2f}mm; '
+                            f'width:{largeur + 1.2:.2f}mm; border-top-color:{c["ardoise"]}"></div>')
+        elements.append(f'<div class="c-hebreu" style="left:{x_verbe + largeur + 2.2:.2f}mm; '
+                        f'top:{haut + hauteur_ligne * 0.62:.2f}mm; color:{teinte}">{hebreu}</div>')
+        if verbe == "PLANTER":
+            depart_branche = (14 + largeur + 13.5, haut + hauteur_ligne * 0.5)
+        haut += hauteur_ligne + (4.2 if rang == 3 else 1.6)
+    branche = svg_branche_c(dossier, depart_branche)
+    elements.append(f'<img class="bloc" src="{branche.as_uri()}" style="left:{x0}mm; top:0; width:146mm; height:216mm">')
+    # Titre : amorce en Fraunces italique, nom en Barlow Condensed Black sur toute la largeur utile.
+    mots = livre["titre"].split()
+    amorce, nom = " ".join(mots[:-1]), mots[-1].upper()
+    elements.append(f'<div class="bloc centre c-amorce" style="left:{gauche}mm; top:124mm; width:{utile}mm; '
+                    f'color:{c["creme"]}">{echapper(amorce)}</div>')
+    noir = BARLOW / "barlow-condensed-latin-900-normal.woff2"
+    corps_nom = 100 * 124 / largeur_texte_mm(nom, noir, 100)
+    elements.append(f'<div class="bloc centre c-nom" style="left:{gauche}mm; top:131mm; width:{utile}mm; '
+                    f'font-size:{corps_nom:.1f}pt; color:{c["creme"]}">{echapper(nom)}</div>')
+    elements.append(f'<div class="bloc centre c-genre" style="left:{gauche}mm; top:{131 + corps_nom / MM * 0.98:.2f}mm; '
+                    f'width:{utile}mm; color:{c["or"]}">{echapper(livre["sous_titre"]).upper()}</div>')
+    elements.append(f'<div class="bloc centre c-editeur" style="left:{gauche}mm; top:196mm; width:{utile}mm; '
+                    f'color:{c["creme"]}">{echapper(livre["editeur"]["nom"]).upper()}</div>')
+    frise = svg_frise(dossier, 146)
+    elements.append(f'<img class="bloc" src="{frise.as_uri()}" style="left:{x0}mm; top:0; width:146mm; height:216mm">')
+    return elements
+
+
+def plat4_et_dos_c(dos, impression, livre, quatrieme, dossier):
+    c = {nom: couleur(nom, impression) for nom in ("encre", "creme", "or", "ardoise")}
+    noir, blanc = couleur("noir", impression), couleur("blanc", impression)
+    largeur_arriere = FONDS_PERDUS + FORMAT_L + dos
+    elements = [f'<div class="bloc" style="left:0; top:0; width:{largeur_arriere}mm; height:216mm; background:{c["encre"]}"></div>']
+    gauche, largeur = FONDS_PERDUS + 12, FORMAT_L - 24
+    vers = "<br>".join(echapper(insecables(v)) for v in quatrieme["vers"])
+    reference = insecables(quatrieme["reference"]).strip("()").upper()
+    elements.append(f'<div class="bloc" style="left:{gauche}mm; top:14mm; width:{largeur}mm">'
+                    f'<div class="c-vers" style="color:{c["creme"]}">{vers}</div>'
+                    f'<div class="c-ref" style="margin-top:3mm; color:{c["or"]}">{echapper(reference)}</div></div>')
+    paragraphes = quatrieme["paragraphes"]
+    premier = echapper(insecables(paragraphes[0]))
+    corps = (f'<p><span class="lettrine" style="color:{c["or"]}">{premier[0]}</span>{premier[1:]}</p>'
+             + "".join(f"<p>{echapper(insecables(p))}</p>" for p in paragraphes[1:-1])
+             + f'<p class="envoi" style="color:{c["or"]}">{echapper(insecables(paragraphes[-1]))}</p>')
+    elements.append(f'<div class="bloc c-presentation" lang="fr" style="left:{gauche}mm; top:40mm; '
+                    f'width:{largeur}mm; color:{c["creme"]}">{corps}</div>')
+    bio = " ".join(ligne.strip() for ligne in livre["biographie_auteur"].strip().splitlines())
+    elements.append(f'<div class="c-filet" style="left:{gauche}mm; top:131mm; width:18mm; border-top-color:{c["or"]}"></div>')
+    elements.append(f'<div class="bloc" style="left:{gauche}mm; top:135mm; width:{largeur}mm">'
+                    f'<div class="c-bio-titre" style="color:{c["or"]}">L’AUTEUR</div>'
+                    f'<div class="c-bio" style="margin-top:2.4mm; color:{c["creme"]}">{echapper(insecables(bio))}</div></div>')
+    mentions = quatrieme["mentions"]
+    ean_l, ean_h = EAN_L * EAN_GRANDISSEMENT, EAN_H * EAN_GRANDISSEMENT
+    cart_l, cart_h = ean_l + 3, ean_h + 3
+    cart_x = FONDS_PERDUS + FORMAT_L - 12 - cart_l
+    bas_utile = 203.0   # au-dessus de la frise (206 mm), et à plus de 5 mm de la coupe
+    cart_y = bas_utile - cart_h
+    elements.append(f'<div class="cartouche" style="left:{cart_x:.2f}mm; top:{cart_y:.2f}mm; width:{cart_l:.2f}mm; '
+                    f'height:{cart_h:.2f}mm; background:{blanc}">'
+                    f'<div class="cadre" style="left:1.5mm; top:1.5mm; width:{ean_l:.2f}mm; height:{ean_h:.2f}mm; '
+                    f'border-color:{noir}"></div>'
+                    f'<div class="isbn" style="top:{cart_h / 2 - 3.2:.2f}mm; color:{noir}">{echapper(mentions["ISBN"])}</div>'
+                    f'<div class="isbn" style="top:{cart_h / 2 + 0.8:.2f}mm; font-size:6pt; color:{noir}">'
+                    f'EAN-13 à {EAN_GRANDISSEMENT * 100:.0f}&nbsp;%</div></div>')
+    elements.append(f'<div class="bloc c-mention" style="left:{gauche}mm; top:{bas_utile - 21:.2f}mm; '
+                    f'width:{cart_x - gauche - 6:.2f}mm; color:{c["creme"]}">'
+                    f'<i style="font-family:Fraunces">{echapper(insecables(mentions["Version biblique"]))}</i><br><br>'
+                    f'<span style="color:{c["or"]}; font-weight:600; letter-spacing:0.24em">'
+                    f'{echapper(mentions["Éditeur"].split(",")[0]).upper()}</span>'
+                    f'{echapper(insecables(" ·" + mentions["Éditeur"].split(",", 1)[1]))}<br>'
+                    f'{echapper(insecables("Prix : " + mentions["Prix"]))}</div>')
+    # Dos, lu de bas en haut : amorce en Fraunces italique et nom en Barlow Black, auteur en or plus bas.
+    if dos >= DOS_MIN_TEXTE:
+        x_dos = FONDS_PERDUS + FORMAT_L
+        mots = livre["titre"].split()
+        amorce, nom = " ".join(mots[:-1]), mots[-1].upper()
+        corps_dos = min(10.5, (dos - 2 * SECURITE_DOS) / 0.3528 * 0.9)
+        fraunces = POLICES / "fraunces" / "fraunces-latin-400-italic.woff2"
+        long_titre = (largeur_texte_mm(nom, BARLOW / "barlow-condensed-latin-900-normal.woff2", corps_dos + 2)
+                      + 3 + largeur_texte_mm(amorce, fraunces, corps_dos * 0.72))
+        bas_titre, haut_titre = 150.0, FONDS_PERDUS + SECURITE + 8
+        if long_titre > bas_titre - haut_titre:
+            sys.exit(f"Le titre du dos ne tient pas : {long_titre:.1f} mm pour {bas_titre - haut_titre:.1f} mm.")
+        zones = [(f'<span class="c-nom" style="font-size:{corps_dos + 2:.2f}pt">{echapper(nom)}</span>&#8195;'
+                  f'<span class="c-amorce" style="font-size:{corps_dos * 0.72:.2f}pt">{echapper(amorce)}</span>',
+                  c["creme"], haut_titre, bas_titre),
+                 (f'<span class="c-editeur" style="font-size:7pt; letter-spacing:0.28em; font-weight:600">'
+                  f'{echapper(livre["auteur"]).upper()}</span>', c["or"], 156.0, 201.0)]
+        for contenu, teinte, haut, bas in zones:
+            longueur = bas - haut
+            centre_x, centre_y = x_dos + dos / 2, (haut + bas) / 2
+            elements.append(f'<div class="dos" style="left:{centre_x - longueur / 2:.3f}mm; top:{centre_y - dos / 2:.3f}mm; '
+                            f'width:{longueur:.3f}mm; height:{dos:.3f}mm; line-height:{dos:.3f}mm; color:{teinte}; '
+                            f'text-align:{"left" if haut < 100 else "right"}">{contenu}</div>')
+    frise = svg_frise(dossier, largeur_arriere)
+    elements.append(f'<img class="bloc" src="{frise.as_uri()}" style="left:0; top:0; width:{largeur_arriere}mm; height:216mm">')
+    return elements
 
 
 # ---------- Mise en page ----------
@@ -369,7 +611,7 @@ def plat4_et_dos(piste, dos, impression, livre, quatrieme, paysage):
 
 
 def document(largeur, elements, polices):
-    return (f'<!DOCTYPE html><html lang="fr"><head><meta charset="utf-8"><style>{polices}\n{CSS_COMMUN}\n'
+    return (f'<!DOCTYPE html><html lang="fr"><head><meta charset="utf-8"><style>{polices}\n{CSS_COMMUN}\n{CSS_C}\n'
             f'@page {{ size: {largeur:.3f}mm 216mm; }}\nbody {{ width: {largeur:.3f}mm; height: 216mm; }}'
             f'</style></head><body>{"".join(elements)}</body></html>')
 
@@ -472,7 +714,8 @@ def main():
     parser.add_argument("--grammage", type=float, default=90, help="grammage du papier intérieur (g/m²)")
     parser.add_argument("--main", type=float, default=1.25, help="main du papier (cm³/g)")
     parser.add_argument("--dos", type=float, help="épaisseur du dos donnée par l'imprimeur (mm), prime sur le calcul")
-    parser.add_argument("--piste", choices=["A", "B"], default="A", help="piste du gabarit complet et de l'EPUB")
+    parser.add_argument("--piste", choices=["A", "B", "C"], default="C",
+                        help="piste du gabarit complet et de l'EPUB (C retenue le 14 novembre 2026)")
     args = parser.parse_args()
 
     if args.pages % 2:
@@ -488,12 +731,18 @@ def main():
     with tempfile.TemporaryDirectory() as dossier:
         travail = Path(dossier)
         configuration = FontConfiguration()
-        polices = polices_corrigees(travail)
+        polices = polices_corrigees(travail, FAMILLES_COUVERTURE)
         illustrations = {"A": IMAGES / "couverture-amandier.svg", "B": svg_arche(travail)}
 
-        for piste in ("A", "B"):
+        def plat_seul(piste, impression):
+            if piste == "C":
+                return plat1_c(0, impression, livre, travail)
+            return plat1(piste, 0, impression, livre, illustrations[piste])
+
+        # Les pistes A et B (abandonnées) ne sont régénérées que si on les demande.
+        for piste in (("A", "B") if args.piste != "C" else ("C",)):
             for impression in (True, False):
-                html = document(146, plat1(piste, 0, impression, livre, illustrations[piste]), polices)
+                html = document(146, plat_seul(piste, impression), polices)
                 cible = COUVERTURE / f"piste-{piste}.pdf" if impression else travail / f"piste-{piste}-rvb.pdf"
                 composer(html, cible, configuration, impression, FORMAT_L)
             apercu = rendre_png(travail / f"piste-{piste}-rvb.pdf", travail / f"piste-{piste}.png", 150)
@@ -507,12 +756,16 @@ def main():
         for impression in (True, False):
             # Le plat 1 est posé d'abord, ses 3 mm de fonds perdus glissés sous le dos ; le dos et la
             # quatrième le recouvrent jusqu'au pli, sans découpe au pli qui laisserait un filet clair.
-            plat = plat1(args.piste, 0, impression, livre, illustrations[args.piste])
+            plat = plat_seul(args.piste, impression)
+            fond = {"A": 1, "B": 2, "C": 1}[args.piste]
             elements = [f'<div class="bloc" style="left:{x_plat1:.3f}mm; top:0; width:146mm; height:216mm">'
-                        f'{"".join(plat[:1 if args.piste == "A" else 2])}</div>']
-            elements += plat4_et_dos(args.piste, dos, impression, livre, quatrieme, paysage)
+                        f'{"".join(plat[:fond])}</div>']
+            if args.piste == "C":
+                elements += plat4_et_dos_c(dos, impression, livre, quatrieme, travail)
+            else:
+                elements += plat4_et_dos(args.piste, dos, impression, livre, quatrieme, paysage)
             elements.append(f'<div class="bloc" style="left:{x_plat1:.3f}mm; top:0; width:146mm; height:216mm">'
-                            f'{"".join(plat[1 if args.piste == "A" else 2:])}</div>')
+                            f'{"".join(plat[fond:])}</div>')
             html = document(largeur_totale, elements, polices)
             cible = COUVERTURE / "couverture-gabarit.pdf" if impression else travail / "gabarit-rvb.pdf"
             composer(html, cible, configuration, impression, 2 * FORMAT_L + dos)
@@ -528,7 +781,9 @@ def main():
                                                          Image.LANCZOS)
         epub.save(COUVERTURE / "plat1-epub.jpg", quality=92, optimize=True, dpi=(300, 300))
 
-    for nom in ("piste-A.pdf", "piste-B.pdf", "couverture-gabarit.pdf", "plat1-epub.jpg"):
+    for nom in ((f"piste-{p}.pdf" for p in (("A", "B") if args.piste != "C" else ("C",)))):
+        print(f"couverture/{nom}")
+    for nom in ("couverture-gabarit.pdf", "plat1-epub.jpg"):
         print(f"couverture/{nom}")
 
 
