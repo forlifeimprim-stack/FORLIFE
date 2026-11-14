@@ -28,3 +28,5 @@ Tenu par Akissi. Statuts : À FAIRE, EN COURS, TERMINÉ, PARTIEL, BLOQUÉ.
 | T25 | Recomposition, couverture piste C en PDF d’impression | affoue | T24 | interieur.pdf | TERMINÉ |
 | T26 | EPUB refait | desire | T24 | EPUBCheck 0 erreur | EN ATTENTE (décision de l’utilisateur) |
 | T27 | Hébreu vérifié, archéologie et théologie (encadrés et annexes) | konan | T23 | marques hébraïques levées ou justifiées, encadrés et annexes, versets contrôlés | PARTIEL |
+| T28 | Fabrication mise à jour pour 224 pages (devis, BAT en brouillon) | salif | T25 | fiche, devis et BAT à jour | EN COURS |
+| T29 | Livre audio : scripts de tous les chapitres, extrait, production avec la FOR LIFE voix off | desire | T25, enregistrement de référence | extrait validé, puis MP3 par chapitre | À FAIRE |
