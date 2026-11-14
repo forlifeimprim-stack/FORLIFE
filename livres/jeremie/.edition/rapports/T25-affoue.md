@@ -8,7 +8,7 @@ TERMINÉ. L'intérieur fait 224 pages, soit 14 cahiers de 16 : 219 pages de text
 
 ## RÉSUMÉ
 
-Intérieur, avec l'avant-propos reformulé : il a été modifié pendant une première composition, et le livre a été recomposé après.
+Intérieur, avec l'avant-propos reformulé et validé par l'auteur. Le manuscrit a été modifié le 14 novembre à 01:25:38 ; le PDF livré a été composé ensuite, à 01:33:16.
 
 - Correction des polices :
   - EB Garamond reçoit son sous-ensemble latin-ext, fusionné avec le latin par fontTools. Les lettres ṭ et ă sortent dans la police du livre.
@@ -90,6 +90,7 @@ Intérieur :
   - 4 pour l'ISBN imprimé, l'ISBN numérique, le dépôt légal et l'impression ;
   - 12 pour l'auteur : remerciements, et onze positions ou précisions dans les sections d'étude et les repères théologiques.
 - 28 marques « À VÉRIFIER » : les sources archéologiques signalées par Akissi.
+- Avant-propos : chaque paragraphe de `manuscrit/01-avant-propos-corrige.md` a été comparé, début et fin, au texte extrait des pages 7 à 12. Tout y est. Seul le commentaire HTML « témoignage validé par l'auteur le 14 novembre 2026 » n'apparaît pas, ce qui est normal : il ne s'imprime pas. Pas de recomposition nécessaire, dos inchangé (12,60 mm).
 - Pages regardées : 3 (titre et sous-titre), 4 (mentions et crédit des textes), 5 (table), 7 et 8 (avant-propos reformulé), 26 et 27 (section d'étude et niveau 3), 86 (encadré « Archéologie et histoire »), 203 à 205 (tableau de l'ordre), 211 et 212 (tableau archéologique, aussi agrandi à 110 ppp), 213 (repères théologiques), 219 à 221 (fin et pages blanches).
 
 Couverture :
