@@ -140,6 +140,16 @@ Le même livre est lu trois fois, devant trois auditoires. Le texte ne rapporte 
 - Jérémie 22:30. Une parole sur la descendance de Jojakim, à rapprocher de Jérémie 36:30.
 - Jérémie 51:63-64. Seraja jette dans l’Euphrate un livre écrit par Jérémie.
 
+::: encadre
+**Archéologie et histoire : des sceaux au nom des hommes de Jérémie 36**
+
+Au temps de Jérémie, on fermait un document roulé avec une petite boule d’argile marquée d’un sceau, appelée bulle. Jérémie fait ainsi cacheter le contrat d’Anathoth (Jérémie 32:10).
+
+Lors des fouilles de la Cité de David, à Jérusalem, dirigées par Yigal Shiloh entre 1978 et 1985, une cinquantaine de bulles ont été retrouvées dans une maison détruite par un incendie [À VÉRIFIER : nombre exact et année de la trouvaille, rapport de fouille de Y. Shiloh]. L’une porte le nom de « Guemaryahou, fils de Shaphan ». Beaucoup de spécialistes y voient le Guemaria, fils de Schaphan, dans la chambre duquel Baruc lut le livre (Jérémie 36:10). Le nom et celui du père concordent ; l’identification reste probable, sans être démontrée, car ces noms n’étaient pas rares.
+
+Une autre bulle, apparue sur le marché des antiquités dans les années 1970 et publiée par Nahman Avigad, porte l’inscription « Berekhyahou, fils de Neriyahou, le scribe ». On l’a rapprochée de Baruc, fils de Nérija, le secrétaire (Jérémie 36:32). Une seconde empreinte du même sceau, avec une trace de doigt, a été publiée plus tard. Ces objets ne viennent pas d’une fouille contrôlée : leur authenticité est contestée, et plusieurs spécialistes les tiennent pour des faux [À VÉRIFIER : état du débat, Musée d’Israël]. Ce livre ne s’appuie donc pas sur eux.
+:::
+
 ### Le fil de Jérémie 1:10
 
 Dans ce chapitre, quatre des six verbes de l’appel reviennent dans la bouche de Dieu : « Voici, ce que j’ai bâti, je le détruirai ; ce que j’ai planté, je l’arracherai, savoir tout ce pays » (Jérémie 45:4). La parole confiée au jeune homme d’Anathoth vingt-trois ans plus tôt est en train de s’accomplir. Dieu parle ici de son propre ouvrage : ce qu’il avait lui-même bâti et planté.

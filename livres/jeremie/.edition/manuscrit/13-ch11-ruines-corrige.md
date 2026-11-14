@@ -158,6 +158,16 @@ Le passage oppose deux serments. Le peuple jure d’obéir (verset 6), puis refu
 - Josué 24:15. Josué invitait le peuple à choisir aujourd’hui qui il voulait servir.
 - Jacques 1:22. Écouter la parole sans la mettre en pratique, c’est se tromper soi-même ; comparer avec Jérémie 42:20.
 
+::: encadre
+**Archéologie et histoire : les traces de la chute**
+
+Les fouilles de Jérusalem ont mis au jour plusieurs témoins de la destruction racontée en Jérémie 39:8 et 52:13. Dans la Cité de David, l’équipe de Yigal Shiloh a dégagé des maisons effondrées sous la cendre et les débris brûlés [À VÉRIFIER : noms des bâtiments dans le rapport de fouille]. Dans le quartier juif de la vieille ville, Nahman Avigad a trouvé, près d’une tour de la muraille, des pointes de flèche dans une couche d’incendie [À VÉRIFIER : rapport de N. Avigad]. Ces vestiges montrent une ville prise et brûlée ; ils ne permettent pas, à eux seuls, de choisir entre 587 et 586.
+
+À Lakis, une bulle porte le nom de « Guedalyahou, qui est sur la maison », titre d’un haut fonctionnaire du palais [À VÉRIFIER : lecture et date de découverte]. Certains y voient Guedalia, fils d’Achikam, avant qu’il soit établi sur les villes de Juda (Jérémie 40:5). La bulle ne donne pas le nom du père : l’identification reste une hypothèse.
+
+Enfin, une tablette babylonienne du British Museum, déchiffrée en 2007, mentionne un dignitaire de Nebucadnetsar nommé Nabû-sharrussu-ukîn, « chef des eunuques », la dixième année du roi [À VÉRIFIER : British Museum, BM 114789]. La Louis Segond nomme parmi les chefs babyloniens « Sarsekim, chef des eunuques » (Jérémie 39:3). Plusieurs spécialistes découpent autrement les noms de ce verset, lisent « Nebo-Sarsekim » et y reconnaissent le même homme. Ce découpage est discuté.
+:::
+
 ### Le fil de Jérémie 1:10
 
 Après la chute de Jérusalem, Dieu offre au reste du peuple les verbes de la restauration : « je vous y établirai et je ne vous détruirai pas, je vous planterai et je ne vous arracherai pas » (Jérémie 42:10). Le texte hébreu emploie ici quatre verbes de l’appel, *bânâh* (bâtir), *hâraç* (détruire), *nâṭaʻ* (planter) et *nâthash* (arracher) ; la Louis Segond rend le premier par « établir ». La promesse faite aux exilés de Babylone (Jérémie 24:6) est proposée aussi à ceux qui sont restés.

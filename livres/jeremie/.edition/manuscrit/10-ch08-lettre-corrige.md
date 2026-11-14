@@ -125,6 +125,16 @@ La lettre commence par le présent et finit par l’avenir. Les exilés reçoive
 - 1 Timothée 2:1-2. Paul demande de prier pour les rois et les autorités, afin de mener une vie paisible.
 - 1 Pierre 1:1. Pierre écrit aux croyants comme à des étrangers dispersés.
 
+::: encadre
+**Archéologie et histoire : la chronique babylonienne de 597**
+
+Les scribes de Babylone tenaient des chroniques, de courts récits année par année, écrits en cunéiforme sur des tablettes d’argile. L’une d’elles, conservée au British Museum à Londres, couvre les premières années de Nebucadnetsar [À VÉRIFIER : numéro d’inventaire, BM 21946]. Elle rapporte d’abord la victoire de Carkemisch (voir Jérémie 46:2). Pour la septième année du roi, elle raconte qu’il marcha vers l’ouest, assiégea « la ville de Juda » et la prit le deuxième jour du mois d’Adar ; il captura le roi, établit à sa place un roi de son choix et emporta à Babylone un lourd tribut.
+
+Ce récit concorde avec celui de la Bible : Jojakin se rend, Nebucadnetsar emporte les trésors du temple et du palais, puis établit Sédécias (2 Rois 24:12-17). La chronique ne nomme aucun roi de Juda. Grâce à elle, les historiens datent la prise de Jérusalem de mars 597 av. J.-C. [À VÉRIFIER : conversion de la date babylonienne]. C’est l’une des dates les plus sûres de l’histoire de Juda.
+
+Ses limites sont celles d’un texte officiel : elle donne le point de vue du vainqueur, et ne dit rien des exilés ni des prophètes.
+:::
+
 ### Le fil de Jérémie 1:10
 
 Les deux derniers verbes de l’appel, bâtir et planter, se trouvent dans la lettre, mais d’une manière inattendue. Dieu dit aux exilés : « Bâtissez des maisons, et habitez-les ; plantez des jardins, et mangez-en les fruits » (Jérémie 29:5). Ceux que le jugement a arrachés de leur pays reçoivent l’ordre de bâtir et de planter en terre étrangère.

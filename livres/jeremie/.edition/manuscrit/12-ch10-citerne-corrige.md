@@ -168,6 +168,14 @@ Le récit est encadré par deux paroles adressées au roi : celle des chefs, qu
 - Actes 8:27. Un autre Éthiopien, eunuque d’une cour royale, vient adorer à Jérusalem.
 - 2 Rois 25:7. Le sort de Sédécias, tel que Jérémie l’avait annoncé.
 
+::: encadre
+**Archéologie et histoire : les lettres de Lakis et les sceaux des chefs**
+
+Jérémie 34:7 nomme Lakis et Azéka, dernières villes fortes de Juda. En 1935, sur le site de Tell ed-Duweir, identifié à Lakis, l’archéologue britannique James Leslie Starkey découvrit près de la porte de la ville des tessons de poterie couverts d’écriture à l’encre, appelés ostraca. On en compte une vingtaine, dont quelques-uns trouvés en 1938 [À VÉRIFIER : nombre exact]. Ce sont surtout des lettres d’un officier à son supérieur, écrites peu avant la chute de la ville. L’une dit en substance qu’on guette les signaux de Lakis, parce qu’on ne voit pas ceux d’Azéka. Beaucoup y lisent le moment où Azéka venait de tomber, ce qui éclairerait Jérémie 34:7 ; la lettre ne le dit pas expressément. Une autre mentionne « le prophète », sans le nommer ; rien ne permet d’y reconnaître Jérémie. La plupart de ces lettres sont au British Museum [À VÉRIFIER : répartition avec le Musée d’Israël].
+
+Dans la Cité de David, à Jérusalem, l’archéologue Eilat Mazar a trouvé deux bulles aux noms de « Yehoukal, fils de Shelemyahou » et de « Guedalyahou, fils de Pashhour » [À VÉRIFIER : années de découverte, 2005 et 2008, et lecture complète]. Ce sont les noms de deux des chefs qui demandèrent la mort de Jérémie (Jérémie 38:1). L’identification est vraisemblable, mais discutée : la datation des couches et les interprétations de la fouilleuse ont été contestées.
+:::
+
 ### Le fil de Jérémie 1:10
 
 Ces chapitres racontent l’accomplissement des quatre premiers verbes. La ville est abattue et détruite : la brèche est faite la onzième année de Sédécias (Jérémie 39:2), le palais et les maisons sont brûlés, les murailles démolies (Jérémie 39:8). Ce que Jérémie annonçait depuis le jour de l’appel arrive sous ses yeux. Le dernier chapitre du livre raconte de nouveau cette chute, jusqu’au temple brûlé (Jérémie 52:12-14), comme pour attester que la parole ne s’est pas perdue.

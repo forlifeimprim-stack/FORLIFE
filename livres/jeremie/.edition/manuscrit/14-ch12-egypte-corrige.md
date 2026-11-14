@@ -163,6 +163,14 @@ Le discours finit sur une question de fond : laquelle des deux paroles s’acco
 - Matthieu 2:17-18. Matthieu cite le cri de Rama (Jérémie 31:15) après le massacre de Bethléhem.
 - 2 Rois 25:27. Le récit des Rois donne aussi la libération de Jojakin, à deux jours près (comparer Jérémie 52:31).
 
+::: encadre
+**Archéologie et histoire : Tachpanès et les rations de Jojakin**
+
+On identifie généralement Tachpanès à Tell Defenneh, dans l’est du delta du Nil. L’égyptologue britannique Flinders Petrie fouilla le site en 1886 [À VÉRIFIER : année]. Les habitants appelaient une grande ruine « le palais de la fille du Juif » ; Petrie y décrivit un dallage de briques devant l’entrée, qu’il rapprocha des pierres cachées par Jérémie (Jérémie 43:9). Ce rapprochement est aujourd’hui jugé fragile : la construction est surtout un fort, et rien n’y nomme Jérémie. Le site montre au moins qu’une ville frontière existait là à cette époque.
+
+À Babylone, les fouilles allemandes dirigées par Robert Koldewey, au début du vingtième siècle, ont livré des tablettes administratives près de la porte d’Ishtar [À VÉRIFIER : emplacement exact]. Publiées en 1939 par Ernst Weidner, certaines énumèrent des rations d’huile versées à des étrangers, parmi lesquels « Ya’oukinou, roi du pays de Yahoudou », et ses fils [À VÉRIFIER : lecture et date des tablettes]. Il s’agit de Jojakin, captif à Babylone. Ces tablettes datent de sa captivité, avant sa libération : elles ne racontent pas la scène de Jérémie 52:31-34, mais elles montrent un roi entretenu par la cour de Babylone, ce qui s’accorde avec le texte. Elles sont conservées à Berlin [À VÉRIFIER : Vorderasiatisches Museum].
+:::
+
 ### Le fil de Jérémie 1:10
 
 Les derniers messages de Jérémie que le livre situe dans le temps sont donnés en Égypte, et les verbes de l’appel y sont encore à l’œuvre. Le peuple qui a refusé d’être planté dans son pays (Jérémie 42:10) se trouve exposé, en Égypte, au jugement qu’il fuyait (Jérémie 44:12). Dieu veille sur sa parole jusqu’au bout (Jérémie 44:27).

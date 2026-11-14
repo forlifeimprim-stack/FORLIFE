@@ -165,6 +165,16 @@ Le passage ne va pas en ligne droite de la nuit à la lumière. La louange du ve
 - 1 Pierre 2:23. Jésus, maltraité, s’en remettait à celui qui juge justement ; Jérémie confie sa cause à Dieu (Jérémie 20:12).
 - Romains 12:19. Paul demande de ne pas se venger soi-même et de laisser la rétribution au Seigneur.
 
+::: encadre
+**Archéologie et histoire : les amulettes de Ketef Hinnom**
+
+En 1979, l’archéologue israélien Gabriel Barkay fouillait des tombes creusées dans le roc à Ketef Hinnom, sur le flanc de la vallée de Ben-Hinnom, à Jérusalem. Dans l’une d’elles, son équipe trouva deux minuscules rouleaux d’argent, portés comme amulettes. Une fois déroulés, ils ont livré quelques lignes en écriture hébraïque ancienne qui reprennent, sous une forme proche, la bénédiction des sacrificateurs : « Que l’Éternel te bénisse, et qu’il te garde ! » (Nombres 6:24).
+
+On les date le plus souvent de la fin du septième siècle ou du début du sixième siècle av. J.-C., donc du temps de Jérémie ; une date un peu plus tardive a aussi été proposée [À VÉRIFIER : publication de l’équipe de G. Barkay]. Ils comptent parmi les plus anciens textes bibliques connus. Ils sont conservés au Musée d’Israël, à Jérusalem.
+
+Ce qu’ils montrent : dans la vallée même où Jérémie dénonçait les enfants brûlés en holocauste (Jérémie 19:5), des familles de Jérusalem portaient sur elles la bénédiction de l’Éternel. Ce qu’ils ne montrent pas : ils ne nomment ni Jérémie ni aucun événement de son livre.
+:::
+
 ### Le fil de Jérémie 1:10
 
 Ce chapitre montre ce que la mission coûte à celui qui la porte. Les verbes de l’appel passent d’abord par la vie du prophète. Dieu lui interdit de prendre femme et d’entrer dans une maison de deuil (Jérémie 16:2, 5). Ces absences annoncent un peuple qui va être arraché de son pays, sans mariage ni funérailles.

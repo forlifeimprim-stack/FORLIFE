@@ -127,3 +127,90 @@ La Bible donne souvent le même nom à plusieurs personnes. Ce tableau aide à l
 | Seraja (4) | fils de Thanhumeth, chef des troupes venu à Mitspa | Jérémie 40:8 |
 | Sophonie (1) | fils de Maaséja, sacrificateur, envoyé par Sédécias | Jérémie 21:1 ; 37:3 |
 | Sophonie (2) | le prophète, au temps de Josias | Sophonie 1:1 |
+
+## Ce que l’archéologie a mis au jour
+
+Les découvertes qui suivent éclairent le monde de Jérémie. Aucune ne prouve à elle seule la vérité d’un passage, et aucune ne la dément : elles situent les noms, les lieux et les dates du livre dans l’histoire connue par ailleurs. Les faits que ce livre n’a pas pu contrôler sur une source à jour portent la mention « à vérifier ». Les encadrés « Archéologie et histoire » des chapitres 5, 6, 8, 10, 11 et 12 les présentent plus en détail.
+
+::: tableau-archeologie
+| Découverte | Lieu et date de découverte | Passage de Jérémie | Ce qu’elle apporte | Prudence |
+|---|---|---|---|---|
+| Amulettes d’argent de Ketef Hinnom | Jérusalem, vallée de Ben-Hinnom ; fouilles de Gabriel Barkay, 1979 | Jérémie 19:5 (le lieu) | Deux petits rouleaux portant la bénédiction des sacrificateurs (Nombres 6:24-26), du temps de Jérémie ou peu après | Date discutée ; aucun lien direct avec Jérémie |
+| Chronique babylonienne des premières années de Nebucadnetsar | Babylonie ; tablette conservée au British Museum [À VÉRIFIER : provenance et numéro] | Jérémie 46:2 ; 52:28 ; voir 2 Rois 24:10-17 | Bataille de Carkemisch ; prise de « la ville de Juda » le deuxième jour d’Adar de la septième année, vers mars 597 | Point de vue officiel du vainqueur ; aucun nom de roi de Juda |
+| Bulle de « Guemaryahou, fils de Shaphan » | Jérusalem, Cité de David ; fouilles de Yigal Shiloh, entre 1978 et 1985 [À VÉRIFIER : année] | Jérémie 36:10 | Un homme portant le nom et le patronyme de Guemaria, fils de Schaphan | Identification probable, non démontrée |
+| Bulle de « Berekhyahou, fils de Neriyahou, le scribe » | Marché des antiquités ; publiée par Nahman Avigad à la fin des années 1970 [À VÉRIFIER : année] | Jérémie 36:4, 32 | Nom proche de celui de Baruc, fils de Nérija, avec le titre de scribe | Origine inconnue ; authenticité contestée ; ce livre ne s’appuie pas sur elle |
+| Lettres de Lakis (ostraca) | Tell ed-Duweir ; fouilles de James Leslie Starkey, 1935, quelques-unes en 1938 | Jérémie 34:7 | Lettres militaires écrites peu avant la chute de Lakis ; mention des signaux d’Azéka et d’un « prophète » anonyme | Lien avec Jérémie 34:7 probable, non explicite ; le prophète n’est pas nommé |
+| Bulles de « Yehoukal, fils de Shelemyahou » et de « Guedalyahou, fils de Pashhour » | Jérusalem, Cité de David ; fouilles d’Eilat Mazar, 2005 et 2008 [À VÉRIFIER : années] | Jérémie 38:1 ; 37:3 | Les noms de deux chefs hostiles à Jérémie, avec leurs pères | Datation des couches et interprétations de la fouilleuse discutées |
+| Couches de destruction | Jérusalem, Cité de David et quartier juif ; fouilles de Yigal Shiloh et de Nahman Avigad [À VÉRIFIER : années] | Jérémie 39:8 ; 52:13 | Maisons brûlées, pointes de flèche : une ville prise et incendiée | Ne tranche pas entre 587 et 586 |
+| Bulle de « Guedalyahou, qui est sur la maison » | Lakis [À VÉRIFIER : date de découverte] | Jérémie 40:5 | Un haut fonctionnaire du palais nommé Guedalia | Pas de nom de père ; identification hypothétique |
+| Tablette de Nabû-sharrussu-ukîn, chef des eunuques | Tablette du British Museum, déchiffrée en 2007 [À VÉRIFIER : BM 114789] | Jérémie 39:3 | Un haut dignitaire de Nebucadnetsar portant ce titre, la dixième année du roi | Dépend d’un découpage discuté des noms de Jérémie 39:3 |
+| Tell Defenneh | Est du delta du Nil ; fouilles de Flinders Petrie, 1886 [À VÉRIFIER : année] | Jérémie 43:8-9 ; 44:1 | Site généralement identifié à Tachpanès, ville frontière de l’époque | Le lien entre le dallage décrit par Petrie et Jérémie 43:9 est fragile |
+| Tablettes des rations de Jojakin | Babylone, près de la porte d’Ishtar ; fouilles de Robert Koldewey, publiées par Ernst Weidner en 1939 [À VÉRIFIER : emplacement et date] | Jérémie 52:31-34 ; 2 Rois 25:27-30 | Rations d’huile pour « Ya’oukinou, roi du pays de Yahoudou », et ses fils | Datent de la captivité, avant la libération racontée par le texte |
+| Fragments de Jérémie à Qumrân | Grottes 2 et 4 de Qumrân, découvertes entre 1947 et 1956 [À VÉRIFIER : dates et sigles des manuscrits] | Plusieurs chapitres du livre | Copies anciennes en hébreu, les unes proches du texte hébreu traditionnel, d’autres d’une forme plus courte proche du grec | Fragments très partiels ; voir « Repères théologiques » |
+:::
+
+## Repères théologiques
+
+Ces pages rassemblent ce que le livre de Jérémie enseigne sur six grandes questions. Elles exposent les textes et, quand les lectures divergent, elles présentent ces lectures sans trancher.
+
+### La vocation prophétique et Jérémie 1:10
+
+Le prophète ne se donne pas sa mission ; il la reçoit. Dieu dit à Jérémie : « je t’avais établi prophète des nations » (Jérémie 1:5). La charge précède la naissance, et elle précède aussi la compétence : Jérémie objecte qu’il ne sait pas parler, et Dieu répond en mettant ses paroles dans sa bouche (Jérémie 1:9). Le modèle est celui que Moïse annonçait : un prophète dans la bouche duquel Dieu met ses paroles, et qui dit tout ce que Dieu lui commande (Deutéronome 18:18).
+
+Le verset suivant résume la mission en six verbes : « pour que tu arraches et que tu abattes, pour que tu ruines et que tu détruises, pour que tu bâtisses et que tu plantes » (Jérémie 1:10). Deux traits ressortent du livre. D’abord, Jérémie accomplit ces verbes par la parole seule : il n’a ni armée ni pouvoir. Ensuite, Dieu reprend ces verbes pour lui-même (Jérémie 18:7-9 ; 24:6 ; 31:28 ; 42:10 ; 45:4). Le prophète annonce ce que Dieu fait ; il ne le fait pas à sa place.
+
+Le livre montre aussi le prix de cette vocation : l’hostilité des siens (Jérémie 12:6), la prison, la citerne, les plaintes adressées à Dieu (Jérémie 20:7-9). La promesse du premier jour l’accompagne jusqu’au bout : « je suis avec toi pour te délivrer » (Jérémie 1:8).
+
+Une question reste ouverte pour le lecteur d’aujourd’hui : dans quelle mesure Jérémie 1:10 décrit-il la mission d’un serviteur de Dieu de notre temps ? Certains y voient une parole propre à Jérémie, qui ne se transpose pas. D’autres y lisent un modèle pour tout ministère de la parole, qui doit dénoncer le péché avant d’annoncer la restauration. D’autres encore y entendent un appel personnel reçu de Dieu, comme l’auteur de ce livre. Le texte lui-même s’adresse à Jérémie, et le présent livre ne tranche pas cette question à la place de l’auteur [À COMPLÉTER PAR L’AUTEUR : sa position sur ce point, voir questions-auteur-etude.md, question 2].
+
+### Vrai et faux prophète
+
+La loi de Moïse posait déjà la question : comment reconnaître la parole que l’Éternel n’a pas dite (Deutéronome 18:21) ? Elle donnait un critère : la parole qui ne s’accomplit pas ne vient pas de l’Éternel (Deutéronome 18:22). Elle condamnait aussi le prophète qui parle au nom d’autres dieux (Deutéronome 18:20).
+
+Jérémie a vécu cette question devant tout le peuple. Hanania, de Gabaon, parlait comme lui au nom de l’Éternel, mais il annonçait la fin du joug dans deux ans (Jérémie 28:3). Jérémie lui répond par l’histoire des prophètes : ceux d’autrefois ont annoncé la guerre et le malheur ; celui qui annonce la paix sera reconnu quand sa parole s’accomplira (Jérémie 28:8-9).
+
+Le livre ajoute d’autres repères. Le faux prophète dit les visions de son cœur, et non ce qui vient de la bouche de l’Éternel (Jérémie 23:16). Il n’a pas été envoyé, et pourtant il court (Jérémie 23:21). Et surtout, il ne fait pas revenir le peuple de sa mauvaise voie : « S’ils avaient assisté à mon conseil, ils auraient dû faire entendre mes paroles à mon peuple, et les faire revenir de leur mauvaise voie » (Jérémie 23:22). Le fruit d’une prophétie se mesure à son accomplissement et à la conversion qu’elle produit.
+
+Jérémie applique ce critère sans dureté. Avant de rappeler la règle, il répond à Hanania : « Amen ! que l’Éternel fasse ainsi ! » (Jérémie 28:6). Il aurait voulu que la paix annoncée soit vraie. Le discernement n’empêche pas d’aimer son peuple ni de souhaiter son bien.
+
+Le Nouveau Testament reprend la vigilance : « éprouvez les esprits, pour savoir s’ils sont de Dieu » (1 Jean 4:1). Les Églises appliquent ces critères de manières diverses aux ministères prophétiques d’aujourd’hui : certaines les réservent aux prophètes de la Bible, d’autres les emploient pour éprouver des paroles prophétiques actuelles. La position de l’auteur est attendue [À COMPLÉTER PAR L’AUTEUR : sa position sur ce point, voir questions-auteur-etude.md, question 8].
+
+### L’alliance nouvelle
+
+La promesse de Jérémie 31:31-34 est le passage du livre le plus repris par le Nouveau Testament. Elle annonce une alliance « non comme l’alliance que je traitai avec leurs pères » (Jérémie 31:32), que le peuple a violée. La nouveauté porte sur trois points : la loi écrite dans le cœur (Jérémie 31:33), la connaissance de Dieu donnée à tous, du plus petit au plus grand, et le pardon : « je ne me souviendrai plus de leur péché » (Jérémie 31:34).
+
+Le texte s’adresse à « la maison d’Israël et la maison de Juda » (Jérémie 31:31). Le soir de son dernier repas, Jésus dit : « Cette coupe est la nouvelle alliance en mon sang, qui est répandu pour vous » (Luc 22:20). L’épître aux Hébreux cite la promesse en entier (Hébreux 8:8-12), présente Jésus comme « le médiateur d’une alliance plus excellente » (Hébreux 8:6) et la cite encore pour parler du pardon (Hébreux 10:16-17).
+
+Les chrétiens lisent donc ce passage comme accompli en Jésus-Christ. Ils ne s’accordent pas tous sur la manière dont cet accomplissement concerne Israël. Certains voient l’Église comme l’héritière de la promesse. D’autres maintiennent qu’une part de la promesse reste adressée au peuple d’Israël comme tel. D’autres encore distinguent un accomplissement déjà réalisé et un accomplissement à venir. Le présent livre expose le texte et ses reprises, et laisse à l’auteur le soin de dire sa lecture [À COMPLÉTER PAR L’AUTEUR : sa position sur ce point, voir questions-auteur-etude.md, question 10].
+
+Un point fait l’accord de ces lectures : l’alliance nouvelle garde la volonté de Dieu et change le lieu où elle est écrite. La loi n’est pas abolie dans la promesse de Jérémie : c’est « ma loi » que Dieu écrit dans le cœur (Jérémie 31:33). Ce que la réforme de Josias n’avait pas obtenu, un cœur qui revient à Dieu (Jérémie 3:10), Dieu promet de le donner lui-même.
+
+### Le jugement et l’espérance
+
+Le livre de Jérémie est souvent lu comme un livre de malheur. Il l’est en grande partie : quatre des six verbes de l’appel parlent de démolir. Mais le jugement y est toujours mis en rapport avec une parole de Dieu qui appelle au retour. Chez le potier, Dieu déclare que la nation qui revient de sa méchanceté échappe au mal annoncé (Jérémie 18:8). Le livre est écrit pour que « peut-être » chacun revienne de sa mauvaise voie (Jérémie 36:3).
+
+Le jugement n’est pas non plus le dernier mot. Les promesses les plus fortes sont données au pire moment, pendant le siège : l’achat du champ d’Anathoth, la promesse que « on achètera encore des maisons, des champs et des vignes, dans ce pays » (Jérémie 32:15), la parole à Rachel : « Il y a de l’espérance pour ton avenir » (Jérémie 31:17). Aux exilés, Dieu parle de « projets de paix et non de malheur » (Jérémie 29:11).
+
+Le livre tient ensemble deux vérités que le lecteur voudrait parfois séparer. Dieu juge réellement : Jérusalem est brûlée, le temple aussi. Et Dieu reste fidèle à son peuple au-delà du jugement. Les Lamentations, placées après Jérémie dans nos Bibles, disent cette tension au milieu des ruines : « Les bontés de l’Éternel ne sont pas épuisées, ses compassions ne sont pas à leur terme » (Lamentations 3:22).
+
+Une question délicate traverse ces pages : le livre dit que Dieu « se repent » du mal annoncé (Jérémie 18:8 ; 26:3). Les lecteurs l’entendent diversement : comme une manière humaine de parler de Dieu, comme l’expression de sa réponse réelle à la conversion de l’homme, ou comme le signe que les annonces de jugement étaient conditionnelles dès le départ. Le présent livre rapporte le texte tel qu’il est [À COMPLÉTER PAR L’AUTEUR : sa position sur ce point, voir questions-auteur-etude.md, question 3].
+
+### La souveraineté de Dieu sur les nations
+
+Jérémie est établi « prophète des nations » (Jérémie 1:5). Une grande partie de son livre s’adresse à l’Égypte, aux Philistins, à Moab, à Ammon, à Édom, à Damas, à Kédar, à Élam et à Babylone (Jérémie 46 à 51). Ces chapitres affirment que le Dieu d’Israël n’est pas un dieu local : « l’Éternel est Dieu en vérité, il est un Dieu vivant et un roi éternel » (Jérémie 10:10).
+
+Cette souveraineté se montre d’une manière qui a choqué les contemporains de Jérémie. Dieu appelle Nebucadnetsar « mon serviteur » (Jérémie 27:6). Il déclare : « je donne la terre à qui cela me plaît » (Jérémie 27:5). Le roi païen devient l’instrument du jugement sur Juda. Daniel, en exil, dira de même que Dieu « renverse et qui établit les rois » (Daniel 2:21).
+
+Mais l’instrument n’échappe pas au jugement. Babylone sera punie à son tour (Jérémie 25:12), et le plus long des oracles contre les nations la concerne (Jérémie 50 à 51). Dieu se sert des empires sans leur donner raison. Plusieurs oracles s’achèvent même sur une promesse : Dieu ramènera les captifs de Moab, d’Ammon et d’Élam (Jérémie 48:47 ; 49:6, 39). Le juge des nations reste celui qui a fondé le monde par sa sagesse (Jérémie 51:15).
+
+Pour le croyant, cette doctrine est une consolation exigeante. Elle console, parce qu’aucune puissance n’échappe à Dieu : « Rien n’est étonnant de ta part », prie Jérémie (Jérémie 32:17), et Dieu lui répond par la même question (Jérémie 32:27). Elle exige, parce qu’elle oblige à lire l’histoire sans se croire du bon côté par principe : le peuple de Dieu lui-même est jugé. Le livre ne dit pas comment appliquer ces oracles aux nations d’aujourd’hui, et le présent livre ne le fait pas à sa place.
+
+### Les deux formes du texte de Jérémie
+
+Le livre de Jérémie nous est parvenu sous deux formes principales. La première est le texte hébreu transmis par les copistes juifs, appelé texte massorétique ; c’est lui que traduit la Louis Segond, et c’est lui que suit le présent livre. La seconde est l’ancienne traduction grecque appelée Septante, faite avant l’ère chrétienne.
+
+Les deux formes diffèrent plus pour Jérémie que pour la plupart des livres bibliques. Le texte grec est plus court, d’environ un huitième selon l’estimation habituelle [À VÉRIFIER : introduction critique au livre de Jérémie]. Il place aussi les oracles contre les nations (Jérémie 46 à 51 dans nos Bibles) au milieu du livre, après Jérémie 25:13, et dans un autre ordre.
+
+Les manuscrits de Qumrân, découverts près de la mer Morte à partir de 1947, ont éclairé la question. Parmi les fragments hébreux de Jérémie retrouvés dans les grottes 2 et 4, certains suivent le texte hébreu traditionnel, et d’autres une forme plus courte, proche de celle que traduit la Septante [À VÉRIFIER : édition des fragments, collection Discoveries in the Judaean Desert]. Beaucoup en concluent que deux formes hébraïques du livre circulaient déjà avant l’ère chrétienne. La promesse de l’alliance nouvelle se trouve dans l’une et l’autre forme, et le Nouveau Testament la cite en entier (Hébreux 8:8-12).
+
+Le livre de Jérémie raconte lui-même une histoire d’écriture en plusieurs étapes : un premier livre dicté à Baruc, brûlé, puis récrit avec « beaucoup d’autres paroles semblables » (Jérémie 36:32). Certains lecteurs rattachent les deux formes du texte à ce travail de rédaction ; d’autres y voient surtout des différences de transmission. Ces questions relèvent de l’étude du texte. Elles touchent aussi la doctrine de l’inspiration de l’Écriture (2 Timothée 3:16), sur laquelle la position de l’auteur est attendue [À COMPLÉTER PAR L’AUTEUR : sa position sur ce point, voir questions-auteur-etude.md, question 4].
