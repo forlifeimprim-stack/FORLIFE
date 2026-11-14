@@ -104,6 +104,58 @@ Beaucoup de lecteurs reconnaîtront dans cet épisode le poids de la terre famil
 
 La Bible garde une dernière mention d’Anathoth. Quand les exilés revinrent de Babylone, les listes du retour notent : « les gens d’Anathoth, cent vingt-huit » (Esdras 2:23 ; voir aussi Néhémie 7:27). La petite ville de sacrificateurs, menacée de jugement, avait des survivants. Des hommes d’Anathoth rentrèrent au pays, comme l’achat du champ l’avait laissé espérer.
 
+## Pour aller plus loin : étude
+
+### Le passage à la loupe
+
+Les trois premiers versets du livre servent de titre à l’ensemble (Jérémie 1:1-3). Ils se lisent en quatre temps.
+
+1. L’homme (Jérémie 1:1). Jérémie est présenté par son père, Hilkija, par le groupe auquel il appartient, les sacrificateurs d’Anathoth, et par sa région, le pays de Benjamin.
+2. Le commencement (Jérémie 1:2). La parole de l’Éternel lui est adressée la treizième année du roi Josias. Le livre ne date pas la naissance du prophète ; il date le jour où Dieu lui parle.
+3. La durée (Jérémie 1:3). Le ministère se poursuit sous Jojakim, puis jusqu’à la fin de la onzième année de Sédécias. Le titre ne nomme ni Joachaz ni Jojakin, qui ne régnèrent que trois mois chacun (2 Rois 23:31 ; 24:8).
+4. Le terme (Jérémie 1:3). Le titre s’arrête à l’époque où Jérusalem fut emmenée en captivité, au cinquième mois. Le récit de la chute de la ville donne le même mois (Jérémie 52:12).
+
+En additionnant les années de règne que donne le texte, on compte une quarantaine d’années entre l’appel et la chute de Jérusalem (2 Rois 22:1 ; 23:36 ; 24:18). Le livre lui-même va plus loin que son titre : les chapitres 40 à 44 racontent ce qui suivit la chute, jusqu’en Égypte. Ces trois versets montrent déjà ce qui compte pour l’Écriture dans la vie de Jérémie : la parole reçue, et le temps pendant lequel il l’a portée.
+
+### Mots clés
+
+**Paroles.** Le livre s’ouvre sur ce mot (Jérémie 1:1). L’hébreu emploie *devarim*, pluriel de *davar*. Le mot signifie « parole », mais aussi « chose » ou « affaire ». Le même mot revient au verset suivant, au singulier : « La parole de l’Éternel lui fut adressée » (Jérémie 1:2). Les paroles de Jérémie sont présentées dès la première ligne comme la parole reçue de Dieu. [À VÉRIFIER : dictionnaire hébreu imprimé]
+
+**Sacrificateur.** L’hébreu dit *kohen*, que la Louis Segond rend par « sacrificateur » et d’autres traductions par « prêtre ». Le sacrificateur sert à l’autel et enseigne la loi (Deutéronome 33:10 ; Malachie 2:7). Jérémie est *kohen* par sa naissance ; il devient *navi*, « prophète », par l’appel de Dieu (Jérémie 1:5). [À VÉRIFIER : dictionnaire hébreu imprimé]
+
+**Prophétiser.** Les gens d’Anathoth lui disent : « Ne prophétise pas au nom de l’Éternel » (Jérémie 11:21). Le verbe hébreu, *naba*, est de la même famille que *navi*. Ils veulent lui interdire la charge même que Dieu lui a confiée. [À VÉRIFIER : dictionnaire hébreu imprimé]
+
+**Droit de rachat.** Hanameel rappelle à Jérémie qu’il a « le droit de rachat » (Jérémie 32:7). Le mot hébreu, *gueoulla*, vient du verbe *gaal*, « racheter ». Le parent qui rachète est appelé *goel*. Le livre de Ruth montre ce droit en action, devant les anciens de la ville (Ruth 4:4). [À VÉRIFIER : dictionnaire hébreu imprimé]
+
+### Références croisées
+
+- Josué 21:17-18. Anathoth figure parmi les quatre villes de Benjamin données aux fils d’Aaron.
+- 1 Rois 2:26-27. Abiathar est renvoyé à Anathoth, et le texte relie ce renvoi à la parole prononcée sur la maison d’Éli.
+- 1 Samuel 2:35. Dans cette même parole contre la maison d’Éli, Dieu annonce qu’il s’établira un sacrificateur fidèle et lui bâtira une maison stable.
+- Jérémie 11:17. Dieu est appelé celui qui a planté son peuple ; le verbe de l’appel sert ici à annoncer un jugement.
+- Luc 4:24. Jésus déclare qu’aucun prophète n’est bien reçu dans sa patrie. Jérémie l’a vécu à Anathoth.
+- Matthieu 10:36. Jésus prévient ses disciples que l’homme aura pour ennemis les gens de sa maison ; comparer avec Jérémie 12:6.
+- Ruth 4:4. Le droit de rachat s’exerce devant témoins, comme Jérémie le fait pour le champ (Jérémie 32:10).
+- Esdras 2:23. Cent vingt-huit hommes d’Anathoth reviennent de l’exil.
+
+Un autre prophète de la même époque était lui aussi fils de sacrificateur : Ézéchiel, fils de Buzi (Ézéchiel 1:3). Son livre est laissé de côté ici.
+
+### Le fil de Jérémie 1:10
+
+Ce chapitre précède le récit de l’appel, mais Anathoth montre déjà les deux faces de la mission. La ville entend d’abord une parole qui arrache : les jeunes hommes mourront par l’épée, et aucun n’échappera (Jérémie 11:22-23). Puis, des années plus tard, la même ville devient le lieu d’une parole qui plante et qui bâtit. Le champ acheté par Jérémie annonce qu’on achètera encore des maisons, des champs et des vignes dans ce pays (Jérémie 32:15). Dieu ajoute dans le même chapitre : « je les planterai véritablement dans ce pays » (Jérémie 32:41). Les listes du retour confirment que des hommes d’Anathoth sont rentrés (Esdras 2:23).
+
+L’histoire plus ancienne d’Anathoth suit le même mouvement. Le récit d’Abiathar n’emploie pas les verbes de Jérémie 1:10, mais il raconte une maison de sacrificateurs écartée de sa charge (1 Rois 2:27), après l’annonce d’une autre maison que Dieu bâtirait (1 Samuel 2:35).
+
+Le lecteur retiendra l’ordre, qui est celui de l’appel : le jugement vient d’abord, la promesse ensuite. Et c’est sur la même terre que les deux paroles tombent.
+
+### Questions d’étude
+
+1. Lis Jérémie 1:1-3. Quels renseignements le texte donne-t-il sur Jérémie, et lesquels ne donne-t-il pas ? Que peut-on conclure de ce choix ?
+2. Compare Josué 21:17-18 et 1 Rois 2:26-27. Qu’apprend-on sur Anathoth avant la naissance de Jérémie ?
+3. En Jérémie 11:21, que reprochent les gens d’Anathoth au prophète ? Que répond Dieu dans les versets 22 et 23 ?
+4. Relis Jérémie 12:6 et Matthieu 10:36. Comment ces deux textes éclairent-ils le prix de la fidélité au sein d’une famille ?
+5. En Jérémie 32:6-15, quelles étapes Jérémie suit-il pour acheter le champ ? D’après le verset 15, que signifie ce geste ?
+
 ::: lecons
 L’appel de Dieu s’inscrit dans une histoire familiale, mais il n’en dépend pas. Jérémie est né fils de sacrificateur, dans une ville chargée d’un passé difficile (1 Rois 2:26-27). Il a reçu de sa famille une place, une ville et sans doute une connaissance de la loi. Mais son appel de prophète est venu de Dieu seul (Jérémie 1:5). Toi aussi, tu as reçu des choses de ta famille, bonnes ou moins bonnes. Elles font partie de ton histoire. Elles ne disent pas le dernier mot sur ce que Dieu peut faire de toi.
 

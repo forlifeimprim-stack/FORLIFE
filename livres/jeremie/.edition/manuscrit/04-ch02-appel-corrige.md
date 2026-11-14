@@ -116,6 +116,72 @@ Ces années ne furent pas paisibles. Jérémie a connu la joie de la parole reç
 
 Avant de suivre Jérémie dans ses premières années de ministère, sous Josias, arrêtons-nous sur ce que son appel peut dire à ceux qui servent Dieu aujourd’hui.
 
+## Pour aller plus loin : étude
+
+### Le passage à la loupe
+
+Le récit de l’appel (Jérémie 1:4-19) suit un ordre net.
+
+1. L’appel (versets 4 et 5). Dieu dit ce qu’il a fait avant la naissance de Jérémie : il l’a connu, consacré, établi.
+2. L’objection (verset 6). Jérémie ne sait pas parler ; il est un enfant.
+3. L’ordre et la promesse (versets 7 et 8). Aller vers tous, dire tout, ne pas craindre.
+4. Le geste et la mission (versets 9 et 10). La main de l’Éternel touche la bouche de Jérémie ; six verbes résument sa tâche.
+5. Première vision (versets 11 et 12). La branche d’amandier : Dieu veille sur sa parole.
+6. Seconde vision (versets 13 à 16). La chaudière du côté du septentrion : le jugement et sa raison.
+7. L’envoi (versets 17 à 19). Se ceindre les reins, ne pas trembler ; la ville forte et la promesse.
+
+La même promesse ouvre et ferme le passage : « je suis avec toi pour te délivrer » (Jérémie 1:8). Elle revient au verset 19.
+
+### Mots clés
+
+**Connaître.** L’hébreu dit *yada*. Le verbe exprime souvent une relation, un attachement. Dieu connaît Jérémie avant de le former (Jérémie 1:5). Le même verbe revient quand Dieu dit de Josias : « N’est-ce pas là me connaître ? » (Jérémie 22:16). [À VÉRIFIER : dictionnaire hébreu imprimé]
+
+**Consacrer.** L’hébreu dit *qadach*, « mettre à part, rendre saint ». Ici, le mot parle d’une destination : Jérémie appartient à Dieu pour une tâche qu’il n’a pas choisie (Jérémie 1:5). [À VÉRIFIER : dictionnaire hébreu imprimé]
+
+**Enfant.** L’hébreu dit *naar*. Le mot désigne un garçon ou un jeune homme, parfois un serviteur. Il ne permet pas de fixer l’âge de Jérémie (Jérémie 1:6). [À VÉRIFIER : dictionnaire hébreu imprimé]
+
+**Établir.** Deux verbes hébreux différents sont rendus par « établir ». Au verset 5, *natan*, « donner, placer » : Dieu a donné Jérémie comme prophète aux nations. Au verset 10, *paqad*, « préposer, charger d’une mission » : Dieu lui confie une charge sur les nations et sur les royaumes. [À VÉRIFIER : dictionnaire hébreu imprimé]
+
+**Amandier.** L’hébreu dit *chaqed*, et Dieu répond qu’il veille, *choqed*, sur sa parole (Jérémie 1:11-12). Les deux mots se ressemblent à l’oreille ; c’est ce rapprochement qui relie la vision à son explication. [À VÉRIFIER : dictionnaire hébreu imprimé]
+
+### Références croisées
+
+- Exode 4:12. À Moïse qui objectait sa parole difficile, Dieu promet d’être avec sa bouche.
+- Deutéronome 18:18. Dieu annonce un prophète dans la bouche duquel il mettra ses paroles ; Jérémie 1:9 reprend cette image.
+- Ésaïe 6:8. Ésaïe se propose lui-même ; Jérémie, lui, commence par une objection.
+- Galates 1:15. Paul se sait mis à part dès le sein de sa mère.
+- Jérémie 15:20. Au milieu de sa crise, Dieu redit à Jérémie les mots de l’appel (Jérémie 1:18-19).
+- Jérémie 18:7-10. Chez le potier, les verbes de la mission décrivent la manière dont Dieu agit envers une nation.
+- Jérémie 31:28. Dieu reprend les verbes pour lui-même : il a veillé pour arracher, il veillera pour bâtir et pour planter.
+- 1 Corinthiens 3:6, 9. Paul décrit son service avec les images de la plantation et de l’édifice.
+
+### Le fil de Jérémie 1:10
+
+Ce chapitre contient le verset lui-même : « Regarde, je t’établis aujourd’hui sur les nations et sur les royaumes, pour que tu arraches et que tu abattes, pour que tu ruines et que tu détruises, pour que tu bâtisses et que tu plantes » (Jérémie 1:10).
+
+1. Arracher. Tirer une plante de la terre avec ses racines. Le verbe s’applique aussi à un peuple ôté de son pays (Jérémie 12:14).
+2. Abattre. Faire tomber ce qui est debout, un mur ou un arbre (Jérémie 18:7).
+3. Ruiner. Faire périr, réduire à rien.
+4. Détruire. Renverser une construction.
+5. Bâtir. Construire une maison, une ville ; Dieu promet ainsi de rétablir son peuple (Jérémie 24:6).
+6. Planter. Mettre en terre ce qui doit prendre racine et porter du fruit (Jérémie 32:41).
+
+En hébreu, les six verbes sont, dans l’ordre : *natach* (arracher), *natats* (abattre), *heevid*, du verbe *avad* (ruiner, faire périr), *haras* (détruire, renverser), *bana* (bâtir) et *nata* (planter). [À VÉRIFIER : dictionnaire hébreu imprimé]
+
+Trois remarques ressortent du texte. D’abord, Jérémie fait tout cela par la parole : la mission du verset 10 suit immédiatement le geste du verset 9, « je mets mes paroles dans ta bouche » (Jérémie 1:9). Ensuite, quatre verbes parlent de démolir et deux de construire, mais la phrase s’achève sur planter. Enfin, la parole de jugement reste un appel : si une nation revient de sa méchanceté, Dieu se repent du mal qu’il avait pensé lui faire (Jérémie 18:8).
+
+Le livre reprend ces verbes à des moments décisifs : chez le potier (Jérémie 18:7-9), pour les exilés de Babylone (Jérémie 24:6), dans les promesses de consolation (Jérémie 31:28), pour ceux qui restent après la chute (Jérémie 42:10) et pour Baruc (Jérémie 45:4). En Jérémie 31:28 revient le verbe veiller, comme dans la vision de l’amandier (Jérémie 1:12) : le Dieu qui veillait sur sa parole de jugement veillera sur sa parole de restauration.
+
+[À COMPLÉTER PAR L’AUTEUR : l’auteur rattache son ministère à Jérémie 1:10. Comment comprend-il la reprise de ces six verbes par un serviteur de Dieu aujourd’hui, et quelles limites y met-il ?]
+
+### Questions d’étude
+
+1. Relis Jérémie 1:4-10. Quels verbes décrivent ce que Dieu a fait, et lesquels ce que Jérémie devra faire ?
+2. Compare l’objection de Jérémie (Jérémie 1:6) avec celle de Moïse (Exode 4:10-12). Que répond Dieu dans chaque cas ?
+3. Dans Jérémie 1:10, quatre verbes parlent de démolir et deux de construire. Que retenir de l’ordre de la liste ?
+4. Lis Jérémie 18:7-10. Qu’est-ce qui peut changer le sort annoncé à une nation ?
+5. Compare Jérémie 1:12 et Jérémie 31:28. Sur quoi Dieu veille-t-il dans chacun de ces versets ?
+
 ::: lecons
 L’appel précède la compétence. Dieu a connu, consacré et établi Jérémie avant que celui-ci ait rien fait (Jérémie 1:5). Quand Jérémie objecte qu’il ne sait pas parler, Dieu lui répond par un ordre et une promesse (Jérémie 1:7-8), sans un mot sur ses capacités. Peut-être as-tu reçu une tâche dans ton église qui te paraît trop grande pour toi : enseigner une classe d’enfants ou conduire un moment de prière. Ta faiblesse est peut-être réelle. Dieu ne te demande pas de la nier. Il te demande de ne pas t’y arrêter, et de regarder vers celui qui t’envoie. Ce qu’il exige, il le donne, comme il a mis ses paroles dans la bouche de Jérémie (Jérémie 1:9).
 

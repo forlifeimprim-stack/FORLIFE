@@ -127,6 +127,60 @@ Le contraste entre le père et le fils est dit sans détour. Josias jugeait la c
 
 Ce roi allait bientôt entendre une autre parole de Jérémie, écrite cette fois dans un livre. Il la ferait lire devant lui, puis la couperait et la jetterait au feu (Jérémie 36:23). Avant d’en arriver là, nous nous arrêterons au chapitre suivant sur l’homme Jérémie lui-même, sur ses larmes et sur ses prières, dans ces années où la parole devenait pour lui un fardeau.
 
+## Pour aller plus loin : étude
+
+### Le passage à la loupe
+
+Le discours du temple (Jérémie 7:1-15) se lit en quatre parties.
+
+1. L’envoi (versets 1 et 2). Jérémie se place à la porte de la maison de l’Éternel, devant ceux qui entrent pour se prosterner.
+2. La condition (versets 3 à 7). Réformer ses voies et ses œuvres, pratiquer la justice, ne pas opprimer l’étranger, l’orphelin et la veuve, ne pas répandre le sang innocent, ne pas aller après d’autres dieux. Alors le peuple demeurera dans le pays.
+3. La fausse sécurité (versets 8 à 11). Des espérances trompeuses : on viole les commandements, puis on vient au temple se dire délivré. La maison de Dieu devient une caverne de voleurs.
+4. Le précédent de Silo (versets 12 à 15). Dieu a traité Silo à cause de la méchanceté de son peuple ; il traitera de même la maison sur laquelle son nom est invoqué.
+
+La deuxième partie est encadrée par la même promesse : « je vous laisserai demeurer dans ce lieu » (Jérémie 7:3). Elle revient au verset 7. Entre les deux se trouve ce que Dieu demande. La sécurité du peuple dépend de sa manière de vivre.
+
+Le chapitre 26 raconte les suites de cette parole en cinq temps : l’ordre de Dieu (versets 1 à 6), l’arrestation (versets 7 à 9), le procès (versets 10 à 16), les deux précédents de Michée et d’Urie (versets 17 à 23), la protection d’Achikam (verset 24).
+
+### Mots clés
+
+**Temple.** L’hébreu dit *hékhal*. Le mot désigne un palais, et en particulier la maison de l’Éternel à Jérusalem. Le peuple le répétait trois fois de suite, comme une formule de protection (Jérémie 7:4). [À VÉRIFIER : dictionnaire hébreu imprimé]
+
+**Mensonge.** Là où la Louis Segond traduit « espérances trompeuses » (Jérémie 7:4), le texte hébreu parle de paroles de mensonge, *chèqer*. Ce mot revient souvent dans le livre, en particulier contre les prophètes qui annoncent la paix sans avoir été envoyés (Jérémie 14:14). [À VÉRIFIER : dictionnaire hébreu imprimé]
+
+**Caverne.** L’hébreu dit *meara*, la grotte où l’on se met à l’abri. C’est le mot employé pour la caverne d’Adullam, où David se cacha (1 Samuel 22:1). Les voleurs de Jérémie 7:11 traitent le temple comme un abri où l’on revient après le méfait. [À VÉRIFIER : dictionnaire hébreu imprimé]
+
+**Se repentir.** La Louis Segond dit que Dieu se repentira du mal qu’il avait pensé faire, si le peuple revient (Jérémie 26:3 ; voir aussi 26:13, 19). Le verbe hébreu, *niham*, a aussi les sens de « regretter » et de « se consoler ». Appliqué à Dieu dans ces versets, il décrit le fait qu’il renonce au malheur annoncé. [À VÉRIFIER : dictionnaire hébreu imprimé] [À COMPLÉTER PAR L’AUTEUR : comment l’auteur enseigne-t-il ces passages où il est dit que Dieu se repent ?]
+
+### Références croisées
+
+- 1 Samuel 15:22. Samuel déclare que l’obéissance vaut mieux que les sacrifices.
+- Osée 6:6. Dieu aime la piété plus que les sacrifices, et sa connaissance plus que les holocaustes.
+- Michée 6:8. Ce que l’Éternel demande : pratiquer la justice, aimer la miséricorde, marcher humblement.
+- Ésaïe 1:17. Faire droit à l’orphelin et défendre la veuve, comme en Jérémie 7:6.
+- Michée 3:12. La prophétie de Michée sur Sion, rappelée par les anciens au procès (Jérémie 26:18).
+- Jonas 3:10. Dieu renonce au mal annoncé quand Ninive revient de sa mauvaise voie ; comparer avec Jérémie 26:3.
+- Matthieu 21:13. Jésus reprend l’image de la caverne de voleurs dans le temple de Jérusalem.
+- Jacques 1:22. Mettre la parole en pratique, sans se tromper soi-même en se contentant de l’écouter.
+
+### Le fil de Jérémie 1:10
+
+Les verbes de la mission ne sont pas cités dans le discours du temple, mais on les voit à l’œuvre. Jérémie doit d’abord arracher une phrase de la bouche du peuple : « C’est ici le temple de l’Éternel » (Jérémie 7:4). Tant que cette formule rassure, aucune parole de Dieu ne peut entrer.
+
+Puis vient l’annonce la plus grave : abattre et détruire touchent la maison même de Dieu. « Je traiterai cette maison comme Silo » (Jérémie 26:6). Ce qui semblait intouchable peut tomber. Le temple de Salomon sera brûlé des années plus tard (Jérémie 52:13).
+
+Pourtant la parole de destruction reste un appel. Dieu le dit en envoyant Jérémie : « Peut-être écouteront-ils, et reviendront-ils chacun de leur mauvaise voie » (Jérémie 26:3). C’est la logique de Jérémie 18:7-8 : la nation menacée qui revient de sa méchanceté échappe au mal annoncé. Le jugement n’a pas le dernier mot si le peuple écoute.
+
+Il y a enfin une parole pour bâtir. Elle tient en une phrase, qui rappelle l’ordre donné aux pères : « Écoutez ma voix, et je serai votre Dieu » (Jérémie 7:23). La seule fondation que Dieu propose est l’écoute de sa voix.
+
+### Questions d’étude
+
+1. Lis Jérémie 7:3-7. Quelles conditions Dieu pose-t-il pour que le peuple demeure dans le pays ?
+2. Quels commandements reconnais-tu dans Jérémie 7:9 ? Compare avec Exode 20:3-16.
+3. Pourquoi Dieu renvoie-t-il son peuple à Silo (Jérémie 7:12-14 ; Psaumes 78:60) ?
+4. Dans Jérémie 26:10-19, qui accuse Jérémie, qui le défend, et avec quels arguments ?
+5. Jésus cite Jérémie 7:11 en Matthieu 21:13. Qu’est-ce qui rapproche les deux scènes ?
+
 ::: lecons
 La confiance placée dans un lieu trompe. Le peuple répétait : « C’est ici le temple de l’Éternel » (Jérémie 7:4), et pensait être à l’abri. Nous pouvons faire la même chose avec notre église, notre baptême, nos années de service ou notre place dans l’assemblée. Ces choses ont leur valeur. Mais Dieu demande d’abord une vie qui lui ressemble : la justice envers les autres, le refus d’opprimer le faible, la fidélité à lui seul (Jérémie 7:5-6). Si tu viens au culte pour te rassurer avant de reprendre une vie que Dieu condamne, la parole de Jérémie te concerne.
 

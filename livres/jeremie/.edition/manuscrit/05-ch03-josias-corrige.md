@@ -137,6 +137,59 @@ Jérémie adressa au peuple une parole étonnante : « Ne pleurez point celui
 
 Le pays perdait en quelques mois son roi fidèle et son indépendance. Pharaon Néco établit un autre fils de Josias à sa place, Éliakim, dont il changea le nom en Jojakim (2 Rois 23:34). Pour Jérémie, une période nouvelle commençait, beaucoup plus dure. Nous la suivrons au chapitre suivant.
 
+## Pour aller plus loin : étude
+
+### Le passage à la loupe
+
+Le premier message du livre (Jérémie 2:1-13) a la forme d’un procès que Dieu intente à son peuple.
+
+1. L’envoi (versets 1 et 2). Jérémie doit crier aux oreilles de Jérusalem.
+2. Le souvenir (versets 2 et 3). L’amour des fiançailles au désert ; Israël était consacré à l’Éternel, « les prémices de son revenu » (Jérémie 2:3).
+3. La question (versets 4 et 5). Quelle iniquité les pères ont-ils trouvée en Dieu pour s’éloigner de lui ?
+4. L’oubli (versets 6 et 7). Personne n’a demandé où était l’Éternel qui avait conduit le peuple au désert ; le pays reçu a été souillé.
+5. Les responsables (verset 8). Les sacrificateurs, les dépositaires de la loi, les pasteurs et les prophètes sont nommés tour à tour.
+6. La plainte en justice (versets 9 à 11). Dieu veut contester avec son peuple (Jérémie 2:9). Aucune nation ne change ses dieux ; Israël a changé sa gloire.
+7. Le verdict (versets 12 et 13). Le double péché : la source d’eau vive abandonnée, des citernes crevassées creusées à la place.
+
+Le mouvement va du souvenir au verdict. Dieu commence par se rappeler l’amour d’autrefois, et le passage ne prononce la condamnation qu’à la fin. Le lecteur comprend ainsi que le reproche vient d’un amour blessé.
+
+### Mots clés
+
+**Amour.** « Je me souviens de ton amour lorsque tu étais jeune » (Jérémie 2:2). Le mot hébreu est *hèsèd*. Il désigne une bonté fidèle, un attachement qui dure, souvent dans le cadre d’une alliance. Ici, c’est l’attachement d’Israël envers Dieu au temps du désert. [À VÉRIFIER : dictionnaire hébreu imprimé]
+
+**Source et citerne.** La source se dit *maqor* : l’eau y vient d’elle-même. La citerne se dit *bor* : on la creuse dans la roche pour recueillir la pluie. Le même mot *bor* désignera la citerne de Malkija où Jérémie sera jeté (Jérémie 38:6). [À VÉRIFIER : dictionnaire hébreu imprimé]
+
+**Revenir.** L’hébreu dit *chouv*, « se retourner, revenir ». Au chapitre 3, ce verbe sert à dire l’infidélité comme le retour. Le nom donné à Israël au verset 6, l’infidèle, vient de la même racine, et Dieu l’appelle avec ce verbe : « Reviens, infidèle Israël ! » (Jérémie 3:12). Celle qui s’est détournée est invitée à se retourner. [À VÉRIFIER : dictionnaire hébreu imprimé]
+
+**Perfide.** L’hébreu dit *bogueda*, la femme qui trahit un engagement. Juda, la perfide, est revenue à Dieu, mais « avec fausseté » (Jérémie 3:10). [À VÉRIFIER : dictionnaire hébreu imprimé]
+
+### Références croisées
+
+- Osée 2:19. Chez Osée, Dieu se présente lui aussi comme le fiancé de son peuple.
+- Apocalypse 2:4. Le reproche fait à l’Église d’Éphèse rejoint celui de Jérémie 2:2 : un premier amour abandonné.
+- Deutéronome 10:16. Moïse demande déjà de circoncire le cœur, comme Jérémie 4:4.
+- Deutéronome 30:6. Moïse annonce que l’Éternel lui-même circoncira le cœur de son peuple.
+- Jean 4:14. Jésus promet une eau qui deviendra une source jaillissante ; on peut la rapprocher de la source d’eau vive de Jérémie 2:13.
+- 2 Rois 23:12-15. La réforme de Josias démolit les autels, abat les idoles, renverse le haut lieu de Béthel.
+- Jérémie 31:33. Dieu promet d’écrire sa loi dans le cœur, là où la réforme n’avait pas pénétré.
+- 2 Chroniques 35:25. Jérémie compose une complainte sur Josias.
+
+### Le fil de Jérémie 1:10
+
+Sous Josias, deux mouvements se croisent. Le roi abat et détruit ce qui se voit. Le livre des Rois emploie à son sujet des verbes proches de ceux de la mission : il démolit les autels, abattit les idoles, renversa l’autel de Béthel (2 Rois 23:12-15). Le récit ne cite pas Jérémie 1:10, et le roi agit par son autorité, non par une parole prophétique. Mais le lecteur voit la destruction des idoles se faire sous ses yeux.
+
+Le prophète, lui, s’attaque à ce qui ne se voit pas. Sa parole arrache dans les cœurs. L’image qu’il emploie vient des champs : « Défrichez-vous un champ nouveau, et ne semez pas parmi les épines » (Jérémie 4:3). On n’ensemence pas une terre envahie de ronces ; il faut d’abord arracher. Et il rappelle que Dieu avait planté son peuple : « Je t’avais plantée comme une vigne excellente » (Jérémie 2:21). Le plant a dégénéré.
+
+Ce chapitre montre donc la limite d’une destruction qui reste extérieure. Un roi peut briser des statues ; il ne peut pas changer un cœur. Le livre réserve ce travail à Dieu, qui écrira sa loi dans le cœur (Jérémie 31:33). Ce qui est bâti et planté pour de bon vient de lui.
+
+### Questions d’étude
+
+1. Lis Jérémie 2:1-13. Par quoi Dieu commence-t-il, avant de faire des reproches ? Que t’apprend cet ordre ?
+2. Selon Jérémie 2:8, quels responsables sont mis en cause, et que leur est-il reproché ?
+3. Explique avec tes mots l’image de la source et des citernes (Jérémie 2:13). Quelles citernes crevassées une personne peut-elle se creuser aujourd’hui ?
+4. Compare 2 Rois 23:1-3 et Jérémie 3:10. Comment un peuple peut-il entrer dans l’alliance et revenir pourtant avec fausseté ?
+5. Que demande Jérémie 4:3-4, et en quoi cela va-t-il plus loin que la destruction des idoles racontée en 2 Rois 23:4-20 ?
+
 ::: lecons
 Une réforme extérieure peut laisser le cœur intact. Sous Josias, les idoles furent brûlées, le temple réparé, l’alliance renouvelée. Pourtant Dieu dit de Juda qu’elle n’est pas revenue à lui « de tout son cœur » (Jérémie 3:10). Nous aussi, nous pouvons changer nos habitudes sans changer de cœur : nous venons au culte, nous avons laissé certaines pratiques, et pourtant notre confiance reste ailleurs. Dieu demande davantage que des gestes. Il demande la circoncision du cœur (Jérémie 4:4). Examine ta vie avec honnêteté devant lui, et laisse-le aller plus loin que ce que les autres voient.
 

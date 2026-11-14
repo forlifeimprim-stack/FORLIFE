@@ -129,6 +129,58 @@ D’autres serviteurs de Dieu ont connu cette nuit. Job, dans son épreuve, a di
 
 Le livre ne dit pas comment Jérémie sortit de cette nuit. Il ne termine pas son chapitre par un retour au calme. Mais le chapitre suivant nous transporte des années plus tard, sous le roi Sédécias, et Jérémie y parle encore au nom de l’Éternel (Jérémie 21:1). Le feu ne s’était pas éteint.
 
+## Pour aller plus loin : étude
+
+### Le passage à la loupe
+
+La dernière grande plainte de Jérémie (Jérémie 20:7-18) passe par six étapes.
+
+1. La plainte (versets 7 et 8). Jérémie a été persuadé et saisi par Dieu ; il est raillé chaque jour, et la parole est devenue pour lui un sujet d’opprobre.
+2. Le feu (verset 9). Il a voulu se taire et n’a pas pu : la parole brûle en lui.
+3. Les ennemis aux aguets (verset 10). L’épouvante règne autour de lui ; ses anciens amis guettent sa chute.
+4. La confiance (versets 11 et 12). L’Éternel est avec lui comme un héros puissant ; Jérémie lui confie sa cause.
+5. La louange (verset 13). « Chantez à l’Éternel, louez l’Éternel ! » (Jérémie 20:13).
+6. La malédiction du jour de la naissance (versets 14 à 18). Le prophète demande pourquoi il est sorti du sein maternel.
+
+Le passage ne va pas en ligne droite de la nuit à la lumière. La louange du verset 13 est suivie aussitôt par la malédiction du verset 14. Le livre garde les deux, sans les mettre en ordre, comme se succèdent souvent dans une même journée la confiance et l’abattement. Une autre prière suit un chemin voisin, de la plainte à la réponse de Dieu (Jérémie 15:15-21).
+
+### Mots clés
+
+**Persuader.** « Tu m’as persuadé, Éternel, et je me suis laissé persuader » (Jérémie 20:7). Le verbe hébreu est *pata*. Selon les contextes, il a le sens de « persuader », « séduire » ou « tromper ». La plainte est forte, et le lecteur ne doit ni l’adoucir ni la durcir au-delà de ce que dit le texte. [À VÉRIFIER : dictionnaire hébreu imprimé]
+
+**Épouvante à l’entour.** Jérémie donne à Paschhur le nom de Magor-Missabib (Jérémie 20:3). Ce nom signifie « épouvante tout autour ». Quelques versets plus loin, Jérémie entend la même expression dans la bouche de ses ennemis, que la Louis Segond rend par « l’épouvante qui règne à l’entour » (Jérémie 20:10). La menace annoncée à Paschhur entoure aussi le prophète. [À VÉRIFIER : dictionnaire hébreu imprimé]
+
+**Revenir.** « Si tu te rattaches à moi, je te répondrai » (Jérémie 15:19). Le verbe traduit par « se rattacher » est *chouv*, « revenir », que le verset emploie encore deux fois : c’est au peuple de revenir au prophète, et non au prophète de retourner vers eux. Dieu appelle son serviteur au même retour qu’il demande à son peuple (Jérémie 3:12). [À VÉRIFIER : dictionnaire hébreu imprimé]
+
+**Dévorer.** « J’ai recueilli tes paroles, et je les ai dévorées » (Jérémie 15:16). Le verbe hébreu est le verbe ordinaire pour manger, *akhal*. La parole est reçue comme une nourriture. Ézéchiel recevra l’ordre de manger un rouleau (Ézéchiel 3:3), mais son livre est laissé de côté ici. [À VÉRIFIER : dictionnaire hébreu imprimé]
+
+### Références croisées
+
+- Jérémie 15:20-21. Dieu redit à son prophète la promesse de l’appel : une forte muraille d’airain, qu’on combattra sans la vaincre.
+- Psaumes 13:2. Le psalmiste demande jusques à quand durera sa peine ; la plainte a sa place dans la prière d’Israël.
+- Job 3:3. Job maudit le jour de sa naissance, comme Jérémie en Jérémie 20:14.
+- 1 Rois 19:4. Élie, épuisé, demande la mort sous un genêt.
+- Actes 4:20. Pierre et Jean ne peuvent pas ne pas parler ; comparer avec le feu de Jérémie 20:9.
+- 2 Corinthiens 4:8-9. Paul se dit pressé de toute manière, mais non réduit à l’extrémité.
+- 1 Pierre 2:23. Jésus, maltraité, s’en remettait à celui qui juge justement ; Jérémie confie sa cause à Dieu (Jérémie 20:12).
+- Romains 12:19. Paul demande de ne pas se venger soi-même et de laisser la rétribution au Seigneur.
+
+### Le fil de Jérémie 1:10
+
+Ce chapitre montre ce que la mission coûte à celui qui la porte. Les verbes de l’appel passent d’abord par la vie du prophète. Dieu lui interdit de prendre femme et d’entrer dans une maison de deuil (Jérémie 16:2, 5). Ces absences annoncent un peuple qui va être arraché de son pays, sans mariage ni funérailles.
+
+La parole qui arrache reste pourtant ouverte sur une reconstruction. Au chapitre 12, Dieu annonce qu’il arrachera les voisins méchants de son peuple, puis qu’il aura de nouveau compassion d’eux et les ramènera (Jérémie 12:14-15). S’ils apprennent les voies de son peuple, dit-il, « ils jouiront du bonheur au milieu de mon peuple » (Jérémie 12:16). Dans ce verset, le verbe hébreu rendu par « jouir du bonheur » est, d’après les dictionnaires, celui qui signifie « bâtir » : ils seront bâtis au milieu du peuple de Dieu. [À VÉRIFIER : dictionnaire hébreu imprimé]
+
+Le prophète lui-même est bâti par Dieu. Au moment de la crise, Dieu lui redit qu’il fera de lui une forte muraille d’airain (Jérémie 15:20). L’image de l’appel revient (Jérémie 1:18). Et quand Jérémie voudrait se taire, la parole ne s’éteint pas : elle est comme un feu dans ses os (Jérémie 20:9). La mission continue malgré la fatigue du messager.
+
+### Questions d’étude
+
+1. Lis Jérémie 20:7-18. Repère les changements de ton. Où passe-t-on de la plainte à la confiance, puis de la louange à la malédiction ?
+2. Dans Jérémie 15:16-19, qu’est-ce qui a fait la joie de Jérémie, et que lui demande Dieu en réponse à sa plainte ?
+3. Compare Jérémie 1:18-19 et Jérémie 15:20. Qu’est-ce que Dieu redit, et pourquoi le prophète avait-il besoin de l’entendre à nouveau ?
+4. En Jérémie 11:20 et 20:12, à qui Jérémie confie-t-il sa cause ? Que t’enseigne cette attitude face à l’injustice ?
+5. Jérémie 16:1-9 fait de la vie du prophète un message. Quels gestes Dieu lui interdit-il, et que disent ces absences au peuple ?
+
 ::: lecons
 La plainte honnête a sa place devant Dieu. Jérémie n’a pas caché à Dieu ce qu’il ressentait. Il lui a dit sa fatigue et même ses soupçons, jusqu’à lui demander s’il n’était pas une source trompeuse (Jérémie 15:18). Le livre a gardé ces prières. Elles nous apprennent qu’on peut parler vrai devant Dieu. Mais regarde où mène la prière du chapitre 20 : de la plainte à la confiance, puis à la louange (Jérémie 20:11-13). Celui qui ose dire sa douleur à Dieu reste en relation avec lui. Le danger serait plutôt de se taire devant lui et de laisser la plainte se changer en éloignement. Toi aussi, tu peux porter devant lui ce que tu n’oses dire à personne.
 

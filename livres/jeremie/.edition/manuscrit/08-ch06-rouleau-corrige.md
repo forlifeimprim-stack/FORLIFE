@@ -104,6 +104,60 @@ Qui était Baruc ? Le livre le présente comme « Baruc, fils de Nérija, fi
 
 Ce Seraja reçoit lui aussi, des années plus tard, un livre écrit par Jérémie. Il doit le lire à Babylone, puis y attacher une pierre et le jeter dans l’Euphrate, en disant : « Ainsi Babylone sera submergée, elle ne se relèvera pas » (Jérémie 51:64). Le livre brûlé par Jojakim et le livre jeté dans le fleuve se répondent. Dans les deux cas, l’écrit disparaît, et la parole qu’il portait s’accomplit quand même.
 
+## Pour aller plus loin : étude
+
+### Le passage à la loupe
+
+Le récit du livre brûlé (Jérémie 36) se déroule en six scènes.
+
+1. L’ordre d’écrire (versets 1 à 3). Toutes les paroles reçues depuis le temps de Josias, afin que chacun revienne de sa mauvaise voie et que Dieu pardonne.
+2. La dictée et l’envoi (versets 4 à 8). Baruc écrit sous la dictée ; Jérémie, retenu, l’envoie lire à sa place.
+3. La lecture au peuple (versets 9 et 10). Le jour du jeûne, dans la chambre de Guemaria.
+4. La lecture aux chefs (versets 11 à 19). L’effroi, la question sur l’origine du livre, le conseil de se cacher.
+5. La lecture au roi (versets 20 à 26). La maison d’hiver, le canif, le brasier ; l’ordre d’arrestation, et l’Éternel qui cache ses serviteurs.
+6. Le second livre (versets 27 à 32). La parole contre Jojakim, la réécriture, et des paroles semblables ajoutées.
+
+Le même livre est lu trois fois, devant trois auditoires. Le texte ne rapporte pas la réaction du peuple. Les chefs sont saisis d’effroi. Le roi et ses serviteurs ne sont pas effrayés et ne déchirent pas leurs vêtements (Jérémie 36:24).
+
+### Mots clés
+
+**Livre.** « Prends un livre » (Jérémie 36:2). L’hébreu dit *meguillat sèfèr*, littéralement « rouleau de livre ». *Meguilla* vient d’un verbe qui signifie « rouler » ; *sèfèr* désigne un écrit, qu’il s’agisse d’une lettre ou d’un livre. [À VÉRIFIER : dictionnaire hébreu imprimé]
+
+**Secrétaire.** L’hébreu dit *sofer*, celui qui écrit. Le mot désigne aussi un haut fonctionnaire du roi, comme Schaphan sous Josias (2 Rois 22:8) ou Élischama sous Jojakim (Jérémie 36:12). Baruc porte ce titre au service d’un prophète (Jérémie 36:26). [À VÉRIFIER : dictionnaire hébreu imprimé]
+
+**Baruc.** Le nom vient de l’hébreu *baroukh*, « béni ». Le texte ne fait pas lui-même de lien entre ce nom et l’histoire de Baruc. [À VÉRIFIER : dictionnaire hébreu imprimé]
+
+**Grandes choses.** « Et toi, rechercherais-tu de grandes choses ? » (Jérémie 45:5). L’hébreu dit *guedolot*, du même mot que l’adjectif « grand ». Le texte ne précise pas quelles grandes choses Baruc espérait. [À VÉRIFIER : dictionnaire hébreu imprimé]
+
+### Références croisées
+
+- 2 Rois 22:11. Josias déchire ses vêtements en entendant le livre de la loi ; son fils ne déchire pas les siens (Jérémie 36:24).
+- Jérémie 26:3. Au début du règne, Dieu espérait déjà que son peuple écouterait ; le même mot, peut-être, revient en Jérémie 36:3.
+- Jérémie 23:29. La parole de Dieu est comme un feu et comme un marteau ; le feu du brasier n’en vient pas à bout.
+- Ésaïe 40:8. L’herbe sèche, mais la parole de notre Dieu subsiste éternellement.
+- 1 Pierre 1:25. Pierre reprend cette assurance pour la parole annoncée par l’Évangile.
+- 2 Timothée 2:9. Paul est lié, mais la parole de Dieu n’est pas liée ; Jérémie, retenu, fait lire sa parole par Baruc.
+- Jérémie 22:30. Une parole sur la descendance de Jojakim, à rapprocher de Jérémie 36:30.
+- Jérémie 51:63-64. Seraja jette dans l’Euphrate un livre écrit par Jérémie.
+
+### Le fil de Jérémie 1:10
+
+Dans ce chapitre, quatre des six verbes de l’appel reviennent dans la bouche de Dieu : « Voici, ce que j’ai bâti, je le détruirai ; ce que j’ai planté, je l’arracherai, savoir tout ce pays » (Jérémie 45:4). La parole confiée au jeune homme d’Anathoth vingt-trois ans plus tôt est en train de s’accomplir. Dieu parle ici de son propre ouvrage : ce qu’il avait lui-même bâti et planté.
+
+Le livre que Baruc écrit contient toutes les paroles reçues depuis le jour de l’appel (Jérémie 36:2). C’est la mission de Jérémie 1:10 mise par écrit. Le roi tente de la détruire à son tour, feuille après feuille. Il n’y parvient pas : Dieu fait écrire un autre livre, plus long que le premier (Jérémie 36:32). La parole qui arrache et qui plante ne peut pas être arrachée.
+
+Le but de ces paroles de jugement reste le pardon : « alors je pardonnerai leur iniquité et leur péché » (Jérémie 36:3). Et au milieu de l’arrachage de tout le pays, Dieu garde une vie, celle de Baruc (Jérémie 45:5). Le jugement n’efface pas l’attention de Dieu pour un serviteur fatigué.
+
+[À COMPLÉTER PAR L’AUTEUR : le récit de la dictée et du second livre (Jérémie 36:4, 18, 32) touche à la manière dont l’Écriture a été écrite et transmise. L’auteur souhaite-t-il en tirer un enseignement sur l’inspiration de la Bible, et lequel ?]
+
+### Questions d’étude
+
+1. Relis Jérémie 36:2-3. Que contient le livre, et dans quel but Dieu le fait-il écrire ?
+2. Compare la réaction des chefs (Jérémie 36:16) et celle du roi (Jérémie 36:23-24). Qu’est-ce qui les distingue ?
+3. Mets côte à côte 2 Rois 22:11 et Jérémie 36:24. Que révèle la manière dont chaque roi reçoit la parole écrite ?
+4. D’après Jérémie 36:27-32, que fait Dieu après que le livre a été brûlé ?
+5. Que promet Dieu à Baruc en Jérémie 45:5, et que lui demande-t-il de laisser ?
+
 ::: lecons
 La parole ne brûle pas. Jojakim a pu réduire en cendres un livre. Il n’a pas pu faire taire celui qui l’avait donné. Dieu a simplement dit : « Prends de nouveau un autre livre » (Jérémie 36:28). La parole que Dieu a fait réécrire ce jour-là est encore entre tes mains aujourd’hui. Cela ne veut pas dire que le serviteur de Dieu est à l’abri : Urie a été tué (Jérémie 26:23), Baruc et Jérémie ont dû se cacher. Mais ce que Dieu a dit demeure, et cela doit te donner du courage quand on se moque de la Bible autour de toi.
 
