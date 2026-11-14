@@ -375,6 +375,7 @@ def pages_liminaires(livre):
   <p>{e(mentions["copyright"])}. Tous droits réservés. Toute reproduction, même partielle,
   est interdite sans l’autorisation écrite de l’éditeur.</p>
   <p>Les citations bibliques sont tirées de la {e(livre["version_biblique"])}.</p>
+  {f'<p>{e(livre["credits_textes"])}</p>' if livre.get("credits_textes") else ""}
   <p>Éditeur : {e(editeur["nom"])}, {e(editeur["adresse"])}. {e(editeur["courriel"])}</p>
   <p>ISBN (version imprimée) : {e(mentions["isbn_papier"])}<br>
   ISBN (version numérique) : {e(mentions["isbn_epub"])}</p>
@@ -401,6 +402,18 @@ def a_propos_de_l_auteur(livre, entrees):
     return ('<section id="a-propos-auteur" class="a-propos-auteur">'
             '<p class="a-propos-titre">À propos de l’auteur</p>'
             f'{fleuron("fleuron")}<p>{html.escape(biographie)}</p></section>')
+
+
+def svg_aux_polices_du_livre(document, dossier_travail):
+    """Copie de travail des SVG (carte, frise) dont le texte demande « EB Garamond » : on les fait
+    pointer vers « EB Garamond Livre », la police corrigée et complète déclarée par la chaîne."""
+    def remplacer(m):
+        source = EDITION / m.group(1)
+        copie = dossier_travail / source.name
+        copie.write_text(source.read_text(encoding="utf-8").replace('"EB Garamond"', '"EB Garamond Livre"'),
+                         encoding="utf-8")
+        return f'src="{copie.as_uri()}"'
+    return re.sub(r'src="(images/[^"]+\.svg)"', remplacer, document)
 
 
 def document_complet(livre, corps, entrees):
@@ -497,7 +510,8 @@ def main():
         dossier_travail = Path(dossier)
         corps = markdown_vers_html(fichiers, dossier_travail)
         corps, entrees = ouvrir_les_chapitres(corps)
-        document_type = espaces_francaises(document_complet(livre, corps, entrees))
+        document_type = svg_aux_polices_du_livre(espaces_francaises(document_complet(livre, corps, entrees)),
+                                                 dossier_travail)
         controler(document_type)
 
         configuration = FontConfiguration()
