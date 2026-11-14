@@ -146,13 +146,13 @@ Le passage ne va pas en ligne droite de la nuit à la lumière. La louange du ve
 
 ### Mots clés
 
-**Persuader.** « Tu m’as persuadé, Éternel, et je me suis laissé persuader » (Jérémie 20:7). Le verbe hébreu est *pata*. Selon les contextes, il a le sens de « persuader », « séduire » ou « tromper ». La plainte est forte, et le lecteur ne doit ni l’adoucir ni la durcir au-delà de ce que dit le texte. [À VÉRIFIER : dictionnaire hébreu imprimé]
+**Persuader.** « Tu m’as persuadé, Éternel, et je me suis laissé persuader » (Jérémie 20:7). Le verbe hébreu est *pâthâh*. Selon les contextes, il a le sens de « persuader », « séduire » ou « tromper ». Ses ennemis emploient le même verbe au verset 10 : « Peut-être se laissera-t-il surprendre » (Jérémie 20:10). La plainte est forte, et le lecteur ne doit ni l’adoucir ni la durcir au-delà de ce que dit le texte.
 
-**Épouvante à l’entour.** Jérémie donne à Paschhur le nom de Magor-Missabib (Jérémie 20:3). Ce nom signifie « épouvante tout autour ». Quelques versets plus loin, Jérémie entend la même expression dans la bouche de ses ennemis, que la Louis Segond rend par « l’épouvante qui règne à l’entour » (Jérémie 20:10). La menace annoncée à Paschhur entoure aussi le prophète. [À VÉRIFIER : dictionnaire hébreu imprimé]
+**Épouvante à l’entour.** Jérémie donne à Paschhur le nom de Magor-Missabib (Jérémie 20:3), en hébreu *Mâgôwr miç-Çâbîyb*, formé de *mâgôwr*, « frayeur », et de *çâbîyb*, « autour » : « épouvante tout autour ». Quelques versets plus loin, Jérémie entend la même expression dans la bouche de ses ennemis, que la Louis Segond rend par « l’épouvante qui règne à l’entour » (Jérémie 20:10). La menace annoncée à Paschhur entoure aussi le prophète.
 
-**Revenir.** « Si tu te rattaches à moi, je te répondrai » (Jérémie 15:19). Le verbe traduit par « se rattacher » est *chouv*, « revenir », que le verset emploie encore deux fois : c’est au peuple de revenir au prophète, et non au prophète de retourner vers eux. Dieu appelle son serviteur au même retour qu’il demande à son peuple (Jérémie 3:12). [À VÉRIFIER : dictionnaire hébreu imprimé]
+**Revenir.** « Si tu te rattaches à moi, je te répondrai » (Jérémie 15:19). Le verbe traduit par « se rattacher » est *shûwb*, « revenir », que le verset emploie quatre fois : c’est au peuple de revenir au prophète, et non au prophète de retourner vers eux. Dieu appelle son serviteur au même retour qu’il demande à son peuple (Jérémie 3:12).
 
-**Dévorer.** « J’ai recueilli tes paroles, et je les ai dévorées » (Jérémie 15:16). Le verbe hébreu est le verbe ordinaire pour manger, *akhal*. La parole est reçue comme une nourriture. Ézéchiel recevra l’ordre de manger un rouleau (Ézéchiel 3:3), mais son livre est laissé de côté ici. [À VÉRIFIER : dictionnaire hébreu imprimé]
+**Dévorer.** « J’ai recueilli tes paroles, et je les ai dévorées » (Jérémie 15:16). Le verbe hébreu est le verbe ordinaire pour manger, *ʼâkal*. La parole est reçue comme une nourriture. Ézéchiel recevra l’ordre de manger un rouleau (Ézéchiel 3:3), mais son livre est laissé de côté ici.
 
 ### Références croisées
 
@@ -169,7 +169,7 @@ Le passage ne va pas en ligne droite de la nuit à la lumière. La louange du ve
 
 Ce chapitre montre ce que la mission coûte à celui qui la porte. Les verbes de l’appel passent d’abord par la vie du prophète. Dieu lui interdit de prendre femme et d’entrer dans une maison de deuil (Jérémie 16:2, 5). Ces absences annoncent un peuple qui va être arraché de son pays, sans mariage ni funérailles.
 
-La parole qui arrache reste pourtant ouverte sur une reconstruction. Au chapitre 12, Dieu annonce qu’il arrachera les voisins méchants de son peuple, puis qu’il aura de nouveau compassion d’eux et les ramènera (Jérémie 12:14-15). S’ils apprennent les voies de son peuple, dit-il, « ils jouiront du bonheur au milieu de mon peuple » (Jérémie 12:16). Dans ce verset, le verbe hébreu rendu par « jouir du bonheur » est, d’après les dictionnaires, celui qui signifie « bâtir » : ils seront bâtis au milieu du peuple de Dieu. [À VÉRIFIER : dictionnaire hébreu imprimé]
+La parole qui arrache reste pourtant ouverte sur une reconstruction. Au chapitre 12, Dieu annonce qu’il arrachera les voisins méchants de son peuple, puis qu’il aura de nouveau compassion d’eux et les ramènera (Jérémie 12:14-15). S’ils apprennent les voies de son peuple, dit-il, « ils jouiront du bonheur au milieu de mon peuple » (Jérémie 12:16). Dans ce verset, le verbe hébreu rendu par « jouir du bonheur » est *bânâh*, « bâtir » : ils seront bâtis au milieu du peuple de Dieu.
 
 Le prophète lui-même est bâti par Dieu. Au moment de la crise, Dieu lui redit qu’il fera de lui une forte muraille d’airain (Jérémie 15:20). L’image de l’appel revient (Jérémie 1:18). Et quand Jérémie voudrait se taire, la parole ne s’éteint pas : elle est comme un feu dans ses os (Jérémie 20:9). La mission continue malgré la fatigue du messager.
 

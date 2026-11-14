@@ -149,13 +149,13 @@ Le récit est encadré par deux paroles adressées au roi : celle des chefs, qu
 
 ### Mots clés
 
-**Citerne.** L’hébreu dit *bor*, la fosse creusée pour recueillir l’eau. C’est le mot de Jérémie 2:13, où le peuple se creuse des citernes crevassées. Le prophète qui avait dénoncé ces citernes vides est jeté dans l’une d’elles. [À VÉRIFIER : dictionnaire hébreu imprimé]
+**Citerne.** L’hébreu dit *bôwr*, la fosse creusée, qui sert de citerne ou de cachot. Les dictionnaires le rapprochent de *bôʼr*, le mot de Jérémie 2:13, où le peuple se creuse des citernes crevassées. Le prophète qui avait dénoncé ces citernes vides est jeté dans l’une d’elles.
 
-**Butin.** « Sa vie sera son butin, et il vivra » (Jérémie 38:2). L’hébreu dit *chalal*, ce que l’on emporte d’une bataille. Dans la défaite, celui qui se rend n’emporte qu’une chose : sa vie. La même expression revient pour Ébed-Mélec (Jérémie 39:18) et pour Baruc (Jérémie 45:5). [À VÉRIFIER : dictionnaire hébreu imprimé]
+**Butin.** « Sa vie sera son butin, et il vivra » (Jérémie 38:2). L’hébreu dit *shâlâl*, ce que l’on emporte d’une bataille. Dans la défaite, celui qui se rend n’emporte qu’une chose : sa vie. La même expression revient pour Ébed-Mélec (Jérémie 39:18) et pour Baruc (Jérémie 45:5).
 
-**Ébed-Mélec.** Le nom signifie en hébreu « serviteur du roi », de *èvèd*, « serviteur », et *mèlèkh*, « roi ». Le texte ne dit pas si c’est un nom propre de naissance ou une désignation liée à sa fonction. [À VÉRIFIER : dictionnaire hébreu imprimé]
+**Ébed-Mélec.** Le nom, en hébreu *ʻEbed Melek*, est formé de « serviteur » et de « roi » : il signifie « serviteur du roi ». Le texte ne dit pas si c’est un nom de naissance ou une désignation liée à sa fonction.
 
-**Confiance.** Dieu dit à Ébed-Mélec : « parce que tu as eu confiance en moi » (Jérémie 39:18). Le verbe hébreu, *batah*, est celui de Jérémie 7:4, où le peuple met sa confiance dans des paroles de mensonge. [À VÉRIFIER : dictionnaire hébreu imprimé]
+**Confiance.** Dieu dit à Ébed-Mélec : « parce que tu as eu confiance en moi » (Jérémie 39:18). Le verbe hébreu, *bâṭach*, est celui de Jérémie 7:4, où le peuple met sa confiance dans des paroles de mensonge.
 
 ### Références croisées
 

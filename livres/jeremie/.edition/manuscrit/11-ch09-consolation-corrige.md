@@ -171,13 +171,13 @@ Le dernier verset se termine par la raison de tout le reste. Le mot « car �
 
 ### Mots clés
 
-**Alliance.** L’hébreu dit *berit*. Le mot désigne un engagement solennel entre deux parties, avec des promesses et des obligations. Le peuple avait rompu l’alliance du Sinaï (Jérémie 31:32). [À VÉRIFIER : dictionnaire hébreu imprimé]
+**Alliance.** L’hébreu dit *bᵉrîyth*. Le mot désigne un engagement solennel entre deux parties, avec des promesses et des obligations. Le peuple avait rompu l’alliance du Sinaï (Jérémie 31:32).
 
-**Nouvelle.** L’hébreu dit *hadacha*. Le même mot sert pour la lune nouvelle et pour ce qui est renouvelé. Le texte ne dit pas ce qui reste de l’ancienne alliance ; il dit en quoi la nouvelle sera différente. [À VÉRIFIER : dictionnaire hébreu imprimé]
+**Nouvelle.** L’hébreu dit *châdâsh*, « nouveau ». Le texte ne dit pas ce qui reste de l’ancienne alliance ; il dit en quoi la nouvelle sera différente.
 
-**Loi.** L’hébreu dit *tora*, l’enseignement donné par Dieu. Dans l’alliance nouvelle, la loi reste celle de Dieu ; ce qui change est le lieu où elle est écrite : dans le cœur, *lev*, siège de la pensée et de la volonté dans la langue de la Bible. [À VÉRIFIER : dictionnaire hébreu imprimé]
+**Loi.** L’hébreu dit *tôwrâh*, l’enseignement donné par Dieu. Dans l’alliance nouvelle, la loi reste celle de Dieu ; ce qui change est le lieu où elle est écrite : dans le cœur, *lêb*, que la Bible emploie pour les sentiments, la volonté et l’intelligence.
 
-**Pardonner.** « Car je pardonnerai leur iniquité » (Jérémie 31:34). Le verbe hébreu, *salah*, n’a jamais que Dieu pour sujet dans l’Ancien Testament, selon les dictionnaires : pardonner de cette manière lui appartient. [À VÉRIFIER : dictionnaire hébreu imprimé]
+**Pardonner.** « Car je pardonnerai leur iniquité » (Jérémie 31:34). Le verbe hébreu est *çâlach*, « pardonner, épargner ». Le pardon vient en dernier dans le verset, comme la raison de tout le reste.
 
 ### Références croisées
 

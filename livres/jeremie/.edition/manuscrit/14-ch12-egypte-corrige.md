@@ -144,13 +144,13 @@ Le discours finit sur une question de fond : laquelle des deux paroles s’acco
 
 ### Mots clés
 
-**Reine du ciel.** L’hébreu dit *malkat hachamayim* (Jérémie 44:17). Le texte ne nomme pas la divinité ainsi désignée, et ce livre ne l’identifie pas à sa place. [À VÉRIFIER : dictionnaire hébreu imprimé]
+**Reine du ciel.** L’hébreu dit *mᵉleketh hashâmayim* (Jérémie 44:17) ; *mᵉleketh*, « reine », vient du verbe *mâlak*, « régner ». Le texte ne nomme pas la divinité ainsi désignée, et ce livre ne l’identifie pas à sa place.
 
-**Encens.** Le verbe rendu par « offrir de l’encens », *qittèr*, signifie faire monter une fumée d’offrande. Il revient sans cesse dans le chapitre, comme le geste qui résume l’infidélité du peuple (Jérémie 44:3, 17, 21). [À VÉRIFIER : dictionnaire hébreu imprimé]
+**Encens.** Le verbe rendu par « offrir de l’encens » est *qâṭar*, faire monter la fumée d’une offrande. Il revient sans cesse dans le chapitre, comme le geste qui résume l’infidélité du peuple (Jérémie 44:3, 17, 25).
 
-**Vœux.** Les femmes veulent accomplir les vœux faits à la reine du ciel (Jérémie 44:25). L’hébreu dit *nèdèr*, l’engagement solennel pris devant une divinité. Dieu leur répond avec ironie : accomplissez donc vos vœux. [À VÉRIFIER : dictionnaire hébreu imprimé]
+**Vœux.** Les femmes veulent accomplir les vœux faits à la reine du ciel (Jérémie 44:25). L’hébreu dit *neder*, la promesse de donner ou de faire quelque chose pour une divinité, du verbe *nâdar*, « promettre ». Dieu leur répond avec ironie : accomplissez donc vos vœux.
 
-**Veiller.** « Voici, je veillerai sur eux pour faire du mal et non du bien » (Jérémie 44:27). C’est le verbe de la vision de l’amandier, *chaqad*, qui signifie veiller (voir Jérémie 1:12), et de la promesse de Jérémie 31:28. Le Dieu qui veille sur sa parole la mène à son terme, pour le bien comme pour le mal. [À VÉRIFIER : dictionnaire hébreu imprimé]
+**Veiller.** « Voici, je veillerai sur eux pour faire du mal et non du bien » (Jérémie 44:27). C’est le verbe de la vision de l’amandier, *shâqad*, qui signifie veiller (voir Jérémie 1:12), et de la promesse de Jérémie 31:28. Le Dieu qui veille sur sa parole la mène à son terme, pour le bien comme pour le mal.
 
 ### Références croisées
 

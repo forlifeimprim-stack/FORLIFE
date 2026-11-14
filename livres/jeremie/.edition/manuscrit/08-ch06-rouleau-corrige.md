@@ -121,13 +121,13 @@ Le même livre est lu trois fois, devant trois auditoires. Le texte ne rapporte 
 
 ### Mots clés
 
-**Livre.** « Prends un livre » (Jérémie 36:2). L’hébreu dit *meguillat sèfèr*, littéralement « rouleau de livre ». *Meguilla* vient d’un verbe qui signifie « rouler » ; *sèfèr* désigne un écrit, qu’il s’agisse d’une lettre ou d’un livre. [À VÉRIFIER : dictionnaire hébreu imprimé]
+**Livre.** « Prends un livre » (Jérémie 36:2). L’hébreu dit *mᵉgillâh çêpher*, littéralement « rouleau de livre ». *Mᵉgillâh* vient du verbe *gâlal*, « rouler » ; *çêpher* désigne un écrit, un document, un livre.
 
-**Secrétaire.** L’hébreu dit *sofer*, celui qui écrit. Le mot désigne aussi un haut fonctionnaire du roi, comme Schaphan sous Josias (2 Rois 22:8) ou Élischama sous Jojakim (Jérémie 36:12). Baruc porte ce titre au service d’un prophète (Jérémie 36:26). [À VÉRIFIER : dictionnaire hébreu imprimé]
+**Secrétaire.** L’hébreu emploie le participe du verbe *çâphar*, « inscrire, compter » : le secrétaire est celui qui écrit. Le mot désigne aussi un haut fonctionnaire du roi, comme Schaphan sous Josias (2 Rois 22:8) ou Élischama sous Jojakim (Jérémie 36:12). Baruc porte ce titre au service d’un prophète (Jérémie 36:26).
 
-**Baruc.** Le nom vient de l’hébreu *baroukh*, « béni ». Le texte ne fait pas lui-même de lien entre ce nom et l’histoire de Baruc. [À VÉRIFIER : dictionnaire hébreu imprimé]
+**Baruc.** Le nom hébreu, *Bârûwk*, est le participe passif du verbe *bârak*, « bénir » : il signifie « béni ». Le texte ne fait pas lui-même de lien entre ce nom et l’histoire de Baruc.
 
-**Grandes choses.** « Et toi, rechercherais-tu de grandes choses ? » (Jérémie 45:5). L’hébreu dit *guedolot*, du même mot que l’adjectif « grand ». Le texte ne précise pas quelles grandes choses Baruc espérait. [À VÉRIFIER : dictionnaire hébreu imprimé]
+**Grandes choses.** « Et toi, rechercherais-tu de grandes choses ? » (Jérémie 45:5). L’hébreu dit *gᵉdôlôwt*, pluriel de l’adjectif *gâdôwl*, « grand ». Le texte ne précise pas quelles grandes choses Baruc espérait.
 
 ### Références croisées
 

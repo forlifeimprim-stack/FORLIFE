@@ -130,13 +130,13 @@ Le passage va du geste à la parole, puis de la parole à la décision. L’atel
 
 ### Mots clés
 
-**Potier.** L’hébreu dit *yotser*, « celui qui forme ». C’est le verbe *yatsar*, « former », que Dieu emploie à l’appel : « Avant que je t’eusse formé dans le ventre de ta mère » (Jérémie 1:5). Le Dieu qui avait formé son prophète se montre comme celui qui façonne son peuple. [À VÉRIFIER : dictionnaire hébreu imprimé]
+**Potier.** L’hébreu emploie le participe du verbe *yâtsar*, « former » : le potier est « celui qui forme ». C’est le même verbe que Dieu emploie à l’appel : « Avant que je t’eusse formé dans le ventre de ta mère » (Jérémie 1:5). Le Dieu qui avait formé son prophète se montre comme celui qui façonne son peuple.
 
-**Ceinture.** L’hébreu dit *ezor*, la pièce de lin serrée autour des reins (Jérémie 13:1). Dieu en tire l’image d’un attachement : « comme on attache la ceinture aux reins d’un homme, ainsi je m’étais attaché toute la maison d’Israël » (Jérémie 13:11). [À VÉRIFIER : dictionnaire hébreu imprimé]
+**Ceinture.** L’hébreu dit *ʼêzôwr*, la pièce de lin serrée autour des reins (Jérémie 13:1). Dieu en tire l’image d’un attachement : « comme on attache la ceinture aux reins d’un homme, ainsi je m’étais attaché toute la maison d’Israël » (Jérémie 13:11).
 
-**Joug.** Au chapitre 27, Jérémie porte des liens et des jougs (Jérémie 27:2). Au chapitre 28, le mot rendu par « joug » désignerait, d’après les dictionnaires, les barres de bois du joug, *motot* ; Dieu annonce à leur place des barres de fer (Jérémie 28:13). [À VÉRIFIER : dictionnaire hébreu imprimé]
+**Joug.** Au chapitre 27, Jérémie porte des liens et des jougs (Jérémie 27:2). Au chapitre 28, le mot rendu par « joug » est *môwṭâh*, d’abord une perche, puis la pièce de bois posée sur le cou des bœufs. Dieu annonce à la place du joug de bois un joug de fer (Jérémie 28:13).
 
-**Mensonge.** Jérémie reproche à Hanania d’inspirer au peuple une fausse confiance (Jérémie 28:15). L’hébreu parle d’une confiance fondée sur le *chèqer*, le mensonge, le même mot que dans le discours du temple (Jérémie 7:4). [À VÉRIFIER : dictionnaire hébreu imprimé]
+**Mensonge.** Jérémie reproche à Hanania d’inspirer au peuple une fausse confiance (Jérémie 28:15). L’hébreu emploie le verbe *bâṭach*, « se confier », avec le mot *sheqer*, le mensonge : le même mot que dans le discours du temple (Jérémie 7:4).
 
 ### Références croisées
 

@@ -134,15 +134,15 @@ La même promesse ouvre et ferme le passage : « je suis avec toi pour te dé
 
 ### Mots clés
 
-**Connaître.** L’hébreu dit *yada*. Le verbe exprime souvent une relation, un attachement. Dieu connaît Jérémie avant de le former (Jérémie 1:5). Le même verbe revient quand Dieu dit de Josias : « N’est-ce pas là me connaître ? » (Jérémie 22:16). [À VÉRIFIER : dictionnaire hébreu imprimé]
+**Connaître.** L’hébreu dit *yâdaʻ*. Le verbe a des emplois très variés, de la simple constatation jusqu’à la relation la plus proche. Dieu connaît Jérémie avant de le former (Jérémie 1:5). À propos de Josias, Dieu emploie le nom *daʻath*, « connaissance » : « N’est-ce pas là me connaître ? » (Jérémie 22:16).
 
-**Consacrer.** L’hébreu dit *qadach*, « mettre à part, rendre saint ». Ici, le mot parle d’une destination : Jérémie appartient à Dieu pour une tâche qu’il n’a pas choisie (Jérémie 1:5). [À VÉRIFIER : dictionnaire hébreu imprimé]
+**Consacrer.** L’hébreu dit *qâdash*, « rendre ou déclarer saint, consacrer ». Ici, le mot parle d’une destination : Jérémie appartient à Dieu pour une tâche qu’il n’a pas choisie (Jérémie 1:5).
 
-**Enfant.** L’hébreu dit *naar*. Le mot désigne un garçon ou un jeune homme, parfois un serviteur. Il ne permet pas de fixer l’âge de Jérémie (Jérémie 1:6). [À VÉRIFIER : dictionnaire hébreu imprimé]
+**Enfant.** L’hébreu dit *naʻar*. Le mot désigne un garçon, de la petite enfance à l’adolescence, et parfois un serviteur. Il ne permet pas de fixer l’âge de Jérémie (Jérémie 1:6).
 
-**Établir.** Deux verbes hébreux différents sont rendus par « établir ». Au verset 5, *natan*, « donner, placer » : Dieu a donné Jérémie comme prophète aux nations. Au verset 10, *paqad*, « préposer, charger d’une mission » : Dieu lui confie une charge sur les nations et sur les royaumes. [À VÉRIFIER : dictionnaire hébreu imprimé]
+**Établir.** Deux verbes hébreux différents sont rendus par « établir ». Au verset 5, *nâthan*, « donner, placer » : Dieu a donné Jérémie comme prophète aux nations. Au verset 10, *pâqad*, « visiter, surveiller, charger d’une mission » : Dieu lui confie une charge sur les nations et sur les royaumes.
 
-**Amandier.** L’hébreu dit *chaqed*, et Dieu répond qu’il veille, *choqed*, sur sa parole (Jérémie 1:11-12). Les deux mots se ressemblent à l’oreille ; c’est ce rapprochement qui relie la vision à son explication. [À VÉRIFIER : dictionnaire hébreu imprimé]
+**Amandier.** L’hébreu dit *shâqêd*, et Dieu répond qu’il veille, *shâqad*, sur sa parole (Jérémie 1:11-12). Le nom de l’arbre vient de ce verbe ; le dictionnaire de Strong l’explique par la précocité de sa floraison. À l’oreille, les deux mots se ressemblent, et c’est ce rapprochement qui relie la vision à son explication. Le même verbe revient quand Dieu promet de veiller pour bâtir et pour planter (Jérémie 31:28).
 
 ### Références croisées
 
@@ -166,7 +166,7 @@ Ce chapitre contient le verset lui-même : « Regarde, je t’établis aujour
 5. Bâtir. Construire une maison, une ville ; Dieu promet ainsi de rétablir son peuple (Jérémie 24:6).
 6. Planter. Mettre en terre ce qui doit prendre racine et porter du fruit (Jérémie 32:41).
 
-En hébreu, les six verbes sont, dans l’ordre : *natach* (arracher), *natats* (abattre), *heevid*, du verbe *avad* (ruiner, faire périr), *haras* (détruire, renverser), *bana* (bâtir) et *nata* (planter). [À VÉRIFIER : dictionnaire hébreu imprimé]
+En hébreu, les six verbes sont, dans l’ordre : *nâthash* (arracher), *nâthats* (abattre), *ʼâbad* au causatif (ruiner, faire périr), *hâraç* (détruire, renverser), *bânâh* (bâtir) et *nâṭaʻ* (planter, au sens propre « enfoncer, fixer »).
 
 Trois remarques ressortent du texte. D’abord, Jérémie fait tout cela par la parole : la mission du verset 10 suit immédiatement le geste du verset 9, « je mets mes paroles dans ta bouche » (Jérémie 1:9). Ensuite, quatre verbes parlent de démolir et deux de construire, mais la phrase s’achève sur planter. Enfin, la parole de jugement reste un appel : si une nation revient de sa méchanceté, Dieu se repent du mal qu’il avait pensé lui faire (Jérémie 18:8).
 

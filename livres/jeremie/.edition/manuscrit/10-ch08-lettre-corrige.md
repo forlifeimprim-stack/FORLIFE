@@ -106,13 +106,13 @@ La lettre commence par le présent et finit par l’avenir. Les exilés reçoive
 
 ### Mots clés
 
-**Captivité.** L’hébreu dit *gola*, l’exil, et par extension le groupe des exilés (Jérémie 29:1). Le mot vient d’un verbe qui signifie « découvrir, s’en aller » : l’exilé est celui qui a été emmené hors de son pays. [À VÉRIFIER : dictionnaire hébreu imprimé]
+**Captivité.** L’hébreu dit *gôwlâh*, l’exil, et par extension le groupe des exilés (Jérémie 29:1). Le mot vient du verbe *gâlâh*, « mettre à nu », puis « emmener en exil » : l’exilé est celui qui a été dépouillé et emmené hors de son pays.
 
-**Paix, bien, bonheur.** Le verset 7 emploie trois fois le même mot hébreu, *chalom* : on recherche le « bien » de la ville, et le « bonheur » des exilés dépend du sien. Le verset 11 parle de « projets de paix », avec le même mot. *Chalom* dit l’état d’une vie complète et en ordre, plus que la seule absence de guerre. [À VÉRIFIER : dictionnaire hébreu imprimé]
+**Paix, bien, bonheur.** Le verset 7 emploie trois fois le même mot hébreu, *shâlôwm* : on recherche le « bien » de la ville, et le « bonheur » des exilés dépend du sien. Le verset 11 parle de « projets de paix », avec le même mot. Le dictionnaire de Strong le rend par bien-être, santé, prospérité et paix.
 
-**Espérance.** « Afin de vous donner un avenir et de l’espérance » (Jérémie 29:11). L’hébreu dit *tiqva*, l’attente confiante ; le mot rendu par « avenir », *aharit*, désigne ce qui vient après, la fin d’une histoire. [À VÉRIFIER : dictionnaire hébreu imprimé]
+**Espérance.** « Afin de vous donner un avenir et de l’espérance » (Jérémie 29:11). L’hébreu dit *tiqvâh* : au sens propre une corde, au sens figuré l’attente. Le mot rendu par « avenir », *ʼachărîyth*, vient de *ʼachar*, « après » : ce qui vient ensuite, la fin d’une histoire.
 
-**Chercher.** « Vous me chercherez, et vous me trouverez, si vous me cherchez de tout votre cœur » (Jérémie 29:13). Ce verset rejoint les consignes de Moïse sur le retour à Dieu dans l’exil (Deutéronome 4:29). Le verbe hébreu employé ici, *baqach*, est celui qui revient dans la question de Dieu à Baruc sur les grandes choses (Jérémie 45:5). [À VÉRIFIER : dictionnaire hébreu imprimé]
+**Chercher.** « Vous me chercherez, et vous me trouverez, si vous me cherchez de tout votre cœur » (Jérémie 29:13). Ce verset rejoint les consignes de Moïse sur le retour à Dieu dans l’exil (Deutéronome 4:29). L’hébreu y emploie deux verbes, *bâqash* et *dârash*. Le premier revient dans la question de Dieu à Baruc sur les grandes choses (Jérémie 45:5).
 
 ### Références croisées
 

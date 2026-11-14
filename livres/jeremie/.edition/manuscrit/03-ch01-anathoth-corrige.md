@@ -119,13 +119,13 @@ En additionnant les années de règne que donne le texte, on compte une quaranta
 
 ### Mots clés
 
-**Paroles.** Le livre s’ouvre sur ce mot (Jérémie 1:1). L’hébreu emploie *devarim*, pluriel de *davar*. Le mot signifie « parole », mais aussi « chose » ou « affaire ». Le même mot revient au verset suivant, au singulier : « La parole de l’Éternel lui fut adressée » (Jérémie 1:2). Les paroles de Jérémie sont présentées dès la première ligne comme la parole reçue de Dieu. [À VÉRIFIER : dictionnaire hébreu imprimé]
+**Paroles.** Le livre s’ouvre sur ce mot (Jérémie 1:1). L’hébreu emploie le pluriel de *dâbâr*, qui signifie « parole », mais aussi « chose » ou « affaire ». Le même mot revient au verset suivant, au singulier : « La parole de l’Éternel lui fut adressée » (Jérémie 1:2). Les paroles de Jérémie sont présentées dès la première ligne comme la parole reçue de Dieu.
 
-**Sacrificateur.** L’hébreu dit *kohen*, que la Louis Segond rend par « sacrificateur » et d’autres traductions par « prêtre ». Le sacrificateur sert à l’autel et enseigne la loi (Deutéronome 33:10 ; Malachie 2:7). Jérémie est *kohen* par sa naissance ; il devient *navi*, « prophète », par l’appel de Dieu (Jérémie 1:5). [À VÉRIFIER : dictionnaire hébreu imprimé]
+**Sacrificateur.** L’hébreu dit *kôhên*, que la Louis Segond rend par « sacrificateur » et d’autres traductions par « prêtre ». Le sacrificateur sert à l’autel et enseigne la loi (Deutéronome 33:10 ; Malachie 2:7). Jérémie est *kôhên* par sa naissance ; il devient *nâbîyʼ*, « prophète », par l’appel de Dieu (Jérémie 1:5).
 
-**Prophétiser.** Les gens d’Anathoth lui disent : « Ne prophétise pas au nom de l’Éternel » (Jérémie 11:21). Le verbe hébreu, *naba*, est de la même famille que *navi*. Ils veulent lui interdire la charge même que Dieu lui a confiée. [À VÉRIFIER : dictionnaire hébreu imprimé]
+**Prophétiser.** Les gens d’Anathoth lui disent : « Ne prophétise pas au nom de l’Éternel » (Jérémie 11:21). Le verbe hébreu, *nâbâʼ*, est celui dont vient *nâbîyʼ*, le prophète. Ils veulent lui interdire la charge même que Dieu lui a confiée.
 
-**Droit de rachat.** Hanameel rappelle à Jérémie qu’il a « le droit de rachat » (Jérémie 32:7). Le mot hébreu, *gueoulla*, vient du verbe *gaal*, « racheter ». Le parent qui rachète est appelé *goel*. Le livre de Ruth montre ce droit en action, devant les anciens de la ville (Ruth 4:4). [À VÉRIFIER : dictionnaire hébreu imprimé]
+**Droit de rachat.** Hanameel rappelle à Jérémie qu’il a « le droit de rachat » (Jérémie 32:7). Le mot hébreu, *gᵉʼullâh*, vient du verbe *gâʼal*, « racheter ». Le livre de Ruth montre ce droit en action, devant les anciens de la ville (Ruth 4:4).
 
 ### Références croisées
 

@@ -144,13 +144,13 @@ Le chapitre 26 raconte les suites de cette parole en cinq temps : l’ordre de 
 
 ### Mots clés
 
-**Temple.** L’hébreu dit *hékhal*. Le mot désigne un palais, et en particulier la maison de l’Éternel à Jérusalem. Le peuple le répétait trois fois de suite, comme une formule de protection (Jérémie 7:4). [À VÉRIFIER : dictionnaire hébreu imprimé]
+**Temple.** L’hébreu dit *hêykâl*. Le mot désigne un grand bâtiment public, palais ou temple, et ici la maison de l’Éternel à Jérusalem. Le peuple le répétait trois fois de suite, comme une formule de protection (Jérémie 7:4).
 
-**Mensonge.** Là où la Louis Segond traduit « espérances trompeuses » (Jérémie 7:4), le texte hébreu parle de paroles de mensonge, *chèqer*. Ce mot revient souvent dans le livre, en particulier contre les prophètes qui annoncent la paix sans avoir été envoyés (Jérémie 14:14). [À VÉRIFIER : dictionnaire hébreu imprimé]
+**Mensonge.** Là où la Louis Segond traduit « espérances trompeuses » (Jérémie 7:4), le texte hébreu parle de paroles de mensonge, *sheqer*. Ce mot revient souvent dans le livre, en particulier contre les prophètes qui prophétisent sans avoir été envoyés (Jérémie 14:14).
 
-**Caverne.** L’hébreu dit *meara*, la grotte où l’on se met à l’abri. C’est le mot employé pour la caverne d’Adullam, où David se cacha (1 Samuel 22:1). Les voleurs de Jérémie 7:11 traitent le temple comme un abri où l’on revient après le méfait. [À VÉRIFIER : dictionnaire hébreu imprimé]
+**Caverne.** L’hébreu dit *mᵉʻârâh*, la caverne, le lieu sombre où l’on se met à l’abri. La Louis Segond emploie le même mot français pour la caverne d’Adullam, où David se cacha (1 Samuel 22:1). Les voleurs de Jérémie 7:11 traitent le temple comme un abri où l’on revient après le méfait.
 
-**Se repentir.** La Louis Segond dit que Dieu se repentira du mal qu’il avait pensé faire, si le peuple revient (Jérémie 26:3 ; voir aussi 26:13, 19). Le verbe hébreu, *niham*, a aussi les sens de « regretter » et de « se consoler ». Appliqué à Dieu dans ces versets, il décrit le fait qu’il renonce au malheur annoncé. [À VÉRIFIER : dictionnaire hébreu imprimé] [À COMPLÉTER PAR L’AUTEUR : comment l’auteur enseigne-t-il ces passages où il est dit que Dieu se repent ?]
+**Se repentir.** La Louis Segond dit que Dieu se repentira du mal qu’il avait pensé faire, si le peuple revient (Jérémie 26:3 ; voir aussi 26:13, 19). Le verbe hébreu, *nâcham*, signifie d’abord « soupirer », puis « avoir de la peine, avoir pitié, consoler » et « se repentir ». Appliqué à Dieu dans ces versets, il décrit le fait qu’il renonce au malheur annoncé. [À COMPLÉTER PAR L’AUTEUR : comment l’auteur enseigne-t-il ces passages où il est dit que Dieu se repent ?]
 
 ### Références croisées
 

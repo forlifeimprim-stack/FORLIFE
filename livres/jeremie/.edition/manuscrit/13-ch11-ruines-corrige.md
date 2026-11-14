@@ -139,13 +139,13 @@ Le passage oppose deux serments. Le peuple jure d’obéir (verset 6), puis refu
 
 ### Mots clés
 
-**Reste.** L’hébreu dit *cheérit*, ce qui reste après une destruction. Les survivants se nomment eux-mêmes ainsi : « tous ceux qui restent » (Jérémie 42:2). Dans le livre, le mot désigne tantôt un reste promis à l’avenir, tantôt ce petit groupe menacé. [À VÉRIFIER : dictionnaire hébreu imprimé]
+**Reste.** L’hébreu dit *shᵉʼêrîyth*, du verbe *shâʼar*, « rester » : ce qui reste après une destruction. Les survivants se nomment eux-mêmes ainsi : « tous ceux qui restent » (Jérémie 42:2). Dans le livre, le mot désigne tantôt un reste promis à l’avenir, tantôt ce petit groupe menacé.
 
-**Mitspa.** Le nom vient d’un verbe qui signifie « guetter, observer » : une *mitspa* est un poste de guet. La ville de Benjamin où siège Guedalia porte ce nom (Jérémie 40:6). [À VÉRIFIER : dictionnaire hébreu imprimé]
+**Mitspa.** Le nom hébreu, *Mitspeh*, désigne un poste d’observation, en particulier militaire : un poste de guet. La ville de Benjamin où siège Guedalia porte ce nom (Jérémie 40:6).
 
-**Intercéder.** « Intercède en notre faveur auprès de l’Éternel » (Jérémie 42:2). Le verbe hébreu est celui de la prière, *hitpallel*. Dieu avait interdit à Jérémie de prier ainsi pour le peuple de Jérusalem (Jérémie 7:16) ; ici, il le laisse prier et lui répond. [À VÉRIFIER : dictionnaire hébreu imprimé]
+**Intercéder.** « Intercède en notre faveur auprès de l’Éternel » (Jérémie 42:2). Le verbe hébreu est celui de la prière, *pâlal*. Dieu avait interdit à Jérémie de prier ainsi pour le peuple de Jérusalem (Jérémie 7:16) ; ici, il le laisse prier et lui répond.
 
-**Témoin.** Le peuple prend Dieu à témoin : « Que l’Éternel soit contre nous un témoin véritable et fidèle » (Jérémie 42:5). L’hébreu dit *èd*, celui qui atteste devant le juge. Le serment se retourne contre ceux qui l’ont prononcé. [À VÉRIFIER : dictionnaire hébreu imprimé]
+**Témoin.** Le peuple prend Dieu à témoin : « Que l’Éternel soit contre nous un témoin véritable et fidèle » (Jérémie 42:5). L’hébreu dit *ʻêd*, celui qui atteste devant le juge. Le serment se retourne contre ceux qui l’ont prononcé.
 
 ### Références croisées
 
@@ -160,7 +160,7 @@ Le passage oppose deux serments. Le peuple jure d’obéir (verset 6), puis refu
 
 ### Le fil de Jérémie 1:10
 
-Après la chute de Jérusalem, Dieu offre au reste du peuple les verbes de la restauration : « je vous y établirai et je ne vous détruirai pas, je vous planterai et je ne vous arracherai pas » (Jérémie 42:10). Le texte hébreu emploie ici, d’après les dictionnaires, les verbes bâtir et planter de l’appel ; la Louis Segond rend le premier par « établir ». [À VÉRIFIER : dictionnaire hébreu imprimé] La promesse faite aux exilés de Babylone (Jérémie 24:6) est proposée aussi à ceux qui sont restés.
+Après la chute de Jérusalem, Dieu offre au reste du peuple les verbes de la restauration : « je vous y établirai et je ne vous détruirai pas, je vous planterai et je ne vous arracherai pas » (Jérémie 42:10). Le texte hébreu emploie ici quatre verbes de l’appel, *bânâh* (bâtir), *hâraç* (détruire), *nâṭaʻ* (planter) et *nâthash* (arracher) ; la Louis Segond rend le premier par « établir ». La promesse faite aux exilés de Babylone (Jérémie 24:6) est proposée aussi à ceux qui sont restés.
 
 La condition est simple : rester dans le pays, sans craindre le roi de Babylone (Jérémie 42:11). Mais le reste choisit l’Égypte. Le peuple qui pouvait être planté se déracine lui-même. La parole qui aurait bâti devient une parole de jugement (Jérémie 42:16-17).
 

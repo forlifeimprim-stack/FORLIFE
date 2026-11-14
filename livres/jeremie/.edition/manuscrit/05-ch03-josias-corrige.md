@@ -155,13 +155,13 @@ Le mouvement va du souvenir au verdict. Dieu commence par se rappeler l’amour 
 
 ### Mots clés
 
-**Amour.** « Je me souviens de ton amour lorsque tu étais jeune » (Jérémie 2:2). Le mot hébreu est *hèsèd*. Il désigne une bonté fidèle, un attachement qui dure, souvent dans le cadre d’une alliance. Ici, c’est l’attachement d’Israël envers Dieu au temps du désert. [À VÉRIFIER : dictionnaire hébreu imprimé]
+**Amour.** « Je me souviens de ton amour lorsque tu étais jeune » (Jérémie 2:2). Le mot hébreu est *cheçed*. Il désigne la bonté et, lorsqu’il s’agit de l’homme envers Dieu, l’attachement fidèle, la piété. Ici, c’est l’attachement d’Israël envers Dieu au temps du désert.
 
-**Source et citerne.** La source se dit *maqor* : l’eau y vient d’elle-même. La citerne se dit *bor* : on la creuse dans la roche pour recueillir la pluie. Le même mot *bor* désignera la citerne de Malkija où Jérémie sera jeté (Jérémie 38:6). [À VÉRIFIER : dictionnaire hébreu imprimé]
+**Source et citerne.** La source se dit *mâqôwr* : l’eau y vient d’elle-même. La citerne se dit *bôʼr* : on la creuse dans la roche pour recueillir la pluie. La citerne de Malkija où Jérémie sera jeté porte un nom de forme voisine, *bôwr*, que les dictionnaires rapprochent de *bôʼr* (Jérémie 38:6).
 
-**Revenir.** L’hébreu dit *chouv*, « se retourner, revenir ». Au chapitre 3, ce verbe sert à dire l’infidélité comme le retour. Le nom donné à Israël au verset 6, l’infidèle, vient de la même racine, et Dieu l’appelle avec ce verbe : « Reviens, infidèle Israël ! » (Jérémie 3:12). Celle qui s’est détournée est invitée à se retourner. [À VÉRIFIER : dictionnaire hébreu imprimé]
+**Revenir.** L’hébreu dit *shûwb*, « se retourner, revenir ». Au chapitre 3, ce verbe sert à dire l’infidélité comme le retour. Le nom donné à Israël au verset 6, l’infidèle, traduit *mᵉshûwbâh*, « apostasie », qui vient de ce verbe, et Dieu l’appelle avec ce même verbe : « Reviens, infidèle Israël ! » (Jérémie 3:12). Celle qui s’est détournée est invitée à se retourner.
 
-**Perfide.** L’hébreu dit *bogueda*, la femme qui trahit un engagement. Juda, la perfide, est revenue à Dieu, mais « avec fausseté » (Jérémie 3:10). [À VÉRIFIER : dictionnaire hébreu imprimé]
+**Perfide.** L’hébreu emploie le verbe *bâgad*, « agir en traître », et l’adjectif qui en vient, *bâgôwd* (Jérémie 3:8, 10). Juda est revenue à Dieu, mais « avec fausseté » (Jérémie 3:10) : l’hébreu dit ici *sheqer*, le mensonge.
 
 ### Références croisées
 
