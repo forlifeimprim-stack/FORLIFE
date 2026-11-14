@@ -2,7 +2,7 @@
 
 Livre : « La vie et le ministère prophétique du prophète Jérémie », Kouadio Koffi Elisée. Version papier.
 Établie le 9 novembre 2026 par Salif (fabrication), tâche T08, mise à jour le 13 novembre 2026 (T19)
-avec la pagination réelle : 160 pages. Statut : préliminaire. Toutes les valeurs
+avec la pagination réelle, puis le 14 novembre 2026 (T28) : 224 pages. Statut : préliminaire. Toutes les valeurs
 techniques marquées « indicatif » seront remplacées par celles de l'imprimeur retenu, et aucun prix ne
 figure ici tant qu'aucun devis n'est reçu.
 
@@ -12,10 +12,10 @@ figure ici tant qu'aucun devis n'est reçu.
 |---|---|---|
 | Format fini (coupé) | 140 × 210 mm, à la française | fixé par la fiche projet |
 | Fonds perdus | 3 mm sur chaque bord, intérieur et couverture | à confirmer par l'imprimeur |
-| Pagination | 160 pages, soit 10 cahiers de 16 | réelle, `sortie/interieur.pdf` du 13 novembre 2026 |
+| Pagination | 224 pages, soit 14 cahiers de 16 (dont 5 pages blanches finales) | réelle, `sortie/interieur.pdf` du 14 novembre 2026 |
 | Papier intérieur recommandé | offset blanc 90 g | à confirmer par devis |
-| Dos de travail | 9,00 mm (160 p., offset 90 g, main 1,25) | indicatif, remplacé par la valeur de l'imprimeur |
-| Gabarit de couverture | 2 × 140 + 9 + 2 × 3 = 295,00 mm de large, 216 mm de haut | `couverture/couverture-gabarit.pdf`, piste A |
+| Dos de travail | 12,60 mm (224 p., offset 90 g, main 1,25) | indicatif, remplacé par la valeur de l'imprimeur |
+| Gabarit de couverture | 2 × 140 + 12,6 + 2 × 3 = 298,60 mm de large, 216 mm de haut | `couverture/couverture-gabarit.pdf`, piste C |
 | Couverture | quadrichromie recto, 300 g, pelliculage mat recto | recommandation |
 | Façonnage | dos carré collé PUR | recommandation |
 
@@ -24,13 +24,33 @@ la pagination finale et l'épaisseur annoncée par l'imprimeur (idéalement mesu
 blanc). Le texte du dos se cale au centre avec une marge de sécurité d'au moins 1,5 mm de chaque côté
 (usage courant, à confirmer), et les textes des plats restent à 5 mm au moins du trait de coupe.
 
-## Pagination réelle (13 novembre 2026)
+## Pagination réelle (14 novembre 2026)
+
+Le livre est devenu un livre d'étude (sections d'étude, tableaux). La composition d'Affoué (T25) donne
+224 pages : 219 pages composées, complétées par 5 pages blanches finales jusqu'au cahier, soit 14 cahiers
+de 16 (224 ÷ 16 = 14 ; 224 ÷ 32 = 7, compatible aussi avec des cahiers de 32). Une feuille porte deux
+pages : 112 feuilles.
+
+| Papier | Calcul (112 feuilles) | Dos | Largeur coupée | Largeur avec fonds perdus |
+|---|---|---|---|---|
+| offset 80 g, main 1,25 | 112 × 0,100 | 11,20 mm | 291,20 mm | 297,20 mm |
+| offset 90 g, main 1,25 (retenu) | 112 × 0,1125 | 12,60 mm | 292,60 mm | 298,60 mm |
+| bouffant 80 g, main 1,8 | 112 × 0,144 | 16,128 mm, arrondi 16,13 mm | 296,13 mm | 302,13 mm |
+
+Formule : dos = 224 ÷ 2 × grammage × main ÷ 1 000 ; largeur = 2 × 140 + dos + 2 × 3. Hauteur 216 mm.
+Le gabarit de la piste C (298,60 × 216 mm, dos 12,60 mm) correspond à l'offset 90 g. Avec un dos de
+12,6 mm, le carton de 300 g reste adapté ; le dos carré collé PUR est d'autant plus indiqué que le livre
+d'étude sera souvent ouvert à plat. Les demandes de devis sont mises à jour pour 224 pages.
+
+Les 5 pages blanches finales pourraient servir (pages de notes pour un livre d'étude, par exemple) :
+suggestion à soumettre à Akissi, sans incidence sur la fabrication.
+
+## Pagination du 13 novembre 2026 (T19, remplacée)
 
 La composition d'Affoué (T17) donne 160 pages, soit 10 cahiers de 16 pages sans page blanche ajoutée
 (160 ÷ 16 = 10 ; 160 ÷ 32 = 5, donc aussi compatible avec des cahiers de 32). L'estimation de T08 (176 à
 185 pages) était trop haute : le texte final est plus dense que l'hypothèse de 280 à 300 mots par page.
-Les hypothèses 176 et 192 pages ci-dessous restent pour mémoire ; les demandes de devis devront être
-corrigées à 160 pages avant envoi (voir `bat/bloquants.md`).
+Les hypothèses 176 et 192 pages ci-dessous restent pour mémoire.
 
 | Papier | Calcul (80 feuilles) | Dos | Largeur coupée | Largeur avec fonds perdus |
 |---|---|---|---|---|
@@ -164,7 +184,7 @@ le carton ne casse à l'ouverture.
 
 ## Façonnage
 
-Dos carré collé : la pagination (176 à 192 pages) dépasse largement la limite de la piqûre à cheval
+Dos carré collé : la pagination (224 pages) dépasse largement la limite de la piqûre à cheval
 (64 pages au plus).
 
 Colle : PUR (polyuréthane réactif) recommandée. Elle tient mieux que la colle à chaud classique (EVA),
