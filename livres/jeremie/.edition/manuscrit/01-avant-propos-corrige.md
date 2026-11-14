@@ -1,6 +1,10 @@
 # Avant-propos {#avant-propos .unnumbered}
 
-[À COMPLÉTER PAR L'AUTEUR : témoignage personnel. Pourquoi l’auteur a écrit ce livre, ce que Jérémie représente pour lui, dans quelles circonstances ces pages sont nées. Quelques paragraphes à la première personne ; la plume n’écrit aucun souvenir à sa place.]
+<!-- témoignage à valider par l'auteur -->
+
+J’ai écrit ce livre pour deux raisons. La première tient à mon propre ministère, que je rattache à la parole adressée à Jérémie : « Regarde, je t’établis aujourd’hui sur les nations et sur les royaumes, pour que tu arraches et que tu abattes, pour que tu ruines et que tu détruises, pour que tu bâtisses et que tu plantes » (Jérémie 1:10). En suivant la vie et le ministère de Jérémie, je cherche à mieux cerner le mien. La seconde raison compte plus encore pour moi : à plus de six reprises, le Seigneur m’a conduit à lire et à relire le livre de Jérémie, ainsi que celui d’Ézéchiel.
+
+<!-- témoignage à valider par l'auteur -->
 
 Je suis moniteur d’école du dimanche à l’Église CMA et responsable de prière de l’école du dimanche.
 
@@ -14,7 +18,7 @@ Il s’adresse aussi aux groupes d’étude biblique, et à ceux qui servent Die
 
 Tu peux le lire seul ou en groupe. Le rythme d’un chapitre par semaine convient bien à une étude en groupe : chacun lit le chapitre chez lui, puis le groupe se retrouve autour des questions. Garde ta Bible ouverte à côté du livre. Les références sont données pour que tu ailles lire les passages toi-même, dans leur contexte.
 
-Chaque chapitre suit le même chemin. Le récit vient d’abord, découpé par des intertitres pour que tu puisses t’arrêter et reprendre. Un encadré de contexte historique situe les événements parmi les peuples et les rois de l’époque. Les versets les plus importants sont cités en entier, dans un bloc à part. La rubrique « Leçons pour aujourd’hui » tire du chapitre quelques enseignements pour la vie du croyant. Trois questions, sous le titre « Pour méditer », t’invitent à appliquer ce que tu as lu ; elles peuvent servir de base à un échange en groupe. Une courte prière termine le chapitre. Tu peux la faire tienne, ou prier avec tes propres mots.
+Chaque chapitre suit le même chemin. Le récit vient d’abord, découpé par des intertitres pour que tu puisses t’arrêter et reprendre. Un encadré de contexte historique situe les événements parmi les peuples et les rois de l’époque. Les versets les plus importants sont cités en entier, dans un bloc à part. Avant les leçons, une section « Pour aller plus loin : étude » reprend le passage principal du chapitre : son plan, quelques mots clés avec leur sens en hébreu, des passages à lire en parallèle, le lien avec la mission reçue en Jérémie 1:10 et cinq questions pour l’étude en groupe. La rubrique « Leçons pour aujourd’hui » tire du chapitre quelques enseignements pour la vie du croyant. Trois questions, sous le titre « Pour méditer », t’invitent à appliquer ce que tu as lu ; elles peuvent servir de base à un échange en groupe. Une courte prière termine le chapitre. Tu peux la faire tienne, ou prier avec tes propres mots.
 
 Ce livre s’efforce de distinguer ce que dit la Bible, ce que rapportent les historiens et ce que l’on peut seulement supposer. Quand le texte biblique se tait, le livre le dit. Les dates données hors de la Bible sont précédées de « vers », parce qu’elles reposent sur une chronologie reconstruite.
 
