@@ -34,3 +34,4 @@ biographie_auteur: |
 du_meme_auteur:                     # titres et dates à vérifier
   - "Stop, écoute ton enfant"
   - "Avant que l’horloge ne s’arrête"
+credits_textes: "Texte hébreu : Westminster Leningrad Codex (domaine public) ; lemmes et morphologie : Open Scriptures Hebrew Bible Project (licence CC BY 4.0) ; lexiques de Strong et de Brown, Driver et Briggs (domaine public)."

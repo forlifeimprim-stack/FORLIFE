@@ -147,7 +147,7 @@ Le passage va du geste à la parole, puis de la parole à la décision. L’atel
 - Deutéronome 18:22. La loi de Moïse donne un critère : la parole qui ne s’accomplit pas ne vient pas de l’Éternel.
 - Jérémie 23:29. La parole de Dieu est comme un feu et comme un marteau, à la différence des songes des faux prophètes.
 - Matthieu 7:15. Jésus met en garde contre les faux prophètes, vêtus comme des brebis.
-- 1 Jean 4:1. Jean demande d’éprouver les esprits, car plusieurs faux prophètes sont venus dans le monde.
+- 1 Jean 4:1. Jean demande d’éprouver les esprits, car plusieurs faux prophètes sont venus dans le monde.
 
 ### Le fil de Jérémie 1:10
 

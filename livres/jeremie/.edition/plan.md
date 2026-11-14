@@ -24,7 +24,7 @@ Tenu par Akissi. Statuts : À FAIRE, EN COURS, TERMINÉ, PARTIEL, BLOQUÉ.
 | T21 | Traduction anglaise d'évaluation (quatrième et chapitre 1) | awa | T14 | `numerique/traduction-en/` | TERMINÉ |
 | T22 | Étude approfondie, chapitres 1 à 6, et témoignage de l'avant-propos | konan | décisions du 13/11 | sections ajoutées, versets contrôlés | TERMINÉ |
 | T23 | Étude approfondie, chapitres 7 à 12, et annexe « Le livre de Jérémie remis dans l’ordre » | konan | T22 | sections ajoutées, versets contrôlés | TERMINÉ |
-| T24 | Relecture des sections d'étude | amenan | T23 | relevé, 0 écart | EN COURS |
-| T25 | Recomposition, couverture piste C en PDF d’impression | affoue | T24 | interieur.pdf | À FAIRE |
+| T24 | Relecture des sections d'étude | amenan | T23 | relevé, 0 écart | TERMINÉ |
+| T25 | Recomposition, couverture piste C en PDF d’impression | affoue | T24 | interieur.pdf | EN COURS |
 | T26 | EPUB refait | desire | T24 | EPUBCheck 0 erreur | EN ATTENTE (décision de l’utilisateur) |
 | T27 | Hébreu vérifié, archéologie et théologie (encadrés et annexes) | konan | T23 | marques hébraïques levées ou justifiées, encadrés et annexes, versets contrôlés | PARTIEL |

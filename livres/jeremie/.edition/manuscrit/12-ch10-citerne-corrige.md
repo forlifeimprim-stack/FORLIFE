@@ -166,7 +166,7 @@ Le récit est encadré par deux paroles adressées au roi : celle des chefs, qu
 - Jérémie 1:19. La promesse de l’appel : ils te feront la guerre, mais ils ne te vaincront pas.
 - Jérémie 37:2. Ni le roi, ni ses serviteurs, ni le peuple n’écoutèrent les paroles de Jérémie.
 - Actes 8:27. Un autre Éthiopien, eunuque d’une cour royale, vient adorer à Jérusalem.
-- 2 Rois 25:7. Le sort de Sédécias, tel que Jérémie l’avait annoncé.
+- 2 Rois 25:7. Le sort de Sédécias, tel que Jérémie l’avait annoncé.
 
 ::: encadre
 **Archéologie et histoire : les lettres de Lakis et les sceaux des chefs**

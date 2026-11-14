@@ -159,7 +159,7 @@ Le mouvement va du souvenir au verdict. Dieu commence par se rappeler l’amour 
 
 **Source et citerne.** La source se dit *mâqôwr* : l’eau y vient d’elle-même. La citerne se dit *bôʼr* : on la creuse dans la roche pour recueillir la pluie. La citerne de Malkija où Jérémie sera jeté porte un nom de forme voisine, *bôwr*, que les dictionnaires rapprochent de *bôʼr* (Jérémie 38:6).
 
-**Revenir.** L’hébreu dit *shûwb*, « se retourner, revenir ». Au chapitre 3, ce verbe sert à dire l’infidélité comme le retour. Le nom donné à Israël au verset 6, l’infidèle, traduit *mᵉshûwbâh*, « apostasie », qui vient de ce verbe, et Dieu l’appelle avec ce même verbe : « Reviens, infidèle Israël ! » (Jérémie 3:12). Celle qui s’est détournée est invitée à se retourner.
+**Revenir.** L’hébreu dit *shûwb*, « se retourner, revenir ». Au chapitre 3, ce verbe sert à dire l’infidélité comme le retour. Le nom donné à Israël au verset 6, l’infidèle, traduit *m^e^shûwbâh*, « apostasie », qui vient de ce verbe, et Dieu l’appelle avec ce même verbe : « Reviens, infidèle Israël ! » (Jérémie 3:12). Celle qui s’est détournée est invitée à se retourner.
 
 **Perfide.** L’hébreu emploie le verbe *bâgad*, « agir en traître », et l’adjectif qui en vient, *bâgôwd* (Jérémie 3:8, 10). Juda est revenue à Dieu, mais « avec fausseté » (Jérémie 3:10) : l’hébreu dit ici *sheqer*, le mensonge.
 
@@ -170,13 +170,13 @@ Le mouvement va du souvenir au verdict. Dieu commence par se rappeler l’amour 
 - Deutéronome 10:16. Moïse demande déjà de circoncire le cœur, comme Jérémie 4:4.
 - Deutéronome 30:6. Moïse annonce que l’Éternel lui-même circoncira le cœur de son peuple.
 - Jean 4:14. Jésus promet une eau qui deviendra une source jaillissante ; on peut la rapprocher de la source d’eau vive de Jérémie 2:13.
-- 2 Rois 23:12-15. La réforme de Josias démolit les autels, abat les idoles, renverse le haut lieu de Béthel.
+- 2 Rois 23:12-15. La réforme de Josias démolit les autels, abat les idoles, renverse le haut lieu de Béthel.
 - Jérémie 31:33. Dieu promet d’écrire sa loi dans le cœur, là où la réforme n’avait pas pénétré.
-- 2 Chroniques 35:25. Jérémie compose une complainte sur Josias.
+- 2 Chroniques 35:25. Jérémie compose une complainte sur Josias.
 
 ### Le fil de Jérémie 1:10
 
-Sous Josias, deux mouvements se croisent. Le roi abat et détruit ce qui se voit. Le livre des Rois emploie à son sujet des verbes proches de ceux de la mission : il démolit les autels, abattit les idoles, renversa l’autel de Béthel (2 Rois 23:12-15). Le récit ne cite pas Jérémie 1:10, et le roi agit par son autorité, non par une parole prophétique. Mais le lecteur voit la destruction des idoles se faire sous ses yeux.
+Sous Josias, deux mouvements se croisent. Le roi abat et détruit ce qui se voit. Le livre des Rois emploie à son sujet des verbes proches de ceux de la mission : il démolit les autels, abattit les idoles, renversa l’autel de Béthel (2 Rois 23:12-15). Le récit ne cite pas Jérémie 1:10, et le roi agit par son autorité, non par une parole prophétique. Mais le lecteur voit la destruction des idoles se faire sous ses yeux.
 
 Le prophète, lui, s’attaque à ce qui ne se voit pas. Sa parole arrache dans les cœurs. L’image qu’il emploie vient des champs : « Défrichez-vous un champ nouveau, et ne semez pas parmi les épines » (Jérémie 4:3). On n’ensemence pas une terre envahie de ronces ; il faut d’abord arracher. Et il rappelle que Dieu avait planté son peuple : « Je t’avais plantée comme une vigne excellente » (Jérémie 2:21). Le plant a dégénéré.
 
@@ -187,8 +187,8 @@ Ce chapitre montre donc la limite d’une destruction qui reste extérieure. Un 
 1. Lis Jérémie 2:1-13. Par quoi Dieu commence-t-il, avant de faire des reproches ? Que t’apprend cet ordre ?
 2. Selon Jérémie 2:8, quels responsables sont mis en cause, et que leur est-il reproché ?
 3. Explique avec tes mots l’image de la source et des citernes (Jérémie 2:13). Quelles citernes crevassées une personne peut-elle se creuser aujourd’hui ?
-4. Compare 2 Rois 23:1-3 et Jérémie 3:10. Comment un peuple peut-il entrer dans l’alliance et revenir pourtant avec fausseté ?
-5. Que demande Jérémie 4:3-4, et en quoi cela va-t-il plus loin que la destruction des idoles racontée en 2 Rois 23:4-20 ?
+4. Compare 2 Rois 23:1-3 et Jérémie 3:10. Comment un peuple peut-il entrer dans l’alliance et revenir pourtant avec fausseté ?
+5. Que demande Jérémie 4:3-4, et en quoi cela va-t-il plus loin que la destruction des idoles racontée en 2 Rois 23:4-20 ?
 
 ::: lecons
 Une réforme extérieure peut laisser le cœur intact. Sous Josias, les idoles furent brûlées, le temple réparé, l’alliance renouvelée. Pourtant Dieu dit de Juda qu’elle n’est pas revenue à lui « de tout son cœur » (Jérémie 3:10). Nous aussi, nous pouvons changer nos habitudes sans changer de cœur : nous venons au culte, nous avons laissé certaines pratiques, et pourtant notre confiance reste ailleurs. Dieu demande davantage que des gestes. Il demande la circoncision du cœur (Jérémie 4:4). Examine ta vie avec honnêteté devant lui, et laisse-le aller plus loin que ce que les autres voient.

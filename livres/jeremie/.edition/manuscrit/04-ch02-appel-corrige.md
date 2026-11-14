@@ -153,7 +153,7 @@ La même promesse ouvre et ferme le passage : « je suis avec toi pour te dé
 - Jérémie 15:20. Au milieu de sa crise, Dieu redit à Jérémie les mots de l’appel (Jérémie 1:18-19).
 - Jérémie 18:7-10. Chez le potier, les verbes de la mission décrivent la manière dont Dieu agit envers une nation.
 - Jérémie 31:28. Dieu reprend les verbes pour lui-même : il a veillé pour arracher, il veillera pour bâtir et pour planter.
-- 1 Corinthiens 3:6, 9. Paul décrit son service avec les images de la plantation et de l’édifice.
+- 1 Corinthiens 3:6, 9. Paul décrit son service avec les images de la plantation et de l’édifice.
 
 ### Le fil de Jérémie 1:10
 

@@ -148,13 +148,13 @@ Le chapitre 26 raconte les suites de cette parole en cinq temps : l’ordre de 
 
 **Mensonge.** Là où la Louis Segond traduit « espérances trompeuses » (Jérémie 7:4), le texte hébreu parle de paroles de mensonge, *sheqer*. Ce mot revient souvent dans le livre, en particulier contre les prophètes qui prophétisent sans avoir été envoyés (Jérémie 14:14).
 
-**Caverne.** L’hébreu dit *mᵉʻârâh*, la caverne, le lieu sombre où l’on se met à l’abri. La Louis Segond emploie le même mot français pour la caverne d’Adullam, où David se cacha (1 Samuel 22:1). Les voleurs de Jérémie 7:11 traitent le temple comme un abri où l’on revient après le méfait.
+**Caverne.** L’hébreu dit *m^e^ʻârâh*, la caverne, le lieu sombre où l’on se met à l’abri. La Louis Segond emploie le même mot français pour la caverne d’Adullam, où David se cacha (1 Samuel 22:1). Les voleurs de Jérémie 7:11 traitent le temple comme un abri où l’on revient après le méfait.
 
 **Se repentir.** La Louis Segond dit que Dieu se repentira du mal qu’il avait pensé faire, si le peuple revient (Jérémie 26:3 ; voir aussi 26:13, 19). Le verbe hébreu, *nâcham*, signifie d’abord « soupirer », puis « avoir de la peine, avoir pitié, consoler » et « se repentir ». Appliqué à Dieu dans ces versets, il décrit le fait qu’il renonce au malheur annoncé. [À COMPLÉTER PAR L’AUTEUR : comment l’auteur enseigne-t-il ces passages où il est dit que Dieu se repent ?]
 
 ### Références croisées
 
-- 1 Samuel 15:22. Samuel déclare que l’obéissance vaut mieux que les sacrifices.
+- 1 Samuel 15:22. Samuel déclare que l’obéissance vaut mieux que les sacrifices.
 - Osée 6:6. Dieu aime la piété plus que les sacrifices, et sa connaissance plus que les holocaustes.
 - Michée 6:8. Ce que l’Éternel demande : pratiquer la justice, aimer la miséricorde, marcher humblement.
 - Ésaïe 1:17. Faire droit à l’orphelin et défendre la veuve, comme en Jérémie 7:6.

@@ -159,10 +159,10 @@ Le passage ne va pas en ligne droite de la nuit à la lumière. La louange du ve
 - Jérémie 15:20-21. Dieu redit à son prophète la promesse de l’appel : une forte muraille d’airain, qu’on combattra sans la vaincre.
 - Psaumes 13:2. Le psalmiste demande jusques à quand durera sa peine ; la plainte a sa place dans la prière d’Israël.
 - Job 3:3. Job maudit le jour de sa naissance, comme Jérémie en Jérémie 20:14.
-- 1 Rois 19:4. Élie, épuisé, demande la mort sous un genêt.
+- 1 Rois 19:4. Élie, épuisé, demande la mort sous un genêt.
 - Actes 4:20. Pierre et Jean ne peuvent pas ne pas parler ; comparer avec le feu de Jérémie 20:9.
-- 2 Corinthiens 4:8-9. Paul se dit pressé de toute manière, mais non réduit à l’extrémité.
-- 1 Pierre 2:23. Jésus, maltraité, s’en remettait à celui qui juge justement ; Jérémie confie sa cause à Dieu (Jérémie 20:12).
+- 2 Corinthiens 4:8-9. Paul se dit pressé de toute manière, mais non réduit à l’extrémité.
+- 1 Pierre 2:23. Jésus, maltraité, s’en remettait à celui qui juge justement ; Jérémie confie sa cause à Dieu (Jérémie 20:12).
 - Romains 12:19. Paul demande de ne pas se venger soi-même et de laisser la rétribution au Seigneur.
 
 ::: encadre
@@ -170,7 +170,7 @@ Le passage ne va pas en ligne droite de la nuit à la lumière. La louange du ve
 
 En 1979, l’archéologue israélien Gabriel Barkay fouillait des tombes creusées dans le roc à Ketef Hinnom, sur le flanc de la vallée de Ben-Hinnom, à Jérusalem. Dans l’une d’elles, son équipe trouva deux minuscules rouleaux d’argent, portés comme amulettes. Une fois déroulés, ils ont livré quelques lignes en écriture hébraïque ancienne qui reprennent, sous une forme proche, la bénédiction des sacrificateurs : « Que l’Éternel te bénisse, et qu’il te garde ! » (Nombres 6:24).
 
-On les date le plus souvent de la fin du septième siècle ou du début du sixième siècle av. J.-C., donc du temps de Jérémie ; une date un peu plus tardive a aussi été proposée [À VÉRIFIER : publication de l’équipe de G. Barkay]. Ils comptent parmi les plus anciens textes bibliques connus. Ils sont conservés au Musée d’Israël, à Jérusalem.
+On les date le plus souvent de la fin du VII^e^ siècle ou du début du VI^e^ siècle av. J.-C., donc du temps de Jérémie ; une date un peu plus tardive a aussi été proposée [À VÉRIFIER : publication de l’équipe de G. Barkay]. Ils comptent parmi les plus anciens textes bibliques connus. Ils sont conservés au Musée d’Israël, à Jérusalem.
 
 Ce qu’ils montrent : dans la vallée même où Jérémie dénonçait les enfants brûlés en holocauste (Jérémie 19:5), des familles de Jérusalem portaient sur elles la bénédiction de l’Éternel. Ce qu’ils ne montrent pas : ils ne nomment ni Jérémie ni aucun événement de son livre.
 :::

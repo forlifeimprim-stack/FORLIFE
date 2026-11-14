@@ -121,22 +121,22 @@ Le même livre est lu trois fois, devant trois auditoires. Le texte ne rapporte 
 
 ### Mots clés
 
-**Livre.** « Prends un livre » (Jérémie 36:2). L’hébreu dit *mᵉgillâh çêpher*, littéralement « rouleau de livre ». *Mᵉgillâh* vient du verbe *gâlal*, « rouler » ; *çêpher* désigne un écrit, un document, un livre.
+**Livre.** « Prends un livre » (Jérémie 36:2). L’hébreu dit *m^e^gillâh çêpher*, littéralement « rouleau de livre ». *M^e^gillâh* vient du verbe *gâlal*, « rouler » ; *çêpher* désigne un écrit, un document, un livre.
 
-**Secrétaire.** L’hébreu emploie le participe du verbe *çâphar*, « inscrire, compter » : le secrétaire est celui qui écrit. Le mot désigne aussi un haut fonctionnaire du roi, comme Schaphan sous Josias (2 Rois 22:8) ou Élischama sous Jojakim (Jérémie 36:12). Baruc porte ce titre au service d’un prophète (Jérémie 36:26).
+**Secrétaire.** L’hébreu emploie le participe du verbe *çâphar*, « inscrire, compter » : le secrétaire est celui qui écrit. Le mot désigne aussi un haut fonctionnaire du roi, comme Schaphan sous Josias (2 Rois 22:8) ou Élischama sous Jojakim (Jérémie 36:12). Baruc porte ce titre au service d’un prophète (Jérémie 36:26).
 
 **Baruc.** Le nom hébreu, *Bârûwk*, est le participe passif du verbe *bârak*, « bénir » : il signifie « béni ». Le texte ne fait pas lui-même de lien entre ce nom et l’histoire de Baruc.
 
-**Grandes choses.** « Et toi, rechercherais-tu de grandes choses ? » (Jérémie 45:5). L’hébreu dit *gᵉdôlôwt*, pluriel de l’adjectif *gâdôwl*, « grand ». Le texte ne précise pas quelles grandes choses Baruc espérait.
+**Grandes choses.** « Et toi, rechercherais-tu de grandes choses ? » (Jérémie 45:5). L’hébreu dit *g^e^dôlôwt*, pluriel de l’adjectif *gâdôwl*, « grand ». Le texte ne précise pas quelles grandes choses Baruc espérait.
 
 ### Références croisées
 
-- 2 Rois 22:11. Josias déchire ses vêtements en entendant le livre de la loi ; son fils ne déchire pas les siens (Jérémie 36:24).
-- Jérémie 26:3. Au début du règne, Dieu espérait déjà que son peuple écouterait ; le même mot, peut-être, revient en Jérémie 36:3.
+- 2 Rois 22:11. Josias déchire ses vêtements en entendant le livre de la loi ; son fils ne déchire pas les siens (Jérémie 36:24).
+- Jérémie 26:3. Au début du règne, Dieu espérait déjà que son peuple écouterait ; le même mot, « peut-être », revient en Jérémie 36:3.
 - Jérémie 23:29. La parole de Dieu est comme un feu et comme un marteau ; le feu du brasier n’en vient pas à bout.
 - Ésaïe 40:8. L’herbe sèche, mais la parole de notre Dieu subsiste éternellement.
-- 1 Pierre 1:25. Pierre reprend cette assurance pour la parole annoncée par l’Évangile.
-- 2 Timothée 2:9. Paul est lié, mais la parole de Dieu n’est pas liée ; Jérémie, retenu, fait lire sa parole par Baruc.
+- 1 Pierre 1:25. Pierre reprend cette assurance pour la parole annoncée par l’Évangile.
+- 2 Timothée 2:9. Paul est lié, mais la parole de Dieu n’est pas liée ; Jérémie, retenu, fait lire sa parole par Baruc.
 - Jérémie 22:30. Une parole sur la descendance de Jojakim, à rapprocher de Jérémie 36:30.
 - Jérémie 51:63-64. Seraja jette dans l’Euphrate un livre écrit par Jérémie.
 
@@ -164,7 +164,7 @@ Le but de ces paroles de jugement reste le pardon : « alors je pardonnerai l
 
 1. Relis Jérémie 36:2-3. Que contient le livre, et dans quel but Dieu le fait-il écrire ?
 2. Compare la réaction des chefs (Jérémie 36:16) et celle du roi (Jérémie 36:23-24). Qu’est-ce qui les distingue ?
-3. Mets côte à côte 2 Rois 22:11 et Jérémie 36:24. Que révèle la manière dont chaque roi reçoit la parole écrite ?
+3. Mets côte à côte 2 Rois 22:11 et Jérémie 36:24. Que révèle la manière dont chaque roi reçoit la parole écrite ?
 4. D’après Jérémie 36:27-32, que fait Dieu après que le livre a été brûlé ?
 5. Que promet Dieu à Baruc en Jérémie 45:5, et que lui demande-t-il de laisser ?
 

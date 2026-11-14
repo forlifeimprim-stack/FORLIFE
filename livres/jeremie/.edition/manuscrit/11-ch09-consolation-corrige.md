@@ -164,14 +164,14 @@ La promesse de l’alliance nouvelle (Jérémie 31:31-34) tient en quatre verset
 
 1. L’annonce (verset 31). Les jours viennent où Dieu fera une alliance nouvelle avec la maison d’Israël et la maison de Juda.
 2. Le contraste (verset 32). Elle ne sera pas comme l’alliance conclue à la sortie d’Égypte, que les pères ont violée.
-3. Le contenu (verset 33). Dieu mettra sa loi au dedans d’eux et l’écrira dans leur cœur ; il sera leur Dieu, ils seront son peuple.
+3. Le contenu (verset 33). Dieu mettra sa loi au-dedans d’eux et l’écrira dans leur cœur ; il sera leur Dieu, ils seront son peuple.
 4. Les effets (verset 34). Chacun connaîtra l’Éternel, du plus petit au plus grand, car Dieu pardonnera leur iniquité et ne se souviendra plus de leur péché.
 
 Le dernier verset se termine par la raison de tout le reste. Le mot « car » relie la connaissance de Dieu au pardon : c’est parce que Dieu pardonne que son peuple pourra le connaître. La formule « je serai leur Dieu, et ils seront mon peuple » (Jérémie 31:33) reprend la promesse ancienne de l’alliance (voir Jérémie 7:23), qui sera enfin vécue.
 
 ### Mots clés
 
-**Alliance.** L’hébreu dit *bᵉrîyth*. Le mot désigne un engagement solennel entre deux parties, avec des promesses et des obligations. Le peuple avait rompu l’alliance du Sinaï (Jérémie 31:32).
+**Alliance.** L’hébreu dit *b^e^rîyth*. Le mot désigne un engagement solennel entre deux parties, avec des promesses et des obligations. Le peuple avait rompu l’alliance du Sinaï (Jérémie 31:32).
 
 **Nouvelle.** L’hébreu dit *châdâsh*, « nouveau ». Le texte ne dit pas ce qui reste de l’ancienne alliance ; il dit en quoi la nouvelle sera différente.
 
@@ -185,7 +185,7 @@ Le dernier verset se termine par la raison de tout le reste. Le mot « car �
 - Deutéronome 30:6. Moïse annonçait que l’Éternel circoncirait le cœur de son peuple.
 - Ézéchiel 36:26. Le cœur de pierre remplacé par un cœur de chair ; ce prophète, contemporain de Jérémie, est étudié à part.
 - Luc 22:20. Jésus prend la coupe et parle de la nouvelle alliance en son sang.
-- 2 Corinthiens 3:3. Paul parle d’une lettre écrite non sur des tables de pierre, mais sur des cœurs.
+- 2 Corinthiens 3:3. Paul parle d’une lettre écrite non sur des tables de pierre, mais sur des cœurs.
 - Hébreux 8:8. L’épître aux Hébreux cite la promesse de Jérémie.
 - Hébreux 8:13. En parlant d’une alliance nouvelle, Dieu a déclaré la première ancienne.
 - Jérémie 32:40. Dieu promet une alliance éternelle et met sa crainte dans le cœur de son peuple.
@@ -203,7 +203,7 @@ Les promesses vont jusqu’au paysage de la ville. Même la vallée des cadavres
 ### Questions d’étude
 
 1. Lis Jérémie 31:31-34. En quoi l’alliance nouvelle diffère-t-elle de celle du Sinaï, d’après le verset 32 ?
-2. Que signifie, pour toi, que la loi soit écrite dans le cœur (Jérémie 31:33 ; 2 Corinthiens 3:3) ?
+2. Que signifie, pour toi, que la loi soit écrite dans le cœur (Jérémie 31:33 ; 2 Corinthiens 3:3) ?
 3. Relis le verset 34. Quel lien le texte établit-il entre le pardon et la connaissance de Dieu ?
 4. Dans Jérémie 32:16-27, Jérémie obéit, puis il prie. Que te montre l’ordre de ces deux attitudes ?
 5. Compare Jérémie 31:28 et Jérémie 1:10. Qu’est-ce que Dieu promet de faire après le jugement ?

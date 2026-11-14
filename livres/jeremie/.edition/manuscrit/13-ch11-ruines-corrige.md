@@ -139,7 +139,7 @@ Le passage oppose deux serments. Le peuple jure d’obéir (verset 6), puis refu
 
 ### Mots clés
 
-**Reste.** L’hébreu dit *shᵉʼêrîyth*, du verbe *shâʼar*, « rester » : ce qui reste après une destruction. Les survivants se nomment eux-mêmes ainsi : « tous ceux qui restent » (Jérémie 42:2). Dans le livre, le mot désigne tantôt un reste promis à l’avenir, tantôt ce petit groupe menacé.
+**Reste.** L’hébreu dit *sh^e^ʼêrîyth*, du verbe *shâʼar*, « rester » : ce qui reste après une destruction. Les survivants se nomment eux-mêmes ainsi : « tous ceux qui restent » (Jérémie 42:2). Dans le livre, le mot désigne tantôt un reste promis à l’avenir, tantôt ce petit groupe menacé.
 
 **Mitspa.** Le nom hébreu, *Mitspeh*, désigne un poste d’observation, en particulier militaire : un poste de guet. La ville de Benjamin où siège Guedalia porte ce nom (Jérémie 40:6).
 
@@ -150,7 +150,7 @@ Le passage oppose deux serments. Le peuple jure d’obéir (verset 6), puis refu
 ### Références croisées
 
 - Jérémie 40:4. Libéré à Rama, Jérémie peut choisir Babylone ou rester ; il reste.
-- 1 Samuel 7:5-6. Au temps de Samuel, le peuple s’était rassemblé à Mitspa pour confesser son péché.
+- 1 Samuel 7:5-6. Au temps de Samuel, le peuple s’était rassemblé à Mitspa pour confesser son péché.
 - Deutéronome 17:16. Moïse avait interdit de ramener le peuple en Égypte.
 - Ésaïe 31:1. Malheur à ceux qui descendent en Égypte chercher du secours au lieu de regarder vers l’Éternel.
 - Jérémie 43:2. Les chefs accusent Jérémie de mentir.

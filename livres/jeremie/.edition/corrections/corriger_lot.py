@@ -4,6 +4,9 @@
   python3 corrections/corriger_lot.py A        (fichiers 01 à 08, T14)
   python3 corrections/corriger_lot.py B        (fichiers 09 à 16, T15)
 
+ATTENTION : depuis T18, les copies corrigées ont été enrichies directement (T22, T23, T27, avant-propos).
+Ce script repart des originaux : le relancer effacerait ces ajouts. Ne plus l'exécuter ; voir corriger_T24.py.
+
 Les originaux de manuscrit/ ne sont jamais réécrits. Deux passes :
   1. corrections relevées à la lecture (orthographe, cohérence, harmonisation), listées ci-dessous ;
   2. typographie française : espaces insécables, mêmes règles que outils/composer.py pour que la copie

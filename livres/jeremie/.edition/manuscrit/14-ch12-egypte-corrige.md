@@ -144,7 +144,7 @@ Le discours finit sur une question de fond : laquelle des deux paroles s’acco
 
 ### Mots clés
 
-**Reine du ciel.** L’hébreu dit *mᵉleketh hashâmayim* (Jérémie 44:17) ; *mᵉleketh*, « reine », vient du verbe *mâlak*, « régner ». Le texte ne nomme pas la divinité ainsi désignée, et ce livre ne l’identifie pas à sa place.
+**Reine du ciel.** L’hébreu dit *m^e^leketh hashâmayim* (Jérémie 44:17) ; *m^e^leketh*, « reine », vient du verbe *mâlak*, « régner ». Le texte ne nomme pas la divinité ainsi désignée, et ce livre ne l’identifie pas à sa place.
 
 **Encens.** Le verbe rendu par « offrir de l’encens » est *qâṭar*, faire monter la fumée d’une offrande. Il revient sans cesse dans le chapitre, comme le geste qui résume l’infidélité du peuple (Jérémie 44:3, 17, 25).
 
@@ -157,18 +157,18 @@ Le discours finit sur une question de fond : laquelle des deux paroles s’acco
 - Jérémie 7:18. À Jérusalem déjà, toute la famille préparait des gâteaux pour la reine du ciel.
 - Exode 20:3. Le premier commandement : pas d’autres dieux devant la face de l’Éternel.
 - Deutéronome 17:16. Le peuple ne devait pas retourner en Égypte.
-- 1 Jean 5:21. Jean termine sa lettre en demandant de se garder des idoles.
+- 1 Jean 5:21. Jean termine sa lettre en demandant de se garder des idoles.
 - Jérémie 25:15. La coupe de la colère que Jérémie doit faire boire aux nations.
 - Jérémie 46:27-28. Au milieu des oracles contre les nations, une promesse pour Jacob : ne crains pas.
 - Matthieu 2:17-18. Matthieu cite le cri de Rama (Jérémie 31:15) après le massacre de Bethléhem.
-- 2 Rois 25:27. Le récit des Rois donne aussi la libération de Jojakin, à deux jours près (comparer Jérémie 52:31).
+- 2 Rois 25:27. Le récit des Rois donne aussi la libération de Jojakin, à deux jours près (comparer Jérémie 52:31).
 
 ::: encadre
 **Archéologie et histoire : Tachpanès et les rations de Jojakin**
 
 On identifie généralement Tachpanès à Tell Defenneh, dans l’est du delta du Nil. L’égyptologue britannique Flinders Petrie fouilla le site en 1886 [À VÉRIFIER : année]. Les habitants appelaient une grande ruine « le palais de la fille du Juif » ; Petrie y décrivit un dallage de briques devant l’entrée, qu’il rapprocha des pierres cachées par Jérémie (Jérémie 43:9). Ce rapprochement est aujourd’hui jugé fragile : la construction est surtout un fort, et rien n’y nomme Jérémie. Le site montre au moins qu’une ville frontière existait là à cette époque.
 
-À Babylone, les fouilles allemandes dirigées par Robert Koldewey, au début du vingtième siècle, ont livré des tablettes administratives près de la porte d’Ishtar [À VÉRIFIER : emplacement exact]. Publiées en 1939 par Ernst Weidner, certaines énumèrent des rations d’huile versées à des étrangers, parmi lesquels « Ya’oukinou, roi du pays de Yahoudou », et ses fils [À VÉRIFIER : lecture et date des tablettes]. Il s’agit de Jojakin, captif à Babylone. Ces tablettes datent de sa captivité, avant sa libération : elles ne racontent pas la scène de Jérémie 52:31-34, mais elles montrent un roi entretenu par la cour de Babylone, ce qui s’accorde avec le texte. Elles sont conservées à Berlin [À VÉRIFIER : Vorderasiatisches Museum].
+À Babylone, les fouilles allemandes dirigées par Robert Koldewey, au début du XX^e^ siècle, ont livré des tablettes administratives près de la porte d’Ishtar [À VÉRIFIER : emplacement exact]. Publiées en 1939 par Ernst Weidner, certaines énumèrent des rations d’huile versées à des étrangers, parmi lesquels « Ya’oukinou, roi du pays de Yahoudou », et ses fils [À VÉRIFIER : lecture et date des tablettes]. Il s’agit de Jojakin, captif à Babylone. Ces tablettes datent de sa captivité, avant sa libération : elles ne racontent pas la scène de Jérémie 52:31-34, mais elles montrent un roi entretenu par la cour de Babylone, ce qui s’accorde avec le texte. Elles sont conservées à Berlin [À VÉRIFIER : Vorderasiatisches Museum].
 :::
 
 ### Le fil de Jérémie 1:10

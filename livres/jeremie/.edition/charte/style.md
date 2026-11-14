@@ -144,7 +144,7 @@ Siècles : chiffres romains en petites capitales suivis de « e » en exposant :
 
 En italique : les titres d'œuvres autres que les livres bibliques (*Antiquités judaïques* de Flavius Josèphe), les titres de revues, les mots étrangers non francisés, les mots hébreux translittérés.
 
-Mots hébreux : transcription simplifiée sans signes diacritiques, en italique, suivie à la première occurrence du sens entre parenthèses : *nabi* (prophète). Un mot hébreu, une étymologie ou un jeu de mots (par exemple l'amandier de Jérémie 1:11-12) ne s'écrit que s'il est appuyé sur une source que l'auteur valide ; sinon `[À VÉRIFIER : …]`. Les noms propres hébreux suivent le lexique et restent en romain.
+Mots hébreux : en italique, suivis à la première occurrence de leur sens entre guillemets ou entre parenthèses. Mise à jour du 14 novembre 2026 (T24) : depuis T27, le livre emploie la translittération donnée par `outils/hebreu.py` (dictionnaire de Strong), avec ses signes (*nâbîyʼ*, *bâṭach*, *naʻar*), une seule forme par mot dans tout le livre. Le « e » bref noté « ᵉ » par Strong s'écrit en exposant Markdown (*b^e^rîyth*), car les polices du livre n'ont pas ce caractère. La règle précédente (transcription simplifiée sans signes, *nabi*) reste la piste si l'auteur choisit une forme lisible à voix haute (question 14 de `questions-auteur-etude.md`). Un mot hébreu, une étymologie ou un jeu de mots (par exemple l'amandier de Jérémie 1:11-12) ne s'écrit que s'il est appuyé sur une source que l'auteur valide ; sinon `[À VÉRIFIER : …]`. Les noms propres hébreux suivent le lexique et restent en romain.
 
 Pas d'italique pour souligner : la phrase doit porter l'insistance. Jamais d'italique ni de gras dans une citation biblique.
 

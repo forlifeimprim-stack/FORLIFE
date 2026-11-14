@@ -223,3 +223,20 @@ mer Salée | mer Salée | lieu | Genèse 14:3 | la mer Morte ; « Mer Salée » 
 Astarté | Astarté | culte | Jérémie 17:2 |
 Baals | Baals | culte | Jérémie 2:23 |
 prison | prison | lieu | Jérémie 20:2 | Paschhur met Jérémie « dans la prison », jamais « aux ceps » (mot absent de ce verset)
+# Ajouts du 14 novembre 2026 (T24) : noms bibliques des sections d'étude et des annexes
+Buzi | Buzi | personne | Ézéchiel 1:3 | père d'Ézéchiel
+Adullam | Adullam | lieu | 1 Samuel 22:1 | la caverne d'Adullam
+Éphèse | Ephèse | lieu | Apocalypse 2:1 |
+Jucal | Jucal | personne | Jérémie 38:1 | fils de Schélémia ; forme LSG du « Yehoukal » de la bulle d'Eilat Mazar ; aussi Jérémie 37:3
+Schephathia | Schephathia | personne | Jérémie 38:1 | fils de Matthan, l'un des quatre chefs
+Matthan | Matthan | personne | Jérémie 38:1 |
+#
+# Noms modernes et formes d'inscriptions (hors LSG, non vérifiables avec verset.py) : graphies retenues en T24,
+# à garder identiques partout. Les formes d'inscriptions restent entre guillemets, à côté du nom LSG.
+#   archéologues et savants : Gabriel Barkay, Yigal Shiloh, Nahman Avigad, Eilat Mazar, James Leslie Starkey,
+#     Flinders Petrie, Robert Koldewey, Ernst Weidner
+#   sites et musées : Ketef Hinnom, Tell ed-Duweir (Lakis), Tell Defenneh (Tachpanès), Qumrân, porte d'Ishtar,
+#     British Museum, Musée d'Israël, Vorderasiatisches Museum
+#   inscriptions : « Guemaryahou, fils de Shaphan », « Berekhyahou, fils de Neriyahou », « Yehoukal, fils de
+#     Shelemyahou », « Guedalyahou, fils de Pashhour », « Guedalyahou, qui est sur la maison »,
+#     « Ya’oukinou, roi du pays de Yahoudou », Nabû-sharrussu-ukîn
