@@ -220,14 +220,14 @@ body { position: relative; font-family: "Alegreya Sans"; hyphens: none; }
 .genre { font-weight: 700; font-size: 9.5pt; letter-spacing: 0.32em; line-height: 1; }
 .filet { position: absolute; height: 0; border-top-style: solid; border-top-width: 0.7pt; }
 .editeur { font-weight: 500; font-size: 7.5pt; letter-spacing: 0.24em; line-height: 1; }
-.vers { font-family: "EB Garamond"; font-style: italic; font-size: 13.5pt; line-height: 1.3; }
+.vers { font-family: "EB Garamond Livre"; font-style: italic; font-size: 13.5pt; line-height: 1.3; }
 .reference { font-size: 8.5pt; line-height: 1; margin-top: 2mm; }
-.presentation p { font-family: "EB Garamond"; font-size: 10.5pt; line-height: 13.6pt; margin: 0;
+.presentation p { font-family: "EB Garamond Livre"; font-size: 10.5pt; line-height: 13.6pt; margin: 0;
                   text-align: justify; hyphens: manual; text-indent: 1.2em; }
 .presentation p:first-child { text-indent: 0; }
 .presentation p.envoi { text-indent: 0; margin-top: 2.2mm; font-style: italic; text-align: left; }
 .bio-titre { font-family: "Alegreya Sans"; font-weight: 700; font-size: 7.5pt; letter-spacing: 0.24em; }
-.bio { font-family: "EB Garamond"; font-size: 9.5pt; line-height: 12pt; text-align: justify; hyphens: manual; }
+.bio { font-family: "EB Garamond Livre"; font-size: 9.5pt; line-height: 12pt; text-align: justify; hyphens: manual; }
 .mention { font-size: 7.5pt; line-height: 10pt; }
 .cartouche { position: absolute; }
 .cartouche .cadre { position: absolute; border: 0.4pt dashed; box-sizing: border-box; }

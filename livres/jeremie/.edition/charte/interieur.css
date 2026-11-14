@@ -31,14 +31,14 @@
   margin: 15mm 15mm 18mm 20mm;
   @top-center {
     content: string(chapitre);
-    font: italic 9pt/1 "EB Garamond";
+    font: italic 9pt/1 "EB Garamond Livre";
     color: var(--noir);
     vertical-align: bottom;
     padding-bottom: 4mm;
   }
   @bottom-center {
     content: counter(page);
-    font: 9.5pt/1 "EB Garamond";
+    font: 9.5pt/1 "EB Garamond Livre";
     color: var(--noir);
     vertical-align: top;
     padding-top: 6mm;
@@ -49,14 +49,14 @@
   margin: 15mm 20mm 18mm 15mm;
   @top-center {
     content: string(livre);
-    font: italic 9pt/1 "EB Garamond";
+    font: italic 9pt/1 "EB Garamond Livre";
     color: var(--noir);
     vertical-align: bottom;
     padding-bottom: 4mm;
   }
   @bottom-center {
     content: counter(page);
-    font: 9.5pt/1 "EB Garamond";
+    font: 9.5pt/1 "EB Garamond Livre";
     color: var(--noir);
     vertical-align: top;
     padding-top: 6mm;
@@ -82,7 +82,7 @@
 /* ---------- Texte courant ---------- */
 
 html {
-  font-family: "EB Garamond", serif;
+  font-family: "EB Garamond Livre", serif;
   font-size: 11pt;
   line-height: 15pt;
   color: var(--noir);
@@ -200,7 +200,7 @@ h2 {
 }
 
 h3 {
-  font-family: "EB Garamond", serif;
+  font-family: "EB Garamond Livre", serif;
   font-style: italic;
   font-weight: 400;
   font-size: 11pt;

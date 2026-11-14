@@ -21,6 +21,7 @@ from pathlib import Path
 
 import pikepdf
 import yaml
+from fontTools.merge import Merger
 from fontTools.ttLib import TTFont
 from weasyprint import CSS, HTML
 from weasyprint.text.fonts import FontConfiguration
@@ -36,10 +37,14 @@ from noir_seul import convertir_flux, convertir_formulaires  # noqa: E402  (scri
 sys.path.insert(0, str(EDITION / "outils"))
 from verset import NOMS_FR  # noqa: E402
 
+# Famille CSS -> (dossier, modèle de nom de fichier, sous-ensembles Fontsource fusionnés, variantes).
+# « EB Garamond Livre » et non « EB Garamond » : une copie système d'EB Garamond (sous-ensemble latin,
+# ~/.local/share/fonts) portait le même nom et passait devant nos fichiers, sans « ṭ » ni « ă ».
 FAMILLES = {
-    "EB Garamond": ("eb-garamond", "eb-garamond-latin-{graisse}-{style}.woff2",
-                    [(g, s) for g in (400, 500, 600, 700) for s in ("normal", "italic")]),
-    "Alegreya Sans": ("alegreya-sans", "alegreya-sans-latin-{graisse}-{style}.woff2",
+    "EB Garamond Livre": ("eb-garamond", "eb-garamond-{sous_ensemble}-{graisse}-{style}.woff2",
+                          ("latin", "latin-ext"),
+                          [(g, s) for g in (400, 500, 600, 700) for s in ("normal", "italic")]),
+    "Alegreya Sans": ("alegreya-sans", "alegreya-sans-{sous_ensemble}-{graisse}-{style}.woff2", ("latin",),
                       [(400, "normal"), (400, "italic"), (500, "normal"), (500, "italic"),
                        (700, "normal"), (800, "normal")]),
 }
@@ -426,19 +431,25 @@ def document_complet(livre, corps, entrees):
 
 # ---------- Polices ----------
 
-def polices_corrigees(dossier_travail):
+def polices_corrigees(dossier_travail, familles=FAMILLES):
     regles = []
-    for famille, (dossier, modele, variantes) in FAMILLES.items():
+    for famille, (dossier, modele, sous_ensembles, variantes) in familles.items():
         for graisse, style in variantes:
-            source = POLICES / dossier / modele.format(graisse=graisse, style=style)
-            police = TTFont(source)
+            morceaux = []
+            for sous_ensemble in sous_ensembles:
+                police = TTFont(POLICES / dossier / modele.format(sous_ensemble=sous_ensemble, graisse=graisse,
+                                                                  style=style))
+                police.flavor = None
+                morceau = dossier_travail / f"{dossier}-{sous_ensemble}-{graisse}-{style}.ttf"
+                police.save(morceau)
+                morceaux.append(str(morceau))
+            police = Merger().merge(morceaux) if len(morceaux) > 1 else TTFont(morceaux[0])
             for table in police["cmap"].tables:
                 if table.isUnicode():
                     for manquant, modele_glyphe in CORRESPONDANCES.items():
                         if manquant not in table.cmap and modele_glyphe in table.cmap:
                             table.cmap[manquant] = table.cmap[modele_glyphe]
-            police.flavor = None
-            cible = dossier_travail / (source.stem + ".ttf")
+            cible = dossier_travail / f"{dossier}-{graisse}-{style}.ttf"
             police.save(cible)
             regles.append(f'@font-face {{ font-family: "{famille}"; font-weight: {graisse}; '
                           f'font-style: {style}; src: url("{cible.as_uri()}"); }}')
