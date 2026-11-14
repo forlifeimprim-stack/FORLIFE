@@ -134,6 +134,56 @@ Avant ce jour, alors que Jérémie était encore enfermé, Dieu lui avait donné
 
 Ébed-Mélec avait eu peur, Dieu le savait : « les hommes que tu crains ». Il avait agi quand même. Dieu appelle son geste par son vrai nom : de la confiance. Dans la ville qui tombait, le roi perdit ses fils et ses yeux, et l’étranger qui avait sauvé le prophète garda la vie.
 
+## Pour aller plus loin : étude
+
+### Le passage à la loupe
+
+Le récit de la citerne (Jérémie 38:1-13) avance en quatre scènes.
+
+1. Le message entendu (versets 1 à 3). Quatre chefs entendent Jérémie répéter au peuple que celui qui reste dans la ville mourra, et que celui qui se rend aux Chaldéens aura la vie sauve.
+2. L’accusation et la faiblesse du roi (versets 4 et 5). Les chefs demandent sa mort, parce qu’il décourage les hommes de guerre ; Sédécias le leur livre : le roi ne peut rien contre eux.
+3. La citerne (verset 6). Jérémie est descendu avec des cordes dans la citerne de Malkija ; il n’y a pas d’eau, mais de la boue, et il y enfonce.
+4. Le sauvetage (versets 7 à 13). Ébed-Mélec plaide devant le roi à la porte de Benjamin, reçoit trente hommes, descend des lambeaux et des haillons, et l’on tire Jérémie hors de la citerne.
+
+Le récit est encadré par deux paroles adressées au roi : celle des chefs, qui réclament la mort du prophète (verset 4), et celle d’Ébed-Mélec, qui dénonce leur mal (verset 9). Entre les deux, Sédécias cède aux uns puis aux autres. La suite donne à l’Éthiopien sa propre promesse (Jérémie 39:15-18).
+
+### Mots clés
+
+**Citerne.** L’hébreu dit *bor*, la fosse creusée pour recueillir l’eau. C’est le mot de Jérémie 2:13, où le peuple se creuse des citernes crevassées. Le prophète qui avait dénoncé ces citernes vides est jeté dans l’une d’elles. [À VÉRIFIER : dictionnaire hébreu imprimé]
+
+**Butin.** « Sa vie sera son butin, et il vivra » (Jérémie 38:2). L’hébreu dit *chalal*, ce que l’on emporte d’une bataille. Dans la défaite, celui qui se rend n’emporte qu’une chose : sa vie. La même expression revient pour Ébed-Mélec (Jérémie 39:18) et pour Baruc (Jérémie 45:5). [À VÉRIFIER : dictionnaire hébreu imprimé]
+
+**Ébed-Mélec.** Le nom signifie en hébreu « serviteur du roi », de *èvèd*, « serviteur », et *mèlèkh*, « roi ». Le texte ne dit pas si c’est un nom propre de naissance ou une désignation liée à sa fonction. [À VÉRIFIER : dictionnaire hébreu imprimé]
+
+**Confiance.** Dieu dit à Ébed-Mélec : « parce que tu as eu confiance en moi » (Jérémie 39:18). Le verbe hébreu, *batah*, est celui de Jérémie 7:4, où le peuple met sa confiance dans des paroles de mensonge. [À VÉRIFIER : dictionnaire hébreu imprimé]
+
+### Références croisées
+
+- Jérémie 21:8-9. Dieu met devant le peuple le chemin de la vie et le chemin de la mort.
+- Deutéronome 30:19. Moïse avait mis devant le peuple la vie et la mort.
+- Psaumes 69:3. Le psalmiste s’épuise à crier, les yeux tournés vers Dieu ; on peut lire ce psaume en pensant à Jérémie dans la boue.
+- Proverbes 29:25. La crainte des hommes tend un piège ; Sédécias y tombe, Ébed-Mélec y échappe.
+- Jérémie 1:19. La promesse de l’appel : ils te feront la guerre, mais ils ne te vaincront pas.
+- Jérémie 37:2. Ni le roi, ni ses serviteurs, ni le peuple n’écoutèrent les paroles de Jérémie.
+- Actes 8:27. Un autre Éthiopien, eunuque d’une cour royale, vient adorer à Jérusalem.
+- 2 Rois 25:7. Le sort de Sédécias, tel que Jérémie l’avait annoncé.
+
+### Le fil de Jérémie 1:10
+
+Ces chapitres racontent l’accomplissement des quatre premiers verbes. La ville est abattue et détruite : la brèche est faite la onzième année de Sédécias (Jérémie 39:2), le palais et les maisons sont brûlés, les murailles démolies (Jérémie 39:8). Ce que Jérémie annonçait depuis le jour de l’appel arrive sous ses yeux. Le dernier chapitre du livre raconte de nouveau cette chute, jusqu’au temple brûlé (Jérémie 52:12-14), comme pour attester que la parole ne s’est pas perdue.
+
+Le message de la vie et de la mort (Jérémie 21:8-9 ; 38:2) montre pourtant que même au dernier moment, la parole qui arrache laisse une porte ouverte. Se rendre, c’était sauver sa vie. Et Dieu tient la promesse faite au jeune homme d’Anathoth : ils lui ont fait la guerre, ils l’ont jeté dans la boue, mais ils ne l’ont pas vaincu (Jérémie 1:19). Il sort de la citerne, puis de la prison.
+
+Au milieu de la ruine, une vie est gardée, celle d’un étranger qui a fait confiance à Dieu (Jérémie 39:17-18). Dans la ville qui tombe, Dieu commence déjà à mettre à part ce qu’il gardera.
+
+### Questions d’étude
+
+1. Lis Jérémie 38:1-6. De quoi les chefs accusent-ils Jérémie ? L’accusation est-elle juste d’après Jérémie 21:8-10 ?
+2. Que révèle la réponse de Sédécias au verset 5 ? Compare avec sa crainte en Jérémie 38:19.
+3. Relis Jérémie 38:7-13. Quels détails montrent le soin d’Ébed-Mélec pour le prophète ?
+4. Que promet Dieu à Ébed-Mélec en Jérémie 39:15-18, et pour quelle raison ?
+5. Compare Jérémie 1:19 et Jérémie 38:13. Comment Dieu a-t-il tenu sa promesse, et par qui ?
+
 ::: lecons
 Le courage d’un seul. Dans tout le palais, un seul homme a parlé pour Jérémie, et c’était un étranger, un serviteur sans pouvoir (Jérémie 38:7-9). Les chefs et les proches du roi se sont tus. Dieu ne demande pas toujours de grands moyens pour sauver une vie. Il lui faut parfois quelqu’un qui ose dire au bon moment : « ces hommes ont mal agi ». Ce courage n’exclut pas la peur. Dieu savait qu’Ébed-Mélec craignait les chefs (Jérémie 39:17). Il a agi malgré sa crainte, et Dieu a appelé cela de la confiance (Jérémie 39:18). Toi aussi, tu peux être cette voix pour quelqu’un que l’on écrase autour de toi : un enfant, un collègue, un frère de ton église dont personne ne prend la défense. Et pense aux haillons sous les aisselles : la manière d’aider compte autant que l’aide elle-même.
 

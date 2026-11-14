@@ -33,6 +33,56 @@ Les déportations sont rapportées par plusieurs textes, avec des chiffres qui n
 
 ![Les rois de Juda au temps de Jérémie. Dates avant Jésus-Christ, approximatives (chronologie usuelle). Jérémie appelle Joachaz « Schallum » (Jérémie 22:11) et Jojakin « Jeconia » (Jérémie 24:1).](images/frise-rois-juda.svg)
 
+## Le livre de Jérémie remis dans l’ordre
+
+Le livre biblique de Jérémie n’est pas rangé dans l’ordre des dates : un message de la quatrième année de Jojakim peut suivre un récit du règne de Sédécias. Ce tableau replace les passages dans l’ordre chronologique, d’après les indications du texte lui-même. La colonne du règne ne donne une année que si le texte la donne ; sinon, elle indique « non daté », ou « daté par le contexte » avec le verset qui le permet. Les dates avant Jésus-Christ sont approximatives et suivent la chronologie ci-dessus.
+
+::: tableau-ordre
+| Passage de Jérémie | Roi et année de règne | Date approximative | Événement ou message | Chapitre du présent livre |
+|---|---|---|---|---|
+| 1:1-19 | Josias, treizième année (Jérémie 1:2) | vers 627 | Appel de Jérémie ; l’amandier et la chaudière | 1 et 2 |
+| 2:1 à 6:30 | Josias, année non précisée, pour 3:6-25 (Jérémie 3:6) ; le reste non daté | vers 627-609 | Premiers messages : la source et les citernes, les deux sœurs, l’appel au retour | 3 |
+| 22:10-12 | daté par le contexte : Schallum vient de partir (Jérémie 22:11) | vers 609 | Pleurez celui qui s’en va | 3 |
+| 7:1-15 et 26:1-24 | Jojakim, commencement du règne (Jérémie 26:1) | vers 609 | Discours à la porte du temple ; procès de Jérémie ; mort d’Urie | 4 |
+| 22:13-23 | daté par le contexte : Jojakim (Jérémie 22:18) | vers 609-598 | Malheur à celui qui bâtit sa maison par l’injustice | 4 |
+| 25:1-38 | Jojakim, quatrième année (Jérémie 25:1) | vers 605 | Vingt-trois ans de paroles ; soixante-dix ans ; la coupe pour les nations | 6 et 12 |
+| 46:1-12 | Jojakim, quatrième année (Jérémie 46:2) | vers 605 | Défaite de l’Égypte à Carkemisch | 6 et 12 |
+| 36:1-8 | Jojakim, quatrième année (Jérémie 36:1) | vers 605 | Jérémie dicte le livre à Baruc | 6 |
+| 45:1-5 | Jojakim, quatrième année (Jérémie 45:1) | vers 605 | Parole pour Baruc : ne recherche pas de grandes choses | 6 |
+| 36:9-32 | Jojakim, cinquième année, neuvième mois (Jérémie 36:9) | vers 604 | Lecture du livre, brûlé par le roi, puis récrit | 6 |
+| 35:1-19 | Jojakim, année non précisée (Jérémie 35:1), après une campagne de Nebucadnetsar (Jérémie 35:11) | vers 609-598 | Les Récabites | 7 |
+| 22:24-30 | daté par le contexte : Jeconia (Jérémie 22:24) | vers 598-597 | Jeconia arraché comme un anneau | 8 |
+| 24:1-10 | daté par le contexte : après la déportation de Jeconia (Jérémie 24:1) | vers 597 | Les deux paniers de figues | 8 |
+| 29:1-32 | daté par le contexte : après le départ de Jeconia, lettre portée par les envoyés de Sédécias (Jérémie 29:2-3) | vers 597 ou peu après | Lettre aux exilés ; Schemaeja | 8 |
+| 49:34-39 | Sédécias, commencement du règne (Jérémie 49:34) | vers 597 | Parole sur Élam | 12 |
+| 27:1 à 28:17 | Sédécias, quatrième année, cinquième mois (Jérémie 28:1 ; voir 27:3, 12) | vers 594 ou 593 | Les jougs ; Hanania brise le joug de bois | 7 |
+| 50:1 à 51:64 | Sédécias, quatrième année, pour le livre confié à Seraja (Jérémie 51:59-60) | vers 594 ou 593 | Oracle contre Babylone ; le livre jeté dans l’Euphrate | 6 et 12 |
+| 21:1-14 | daté par le contexte : Nebucadnetsar fait la guerre à Jérusalem (Jérémie 21:2) | vers 588 | Sédécias consulte Jérémie ; le chemin de la vie et le chemin de la mort | 10 |
+| 34:1-22 | daté par le contexte : siège (Jérémie 34:1, 7), puis armée éloignée (Jérémie 34:21) | vers 588 | Parole à Sédécias ; esclaves libérés puis repris | 10 |
+| 37:1-21 | daté par le contexte : siège levé à l’approche de l’armée de Pharaon (Jérémie 37:5, 11) | vers 588-587 | Jérémie arrêté à la porte de Benjamin ; entretien secret avec le roi | 10 |
+| 32:1-44 | Sédécias, dixième année (Jérémie 32:1) | vers 587 | Achat du champ d’Anathoth | 1 et 9 |
+| 33:1-26 | daté par le contexte : Jérémie encore enfermé (Jérémie 33:1) | vers 587 | Invoque-moi ; le germe de justice | 9 |
+| 38:1-28 | daté par le contexte : pendant le siège, jusqu’à la prise de la ville (Jérémie 38:28) | vers 587 ou 586 | La citerne ; Ébed-Mélec ; dernier entretien avec Sédécias | 10 |
+| 39:15-18 | daté par le contexte : Jérémie enfermé dans la cour de la prison (Jérémie 39:15) | vers 587 ou 586 | Promesse pour Ébed-Mélec | 10 |
+| 39:1-14 et 52:1-30 | Sédécias, neuvième à onzième année (Jérémie 52:4-5 ; 39:2) | vers 587 ou 586 | Siège, brèche, incendie du temple, déportation | 10 et 11 |
+| 40:1-6 | daté par le contexte : après la chute, à Rama (Jérémie 40:1) | vers 586 | Jérémie libéré, reste auprès de Guedalia | 11 |
+| 40:7 à 41:18 | septième mois, année non précisée (Jérémie 41:1) | vers 586 | Guedalia à Mitspa ; son assassinat | 11 |
+| 42:1 à 43:7 | daté par le contexte : après la mort de Guedalia ; réponse dix jours après (Jérémie 42:7) | vers 586 | Le reste consulte Jérémie, puis part pour l’Égypte | 11 |
+| 43:8-13 | daté par le contexte : à Tachpanès (Jérémie 43:8) | après 586 | Les pierres cachées devant la maison de Pharaon | 12 |
+| 44:1-30 | daté par le contexte : Juifs établis en Égypte (Jérémie 44:1) | après 586 | Dernier discours : la reine du ciel ; Pharaon Hophra | 12 |
+| 52:31-34 | trente-septième année de la captivité de Jojakin (Jérémie 52:31) | vers 561 ou 560 | Jojakin sort de prison | 12 |
+| 7:16 à 10:25 | non daté | sans date | N’intercède pas ; la reine du ciel à Jérusalem ; les larmes du prophète | 4 et 5 |
+| 11:1 à 12:17 | non daté | sans date | Les paroles de l’alliance ; le complot d’Anathoth | 1, 3 et 5 |
+| 13:1-27 | non daté | sans date | La ceinture de lin | 7 |
+| 14:1 à 17:27 | non daté | sans date | La sécheresse ; « Malheur à moi, ma mère » (Jérémie 15:10) ; une vie devenue message | 5 |
+| 18:1 à 20:18 | non daté | sans date | Le potier ; le vase brisé ; Paschhur ; le feu dans les os | 5 et 7 |
+| 22:1-9 et 23:1-40 | non daté | sans date | Paroles à la maison du roi ; le germe de justice ; les faux prophètes | 7 et 9 |
+| 30:1 à 31:40 | non daté | sans date | Le livre de la consolation ; l’alliance nouvelle | 9 |
+| 46:13 à 49:33 | non daté (pour les Philistins, seulement « avant que Pharaon frappât Gaza » (Jérémie 47:1)) | sans date | Paroles sur l’Égypte, les Philistins, Moab, Ammon, Édom, Damas, Kédar et Hatsor | 12 |
+:::
+
+Les passages des dernières lignes ne portent ni date ni indication sûre de règne. Le présent livre les a placés là où leur contenu s’éclaire le mieux, sans prétendre fixer leur date.
+
 ## Carte
 
 La carte qui suit situe les principaux lieux du livre. Elle est schématique, et les positions y sont approximatives. En haut, le monde de Jérémie, de l’Égypte à Babylone ; en bas, les environs de Jérusalem, où se trouvent Anathoth, Rama et Mitspa. Les noms suivent la Louis Segond 1910 : la « Grande mer » est la Méditerranée, la « Mer Salée » la mer Morte, et le Tigre porte aussi son nom biblique de Hiddékel.

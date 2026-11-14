@@ -90,6 +90,59 @@ Des années plus tard, Daniel, lui aussi déporté, lisait les écrits de Jéré
 
 Le livre des Chroniques et le livre d’Esdras rattachent eux aussi le retour d’exil à cette parole. Ils disent que la première année de Cyrus, roi de Perse, l’Éternel agit « afin que s’accomplît la parole de l’Éternel prononcée par la bouche de Jérémie » (Esdras 1:1). Le livre des Chroniques emploie les mêmes mots (2 Chroniques 36:22), et il relie aussi les soixante-dix ans à cette parole (2 Chroniques 36:21). Le prophète que les faux prophètes voulaient faire taire avait dit vrai.
 
+## Pour aller plus loin : étude
+
+### Le passage à la loupe
+
+La lettre aux exilés (Jérémie 29:1-14) suit un plan simple.
+
+1. L’adresse (versets 1 à 3). Jérémie écrit de Jérusalem aux anciens, aux sacrificateurs, aux prophètes et à tout le peuple emmenés à Babylone, après le départ du roi Jeconia. La lettre part avec les envoyés du roi Sédécias.
+2. S’installer (versets 4 à 6). Bâtir des maisons, planter des jardins, se marier, avoir des enfants, multiplier.
+3. Chercher le bien de la ville (verset 7). Rechercher le bien de Babylone et prier l’Éternel en sa faveur.
+4. Se garder des faux prophètes (versets 8 et 9). Dieu ne les a pas envoyés.
+5. La promesse (versets 10 à 14). Après soixante-dix ans, Dieu se souviendra de son peuple ; ses projets sont des projets de paix ; ceux qui le chercheront de tout leur cœur le trouveront, et il ramènera les captifs.
+
+La lettre commence par le présent et finit par l’avenir. Les exilés reçoivent d’abord des consignes pour aujourd’hui, puis une espérance pour plus tard. L’ordre compte : la promesse lointaine ne dispense pas de vivre fidèlement là où l’on est.
+
+### Mots clés
+
+**Captivité.** L’hébreu dit *gola*, l’exil, et par extension le groupe des exilés (Jérémie 29:1). Le mot vient d’un verbe qui signifie « découvrir, s’en aller » : l’exilé est celui qui a été emmené hors de son pays. [À VÉRIFIER : dictionnaire hébreu imprimé]
+
+**Paix, bien, bonheur.** Le verset 7 emploie trois fois le même mot hébreu, *chalom* : on recherche le « bien » de la ville, et le « bonheur » des exilés dépend du sien. Le verset 11 parle de « projets de paix », avec le même mot. *Chalom* dit l’état d’une vie complète et en ordre, plus que la seule absence de guerre. [À VÉRIFIER : dictionnaire hébreu imprimé]
+
+**Espérance.** « Afin de vous donner un avenir et de l’espérance » (Jérémie 29:11). L’hébreu dit *tiqva*, l’attente confiante ; le mot rendu par « avenir », *aharit*, désigne ce qui vient après, la fin d’une histoire. [À VÉRIFIER : dictionnaire hébreu imprimé]
+
+**Chercher.** « Vous me chercherez, et vous me trouverez, si vous me cherchez de tout votre cœur » (Jérémie 29:13). Ce verset rejoint les consignes de Moïse sur le retour à Dieu dans l’exil (Deutéronome 4:29). Le verbe hébreu employé ici, *baqach*, est celui qui revient dans la question de Dieu à Baruc sur les grandes choses (Jérémie 45:5). [À VÉRIFIER : dictionnaire hébreu imprimé]
+
+### Références croisées
+
+- Deutéronome 4:29. Moïse annonçait déjà qu’en exil, le peuple trouverait Dieu s’il le cherchait de tout son cœur.
+- Jérémie 24:5-7. Les bonnes figues : Dieu regarde favorablement les exilés et leur donnera un cœur pour le connaître.
+- Ézéchiel 11:16. Prophète parmi ces mêmes exilés, Ézéchiel annonce que Dieu sera pour eux un asile. Son livre est laissé de côté ici.
+- Psaumes 137:1. Les exilés pleurent au bord des fleuves de Babylone en se souvenant de Sion.
+- Daniel 9:2. Daniel lit dans les livres les soixante-dix ans annoncés à Jérémie.
+- Esdras 1:1. Le retour est rattaché à l’accomplissement de la parole prononcée par Jérémie.
+- 1 Timothée 2:1-2. Paul demande de prier pour les rois et les autorités, afin de mener une vie paisible.
+- 1 Pierre 1:1. Pierre écrit aux croyants comme à des étrangers dispersés.
+
+### Le fil de Jérémie 1:10
+
+Les deux derniers verbes de l’appel, bâtir et planter, se trouvent dans la lettre, mais d’une manière inattendue. Dieu dit aux exilés : « Bâtissez des maisons, et habitez-les ; plantez des jardins, et mangez-en les fruits » (Jérémie 29:5). Ceux que le jugement a arrachés de leur pays reçoivent l’ordre de bâtir et de planter en terre étrangère.
+
+Le chapitre montre ainsi que le jugement et la restauration se chevauchent. Les mauvaises figues restées à Jérusalem vont encore connaître l’épée, la famine et la peste (Jérémie 24:8-10). Les bonnes figues déjà emmenées reçoivent la promesse : « je les planterai et ne les arracherai plus » (Jérémie 24:6). La parole qui avait arraché le roi Jeconia de la main de Dieu comme un anneau (Jérémie 22:24) prépare, chez les exilés, une plantation nouvelle.
+
+Hanania et les prophètes de Babylone promettaient un retour rapide. Jérémie, lui, fait bâtir et planter pour soixante-dix ans. Le retour viendra, mais au temps de Dieu (Jérémie 29:10).
+
+[À COMPLÉTER PAR L’AUTEUR : Jérémie 29:11 est souvent appliqué aujourd’hui à la vie personnelle du croyant. Le chapitre rappelle qu’il fut d’abord adressé au peuple exilé. Quelle application l’auteur en fait-il dans son enseignement ?]
+
+### Questions d’étude
+
+1. Lis Jérémie 29:4-7. Quelles consignes Dieu donne-t-il aux exilés, et pourquoi sont-elles surprenantes ?
+2. Que veut dire, d’après le verset 7, rechercher le bien de la ville où l’on vit ? Comment cela peut-il se vivre là où tu habites ?
+3. Compare Jérémie 29:10 et Jérémie 28:3. Qu’est-ce qui distingue la promesse de Jérémie de celle de Hanania ?
+4. Relis Jérémie 29:11-14 dans son contexte. À qui ces promesses sont-elles d’abord adressées, et à quelles conditions ?
+5. Dans Jérémie 24:1-7, pourquoi Dieu appelle-t-il bonnes figues ceux qui sont partis en exil ?
+
 ::: lecons
 Rechercher le bien de la ville où tu vis. Les exilés vivaient dans une ville qui n’était pas la leur, et Dieu leur a demandé d’en rechercher le bien et de prier pour elle (Jérémie 29:7). Beaucoup de lecteurs vivent loin de leur village, dans une grande ville, ou dans un autre pays. Il est facile de s’y sentir de passage et de n’attendre que le retour. La lettre de Jérémie t’invite à bâtir là où Dieu t’a placé, à prier pour ton quartier, pour ceux qui le gouvernent et pour ceux qui y habitent. Ton bonheur est lié au leur.
 

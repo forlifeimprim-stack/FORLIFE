@@ -17,3 +17,16 @@ Rédigé par Konan le 14 novembre 2026. Chaque point est marqué dans le manuscr
 5. Chapitre 2 : le corps du chapitre ne dit pas le lien entre l'amandier et la veille (Jérémie 1:11-12). La section d'étude donne le rapprochement hébreu *chaqed* / *choqed*, connu et marqué à vérifier. Le gardes-tu ?
 6. Toutes les explications hébraïques (une vingtaine) portent `[À VÉRIFIER : dictionnaire hébreu imprimé]`. Disposes-tu d'un dictionnaire hébreu imprimé, ou qui fera la vérification ?
 7. Les questions d'étude sont au tutoiement, comme « Pour méditer ». Confirmes-tu ?
+
+## Ajouts de T23 (chapitres 7 à 12 et annexe), 14 novembre 2026
+
+### Positions doctrinales
+
+8. Chapitre 7, « Le fil de Jérémie 1:10 » : les critères du vrai et du faux prophète (Deutéronome 18:22 ; Jérémie 23:16, 28-29 ; 28:8-9) s'appliquent-ils, selon toi, aux ministères prophétiques d'aujourd'hui, et comment ?
+9. Chapitre 8, « Le fil de Jérémie 1:10 » : Jérémie 29:11 est souvent appliqué à la vie personnelle du croyant, alors qu'il fut d'abord adressé au peuple exilé. Quelle application en fais-tu dans ton enseignement ?
+10. Chapitre 9, « Le fil de Jérémie 1:10 » : l'alliance nouvelle est promise à « la maison d'Israël et la maison de Juda » (Jérémie 31:31), et le Nouveau Testament la rapporte à l'alliance en Jésus-Christ (Luc 22:20 ; Hébreux 8:8-13). Comment enseignes-tu le rapport entre ces deux lectures ?
+
+### Choix de présentation
+
+11. Annexe « Le livre de Jérémie remis dans l'ordre » : les dates approximatives des passages datés seulement par le contexte (par exemple « vers 588 » pour Jérémie 21 et 34) sont des repères usuels. Les gardes-tu dans le tableau ?
+12. Chapitre 11 : la section d'étude cite les Lamentations comme « attribuées par la tradition » à Jérémie, comme le corps du chapitre. Confirmes-tu cette prudence ?

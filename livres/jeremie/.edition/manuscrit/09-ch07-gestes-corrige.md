@@ -114,6 +114,59 @@ Le livre de Jérémie ajoute d’autres repères. Les faux prophètes « disen
 
 La paille est légère ; le froment nourrit. Le texte ne condamne pas tout songe, mais il demande qu’on ne fasse pas passer un rêve pour la parole de Dieu. Hanania n’était pas seul : d’autres prophètes, parmi les captifs déjà emmenés à Babylone, annonçaient eux aussi un retour rapide. C’est à eux que Jérémie va écrire.
 
+## Pour aller plus loin : étude
+
+### Le passage à la loupe
+
+La visite chez le potier (Jérémie 18:1-12) se déroule en cinq temps.
+
+1. L’ordre (versets 1 et 2). Dieu envoie Jérémie dans la maison du potier : c’est là qu’il lui fera entendre ses paroles.
+2. Ce que voit Jérémie (versets 3 et 4). Le vase ne réussit pas ; le potier en refait un autre, tel qu’il trouve bon de le faire.
+3. L’explication (verset 6). Comme l’argile est dans la main du potier, ainsi la maison d’Israël est dans la main de Dieu.
+4. La règle (versets 7 à 10). Dieu parle d’arracher, d’abattre et de détruire, mais la nation qui revient de sa méchanceté échappe au mal annoncé ; il parle de bâtir et de planter, mais la nation qui fait le mal perd le bien promis.
+5. L’appel et la réponse (versets 11 et 12). Dieu appelle chacun à revenir de sa mauvaise voie. Le peuple répond : « C’est en vain ! » (Jérémie 18:12).
+
+Le passage va du geste à la parole, puis de la parole à la décision. L’atelier montre la puissance de Dieu, et il place aussi le peuple devant un choix, que sa réponse finale refuse.
+
+### Mots clés
+
+**Potier.** L’hébreu dit *yotser*, « celui qui forme ». C’est le verbe *yatsar*, « former », que Dieu emploie à l’appel : « Avant que je t’eusse formé dans le ventre de ta mère » (Jérémie 1:5). Le Dieu qui avait formé son prophète se montre comme celui qui façonne son peuple. [À VÉRIFIER : dictionnaire hébreu imprimé]
+
+**Ceinture.** L’hébreu dit *ezor*, la pièce de lin serrée autour des reins (Jérémie 13:1). Dieu en tire l’image d’un attachement : « comme on attache la ceinture aux reins d’un homme, ainsi je m’étais attaché toute la maison d’Israël » (Jérémie 13:11). [À VÉRIFIER : dictionnaire hébreu imprimé]
+
+**Joug.** Au chapitre 27, Jérémie porte des liens et des jougs (Jérémie 27:2). Au chapitre 28, le mot rendu par « joug » désignerait, d’après les dictionnaires, les barres de bois du joug, *motot* ; Dieu annonce à leur place des barres de fer (Jérémie 28:13). [À VÉRIFIER : dictionnaire hébreu imprimé]
+
+**Mensonge.** Jérémie reproche à Hanania d’inspirer au peuple une fausse confiance (Jérémie 28:15). L’hébreu parle d’une confiance fondée sur le *chèqer*, le mensonge, le même mot que dans le discours du temple (Jérémie 7:4). [À VÉRIFIER : dictionnaire hébreu imprimé]
+
+### Références croisées
+
+- Ésaïe 64:8. Le peuple se reconnaît lui-même comme l’argile, et Dieu comme celui qui l’a formé.
+- Romains 9:21. Paul reprend l’image du potier, maître de l’argile.
+- Jérémie 13:11. La ceinture dit ce que Dieu voulait faire de son peuple : son nom, sa louange et sa gloire.
+- Jérémie 27:11. La nation qui plie son cou sous le joug de Babylone restera dans son pays pour le cultiver.
+- Deutéronome 18:22. La loi de Moïse donne un critère : la parole qui ne s’accomplit pas ne vient pas de l’Éternel.
+- Jérémie 23:29. La parole de Dieu est comme un feu et comme un marteau, à la différence des songes des faux prophètes.
+- Matthieu 7:15. Jésus met en garde contre les faux prophètes, vêtus comme des brebis.
+- 1 Jean 4:1. Jean demande d’éprouver les esprits, car plusieurs faux prophètes sont venus dans le monde.
+
+### Le fil de Jérémie 1:10
+
+Ce chapitre contient la reprise la plus nette des verbes de l’appel. Chez le potier, Dieu parle « d’arracher, d’abattre et de détruire » une nation (Jérémie 18:7), puis « de bâtir et de planter » (Jérémie 18:9). Les mots de la mission confiée au jeune homme d’Anathoth deviennent la description de la manière dont Dieu conduit les peuples.
+
+Le passage éclaire aussi la mission elle-même. La parole qui arrache reste conditionnelle : si la nation revient de sa méchanceté, Dieu se repent du mal annoncé (Jérémie 18:8). Jérémie ne prononce donc pas une sentence aveugle ; il annonce un jugement qui appelle au retour.
+
+Les gestes du chapitre donnent un visage à ces verbes. La ceinture gâtée montre un peuple qui ne sert plus à rien (Jérémie 13:10). Le joug annonce une domination que Dieu permet (Jérémie 27:11). Hanania, lui, prétend bâtir trop tôt : il promet le retour dans deux ans (Jérémie 28:3). Le faux prophète veut planter sans avoir arraché. Le vrai prophète attend le moment que Dieu a fixé.
+
+[À COMPLÉTER PAR L’AUTEUR : les critères du vrai et du faux prophète (Deutéronome 18:22 ; Jérémie 23:16, 28-29 ; 28:8-9) s’appliquent-ils, selon l’auteur, aux ministères prophétiques d’aujourd’hui, et comment ?]
+
+### Questions d’étude
+
+1. Lis Jérémie 18:1-12. Que fait le potier quand le vase ne réussit pas, et que veut dire Dieu par cette image ?
+2. D’après Jérémie 18:7-10, qu’est-ce qui peut changer le sort annoncé à une nation, en mal comme en bien ?
+3. Que montre la réponse du peuple au verset 12 ? Compare-la avec celle de Jérémie 6:16.
+4. En Jérémie 35:12-16, quelle leçon Dieu tire-t-il de l’obéissance des Récabites ?
+5. Relis Jérémie 28:5-9. Comment Jérémie répond-il à Hanania, et quel critère donne-t-il pour reconnaître le vrai prophète ?
+
 ::: lecons
 L’obéissance qui fait honte. Les Récabites ont gardé la parole d’un ancêtre qu’ils n’avaient sans doute jamais connu, et ils l’ont gardée même quand un prophète leur offrait du vin dans la maison de l’Éternel. Dieu les cite en exemple : « ils n’en ont point bu jusqu’à ce jour » (Jérémie 35:14). Nous respectons parfois mieux les usages de notre famille ou de notre église que les commandements clairs de Dieu. La question que Dieu posait à Juda se pose aussi à nous : « Ne recevrez-vous pas instruction, pour obéir à mes paroles ? » (Jérémie 35:13).
 

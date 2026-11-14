@@ -127,6 +127,58 @@ Jérémie n’a presque rien vu de ce qu’il avait annoncé de bon. Il n’a pa
 
 Le prophète est mort sans que l’on sache où. Sa parole, elle, a traversé les siècles jusqu’à nous. C’est peut-être la plus belle réponse au roi qui avait jeté le rouleau dans le brasier.
 
+## Pour aller plus loin : étude
+
+### Le passage à la loupe
+
+Le dernier grand discours de Jérémie (Jérémie 44) se lit en six temps.
+
+1. Le rappel (versets 1 à 6). Aux Juifs d’Égypte, Dieu rappelle les ruines de Juda et leur cause : l’encens offert à d’autres dieux, malgré les prophètes envoyés dès le matin.
+2. La question (versets 7 à 10). « Pourquoi vous faites-vous à vous-mêmes un si grand mal » (Jérémie 44:7) ? En Égypte, ils recommencent et oublient les crimes de leurs pères.
+3. La sentence (versets 11 à 14). Le reste parti pour l’Égypte y sera consumé ; seuls quelques fugitifs retourneront.
+4. La réponse du peuple (versets 15 à 19). Hommes et femmes refusent d’obéir et attribuent leur ancien bien-être à la reine du ciel.
+5. La réplique de Jérémie (versets 20 à 23). C’est l’encens brûlé dans les villes de Juda qui a fait du pays une ruine.
+6. Le serment et le signe (versets 24 à 30). Dieu veillera sur eux pour le mal ; Pharaon Hophra sera livré à ses ennemis, comme Sédécias.
+
+Le discours finit sur une question de fond : laquelle des deux paroles s’accomplira, celle de Dieu ou celle du peuple (Jérémie 44:28) ? Le livre entier a posé cette question depuis le premier jour. La réponse de l’histoire est donnée par le chapitre 52.
+
+### Mots clés
+
+**Reine du ciel.** L’hébreu dit *malkat hachamayim* (Jérémie 44:17). Le texte ne nomme pas la divinité ainsi désignée, et ce livre ne l’identifie pas à sa place. [À VÉRIFIER : dictionnaire hébreu imprimé]
+
+**Encens.** Le verbe rendu par « offrir de l’encens », *qittèr*, signifie faire monter une fumée d’offrande. Il revient sans cesse dans le chapitre, comme le geste qui résume l’infidélité du peuple (Jérémie 44:3, 17, 21). [À VÉRIFIER : dictionnaire hébreu imprimé]
+
+**Vœux.** Les femmes veulent accomplir les vœux faits à la reine du ciel (Jérémie 44:25). L’hébreu dit *nèdèr*, l’engagement solennel pris devant une divinité. Dieu leur répond avec ironie : accomplissez donc vos vœux. [À VÉRIFIER : dictionnaire hébreu imprimé]
+
+**Veiller.** « Voici, je veillerai sur eux pour faire du mal et non du bien » (Jérémie 44:27). C’est le verbe de la vision de l’amandier, *chaqad*, qui signifie veiller (voir Jérémie 1:12), et de la promesse de Jérémie 31:28. Le Dieu qui veille sur sa parole la mène à son terme, pour le bien comme pour le mal. [À VÉRIFIER : dictionnaire hébreu imprimé]
+
+### Références croisées
+
+- Jérémie 7:18. À Jérusalem déjà, toute la famille préparait des gâteaux pour la reine du ciel.
+- Exode 20:3. Le premier commandement : pas d’autres dieux devant la face de l’Éternel.
+- Deutéronome 17:16. Le peuple ne devait pas retourner en Égypte.
+- 1 Jean 5:21. Jean termine sa lettre en demandant de se garder des idoles.
+- Jérémie 25:15. La coupe de la colère que Jérémie doit faire boire aux nations.
+- Jérémie 46:27-28. Au milieu des oracles contre les nations, une promesse pour Jacob : ne crains pas.
+- Matthieu 2:17-18. Matthieu cite le cri de Rama (Jérémie 31:15) après le massacre de Bethléhem.
+- 2 Rois 25:27. Le récit des Rois donne aussi la libération de Jojakin, à deux jours près (comparer Jérémie 52:31).
+
+### Le fil de Jérémie 1:10
+
+Les derniers messages de Jérémie que le livre situe dans le temps sont donnés en Égypte, et les verbes de l’appel y sont encore à l’œuvre. Le peuple qui a refusé d’être planté dans son pays (Jérémie 42:10) se trouve exposé, en Égypte, au jugement qu’il fuyait (Jérémie 44:12). Dieu veille sur sa parole jusqu’au bout (Jérémie 44:27).
+
+La mission avait aussi une portée universelle : « je t’établis aujourd’hui sur les nations et sur les royaumes » (Jérémie 1:10). Les chapitres 46 à 51 la mettent en œuvre. L’Égypte, les Philistins, Moab, Ammon, Édom et les autres reçoivent la coupe de la colère (Jérémie 25:15). Babylone elle-même, l’instrument du jugement, sera submergée (Jérémie 51:64).
+
+Mais le livre ne s’achève pas sur l’arrachage. Ses derniers versets montrent Jojakin tiré de prison et mangeant à la table du roi de Babylone (Jérémie 52:31-34). C’est une petite lueur, et non encore le retour. Elle suffit à rappeler que les deux derniers verbes de l’appel, bâtir et planter, restent en attente de leur accomplissement.
+
+### Questions d’étude
+
+1. Lis Jérémie 44:15-19. Quel raisonnement le peuple tient-il pour justifier le culte de la reine du ciel ?
+2. Comment Jérémie répond-il à ce raisonnement en Jérémie 44:20-23 ?
+3. Compare Jérémie 1:12, 31:28 et 44:27. Sur quoi Dieu veille-t-il dans chacun de ces versets ?
+4. Relis Jérémie 46:27-28. Que dit Dieu à son peuple au milieu des jugements sur les nations ?
+5. Pourquoi, à ton avis, le livre se termine-t-il par la libération de Jojakin (Jérémie 52:31-34) ?
+
 ::: lecons
 Fidèle sans voir le fruit. Jérémie a parlé pendant plus de quarante ans. Il a fini sa vie en Égypte, devant des gens qui lui ont répondu : « Nous ne t’obéirons en rien » (Jérémie 44:16). Si l’on mesurait son ministère au nombre de ceux qui l’ont écouté, il faudrait parler d’échec. Dieu ne le mesure pas ainsi. Il avait demandé à Jérémie de dire tout ce qu’il lui ordonnerait, et Jérémie l’a fait jusqu’au bout. Toi qui sers dans l’église, tu ne verras peut-être jamais ce que deviendront les enfants que tu enseignes, ni les personnes pour qui tu pries. La fidélité t’appartient ; le fruit appartient à Dieu.
 

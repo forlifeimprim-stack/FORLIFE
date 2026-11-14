@@ -156,6 +156,58 @@ Beaucoup de lecteurs chrétiens reconnaissent dans ce germe le Messie. Le Nouvea
 
 Le livre de la consolation s’achève ainsi, dans une prison, au milieu d’une ville assiégée. Le chapitre suivant nous fait descendre plus bas encore, jusqu’au fond d’une citerne.
 
+## Pour aller plus loin : étude
+
+### Le passage à la loupe
+
+La promesse de l’alliance nouvelle (Jérémie 31:31-34) tient en quatre versets, construits avec soin.
+
+1. L’annonce (verset 31). Les jours viennent où Dieu fera une alliance nouvelle avec la maison d’Israël et la maison de Juda.
+2. Le contraste (verset 32). Elle ne sera pas comme l’alliance conclue à la sortie d’Égypte, que les pères ont violée.
+3. Le contenu (verset 33). Dieu mettra sa loi au dedans d’eux et l’écrira dans leur cœur ; il sera leur Dieu, ils seront son peuple.
+4. Les effets (verset 34). Chacun connaîtra l’Éternel, du plus petit au plus grand, car Dieu pardonnera leur iniquité et ne se souviendra plus de leur péché.
+
+Le dernier verset se termine par la raison de tout le reste. Le mot « car » relie la connaissance de Dieu au pardon : c’est parce que Dieu pardonne que son peuple pourra le connaître. La formule « je serai leur Dieu, et ils seront mon peuple » (Jérémie 31:33) reprend la promesse ancienne de l’alliance (voir Jérémie 7:23), qui sera enfin vécue.
+
+### Mots clés
+
+**Alliance.** L’hébreu dit *berit*. Le mot désigne un engagement solennel entre deux parties, avec des promesses et des obligations. Le peuple avait rompu l’alliance du Sinaï (Jérémie 31:32). [À VÉRIFIER : dictionnaire hébreu imprimé]
+
+**Nouvelle.** L’hébreu dit *hadacha*. Le même mot sert pour la lune nouvelle et pour ce qui est renouvelé. Le texte ne dit pas ce qui reste de l’ancienne alliance ; il dit en quoi la nouvelle sera différente. [À VÉRIFIER : dictionnaire hébreu imprimé]
+
+**Loi.** L’hébreu dit *tora*, l’enseignement donné par Dieu. Dans l’alliance nouvelle, la loi reste celle de Dieu ; ce qui change est le lieu où elle est écrite : dans le cœur, *lev*, siège de la pensée et de la volonté dans la langue de la Bible. [À VÉRIFIER : dictionnaire hébreu imprimé]
+
+**Pardonner.** « Car je pardonnerai leur iniquité » (Jérémie 31:34). Le verbe hébreu, *salah*, n’a jamais que Dieu pour sujet dans l’Ancien Testament, selon les dictionnaires : pardonner de cette manière lui appartient. [À VÉRIFIER : dictionnaire hébreu imprimé]
+
+### Références croisées
+
+- Exode 31:18. La loi du Sinaï avait été écrite sur des tables de pierre.
+- Deutéronome 30:6. Moïse annonçait que l’Éternel circoncirait le cœur de son peuple.
+- Ézéchiel 36:26. Le cœur de pierre remplacé par un cœur de chair ; ce prophète, contemporain de Jérémie, est étudié à part.
+- Luc 22:20. Jésus prend la coupe et parle de la nouvelle alliance en son sang.
+- 2 Corinthiens 3:3. Paul parle d’une lettre écrite non sur des tables de pierre, mais sur des cœurs.
+- Hébreux 8:8. L’épître aux Hébreux cite la promesse de Jérémie.
+- Hébreux 8:13. En parlant d’une alliance nouvelle, Dieu a déclaré la première ancienne.
+- Jérémie 32:40. Dieu promet une alliance éternelle et met sa crainte dans le cœur de son peuple.
+
+### Le fil de Jérémie 1:10
+
+Le livre de la consolation est le lieu où les deux derniers verbes de l’appel prennent toute leur place. Dieu le dit en reprenant les six verbes : « comme j’ai veillé sur eux pour arracher, abattre, détruire, ruiner et faire du mal, ainsi je veillerai sur eux pour bâtir et pour planter » (Jérémie 31:28). Ce verset précède immédiatement l’annonce de l’alliance nouvelle. La plantation promise commence là où Dieu écrit sa loi dans le cœur.
+
+Le champ d’Anathoth donne à cette promesse un signe concret. Au moment où la ville va être détruite, Jérémie achète une terre et fait garder le contrat dans un vase de terre (Jérémie 32:14-15). Dieu confirme : « je les planterai véritablement dans ce pays, de tout mon cœur et de toute mon âme » (Jérémie 32:41).
+
+Les promesses vont jusqu’au paysage de la ville. Même la vallée des cadavres et de la cendre sera consacrée à l’Éternel et ne sera plus jamais renversée ni détruite (Jérémie 31:40). La ruine n’aura pas le dernier mot.
+
+[À COMPLÉTER PAR L’AUTEUR : la promesse est adressée à « la maison d’Israël et la maison de Juda » (Jérémie 31:31), et le Nouveau Testament la rapporte à l’alliance en Jésus-Christ (Luc 22:20 ; Hébreux 8:8-13). Comment l’auteur enseigne-t-il le rapport entre ces deux lectures ?]
+
+### Questions d’étude
+
+1. Lis Jérémie 31:31-34. En quoi l’alliance nouvelle diffère-t-elle de celle du Sinaï, d’après le verset 32 ?
+2. Que signifie, pour toi, que la loi soit écrite dans le cœur (Jérémie 31:33 ; 2 Corinthiens 3:3) ?
+3. Relis le verset 34. Quel lien le texte établit-il entre le pardon et la connaissance de Dieu ?
+4. Dans Jérémie 32:16-27, Jérémie obéit, puis il prie. Que te montre l’ordre de ces deux attitudes ?
+5. Compare Jérémie 31:28 et Jérémie 1:10. Qu’est-ce que Dieu promet de faire après le jugement ?
+
 ::: lecons
 Une espérance qui se voit. Jérémie aurait pu se contenter de dire que des jours meilleurs viendraient. Dieu lui a demandé d’acheter un champ, de payer, de signer et de faire garder le contrat (Jérémie 32:14-15). L’espérance biblique prend la forme d’actes qui coûtent quelque chose et qui n’ont de sens que si Dieu tient parole. Nous aussi, nous sommes appelés à poser de tels actes, comme continuer à semer la Parole dans une classe d’enfants qui semble ne rien retenir, ou préparer l’avenir quand tout le monde autour de nous ne parle que de fin. Prenons un exemple imaginé : une famille qui continue à payer l’école de ses enfants alors que le travail du père vient de s’arrêter. Ce geste dit sa confiance mieux qu’un long discours. Toi aussi, tu peux te demander quel acte d’espérance Dieu attend de toi.
 

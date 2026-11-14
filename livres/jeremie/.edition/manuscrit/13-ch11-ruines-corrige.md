@@ -123,6 +123,57 @@ L’espérance naît ici d’un choix : « Voici ce que je veux repasser en m
 
 Le livre se termine par une prière : « Fais-nous revenir vers toi, ô Éternel, et nous reviendrons ! Donne-nous encore des jours comme ceux d’autrefois ! » (Lamentations 5:21). Le dernier verset reste une question douloureuse (Lamentations 5:22). La Bible laisse cette prière ouverte, comme on laisse une porte entrouverte.
 
+## Pour aller plus loin : étude
+
+### Le passage à la loupe
+
+La consultation du reste du peuple (Jérémie 42:1-22) suit une marche en cinq temps.
+
+1. La demande (versets 1 à 3). Les chefs des troupes et tout le peuple, du plus petit au plus grand, demandent à Jérémie d’intercéder pour eux et de leur faire connaître le chemin à suivre.
+2. L’engagement (versets 4 à 6). Jérémie promet de prier et de tout leur dire ; le peuple jure d’obéir, que ce soit du bien ou du mal.
+3. L’attente (verset 7). La parole de l’Éternel vient dix jours après.
+4. La réponse (versets 8 à 18). S’ils restent, Dieu les bâtira et les plantera ; s’ils partent pour l’Égypte, l’épée et la famine qu’ils fuient les y atteindront.
+5. L’avertissement (versets 19 à 22). Jérémie leur dit qu’ils se trompent eux-mêmes : ils ont demandé la parole de Dieu sans vouloir l’écouter.
+
+Le passage oppose deux serments. Le peuple jure d’obéir (verset 6), puis refuse dès que la réponse contredit son projet (Jérémie 43:2). Entre les deux, le prophète attend dix jours sans fabriquer de réponse. Jérémie le leur rappelle : c’est eux qui l’avaient envoyé vers l’Éternel, en promettant de faire tout ce qu’il dirait (Jérémie 42:20).
+
+### Mots clés
+
+**Reste.** L’hébreu dit *cheérit*, ce qui reste après une destruction. Les survivants se nomment eux-mêmes ainsi : « tous ceux qui restent » (Jérémie 42:2). Dans le livre, le mot désigne tantôt un reste promis à l’avenir, tantôt ce petit groupe menacé. [À VÉRIFIER : dictionnaire hébreu imprimé]
+
+**Mitspa.** Le nom vient d’un verbe qui signifie « guetter, observer » : une *mitspa* est un poste de guet. La ville de Benjamin où siège Guedalia porte ce nom (Jérémie 40:6). [À VÉRIFIER : dictionnaire hébreu imprimé]
+
+**Intercéder.** « Intercède en notre faveur auprès de l’Éternel » (Jérémie 42:2). Le verbe hébreu est celui de la prière, *hitpallel*. Dieu avait interdit à Jérémie de prier ainsi pour le peuple de Jérusalem (Jérémie 7:16) ; ici, il le laisse prier et lui répond. [À VÉRIFIER : dictionnaire hébreu imprimé]
+
+**Témoin.** Le peuple prend Dieu à témoin : « Que l’Éternel soit contre nous un témoin véritable et fidèle » (Jérémie 42:5). L’hébreu dit *èd*, celui qui atteste devant le juge. Le serment se retourne contre ceux qui l’ont prononcé. [À VÉRIFIER : dictionnaire hébreu imprimé]
+
+### Références croisées
+
+- Jérémie 40:4. Libéré à Rama, Jérémie peut choisir Babylone ou rester ; il reste.
+- 1 Samuel 7:5-6. Au temps de Samuel, le peuple s’était rassemblé à Mitspa pour confesser son péché.
+- Deutéronome 17:16. Moïse avait interdit de ramener le peuple en Égypte.
+- Ésaïe 31:1. Malheur à ceux qui descendent en Égypte chercher du secours au lieu de regarder vers l’Éternel.
+- Jérémie 43:2. Les chefs accusent Jérémie de mentir.
+- Lamentations 3:22-23. Les bontés de l’Éternel se renouvellent chaque matin, au milieu des ruines.
+- Josué 24:15. Josué invitait le peuple à choisir aujourd’hui qui il voulait servir.
+- Jacques 1:22. Écouter la parole sans la mettre en pratique, c’est se tromper soi-même ; comparer avec Jérémie 42:20.
+
+### Le fil de Jérémie 1:10
+
+Après la chute de Jérusalem, Dieu offre au reste du peuple les verbes de la restauration : « je vous y établirai et je ne vous détruirai pas, je vous planterai et je ne vous arracherai pas » (Jérémie 42:10). Le texte hébreu emploie ici, d’après les dictionnaires, les verbes bâtir et planter de l’appel ; la Louis Segond rend le premier par « établir ». [À VÉRIFIER : dictionnaire hébreu imprimé] La promesse faite aux exilés de Babylone (Jérémie 24:6) est proposée aussi à ceux qui sont restés.
+
+La condition est simple : rester dans le pays, sans craindre le roi de Babylone (Jérémie 42:11). Mais le reste choisit l’Égypte. Le peuple qui pouvait être planté se déracine lui-même. La parole qui aurait bâti devient une parole de jugement (Jérémie 42:16-17).
+
+Le choix de Jérémie va dans l’autre sens. Libre de partir pour Babylone, il reste parmi le peuple demeuré dans le pays (Jérémie 40:6). Il demeure là où Dieu promettait de planter, jusqu’à ce qu’on l’emmène de force en Égypte (Jérémie 43:6-7). Les Lamentations, que la tradition lui attribue, gardent au milieu des ruines la même espérance : la bonté de Dieu n’est pas épuisée (Lamentations 3:22).
+
+### Questions d’étude
+
+1. Lis Jérémie 42:1-6. Quelles promesses le peuple fait-il, et que valent-elles d’après Jérémie 43:2-4 ?
+2. Pourquoi, à ton avis, Jérémie attend-il dix jours avant de répondre (Jérémie 42:7) ? Que t’apprend cette attente ?
+3. Compare Jérémie 42:10 et Jérémie 1:10. Qu’est-ce que Dieu offre au reste du peuple ?
+4. En Jérémie 40:2-6, que choisit Jérémie, et qu’est-ce que ce choix révèle de lui ?
+5. Lis Lamentations 3:21-26. Sur quoi repose l’espérance de celui qui parle, au milieu des ruines ?
+
 ::: lecons
 Demander sans vouloir entendre. Le reste de Juda a prié avec des mots parfaits (Jérémie 42:5-6). Il a promis d’obéir, « que ce soit du bien ou du mal ». Mais sa décision était déjà prise, et quand la réponse ne lui a pas plu, il a accusé le prophète de mentir (Jérémie 43:2). Nous connaissons ce piège. Il nous arrive de demander à Dieu de nous guider alors que nous avons déjà fait nos valises. Nous cherchons une confirmation plus qu’une direction. Dix jours d’attente n’ont servi à rien, parce que le cœur n’était pas disposé à changer. Avant de demander à Dieu ce que tu dois faire, demande-toi si tu es prêt à entendre une réponse qui contredit tes projets.
 
