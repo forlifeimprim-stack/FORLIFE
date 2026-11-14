@@ -158,6 +158,87 @@ Les prononciations proposées suivent la lecture française de la graphie de la 
 | LSG 1910 | Louis Segond, mille neuf cent dix |
 | Église CMA (biographie) | à trancher par l'auteur : sigle épelé « C, M, A » ou nom complet de l'Église |
 
+## Mots hébreux et transcriptions
+
+Ajouté le 14 novembre 2026 (T29). Les mots hébreux du livre sont imprimés en italique, dans la translittération des dictionnaires de Strong (accents, apostrophes, lettres pointées). La synthèse vocale ne sait pas les lire. Le script audio (`numerique/fabriquer_scripts_audio.py`) remplace chaque forme de la première colonne par la forme dite de la deuxième, écrite sans aucun signe diacritique, pour que la voix la lise comme un mot français. Conventions : « ch » de l'hébreu (lettre heth) rendu par « h », « sh » par « ch », « ç » par « s », « th » par « t », voyelle longue et lettre muette « w » ou « y » de la translittération omises, « e » final ajouté pour faire entendre un « m », un « n », un « s » ou un « t » final. À VALIDER PAR L'AUTEUR, en particulier la lecture des noms où l'hébreu a un son guttural (hessed, hadache, nahame, salah).
+
+| Forme dans le livre | Forme dite | Sens donné dans le livre |
+|---|---|---|
+| Bârûwk | Barouk | nom hébreu de Baruc |
+| M^e^gillâh | Meguila | rouleau |
+| m^e^gillâh çêpher | meguila sefer | rouleau de livre |
+| Mâgôwr miç-Çâbîyb | Magor missabib | « épouvante de tous côtés » |
+| mâgôwr | magor | épouvante |
+| çâbîyb | sabib | autour |
+| b^e^rîyth | berite | alliance |
+| bâgad | bagad | agir avec perfidie |
+| bâgôwd | bagod | perfide |
+| bânâh | bana | bâtir |
+| bâqash | bakache | chercher |
+| bârak | barak | bénir |
+| bâṭach | batah | se confier |
+| bôwr | bor | citerne, fosse |
+| bôʼr | bor | citerne |
+| cheçed | hessed | bonté, fidélité |
+| châdâsh | hadache | nouveau |
+| daʻath | daate | connaissance |
+| dâbâr | dabar | parole |
+| dârash | darache | rechercher |
+| g^e^dôlôwt | guedolote | grandes choses |
+| g^e^ʼullâh | gueoula | droit de rachat |
+| gâdôwl | gadol | grand |
+| gâlal | galal | rouler |
+| gâlâh | gala | déporter |
+| gôwlâh | gola | les déportés |
+| gâʼal | gaal | racheter |
+| hâraç | harasse | renverser |
+| hêykâl | heikal | temple |
+| kôhên | kohene | sacrificateur |
+| lêb | leb | cœur |
+| m^e^leketh hashâmayim | meleket hachamayime | reine du ciel |
+| m^e^leketh | meleket | reine |
+| m^e^shûwbâh | mechouba | infidélité |
+| m^e^ʻârâh | meara | caverne |
+| mâlak | malak | régner |
+| mâqôwr | makor | source |
+| môwṭâh | mota | joug |
+| naʻar | naar | enfant, jeune garçon |
+| nâbâʼ | naba | prophétiser |
+| nâbîyʼ | nabi | prophète |
+| nâcham | nahame | se repentir |
+| nâdar | nadar | faire un vœu |
+| nâthan | natane | donner, mettre |
+| nâthash | natache | arracher |
+| nâthats | natatse | abattre |
+| nâṭaʻ | nata | planter |
+| pâlal | palal | prier |
+| pâqad | pakade | visiter, veiller |
+| pâthâh | pata | séduire |
+| qâdash | kadache | consacrer |
+| qâṭar | katar | offrir de l'encens |
+| sh^e^ʼêrîyth | cheerite | reste |
+| shâlâl | chalal | butin |
+| shâlôwm | chalome | paix |
+| shâqad | chakade | veiller |
+| shâqêd | chaked | amandier |
+| shâʼar | chaar | rester |
+| shûwb | choub | revenir |
+| tiqvâh | tikva | espérance |
+| tôwrâh | tora | loi |
+| yâdaʻ | yada | connaître |
+| yâtsar | yatsar | former |
+| çâlach | salah | pardonner |
+| çâphar | safar | compter |
+| çêpher | sefer | livre |
+| ʻEbed Melek | Ebed Melek | Ébed-Mélec en hébreu |
+| ʻêd | ed | témoin |
+| ʼachar | ahar | après |
+| ʼachărîyth | aharite | avenir, fin |
+| ʼâbad | abad | périr, ruiner |
+| ʼâkal | akal | manger, dévorer |
+| ʼêzôwr | ezor | ceinture |
+| Nabû-sharrussu-ukîn | Nabou-charroussou-oukine | dignitaire babylonien (tablette du British Museum) |
+
 ## Validation
 
 L'auteur coche ou corrige chaque ligne marquée « à trancher », puis écoute l'extrait du chapitre deux. Les corrections se reportent dans ce fichier, et la graphie phonétique retenue s'écrit directement dans les scripts audio quand la voix se trompe malgré tout (par exemple « Jojakine » au lieu de « Jojakin »). Le texte imprimé ne change pas.
