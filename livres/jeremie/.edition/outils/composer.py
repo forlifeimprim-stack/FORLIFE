@@ -51,7 +51,8 @@ FAMILLES = {
 
 # Les polices Fontsource n'ont ni espace fine insécable ni trait d'union U+2010/U+2011 :
 # on les fait pointer vers les glyphes de l'espace fine et du trait d'union ordinaires.
-CORRESPONDANCES = {0x202F: 0x2009, 0x2010: 0x2D, 0x2011: 0x2D}
+# Fraunces n'a pas l'ayin et l'aleph de translittération (ʻ U+02BB, ʼ U+02BC) : apostrophes ‘ et ’, même dessin.
+CORRESPONDANCES = {0x202F: 0x2009, 0x2010: 0x2D, 0x2011: 0x2D, 0x02BB: 0x2018, 0x02BC: 0x2019}
 
 TITRE_COURANT_MAX = 55
 TITRE_TABLE_MAX = 52
@@ -110,6 +111,9 @@ def lire_arguments():
                         help="fichiers .md ou dossier (par défaut : manuscrit/*-corrige.md)")
     parser.add_argument("--sortie", type=Path, default=EDITION / "sortie",
                         help="dossier de sortie (par défaut : sortie/)")
+    parser.add_argument("--cahier", type=int, default=16,
+                        help="complète le livre par des pages blanches finales jusqu'à un multiple de ce nombre "
+                             "(16 par défaut, fiche de fabrication ; 2 pour un simple compte pair)")
     parser.add_argument("--nom", default="interieur",
                         help="nom des fichiers produits (par défaut : interieur)")
     return parser.parse_args()
@@ -462,6 +466,10 @@ def polices_corrigees(dossier_travail, familles=FAMILLES):
                     for manquant, modele_glyphe in CORRESPONDANCES.items():
                         if manquant not in table.cmap and modele_glyphe in table.cmap:
                             table.cmap[manquant] = table.cmap[modele_glyphe]
+            # Pango nomme une police condensée « Barlow Condensed, Semi Bold Condensed » : ce nom déborde de la
+            # colonne de pdffonts et trompe fabrication/controle_pdf.py. La classe de chasse n'influe pas sur le dessin.
+            if "Condensed" in famille:
+                police["OS/2"].usWidthClass = 5
             cible = dossier_travail / f"{dossier}-{graisse}-{style}.ttf"
             police.save(cible)
             regles.append(f'@font-face {{ font-family: "{famille}"; font-weight: {graisse}; '
@@ -533,16 +541,19 @@ def main():
         else:
             print("Attention : coupures restantes en fin de page impaire : " + ", ".join(sorted(nouveaux)),
                   file=sys.stderr)
-        page_paire = HTML(string=document.replace("</body>", '<div class="verso-final"></div>\n</body>'),
-                          base_url=str(EDITION) + "/")
 
         for nom, feuilles in ((arguments.nom, [polices, charte]),
                               (arguments.nom + "-ecran", [polices, charte, sans_fonds_perdus])):
             cible = arguments.sortie / f"{nom}.pdf"
             rendu = page.render(stylesheets=feuilles, font_config=configuration)
-            if len(rendu.pages) % 2:
-                # Un livre se termine sur un verso : une page blanche finale rend le compte pair.
-                rendu = page_paire.render(stylesheets=feuilles, font_config=configuration)
+            manque = -len(rendu.pages) % arguments.cahier
+            if manque:
+                # Pages blanches en fin de livre jusqu'au cahier complet (toujours un nombre pair de pages).
+                blanches = '<div class="page-blanche"></div>' * manque
+                rendu = HTML(string=document.replace("</body>", blanches + "\n</body>"),
+                             base_url=str(EDITION) + "/").render(stylesheets=feuilles, font_config=configuration)
+                if len(rendu.pages) % arguments.cahier:
+                    print(f"Attention : {len(rendu.pages)} pages après ajout des blanches.", file=sys.stderr)
             rendu.write_pdf(cible)
             if nom == arguments.nom:
                 noir_seul(cible)

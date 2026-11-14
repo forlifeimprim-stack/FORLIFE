@@ -137,7 +137,7 @@ section.level1 {
 }
 
 header.ouverture {
-  padding-top: 18mm;
+  padding-top: 24mm;
   margin-bottom: 15pt;
   text-align: center;
 }
@@ -671,7 +671,8 @@ h3 + p { text-indent: 0; }
   line-height: 10.5pt;
 }
 .tableau-ordre th, .tableau-archeologie th { font-size: 7.5pt; line-height: 9.5pt; }
-.tableau-ordre td, .tableau-archeologie td { padding: 2.5pt 3pt 2.5pt 0; }
+.tableau-ordre td, .tableau-archeologie td { padding: 2.5pt 5pt 2.5pt 0; }
+.tableau-ordre th, .tableau-archeologie th { padding-right: 5pt; }
 .tableau-ordre td:first-child, .tableau-archeologie td:first-child { font-weight: 400; }
 .tableau-ordre th:nth-child(1), .tableau-ordre td:nth-child(1) { width: 13%; }
 .tableau-ordre th:nth-child(2), .tableau-ordre td:nth-child(2) { width: 26%; }
@@ -683,3 +684,5 @@ h3 + p { text-indent: 0; }
 .tableau-archeologie th:nth-child(3), .tableau-archeologie td:nth-child(3) { width: 16%; hyphens: manual; }
 .tableau-archeologie th:nth-child(4), .tableau-archeologie td:nth-child(4) { width: 24%; }
 .tableau-archeologie th:nth-child(5), .tableau-archeologie td:nth-child(5) { width: 18%; }
+/* Pages blanches ajoutées en fin de livre pour compléter le dernier cahier (composer.py --cahier) */
+.page-blanche { page: liminaire; break-before: page; height: 1pt; }

@@ -23,7 +23,7 @@ Une page pleine compte 33 lignes et 360 à 372 mots (mesuré sur la maquette). R
 
 Deux familles libres (licence SIL Open Font License), fichiers dans `outils/ressources/polices/`.
 
-EB Garamond (texte) : 400, 500, 600 et 700, romain et italique. Garamond de lecture suivie, économe en largeur, familier aux lecteurs de Bibles imprimées. Le jeu de caractères fourni (Fontsource, sous-ensemble latin) n'a ni petites capitales ni chiffres elzéviriens : la charte n'en demande pas. Les petites capitales des siècles sont simulées à la composition (capitales réduites à 80 %).
+EB Garamond (texte) : 400, 500, 600 et 700, romain et italique, sous-ensembles latin et latin-ext fusionnés par `composer.py` (translittérations hébraïques : ṭ, ă, ʻ, ʼ). Depuis T25, la famille est déclarée en CSS sous le nom « EB Garamond Livre » : une copie système d'EB Garamond (latin seul) portait le nom « EB Garamond » et passait devant les fichiers du livre. Garamond de lecture suivie, économe en largeur, familier aux lecteurs de Bibles imprimées. Le jeu de caractères fourni (Fontsource, sous-ensemble latin) n'a ni petites capitales ni chiffres elzéviriens : la charte n'en demande pas. Les petites capitales des siècles sont simulées à la composition (capitales réduites à 80 %).
 
 Alegreya Sans (titres et repères) : 400, 500 et 700, plus 800 pour les titres d'encadré, avec l'italique 400 et 500. Fontsource 5.3.0, récupérée sur npm le 9 novembre 2026. Raisons du choix : c'est une linéale humaniste dessinée à partir d'un modèle calligraphique, qui s'accorde avec le Garamond sans le doubler ; elle reste nette en petit corps (références, légendes, titres d'encadré) et sur l'écran d'un téléphone ; ses graisses fortes donnent un titre de couverture lisible en vignette ; elle a la capitale accentuée, l'œ, les guillemets français et un large jeu de graisses dans la même famille. Une seconde famille à empattements aurait manqué de contraste avec le texte, et une police en capitales seules (de type Cinzel) se lit mal en titre long.
 
@@ -53,9 +53,9 @@ Coupures : au moins 6 lettres dans le mot, 3 avant et 3 après la coupure. Aucun
 1. Étiquette de chapitre : « Chapitre 1 », Alegreya Sans 500, 9,5 pt, capitales espacées de 0,22 em, centré. Le numéro est généré par la composition, jamais tapé dans le manuscrit.
 2. Titre de chapitre (`#`) : Alegreya Sans 500, 20 / 24 pt, centré. Une liaison insécable évite un mot seul en dernière ligne et un petit mot (de, du, le, à) en fin de ligne.
 3. Intertitre (`##`) : Alegreya Sans 700, 12 / 15 pt, au fer à gauche, 22,5 pt avant, 7,5 pt après, toujours suivi d'au moins deux lignes sur la même page.
-4. Sous-intertitre (`###`, rare) : EB Garamond italique 11 / 15 pt, 15 pt avant.
+4. Sous-intertitre (`###`, rubriques des sections « Pour aller plus loin : étude ») : EB Garamond italique 11,5 / 15 pt, 22,5 pt avant, 3 pt après.
 
-Ouverture de chapitre : toujours sur une page impaire (une page paire blanche s'intercale si besoin), blanc de 18 mm au-dessus de l'étiquette (24 mm en T07, réduit en T17 bis pour tenir 160 pages), puis titre, fleuron de Kouamé (6 mm de haut), épigraphe, texte. Pas de titre courant sur la page d'ouverture ; le folio est conservé.
+Ouverture de chapitre : toujours sur une page impaire (une page paire blanche s'intercale si besoin), blanc de 24 mm au-dessus de l'étiquette (réduit à 18 mm en T17 bis pour tenir 160 pages, rétabli en T25 : il ne change plus la pagination), puis titre, fleuron de Kouamé (6 mm de haut), épigraphe, texte. Pas de titre courant sur la page d'ouverture ; le folio est conservé.
 
 ## Blocs
 
@@ -75,7 +75,7 @@ Prière (`.priere`) : titre « Prière » en Alegreya Sans 8,5 pt capitales espa
 
 Pause dans le récit (`***`) : fleuron de Kouamé de 4 mm de haut, centré.
 
-Tableaux des annexes (chronologie, « Qui est qui ») : EB Garamond 9 / 12 pt, en-tête en Alegreya Sans gras 8,5 pt sous un filet noir, filets gris de 0,3 pt entre les lignes, colonnes de 21 %, 55 % et 24 % (Pandoc imposait trois tiers). Une ligne de tableau ne se coupe jamais entre deux pages, et l'en-tête se répète en haut de la page suivante (T17).
+Tableaux des annexes (chronologie, « Qui est qui ») : EB Garamond 9 / 12 pt, en-tête en Alegreya Sans gras 8,5 pt sous un filet noir, filets gris de 0,3 pt entre les lignes, colonnes de 21 %, 55 % et 24 % (Pandoc imposait trois tiers). Une ligne de tableau ne se coupe jamais entre deux pages, et l'en-tête se répète en haut de la page suivante (T17). Les deux tableaux à cinq colonnes (`::: tableau-ordre`, `::: tableau-archeologie`) sont en 8 / 10,5 pt, en-tête 7,5 pt, gouttière de 5 pt, colonnes de 13, 26, 13, 37 et 11 % (ordre) et de 20, 22, 16, 24 et 18 % (archéologie), sans page à l'italienne (T25).
 
 ## Folios et titres courants
 
@@ -96,7 +96,7 @@ Titre courant en haut de page, centré, en italique : titre du livre sur les pag
 | 7 et suivantes | introduction, chapitres, conclusion, annexes, chacun sur une page impaire |
 | fin | « À propos de l'auteur » (texte de `livre.yaml`, `biographie_auteur`, repris mot pour mot), sur la page qui suit les annexes (paire ou impaire, pour ne pas ajouter de blanc), puis une page blanche si le nombre de pages est impair |
 
-Le nombre total de pages est toujours pair. L'arrondi au cahier de 16 pages (fiche de Salif) se règle à la composition finale (T17) : d'abord par les blancs et les annexes, ensuite seulement par des pages blanches en fin de livre.
+Le nombre total de pages est toujours un multiple de 16 : `composer.py --cahier 16` (valeur par défaut) ajoute des pages blanches en fin de livre, après qu'on a essayé d'ajuster les blancs et les annexes. La page des mentions porte aussi le crédit des textes hébreux (`credits_textes` de `livre.yaml`).
 
 ## Mentions légales
 

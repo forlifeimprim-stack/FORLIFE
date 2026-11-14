@@ -232,22 +232,24 @@ VERBES = [("ARRACHER", "nâthash"), ("ABATTRE", "nâthats"), ("RUINER", "ʼâbad
 BARLOW = POLICES / "barlow-condensed"
 
 
-def svg_frise(dossier, largeur):
-    """Frise inspirée du bogolan, en pied de toute la couverture : zigzag crème et points sur fond rouille."""
+def svg_frise(dossier, largeur, decalage=0.0):
+    """Frise inspirée du bogolan, en pied de toute la couverture : zigzag crème et points sur fond rouille.
+    decalage : abscisse du bord gauche dans le gabarit, pour que le motif se raccorde au pli du plat 1."""
     haut, bas = 206.0, 216.0
     pas, milieu, ampl = 6.0, 210.6, 1.4
-    zigzag = " ".join(f"L{x:.2f},{milieu + (ampl if i % 2 else -ampl):.2f}"
-                      for i, x in enumerate([k * pas / 2 for k in range(int(largeur / pas * 2) + 3)]))
-    points = "".join(f'<circle cx="{k * pas + pas / 2:.2f}" cy="{milieu + 0.4:.2f}" r="0.42" fill="#EFE3C8"/>'
-                     for k in range(int(largeur / pas) + 1))
+    depart = -(decalage % pas)
+    zigzag = " ".join(f"L{depart + k * pas / 2:.2f},{milieu + (ampl if k % 2 else -ampl):.2f}"
+                      for k in range(int(largeur / pas * 2) + 5))
+    points = "".join(f'<circle cx="{depart + k * pas + pas / 2:.2f}" cy="{milieu + 0.4:.2f}" r="0.42" fill="#EFE3C8"/>'
+                     for k in range(int(largeur / pas) + 2))
     svg = (f'<svg xmlns="http://www.w3.org/2000/svg" width="{largeur}mm" height="216mm" viewBox="0 0 {largeur} 216">'
            f'<rect x="0" y="{haut}" width="{largeur}" height="{bas - haut}" fill="#9C4A33"/>'
            f'<rect x="0" y="{haut}" width="{largeur}" height="0.5" fill="#7A4031"/>'
            f'<rect x="0" y="{haut + 1.1}" width="{largeur}" height="0.35" fill="#EFE3C8"/>'
            f'<rect x="0" y="{bas - 2.3}" width="{largeur}" height="0.35" fill="#EFE3C8"/>'
-           f'<path d="M0,{milieu - ampl} {zigzag}" fill="none" stroke="#EFE3C8" stroke-width="0.45" '
+           f'<path d="M{depart:.2f},{milieu - ampl} {zigzag}" fill="none" stroke="#EFE3C8" stroke-width="0.45" '
            f'stroke-linejoin="miter"/>{points}</svg>')
-    cible = dossier / f"frise-{largeur:.1f}.svg"
+    cible = dossier / f"frise-{largeur:.1f}-{decalage:.1f}.svg"
     cible.write_text(svg, encoding="utf-8")
     return cible
 
@@ -330,7 +332,7 @@ def largeur_police_mm(texte, famille_fichier, corps_pt, interlettrage_em=0.0):
     return largeur_texte_mm(texte, famille_fichier, corps_pt, interlettrage_em)
 
 
-def plat1_c(x0, impression, livre, dossier):
+def plat1_c(x0, impression, livre, dossier, decalage_frise=0.0):
     c = {nom: couleur(nom, impression) for nom in ("encre", "creme", "or", "ardoise")}
     elements = [f'<div class="bloc" style="left:{x0}mm; top:0; width:146mm; height:216mm; background:{c["encre"]}"></div>']
     gauche, utile = x0 + 8, 130
@@ -372,7 +374,7 @@ def plat1_c(x0, impression, livre, dossier):
                     f'width:{utile}mm; color:{c["or"]}">{echapper(livre["sous_titre"]).upper()}</div>')
     elements.append(f'<div class="bloc centre c-editeur" style="left:{gauche}mm; top:196mm; width:{utile}mm; '
                     f'color:{c["creme"]}">{echapper(livre["editeur"]["nom"]).upper()}</div>')
-    frise = svg_frise(dossier, 146)
+    frise = svg_frise(dossier, 146, decalage_frise)
     elements.append(f'<img class="bloc" src="{frise.as_uri()}" style="left:{x0}mm; top:0; width:146mm; height:216mm">')
     return elements
 
@@ -734,9 +736,9 @@ def main():
         polices = polices_corrigees(travail, FAMILLES_COUVERTURE)
         illustrations = {"A": IMAGES / "couverture-amandier.svg", "B": svg_arche(travail)}
 
-        def plat_seul(piste, impression):
+        def plat_seul(piste, impression, decalage_frise=0.0):
             if piste == "C":
-                return plat1_c(0, impression, livre, travail)
+                return plat1_c(0, impression, livre, travail, decalage_frise)
             return plat1(piste, 0, impression, livre, illustrations[piste])
 
         # Les pistes A et B (abandonnées) ne sont régénérées que si on les demande.
@@ -756,7 +758,7 @@ def main():
         for impression in (True, False):
             # Le plat 1 est posé d'abord, ses 3 mm de fonds perdus glissés sous le dos ; le dos et la
             # quatrième le recouvrent jusqu'au pli, sans découpe au pli qui laisserait un filet clair.
-            plat = plat_seul(args.piste, impression)
+            plat = plat_seul(args.piste, impression, x_plat1)
             fond = {"A": 1, "B": 2, "C": 1}[args.piste]
             elements = [f'<div class="bloc" style="left:{x_plat1:.3f}mm; top:0; width:146mm; height:216mm">'
                         f'{"".join(plat[:fond])}</div>']
