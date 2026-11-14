@@ -30,3 +30,10 @@ Rédigé par Konan le 14 novembre 2026. Chaque point est marqué dans le manuscr
 
 11. Annexe « Le livre de Jérémie remis dans l'ordre » : les dates approximatives des passages datés seulement par le contexte (par exemple « vers 588 » pour Jérémie 21 et 34) sont des repères usuels. Les gardes-tu dans le tableau ?
 12. Chapitre 11 : la section d'étude cite les Lamentations comme « attribuées par la tradition » à Jérémie, comme le corps du chapitre. Confirmes-tu cette prudence ?
+
+## Ajouts de T27 (hébreu vérifié, archéologie, repères théologiques), 14 novembre 2026
+
+13. Question 6, réglée : les explications hébraïques ont été vérifiées avec le texte hébreu WLC et les dictionnaires de Strong et de Brown-Driver-Briggs (outil `outils/hebreu.py`). Les marques [À VÉRIFIER : dictionnaire hébreu imprimé] ont été retirées. Trois affirmations non confirmées ont été supprimées : le même mot hébreu pour la caverne d'Adullam, l'emploi de « pardonner » réservé à Dieu, le lien entre « nouveau » et la lune nouvelle.
+14. Les translittérations suivent désormais celles de l'outil, avec leurs signes (*shâqad*, *nâthash*, *ʼâbad*). Elles sont exactes, mais moins faciles à lire et à prononcer à voix haute pour le livre audio. Les gardes-tu, ou préfères-tu une forme simplifiée (*shaqad*, *natash*, *abad*) ?
+15. « Repères théologiques » (annexes) : les six pages exposent les lectures sans trancher. Elles renvoient à tes réponses aux questions 2, 3, 4, 8 et 10, marquées [À COMPLÉTER PAR L'AUTEUR] dans le texte.
+16. Encadrés « Archéologie et histoire » (chapitres 5, 6, 8, 10, 11 et 12) et tableau des découvertes : les dates et les numéros d'inventaire marqués [À VÉRIFIER] demandent une vérification sur une source à jour (catalogues du British Museum et du Musée d'Israël, rapports de fouille), que la plume n'a pas pu faire, faute d'accès au réseau.
