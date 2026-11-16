@@ -21,13 +21,13 @@ canvas{width:1080px;height:1920px}
 #logo .p{transform-box:fill-box;transform-origin:50% 50%}
 #offrez{width:660px;font-size:86px;color:#FFF3D6;z-index:30;text-shadow:0 6px 0 rgba(0,0,0,.18)}
 #swoosh{width:520px;height:60px;z-index:30}
-#kids2{width:1150px;z-index:25}
-#kids1{width:920px;z-index:25}
+#kids2{width:960px;z-index:25}
+#kids1{width:820px;z-index:25}
 #ledge{width:1280px;height:700px;z-index:40}
 #gifts{width:700px;z-index:41}
-.card{width:940px;height:640px;border-radius:56px;overflow:hidden;z-index:30;background:radial-gradient(circle at 50% 35%,#FFFDF6,#F6E3BF);box-shadow:0 24px 50px rgba(60,0,0,.38);border:8px solid #fff;box-sizing:border-box}
-.card img{position:absolute;left:0;top:0;transform-origin:0 0}
-.chip{z-index:32;font-family:Lilita;font-size:62px;color:#fff;padding:14px 44px 18px;border-radius:60px;white-space:nowrap;border:6px solid #fff;box-shadow:0 12px 24px rgba(0,0,0,.3)}
+.card{width:980px;height:1160px;border-radius:56px;overflow:hidden;z-index:30;background:radial-gradient(circle at 50% 35%,#FFFDF6,#F6E3BF);box-shadow:0 24px 50px rgba(60,0,0,.38);border:8px solid #fff;box-sizing:border-box}
+.card img{position:absolute;left:0;top:0;transform-origin:0 0}.card .snow{position:absolute;left:0;bottom:0;width:100%;height:170px}
+.chip{z-index:32;width:620px;text-align:center;box-sizing:border-box;font-family:Lilita;font-size:62px;color:#fff;padding:14px 44px 18px;border-radius:60px;white-space:nowrap;border:6px solid #fff;box-shadow:0 12px 24px rgba(0,0,0,.3)}
 #chip1{background:#178A3A}#chip2{background:#C8102E}
 #chacun{width:1080px;text-align:center;font-family:Lilita;font-size:92px;color:#fff;z-index:33;text-shadow:0 6px 0 #7d0a12}
 #chacun b{color:#FFD23F;font-weight:400}
@@ -75,8 +75,8 @@ canvas{width:1080px;height:1920px}
 <img id="kids2" src="assets/kids2.png"><img id="kids1" src="assets/kids1.png">
 <svg id="ledge" viewBox="0 0 1280 700"><path d="M0 60 C 160 0, 300 70, 470 40 S 800 0, 960 44 S 1200 20, 1280 50 V700 H0Z" fill="#fff"/><path d="M0 60 C 160 0, 300 70, 470 40 S 800 0, 960 44 S 1200 20, 1280 50" fill="none" stroke="#E8EEF7" stroke-width="10"/></svg>
 <img id="gifts" src="assets/gifts2.png">
-<div class="card" id="c1"><img src="assets/kids1.png" width="900"></div>
-<div class="card" id="c2"><img src="assets/kids2.png" width="1040"></div>
+<div class="card" id="c1"><img src="assets/kids1.png"><svg class="snow" viewBox="0 0 1280 200" preserveAspectRatio="none"><path d="M0 60 C 160 0, 300 70, 470 40 S 800 0, 960 44 S 1200 20, 1280 50 V200 H0Z" fill="#fff"/></svg></div>
+<div class="card" id="c2"><img src="assets/kids2.png"><svg class="snow" viewBox="0 0 1280 200" preserveAspectRatio="none"><path d="M0 60 C 160 0, 300 70, 470 40 S 800 0, 960 44 S 1200 20, 1280 50 V200 H0Z" fill="#fff"/></svg></div>
 <div class="chip" id="chip1">Mon Premier Noël</div><div class="chip" id="chip2">Joyeux Noël</div>
 <div id="chacun"></div>
 <img id="noel1" src="assets/noel1.png">

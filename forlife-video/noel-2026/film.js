@@ -116,8 +116,8 @@ function drawFg(t) {
     fg.globalAlpha = 1; fg.fillStyle = '#14301d'; fg.fillRect(x - 6, y - 2, 12, 8);
   }
   // étincelles sur les moments clés
-  burst(t, Q.D + 0.12, 540, 520, '#FFC400'); burst(t, Q.D1 + 0.05, 280, 990, '#FFD91A'); burst(t, Q.D2 + 0.05, 800, 990, '#FFD91A');
-  burst(t, Q.E5 + 0.05, 540, 1185, '#FFD23F'); burst(t, Q.C3 + 0.1, 540, 1700, '#FFD23F');
+  burst(t, Q.D + 0.12, 540, 420, '#FFC400'); burst(t, Q.D1 + 0.05, 300, 760, '#FFD91A'); burst(t, Q.D2 + 0.05, 780, 770, '#FFD91A');
+  burst(t, Q.E5 + 0.05, 540, 1185, '#FFD23F'); burst(t, Q.C3 + 0.1, 540, 1560, '#FFD23F'); burst(t, Q.C1 + 1.5, 540, 950, '#FFD23F'); burst(t, Q.C2 + 1.5, 540, 950, '#FFD23F');
   // neige
   for (const s of SNOW) {
     const y = (s.y + s.v * t) % (H + 40) - 20, x = s.x + Math.sin(t * s.f + s.ph) * s.amp;
@@ -144,43 +144,45 @@ function seekSync(t) {
   // B — « Offrez la magie de Noël à vos enfants ! » + enfants (affiche 2)
   const bOut = inn(pr(t, Q.C1 - 0.4, 0.4));
   const kIn = sp(t, Q.B + 0.2, 1.7, 0.68);
-  put(E.kids2, -160 + 6 * br2, 585 + (1 - kIn) * 1500 + bOut * 1500, 1 + 0.008 * br, 0.5 * br2, t > Q.B - 0.1 && t < Q.C1 + 0.05 ? 1 : 0);
+  put(E.kids2, -75 + 6 * br2, 708 + (1 - kIn) * 1500 + bOut * 1500, 1 + 0.008 * br, 0.5 * br2, t > Q.B - 0.1 && t < Q.C1 + 0.05 ? 1 : 0);
   put(E.offrez, 392, 300 - 60 * bOut, 1, -5, t > Q.B && t < Q.C1 ? 1 - bOut : 0);
   reveal(E.offrez, t, Q.B + 0.25, null, 0.11);
   const sw = out(pr(t, Q.B + 1.6, 0.5)); swp.style.strokeDashoffset = SWL * (1 - sw);
   put(E.swoosh, 470, 655 - 60 * bOut, 1, -5, t > Q.B + 1.6 && t < Q.C1 ? 1 - bOut : 0);
   // congère + cadeaux : présents en B, puis reviennent en E/F
   const lB = sp(t, 0.35, 1.8, 0.8) - bOut, lE = sp(t, Q.E + 0.1, 1.8, 0.8), lF = io(pr(t, Q.F - 0.1, 0.7));
-  const ly = t < Q.D ? lerp(1940, 1690, lB) : lerp(lerp(1940, 1660, lE), 1800, lF);
+  const lD = sp(t, Q.D + 0.25, 1.8, 0.8);
+  const ly = t < Q.D - 0.3 ? lerp(1940, 1680, lB) : lerp(lerp(1940, 1670, lD), 1800, lF);
   put(E.ledge, -100 + 14 * br2, ly, 1, 0, 1);
-  const gB = sp(t, 1.9, 2.4, 0.55), gE = sp(t, Q.E + 0.5, 2.4, 0.55);
-  if (t < Q.D) put(E.gifts, lerp(190, -30, io(pr(t, Q.B - 0.2, 0.6))), 1545 + (1 - gB) * 600 + bOut * 600, 1, -2 + br * .4, 1);
-  else put(E.gifts, 190, 1525 + (1 - gE) * 500 + lF * 420, 1, br * .4, t > Q.E ? 1 : 0);
+  const gB = sp(t, 1.9, 2.4, 0.55), gs = lerp(0.6, 1, lE);
+  put(E.gifts, 190, ly - 10 - (gs - 0.6) * 230 + lF * 420, gs * (t < Q.B ? gB : 1), br * .4, 1);
 
-  // C — les modèles : deux cartes
+  // C — les modèles : une grande carte par modèle, poussée de caméra vers le design du t-shirt
   const cOut = inn(pr(t, Q.D - 0.4, 0.4));
-  const a1 = sp(t, Q.C1, 2.0, 0.74), a2 = sp(t, Q.C2, 2.0, 0.74);
-  const von = (t0) => t > t0 - 0.05 && t < Q.D + 0.05 ? 1 : 0;
-  put(E.c1, 70 + (1 - a1) * 1150 - cOut * 1200, 250, 1, 2.2 * (1 - a1) - 1.2, von(Q.C1));
-  put(E.c2, 70 - (1 - a2) * 1150 + cOut * 1200, 935, 1, -2.2 * (1 - a2) + 1.2, von(Q.C2));
-  const d1 = pr(t, Q.C1, Q.D - Q.C1), d2 = pr(t, Q.C2, Q.D - Q.C2);
-  c1i.style.transform = `translate(${(10 - 14 * d1).toFixed(2)}px,${(-150 - 60 * d1).toFixed(2)}px) scale(${(1 + .05 * d1).toFixed(4)})`;
-  c2i.style.transform = `translate(${(-175 + 14 * d2).toFixed(2)}px,${(-175 - 60 * d2).toFixed(2)}px) scale(${(1 + .05 * d2).toFixed(4)})`;
-  const h1 = sp(t, Q.C1 + 0.35, 3, 0.6), h2 = sp(t, Q.C2 + 0.35, 3, 0.6);
-  put(E.chip1, 110 - cOut * 1200, 800, h1, -4, von(Q.C1 + 0.35));
-  put(E.chip2, 570 + cOut * 1200, 1485, h2, 3, von(Q.C2 + 0.35));
-  put(E.chacun, 0, 1640 + 80 * cOut, 1 + 0.01 * br, -2, t > Q.C3 - 0.05 && t < Q.D ? 1 - cOut : 0);
+  const a1 = sp(t, Q.C1, 2.0, 0.76), a2 = sp(t, Q.C2, 2.0, 0.76), o1 = inn(pr(t, Q.C2 - 0.15, 0.45));
+  const x1 = 50 + (1 - a1) * 1150 - o1 * 1200, x2 = 50 + (1 - a2) * 1150 - cOut * 1200;
+  const v1 = t > Q.C1 - 0.05 && t < Q.C2 + 0.4 ? 1 : 0, v2 = t > Q.C2 - 0.05 && t < Q.D + 0.05 ? 1 : 0;
+  put(E.c1, x1, 250, 1, 2.5 * (1 - a1) - 0.8 + 0.3 * br2, v1);
+  put(E.c2, x2, 250, 1, 2.5 * (1 - a2) + 0.8 + 0.3 * br2, v2);
+  const z1 = io(pr(t, Q.C1 + 0.5, 1.7)), z2 = io(pr(t, Q.C2 + 0.5, 1.7));
+  const k1s = lerp(0.568, 0.68, z1), k2s = lerp(0.6, 0.72, z2);
+  c1i.style.transform = `translate(${lerp(-10, -108, z1).toFixed(2)}px,${lerp(10, -252, z1).toFixed(2)}px) scale(${k1s.toFixed(4)})`;
+  c2i.style.transform = `translate(${lerp(-40, -185, z2).toFixed(2)}px,${lerp(10, -318, z2).toFixed(2)}px) scale(${k2s.toFixed(4)})`;
+  const h1 = sp(t, Q.C1 + 0.3, 3, 0.6), h2 = sp(t, Q.C2 + 0.3, 3, 0.6);
+  put(E.chip1, x1 + 180, 1282, h1, -2, v1 && t > Q.C1 + 0.3 ? 1 : 0);
+  put(E.chip2, x2 + 180, 1282, h2, 2, v2 && t > Q.C2 + 0.3 ? 1 : 0);
+  put(E.chacun, 0, 1500 + 80 * cOut, 1 + 0.01 * br, -2, t > Q.C3 - 0.05 && t < Q.D ? 1 - cOut : 0);
   reveal(E.chacun, t, Q.C3, null, 0.09);
 
   // D — Promo Spécial Noël + prix (affiche 1)
   const dOut = inn(pr(t, Q.E - 0.4, 0.4)), dv = (t0) => t > t0 - 0.02 && t < Q.E + 0.02 ? 1 : 0;
   const ti = sp(t, Q.D, 2.3, 0.5);
-  put(E.noel1, 70, 232 - dOut * 900, lerp(0.2, 1, ti) * (1 + 0.012 * br), lerp(-14, 0, ti) + br2 * .6, dv(Q.D));
+  put(E.noel1, 70, 105 - dOut * 900, lerp(0.14, 0.68, ti) * (1 + 0.012 * br), lerp(-14, 0, ti) + br2 * .6, dv(Q.D));
   const k1 = sp(t, Q.D + 0.45, 1.7, 0.7);
-  put(E.kids1, 96 + 6 * br2, 1150 + (1 - k1) * 900 + dOut * 900, 1 + 0.008 * br, .5 * br2, dv(Q.D + 0.4));
+  put(E.kids1, 130 + 6 * br2, 850 + (1 - k1) * 1150 + dOut * 1150, 1 + 0.008 * br, .5 * br2, dv(Q.D + 0.4));
   const p1 = sp(t, Q.D1, 2.6, 0.5), p2 = sp(t, Q.D2, 2.6, 0.5);
-  put(E.b1, 40 - dOut * 700, 865, p1, lerp(-25, -5, p1), dv(Q.D1));
-  put(E.b2, 560 + dOut * 700, 885, p2, lerp(25, 4, p2), dv(Q.D2));
+  put(E.b1, 60 - dOut * 700, 630, p1 * 0.85, lerp(-25, -5, p1), dv(Q.D1));
+  put(E.b2, 540 + dOut * 700, 640, p2 * 0.85, lerp(25, 4, p2), dv(Q.D2));
   n1.textContent = Math.round(2500 * out(pr(t, Q.D1, 0.7)) / 50) * 50 || '0';
   n2.textContent = Math.round(2000 * out(pr(t, Q.D2, 0.7)) / 50) * 50 || '0';
   const pu = pr(t, Q.D3, 0.5); l2.style.transform = `scale(${(1 + 0.22 * Math.sin(pu * Math.PI)).toFixed(4)})`;

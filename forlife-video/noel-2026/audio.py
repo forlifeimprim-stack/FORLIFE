@@ -67,6 +67,18 @@ add(chime([84,88,91,96]),Q['E5']+.05,.16)
 add(pop(400,900),Q['E']+.6,.25); add(thump(),Q['F']+.35,.35); add(thump(),Q['F']+.53,.3); add(pop(700,1300),Q['F1']+.1,.28)
 add(chime([72,79,84,88,91,96],.09),Q['F1']+.3,.2)
 for i,t0 in enumerate((.75,.87,.99)): add(pop(500+150*i,900+200*i),t0,.3)
+# --- voix off : phrases replacées sur la timeline, musique baissée dessous
+VO=json.loads(re.search(r'window\.VO = (\[.*\]);', open('cues.js').read()).group(1))
+raw=subprocess.run(['ffmpeg','-loglevel','error','-i','work/vo.mp3','-f','s16le','-ac','1','-ar',str(SR),'-'],capture_output=True).stdout
+v=np.frombuffer(raw,dtype='<i2').astype(float)/32768; v/=np.abs(v).max()
+VT=np.zeros(N); pres=np.zeros(N)
+for a0,a1,t0 in VO:
+    c=v[int(a0*SR):int(a1*SR)].copy(); f=int(.02*SR); c[:f]*=np.linspace(0,1,f); c[-f:]*=np.linspace(1,0,f)
+    i=int(t0*SR); c=c[:N-i]; VT[i:i+len(c)]+=c; pres[i:i+len(c)]=1
+k=int(.25*SR); duck=np.convolve(pres,np.ones(k)/k,'same'); g=1-0.62*duck
+mrms=np.sqrt(np.mean((L*g)[pres>0]**2)+1e-12); vrms=np.sqrt(np.mean(VT[pres>0]**2))
+VT*= (mrms/vrms)*3.2
+L=L*g+VT; R=R*g+VT
 # fondu de fin
 env=np.ones(N); f=int(1.6*SR); e0=int(Q['END']*SR); env[e0-f:e0]=np.linspace(1,0,f)**1.5; env[e0:]=0
 x=np.stack([L,R],1)*env[:,None]; x/=np.abs(x).max()*1.05
