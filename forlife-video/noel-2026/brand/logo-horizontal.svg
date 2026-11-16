@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Calque_1" data-name="Calque 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 595.28 290">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #ea7822;
+      }
+
+      .cls-2 {
+        fill: #fff;
+        font-family: Poppins-SemiBold, Poppins;
+        font-size: 71.28px;
+        font-weight: 600;
+      }
+
+      .cls-2, .cls-3 {
+        isolation: isolate;
+      }
+
+      .cls-3 {
+        fill: #de6f22;
+        font-family: Poppins-MediumItalic, Poppins;
+        font-size: 20.79px;
+        font-style: italic;
+        font-weight: 500;
+      }
+    </style>
+  </defs>
+  <g>
+    <circle class="cls-1" cx="59.24" cy="209.06" r="25.45"/>
+    <path class="cls-1" d="m59.23,55.5h112.07c9.44,0,17.09,7.65,17.09,17.09h0c0,16.06-13.02,29.08-29.08,29.08H47.23c-9.44,0-17.09-7.64-17.1-17.08,0,0,0,0,0-.01h0c0-16.06,13.02-29.08,29.08-29.08,0,0,.01,0,.02,0Z"/>
+    <path class="cls-1" d="m56.23,121.44h62.72c7.29,0,13.2,5.91,13.2,13.2v8.65c0,12.41-10.06,22.47-22.47,22.47h-62.69c-7.29,0-13.2-5.91-13.2-13.2v-8.65c0-12.4,10.04-22.45,22.44-22.47Z"/>
+  </g>
+  <g>
+    <text class="cls-2" transform="translate(153.95 168.5)"><tspan x="0" y="0">Forlife Com</tspan></text>
+    <text class="cls-3" transform="translate(154.58 195.61)"><tspan x="0" y="0">Imprimer l’avenir valoriser, les marques</tspan></text>
+  </g>
+</svg>

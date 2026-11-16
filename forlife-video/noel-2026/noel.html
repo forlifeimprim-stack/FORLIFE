@@ -1,0 +1,93 @@
+<!doctype html><html lang="fr"><head><meta charset="utf-8"><title>Forlife Com — Promo Noël</title>
+<style>
+@font-face{font-family:Poppins;font-weight:500;src:url(brand/fonts/poppins-latin-500-normal.woff2)}
+@font-face{font-family:Poppins;font-weight:500;font-style:italic;src:url(brand/fonts/poppins-latin-500-italic.woff2)}
+@font-face{font-family:Poppins;font-weight:600;src:url(brand/fonts/poppins-latin-600-normal.woff2)}
+@font-face{font-family:Poppins;font-weight:700;src:url(brand/fonts/poppins-latin-700-normal.woff2)}
+@font-face{font-family:Poppins;font-weight:800;src:url(brand/fonts/poppins-latin-800-normal.woff2)}
+@font-face{font-family:Pacifico;src:url(brand/fonts/pacifico-latin-400-normal.woff2)}
+@font-face{font-family:Lilita;src:url(brand/fonts/lilita-one-latin-400-normal.woff2)}
+html,body{margin:0;background:#111;overflow:hidden}
+#stage{position:absolute;left:0;top:0;width:1080px;height:1920px;overflow:hidden;background:#FBF3E4;font-family:Poppins}
+#stage>*{position:absolute;left:0;top:0;transform-origin:50% 50%;will-change:transform}
+canvas{width:1080px;height:1920px}
+.w{display:inline-block;overflow:hidden;padding:.34em .14em;margin:-.34em -.14em;margin-right:.12em;vertical-align:top}
+.w>i{display:inline-block;font-style:normal;transform-origin:0 100%}
+.script{font-family:Pacifico;line-height:1.22;text-align:center}
+#hello{width:1080px;font-size:96px;color:#C8102E;z-index:20}
+#pill0{width:420px;height:150px;border-radius:75px;background:#FFFaf0;box-shadow:0 10px 30px rgba(40,10,0,.28);z-index:60}
+#logo{width:595.28px;height:290px;transform-origin:0 0;z-index:61}
+#logo svg{overflow:visible}
+#logo .p{transform-box:fill-box;transform-origin:50% 50%}
+#offrez{width:660px;font-size:86px;color:#FFF3D6;z-index:30;text-shadow:0 6px 0 rgba(0,0,0,.18)}
+#swoosh{width:520px;height:60px;z-index:30}
+#kids2{width:1150px;z-index:25}
+#kids1{width:920px;z-index:25}
+#ledge{width:1280px;height:700px;z-index:40}
+#gifts{width:700px;z-index:41}
+.card{width:940px;height:640px;border-radius:56px;overflow:hidden;z-index:30;background:radial-gradient(circle at 50% 35%,#FFFDF6,#F6E3BF);box-shadow:0 24px 50px rgba(60,0,0,.38);border:8px solid #fff;box-sizing:border-box}
+.card img{position:absolute;left:0;top:0;transform-origin:0 0}
+.chip{z-index:32;font-family:Lilita;font-size:62px;color:#fff;padding:14px 44px 18px;border-radius:60px;white-space:nowrap;border:6px solid #fff;box-shadow:0 12px 24px rgba(0,0,0,.3)}
+#chip1{background:#178A3A}#chip2{background:#C8102E}
+#chacun{width:1080px;text-align:center;font-family:Lilita;font-size:92px;color:#fff;z-index:33;text-shadow:0 6px 0 #7d0a12}
+#chacun b{color:#FFD23F;font-weight:400}
+#noel1{width:940px;z-index:30}
+.badge{width:480px;height:260px;border-radius:52px;z-index:45;box-shadow:0 18px 34px rgba(60,10,0,.35);color:#fff;text-align:center}
+.badge:before{content:"";position:absolute;inset:12px;border:4px dashed rgba(255,255,255,.85);border-radius:42px}
+#b1{background:linear-gradient(160deg,#E3202C,#A80D17)}
+#b2{background:linear-gradient(160deg,#5A2A12,#2E1408)}
+.badge .n{font-family:Lilita;font-size:124px;line-height:1;color:#FFD91A;text-shadow:0 5px 0 rgba(0,0,0,.35);position:absolute;left:34px;top:34px}
+.badge .f{font-family:Poppins;font-weight:800;font-style:italic;font-size:50px;position:absolute;right:34px;top:54px}
+.badge .l{position:absolute;left:0;right:0;font-weight:700;font-style:italic}
+#b1 .l{top:150px;font-size:62px}
+#b2 .n{top:22px;font-size:112px}#b2 .f{top:40px}
+#b2 .l{top:128px;font-size:38px}
+#b2 .l2{position:absolute;left:0;right:0;top:172px;font-family:Lilita;font-size:60px;color:#FFD91A;transform-origin:50% 50%}
+#sign{width:800px;z-index:30;transform-origin:50% -40%}
+#cmd{width:1080px;font-size:104px;color:#FFE9C2;z-index:31}
+#phone{width:980px;height:190px;border-radius:95px;background:#FFF8EA;z-index:50;box-shadow:0 18px 40px rgba(0,0,0,.45),inset 0 0 0 6px #E2742A}
+#wa{position:absolute;left:22px;top:22px;width:146px;height:146px;border-radius:50%;background:#25D366}
+#wa svg{position:absolute;left:27px;top:27px;width:92px;height:92px;fill:#fff}
+#digits{position:absolute;left:196px;top:0;right:30px;height:190px;display:flex;align-items:center;justify-content:space-between;font-weight:800;font-size:100px;color:#3B1E12;letter-spacing:-2px}
+#digits span{display:inline-block;transform-origin:50% 60%}
+#sub{width:1080px;text-align:center;font-weight:600;font-size:44px;color:#FFE9C2;z-index:31;letter-spacing:1px}
+.poster{z-index:35;border-radius:26px;border:10px solid #fff;box-shadow:0 26px 60px rgba(0,0,0,.55);box-sizing:border-box}
+#p1{width:640px}#p2{width:640px}
+#loc{width:1080px;z-index:50;color:#FFF3D6;font-weight:600;font-size:50px;line-height:1.25}
+#loc svg{position:absolute;left:90px;top:6px;width:104px;height:124px;transform-origin:50% 100%}
+#loc div{position:absolute;left:226px;top:0;white-space:nowrap}
+#fg{z-index:70;pointer-events:none}#bg{z-index:1}
+#hud{position:fixed;right:8px;bottom:8px;color:#fff;font:14px monospace;z-index:99;background:#0008;padding:4px 8px}
+</style></head><body>
+<div id="stage">
+<canvas id="bg" width="1080" height="1920"></canvas>
+<div id="hello" class="script"></div>
+<div id="pill0"></div>
+<div id="logo"><svg viewBox="0 0 595.28 290" width="595.28" height="290">
+ <path class="p" id="lg1" fill="#ea7822" d="m59.23,55.5h112.07c9.44,0,17.09,7.65,17.09,17.09h0c0,16.06-13.02,29.08-29.08,29.08H47.23c-9.44,0-17.09-7.64-17.1-17.08,0,0,0,0,0-.01h0c0-16.06,13.02-29.08,29.08-29.08,0,0,.01,0,.02,0Z"/>
+ <path class="p" id="lg2" fill="#ea7822" d="m56.23,121.44h62.72c7.29,0,13.2,5.91,13.2,13.2v8.65c0,12.41-10.06,22.47-22.47,22.47h-62.69c-7.29,0-13.2-5.91-13.2-13.2v-8.65c0-12.4,10.04-22.45,22.44-22.47Z"/>
+ <circle class="p" id="lg3" fill="#ea7822" cx="59.24" cy="209.06" r="25.45"/>
+ <text class="p" id="lgT" x="153.95" y="168.5" fill="#3B1E12" font-family="Poppins" font-weight="600" font-size="71.28">Forlife Com</text>
+ <text class="p" id="lgS" x="154.58" y="195.61" fill="#de6f22" font-family="Poppins" font-style="italic" font-weight="500" font-size="20.79">Imprimer l’avenir, valoriser les marques</text>
+</svg></div>
+<div id="offrez" class="script"></div>
+<svg id="swoosh" viewBox="0 0 520 60"><path id="swp" d="M10 40 C 150 5, 360 5, 510 30" fill="none" stroke="#FFD23F" stroke-width="12" stroke-linecap="round"/></svg>
+<img id="kids2" src="assets/kids2.png"><img id="kids1" src="assets/kids1.png">
+<svg id="ledge" viewBox="0 0 1280 700"><path d="M0 60 C 160 0, 300 70, 470 40 S 800 0, 960 44 S 1200 20, 1280 50 V700 H0Z" fill="#fff"/><path d="M0 60 C 160 0, 300 70, 470 40 S 800 0, 960 44 S 1200 20, 1280 50" fill="none" stroke="#E8EEF7" stroke-width="10"/></svg>
+<img id="gifts" src="assets/gifts2.png">
+<div class="card" id="c1"><img src="assets/kids1.png" width="900"></div>
+<div class="card" id="c2"><img src="assets/kids2.png" width="1040"></div>
+<div class="chip" id="chip1">Mon Premier Noël</div><div class="chip" id="chip2">Joyeux Noël</div>
+<div id="chacun"></div>
+<img id="noel1" src="assets/noel1.png">
+<div class="badge" id="b1"><span class="n">2500</span><span class="f">Fcfa</span><div class="l">/ unité</div></div>
+<div class="badge" id="b2"><span class="n">2000</span><span class="f">Fcfa</span><div class="l">à partir de</div><div class="l2">10 t-shirts</div></div>
+<img id="sign" src="assets/sign2.png">
+<div id="cmd" class="script"></div>
+<div id="phone"><div id="wa"><svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg></div><div id="digits"><span>07</span><span>79</span><span>59</span><span>05</span><span>62</span></div></div>
+<div id="sub">Appel &amp; WhatsApp</div>
+<img class="poster" id="p1" src="assets/affiche1.png"><img class="poster" id="p2" src="assets/affiche2.png">
+<div id="loc"><svg viewBox="0 0 104 124"><path d="M52 4C25 4 6 24 6 49c0 32 46 71 46 71s46-39 46-71C98 24 79 4 52 4z" fill="#E3202C" stroke="#fff" stroke-width="6"/><circle cx="52" cy="48" r="17" fill="#fff"/></svg><div>Bingerville, près de l’école<br>Morning Glory School</div></div>
+<canvas id="fg" width="1080" height="1920"></canvas>
+</div><div id="hud"></div>
+<script src="cues.js"></script><script src="film.js"></script></body></html>
