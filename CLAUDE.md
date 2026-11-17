@@ -19,3 +19,18 @@ bash voixoff/forlife_voixoff.sh texte.txt sortie.mp3 0.98   # plus posé (contes
 - Avant une longue production, envoyer d'abord un extrait court à l'utilisateur pour validation.
 - Réglages figés (ne pas modifier sans accord) : Supertonic 3 voix 9, 16 étapes, kNN-VC topk 4,
   empreinte spectrale sans recalage de hauteur, mastering -16 LUFS. Détails dans `voixoff/README.md`.
+
+## VoiceStudio
+
+VoiceStudio (studio de voix IA local : voix designées, clonage, 600 langues) doit être disponible dans chaque
+session. Quand l'utilisateur en parle ou demande une voix autre que la sienne, le lancer :
+
+```bash
+bash voicestudio/demarrer.sh   # API :3900, interface web :3901 (signaler le port 3901 comme aperçu)
+```
+
+- L'environnement « Forlife » l'installe dans `/opt/VoiceStudio` au démarrage du conteneur ; sinon le script
+  l'installe (≈ 10 min) puis télécharge le modèle OmniVoice (3,3 Go) au premier lancement.
+- Licences du modèle (CC-BY-NC, non commercial) acceptées par l'utilisateur le 15/11/2026 : le script les
+  réaccepte. Le rappeler avant tout usage commercial ; la voix off FOR LIFE par défaut reste celle ci-dessus.
+- Si la session redémarre, les serveurs s'arrêtent : relancer le script. Détails dans `voicestudio/README.md`.
