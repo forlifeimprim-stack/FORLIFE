@@ -14,8 +14,9 @@ mkdir -p "$LOGS"
 [ -d "$VS/.venv" ] || bash "$ICI/installer.sh" || { echo "Installation de VoiceStudio échouée"; exit 1; }
 
 cd "$VS"
-curl -sf "$API/health" >/dev/null || setsid nohup bun run dev:api > "$LOGS/api.log" 2>&1 < /dev/null &
-curl -sf -o /dev/null http://127.0.0.1:3901/ || setsid nohup bun run dev:frontend > "$LOGS/web.log" 2>&1 < /dev/null &
+# "if" et non "||" : sinon le "&" lance un sous-shell qui garde la sortie de l'appelant ouverte.
+if ! curl -sf "$API/health" >/dev/null; then setsid nohup bun run dev:api > "$LOGS/api.log" 2>&1 < /dev/null & fi
+if ! curl -sf -o /dev/null http://127.0.0.1:3901/; then setsid nohup bun run dev:frontend > "$LOGS/web.log" 2>&1 < /dev/null & fi
 for _ in $(seq 300); do curl -sf "$API/health" >/dev/null && break; sleep 2; done
 curl -sf "$API/health" >/dev/null || { echo "L'API ne répond pas, voir $LOGS/api.log"; tail -20 "$LOGS/api.log"; exit 1; }
 
